@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "sdkVersion": "27.0.0",
+    "name": "Shopping",
+    "androidStatusBar": {
+      "backgroundColor": "#fd9a61",
+      "barStyle": "dark-content"
+    }
+  }
+}

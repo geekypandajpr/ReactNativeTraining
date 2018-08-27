@@ -1,0 +1,1 @@
+export { FooterWithIcon } from './FooterWithIcon';
