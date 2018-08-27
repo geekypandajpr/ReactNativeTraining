@@ -25,19 +25,19 @@ export default EStyleSheet.create({
     },
     productView: {
         flexDirection: 'column',
-        flexWrap: 'wrap'
+        width : 180
     },
     imageView: {
         borderWidth: 0.5,
         borderColor: 'gray',
         margin: 2,
         height: 200,
-        width: 180,
-       // backgroundColor: 'red'
+        width: 170
     },
     productNameView: {
         alignItems: 'center',
-        width: '100%'
+        width: '100%',
+        flexWrap: 'wrap'
     },
     productNameText: {
         color: '#000',
@@ -45,7 +45,8 @@ export default EStyleSheet.create({
     },
     priceView: {
         alignItems: 'center',
-        width: '100%'
+        width: '100%',
+        flexWrap: 'wrap'
     },
     priceText: {
         color: '$primaryColor',
@@ -54,7 +55,6 @@ export default EStyleSheet.create({
     descriptionView: {
         alignItems: 'center',
         width: '100%',
-        //backgroundColor: 'green',
         flexWrap: 'wrap'
     },
     descriptionText: {

@@ -7,6 +7,7 @@ import styles from './Styles';
 import { Toolbar } from '../../components/Toolbar';
 import { FooterWithIcon } from '../../components/Footer';
 import { CardWithIcon, CardWithImage } from '../../components/CardView';
+import { Searchbar } from '../../components/Searchbar';
 
 const HEADERICONLIST= [
     {
@@ -84,13 +85,19 @@ const SHOESIMAGEURL = [
         description : 'Description of the product'
     },
     {
-        uri: { uri: 'https://n3.sdlcdn.com/imgs/f/4/u/Nickolas-casual-shoes-Outdoor-Blue-SDL232822095-1-c19ed.jpeg' },
+        uri: { uri: 'https://rukminim1.flixcart.com/image/832/832/jao8uq80/shoe/3/r/q/sm323-9-sparx-white-original-imaezvxwmp6qz6tg.jpeg?q=70' },
         productName : 'Addidas',
         price: 'Under Rs. 999/-',
         description : 'Description of the product'
     },
     {
         uri: { uri: 'https://images-na.ssl-images-amazon.com/images/I/61cbAQatNlL._UL1500_.jpg' },
+        productName : 'Addidas',
+        price: 'Under Rs. 999/-',
+        description : 'Description of the product'
+    },
+    {
+        uri: { uri: 'https://www.shoecarnival.com/dw/image/v2/BBSZ_PRD/on/demandware.static/-/Sites-scvl-master-catalog/default/dwdb32e0cb/96621_187224_1.jpg?sh=400' },
         productName : 'Addidas',
         price: 'Under Rs. 999/-',
         description : 'Description of the product'
@@ -115,6 +122,18 @@ const CLOTHESIMAGEURL = [
         productName : 'Shirt',
         price: 'Under Rs. 999/-',
         description : 'Description of the product'
+    },
+    {
+        uri: { uri: 'https://images-na.ssl-images-amazon.com/images/I/71KffFmd0qL._UY445_.jpg' },
+        productName : 'Shirt',
+        price: 'Under Rs. 999/-',
+        description : 'Description of the product'
+    },
+    {
+        uri: { uri: 'https://img.tatacliq.com/images/i3/252Wx374H/MP000000002398464_252Wx374H_20180601142626.jpeg' },
+        productName : 'Shirt',
+        price: 'Under Rs. 999/-',
+        description : 'Description of the product'
     }
 ];
 
@@ -128,6 +147,12 @@ export default class Home extends React.Component {
                     headerTitle='btceshop'
                     headerIconList={ HEADERICONLIST }
                 />
+                <Searchbar />
+
+                {/* <View style={ styles.coloredView }></View>
+                <View style= { styles.sliderView }>
+                    <View style={ styles.slider }></View>
+                </View> */}
                 <ScrollView>
                     <CardWithIcon cardWithIconList={CARDWITHICON1} />
                     <CardWithImage
