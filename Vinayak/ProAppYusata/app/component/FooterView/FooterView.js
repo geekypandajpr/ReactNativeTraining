@@ -1,27 +1,50 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,Button } from 'react-native';
 import {IconWithText} from '../Icon/IconWithText/index';
-import {Icon} from 'native-base';
+import {Icon,Footer,FooterTab,Badge} from 'native-base';
 export default class FooterView extends React.Component {
     render() {
       return (
         <View style={styles.container}>
 
-            <View style={ styles.rightView }>
-            <Icon name={this.props.home} style={{}} type={this.props.homeType}></Icon>
-            </View>
-            <View style={ styles.rightView }>
-            <Icon name={this.props.percentage} style={{}} type={this.props.percentageType}></Icon>
-            </View>
-            <View style={ styles.rightView }>
-                <Icon name={this.props.bag} style={styles.icon} type={this.props.bagType}/>
-            </View>
-            <View style={ styles.rightView }>
-                <Icon name={this.props.search} style={styles.icon} type={this.props.searchType}/>
-            </View>
-            <View style={ styles.rightView }>
-                <Icon name={this.props.user} style={styles.icon} type={this.props.userType}/>
-            </View>
+            {/* // <View>
+            // <Icon name={this.props.home}  type={this.props.homeType}></Icon>
+            // </View>
+            // <View >
+            // <Icon name={this.props.percentage}  type={this.props.percentageType}></Icon>
+            // </View>
+            // <View >
+            //     <Icon name={this.props.bag}  type={this.props.bagType}/>
+            // </View>
+            // <View >
+            //     <Icon name={this.props.search}  type={this.props.searchType}/>
+            // </View>
+            // <View >
+            //     <Icon name={this.props.user}  type={this.props.userType}/>
+            // </View> */}
+
+              <Footer>
+          <FooterTab>
+            <Button badge vertical>
+              <Badge><Text>2</Text></Badge>
+              <Icon name="apps" />
+              <Text>Apps</Text>
+            </Button>
+            <Button vertical>
+              <Icon name="camera" />
+              <Text>Camera</Text>
+            </Button>
+            <Button active badge vertical>
+              <Badge ><Text>51</Text></Badge>
+              <Icon active name="navigate" />
+              <Text>Navigate</Text>
+            </Button>
+            <Button vertical>
+              <Icon name="person" />
+              <Text>Contact</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
             
         </View>
 
@@ -35,6 +58,6 @@ const styles = StyleSheet.create({
       flex: 1,
      
       backgroundColor: 'grey',
-      flexDirection : 'row',
+     
     },
   });
