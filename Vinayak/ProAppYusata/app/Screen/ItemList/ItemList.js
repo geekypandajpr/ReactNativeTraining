@@ -6,10 +6,7 @@ export default class ItemList extends React.Component {
     render() {
       return (
         <View style={styles.container}>
-            <IconWithText
-            IconText={'Offer On Shoes'}></IconWithText>
-            <Icon name="search" size={30} color="#900" />
-            <Icon name="card" size={30} color="#900" />
+            
         </View>
 
     );

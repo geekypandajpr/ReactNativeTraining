@@ -38,7 +38,7 @@ export default class Headers extends Component {
                     <Right>
                        <Button
                            transparent>
-                           <Icon  style={{color:'#ffffff'}} name=''/>
+                           <Icon name='power'/>
                        </Button>
                         
                     </Right>

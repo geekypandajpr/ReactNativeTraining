@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 import {Header,Divider} from 'react-native-elements';
-import {HeaderView} from './component/HeaderView/index'
-import {FooterView} from './component/FooterView/index'
+// import {HeaderView} from '.app//component/HeaderView/index'
+import {FooterView} from './app/component/FooterView/index'
+
 
 
 export default class App extends React.Component {
@@ -30,10 +31,10 @@ export default class App extends React.Component {
           <Header leftComponent={{ icon: 'menu', color: 'orange' }}
             centerComponent={{ text: 'Offer on Shoes', style: { color: 'orange' } }}
             rightComponent={{ icon: 'search', color: 'orange'}}/>
-            <View style={styles.divider} >
-            <Divider style={{ backgroundColor: 'blue' }} />
-            </View>
-            
+           
+        <View>
+        <FooterView/>
+        </View>
       </View>
 
     );

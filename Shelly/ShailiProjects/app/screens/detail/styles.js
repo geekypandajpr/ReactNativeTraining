@@ -23,6 +23,5 @@ export default EStyleSheet.create({
                 width:'100%',
                 height: '100%'
 
-         },
-    
-})
+         }
+        })
