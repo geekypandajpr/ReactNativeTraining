@@ -27,6 +27,7 @@ export default class IconCard extends React.Component{
                             </CardIcon>     
                         </View>   
                         <View style={{flexDirection:'column',alignItems:'flex-end',flex:0.5}}>
+                        
                             <Text>
                                {this.props.text}    
                             </Text>
