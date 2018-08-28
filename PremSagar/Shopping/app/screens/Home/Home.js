@@ -139,6 +139,7 @@ const CLOTHESIMAGEURL = [
 
 export default class Home extends React.Component {
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={ styles.container }>
                 <Toolbar
@@ -154,12 +155,14 @@ export default class Home extends React.Component {
                     <View style={ styles.slider }></View>
                 </View> */}
                 <ScrollView>
-                    <CardWithIcon cardWithIconList={CARDWITHICON1} />
+                    <CardWithIcon cardWithIconList={CARDWITHICON1}
+                        onPress={() => navigate('Details')}/>
                     <CardWithImage
                         offerName='Latest Offers'
                         isExpand='View All'
                         imageList={SHOESIMAGEURL} />
-                    <CardWithIcon cardWithIconList={CARDWITHICON2} />
+                    <CardWithIcon cardWithIconList={CARDWITHICON2}
+                        onPress={() => navigate('Details')}/>
                     <CardWithImage
                         offerName='Featured Products'
                         isExpand='View All'

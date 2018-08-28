@@ -7,6 +7,7 @@ export default EStyleSheet.create({
     $iconSize : 20,
 
     cardItem: {
+        flex: 1,
         flexDirection: 'row',
         height: 70
     },
@@ -15,7 +16,7 @@ export default EStyleSheet.create({
         fontSize: '$iconSize'
     },
     headingView: {
-        flex: 0.9,
+        flex: 0.81,
         flexDirection: 'column'
     },
     heading: {
@@ -28,10 +29,10 @@ export default EStyleSheet.create({
         fontSize: '$subHeadingFontSize'
     },
     leftIcon: {
-        flex: 0.2,
+        flex: 0.1
     },
     rightIcon: {
-        flex: 0.1,
+        flex: 0.09,
         justifyContent: 'flex-end'
     }
 })

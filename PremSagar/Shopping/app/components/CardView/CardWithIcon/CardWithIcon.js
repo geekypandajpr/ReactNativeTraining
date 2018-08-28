@@ -45,11 +45,12 @@ export default class CardWithIcon extends React.Component {
                                 <Text style={ styles.subHeading }> { item.subHeading } </Text>
                             </View>
                             <View style={ styles.rightIcon }>
-                                <Icon
+                                <View>
+                                <Icon onPress={this.props.onPress}
                                     name={ item.rightIcon }
                                     type={ item.rightIconType }
                                     style={styles.icon}
-                                />
+                                /></View>
                             </View>
                         </CardItem>
                     </Card>
