@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View,ImageBackground } from 'react-native';
 import Index from './app/Index';
+import Expo from 'expo';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -16,6 +17,9 @@ export default class App extends React.Component {
     this.setState({ loading: false });
   }
   render() {
+    if (this.state.loading) {
+      return <Expo.AppLoading />;
+    }
     return (
      /*} <View style={styles.container}>       
         <Text>Changes you make will automatically reload.</Text>

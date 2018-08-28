@@ -19,14 +19,14 @@ export default class Image extends React.Component{
         return(
             <View>            
             <Thumbnail
-                source={require('../../Images/person.png')}
+                source={require('../../Assets/Images/person.png')}
                 style={{alignItems:'center'}}     
             />
             
             <Text 
                 style={{alignItems:'center',justifyContent:'center',
                          color:'#ffffff'}}>
-                Jaava Trade
+                {this.props.text}
             </Text>                    
             </View>
         );
