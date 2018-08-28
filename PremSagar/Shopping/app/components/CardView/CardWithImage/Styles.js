@@ -1,5 +1,11 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
+    container: {
+        alignItems: 'center'
+    },
+    card:{
+        width: '95%'
+    },
     cardItem: {
         flexDirection: 'row',
         flex: 1
