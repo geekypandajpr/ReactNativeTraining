@@ -4,6 +4,12 @@ import {IconWithText} from '../Icon/IconWithText';
 import styles from './style'
 import {Icon,Header,Button,Left,Right,Title,Body} from 'native-base';
 export default class HeaderView extends React.Component {
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+    });
+  }
     render() {
       return (
          
