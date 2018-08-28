@@ -1,1 +1,0 @@
-export {ImageWithText} from './ImageWithText';
