@@ -16,10 +16,6 @@ import { Searchbar } from '../../components/Searchbar';
 
 const HEADERICONLIST= [
     {
-        icon : 'ios-search-outline',
-        type : 'Ionicons'
-    },
-    {
         icon : 'ios-cart-outline',
         type : 'Ionicons'
     },
@@ -156,42 +152,32 @@ export default class Home extends React.Component {
                 <Searchbar placeholder='Search here' />
 
                 <ScrollView showsVerticalScrollIndicator={false}>
+
                     <View style={ styles.coloredView }></View>
-                    <View style={ styles.sliderView }>
-                        <Card style={ styles.slider }>
-                            <CardItem>
-                                <Image resizeMode='cover'
-                                    style={{width: '100%', height: 200}}
-                                    source={require('../../assets/images/sale.png')}
-                                />
-                            </CardItem>
+                    <View style={ styles.imageView }>
+                        <Card style={ styles.cardView }>
+                            <Image resizeMode='contain' style={ styles.image }
+                                source={require('../../assets/images/sale1.jpg')}
+                            />
                         </Card>
                     </View>
                     
-                        <View style={{marginTop: 155}}>
-                            <CardWithIcon cardWithIconList={CARDWITHICON1}
-                                onPress={() => navigate('Details')}/>
-                            <CardWithImage
-                                offerName='Latest Offers'
-                                isExpand='View All'
-                                imageList={SHOESIMAGEURL} />
-                            <CardWithIcon cardWithIconList={CARDWITHICON2}
-                                onPress={() => navigate('Details')}/>
-                            <CardWithImage
-                                offerName='Featured Products'
-                                isExpand='View All'
-                                imageList={CLOTHESIMAGEURL}/>
-                        </View>
-                    {/* <CardWithImage
-                        offerName='Latest Offers'
-                        isExpand='View All'
-                        imageList={SHOESIMAGEURL} />
-                    <CardWithIcon cardWithIconList={CARDWITHICON2}
-                        onPress={() => navigate('Details')}/>
-                    <CardWithImage
-                        offerName='Featured Products'
-                        isExpand='View All'
-                        imageList={CLOTHESIMAGEURL}/> */}
+                    <View style={ styles.relativeView }>
+                        <CardWithIcon cardWithIconList={CARDWITHICON1}
+                            onPress={() => navigate('Details')} />
+                        <CardWithImage
+                            onPressViewAll={() => navigate('Details')}
+                            offerName='Latest Offers'
+                            isExpand='View All'
+                            imageList={SHOESIMAGEURL} />
+                        <CardWithIcon cardWithIconList={CARDWITHICON2}
+                            onPress={() => navigate('Details')} />
+                        <CardWithImage
+                            onPressViewAll={() => navigate('Details')}
+                            offerName='Featured Products'
+                            isExpand='View All'
+                            imageList={CLOTHESIMAGEURL} />
+                    </View>
                 </ScrollView>
                 <FooterWithIcon footerList={FOOTERLIST} />
             </View>

@@ -1,20 +1,46 @@
-import EStylesheet from 'react-native-extended-stylesheet';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { Dimensions } from 'react-native';
 
-export default EStylesheet.create({
+export default EStyleSheet.create({
+    mainContainer: {
+        flex: 1,
+        backgroundColor: '#c2bebe90',
+        flexDirection: 'column'
+    },
     container: {
-        flex: 1
+        flex: 1,
+        flexDirection: 'column'
     },
-    coloredView: {
-        height: 100,
+    titleView: {
+        flex: 0.2,
+        height: 50,
         width: '100%',
-        backgroundColor: '$primaryColor'
+        backgroundColor: '#fff',
+        padding: 15
     },
-    sliderView: {
-        position: 'absolute',
-        top: 120,
-        alignItems: 'center',
-        width: '90%',
+    titleText:{
+        fontSize: '$fontSize',
+        fontWeight: 'bold'
+    },
+    imageContainer: {
+        flex: 1,
+        flexDirection: 'row',
         height: 300,
+        justifyContent: 'space-around',
+        margin: 1,
+    },
+    imageView: {
+        flex: 0.5,
+        height: '100%',
+        width: '100%',
+        margin: 1,
         backgroundColor: '#fff'
+    },
+    imageView1: {
+        flex: 0.5,
+        height: '100%',
+        width: '100%',
+        margin: 1,
+        backgroundColor: 'red'
     }
 })
