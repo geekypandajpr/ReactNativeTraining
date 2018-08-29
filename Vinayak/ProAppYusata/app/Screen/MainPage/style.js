@@ -9,7 +9,6 @@ export default EStyleSheet.create({
     secondItem :
     {
       flex: 1,
-
     },
     
 strips:{
@@ -36,6 +35,6 @@ view:{
   alignItems:'center',
   justifyContent: 'center',
   height : 20,
-  backgroundColor : 'yellow'
+  backgroundColor : 'lightblue'
 }
  }); 

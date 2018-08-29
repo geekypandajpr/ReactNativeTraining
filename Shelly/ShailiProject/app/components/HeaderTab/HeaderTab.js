@@ -28,12 +28,12 @@ render()
             this.state.loading == true ? <AppLoading/> :
         
             <View>
-                <View>
-                <StatusBar hidden={false} 
-                backgroundColor="red"
-                 translucent={true} />
-                </View>
-            <Header>
+                <StatusBar 
+                backgroundColor={'red'}
+                 translucent={false} />
+                
+            <Header style={{backgroundColor:"#1f667e"}}>
+            
                 <Left>
                     <Button transparent>
                         <Icon
