@@ -2,7 +2,8 @@ import React from 'react';
 import {
     View,
     Text,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from 'react-native';
 import {
     Card,
@@ -31,14 +32,16 @@ export default class CardWithImage extends React.Component {
     render() {
         return (
             this.state.isLoading === true ? <AppLoading/> :
-            <View>
-                <Card>
+            <View style={ styles.container }>
+                <Card style={ styles.card }>
                     <CardItem style={ styles.cardItem }>
                         <View style={ styles.headingView }>
                             <Text style={ styles.heading }> {this.props.offerName} </Text>
                         </View>
                         <View style={ styles.subHeadingView }>
-                            <Text style={ styles.subHeading }> {this.props.isExpand} </Text>
+                            <TouchableOpacity activeOpacity={0.5} onPress={this.props.onPressViewAll}>
+                                <Text style={ styles.subHeading }> {this.props.isExpand} </Text>
+                            </TouchableOpacity>
                         </View>
                     </CardItem>
                     <CardItem style={ styles.cardItem }>

@@ -4,10 +4,16 @@ import {IconWithText} from '../Icon/IconWithText';
 import styles from './style'
 import {Icon,Header,Button,Left,Right,Title,Body} from 'native-base';
 export default class HeaderView extends React.Component {
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+    });
+  }
     render() {
       return (
          
-        <Header>
+        <Header >
         <Left>
           <Button transparent>
             <Icon name='menu' />
@@ -18,8 +24,10 @@ export default class HeaderView extends React.Component {
         </Body>
         <Right>
           <Button transparent>
-            <Icon name='search' style={styles.text}  />
-            <Icon name='cart' style={styles.text} />
+            <Icon name='search'/>  
+          </Button>
+          <Button transparent>
+          <Icon name='cart'/>
           </Button>
         </Right>
       </Header>

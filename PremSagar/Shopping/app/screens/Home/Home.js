@@ -1,8 +1,13 @@
 import React from 'react';
 import {
     View,
-    ScrollView
+    ScrollView,
+    Image
 } from 'react-native';
+import {
+    Card,
+    CardItem
+} from 'native-base';
 import styles from './Styles';
 import { Toolbar } from '../../components/Toolbar';
 import { FooterWithIcon } from '../../components/Footer';
@@ -10,10 +15,6 @@ import { CardWithIcon, CardWithImage } from '../../components/CardView';
 import { Searchbar } from '../../components/Searchbar';
 
 const HEADERICONLIST= [
-    {
-        icon : 'ios-search-outline',
-        type : 'Ionicons'
-    },
     {
         icon : 'ios-cart-outline',
         type : 'Ionicons'
@@ -148,25 +149,35 @@ export default class Home extends React.Component {
                     headerTitle='btceshop'
                     headerIconList={ HEADERICONLIST }
                 />
-                <Searchbar />
+                <Searchbar placeholder='Search here' />
 
-                {/* <View style={ styles.coloredView }></View>
-                <View style= { styles.sliderView }>
-                    <View style={ styles.slider }></View>
-                </View> */}
-                <ScrollView>
-                    <CardWithIcon cardWithIconList={CARDWITHICON1}
-                        onPress={() => navigate('Details')}/>
-                    <CardWithImage
-                        offerName='Latest Offers'
-                        isExpand='View All'
-                        imageList={SHOESIMAGEURL} />
-                    <CardWithIcon cardWithIconList={CARDWITHICON2}
-                        onPress={() => navigate('Details')}/>
-                    <CardWithImage
-                        offerName='Featured Products'
-                        isExpand='View All'
-                        imageList={CLOTHESIMAGEURL}/>
+                <ScrollView showsVerticalScrollIndicator={false}>
+
+                    <View style={ styles.coloredView }></View>
+                    <View style={ styles.imageView }>
+                        <Card style={ styles.cardView }>
+                            <Image resizeMode='contain' style={ styles.image }
+                                source={require('../../assets/images/sale1.jpg')}
+                            />
+                        </Card>
+                    </View>
+                    
+                    <View style={ styles.relativeView }>
+                        <CardWithIcon cardWithIconList={CARDWITHICON1}
+                            onPress={() => navigate('Details')} />
+                        <CardWithImage
+                            onPressViewAll={() => navigate('Details')}
+                            offerName='Latest Offers'
+                            isExpand='View All'
+                            imageList={SHOESIMAGEURL} />
+                        <CardWithIcon cardWithIconList={CARDWITHICON2}
+                            onPress={() => navigate('Details')} />
+                        <CardWithImage
+                            onPressViewAll={() => navigate('Details')}
+                            offerName='Featured Products'
+                            isExpand='View All'
+                            imageList={CLOTHESIMAGEURL} />
+                    </View>
                 </ScrollView>
                 <FooterWithIcon footerList={FOOTERLIST} />
             </View>

@@ -4,8 +4,14 @@ import styles from './style'
 import {Icon,Footer,FooterTab,Badge,Button, Container, Header, Content,Left,Body,Right,Title} from 'native-base';
 
 export default class FooterView extends React.Component {
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+    });
+  }
     render() {
-
+      
       return (
         
           <Footer >

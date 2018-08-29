@@ -1,14 +1,21 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
+    container: {
+        alignItems: 'center'
+    },
+    card:{
+        width: '95%'
+    },
     cardItem: {
         flexDirection: 'row',
         flex: 1
     },
     headingView: {
-        flex: 0.8
+        flex: 0.9
     },
     subHeadingView: {
-        flex: 0.2
+        flex: 0.2,
+        justifyContent: 'flex-end'
     },
     heading: {
         fontSize: '$fontSize',
@@ -19,7 +26,7 @@ export default EStyleSheet.create({
         color: '$primaryColor'
     },
     seperator: {
-        height: 1,
+        height: 0.8,
         backgroundColor: 'gray',
         width: '100%'
     },
@@ -28,11 +35,10 @@ export default EStyleSheet.create({
         width : 180
     },
     imageView: {
-        borderWidth: 0.5,
+        borderWidth: 0.8,
         borderColor: 'gray',
-        margin: 2,
-        height: 200,
-        width: 170
+        width: '98%',
+        height: 220
     },
     productNameView: {
         alignItems: 'center',
