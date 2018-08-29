@@ -5,7 +5,12 @@ export default EStyleSheet.create({
     $headingTextColor : '#fff' ,
     $iconColor : '#fff' ,
     $iconSize : 20,
-
+    container: {
+        alignItems: 'center'
+    },
+    card:{
+        width: '95%'
+    },
     cardItem: {
         flex: 1,
         flexDirection: 'row',

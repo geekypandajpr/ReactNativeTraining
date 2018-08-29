@@ -31,8 +31,8 @@ export default class CardWithImage extends React.Component {
     render() {
         return (
             this.state.isLoading === true ? <AppLoading/> :
-            <View>
-                <Card>
+            <View style={ styles.container }>
+                <Card style={ styles.card }>
                     <CardItem style={ styles.cardItem }>
                         <View style={ styles.headingView }>
                             <Text style={ styles.heading }> {this.props.offerName} </Text>

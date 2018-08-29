@@ -1,0 +1,1 @@
+export {FotterTab} from './FotterTab';

@@ -5,19 +5,17 @@ export default EStylesheet.create({
         flex: 1
     },
     coloredView: {
-        height: 100,
+        height: 80,
         width: '100%',
         backgroundColor: '$primaryColor'
     },
     sliderView: {
-        position: 'absolute',
-        top: 120,
+        width: '100%',
         alignItems: 'center',
-        width: '90%',
-        height: 300,
-        backgroundColor: '#fff'
+        position: 'absolute',
+        top: 0
     },
     slider: {
-        
+        width: '95%'
     }
 })

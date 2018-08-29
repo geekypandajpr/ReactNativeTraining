@@ -1,8 +1,13 @@
 import React from 'react';
 import {
     View,
-    ScrollView
+    ScrollView,
+    Image
 } from 'react-native';
+import {
+    Card,
+    CardItem
+} from 'native-base';
 import styles from './Styles';
 import { Toolbar } from '../../components/Toolbar';
 import { FooterWithIcon } from '../../components/Footer';
@@ -148,16 +153,36 @@ export default class Home extends React.Component {
                     headerTitle='btceshop'
                     headerIconList={ HEADERICONLIST }
                 />
-                <Searchbar />
+                <Searchbar placeholder='Search here' />
 
-                {/* <View style={ styles.coloredView }></View>
-                <View style= { styles.sliderView }>
-                    <View style={ styles.slider }></View>
-                </View> */}
-                <ScrollView>
-                    <CardWithIcon cardWithIconList={CARDWITHICON1}
-                        onPress={() => navigate('Details')}/>
-                    <CardWithImage
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View style={ styles.coloredView }></View>
+                    <View style={ styles.sliderView }>
+                        <Card style={ styles.slider }>
+                            <CardItem>
+                                <Image resizeMode='cover'
+                                    style={{width: '100%', height: 200}}
+                                    source={require('../../assets/images/sale.png')}
+                                />
+                            </CardItem>
+                        </Card>
+                    </View>
+                    
+                        <View style={{marginTop: 155}}>
+                            <CardWithIcon cardWithIconList={CARDWITHICON1}
+                                onPress={() => navigate('Details')}/>
+                            <CardWithImage
+                                offerName='Latest Offers'
+                                isExpand='View All'
+                                imageList={SHOESIMAGEURL} />
+                            <CardWithIcon cardWithIconList={CARDWITHICON2}
+                                onPress={() => navigate('Details')}/>
+                            <CardWithImage
+                                offerName='Featured Products'
+                                isExpand='View All'
+                                imageList={CLOTHESIMAGEURL}/>
+                        </View>
+                    {/* <CardWithImage
                         offerName='Latest Offers'
                         isExpand='View All'
                         imageList={SHOESIMAGEURL} />
@@ -166,7 +191,7 @@ export default class Home extends React.Component {
                     <CardWithImage
                         offerName='Featured Products'
                         isExpand='View All'
-                        imageList={CLOTHESIMAGEURL}/>
+                        imageList={CLOTHESIMAGEURL}/> */}
                 </ScrollView>
                 <FooterWithIcon footerList={FOOTERLIST} />
             </View>
