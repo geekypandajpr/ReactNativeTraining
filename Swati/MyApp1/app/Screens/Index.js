@@ -1,2 +1,3 @@
-export {Home} from './Home';
-export {Detail} from './Details';
+export { Home } from './Home/Index';
+export { Detail } from './Details/Index';
+

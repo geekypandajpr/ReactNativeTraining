@@ -1,0 +1,1 @@
+export { TabText } from './TabText';
