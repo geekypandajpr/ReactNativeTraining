@@ -9,7 +9,7 @@ export default class FotterTab extends React.Component{
         return(
             <View>
               <Footer>
-                  <FooterTab>
+                  <FooterTab style={{backgroundColor:"#1f667e"}}>
                       <Button>
                         <Icon name={this.props.icon1} />
                       </Button>
@@ -18,8 +18,8 @@ export default class FotterTab extends React.Component{
                         <Icon name={this.props.icon2} />
                       </Button>
 
-                      <Button active>
-                        <Icon active name={this.props.icon3} />
+                      <Button  >
+                        <Icon  name={this.props.icon3} />
                       </Button>
 
                       <Button>
