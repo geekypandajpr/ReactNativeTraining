@@ -29,9 +29,9 @@ export default class CardWithIcon extends React.Component {
     render() {
         return (
             this.state.isLoading === true ? <AppLoading /> :
-            <View>
+            <View style={ styles.container }>
                 {this.props.cardWithIconList.map((item, index) =>
-                    <Card style={{ backgroundColor: item.cardColor }} key={index}>
+                    <Card style={[styles.card,{backgroundColor: item.cardColor}]} key={index}>
                         <CardItem style={[styles.cardItem, {backgroundColor: item.cardColor}]}>
                             <View style={ styles.leftIcon }>
                                 <Icon
