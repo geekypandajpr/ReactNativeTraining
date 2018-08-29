@@ -1,9 +1,9 @@
 import React from 'react';
 import {View,Text,Button} from 'react-native';
 import styles from './styles';
-import {Header} from 'react-native-elements';
+//import {Header} from 'react-native-elements';
 import {FotterTab} from '../components/FotterTab';
-//import {HeaderTab} from '../components/HeaderTab';
+import {HeaderTab} from '../components/HeaderTab';
 import {ImagesWithText} from '../components/ImageWithText';
 
 
@@ -16,22 +16,18 @@ export default class Home extends React.Component{
 
                   <View style={styles.parent}>
                       
-                    
-                      <Header
-                           placement="left"
-                           leftComponent={{ icon: 'menu', color: '#fff' }}
-                           centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-                              
-                           rightComponent={{ icon: 'search', color: '#fff' }}
-                        />
+                      <HeaderTab
+                      icons1='menu'
+                      type3='Entypo'
+                      headerTitle='Shopping'
+                      icons2='search'
+                      type2='FontAwesome'
+                      icons3='arrow-bold-right'
+                      type1='Entypo'
+                      onpress={ ()=> this.props.navigation.navigate('Details')}
+                
+                   />
 
-                        <Button
-                              title="Go to Jane's profile"
-                              onPress={() =>
-                                this.props.navigation.navigate('Details')
-                              }
-                            />
-                       
                      <View style={styles.child}>
               
 

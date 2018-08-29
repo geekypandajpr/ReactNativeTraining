@@ -1,28 +1,72 @@
-import React from react;
-import {react} from 'react-native';
-import {Header} from 'react-native-elements';
+import React from 'react';
+import {AppLoading} from 'expo';
+import Expo from 'expo';
+import {StatusBar,View} from 'react-native';
+
+import {Header,Button,Icon,Body,Left,Right,Title} from 'native-base';
 
 export default class HeaderTab extends React.Component
 {
-    render()
-    {
-        return( 
-           
-           
-           <Header
-            placement="left"
-             leftComponent={{ icon: 'menu', color: '#fff' }}
-             centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-               
-             rightComponent={{ icon: 'search', color: '#fff' }}
-         />
-
-          
-        
-
-        )
-    }
-
+    constructor(props) {
+    super(props);
+    this.state = { loading: true };
 }
 
-export{HeaderTab}
+async componentWillMount() {
+ await Expo.Font.loadAsync({
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+      Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+});
+this.setState({loading:false});
+}
+        
+render()
+    {
+        return(
+
+            this.state.loading == true ? <AppLoading/> :
+        
+            <View>
+                <View>
+                <StatusBar hidden={false} 
+                backgroundColor="red"
+                 translucent={true} />
+                </View>
+            <Header>
+                <Left>
+                    <Button transparent>
+                        <Icon
+                         onPress={this.props.onPress}
+                         name={this.props.icons1}
+                         type={this.props.type3}/>
+                    </Button>
+                </Left>
+
+                <Body style={{alignItems:"center"}}>
+                        <Title>{this.props.headerTitle}</Title>
+                </Body>
+
+                <Right>
+                    <Button transparent>
+                        <Icon name={this.props.icons2} type={this.props.type2}/>
+                    </Button>
+
+                    <Button transparent>
+                        <Icon  
+                        onPress={this.props.onpress}
+                         name={this.props.icons3} 
+                         type={this.props.type1}
+                        />
+                    </Button>
+                </Right>
+          </Header>
+          </View>
+        )
+        
+    }
+
+
+
+}
+export {HeaderTab}
