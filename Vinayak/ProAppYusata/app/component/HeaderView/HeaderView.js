@@ -13,7 +13,7 @@ export default class HeaderView extends React.Component {
     render() {
       return (
          
-        <Header>
+        <Header >
         <Left>
           <Button transparent>
             <Icon name='menu' />
@@ -24,8 +24,10 @@ export default class HeaderView extends React.Component {
         </Body>
         <Right>
           <Button transparent>
-            <Icon name='search' style={styles.text}  />
-            <Icon name='cart' style={styles.text} />
+            <Icon name='search'/>  
+          </Button>
+          <Button transparent>
+          <Icon name='cart'/>
           </Button>
         </Right>
       </Header>
