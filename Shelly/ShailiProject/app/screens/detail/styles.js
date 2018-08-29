@@ -23,5 +23,25 @@ export default EStyleSheet.create({
                 width:'100%',
                 height: '100%'
 
-         }
+         },
+         containerStyle:{
+            backgroundColor:'#1f667e',
+             borderTopColor:'#1f667e',
+             borderBottomColor:'#1f667e',
+
+         },
+    Container:{
+             alignItems:'center'
+
+         },
+    Card:{
+             width:'99%',
+             height:'100%'
+
+         },
+
+         contentContainer: {
+            paddingVertical: 20
+          }
+
         })

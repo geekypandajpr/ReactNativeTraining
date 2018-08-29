@@ -1,7 +1,11 @@
 {
   "expo": {
     "sdkVersion": "27.0.0",
-   "name" : "products"
+   "name" : "products",
+   "androidStatusBar": {
+    "backgroundColor": "#fd9a61",
+    "barStyle": "dark-content"
+  }
    
   }
 }
