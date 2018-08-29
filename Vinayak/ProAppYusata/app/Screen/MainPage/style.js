@@ -11,31 +11,7 @@ export default EStyleSheet.create({
       flex: 1,
 
     },
-    child:{
-      flex: 0.5,
-      justifyContent: 'center',
-       backgroundColor :'white',
-      borderRightColor: 'black',
-      borderRightWidth: 1,
-      alignItems:'center',
-      width:'100%',
-      height: '100%'
-
-},
-card:
-{
-  flex: 1,
-  flexDirection : 'row',
-  borderRadius: 4,
-  borderWidth: 0.5,
-  borderColor: '#d6d7da', 
-},
-image :
-{
-  width : 120,
-  height : 180
-
-},
+    
 strips:{
   flex: 0.4,
   flexDirection : 'row',
@@ -50,5 +26,16 @@ strips:{
 imageslider :{
   
   height : 250
+},
+viewAll :{
+  color: 'orange'
+},
+view:{
+  flex: 0.2,
+  flexDirection : 'row',
+  alignItems:'center',
+  justifyContent: 'center',
+  height : 20,
+  backgroundColor : 'yellow'
 }
  }); 
