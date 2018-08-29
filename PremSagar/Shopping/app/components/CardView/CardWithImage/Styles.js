@@ -25,7 +25,7 @@ export default EStyleSheet.create({
         color: '$primaryColor'
     },
     seperator: {
-        height: 1,
+        height: 0.8,
         backgroundColor: 'gray',
         width: '100%'
     },
@@ -34,11 +34,10 @@ export default EStyleSheet.create({
         width : 180
     },
     imageView: {
-        borderWidth: 0.5,
+        borderWidth: 0.8,
         borderColor: 'gray',
-        margin: 2,
-        height: 200,
-        width: 170
+        width: '98%',
+        height: 220
     },
     productNameView: {
         alignItems: 'center',

@@ -9,13 +9,22 @@ export default EStylesheet.create({
         width: '100%',
         backgroundColor: '$primaryColor'
     },
-    sliderView: {
+    imageView: {
         width: '100%',
         alignItems: 'center',
         position: 'absolute',
         top: 0
     },
-    slider: {
-        width: '95%'
+    cardView: {
+        width: '95%',
+        height: 220
+    },
+    image: {
+        width: undefined,
+        height: undefined,
+        flex: 1
+    },
+    relativeView: {
+        marginTop: 150
     }
 })
