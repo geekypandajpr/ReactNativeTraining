@@ -21,7 +21,7 @@ export default EStyleSheet.create({
         fontSize: '$iconSize'
     },
     headingView: {
-        flex: 0.81,
+        flex: 0.88,
         flexDirection: 'column'
     },
     heading: {
@@ -37,7 +37,7 @@ export default EStyleSheet.create({
         flex: 0.1
     },
     rightIcon: {
-        flex: 0.09,
+        flex: 0.03,
         justifyContent: 'flex-end'
     }
 })
