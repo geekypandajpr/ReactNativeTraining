@@ -1,0 +1,1 @@
+export { QuesCard } from './QuesCard';
