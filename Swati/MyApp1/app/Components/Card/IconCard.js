@@ -3,6 +3,7 @@ import {ImageBackground} from 'react-native';
 import {Icon,Card,View,Text, CardItem} from 'native-base';
 import CardIcon from '../Icon/CardIcon';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import Styles from './Styles';
 
 const styles=EStyleSheet.create({
     card:{
@@ -31,7 +32,7 @@ export default class IconCard extends React.Component{
                                 
                             </CardIcon>     
                         </View>   
-                        <View style={{flexDirection:'column',alignItems:'flex-end',flex:0.5}}>                        
+                        <View style={Styles.textView}>                        
                             <Text>
                                {this.props.text}    
                             </Text>
