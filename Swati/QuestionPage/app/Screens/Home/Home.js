@@ -7,10 +7,17 @@ import Styles from './Styles';
 import {QuestionCard} from '../../Components/Card/QuestionCard';
 
 export default class Home extends React.Component{
-
     static navigationOptions = {
-        header:null,
-      };
+       header : null
+    };
+
+    constructor(props){
+        super(props);
+        this.state = {
+            start:false
+        }
+    }
+
 
     render(){
         return(
@@ -18,15 +25,15 @@ export default class Home extends React.Component{
                 <StatusBar />
                 <View style={Styles.backgroundView}>
                    <View>
-                       <Button onPress={()=>this.setState({start:'Y'})} title='START'>
+                       <Button onPress={()=>this.setState({start: !this.state.start})} title='START'>
                        <Text style={Styles.buttonText}> START </Text>
                        </Button>
-                   </View>
-                   {this.state.start =='Y' ? <QuestionCard /> : null}
+                   </View>                  
                     <View>
                         <Text></Text>
                     </View>
                 </View>
+                {this.state.start == false ? null :<QuestionCard /> }
             </ScrollView>
         );
     }
