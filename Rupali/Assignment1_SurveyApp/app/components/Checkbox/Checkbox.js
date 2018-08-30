@@ -12,6 +12,7 @@ export default class Checkbox extends Component
 {
     constructor(props) {
         super(props)
+       
         this.state = {
           checkbox1: false,
           checkbox2: false,

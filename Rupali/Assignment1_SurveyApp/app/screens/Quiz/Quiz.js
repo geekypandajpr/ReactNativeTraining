@@ -2,8 +2,10 @@ import React from 'react';
 import {
     StyleSheet,
     Text,
-    View
+    View,
+    FlatList
 } from 'react-native';
+import {JSONData} from '../../components/JSONData/JSONData';
 import {ScrollView} from 'react-native';
 import {HeaderIcon} from '../../components/Header';
 import { Card,CardItem } from 'native-base';
@@ -26,7 +28,8 @@ export default class Quiz extends React.Component
                     <Text>00:00</Text>
                     </CardItem>
                 </Card>
-                   <Checkbox />
+                   <Checkbox 
+                   />
                    <Checkbox />
                    <Checkbox />
                    <Checkbox />
