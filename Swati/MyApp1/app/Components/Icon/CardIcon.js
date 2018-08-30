@@ -4,8 +4,9 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 const styles=EStyleSheet.create({
     card:{
-        height:'20%',
-        width:'10%',
+        height:50,
+        width:'40%',
+     
        // backgroundColor:'red'
     }
 })

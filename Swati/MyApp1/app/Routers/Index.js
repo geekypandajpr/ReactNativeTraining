@@ -1,5 +1,5 @@
 import {createStackNavigator} from 'react-navigation';
-import {Home,Detail} from '../Screens';
+import {Home,Detail} from '../Screens/Index';
 
 const AppRouter= createStackNavigator(
  {

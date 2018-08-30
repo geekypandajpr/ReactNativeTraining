@@ -6,4 +6,19 @@ export default EStyleSheet.create({
     CardItem:{
         flexDirection:'row'
     },
+    textStyle1: {
+        fontSize: 20,
+        color: '#000',
+        fontWeight:'bold',
+        //fontFamily:'normal'
+    },
+    textStyle2: {
+        fontSize: 20,
+        color: '#000',
+       // fontWeight:'bold',
+        //fontFamily:'normal'
+    },
+    textView:{
+        flexDirection:'column',alignItems:'flex-end',flex:0.5
+    }
 })
