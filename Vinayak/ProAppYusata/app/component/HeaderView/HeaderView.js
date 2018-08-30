@@ -1,47 +1,40 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {IconWithText} from '../Icon/IconWithText/index';
-import {Icon} from 'native-base';
+import {IconWithText} from '../Icon/IconWithText';
+import styles from './style'
+import {Icon,Header,Button,Left,Right,Title,Body} from 'native-base';
 export default class HeaderView extends React.Component {
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+    });
+  }
     render() {
       return (
-        <View style={styles.container}>
-            <View style={ styles.leftView }>
-                <Icon name={this.props.left} style={styles.icon}/>
-            </View>
-            <View style={ styles.heading }>
-                <Text>{this.props.title}</Text>
-            </View>
-            <View style={ styles.rightView }>
-                <Icon name={this.props.right} style={styles.icon}/>
-            </View>
-        </View>
+         
+        <Header >
+        <Left>
+          <Button transparent>
+            <Icon name='menu' />
+          </Button>
+        </Left>
+        <Body>
+          <Title>Offer On Shoes</Title>
+        </Body>
+        <Right>
+          <Button transparent>
+            <Icon name='search'/>  
+          </Button>
+          <Button transparent>
+          <Icon name='cart'/>
+          </Button>
+        </Right>
+      </Header>
+      
 
     );
 }
 }
 export {HeaderView}
 
-const styles = StyleSheet.create({
-    container: {
-              backgroundColor: 'orange',
-      flexDirection : 'row',
-      height: 60,
-     
-      alignItems:'center',
-      margin: 2
-    },
-    leftView:{
-        flex: 0.2
-    },
-    icon :{
-        color: '#000'
-    },
-    rightView: {
-        flex: 0.4,
-        justifyContent: 'flex-end'
-    },
-    heading: {
-        flex: 0.4
-    }
-  });

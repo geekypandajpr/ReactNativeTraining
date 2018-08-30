@@ -26,7 +26,7 @@ export default class Headers extends Component {
     render() {
         return (
             <View >
-                <Header >
+                <Header hasTabs>
                     <Left>
                         <Button transparent>
                             <Icon name="menu" />

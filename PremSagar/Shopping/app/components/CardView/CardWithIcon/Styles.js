@@ -5,8 +5,14 @@ export default EStyleSheet.create({
     $headingTextColor : '#fff' ,
     $iconColor : '#fff' ,
     $iconSize : 20,
-
+    container: {
+        alignItems: 'center'
+    },
+    card:{
+        width: '95%'
+    },
     cardItem: {
+        flex: 1,
         flexDirection: 'row',
         height: 70
     },
@@ -15,7 +21,7 @@ export default EStyleSheet.create({
         fontSize: '$iconSize'
     },
     headingView: {
-        flex: 0.9,
+        flex: 0.88,
         flexDirection: 'column'
     },
     heading: {
@@ -28,10 +34,10 @@ export default EStyleSheet.create({
         fontSize: '$subHeadingFontSize'
     },
     leftIcon: {
-        flex: 0.2,
+        flex: 0.1
     },
     rightIcon: {
-        flex: 0.1,
+        flex: 0.03,
         justifyContent: 'flex-end'
     }
 })

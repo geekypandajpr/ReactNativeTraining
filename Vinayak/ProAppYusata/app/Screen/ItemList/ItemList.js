@@ -1,23 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import {IconWithText} from '../../component/Icon/IconWithText/index'
+import { StyleSheet, Text, View,Button } from 'react-native';
+import {FooterView} from '../../component/FooterView';
+import {HeaderView} from '../../component/HeaderView'
+import {Container, Content} from 'native-base';
 
 export default class ItemList extends React.Component {
     render() {
+        // const { navigate } = ;
       return (
-        <View style={styles.container}>
-            
-        </View>
+        <Container>
+            <HeaderView/>
+            <Content>
+            <Button title="Main Page" onPress={() => this.props.navigation.navigate('MainPage')}/>
+            </Content>
+            <View>
+            <Button title="ItemList Page" onPress={() => this.props.navigation.navigate('SecondItemList')}/>
+            </View>
+            <FooterView/>
+        </Container>
 
     );
 }
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
+  export {ItemList}

@@ -1,30 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View,Button } from 'react-native';
-import {IconWithText} from '../Icon/IconWithText/index';
-import {Icon,Footer,FooterTab,Badge} from 'native-base';
+import { StyleSheet, Text, View, StatusBar} from 'react-native';
+import styles from './style'
+import {Icon,Footer,FooterTab,Badge,Button, Container, Header, Content,Left,Body,Right,Title} from 'native-base';
+
 export default class FooterView extends React.Component {
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+    });
+  }
     render() {
+      
       return (
-        <View style={styles.container}>
-
-            {/* // <View>
-            // <Icon name={this.props.home}  type={this.props.homeType}></Icon>
-            // </View>
-            // <View >
-            // <Icon name={this.props.percentage}  type={this.props.percentageType}></Icon>
-            // </View>
-            // <View >
-            //     <Icon name={this.props.bag}  type={this.props.bagType}/>
-            // </View>
-            // <View >
-            //     <Icon name={this.props.search}  type={this.props.searchType}/>
-            // </View>
-            // <View >
-            //     <Icon name={this.props.user}  type={this.props.userType}/>
-            // </View> */}
-
-              <Footer>
-          <FooterTab>
+        
+          <Footer >
+          <FooterTab style={styles.container}>
             <Button badge vertical>
               <Badge><Text>2</Text></Badge>
               <Icon name="apps" />
@@ -32,7 +23,7 @@ export default class FooterView extends React.Component {
             </Button>
             <Button vertical>
               <Icon name="camera" />
-              <Text>Camera</Text>
+              <Text style={styles.text}>Camera</Text>
             </Button>
             <Button active badge vertical>
               <Badge ><Text>51</Text></Badge>
@@ -45,19 +36,8 @@ export default class FooterView extends React.Component {
             </Button>
           </FooterTab>
         </Footer>
-            
-        </View>
-
     );
 }
 }
 export {FooterView}
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-     
-      backgroundColor: 'grey',
-     
-    },
-  });
