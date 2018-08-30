@@ -10,26 +10,27 @@ import {
     Image,
     ScrollView
 } from 'react-native';
+import { Icon } from 'native-base';
 
 
-export default class CardImage extends React.Component
+export default class CardWithIcon extends React.Component
 {
     render(){
         return(
             <View>
                 <View>
-                   <Image
+                <Image
                      style = {styles.img}
                      source = {this.props.source} />
                      <Text style= {{textAlign: "center"}}>
                      {this.props.name}
                     </Text> 
-                    <Text style= {{textAlign: "center",color : 'red'}}>
+                    <Text style= {{textAlign: "center"}}>
                      {this.props.name1}
                     </Text> 
-                    <Text style= {{textAlign: "center"}}>
-                     {this.props.name2}
-                    </Text> 
+                    <Image
+                     style = {styles.img}
+                     source = {this.props.source} />
                 </View>
             </View>
             
@@ -39,10 +40,10 @@ export default class CardImage extends React.Component
 
 const styles = StyleSheet.create({
     img: {
-     width: 150, height: 150, borderRadius: 150,
+        
+     width: 50, height: 50, borderRadius: 150,
      alignItems: 'flex-end',
-     margin: 30
     },
   });
 
-  export {CardImage }
+  export { CardWithIcon }

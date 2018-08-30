@@ -1,0 +1,1 @@
+export {FooterTabsIcon} from './Footer';

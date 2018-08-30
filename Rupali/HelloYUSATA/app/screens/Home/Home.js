@@ -1,36 +1,19 @@
 import React from 'react'; 
 import {
     StyleSheet,
-    Button,
     Text,
-    View,
-    TextInput,
-    ImageBackground,
-    Dimensions,
-    Image,
-    ScrollView
+    View
 } from 'react-native';
-import CardImage from '../../Images/CardImages/CardImage';
-import IconTextIcon from '../Card/IconTextIcon';
-import { Card } from 'native-base';
+import { CardWithIcon, CardWithImage} from '../../components/CardView';
 
 
 
-export default class Card1 extends React.Component
+
+export default class Home extends React.Component
 {
     render(){
         return(
             <View style={styles.container}>
-
-            {/* <View style = {{backgroundColor: 'grey'}}>
-                    <IconTextIcon
-                       // source={require('../../Images/desktopicon.png')}
-                        name = 'Exciting Deals and Exchange Offers'
-                        name1 = '50%-60% off on Bevarages Items.'
-                        //source={require('../../Images/arrowright.png')}
-                    ></IconTextIcon>
-            </View> */}
-
                <View style = {{backgroundColor: 'grey', height: 60, alignItems: 'center'}}>
                     <Text>Exciting Deals and Exchange Offers</Text>
                     <Text>50%-60% off on Bevarages Items.</Text>
@@ -38,43 +21,32 @@ export default class Card1 extends React.Component
                 <View style={styles.viewFlex}> 
                     <View style={styles.card}>
                     <Text style= {{color: 'black', textAlign: "left",  margin: 20}}>Latest Offers</Text>
-                        <CardImage 
-                        source= {require('../../Images/heels5.jpg')} 
+                        <CardWithImage
+                        source= {require('../../assets/images/heels5.jpg')} 
                         name= 'Product Name' 
                         name1 = "Under Rs.999/-"
                         name2 = "Category"
                         >
-                        </CardImage>
+                        </CardWithImage>
                     </View>
                     <View style={styles.card}>
-                        <CardImage 
-                        source= {require('../../Images/heels5.jpg')} 
+                        <CardWithImage
+                        source= {require('../../assets/images/heels5.jpg')} 
                         name= 'Product Name'
                         name1 = "Under Rs.999/-"
                         name2 = "Category">
-                        </CardImage>
+                        </CardWithImage>
                     </View>
                     <View style={styles.card}>
                     <Text style= {{color: 'orange', textAlign: "right",  margin: 20}}>View All</Text>
-                        <CardImage 
-                        source= {require('../../Images/heels5.jpg')} 
+                        <CardWithImage
+                        source= {require('../../assets/images/heels5.jpg')} 
                         name= 'Product Name'
                         name1 = "Under Rs.999/-"
                         name2 = "Category">
-                        </CardImage>
+                        </CardWithImage>
                     </View>
                 </View>
-
-                {/* <View style = {{backgroundColor: 'orange'}}>
-                    <IconTextIcon
-                      //  source={require('../../Images/mouseicon.png')}
-                        name = 'Shop By Category'
-                        name1 = 'Electronics,Mobile,Personal Care, etc.'
-                       // source={require('../../Images/arrowright.png')}
-                    ></IconTextIcon>
-                </View> */}
-
-
 
                   <View style = {{backgroundColor: 'orange', height: 60, alignItems: 'center'}}>
                     <Text >Shop By Category</Text>
@@ -86,29 +58,29 @@ export default class Card1 extends React.Component
                   
                    <View style={styles.card}>
                    <Text style= {{color: 'black', textAlign: "left",  margin: 20}}>Featured Products</Text>
-                        <CardImage 
-                        source= {require('../../Images/anar.jpg')} 
+                        <CardWithImage
+                        source= {require('../../assets/images/anar.jpg')} 
                         name= 'Anarkali Suit'
                         name1 = "Under Rs.999/-"
                         name2 = "Category">
-                        </CardImage>
+                        </CardWithImage>
                     </View>
                     <View style={styles.card}>
-                        <CardImage 
-                        source= {require('../../Images/anar1.jpg')} 
+                        <CardWithImage
+                        source= {require('../../assets/images/anar1.jpg')} 
                         name= 'Product Name'
                         name1 = "Under Rs.999/-"
                         name2 = "Category">
-                        </CardImage>
+                        </CardWithImage>
                     </View>
                     <View style={styles.card}>
                     <Text style= {{color: 'orange', textAlign: "right", margin: 20}}>View All</Text>
-                        <CardImage 
-                        source= {require('../../Images/anar2.jpg')} 
+                        <CardWithImage
+                        source= {require('../../assets/images/anar2.jpg')} 
                         name= 'Product Name'
                         name1 = "Under Rs.999/-"
                         name2 = "Category">
-                        </CardImage>
+                        </CardWithImage>
                     </View>
                 </View>
             </View>
@@ -145,7 +117,7 @@ const styles = StyleSheet.create({
 
 
 
-
+export {Home}
 
 
 
