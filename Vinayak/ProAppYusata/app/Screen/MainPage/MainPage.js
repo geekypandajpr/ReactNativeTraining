@@ -7,7 +7,7 @@ import { SearchBar,Divider } from 'react-native-elements';
 import ImageSlider from 'react-native-image-slider';
 import MarqueeText from 'react-native-marquee';
 import { Left, Right } from 'native-base';
-import {ItemCard} from '../../component/Card/ItemCard'
+import {ItemCard} from '../../component/Card/ItemCard';
 export default class MainPage extends React.Component {
     render() {
       return (
