@@ -1,17 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View,ImageBackground,StatusBar,ScrollView } from 'react-native';
 import Index from '../../Components/Header/Index';
+import {TabText} from '../../Components/Tab/Index';
 import IconCard from '../../Components/Card/IconCard';
 import DetailsList from '../../Components/Card/DetailsList';
 import Image from '../../Components/Image/Image';
 import {Container,Left,Body,Right,Button,Icon,Title,Card,CardItem} from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import Styles from './Styles';
 
 const styles=EStyleSheet.create({
    
    card:{
-       height:'10%',
-       width:'20%',
+       height:'30%',
+       width:'30%',
       
    }
 })
@@ -51,6 +53,9 @@ export default class Home extends React.Component{
         super(props)
     // this.changeName=this.changeName.bind(this);
     }
+    static navigationOptions = {
+        header:null,
+      };
 
   
     render() {
@@ -60,8 +65,12 @@ export default class Home extends React.Component{
          <View>
              <StatusBar />
              <Index title='Dashboard'/>
-          <View style={{flexDirection:'column'}}>
-          <Card>
+             <TabText name1='Home'
+                      name2='Incomes & Wallet'
+                      name3="Sign-up's"/>
+             <View style={Styles.backgroundView}></View>
+          <View style={Styles.firstCardView}>
+          <Card style={Styles.Card}>
             
                  <View style={{alignItems:'flex-start'}}>
                     <Text style={{fontSize:20}}>Welcome</Text>
@@ -71,7 +80,7 @@ export default class Home extends React.Component{
                     <View style={{flex:0.5}}>        
                     <IconCard name='user'
                               type='FontAwesome'
-                              text='s'
+                              text='Swati'
                               text1='95'                  
                               style={{backgroundColor:'#008b8b'}}>
 
@@ -109,15 +118,15 @@ export default class Home extends React.Component{
              </View>
         </Card>
         </View>
-        <View style={{flexDirection:'column'}}>
+        <View style={Styles.secondCardView}>
        <Card>
-           <CardItem style={styles.card} bordered>
+           <View>
            <ImageBackground
-               style={{height:120,width:'100%'}}
+               style={Styles.imageBackground}
                source={require('../../Assets/Images/backgroundImage1.png')}>
                <Image text='Jaava Trade'/>  
            </ImageBackground>                
-           </CardItem>
+           </View>
             <DetailsList text="Name" />
             <DetailsList text="UserId" />
             <DetailsList text="DOJ" />
@@ -127,8 +136,9 @@ export default class Home extends React.Component{
 
        </Card>
        </View>
+     
        </View>  
-       <Button title='Show'></Button> 
+       
     </ScrollView>   
        
         );

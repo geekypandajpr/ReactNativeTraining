@@ -11,10 +11,11 @@ export default EStyleSheet.create({
         flex: 1
     },
     headingView: {
-        flex: 0.8
+        flex: 0.9
     },
     subHeadingView: {
-        flex: 0.2
+        flex: 0.2,
+        justifyContent: 'flex-end'
     },
     heading: {
         fontSize: '$fontSize',

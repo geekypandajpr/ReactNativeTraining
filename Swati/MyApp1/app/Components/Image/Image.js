@@ -20,7 +20,7 @@ export default class Image extends React.Component{
             <View>            
             <Thumbnail
                 source={require('../../Assets/Images/person.png')}
-                style={{alignItems:'center'}}     
+                style={{alignItems:'center',justifyContent:'center'}}     
             />
             
             <Text 
