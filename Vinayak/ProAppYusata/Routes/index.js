@@ -1,6 +1,6 @@
 import {createStackNavigator} from 'react-navigation';
 
-import { MainPage,ItemList,SecondItemList} from '../app/Screen';
+import { MainPage,ItemList,SecondItemList,Test,TestResult} from '../app/Screen';
 
   
   const AppRoutes = createStackNavigator({
@@ -12,6 +12,12 @@ import { MainPage,ItemList,SecondItemList} from '../app/Screen';
   },},
   MainPage: { screen: MainPage ,navigationOptions: {
     header: null
+},},
+Test: { screen: Test ,navigationOptions: {
+  header: null
+},},
+TestResult: { screen: TestResult ,navigationOptions: {
+  header: null
 },},
   });
   

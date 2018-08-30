@@ -11,7 +11,7 @@ export default class ItemList extends React.Component {
         <Container>
             <HeaderView/>
             <Content>
-            <Button title="Main Page" onPress={() => this.props.navigation.navigate('MainPage')}/>
+            <Button title="Test" onPress={() => this.props.navigation.navigate('Test')}/>
             </Content>
             <View>
             <Button title="ItemList Page" onPress={() => this.props.navigation.navigate('SecondItemList')}/>
