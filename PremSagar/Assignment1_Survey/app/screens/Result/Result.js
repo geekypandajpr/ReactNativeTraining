@@ -14,21 +14,17 @@ import Ques from '../../assets/datas/Ques';
 export default class Result extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            score: 0
-        }
+        this.state = { score: 0 }
     }
     componentDidMount() {
-        // for(let index in Results) {
-        //     if((Results[index].status).toUpperCase()==('Right').toUpperCase()) {
-        //         this.setState({
-        //             score: parseInt(this.state.score+1)
-        //         })
-        //     }
-        // }
+        for(let index in Results) {
+            if(Results[index].status==true) {
+                this.setState({ score: ++this.state.score})
+                //console.log(this.state.score)
+            }
+        }
     }
     render() {
-        const { navigate } = this.props.navigation;
         return (
             <View style={ styles.container }>
                 <Toolbar
@@ -40,6 +36,7 @@ export default class Result extends React.Component {
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={ styles.resultView }>
                         <Card style={ styles.cardView }>
+
                             <CardItem style={ styles.cardItem1 }>
                                 <View style={ styles.serialNum }>
                                     <Text>SL NO.</Text>
@@ -51,6 +48,7 @@ export default class Result extends React.Component {
                                     <Text>Correct Answer</Text>
                                 </View>
                             </CardItem>
+
                             {Results.map((item, index) =>
                                 <CardItem style={ styles.cardItem } key={index}>
                                     <View style={ styles.serialNum }>
@@ -64,8 +62,18 @@ export default class Result extends React.Component {
                                     </View>
                                 </CardItem>
                             )}
-                            
+
+                            <CardItem style={ styles.cardItem1 }>
+                                <View style={ styles.scoreView }>
+                                    <Text>Total Marks</Text>
+                                </View>
+                                <View style={ styles.scoreView }>
+                                    <Text>{this.state.score}/{Results.length}</Text>
+                                </View>
+                            </CardItem>
+
                         </Card>
+
                         <View style={ styles.buttonView }>
                             <Button
                                 style={ styles.button }

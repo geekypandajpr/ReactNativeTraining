@@ -26,9 +26,6 @@ export default EStylesheet.create({
     correctAnsView: {
         flex: 0.4
     },
-    totalScoreView: {
-        flex: 0.5
-    },
     scoreView: {
         flex: 0.5
     },

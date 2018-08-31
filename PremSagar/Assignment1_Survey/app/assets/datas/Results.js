@@ -1,42 +1,42 @@
 const RESULTS = [
     {
-        'status' : 'Wrong',
+        'status' : false,
         'answer' : 'Not Attemped' 
     },
     {
-        'status' : 'Wrong',
+        'status' : false,
         'answer' : 'Not Attemped' 
     },
     {
-        'status' : 'Wrong',
+        'status' : false,
         'answer' : 'Not Attemped' 
     },
     {
-        'status' : 'Wrong',
+        'status' : false,
         'answer' : 'Not Attemped' 
     },
     {
-        'status' : 'Wrong',
+        'status' : false,
         'answer' : 'Not Attemped' 
     },
     {
-        'status' : 'Wrong',
+        'status' : false,
         'answer' : 'Not Attemped' 
     },
     {
-        'status' : 'Wrong',
+        'status' : false,
         'answer' : 'Not Attemped' 
     },
     {
-        'status' : 'Wrong',
+        'status' : false,
         'answer' : 'Not Attemped' 
     },
     {
-        'status' : 'Wrong',
+        'status' : false,
         'answer' : 'Not Attemped' 
     },
     {
-        'status' : 'Wrong',
+        'status' : false,
         'answer' : 'Not Attemped' 
     },
 ]

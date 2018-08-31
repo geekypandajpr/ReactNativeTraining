@@ -19,9 +19,6 @@ export default class QuesCard extends React.Component {
             isChecked: [false,false,false,false]
         }
         this.onPress = this.onPress.bind(this);
-        // this.onPress2 = this.onPress2.bind(this);
-        // this.onPress3 = this.onPress3.bind(this);
-        // this.onPress4 = this.onPress4.bind(this);
     }
 
     async componentWillMount(){
@@ -32,15 +29,15 @@ export default class QuesCard extends React.Component {
         })
         this.setState({ isLoading: false })
         for(let index=0;index<10;index++) {
-            RESULTS.splice(index, 1, { 'answer' : 'Not Attempted', 'status' : 'Wrong', });
+            RESULTS.splice(index, 1, { 'answer' : 'Not Attempted', 'status' : false, });
         }
         
     }
 
     onPress(option, index, ans) {
-        var res = 'Wrong'
+        var res = false
         if((Ques[index].correct_answer).toUpperCase()==(ans).toUpperCase()){
-            res = 'Right';
+            res = true;
         }
 
         if(option == 0) {
@@ -57,20 +54,7 @@ export default class QuesCard extends React.Component {
             RESULTS.splice(index, 1, { "answer" : ans, "status" : res });
         }
     }
-    // onPress2() {
-    //     this.setState({ isChecked: [false, true, false, false] })
-    //     RESULTS.splice(index, 1, ans);
-    // }
-    // onPress3() {
-    //     this.setState({ isChecked: [false, false, true, false] })   
-    //     RESULTS.splice(index, 1, ans);    
-    // }
-    // onPress4() {
-    //     this.setState({ isChecked: [false, false, false, true] })
-    //     RESULTS.splice(index, 1, ans);
-    // }
-
-
+    
     render() {
         return (
             this.state.isLoading === true ? <AppLoading /> :
