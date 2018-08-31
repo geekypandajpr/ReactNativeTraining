@@ -29,35 +29,5 @@ export default EStyleSheet.create({
     
 
 
-//export default StyleSheet.create({
 
-//     container: {
-//         flex: 1,
-//         justifyContent: 'center',
-// },
-//     viewFlex: {
-//         flex: 1,
-//         flexDirection: 'row',
-//         borderBottomColor: 'black',
-//         borderBottomWidth: 1,
-// },
-//     card:{
-//         flex: 1,
-//         justifyContent: 'center',
-//         backgroundColor :'#fff',
-//         borderRightColor: 'black',
-//         borderRightWidth: 1,
-// },
-    
-//     stretch: {
-//         //width: 50,
-//         height:100
-//  },
-
-//     // statusBar: {
-//     //     backgroundColor: "green",
-//     //     height: Constants.statusBarHeight,
-//     //   },
-        
-//  })
 })

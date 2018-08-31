@@ -1,18 +1,23 @@
 import React from 'react';
 import {View,Text,Button} from 'react-native';
 import styles from './styles';
-//import {Header} from 'react-native-elements';
+
+
 import {FotterTab} from '../components/FotterTab';
 import {HeaderTab} from '../components/HeaderTab';
 import {ImagesWithText} from '../components/ImageWithText';
+import { Container } from 'native-base';
 
 
 
 export default class Home extends React.Component{
 
+ 
 
     render(){
             return(
+              
+              <Container>
 
                   <View style={styles.parent}>
                       
@@ -75,6 +80,8 @@ export default class Home extends React.Component{
                                 icon4='search'
                                 icon5='person'/>
                         </View>
+
+                        </Container>
 
             );
         }
