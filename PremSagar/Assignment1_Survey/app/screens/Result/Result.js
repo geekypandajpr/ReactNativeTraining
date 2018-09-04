@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    View,
-    Text,
-    Button,
-    ScrollView
-} from 'react-native';
+import { View, Text, Button, ScrollView } from 'react-native';
 import styles from './Styles';
 import { Toolbar } from '../../components';
 import { Card, CardItem } from 'native-base';
@@ -19,8 +14,7 @@ export default class Result extends React.Component {
     componentDidMount() {
         for(let index in Results) {
             if(Results[index].status==true) {
-                this.setState({ score: ++this.state.score})
-                //console.log(this.state.score)
+                this.setState({ score: ++this.state.score })
             }
         }
     }

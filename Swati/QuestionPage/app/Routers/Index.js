@@ -1,9 +1,10 @@
 import {createStackNavigator} from 'react-navigation';
-import {Home} from '../Screens/Index';
+import {Home,Result} from '../Screens/Index';
 
 const AppRouter= createStackNavigator(
  {
     Home: { screen: Home },
+    Result:{ screen: Result}
   },
  {
     initialRouteName: 'Home',

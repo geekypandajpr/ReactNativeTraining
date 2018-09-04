@@ -9,5 +9,8 @@ export default EStyleSheet.create({
     buttonText:{
         color:'#fff',
         fontSize:20
+    },
+    rightTextView:{
+        marginRight:5
     }
 })

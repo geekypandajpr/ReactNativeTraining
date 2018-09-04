@@ -2,7 +2,7 @@ import EStylesheet from 'react-native-extended-stylesheet';
 
 export default EStylesheet.create({
     container: {
-        flex: 1        
+        flex: 1
     },
     resultView: {
         alignItems: 'center'

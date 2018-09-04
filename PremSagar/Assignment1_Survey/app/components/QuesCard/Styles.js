@@ -1,8 +1,9 @@
 import EStylesheet from 'react-native-extended-stylesheet';
+import { Dimensions } from 'react-native';
 
 export default EStylesheet.create({
     cardView: {
-        width: '95%'
+        width: Dimensions.get('window').width*0.95
     },
     quesCardItem: {
         backgroundColor: '$primaryColor'
@@ -12,8 +13,7 @@ export default EStylesheet.create({
         color: '#000'
     },
     optionText: {
-        color: '#000',
-        fontSize: '0.8rem'
+        color: '#000'
     },
     optionCardItemView: {
         flexDirection: 'row'

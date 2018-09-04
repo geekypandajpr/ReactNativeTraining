@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import { StyleSheet, Text, View,ImageBackground } from 'react-native';
 import Index from './app/Index';
 import Expo from 'expo';
@@ -7,7 +7,7 @@ EStyleSheet.build({
  
 });
 
-export default class App extends React.Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = { loading: true };
