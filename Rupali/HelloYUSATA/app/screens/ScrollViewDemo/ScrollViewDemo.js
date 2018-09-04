@@ -138,6 +138,7 @@ export default class ScrollViewDemo extends React.Component {
                         name1 = "Under Rs.999/-"
                         name2 = "Category">
                         </CardWithImage>
+                        
                     </View>
                 </View>
                         
