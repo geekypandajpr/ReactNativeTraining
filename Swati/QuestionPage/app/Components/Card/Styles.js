@@ -5,5 +5,11 @@ export default EStyleSheet.create({
     },
     cardItemView:{
         flexDirection:'column'
+    },
+    textView:{
+        backgroundColor:'#e0ffff'
+    },
+    optionText:{
+        marginLeft:20
     }
 })

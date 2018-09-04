@@ -1,6 +1,6 @@
-const results= [
+const Questions=[
     {
-		"category": "Entertainment: Board Games",
+       "category": "Entertainment: Board Games",
 		"type": "boolean",
 		"difficulty": "easy",
 		"question": "Snakes and Ladders was originally created in India?",
@@ -89,7 +89,8 @@ const results= [
 		"difficulty": "easy",
 		"question": "The French Kingdom helped the United States gain their independence over Great Britain during the Revolutionary War.",
 		"correct_answer": "True",
-		"incorrect_answers": ["False"]
-	}
-]
-module.exports=results;
+        "incorrect_answers": ["False"]
+    }
+];
+
+module.exports [Questions]
