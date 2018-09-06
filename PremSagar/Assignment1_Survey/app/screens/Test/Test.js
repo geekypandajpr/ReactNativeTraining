@@ -6,48 +6,38 @@ import Ques from '../../assets/datas/Ques';
 import { Card, CardItem, Right, Left } from 'native-base';
 import moment from 'moment';
 
-var timerVar;
 export default class Test extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            timer: 600000,
-            time: '10:00',
-            isStartEnable: false,
+            totalTime: 600000,
+            remainingTime: moment.utc(moment.duration(600000).asMilliseconds()).format('mm:ss'),
+            isStart: false,
         }
-        this.startTest = this.startTest.bind(this);
+        this.startQuiz = this.startQuiz.bind(this);
         this.submitTest = this.submitTest.bind(this);
-        this.setTime = this.setTime.bind(this);
+        this.calculateRemainingTime = this.calculateRemainingTime.bind(this);
+        this.timerVar;
     }
     
-    startTest() {
-        this.setState({ isStartEnable: true })
-        timerVar = setInterval(this.setTime, 1000);
+    startQuiz() {
+        this.setState({ isStart: !this.state.isStart })
+        timerVar = setInterval(this.calculateRemainingTime, 1000);
     }
 
-    setTime() {
-        if (this.state.timer == 0) {
+    calculateRemainingTime() {
+        if (this.state.totalTime == 0) {
             clearInterval(timerVar);
-            this.setState({
-                timer: 600000,
-                time: '10:00',
-                isStartEnable: false,
-            })
             this.props.navigation.navigate('Result');
         }
         this.setState({
-            timer: this.state.timer - 1000,
-            time: moment.utc(moment.duration(this.state.timer).asMilliseconds()).format('mm:ss')
+            totalTime: this.state.totalTime - 1000,
+            remainingTime: moment.utc(moment.duration(this.state.totalTime).asMilliseconds()).format('mm:ss')
         })
     }
 
     submitTest() {
         clearInterval(timerVar);
-        this.setState({
-            timer: 600000,
-            time: '10:00',
-            isStartEnable: false,
-        })
         this.props.navigation.navigate('Result');
     }
 
@@ -64,14 +54,13 @@ export default class Test extends React.Component {
                     <Card style={styles.cardView}>
                         <CardItem style={styles.cardItemView}>
                             <Left style={styles.startButtonView}>
-                                {this.state.isStartEnable == false ?
-                                    <Button title='Start' onPress={this.startTest} color='#fc8e51'></Button>
-                                    :
-                                    <Button disabled title='Start' onPress={this.startTest} color='#fc8e51'></Button>
-                                }
+                                <Button disabled={this.state.isStart}
+                                    title='Start'
+                                    onPress={this.startQuiz}
+                                    color='#fc8e51' />
                             </Left>
                             <Right style={styles.timerView}>
-                                <Text style={styles.timerText}> {this.state.time} </Text>
+                                <Text style={styles.timerText}> {this.state.remainingTime} </Text>
                             </Right>
                         </CardItem>
                     </Card>
@@ -80,19 +69,10 @@ export default class Test extends React.Component {
 
                 <ScrollView showsVerticalScrollIndicator={false}>
 
-                    {this.state.isStartEnable == false ? null :
+                    {this.state.isStart == false ? null :
                         <View style={styles.scrollView}>
                             {Ques.map((item, index) =>
-                                <QuesCard
-                                    key={index}
-                                    index={index}
-                                    type={item.type}
-                                    question={item.question}
-                                    option1={item.correct_answer}
-                                    option2={item.incorrect_answers[0]}
-                                    option3={item.incorrect_answers[1]}
-                                    option4={item.incorrect_answers[2]}
-                                />
+                                <QuesCard key={index} {...item} index={index} />
                             )}
 
                             <View style={styles.buttonView}>

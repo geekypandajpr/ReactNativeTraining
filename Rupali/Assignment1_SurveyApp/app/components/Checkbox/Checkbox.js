@@ -17,18 +17,19 @@ export default class Checkbox extends Component
           checkbox1: false,
           checkbox2: false,
           checkbox3: false,
+          checkbox4: false,
         }
       }
   render() {
     return (
     <Card >
-        <Text>Your Question !!!</Text>
+        <CardItem><Text style = {{backgroundColor: 'cyan'}}>{this.props.Question}</Text></CardItem>
             <CardItem>
                 <CheckBox  
                     value={this.state.checkbox1}
                     onChange={() => this.setState({ checkbox1: !this.state.checkbox1 })}
                 />
-                <Text>Option 1</Text>
+                <Text>{this.props.Solution1}</Text>
             </CardItem>  
 
             <CardItem>
@@ -36,7 +37,7 @@ export default class Checkbox extends Component
                     value={this.state.checkbox2}
                     onChange={() => this.setState({ checkbox2: !this.state.checkbox2 })}
                     />
-                <Text>Option 2</Text>
+                <Text>{this.props.Solution2}</Text>
             </CardItem>
 
             <CardItem>
@@ -44,7 +45,15 @@ export default class Checkbox extends Component
                     value={this.state.checkbox3}
                     onChange={() => this.setState({ checkbox3: !this.state.checkbox3 })}
                     />
-                <Text>Option 3</Text>
+                <Text>{this.props.Solution3}</Text>
+            </CardItem>
+
+             <CardItem>
+                <CheckBox  
+                    value={this.state.checkbox4}
+                    onChange={() => this.setState({ checkbox4: !this.state.checkbox4 })}
+                    />
+                <Text>{this.props.Solution4}</Text>
             </CardItem>
 
     </Card>
