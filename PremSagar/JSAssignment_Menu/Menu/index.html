@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title> Menu Example </title>
+    </head>
+    <style>
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+        .menu {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+        }
+        .menu a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+    </style>
+    <body>
+        <div class="container">
+            <button onclick="toggleMenu('menu1')" class="btn">Language</button>
+            <div id="menu1" class="menu">
+                <a>C</a>
+                <a>C++</a>
+                <a>JAVA</a>
+                <a>PYTHON</a>
+                <a>C#</a>
+                <a>SWIFT</a>
+            </div>
+        </div>
+
+        <div class="container">
+            <button onclick="toggleMenu('menu2')" class="btn">Others</button>
+            <div id="menu2" class="menu">
+                <a>Android</a>
+                <a>iOS</a>
+                <a>React</a>
+                <a>Ionic</a>
+                <a>Angular 2</a>
+                <a>JavaScript</a>
+            </div>
+        </div>
+
+        <div class="container">
+                <button onclick="toggleMenu('menu3')" class="btn">Subject</button>
+                <div id="menu3" class="menu">
+                    <a>Physics</a>
+                    <a>Maths</a>
+                    <a>Chemistry</a>
+                    <a>Science</a>
+                    <a>Programming</a>
+                </div>
+            </div>
+    </body>
+    <script src="scripts.js"></script>
+</html>
