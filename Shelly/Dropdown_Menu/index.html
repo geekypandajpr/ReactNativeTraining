@@ -16,52 +16,72 @@
                   </div>
                 </div>
 
-                <div class="dropdown">
-                        <button onclick="myFun('myDropdowns')" class="dropbtn">Menu2</button>
-                          <div id="myDropdowns" class="dropdown-content">
-                            <a href="#home">Home</a>
-                            <a href="#about">About</a>
-                            <a href="#contact">Contact</a>
-                          </div>
-                        </div>
+         <div class="dropdown">
+             <button onclick="myFun('myDropdowns')" class="dropbtn">Menu2</button>
+                <div id="myDropdowns" class="dropdown-content">
+                    <a href="#home">physics</a>
+                    <a href="#about">Chemistry</a>
+                    <a href="#Math">Math</a>
+                    <a href="">Science</a>
+                    <a href="#contact">Biology</a>
+                </div>
+         </div>
 
-                        <div class="dropdown">
-                                <button onclick="myFun('myDropdownss')" class="dropbtn">Menu2</button>
-                                  <div id="myDropdownss" class="dropdown-content">
-                                    <a href="#home">Home</a>
-                                    <a href="#about">About</a>
-                                    <a href="#contact">Contact</a>
-                                  </div>
-                                </div>
+          <div class="dropdown">
+              <button onclick="myFun('myDropdownss')" class="dropbtn">Menu3</button>
+                 <div id="myDropdownss" class="dropdown-content">
+                      <a href="#home">London</a>
+                     <a href="#about">Paris</a>
+                     <a href="#contact">India</a>
+                     <a href="#contact">Macao</a>
+                 </div>
+          </div>
         
                         
                 
-                <script>
+  <script>
 
-                function myFun(id) {
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
+          function myFun(id) 
+          {
+              var dropdowns = document.getElementsByClassName("dropdown-content");
                     var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        openDropdown.classList.remove('show');
-                    }
+                    for (i = 0; i < dropdowns.length; i++)
+                     {
+                        var drop = dropdowns[i];
+                        drop.classList.remove('show');
+                      }
                     document.getElementById(id).classList.toggle("show");
 
-                }
+          }
+
+
+          //  function myFun(id) 
+          // {
+          //     var dropdowns = document.getElementsByClassName("dropdown-content");
+          //           var i;
+          //           for (i = 0; i < dropdowns.length; i++)
+          //            {
+          //               var drop = dropdowns[i];
+          //               drop.style.display='block';
+          //             }
+          //           document.getElementById(id).style.display='';
+
+          // }
+
 
                 
                 
-                window.onclick = function(event) {
-                  if (!event.target.matches('.dropbtn')) {
-                
+                window.onclick = function(event) 
+               {
+                  if (!event.target.matches('.dropbtn'))
+                  {
                     var dropdowns = document.getElementsByClassName("dropdown-content");
                     var i;
-                    for (i = 0; i < dropdowns.length; i++) {
+                    for (i = 0; i < dropdowns.length; i++)
+                     {
                       var openDropdown = dropdowns[i];
-                      if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
+                     openDropdown.classList.remove('show');
                       }
-                    }
                   }
                 }
                 </script>
