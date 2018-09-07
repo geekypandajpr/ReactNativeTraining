@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title> Menu Example </title>
+    </head>
+    <style>
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+        .menu {
+            display: none;
+            position: absolute;
+            background-color: gray;
+        }
+        .menu a {
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            display: block;
+        }
+    </style>
+    <body>
+        <div class="container">
+            <input type="button" onclick="toggleMenu('menu1')" class="btn" value="Language">
+            <div id="menu1" class="menu">
+                <a href="">C</a>
+                <a href="">C++</a>
+                <a href="">JAVA</a>
+                <a href="">PYTHON</a>
+                <a href="">C#</a>
+                <a href="">SWIFT</a>
+            </div>
+        </div>
+
+        <div class="container">
+            <input type="button" onclick="toggleMenu('menu2')" class="btn" value="Programming">
+            <div id="menu2" class="menu">
+                <a href="">Android</a>
+                <a href="">iOS</a>
+                <a href="">React</a>
+                <a href="">Ionic</a>
+                <a href="">Angular 2</a>
+                <a href="">JavaScript</a>
+            </div>
+        </div>
+
+        <div class="container">
+            <input type="button" onclick="toggleMenu('menu3')" class="btn" value="Subject">
+            <div id="menu3" class="menu">
+                <a href="">Physics</a>
+                <a href="">Maths</a>
+                <a href="">Chemistry</a>
+                <a href="">Science</a>
+                <a href="">Programming</a>
+            </div>
+        </div>
+
+    </body>
+    <script type="text/javascript" src="scripts.js"></script>
+</html>

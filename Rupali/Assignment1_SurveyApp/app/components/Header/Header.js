@@ -8,7 +8,7 @@ export default class HeaderIcon extends Component
 {
   render() {
     return (
-    <View>
+    <View >
         <Header >
           <Left>
             <Button transparent>
