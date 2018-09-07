@@ -8,12 +8,3 @@ function toggleMenu(id) {
         }
     }
 }
-
-window.onclick = function(event) {
-    if (!event.target.matches('.btn')) {
-        var menus = document.getElementsByClassName("menu");
-        for(var i = 0, len = menus.length; i < len; i++) {
-            menus[i].style.display = "none";
-        }
-    }
-}
