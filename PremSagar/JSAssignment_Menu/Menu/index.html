@@ -2,59 +2,106 @@
     <head>
         <title> Menu Example </title>
     </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
+        .parent {
+            display: flex;
+        }
         .container {
+            display:inline-block;
             position: relative;
-            display: inline-block;
         }
-        .menu {
-            display: none;
-            position: absolute;
-            background-color: gray;
-        }
-        .menu a {
+        .menuButton{
+            background-color: #1f667e;
             color: white;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropdown-submenu {
+            position: relative;
+        }
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+            display: none;
+        }
+
+        .dropdown-menu a {
+            color: black;
+            padding: 8px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-submenu .dropdown-menu a {
+            color: black;
             padding: 8px;
             text-decoration: none;
             display: block;
         }
     </style>
     <body>
-        <div class="container">
-            <input type="button" onclick="toggleMenu('menu1')" class="btn" value="Language">
-            <div id="menu1" class="menu">
-                <a href="">C</a>
-                <a href="">C++</a>
-                <a href="">JAVA</a>
-                <a href="">PYTHON</a>
-                <a href="">C#</a>
-                <a href="">SWIFT</a>
-            </div>
-        </div>
+        <div class="parent">
 
-        <div class="container">
-            <input type="button" onclick="toggleMenu('menu2')" class="btn" value="Programming">
-            <div id="menu2" class="menu">
-                <a href="">Android</a>
-                <a href="">iOS</a>
-                <a href="">React</a>
-                <a href="">Ionic</a>
-                <a href="">Angular 2</a>
-                <a href="">JavaScript</a>
+            <div class="container">                                  
+                <button class="menuButton">Tutorials <span class="caret"></span> </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">1st level menu 1</a></li>
+                    <li><a href="#">1st level menu 2</a></li>
+                    <li class="dropdown-submenu">
+                        <a class="test" href="#">1st level menu 3 <span class="caret"></span> </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">2nd level menu 1</a></li>
+                            <li><a href="#">2nd level menu 2</a></li>
+                            <li class="dropdown-submenu">
+                                <a class="test" href="#">2nd level menu 3 <span class="caret"></span> </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">3rd level menu 1</a></li>
+                                    <li><a href="#">3rd level menu 2</a></li>
+                                    <li><a href="#">3rd level menu 3</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>       
             </div>
-        </div>
 
-        <div class="container">
-            <input type="button" onclick="toggleMenu('menu3')" class="btn" value="Subject">
-            <div id="menu3" class="menu">
-                <a href="">Physics</a>
-                <a href="">Maths</a>
-                <a href="">Chemistry</a>
-                <a href="">Science</a>
-                <a href="">Programming</a>
+            <div class="container">                                  
+                <button class="menuButton">Tutorials <span class="caret"></span> </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">1st level menu 1</a></li>
+                    <li><a href="#">1st level menu 2</a></li>
+                    <li class="dropdown-submenu">
+                        <a class="test" href="#">1st level menu 3 <span class="caret"></span> </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">2nd level menu 1</a></li>
+                            <li><a href="#">2nd level menu 2</a></li>
+                            <li class="dropdown-submenu">
+                                <a class="test" href="#">2nd level menu 3 <span class="caret"></span> </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">3rd level menu 1</a></li>
+                                    <li><a href="#">3rd level menu 2</a></li>
+                                    <li><a href="#">3rd level menu 3</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">2nd level menu 4</a></li>
+                            <li class="dropdown-submenu">
+                                <a class="test" href="#">2nd level menu 5 <span class="caret"></span> </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">3rd level menu 1.1</a></li>
+                                    <li><a href="#">3rd level menu 2.1</a></li>
+                                    <li><a href="#">3rd level menu 3.1</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>       
             </div>
-        </div>
 
+            
+
+        </div>
+        <script src="scripts.js"></script>
     </body>
-    <script type="text/javascript" src="scripts.js"></script>
 </html>
