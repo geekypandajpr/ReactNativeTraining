@@ -1,0 +1,121 @@
+#mainDiv ul,
+#mainDiv li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#mainDiv ul li {
+  float: left;
+  min-height: 1px;
+  vertical-align: middle;
+}
+
+#mainDiv ul li.hover,
+#mainDiv ul li:hover {
+  position: relative;
+  z-index: 599;
+  cursor: default;
+}
+
+#mainDiv ul ul {
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 598;
+  width: 100%;
+}
+
+#mainDiv ul ul li {
+  float: none;
+}
+
+#mainDiv ul ul ul {
+  top: 0;
+  left: auto;
+  right: -99.5%;
+}
+
+#mainDiv ul li:hover>ul {
+  visibility: visible;
+}
+
+#mainDiv ul ul {
+  bottom: 0;
+  left: 0;
+}
+
+#mainDiv ul ul {
+  margin-top: 0;
+}
+
+#mainDiv ul ul li {
+  font-weight: normal;
+}
+
+#mainDiv a {
+  display: block;
+  line-height: 1em;
+  text-decoration: none;
+}
+
+
+#mainDiv {
+  font-family: 'Oxygen Mono', Tahoma, Arial, sans-serif;
+  font-size: 12px;
+}
+
+#mainDiv>ul {
+  *display: inline-block;
+}
+
+#mainDiv:after,
+#mainDiv ul:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+#mainDiv a {
+  background: blueviolet;
+  color: black;
+  padding: 0 20px;
+}
+
+#mainDiv ul {
+  text-transform: uppercase;
+}
+
+#mainDiv ul ul {
+  border-top: 4px solid red;
+  text-transform: none;
+  min-width: 190px;
+}
+
+#mainDiv ul ul a {
+  background: red;
+  color: #FFF;
+  border: 1px solid red;
+  border-top: 0 none;
+  line-height: 150%;
+  padding: 16px 20px;
+}
+
+#mainDiv ul ul ul {
+  border-top: 0 none;
+}
+
+#mainDiv ul ul li {
+  position: relative
+}
+
+#mainDiv>ul>li>a {
+  line-height: 48px;
+}
+
+
+
+
+
+
