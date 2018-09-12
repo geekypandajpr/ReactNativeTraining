@@ -5,32 +5,32 @@
 <body>      
     <div>    
         <div class="dropdown">
-            <button class="dropbtn">INDIA</button>
-            <div class="dropdown-content" style="left:0;">
-                <ul>                    
-                   <li class="menu"><a class="menubtn">ODISHA</a>
-                        <div class="submenu">
+            <button class="dropbtn" onclick="toggleMenu()">INDIA</button>
+            <div class="dropdown-content" id="menu-box" style="left:0;">
+                    <ul>                
+                   <li><a onclick="toggleMenu()">ODISHA</a>
+                        <div class="dropdown-content" id="menu-box">
                             <a>PURI</a>
                             <a>KHURDA</a>
                             <a>CUTTACK</a>
                         </div>
                     </li>                                     
-                    <li class="menu"><a class="menubtn">RAJSTHAN</a>
-                        <div class="submenu">
+                    <li><a>RAJSTHAN</a>
+                        <div class="dropdown-content" id="menu-box">
                             <a>AJMER</a>
                             <a>ALWAR</a>
                             <a>BARAN</a>
                         </div>
                     </li>                               
-                    <li class="menu"><a class="menubtn">GUJURAT</a>
-                        <div class="submenu">
+                    <li><a>GUJURAT</a>
+                        <div class="dropdown-content" id="menu-box">
                             <a>AHEMADABAD</a>
                             <a>ANAND</a>
                             <a>ARAVALLI</a>
                         </div>
                     </li>                            
-                    <li class="menu"><a class="menubtn">WEST BENGAL</a>
-                        <div class="submenu">
+                    <li><a>WEST BENGAL</a>
+                        <div class="dropdown-content" id="menu-box">
                             <a>BANKURA</a>
                             <a>BIRBHUM</a>
                             <a>DARJEELING</a>
@@ -41,7 +41,7 @@
         </div>
 
         <div class="dropdown">
-            <button class="dropbtn">ENGLAND</button>
+            <button class="dropbtn" onclick="toggleMenu()">ENGLAND</button>
             <div class="dropdown-content">
                 <a>ALFORD</a>
                 <a>BACUP</a>
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="dropdown">
-                <button class="dropbtn">SOUTH AFRICA</button>
+                <button class="dropbtn" onclick="toggleMenu()">SOUTH AFRICA</button>
                 <div class="dropdown-content">
                     <a>EASTERN CAPE</a>
                     <a>WESTERN CAPE</a>
@@ -58,5 +58,18 @@
             </div>        
     </div>
 </body>
-<script type="Text/JavaScript" src="Script.js"></script>
+<script type="Text/JavaScript">
+function toggleMenu() {
+   // this.parentElement.getElementById('menu-box')[0].style.display="block";
+    var menuBox = document.getElementById('menu-box');    
+ /* if(menuBox.style.display == "block") { // if is menuBox displayed, hide it
+    menuBox.style.display = "none";
+  }
+  else { // if is menuBox hidden, display it
+    menuBox.style.display = "block";
+  }*/
+  menuBox.style.display= menuBox.style.display=="block" ? "none" :"block";
+ 
+}
+  </script>
 </html>
