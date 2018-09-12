@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sample Demo Project</title>
+	<script type="text/javascript" src= "DemoProject.js"></script>
+	<style type="text/css">
+	
+		li {
+			position: relative;
+			width: 150px;
+			padding: 25px;
+		}
+	
+		ul ul {
+			position: absolute;
+			
+		}
+	
+		ul ul ul {
+			left: 50%;
+			
+		}
+		#Listing{
+			display: inline;
+			float: left;
+
+		}
+		
+		}
+	</style>
+</head>
+<body >
+	<div class="header">
+		<ul >
+			<li id="Listing">
+				<a href="" onmouseenter="Fruit('FruitList1')">Fruit</a>
+				<ul id="FruitList1" class="list" style="display: none">
+					<li>
+						<a href="" onmouseenter="Fruit('Fruit1')">Apple</a>
+						<ul id ="Fruit1" class="fruit" style="display: none">
+							<li><a href="">Kashmeri Apple</a></li>
+							<li><a href="">Assami Apple</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="" onmouseenter="Fruit('Fruit2')">Aam</a>
+						<ul id="Fruit2" class="fruit"  style="display: none">
+							<li><a href="">Rajasthani Aam</a></li>
+							<li><a href="">Banarasi Aam</a></li>
+							<li><a href="">Kashmeri Aam</a></li>
+							<li><a href="">Dasheri Aam</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="" onmouseenter="Fruit('Fruit3')">Orange</a>
+						<ul id="Fruit3" class="fruit"  style="display: none">
+							<li><a href="">Nagpuri Orange.</a></li>
+							<li><a href="">Kashmeri Orange</a></li>
+							<li><a href="">Rajasthani Orange</a></li>
+						</ul>
+					</li>
+					</ul>
+			</li>
+					<!-- <li id="Listing">
+				<a href="" onmouseenter="Fruit('FruitList2')">Fruit</a>
+				<ul id="FruitList2" class="list" style="display: none">
+					<li>
+						<a href="" onmouseenter="Fruit('Fruit4')">Apple</a>
+						<ul id ="Fruit4" class="fruit" style="display: none">
+							<li><a href="">Kashmeri Apple</a></li>
+							<li><a href="">Assami Apple</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="" onmouseenter="Fruit('Fruit5')">Aam</a>
+						<ul id="Fruit5" class="fruit"  style="display: none">
+							<li><a href="">Rajasthani Aam</a></li>
+							<li><a href="">Banarasi Aam</a></li>
+							<li><a href="">Kashmeri Aam</a></li>
+							<li><a href="">Dasheri Aam</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="" onmouseenter="Fruit('Fruit6')">Orange</a>
+						<ul id="Fruit6" class="fruit"  style="display: none">
+							<li><a href="">Nagpuri Orange.</a></li>
+							<li><a href="">Kashmeri Orange</a></li>
+							<li><a href="">Rajasthani Orange</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li> -->
+	<!-- 		<li id="Listing">
+				<a href="" onmouseenter="header('FruitList2')" >Fruit</a>
+				<ul id="FruitList2" class="list" style="display: none">
+					<li>
+						<a href="" onmouseenter="Fruit('Fruit1')" onmouseleave="Fruit('Fruit4')">Apple</a>
+						<ul id ="Fruit4" class="fruit" style="display: none">
+							<li><a href="">Kashmeri Apple</a></li>
+							<li><a href="">Assami Apple</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="" onmouseenter="Fruit('Fruit2')" onmouseleave="Fruit('Fruit5')">Aam</a>
+						<ul id="Fruit5" class="fruit"  style="display: none">
+							<li><a href="">Rajasthani Aam</a></li>
+							<li><a href="">Banarasi Aam</a></li>
+							<li><a href="">Kashmeri Aam</a></li>
+							<li><a href="">Dasheri Aam</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="" onmouseenter="Fruit('Fruit3')" onmouseleave="Fruit('Fruit6')">Orange</a>
+						<ul id="Fruit6" class="fruit"  style="display: none">
+							<li><a href="">Nagpuri Orange.</a></li>
+							<li><a href="">Kashmeri Orange</a></li>
+							<li><a href="">Rajasthani Orange</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li> -->
+		</ul>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css"> 
+    </head>
+   
+    <body>
+
+        <ul class="dropdown">
+
+            <li class="dropdown-content">
+                <a href="#" onclick="multi">Person</a>
+                <ul class="menu">
+                    <li><a href="">Name</a></li>
+                    <li><a href="">Age</a></li>
+                    <li><a href="" onclick="multi">id</a>
+                        <ul class="menu">
+                                <li><a href="#">adhar</a></li>
+                                <li><a href="#">Pan</a></li>
+                                <li><a href="#">marksheet</a></li>
+                            </ul> 
+                    </li>
+                    <li><a href="" onclick="multi">Address</a>
+                        <ul class="menu">
+                            <li><a href="#">City</a></li>
+                            <li><a href="#">State</a></li>
+                            <li><a href="#">country</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+           <script>
+
+                var menus = document.getElementsByClassName("dropdown");
+          
+                 for (var i = 0, len = menus.length; i < len; i++) {
+                    menus[i].getElementsByClassName("menu")[0].onclick=multi()
+                    {
+                        var submenu = document.getElementsByClassName("menu").onclick;
+                
+                        for (var j = 0, len1 = menus.submenu; j < len1; j++) {
+                    dropDowns[j].style.display = "block";
+                        }
+                    }
+
+               
+                
+                }
+            
+
+           
+           </script>
+        
+               
+    </body>
+</html>
