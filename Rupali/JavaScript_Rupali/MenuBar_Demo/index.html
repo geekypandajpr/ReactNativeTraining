@@ -1,103 +1,137 @@
+<!DOCTYPE html>
 <html>
     <head>
-         <link rel="stylesheet" href="style.css"> 
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div id='mainDiv'>  
-            <ul>
-                <li><a>Beverages</a>
-                    <ul>
-                        <li><a>Frozen Cocktails</a>
-                        <li><a>Tropical Favorites</a>
-                        <li><a>Mojitos</a>
-                            <ul>
-                                <li><a>Pink grapefruit mojito</a></li>
-                                <li><a>Blueberry mojito</a></li>
-                                <li><a>Tequila mojito</a></li>
-                                <li><a>Frosty coconut mojitos</a></li>
+        <ul class="nav-menu"> 
+            <li>
+                <a href="#" onclick="return dropDown(this)">Birds</a>
+                    <ul id="menu">
+                        <li><a href="#" onclick="return dropDown(this)">Ratites</a>
+                            <ul id="menu1">
+                                <li><a href="#" onclick="return dropDown(this)">Neoaves</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Fowl</a>
+                                            <ul id="menu1-1">
+                                                <li><a href="#">Ratites</a></li>
+                                                <li><a href="#">Neoaves</a></li>
+                                                <li><a href="#">Fowl</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Ratites</a>
+                                            <ul id="menu1-1">
+                                                <li><a href="#">Neoaves</a></li>
+                                                <li><a href="#">Fowl</a></li>
+                                                <li><a href="#">Ratites</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Neoaves</a>
+                                            <ul id="menu1-1">
+                                                <li><a href="#">Fowl</a></li>
+                                                <li><a href="#">Ratites</a></li>
+                                                <li><a href="#">Neoaves</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Ratites</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Ratites</a>
+                                            <ul id="menu1-1">
+                                                <li><a href="#">Fowl</a></li>
+                                                <li><a href="#">Ratites</a></li>
+                                                <li><a href="#">Neoaves</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Neoaves</a>
+                                            <ul id="menu1-1">
+                                                <li><a href="#">Ratites</a></li>
+                                                <li><a href="#">Fowl</a></li>
+                                                <li><a href="#">Neoaves</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Fowl</a>
+                                            <ul id="menu1-1">
+                                                <li><a href="#">Neoaves</a></li>
+                                                <li><a href="#">Fowl</a></li>
+                                                <li><a href="#">Ratites</a></li> 
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Fowl</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Neoaves</a></li>
+                                        <li><a href="#">Fowl</a></li>
+                                        <li><a href="#">Ratites</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
-                        <li><a>Wines</a>
-                            <ul>
-                                <li><a>Merlot</a></li>
-                                <li><a>Cabernet sauvignon</a></li>
-                                <li><a>Sauvignon blanc</a></li>
-                                <li><a>Pinot noir</a></li>
+                        <li><a href="#" onclick="return dropDown(this)">Fowl</a>
+                            <ul id="menu1">
+                                <li><a href="#">Ratites</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Ratites</a></li>
+                                        <li><a href="#">Fowl</a></li>
+                                        <li><a href="#">Neoaves</a></li>
+                                    </ul>  
+                                </li>
+                                <li><a href="#">Neoaves</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Neoaves</a></li>
+                                        <li><a href="#">Ratites</a></li>
+                                        <li><a href="#">Fowl</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Fowl</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Fowl</a></li>
+                                        <li><a href="#">Neoaves</a></li>
+                                        <li><a href="#">Ratites</a></li>
+                                    
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#" onclick="return dropDown(this)">Neoaves</a>
+                            <ul id="menu1">
+                                <li><a href="#">Fowl</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Ratites</a></li>
+                                        <li><a href="#">Fowl</a></li>
+                                        <li><a href="#">Neoaves</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Ratites</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Ratites</a></li>
+                                        <li><a href="#">Neoaves</a></li>
+                                        <li><a href="#">Fowl</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Neoaves</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Neoaves</a></li>
+                                        <li><a href="#">Fowl</a></li>
+                                        <li><a href="#">Ratites</a></li> 
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li><a>Fast Food</a>
-                    <ul>
-                        <li><a>Dosa</a>
-                            <ul>
-                                <li><a>Masala Dosa</a></li>
-                                <li><a>Mysore lajabab Dosa</a></li>
-                                <li><a>Schezwan Dosa</a></li>
-                                <li><a>Rawa Dosa</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Poha Idli</a>
-                        <li><a>Uttapam</a>
-                            <ul>
-                                <li><a>Mulai Keerai Uttapam</a></li>
-                                <li><a>Onion Uttapam</a></li>
-                                <li><a>Paneer Uttapam</a></li>
-                                <li><a>Mini Veg Uttapam</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Ragda Patties</a>
-                        <li><a>Bhel Puri</a>
-                    </ul>
-                </li>
-                <li><a>Soups</a>
-                    <ul>
-                        <li><a>Radish Soup with Tofu Miso Cream</a>
-                        <li><a>Basil Tomato Soup</a>
-                        <li><a>Baby Corn Soup</a>
-                        <li><a>Broccoli and Cheddar Soup</a>
-                        <li><a>Turnip and Zucchini Soup</a>
-                    </ul>
-                </li>
-                <li><a>Dessert</a>
-                    <ul>
-                        <li><a>Pastries</a>
-                        <li><a>Doughnut</a>
-                        <li><a>Cakes</a>
-                            <ul>
-                                <li><a>Battenberg cake</a></li>
-                                <li><a>Molten chocolate cake</a></li>
-                                <li><a>Gansito snack cakes</a></li>
-                                <li><a>Dessert cakes</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Pie</a>
-                            <ul>
-                                <li><a>Apple Pie</a></li>
-                                <li><a>Custard and Cream Pies</a></li>
-                                <li><a>Dessert Tarts</a></li>
-                                <li><a>Chocolate Pie</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>   
             </ul>
-        </div> 
+        <script>
+            function dropDown(a) {
+                var li = a.parentElement,
+                menu = li.getElementsByTagName('ul')[0];
+                
+                menu.style.display = menu.style.display == "block" ? "none" : "block";
+                
+                return false;
+            }
+        </script>
     </body>
-</html>             
-        
-        
-        
-
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-       
+</html>
