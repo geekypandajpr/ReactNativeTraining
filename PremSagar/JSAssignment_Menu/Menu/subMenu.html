@@ -1,0 +1,113 @@
+<html>
+
+    <head>
+        <title> SubMenu Example </title>
+    </head>
+    <style>
+        a {
+            color: black;
+            text-decoration-line: none;
+        }
+
+        ul {
+            display: none;
+            padding: 0;
+            margin: 0;
+            background: white;
+            float: left;
+        }
+
+        ul.nav-menu {
+            display: block;
+        }
+
+        li {
+            float: left;
+            display: inline;
+            position: relative;
+            width: 150px;
+            list-style: none;
+        }
+
+        .menu {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: #e83974;
+            display: none;
+        }
+
+        ul.nav-menu>li>ul>li ul {
+            left: 100%;
+            top: 0px;
+            position: absolute;
+        }
+    </style>
+
+    <body>
+        <ul class="nav-menu">
+
+            <li class="drop-down">
+                <a href="#" onclick="return dropDown(this)">SUBJECTS</a>
+                <ul class="menu">
+                    <li><a href="">English</a></li>
+                    <li><a href="">Maths</a></li>
+                    <li><a href="">Hindi</a></li>
+                    <li><a href="" onclick="return dropDown(this)">Science</a>
+                        <ul class="menu">
+                            <li><a href="#">Physics</a></li>
+                            <li><a href="#">Chemistry</a></li>
+                            <li><a href="#">Boilogy</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="drop-down">
+                <a href="#" onclick="return dropDown(this)">COUNTRY</a>
+                <ul class="menu">
+                    <li><a href="">Australia</a></li>
+                    <li><a href="">Russia</a></li>
+                    <li><a href="">America</a></li>
+                    <li><a href="#" onclick="return dropDown(this)">India</a>
+                        <ul class="menu">
+                            <li><a href="#">Pune</a></li>
+                            <li><a href="#">Delhi</a></li>
+                            <li><a href="#">Mumbai</a></li>
+                            <li><a href="#">Banglore</a></li>
+                            <li><a href="#" onclick="return dropDown(this)">Rajasthan</a>
+                                <ul class="menu">
+                                    <li><a href="#">Jaipur</a></li>
+                                    <li><a href="#">Udaypur</a></li>
+                                    <li><a href="#">Pratap Nagar</a></li>
+                                    <li><a href="#">Yusata</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+
+        <script>
+            // var menus = document.getElementsByClassName("drop-down");
+            // //console.log(menus.length);
+            // for (var i = 0, len = menus.length; i < len; i++) {
+            //     var dropDowns = document.getElementsByClassName("menu");
+            //     //console.log(dropDowns.length);
+            //     for (var j = 0, len1 = menus.dropDowns; j < len1; j++) {
+            //         dropDowns[j].style.display = "block";
+            //     }
+            // }
+
+            function dropDown(a) {
+                var li = a.parentElement;
+                submenu = li.getElementsByTagName('ul')[0];
+                submenu.style.display = submenu.style.display == "block" ? "none" : "block";
+                return false;
+            }
+        </script>
+    </body>
+
+</html>

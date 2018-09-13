@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <ul class="nav-menu"> 
+            <li>
+                <a href="#" onclick="return dropDown(this)">Birds</a>
+                    <ul id="menu">
+                        <li><a href="#" onclick="return dropDown(this)">Ratites</a>
+                            <ul id="menu1">
+                                <li><a href="#" onclick="return dropDown(this)">Neoaves</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Fowl</a>
+                                            <ul id="menu1-1">
+                                                <li><a href="#">Ratites</a></li>
+                                                <li><a href="#">Neoaves</a></li>
+                                                <li><a href="#">Fowl</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Ratites</a>
+                                            <ul id="menu1-1">
+                                                <li><a href="#">Neoaves</a></li>
+                                                <li><a href="#">Fowl</a></li>
+                                                <li><a href="#">Ratites</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Neoaves</a>
+                                            <ul id="menu1-1">
+                                                <li><a href="#">Fowl</a></li>
+                                                <li><a href="#">Ratites</a></li>
+                                                <li><a href="#">Neoaves</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Ratites</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Ratites</a>
+                                            <ul id="menu1-1">
+                                                <li><a href="#">Fowl</a></li>
+                                                <li><a href="#">Ratites</a></li>
+                                                <li><a href="#">Neoaves</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Neoaves</a>
+                                            <ul id="menu1-1">
+                                                <li><a href="#">Ratites</a></li>
+                                                <li><a href="#">Fowl</a></li>
+                                                <li><a href="#">Neoaves</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Fowl</a>
+                                            <ul id="menu1-1">
+                                                <li><a href="#">Neoaves</a></li>
+                                                <li><a href="#">Fowl</a></li>
+                                                <li><a href="#">Ratites</a></li> 
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Fowl</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Neoaves</a></li>
+                                        <li><a href="#">Fowl</a></li>
+                                        <li><a href="#">Ratites</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#" onclick="return dropDown(this)">Fowl</a>
+                            <ul id="menu1">
+                                <li><a href="#">Ratites</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Ratites</a></li>
+                                        <li><a href="#">Fowl</a></li>
+                                        <li><a href="#">Neoaves</a></li>
+                                    </ul>  
+                                </li>
+                                <li><a href="#">Neoaves</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Neoaves</a></li>
+                                        <li><a href="#">Ratites</a></li>
+                                        <li><a href="#">Fowl</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Fowl</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Fowl</a></li>
+                                        <li><a href="#">Neoaves</a></li>
+                                        <li><a href="#">Ratites</a></li>
+                                    
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#" onclick="return dropDown(this)">Neoaves</a>
+                            <ul id="menu1">
+                                <li><a href="#">Fowl</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Ratites</a></li>
+                                        <li><a href="#">Fowl</a></li>
+                                        <li><a href="#">Neoaves</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Ratites</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Ratites</a></li>
+                                        <li><a href="#">Neoaves</a></li>
+                                        <li><a href="#">Fowl</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Neoaves</a>
+                                    <ul id="menu1-1">
+                                        <li><a href="#">Neoaves</a></li>
+                                        <li><a href="#">Fowl</a></li>
+                                        <li><a href="#">Ratites</a></li> 
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        <script>
+            function dropDown(a) {
+                var li = a.parentElement,
+                menu = li.getElementsByTagName('ul')[0];
+                
+                menu.style.display = menu.style.display == "block" ? "none" : "block";
+                
+                return false;
+            }
+        </script>
+    </body>
+</html>
