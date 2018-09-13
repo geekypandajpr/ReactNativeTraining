@@ -17,7 +17,7 @@ var modular = (function () {
         divElement.appendChild(Table);
     }
 
-    var sortTable = function () {
+    var sorting = function () {
         var tables, rows, switching, i, x, y, shouldSwitch;
         tables = document.getElementById("tableone");
         switching = true;
@@ -70,11 +70,11 @@ var modular = (function () {
             
 
 
-            Table.appendChild(thVar1).onclick = function () { sortTable() }
+            Table.appendChild(thVar1).onclick = function () { sorting() }
 
-            Table.appendChild(thVar2).onclick = function () { sortTable() };
-            Table.appendChild(thVar3);
-            Table.appendChild(thVar4);
+            Table.appendChild(thVar2).onclick = function () { sorting() };
+            Table.appendChild(thVar3).onclick = function () { sorting() };
+            Table.appendChild(thVar4).onclick = function () { sorting() };
             grid(Table);
         }
 
