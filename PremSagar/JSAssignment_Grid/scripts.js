@@ -1,6 +1,9 @@
 var MyGrid = (function () {
     var myTable;
     var gridDef = [];
+    var pageSize = 0;
+    var startIndex = 0;
+    var endIndex= 0;
 
     sortTable = function (props) {
         return function (x, y) {
@@ -8,8 +11,97 @@ var MyGrid = (function () {
         }
     }
 
-    initGrid = function (myDivId) {
-        var myDiv = document.getElementById(myDivId);
+    resetIndexValue = function() {
+        startIndex = 0;
+        endIndex = parseInt((startIndex + pageSize) > gridDef.datas.length ? gridDef.datas.length : (startIndex + pageSize));
+        toggleButton();
+    }
+
+    toggleButton = function() {
+        var prev = document.getElementsByClassName('previousButton')[0];
+        var next = document.getElementsByClassName('nextButton')[0];
+        if(startIndex == 0) {
+            prev.disabled = true;
+        } else {
+            prev.disabled = false;
+        }
+        if(endIndex >= gridDef.datas.length) {
+            next.disabled = true;
+        } else {
+            next.disabled = false;
+        }
+    }
+
+    showNextPage = function() {
+        startIndex = endIndex;
+        endIndex = ((endIndex + pageSize) > gridDef.datas.length ? gridDef.datas.length : (endIndex + pageSize));
+        toggleButton();
+        reCreateGrid();
+    }
+
+    showPrevPage = function() {
+        endIndex = startIndex;
+        startIndex = ((startIndex - pageSize) <= 0 ? 0 : (startIndex - pageSize));
+        toggleButton();
+        reCreateGrid();
+    }
+
+    addPrevButton = function() {
+        var prevButton = document.createElement('button');
+        myDiv.appendChild(prevButton);
+        prevButton.setAttribute("disabled", true);
+        prevButton.setAttribute('class', 'previousButton');
+        prevButton.innerHTML = 'Previous';
+        prevButton.onclick = function() {
+            showPrevPage();
+        }
+        return prevButton;
+    }
+
+    addNextButton = function() {
+        var nextbutton = document.createElement('button');
+        nextbutton.setAttribute('class', 'nextButton');
+        nextbutton.innerHTML = 'Next';
+        nextbutton.onclick = function() {
+            showNextPage();
+        }
+        return nextbutton;
+    }
+
+    addDropDown = function() {
+        var select = document.createElement('select');
+        select.setAttribute('id', 'pageDropDown')
+        select.onchange = function() {
+            pageSize = document.getElementById("pageDropDown").value;
+            resetIndexValue();
+            reCreateGrid();
+        }
+        for(var i = 0, len = gridDef.pageSize.length; i < len; i++) {
+            var options = document.createElement('option');
+            options.innerHTML = gridDef.pageSize[i];
+            select.appendChild(options);
+        }
+        return select;
+    }
+
+    addPaging = function() {
+        pageSize = gridDef.pageSize[0];
+        var myDiv = document.getElementById('myDiv');
+        var prev = addPrevButton();
+        var dropDown = addDropDown();
+        var next = addNextButton();
+        myDiv.appendChild(prev);
+        myDiv.appendChild(dropDown);
+        myDiv.appendChild(next);
+        resetIndexValue();
+        toggleButton();
+    }
+
+    initGrid = function () {
+        if(gridDef.pagging) {
+            addPaging();
+        }
+        var myDiv = document.getElementById('myDiv');
         myTable = document.createElement("table");
         myDiv.appendChild(myTable);
     }
@@ -35,6 +127,8 @@ var MyGrid = (function () {
                     //data.sort(sortTable(gridDef.columns[i].field));
                     data.sort(sortTable(gridDef.columns[this.cellIndex].field));
                     gridDef.datas = data;
+                    resetIndexValue();
+                    toggleButton();
                     reCreateGrid();
                 }
             }
@@ -62,10 +156,10 @@ var MyGrid = (function () {
     }
 
     setGridData = function () {
-        for (var data in gridDef.datas) {
+        for (var index = startIndex; index < endIndex; index++) {
             var tr = document.createElement('tr');
             myTable.appendChild(tr);
-            var rowData = gridDef.datas[data];
+            var rowData = gridDef.datas[index];
             for (var columnData in rowData) {
                 var td = document.createElement('td');
                 tr.appendChild(td);
@@ -109,7 +203,7 @@ var MyGrid = (function () {
     return {
         init: function (gridDefinition) {
             gridDef = gridDefinition;
-            initGrid('myDiv');
+            initGrid();
             setGridAttributes();
             setGridHeader();
             setGridData();
@@ -122,7 +216,7 @@ MyGrid.init({
     gridWidth: "600px",
     gridHeight: "400px",
     pagging: true,
-    pageSize: [5, 10, 15, 20],
+    pageSize: [2, 4, 6, 8],
     editable: true,
     columns: [
         {
@@ -151,7 +245,7 @@ MyGrid.init({
             "title": "Language",
             "width": "150px",
             "sorting": false,
-            "editor": "select"
+            "editor": "textinput"
         }
     ],
     datas: [
@@ -160,6 +254,7 @@ MyGrid.init({
         { name: 'Prem Prakash', age: 21, city: 'Delhi', language: 'Hindi' },
         { name: 'Ashish Mallik', age: 23, city: 'Mumbai', language: 'English' },
         { name: 'Amrit Nandan', age: 22, city: 'Ranchi', language: 'English' },
-        { name: 'Alokik Pathak', age: 25, city: 'Banglore', language: 'Hindi' }
+        { name: 'Alokik Pathak', age: 25, city: 'Banglore', language: 'Hindi' },
+        { name: 'Praveen Kumar', age: 20, city: 'Hazaribagh', language: 'Hindi' }
     ]
 });
