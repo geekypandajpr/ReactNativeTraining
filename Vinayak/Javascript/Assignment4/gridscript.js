@@ -78,7 +78,7 @@ var MyGrid = (function ()
         var activeRow = oButton.parentNode.parentNode.rowIndex;
        // alert(activeRow);
         var tab = document.getElementById('booksTable').rows[activeRow];
-        for (i = 0; i < 3; i++) 
+        for (i = 0; i < _defaultprop.colums.length; i++) 
         {  
                 var td = tab.getElementsByTagName("td")[i];
                 var ele = document.createElement('input');      
@@ -97,7 +97,7 @@ var MyGrid = (function ()
 
         var activeRow = oButton.parentNode.parentNode.rowIndex;
         var tab = document.getElementById('booksTable').rows[activeRow];
-        for (i = 0; i < 3; i++) 
+        for (i = 0; i < _defaultprop.colums.length; i++) 
         {
             var td = tab.getElementsByTagName("td")[i];
             if (td.childNodes[0].getAttribute('type') == 'text' || td.childNodes[0].tagName == 'SELECT') 
