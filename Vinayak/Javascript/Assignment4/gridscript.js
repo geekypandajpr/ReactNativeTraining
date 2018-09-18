@@ -14,7 +14,17 @@ var MyGrid = (function ()
         data: [{ "firstname": "vinayak", "lastname": "Don", "age": "21" },
             { "firstname": "SHAILI", "lastname": "mittal", "age": "22" },
             { "firstname": "Rupali", "lastname": "pandaey", "age": "29" },
-            { "firstname": "Swati", "lastname": "mohanty", "age": "27" }
+            { "firstname": "Swati", "lastname": "mohanty", "age": "27" },
+             { "firstname": "SHAxxILI", "lastname": "mittal", "age": "22" },
+            { "firstname": "Rupaffli", "lastname": "pandaey", "age": "29" },
+            { "firstname": "Swati", "lastname": "mohanty", "age": "27" },
+             { "firstname": "SvvvHAILI", "lastname": "mittal", "age": "22" },
+            { "firstname": "Rupddali", "lastname": "pandaey", "age": "29" },
+            { "firstname": "Swaddti", "lastname": "mohanty", "age": "27" },
+             { "firstname": "SHAILI", "lastname": "mittal", "age": "22" },
+            { "firstname": "dd", "lastname": "pandaey", "age": "29" },
+            { "firstname": "vx", "lastname": "mohanty", "age": "27" },
+
     ]
     };
     _createTable = function()
