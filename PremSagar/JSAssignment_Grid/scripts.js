@@ -13,7 +13,9 @@ var MyGrid = (function () {
 
     resetIndexValue = function() {
         startIndex = 0;
-        endIndex = parseInt((startIndex + pageSize) > gridDef.datas.length ? gridDef.datas.length : (startIndex + pageSize));
+        //endIndex = pageSize;
+        //console.log(startIndex+"::"+endIndex);
+        endIndex = (pageSize > gridDef.datas.length ? gridDef.datas.length : pageSize);
         toggleButton();
     }
 
@@ -33,8 +35,10 @@ var MyGrid = (function () {
     }
 
     showNextPage = function() {
+        console.log(startIndex+"-"+endIndex+" "+pageSize);
         startIndex = endIndex;
         endIndex = ((endIndex + pageSize) > gridDef.datas.length ? gridDef.datas.length : (endIndex + pageSize));
+        console.log(startIndex+"-"+endIndex+" "+pageSize);
         toggleButton();
         reCreateGrid();
     }
@@ -72,7 +76,7 @@ var MyGrid = (function () {
         var select = document.createElement('select');
         select.setAttribute('id', 'pageDropDown')
         select.onchange = function() {
-            pageSize = document.getElementById("pageDropDown").value;
+            pageSize = parseInt(document.getElementById("pageDropDown").value);
             resetIndexValue();
             reCreateGrid();
         }
