@@ -13,7 +13,9 @@ var MyGrid = (function () {
 
     resetIndexValue = function() {
         startIndex = 0;
-        endIndex = parseInt((startIndex + pageSize) > gridDef.datas.length ? gridDef.datas.length : (startIndex + pageSize));
+        //endIndex = pageSize;
+        //console.log(startIndex+"::"+endIndex);
+        endIndex = (pageSize > gridDef.datas.length ? gridDef.datas.length : pageSize);
         toggleButton();
     }
 
@@ -33,8 +35,10 @@ var MyGrid = (function () {
     }
 
     showNextPage = function() {
+        console.log(startIndex+"-"+endIndex+" "+pageSize);
         startIndex = endIndex;
         endIndex = ((endIndex + pageSize) > gridDef.datas.length ? gridDef.datas.length : (endIndex + pageSize));
+        console.log(startIndex+"-"+endIndex+" "+pageSize);
         toggleButton();
         reCreateGrid();
     }
@@ -72,7 +76,7 @@ var MyGrid = (function () {
         var select = document.createElement('select');
         select.setAttribute('id', 'pageDropDown')
         select.onchange = function() {
-            pageSize = document.getElementById("pageDropDown").value;
+            pageSize = parseInt(document.getElementById("pageDropDown").value);
             resetIndexValue();
             reCreateGrid();
         }
@@ -181,7 +185,9 @@ var MyGrid = (function () {
             updateButton[0].disabled = false;
             var content = this.parentElement.getElementsByTagName('td');
             for (var i = 0, len = content.length; i < len; i++) {
-                content[i].setAttribute('contenteditable', true);
+                //content[i].setAttribute('contenteditable', true);
+                var prevValue = content[i].innerHTML;
+                content[i].innerHTML = "<input type='text' value='"+prevValue+"'>";
             }
         }
 
@@ -192,12 +198,31 @@ var MyGrid = (function () {
         btnUpdate.innerHTML = 'Update';
         btnUpdate.onclick = function() {
             var content = this.parentElement.getElementsByTagName('td');
+            var arr = getUpdatedValue();
             for (var i = 0, len = content.length; i < len; i++) {
-                content[i].setAttribute('contenteditable', false);
+                //content[i].setAttribute('contenteditable', false);
+                content[i].innerHTML = arr[i];
+                //console.log(content[i].innerHTML)
             }
+            var newData = {
+                "name": arr[0],
+                "age": arr[1],
+                "city": arr[2],
+                "language": arr[3] 
+            }
+            //console.log(newData);
             this.disabled = true;
         }
 
+    }
+
+    getUpdatedValue = function() {
+        var inputTags = document.getElementsByTagName('input');
+        var values = [];
+        for(var i = 0, len = inputTags.length; i < len; i++) {
+            values[i] = inputTags[i].value;
+        }
+        return values;
     }
 
     return {
@@ -255,6 +280,7 @@ MyGrid.init({
         { name: 'Ashish Mallik', age: 23, city: 'Mumbai', language: 'English' },
         { name: 'Amrit Nandan', age: 22, city: 'Ranchi', language: 'English' },
         { name: 'Alokik Pathak', age: 25, city: 'Banglore', language: 'Hindi' },
-        { name: 'Praveen Kumar', age: 20, city: 'Hazaribagh', language: 'Hindi' }
+        { name: 'Praveen Kumar', age: 20, city: 'Hazaribagh', language: 'Hindi' },
+        { name: 'Prem', age: 20, city: 'Hazaribagh', language: 'English' }
     ]
 });
