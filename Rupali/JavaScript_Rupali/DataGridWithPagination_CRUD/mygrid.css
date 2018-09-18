@@ -1,0 +1,13 @@
+
+.mygrid_th 
+{
+    border: 1px solid #cccccc;
+     background-color: cyan;
+     color: blue;
+}
+.mygrid_td
+{
+    border: 1px solid #cccccc;
+     background-color: cyan;
+     color: blue;
+}
