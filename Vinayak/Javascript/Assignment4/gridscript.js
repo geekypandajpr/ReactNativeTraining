@@ -14,7 +14,17 @@ var MyGrid = (function ()
         data: [{ "firstname": "vinayak", "lastname": "Don", "age": "21" },
             { "firstname": "SHAILI", "lastname": "mittal", "age": "22" },
             { "firstname": "Rupali", "lastname": "pandaey", "age": "29" },
-            { "firstname": "Swati", "lastname": "mohanty", "age": "27" }
+            { "firstname": "Swati", "lastname": "mohanty", "age": "27" },
+             { "firstname": "SHAxxILI", "lastname": "mittal", "age": "22" },
+            { "firstname": "Rupaffli", "lastname": "pandaey", "age": "29" },
+            { "firstname": "Swati", "lastname": "mohanty", "age": "27" },
+             { "firstname": "SvvvHAILI", "lastname": "mittal", "age": "22" },
+            { "firstname": "Rupddali", "lastname": "pandaey", "age": "29" },
+            { "firstname": "Swaddti", "lastname": "mohanty", "age": "27" },
+             { "firstname": "SHAILI", "lastname": "mittal", "age": "22" },
+            { "firstname": "dd", "lastname": "pandaey", "age": "29" },
+            { "firstname": "vx", "lastname": "mohanty", "age": "27" },
+
     ]
     };
     _createTable = function()
@@ -78,7 +88,7 @@ var MyGrid = (function ()
         var activeRow = oButton.parentNode.parentNode.rowIndex;
        // alert(activeRow);
         var tab = document.getElementById('booksTable').rows[activeRow];
-        for (i = 0; i < 3; i++) 
+        for (i = 0; i < _defaultprop.colums.length; i++) 
         {  
                 var td = tab.getElementsByTagName("td")[i];
                 var ele = document.createElement('input');      
@@ -97,7 +107,7 @@ var MyGrid = (function ()
 
         var activeRow = oButton.parentNode.parentNode.rowIndex;
         var tab = document.getElementById('booksTable').rows[activeRow];
-        for (i = 0; i < 3; i++) 
+        for (i = 0; i < _defaultprop.colums.length; i++) 
         {
             var td = tab.getElementsByTagName("td")[i];
             if (td.childNodes[0].getAttribute('type') == 'text' || td.childNodes[0].tagName == 'SELECT') 

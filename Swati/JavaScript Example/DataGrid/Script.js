@@ -18,7 +18,35 @@ var person = [
     }
 ]
 
-var col = [];
+var col = [
+   
+   ];
+ /*  Grid.init({
+    gridWidth : "500px",
+    gridHeight : "700px",
+    columns : [{
+    "code" : "name",
+    "headerName" : "Name",
+    "width" : "100", 
+    "sorting" : true/ false,
+    "editor" : "textinput/select/boolean/none"
+    },{
+    "code" : "age",
+    "headerName" : "Age",
+    "width" : "100", 
+    "sorting" : true/ false,
+    "editor" : "textinput/select/boolean/none"
+    },{
+    "code" : "city",
+    "headerName" : "City",
+    "width" : "100",
+    "sorting" : true/ false,
+    "editor" : "textinput/select/boolean/none"
+    }],
+    pagging : true/false,
+    pageSize : [5,10,15,20],
+    editable : true/false
+    });*/
 function sortTable(n) {
     var table, rows, switching, i, x, y, shouldSwitch,dir,switchcount=0;
     table = document.getElementById("myData");
@@ -28,9 +56,9 @@ function sortTable(n) {
       switching = false;
       rows = table.rows;     
       for (i = 1; i < (rows.length-1); i++) {       
-        shouldSwitch = false;        
-        x = rows[i].getElementsByTagName("TD")[0];
-        y = rows[i + 1].getElementsByTagName("TD")[0];   
+       shouldSwitch = false;        
+        x = rows[i].getElementsByTagName("TD")[n];
+        y = rows[i + 1].getElementsByTagName("TD")[n];   
         if(dir=="asc"){     
             if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {         
                 shouldSwitch = true;
@@ -55,6 +83,7 @@ function sortTable(n) {
         }
     }
   }
+  
 
 return{
     init:function(){
@@ -68,12 +97,14 @@ for (var i = 0; i < person.length; i++) {
 
 var table = document.createElement("table");
 table.setAttribute("border","2");
+
 var tr = table.insertRow(-1);                  
 
 for (var i = 0; i <col.length; i++) {
     var th = document.createElement("th");     
     th.innerHTML = col[i];
-    tr.appendChild(th);   
+    tr.appendChild(th);    
+    
 }
 
 for (var i = 0; i < person.length; i++) {
@@ -84,8 +115,8 @@ for (var i = 0; i < person.length; i++) {
         var tabCell = tr.insertCell(-1);
         tabCell.innerHTML = person[i][col[j]];
         tr.onclick=function(){
-            sortTable();
-        }
+            sortTable();     
+    }
     }
 }
 
