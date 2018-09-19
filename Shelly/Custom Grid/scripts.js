@@ -3,6 +3,11 @@ var MyGrid = (function () {
     var _defaultprop = {
         sorting: false,
         paging: true,
+        currentPageNumber : 1,
+        currentPageSize   : 5,
+        currentSortingKey : '',
+        isPreviousActive  : true,
+        isNextAcitve      : true,
         pageSize: [5, 10, 15,20],
         inlineEditing: false,
         colums: [
@@ -10,7 +15,6 @@ var MyGrid = (function () {
             { "field": "lastname", "lable": "Last Name", "width": "100px", "sorting": true },
             { "field": "age", "lable": "Age", "width": "100px", "sorting": true },
             { "field": "Editing", "lable": "Editing", "width": "100px" }
-
         ],
         data: [{ "firstname": "shaili", "lastname": "Mittal", "age": "21" },
         { "firstname": "vinayak", "lastname": "Sharma", "age": "22" },
@@ -20,39 +24,20 @@ var MyGrid = (function () {
         { "firstname": "shaili", "lastname": "Mittal", "age": "21" },
         { "firstname": "vinayak", "lastname": "Sharma", "age": "22" },
         { "firstname": "Rupali", "lastname": "pandaey", "age": "29" },
-        { "firstname": "Swati", "lastname": "mohanty", "age": "27" }
+        { "firstname": "Swati", "lastname": "mohanty", "age": "27" },
+        { "firstname": "Swatids", "lastname": "mohanty", "age": "27" },
+        
         ]
     };
 
-    _paginator = function() 
-    {
-        var buttonPrev = document.createElement('button');
-        buttonPrev.innerHTML = 'Prev';
-        var div = document.getElementById("container");
-        div.appendChild(buttonPrev);
-        buttonPrev.onclick = function() {
-            console.log('next');
-        } 
-
-        var buttonNext= document.createElement('button');
-        buttonNext.innerHTML = 'Next';
-        var div =  document.getElementById("container");
-        div.appendChild(buttonNext);
-        buttonNext.onclick = function() {
-            console.log('next');
-        } 
-    }
     _createTable = function () {
-        if(_defaultprop.paging) {
-            _paginator();
-        }
-      
+
         _myGrid = document.createElement("table");
         _myGrid.setAttribute("border", "1");
         _myGrid.setAttribute("id", "myTable");
         _myGrid.cellSpacing = 0;
     }
-  
+ 
     _createTableHeader = function () {
        
         var tHead = _myGrid.insertRow();
@@ -69,12 +54,11 @@ var MyGrid = (function () {
                 {
                     var data = _defaultprop.data;
                     data.sort(_sortTable(this.id));
-                    _reCreateTable();
+                    _reCreateTable(_applyPagination(data));
                 }
             }
         }
     }
-    
 
     _sortTable = function (prop) {
         return function (a, b) {
@@ -92,15 +76,28 @@ var MyGrid = (function () {
             _myGrid.deleteRow(i);
         }
     }
-    _reCreateTable = function () {
-        _deleteTableRows();
-        _addTableData();
-    }
+    _reCreateTable = function(filteredData){
+        _deleteTableRows(filteredData.length);
+        _addTableData(filteredData);
+    };
 
-    _addTableData = function () 
+    _applyPagination = function(totalData){
+        var startIndex = (_defaultprop.currentPageNumber - 1) * _defaultprop.currentPageSize;
+        var endIndex = startIndex + _defaultprop.currentPageSize - 1;
+        var totalPages = Math.floor(_defaultprop.data.length / _defaultprop.currentPageSize);
+        totalPages += (_defaultprop.data.length % _defaultprop.currentPageNumber) > 0 ? 1 : 0;
+        if(_defaultprop.currentPageNumber == totalPages) {
+            endIndex = totalData.length - 1;
+        }
+        return totalData.slice(startIndex,endIndex);
+    };
+
+
+
+    _addTableData = function (filteredData) 
     {
        
-        for (var obj in _defaultprop.data) 
+        for (var obj in filteredData) 
             {
             var row = document.createElement('tr');
             row.setAttribute("id", "row1");
@@ -165,13 +162,36 @@ var MyGrid = (function () {
     }
 
     return {
-        init: function (jsonOjbect) {
-            _createTable();
+        init: function (jsonOjbect) 
+        {
+            document.getElementById("page_number").onchange = function(){
+                _defaultprop.currentPageSize = this.value;
+                _defaultprop.currentPageNumber = 1;
+                _reCreateTable(_applyPagination(_defaultprop.data));
+            };
+
+            document.getElementById("btn_prev").onclick = function(){
+                if(_defaultprop.currentPageNumber > 1) {
+                    _defaultprop.currentPageNumber -= 1;
+                }
+             _reCreateTable(_applyPagination(_defaultprop.data));
+
+            };
+
+            document.getElementById("btn_next").onclick = function(){
+                var totalPages = Math.floor(_defaultprop.data.length / _defaultprop.currentPageSize);
+                totalPages += (_defaultprop.data.length % _defaultprop.currentPageNumber) > 0 ? 1 : 0;
+                if(_defaultprop.currentPageNumber < totalPages) {
+                    _defaultprop.currentPageNumber += 1;
+                }
+            _reCreateTable(_applyPagination(_defaultprop.data));
+            };
+
+               _createTable();
             _createTableHeader();
-            _addTableData();
+            _addTableData(_applyPagination(_defaultprop.data));
             document.getElementById("container").appendChild(_myGrid);
-            document.getElementById("container2")
         }
-    };
+    };  
 })();
 MyGrid.init();
