@@ -2,8 +2,8 @@ var MyGrid = (function () {
     var _myGrid;
     var _defaultprop = {
         sorting: false,
-        paging: false,
-        pageSize: [5, 10, 15],
+        paging: true,
+        pageSize: [5, 10, 15,20],
         inlineEditing: false,
         colums: [
             { "field": "firstname", "lable": "First Name", "width": "100px", "sorting": true },
@@ -15,14 +15,37 @@ var MyGrid = (function () {
         data: [{ "firstname": "shaili", "lastname": "Mittal", "age": "21" },
         { "firstname": "vinayak", "lastname": "Sharma", "age": "22" },
         { "firstname": "Rupali", "lastname": "pandaey", "age": "29" },
+        { "firstname": "Swati", "lastname": "mohanty", "age": "27" },
+        { "firstname": "prem", "lastname": "choudary", "age": "27" },
+        { "firstname": "shaili", "lastname": "Mittal", "age": "21" },
+        { "firstname": "vinayak", "lastname": "Sharma", "age": "22" },
+        { "firstname": "Rupali", "lastname": "pandaey", "age": "29" },
         { "firstname": "Swati", "lastname": "mohanty", "age": "27" }
         ]
     };
 
-    
-  
+    _paginator = function() 
+    {
+        var buttonPrev = document.createElement('button');
+        buttonPrev.innerHTML = 'Prev';
+        var div = document.getElementById("container");
+        div.appendChild(buttonPrev);
+        buttonPrev.onclick = function() {
+            console.log('next');
+        } 
 
+        var buttonNext= document.createElement('button');
+        buttonNext.innerHTML = 'Next';
+        var div =  document.getElementById("container");
+        div.appendChild(buttonNext);
+        buttonNext.onclick = function() {
+            console.log('next');
+        } 
+    }
     _createTable = function () {
+        if(_defaultprop.paging) {
+            _paginator();
+        }
       
         _myGrid = document.createElement("table");
         _myGrid.setAttribute("border", "1");
@@ -138,8 +161,7 @@ var MyGrid = (function () {
                 {
                     document.getElementById("row1").outerHTML = "";
                 }
-            }       
-       
+            }  
     }
 
     return {
@@ -148,6 +170,7 @@ var MyGrid = (function () {
             _createTableHeader();
             _addTableData();
             document.getElementById("container").appendChild(_myGrid);
+            document.getElementById("container2")
         }
     };
 })();
