@@ -5,6 +5,11 @@ var MyGrid = (function ()
         sorting: false,
         paging: false,
         inlineEditing: false,
+        currentPageNumber : 1,
+        currentPageSize   : 5,
+        currentSortingKey : '',
+        isPreviousActive  : true,
+        isNextAcitve      : true,
         colums: [
             { "field": "firstname", "lable": "First Name", "width": "100px", "sorting": true },
             { "field": "lastname", "lable": "Last Name", "width": "100px", "sorting": true },
@@ -30,10 +35,8 @@ var MyGrid = (function ()
     _createTable = function()
     {
         _myGrid = document.createElement("table");
-         _myGrid.setAttribute('id', 'booksTable'); 
-        _myGrid.cellSpacing=0;
-        
-        
+        _myGrid.setAttribute('id', 'booksTable'); 
+        _myGrid.cellSpacing = 0;
     }
     _createTableHeader = function()
     {
@@ -48,15 +51,26 @@ var MyGrid = (function ()
             if(_defaultprop.colums[obj].sorting){
                 th.onclick = function(){                   
                     var data = _defaultprop.data;
-                    //alert(this.id);
-                    data.sort(_sortTable(this.id));                   
-                    _reCreateTable();
+                    data.sort(_sortTable(this.id)); 
+                    _reCreateTable(_applyPagination(data));
                 }
             }
         }   
     };
-     _addTableData = function(){        
-        for(var obj in _defaultprop.data)
+
+    _applyPagination = function(totalData){
+        var startIndex = (_defaultprop.currentPageNumber - 1) * _defaultprop.currentPageSize;
+        var endIndex = startIndex + _defaultprop.currentPageSize - 1;
+        var totalPages = Math.floor(_defaultprop.data.length / _defaultprop.currentPageSize);
+        totalPages += (_defaultprop.data.length % _defaultprop.currentPageNumber) > 0 ? 1 : 0;
+        if(_defaultprop.currentPageNumber == totalPages) {
+            endIndex = totalData.length - 1;
+        }
+        return totalData.slice(startIndex,endIndex);
+    };
+
+    _addTableData = function(filteredData){        
+        for(var obj in filteredData)
         {
             var tBodyRow =_myGrid.insertRow();
             var rowData = _defaultprop.data[obj];
@@ -65,7 +79,7 @@ var MyGrid = (function ()
                 td.setAttribute("class","mygrid_td");            
                 td.innerHTML = rowData[columnData];
             } 
-             td = document.createElement('td');
+            td = document.createElement('td');
             tBodyRow.appendChild(td);
             var btSave = document.createElement('input');
             btSave.setAttribute('type', 'button');    
@@ -132,25 +146,57 @@ var MyGrid = (function ()
     };
 
      _deleteTableRows = function(){
-        var length = _defaultprop.data.length;
-        for(var i = length; i>0 ; i--){
+        var length = _myGrid.rows.length - 1;
+        for(var i = length; i > 0 ; i--){
             _myGrid.deleteRow(i);
         }
     };
-         _reCreateTable = function(){
-            _deleteTableRows();
-            _addTableData();
-            };
+    _reCreateTable = function(filteredData){
+        _deleteTableRows(filteredData.length);
+        _addTableData(filteredData);
+    };
+
+
+
+
             
-        return {
-            init: function (jsonOjbect) 
-            {
-                _createTable();
+    return {
+        init: function (jsonOjbect) 
+        {
+
+            document.getElementById("page_number").onchange = function(){
+                _defaultprop.currentPageSize = this.value;
+                _defaultprop.currentPageNumber = 1;
+                _reCreateTable(_applyPagination(_defaultprop.data));
+            };
+
+
+            document.getElementById("btn_prev").onclick = function(){
+                if(_defaultprop.currentPageNumber > 1) {
+                    _defaultprop.currentPageNumber -= 1;
+                }
+
+                _reCreateTable(_applyPagination(_defaultprop.data));
+
+            };
+
+            document.getElementById("btn_next").onclick = function(){
+                var totalPages = Math.floor(_defaultprop.data.length / _defaultprop.currentPageSize);
+                totalPages += (_defaultprop.data.length % _defaultprop.currentPageNumber) > 0 ? 1 : 0;
+                if(_defaultprop.currentPageNumber < totalPages) {
+                    _defaultprop.currentPageNumber += 1;
+                }
+
+                _reCreateTable(_applyPagination(_defaultprop.data));
+            };
+
+
+            _createTable();
             _createTableHeader();
-            _addTableData();
+            _addTableData(_applyPagination(_defaultprop.data));
             document.getElementById("container").appendChild(_myGrid);
-            }
-        };  
+        }
+    };  
     
 
 })();
