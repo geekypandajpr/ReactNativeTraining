@@ -5,17 +5,30 @@
             <title>Moduler Design </title>
             <LINK href="mygrid.css" rel="stylesheet" type="text/css">
         </head>
-        
+
+        <body>
+            
+            <div class="form-group">    
+                <select class="form-control" id="page_number" name="state" id="maxRows">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>                  
+                </select>                
+            </div>        
             <div id="container"></div>
            
-                <select>
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                </select>
-                  
-                
+            <input type="button" id="btn_prev" value = "previous">
+            <input type="button" id="btn_next" value = "Next">
             <script type="text/javascript" src="scripts.js"></script>
+            
         </body>
     </html>
+
+       
+           
+             
+        
+
+
