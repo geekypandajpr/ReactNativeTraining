@@ -16,19 +16,30 @@ var MyGrid = (function ()
             { "field": "age", "lable": "Age", "width": "100px", "sorting": true }
                         
         ],
-        data: [{ "firstname": "vinayak", "lastname": "Don", "age": "21" },
-            { "firstname": "SHAILI", "lastname": "mittal", "age": "22" },
-            { "firstname": "Rupali", "lastname": "pandaey", "age": "29" },
-            { "firstname": "Swati", "lastname": "mohanty", "age": "27" },
-             { "firstname": "SHAxxILI", "lastname": "mittal", "age": "22" },
-            { "firstname": "Rupaffli", "lastname": "pandaey", "age": "29" },
-            { "firstname": "Swati", "lastname": "mohanty", "age": "27" },
-             { "firstname": "SvvvHAILI", "lastname": "mittal", "age": "22" },
-            { "firstname": "Rupddali", "lastname": "pandaey", "age": "29" },
-            { "firstname": "Swaddti", "lastname": "mohanty", "age": "27" },
-             { "firstname": "SHAILI", "lastname": "mittal", "age": "22" },
-            { "firstname": "dd", "lastname": "pandaey", "age": "29" },
-            { "firstname": "vx", "lastname": "mohanty", "age": "27" },
+        data: [
+        	
+        	{ "firstname": "A", "lastname": "mohanty", "age": "27" },
+             { "firstname": "B", "lastname": "mittal", "age": "22" },
+            { "firstname": "C", "lastname": "pandaey", "age": "29" },
+            { "firstname": "D", "lastname": "mohanty", "age": "27" },
+        	{ "firstname": "E", "lastname": "Don", "age": "21" },
+            { "firstname": "F", "lastname": "mittal", "age": "22" },
+            { "firstname": "G", "lastname": "pandaey", "age": "29" },
+            { "firstname": "H", "lastname": "mohanty", "age": "27" },
+        	{ "firstname": "I", "lastname": "Don", "age": "21" },
+            { "firstname": "J", "lastname": "mittal", "age": "22" },
+            { "firstname": "K", "lastname": "pandaey", "age": "29" },
+             { "firstname": "L", "lastname": "mittal", "age": "22" },
+            { "firstname": "M", "lastname": "pandaey", "age": "29" },
+            { "firstname": "N", "lastname": "mohanty", "age": "27" },
+             { "firstname": "O", "lastname": "mittal", "age": "22" },
+            { "firstname": "P", "lastname": "pandaey", "age": "29" },
+            { "firstname": "Q", "lastname": "mohanty", "age": "27" },
+            { "firstname": "I", "lastname": "Don", "age": "21" },
+            { "firstname": "J", "lastname": "mittal", "age": "22" },
+            { "firstname": "K", "lastname": "pandaey", "age": "29" },
+             { "firstname": "L", "lastname": "mittal", "age": "22" },
+            { "firstname": "M", "lastname": "pandaey", "age": "29" },
 
     ]
     };
@@ -60,12 +71,12 @@ var MyGrid = (function ()
 
     _applyPagination = function(totalData){
         var startIndex = (_defaultprop.currentPageNumber - 1) * _defaultprop.currentPageSize;
-        var endIndex = startIndex + _defaultprop.currentPageSize - 1;
-        var totalPages = Math.floor(_defaultprop.data.length / _defaultprop.currentPageSize);
-        totalPages += (_defaultprop.data.length % _defaultprop.currentPageNumber) > 0 ? 1 : 0;
-        if(_defaultprop.currentPageNumber == totalPages) {
-            endIndex = totalData.length - 1;
-        }
+        var endIndex = startIndex + _defaultprop.currentPageSize;
+        // var totalPages = Math.floor(_defaultprop.data.length / _defaultprop.currentPageSize);
+        // totalPages += (_defaultprop.data.length % _defaultprop.currentPageNumber) > 0 ? 1 : 0;
+        // if(_defaultprop.currentPageNumber == totalPages) {
+        //     endIndex = totalData.length - 1;
+        // }
         return totalData.slice(startIndex,endIndex);
     };
 
@@ -73,7 +84,7 @@ var MyGrid = (function ()
         for(var obj in filteredData)
         {
             var tBodyRow =_myGrid.insertRow();
-            var rowData = _defaultprop.data[obj];
+            var rowData = filteredData[obj];
             for (var columnData in rowData) {
                 var td = tBodyRow.insertCell();
                 td.setAttribute("class","mygrid_td");            
@@ -131,7 +142,7 @@ var MyGrid = (function ()
             }
         }
         _deleteTableRows();
-        _addTableData();
+        _addTableData(_indexPagination(1,_defaultprop.data));
     };
     _sortTable = function(prop){
         return function(a, b) 
@@ -145,6 +156,7 @@ var MyGrid = (function ()
         }   
     };
 
+  
      _deleteTableRows = function(){
         var length = _myGrid.rows.length - 1;
         for(var i = length; i > 0 ; i--){
@@ -153,53 +165,152 @@ var MyGrid = (function ()
     };
     _reCreateTable = function(filteredData){
         _deleteTableRows(filteredData.length);
+        console.log(filteredData);
         _addTableData(filteredData);
     };
 
+    _indexPagination =function (indexValue,totalData)
+    {
+    	
+    	var start=(indexValue-1)*_defaultprop.currentPageSize;
+    	var end=start+_defaultprop.currentPageSize;
+    	
+    	return totalData.slice(start,end);
+    }
 
+    _createPaginationDropDown = function()
+    {
+    	var selectOption;
+    	var pageDiv = document.createElement("div");
+    	var selectDrop =document.createElement("select");
+    	selectDrop.setAttribute("id","page_number");
+    	var selectOption =document.createElement("option");
+    	pageDiv.appendChild(selectDrop);
 
+    	var totalPages = Math.floor(_defaultprop.data.length / _defaultprop.currentPageSize);
+    	for(i=0;i<=totalPages;i++)
+    	{
+    			selectOption =document.createElement("option");
+    			selectOption.text = (i+1)*5;
+    			selectOption.value = (i+1)*5;
+    			selectDrop.options.add(selectOption);
+    	}
+    	
+    	_myGrid.appendChild(pageDiv);
 
+    }
+
+_createPageTable = function()
+{
+
+	var inputContain;
+	var ulContain = document.createElement("ul");
+	ulContain.setAttribute("id","PageID");
+	var liContain = document.createElement("li");
+	var PreButton = document.createElement("input");
+	PreButton.type="button";
+	PreButton.value="Previous";
+	PreButton.id="btn_prev";
+	PreButton.onclick=function()
+	{
+		 if(_defaultprop.currentPageNumber > 1) {
+                    _defaultprop.currentPageNumber -= 1;
+                }
+		_reCreateTable(_indexPagination(this.id,_defaultprop.data));
+	}
+	liContain.appendChild(PreButton);
+	var totalPages = Math.ceil(_defaultprop.data.length / _defaultprop.currentPageSize);
+	//totalPages += (_defaultprop.data.length % _defaultprop.currentPageNumber) > 0 ? 1 : 0;
+	
+	for(var i =1 ; i<=totalPages;i++)
+	{
+		inputContain= document.createElement("input");
+		inputContain.type = "button";
+		inputContain.value =i;
+		inputContain.id =i;
+		inputContain.onclick=function()
+		{
+			//alert(Math.ceil(_defaultprop.data.length / _defaultprop.currentPageSize));
+			_defaultprop.currentPageNumber=this.id;
+			_reCreateTable(_indexPagination(this.id,_defaultprop.data));
+		}
+		liContain.appendChild(inputContain);
+	}
+	var nextButton = document.createElement("input");
+	nextButton.type="button";
+	nextButton.value="Next";
+	nextButton.id="btn_next";
+	nextButton.onclick=function()
+	{
+		 if(_defaultprop.currentPageNumber < totalPages) {
+                    _defaultprop.currentPageNumber += 1;
+            }
+		_reCreateTable(_indexPagination(this.id,_defaultprop.data));
+	}
+	liContain.appendChild(nextButton);
+	ulContain.appendChild(liContain);
+	_myGrid.appendChild(ulContain);
+};
+
+_removeElement=function() {
+    var element = document.getElementById("PageID");
+    element.parentNode.removeChild(element);
+}
             
     return {
         init: function (jsonOjbect) 
         {
-
-            document.getElementById("page_number").onchange = function(){
+            
+            window.onload = function() 
+            {
+				   document.getElementById("page_number").onchange = function(){
                 _defaultprop.currentPageSize = this.value;
                 _defaultprop.currentPageNumber = 1;
+                _removeElement();
+                _createPageTable();
                 _reCreateTable(_applyPagination(_defaultprop.data));
             };
 
 
             document.getElementById("btn_prev").onclick = function(){
+            	
                 if(_defaultprop.currentPageNumber > 1) {
                     _defaultprop.currentPageNumber -= 1;
                 }
-
+                alert(_defaultprop.currentPageNumber);
                 _reCreateTable(_applyPagination(_defaultprop.data));
 
             };
 
             document.getElementById("btn_next").onclick = function(){
-                var totalPages = Math.floor(_defaultprop.data.length / _defaultprop.currentPageSize);
-                totalPages += (_defaultprop.data.length % _defaultprop.currentPageNumber) > 0 ? 1 : 0;
+                var totalPages = Math.ceil(_defaultprop.data.length / _defaultprop.currentPageSize);
+               // totalPages += (_defaultprop.data.length % _defaultprop.currentPageNumber) > 0 ? 1 : 0;
                 if(_defaultprop.currentPageNumber < totalPages) {
                     _defaultprop.currentPageNumber += 1;
                 }
-
+                alert(_defaultprop.currentPageNumber);
                 _reCreateTable(_applyPagination(_defaultprop.data));
             };
 
 
-            _createTable();
+
+			}
+            
+			 _createTable();
             _createTableHeader();
             _addTableData(_applyPagination(_defaultprop.data));
+            _createPaginationDropDown();
+            _createPageTable();	
             document.getElementById("container").appendChild(_myGrid);
+
+            
+            
         }
     };  
     
 
 })();
+
 MyGrid.init();
 
 
