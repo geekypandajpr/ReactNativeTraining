@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "sdkVersion": "27.0.0",
+    "name": "FlexDemo",
+    "androidStatusBar": {
+      "backgroundColor": "#3E4357",
+      "barStyle": "dark-content"
+    }
+  }
+}
