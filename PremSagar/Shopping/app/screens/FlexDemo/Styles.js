@@ -7,6 +7,7 @@ export default EStyleSheet.create({
     },
     upperregion : {
         flex : 3,
+        width: '100%',
         alignItems : 'center'
     },
     upperregion_first : {
