@@ -1,9 +1,9 @@
 import React from 'react';
-import {Product } from './screens/Home';
+import { FlexDemo } from './screens/FlexDemo';
 export default class Index extends React.Component {
     render() {
         return (
-            <Product />
+            <FlexDemo />
         )
     }
 }

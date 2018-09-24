@@ -69,7 +69,7 @@ export default class Quiz extends React.Component
         return(
             <View>
                 <HeaderIcon />
-                    <ScrollView style = {{}}>
+                    <ScrollView>
                         <Card style={{flexDirection:'row'}}>
                             <CardItem style= {{flex:0.5}}>
                                  <Button title='Start' onPress={this.beginTest} color='cyan'/>
@@ -93,13 +93,13 @@ export default class Quiz extends React.Component
                                 />
                             </View>
                     }/>
-                             <View>
+                            
                                 <Button
-                                    color='#fc8e51'
                                     onPress={this.finishTest}
                                     title='Finish Test'
+                                    style={{height:40}}/>
                                 />
-                        </View>
+                        
                     </ScrollView>
             </View>
         );

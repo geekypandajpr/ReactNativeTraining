@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import { Home, Details } from '../screens';
+import { Home, Details,FlexDemo } from '../screens';
 
 const AppRoutes = createStackNavigator(
     {
@@ -14,12 +14,18 @@ const AppRoutes = createStackNavigator(
             navigationOptions: {
                 header: null
             }
+        },
+        FlexDemo : {
+            screen: FlexDemo,
+            navigationOptions: {
+                header: null
+            }
         }
     },
     {
-        initialRouteName: 'Home',
-        mode: 'card',
-        headerMode: 'float'
+        initialRouteName: 'FlexDemo',
+        mode : 'card',
+        headerMode : 'float'
     }
 );
 
