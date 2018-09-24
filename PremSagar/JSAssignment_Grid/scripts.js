@@ -86,18 +86,18 @@ var MyGrid = (function () {
 
     onPressMultiButton = function (start, end) {
         buttons = document.getElementsByClassName('button');
-        for(var i = 0;i < buttons.length; i++) {
+        for (var i = 0; i < buttons.length; i++) {
             buttons[i].style.visibility = "hidden";
             buttons[i].style.backgroundColor = '#ffffff';
         }
         var k = 0;
         for (var i = start; i <= end; i++) {
-            if(i == dataGridDef.currentPageNumber) {
+            if (i == dataGridDef.currentPageNumber) {
                 buttons[k].style.backgroundColor = "red";
             }
             buttons[k].style.visibility = "visible";
-            buttons[k].innerHTML=i;
-            buttons[k].onclick = function() {
+            buttons[k].innerHTML = i;
+            buttons[k].onclick = function () {
                 dataGridDef.currentPageNumber = parseInt(this.innerHTML);
                 reCreateGrid(applyPagination(dataGridDef.datas));
             }
@@ -107,25 +107,25 @@ var MyGrid = (function () {
         onPressDotButton(start, end);
     }
 
-    onPressDotButton = function(start, end) {
+    onPressDotButton = function (start, end) {
         prevDotBtn = document.getElementsByClassName('prev_button_dot')[0];
-        prevDotBtn.onclick = function() {
-            dataGridDef.currentPageNumber = parseInt(start-2);
+        prevDotBtn.onclick = function () {
+            dataGridDef.currentPageNumber = parseInt(start - 2);
             reCreateGrid(applyPagination(dataGridDef.datas));
         }
         nextDotBtn = document.getElementsByClassName('next_button_dot')[0];
-        nextDotBtn.onclick = function() {
-            dataGridDef.currentPageNumber = parseInt(start+2);
+        nextDotBtn.onclick = function () {
+            dataGridDef.currentPageNumber = parseInt(start + 2);
             reCreateGrid(applyPagination(dataGridDef.datas));
         }
-        if(start < 3) {
+        if (start < 3) {
             prevDotBtn.style.visibility = "hidden";
         } else {
             prevDotBtn.style.visibility = "visible";
         }
 
         var totalPages = getTotalPageNumber();
-        if(end == totalPages) {
+        if (end == totalPages) {
             nextDotBtn.style.visibility = "hidden";
         } else {
             nextDotBtn.style.visibility = "visible";
@@ -179,22 +179,52 @@ var MyGrid = (function () {
         myDiv.appendChild(lastButton);
     }
 
-    initDataGrid = function () {
-        var myDiv = document.getElementById('myDiv');
-        myTable = document.createElement("table");
-        myDiv.appendChild(myTable);
-        if (dataGridDef.pagging) {
-            addPaging();
+    /**This function will enable editable */
+    addEditButton = function () {
+        var btnEdit = addButton('Edit', 'edit_button');
+        btnEdit.onclick = function () {
+            var content = this.parentElement.getElementsByTagName('td');
+            for (var i = 0, len = content.length; i < len; i++) {
+                var prevValue = content[i].innerHTML;
+                content[i].innerHTML = "<input type='text' value='" + prevValue + "'>";
+            }
+            this.parentElement.getElementsByClassName('update_button')[0].disabled = false;
+            this.disabled = true;
         }
+        return btnEdit;
     }
 
-    setGridAttributes = function () {
-        myTable.setAttribute("id", 'myTable');
-        myTable.setAttribute("border", "1");
-        myTable.setAttribute('height', dataGridDef.gridHeight);
-        myTable.setAttribute('width', dataGridDef.gridWidth);
+    /**This function will update row value */
+    addUpdateButton = function () {
+        var btnUpdate = addButton('Update', 'update_button');
+        btnUpdate.setAttribute("disabled", true);
+        btnUpdate.onclick = function () {
+            var content = this.parentElement.getElementsByTagName('td');
+            var arr = getUpdatedValue();
+            for (var i = 0, len = content.length; i < len; i++) {
+                content[i].innerHTML = arr[i];
+            }
+            var newData = { "name": arr[0], "age": arr[1], "city": arr[2], "language": arr[3] }
+            this.parentElement.getElementsByClassName('edit_button')[0].disabled = false;
+            this.disabled = true;
+        }
+        return btnUpdate;
     }
 
+    /**This function will return update row value */
+    getUpdatedValue = function () {
+        var inputTags = document.getElementsByTagName('input');
+        var values = [];
+        for (var i = 0, len = inputTags.length; i < len; i++) {
+            values[i] = inputTags[i].value;
+        }
+        return values;
+    }
+
+    /**This function sets the header of Table
+     * Add two button named as EDIT and UPDATE if editable is true
+     * Apply sorting on columns
+     */
     setGridHeader = function () {
         var tr = document.createElement('tr');
         myTable.appendChild(tr);
@@ -219,11 +249,13 @@ var MyGrid = (function () {
         }
     }
 
+    /**This function will delete all rows from table and insert rows again */
     reCreateGrid = function (filteredData) {
         deleteGridRows();
         setGridData(filteredData);
     }
 
+    /**Function to delete all rows from Table*/
     deleteGridRows = function () {
         var table = document.getElementById('myTable');
         var tableRows = table.rows.length;
@@ -232,6 +264,9 @@ var MyGrid = (function () {
         }
     }
 
+    /**Function to add rows in Table 
+     * @param filteredData is json data
+    */
     setGridData = function (filteredData) {
         for (var data in filteredData) {
             var tr = document.createElement('tr');
@@ -249,43 +284,27 @@ var MyGrid = (function () {
         }
     }
 
-    addEditButton = function () {
-        var btnEdit = addButton('Edit', 'edit_button');
-        btnEdit.onclick = function () {
-            var content = this.parentElement.getElementsByTagName('td');
-            for (var i = 0, len = content.length; i < len; i++) {
-                var prevValue = content[i].innerHTML;
-                content[i].innerHTML = "<input type='text' value='" + prevValue + "'>";
-            }
-            this.parentElement.getElementsByClassName('update_button')[0].disabled = false;
-            this.disabled = true;
-        }
-        return btnEdit;
+    /**Function to set attributes of table
+     * @param dataGridDef.gridHeight is height of Table
+     * @param dataGridDef.gridWidth is width of Table
+     */
+    setGridAttributes = function () {
+        myTable.setAttribute("id", 'myTable');
+        myTable.setAttribute("border", "1");
+        myTable.setAttribute('height', dataGridDef.gridHeight);
+        myTable.setAttribute('width', dataGridDef.gridWidth);
     }
 
-    addUpdateButton = function () {
-        var btnUpdate = addButton('Update', 'update_button');
-        btnUpdate.setAttribute("disabled", true);
-        btnUpdate.onclick = function () {
-            var content = this.parentElement.getElementsByTagName('td');
-            var arr = getUpdatedValue();
-            for (var i = 0, len = content.length; i < len; i++) {
-                content[i].innerHTML = arr[i];
-            }
-            var newData = { "name": arr[0], "age": arr[1], "city": arr[2], "language": arr[3] }
-            this.parentElement.getElementsByClassName('edit_button')[0].disabled = false;
-            this.disabled = true;
+    /**Function to create Table
+     * Apply Pagging if it required
+     */
+    initDataGrid = function () {
+        var myDiv = document.getElementById('myDiv');
+        myTable = document.createElement("table");
+        myDiv.appendChild(myTable);
+        if (dataGridDef.pagging) {
+            addPaging();
         }
-        return btnUpdate;
-    }
-
-    getUpdatedValue = function () {
-        var inputTags = document.getElementsByTagName('input');
-        var values = [];
-        for (var i = 0, len = inputTags.length; i < len; i++) {
-            values[i] = inputTags[i].value;
-        }
-        return values;
     }
 
     return {
