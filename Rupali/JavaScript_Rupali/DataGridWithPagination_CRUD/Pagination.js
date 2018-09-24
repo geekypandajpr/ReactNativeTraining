@@ -1,14 +1,14 @@
 (function(){
 	var config = {
-		max_results: 100,
-		max_per_page: 10,
-		page: 1
+		currentPageNumber : 1,
+        currentPageSize   : 5,
+        maxPageSize: 100,
 	},
-	no_of_pages = Math.ceil( config.max_results / config.max_per_page ),
+	no_of_pages = Math.ceil( config. maxPageSize / config.currentPageSize    ),
 	results = [];
 
 	function init(){
-		for( var x = 0; x < config.max_results; x++ ){
+		for( var x = 0; x < config. maxPageSize; x++ ){
 			results[x] = "Result " + x;
 		}
 		document.getElementById("next").onclick = function() { 
@@ -28,9 +28,9 @@
 			return false;
 		};
 		document.getElementById("page_nav").onclick = function(e) { 
-			var page = e.srcElement.getAttribute("data-page");
-			if(page){
-				pager("goto", page);
+			var currentPageNumber = e.srcElement.getAttribute("data-page");
+			if(currentPageNumber){
+				pager("goto", currentPageNumber);
 			}
 			return false;
 		};
@@ -38,26 +38,26 @@
 	}
 	
 	
-	function pager(action, page) {
+	function pager(action, currentPageNumber) {
 		switch (action) {
 			case "next":
-				if( (config.page + 1) < no_of_pages ){ 
-					++config.page;
+				if( (config.currentPageNumber + 1) < no_of_pages ){ 
+					++config.currentPageNumber;
 				}
 				break;
 			 
 			case "previous":
-				if( (config.page - 1) >= 1 ){
-					 --config.page;
+				if( (config.currentPageNumber - 1) >= 1 ){
+					 --config.currentPageNumber;
 				}
 				break;
 			
 			case "goto":
-				config.page = page;
+				config.currentPageNumber = currentPageNumber;
 				break;
 			
 			case "reset":
-				config.page = 1;
+				config.currentPageNumber = 1;
 				break;
 			
 			default:
@@ -69,7 +69,7 @@
 		var i,
 			page_nav = "";
 							
-		for( i = config.page; i < no_of_pages; i++ ){
+		for( i = config.currentPageNumber; i < no_of_pages; i++ ){
 			page_nav += "<li><a data-page=" + i + ">" + i + "</a></li>\n";
 		}
 		return page_nav;
@@ -77,8 +77,8 @@
 	function build_results(){
 		var i,
 			tmp = "",
-			start = ( config.page !== 1 )? config.page * config.max_per_page : 1,
-			end = start + config.max_per_page,
+			start = ( config.currentPageNumber !== 1 )? config.currentPageNumber * config.currentPageSize    : 1,
+			end = start + config.currentPageSize   ,
 			result;
 			
 		for( i = start; i < end; i++ ){
@@ -93,7 +93,7 @@
 		return tmp;
 	}				
 	function update_page(){
-		document.getElementById("curr_page").innerText = config.page;
+		document.getElementById("curr_page").innerText = config.currentPageNumber;
 		document.getElementById("page_nav").innerHTML = build_nav();
 		document.getElementById("results").innerHTML = build_results();
 	}

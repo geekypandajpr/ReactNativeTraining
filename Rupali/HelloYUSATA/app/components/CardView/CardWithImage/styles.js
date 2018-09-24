@@ -1,32 +1,46 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
-    cardItem: {
-        flexDirection: 'row'
+    mainContainer : 
+    {
+        flex : 1,
+        flexDirection : "row"
     },
-    imageView: {
-        flex: 0.5,
-        borderWidth: 0.5,
-        borderColor: '#000',
-        width: '100%',
-        margin: 2
+    imageContainer : 
+    {
+        flex : 1,
+        flexDirection : "row",
+        // marginTop : 10,
+        paddingLeft : 15,
+        alignItems : "center"
     },
-    headingView: {
-        flex: 0.8
+    textContainer :
+    {
+        flex : 3,
+        justifyContent : "flex-start",
+        paddingLeft : 5,
+        marginTop : 10,
     },
-    subHeadingView: {
-        flex: 0.2
+    firstTextContainer : 
+    {
+        color: "black",
+        alignItems : "center",
+        fontSize : 18,
+        // marginTop : 40,
+        // paddingLeft : 20,
+        fontWeight: "bold",
     },
-    heading: {
-        fontSize: '$fontSize',
-        color: '#000'
+    secondTextContainer :
+    {
+        color: "black",
+        alignItems : "center",
+        fontSize : 15,
     },
-    subHeading: {
-        fontSize: '$fontSize',
-        color: '$primaryColor'
-    },
-    seperator: {
-        height: 1,
-        backgroundColor: 'gray',
-        width: '100%'
+    iconContainer : 
+    {
+        flex : 1,
+        flexDirection : "row",
+        justifyContent: 'flex-end',
+        marginTop : 20,
+        paddingRight : 20
     }
-})
+});
