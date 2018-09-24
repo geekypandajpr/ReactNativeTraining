@@ -1,0 +1,1 @@
+export {IconVertical} from './IconVerticaltext';

@@ -1,0 +1,1 @@
+export {DegreeIcon} from './DegreeIcon'
