@@ -22,6 +22,7 @@ export default EStyleSheet.create({
     menu_icon: {
         marginLeft: 20
     },
+
     container: {
         flex: 1,
         backgroundColor: '#171c2b',
@@ -53,7 +54,9 @@ export default EStyleSheet.create({
         backgroundColor: '#3E4357',
         borderRadius: 10,
         marginBottom: 5
-    },    
+    },
+
+    
     text_container: {
         flexDirection: 'row',
         height: 100,
