@@ -1,0 +1,1 @@
+export { Icon_Text_Ver } from './Icon_Text_Ver';

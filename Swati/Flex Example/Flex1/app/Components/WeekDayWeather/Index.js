@@ -1,0 +1,1 @@
+export { WeekDayWeather } from './WeekDayWeather';
