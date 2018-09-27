@@ -27,5 +27,10 @@ export default EStyleSheet.create({
         marginTop : 10,
         alignItems : 'center',
         justifyContent : 'center'
-    }
+    },
+    image: {
+        height:55,
+        width: 55,
+        borderRadius: 28
+      },
 })
