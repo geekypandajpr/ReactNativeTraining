@@ -2,8 +2,7 @@ import React from 'react';
 import Index from './app/index';
 import EStyleSheet from 'react-native-extended-stylesheet';
 EStyleSheet.build({
-    $statusBarColor: '#2471A3',
-    $headerColor: '#1ABC9C',
+    $statusBarColor: '#2471A3',  
     $fontSize: '0.8rem'
 
 });
