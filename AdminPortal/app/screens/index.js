@@ -1,1 +1,1 @@
-export {Home} from './Home/index';
+export { Home } from './Home/index';
