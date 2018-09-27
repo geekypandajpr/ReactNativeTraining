@@ -1,12 +1,12 @@
-import { createStackNavigator } from 'react-navigation';
-import { Home } from '../screens';
-const AppRouter = createStackNavigator(
+import {createStackNavigator} from 'react-navigation';
+import {Home} from '../screens/index'
+const AppRouter= createStackNavigator(
     {
-        Home: { screen: Home }
+      Home: {screen: Home}
     },
     {
-        initialRouteName: 'Home',
+       initialRouteName: 'Home',
     }
-);
-
-export { AppRouter };
+   );
+   
+   export  {AppRouter};
