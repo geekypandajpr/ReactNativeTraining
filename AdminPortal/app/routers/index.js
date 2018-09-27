@@ -1,11 +1,35 @@
 import {createStackNavigator} from 'react-navigation';
-import {Home} from '../screens/index'
+import {
+  Home,
+  HomeScreen,
+  Sim,
+  Association,
+  Schedule,
+  vehicleList,
+  Search
+} from '../screens';
+
 const AppRouter= createStackNavigator(
     {
-      Home: {screen: Home}
+      HomeScreen: {screen: HomeScreen}
     },
     {
-       initialRouteName: 'Home',
+      Sim: {screen: Sim}
+    },
+    {
+      Association: {screen: Association}
+    },
+    {
+      Schedule: {screen: Schedule}
+    },
+    {
+      vehicleList: {screen: vehicleList}
+    },
+    {
+      Search: {screen: Search}
+    },
+    {
+       initialRouteName: 'HomeScreen',
     }
    );
    
