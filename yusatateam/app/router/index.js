@@ -3,7 +3,12 @@ import { Schedule } from '../screens';
 
 const AppRouter = createStackNavigator(
     {
-        Schedule: {Screen: Schedule}
+        Schedule: {
+            screen: Schedule,
+            navigationOptions: {
+                header: null
+            }
+        }
     },
 
     {
