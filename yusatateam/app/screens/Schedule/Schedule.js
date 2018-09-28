@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Agenda } from 'react-native-calendars';
-import { Statusbar } from '../../components';
+import { Statusbar, ScheduleEvent } from '../../components';
+import styles from './Styles';
 
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
@@ -84,13 +85,7 @@ export default class Schedule extends React.Component {
 
     renderItem(item) {
         return (
-            <View style={styles.event_date_view}>
-                <Text style={styles.textView}>Service# : {item.serviceNumber}</Text>
-                <Text style={styles.textView}>Vehicle# : {item.vehicleNumber}</Text>
-                <Text style={styles.textView}>Device : {item.device}</Text>
-                <Text style={styles.textView}>Sim : {item.sim}</Text>
-                <Text style={styles.textView}>Location : {item.location}</Text>
-            </View>
+            <ScheduleEvent {...item}/>
         );
     }
 
