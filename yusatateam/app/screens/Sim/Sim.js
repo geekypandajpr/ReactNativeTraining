@@ -6,7 +6,7 @@ import {
 }
     from 'react-native';
 import styles from './styles';
-import { Rounded } from '../../components/RoundedImage';
+import { RoundedImage } from '../../components';
 export default class Sim extends React.Component {
     constructor() {
         super();
@@ -88,7 +88,7 @@ export default class Sim extends React.Component {
                     renderItem={({ item, index }) =>
                         <View style={styles.listcontainer}>
                             <View style={{flex: 1}}>
-                            <Rounded
+                            <RoundedImage
                             source={require('../../../assets/Sim_Image.png')}
                             />
                             </View>

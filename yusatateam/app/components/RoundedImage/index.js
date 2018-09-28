@@ -1,1 +1,1 @@
-export {Rounded} from './RoundImage'
+export {RoundedImage} from './RoundImage';
