@@ -14,7 +14,8 @@ export default EStyleSheet.create({
         margin: 5,
         borderColor: 'black',
         backgroundColor: 'white',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        borderWidth:2
     },
 
     secondView:
@@ -26,13 +27,13 @@ export default EStyleSheet.create({
     secondHeads:
     {
         fontWeight: 'bold',
-        fontSize: 17,
+        fontSize: 15,
         fontStyle:'normal'
     },
 
     secondAns:
     {
-        fontSize: 17,
+        fontSize: 15,
         fontStyle:'normal'
     }
 
