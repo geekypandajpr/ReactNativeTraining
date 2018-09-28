@@ -1,6 +1,7 @@
 import React from 'react';
 import {View,Text,ScrollView,FlatList,Button} from 'react-native';
 import styles from './styles';
+import {DeviceSimItem} from '../DeviceSimItem/DeviceSimItem'
 export default class VehicleList extends React.Component {
     constructor() {
         super();
