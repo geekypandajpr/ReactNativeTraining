@@ -1,21 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Index from './app/index';
+import EStyleSheet from 'react-native-extended-stylesheet';
+EStyleSheet.build({
+    $statusBarColor: '#2471A3',  
+    $fontSize: '0.8rem'
+
+});
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
+    render() {
+        return (
+            <Index />
+        );
+    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
