@@ -85,7 +85,7 @@ export default class Schedule extends React.Component {
 
     renderItem(item) {
         return (
-            <ScheduleEvent {...item}/>
+            <ScheduleEvent item={item}/>
         );
     }
 
