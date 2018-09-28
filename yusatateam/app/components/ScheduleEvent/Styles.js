@@ -1,24 +1,27 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
     text_container: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        flex: 1
     },
     text_view: {
-        flex: 5,
+        flex: 1,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        flexWrap: 'wrap'
     },
     icon_view: {
         flex: 1
     },
     label_text: {
-        fontSize: '0.9rem',
+        fontSize: '$fontSize',
         fontWeight: 'bold'
     },
     value_text: {
-        fontSize: '0.8rem'
+        fontSize: '0.6rem'
     },
     event_date_view: {
+        //backgroundColor: '#5ADC94',
         backgroundColor: '#36B4A6',
         flex: 1,
         borderRadius: 5,
