@@ -8,12 +8,12 @@ export default class SearchBar extends React.Component {
             <View style={styles.container}>
             <View style ={styles.searchIcon}>
                 <View style={styles.borderSearch}>
-                <TextInput  placeholder="Search" onChangeText={this.props.onChange}  />
+                <TextInput placeholder="Enter Your First Name"underlineColorAndroid="transparent"/>
                 </View>
                 <View style={styles.icon}>
                 <Ionicons  name="md-search" size={32} color="orange" onPress={this.props.click} />
                 </View>
-                </View>
+            </View>
 
 
             </View>

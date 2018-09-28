@@ -10,13 +10,22 @@ export default EStyleSheet.create({
     borderSearch:
     {     
         flex :8,
+        marginLeft : 10
+       
     },
     searchIcon:
     {
         flex:1,
         flexDirection:'row',
-        margin:40,
-        borderColor : 'black'
+        marginTop:40,
+        marginLeft : 10,
+        borderRadius : 10,
+        width: "95%", 
+        borderColor: 'gray',
+         borderWidth: 1, 
+          alignItems : 'center',
+          justifyContent : 'center'
+       
     },
     icon : {
         flex : 1,
