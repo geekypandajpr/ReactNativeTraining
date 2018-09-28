@@ -1,6 +1,7 @@
 import React from 'react';
 import {View,Text,ScrollView,FlatList,Button} from 'react-native';
 import styles from './styles';
+import {DeviceSimItem} from '../DeviceSimItem/DeviceSimItem';
 export default class VehicleList extends React.Component {
     constructor() {
         super();
@@ -50,6 +51,7 @@ export default class VehicleList extends React.Component {
            }
        }
        render() {
+           const {navigate} = this.props.navigation;
            return (
                <View style={styles.container}>
                <View style={styles.viewStyle}></View>
@@ -61,7 +63,7 @@ export default class VehicleList extends React.Component {
                                <View style={styles.viewList}>
                                    <Button style={styles.button}
                                        title={item.MSIDN}
-                                       onPress={alert}
+                                       onPress={()=>navigate('DeviceSimItem')}
                                        color="#999966"
                                    ></Button>
                                </View>  

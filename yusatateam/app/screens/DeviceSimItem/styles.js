@@ -1,17 +1,14 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
     container: {
-        flex :1,
-        marginTop: 3,
+        flex :1, 
+        alignItems : 'center',
+        justifyContent : 'center',
+        margin : 30,
         
      },
-     flatView : {
-         flex :2, 
-     },
      button : {
-         borderRadius :10,
-     },
-     viewStyle : {
-         flex :5,
+        padding: 8,
+        marginTop : 8
      }
 })
