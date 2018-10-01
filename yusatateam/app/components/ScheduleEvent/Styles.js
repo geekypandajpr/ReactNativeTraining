@@ -32,12 +32,15 @@ export default EStyleSheet.create({
         //backgroundColor: '#5ADC94',
         //backgroundColor: '#36B4A6',
         //backgroundColor: '$primaryColorLight',
-        backgroundColor: '#eeeeee',
-        elevation: 10,
+        backgroundColor: '#ffffff',
+        elevation: 1,
         flex: 1,
         borderRadius: 5,
         padding: 10,
-        margin: 5
+        marginRight: 4,
+        marginLeft: 4,
+        marginTop: 4,
+        marginBottom: 2
     },
     empty_date_view: {
         backgroundColor: '#5ADC94',
