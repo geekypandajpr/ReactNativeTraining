@@ -4,14 +4,17 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import styles from './Styles';
-import { IconWithText, Statusbar } from '../../components';
+import {
+    IconWithText,
+    Statusbar
+} from '../../components';
 
 export default class HomeScreen extends React.Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
             <View style={ styles.mainContainer }>
-                <Statusbar backgroundColor="#3E4357" barStyle="light-content" />
+                {/* <Toolbar/> */}
                 <View style = {styles.firstContainer}>
                     <View style = {styles.simContainer}>
                         <TouchableOpacity onPress={()=>navigate('Sim')}>
