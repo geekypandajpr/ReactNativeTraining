@@ -5,17 +5,21 @@ export default EStyleSheet.create({
     {
         flex: 1,
         backgroundColor: '#D3D3D3',
-        marginTop: 30,
+        paddingTop: 30,
+        paddingLeft:4,
+        paddingRight:4
 
     },
     listcontainer:
     {
         flex: 1,
         margin: 5,
-        borderColor: 'black',
+        marginLeft:5,
+        marginRight:5,
+        //borderColor: 'black',
         backgroundColor: 'white',
         flexDirection: 'row',
-        borderWidth:2
+        //borderWidth:2
     },
 
     secondView:
