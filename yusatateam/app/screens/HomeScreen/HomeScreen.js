@@ -19,7 +19,7 @@ export default class HomeScreen extends React.Component {
                     <View style={styles.simContainer}>
                         <TouchableOpacity onPress={() => navigate('Sim')}>
                             <IconWithText
-                                backgroundColor='#31B08A'
+                                backgroundColor='#37B4A4'
                                 name='sim'
                                 type='MaterialCommunityIcons'
                                 styles={styles.iconView}
@@ -30,7 +30,7 @@ export default class HomeScreen extends React.Component {
                     <View style={styles.deviceContainer}>
                         <TouchableOpacity onPress={() => navigate('Sim')}>
                             <IconWithText
-                                backgroundColor='#9772C7'
+                                backgroundColor='#0960CA'
                                 name='devices'
                                 type='MaterialIcons'
                                 styles={styles.iconView}
@@ -43,7 +43,7 @@ export default class HomeScreen extends React.Component {
                     <View style={styles.jobContainer}>
                         <TouchableOpacity onPress={() => navigate('Jobs')}>
                             <IconWithText
-                                backgroundColor='#234EAB'
+                                backgroundColor='#7AB944'
                                 name='new-message'
                                 type='Entypo'
                                 styles={styles.iconView}
@@ -55,7 +55,7 @@ export default class HomeScreen extends React.Component {
                     <View style={styles.scheduleContainer}>
                         <TouchableOpacity onPress={() => navigate('Schedule')}>
                             <IconWithText
-                                backgroundColor='#72D654'
+                                backgroundColor='#9381D5'
                                 name='schedule'
                                 type='MaterialIcons'
                                 styles={styles.iconView}
@@ -70,7 +70,7 @@ export default class HomeScreen extends React.Component {
                     <View style={styles.associationContainer}>
                         <TouchableOpacity onPress={() => navigate('ViewVehicleList')}>
                             <IconWithText
-                                backgroundColor='#FF8533'
+                                backgroundColor='#008e6d'
                                 name='group'
                                 type='FontAwesome'
                                 styles={styles.iconView}
