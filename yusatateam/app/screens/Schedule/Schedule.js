@@ -24,8 +24,7 @@ export default class Schedule extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                {/* <Statusbar backgroundColor="#3E4357" barStyle="light-content" /> */}
-                <Toolbar title='Schedule'/>
+                <Toolbar title='Home' leftIcon='arrow-left' leftIconType='Feather'/>
                 <Agenda
                     items={this.state.items}
                     loadItemsForMonth={(month) => this.loadItems(month)}
