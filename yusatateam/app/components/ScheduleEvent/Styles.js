@@ -14,15 +14,19 @@ export default EStyleSheet.create({
         flex: 1
     },
     label_text: {
-        fontSize: '$fontSize',
-        fontWeight: 'bold'
+        fontSize: '1rem',
+        fontWeight: 'bold',
+        color: '#fff'
     },
     value_text: {
-        fontSize: '0.6rem'
+        fontSize: '0.8rem',
+        color: '#fff'
     },
     event_date_view: {
         //backgroundColor: '#5ADC94',
-        backgroundColor: '#36B4A6',
+        //backgroundColor: '#36B4A6',
+        backgroundColor: '$primaryColor',
+        elevation: 10,
         flex: 1,
         borderRadius: 5,
         padding: 10,
