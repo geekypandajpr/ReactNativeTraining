@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Agenda } from 'react-native-calendars';
-import { Statusbar, ScheduleEvent } from '../../components';
+import { Statusbar, ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
 
 var eventList = {
@@ -22,7 +22,8 @@ export default class Schedule extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Statusbar backgroundColor="#3E4357" barStyle="light-content" />
+                {/* <Statusbar backgroundColor="#3E4357" barStyle="light-content" /> */}
+                <Toolbar title='Schedule'/>
                 <Agenda
                     items={this.state.items}
                     loadItemsForMonth={(month) => this.loadItems(month)}
