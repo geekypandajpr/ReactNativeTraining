@@ -98,7 +98,9 @@ export default class Sim extends React.Component {
                     renderItem={({ item, index }) =>
                         <View style={styles.listcontainer}>
                             <View style={{ flex: 1 }}>
-                            <Text style={styles.indexstyle}>{index + 1}</Text>
+                                <RoundedImage
+                                    source={require('../../../assets/ImageP.jpg')}
+                                />
                             </View>
 
                             <View style={{ flex: 4 }}>
