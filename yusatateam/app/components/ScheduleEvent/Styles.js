@@ -10,23 +10,29 @@ export default EStyleSheet.create({
         alignItems: 'center',
         flexWrap: 'wrap'
     },
+    status_view: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        flexWrap: 'wrap'
+    },
     icon_view: {
         flex: 1
     },
     label_text: {
         fontSize: '1rem',
         fontWeight: 'bold',
-        color: '#fff'
+        color: '#FFF'
     },
     value_text: {
         fontSize: '0.8rem',
-        color: '#fff'
+        color: '#FFF'
     },
     event_date_view: {
         //backgroundColor: '#5ADC94',
         //backgroundColor: '#36B4A6',
-        backgroundColor: '$primaryColor',
-        elevation: 10,
+        backgroundColor: '$primaryColorLight',
+        //elevation: 10,
         flex: 1,
         borderRadius: 5,
         padding: 10,

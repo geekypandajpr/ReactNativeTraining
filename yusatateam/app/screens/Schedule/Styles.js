@@ -18,6 +18,6 @@ export default EStyleSheet.create({
         margin: 5
     },
     textView: {
-        fontSize: 14 
+        fontSize: 14
     }
 });
