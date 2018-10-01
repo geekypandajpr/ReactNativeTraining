@@ -7,11 +7,13 @@ export default EStyleSheet.create({
      },
      flatView : {
          flex :2, 
+        
+
      },
      button : {
-         borderRadius :10,
+        
      },
-     viewStyle : {
-         flex :5,
+     viewList : {
+         borderRadius :10,
      }
 })
