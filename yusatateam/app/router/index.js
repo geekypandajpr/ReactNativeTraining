@@ -1,5 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
 import {
+    LogIn,
     HomeScreen,
     Sim,
     Schedule,
@@ -10,6 +11,12 @@ import {
 
 const AppRouter = createStackNavigator(
     {
+        LogIn: {
+            screen: LogIn,
+            navigationOptions: {
+                header: null
+            }
+        },
         HomeScreen: {
             screen: HomeScreen,
             navigationOptions: {
@@ -49,7 +56,7 @@ const AppRouter = createStackNavigator(
     },
 
     {
-        initialRouteName: 'HomeScreen'
+        initialRouteName: 'LogIn'
     }
 )
 

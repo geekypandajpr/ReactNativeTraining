@@ -19,13 +19,14 @@ export default class LogIn extends React.Component {
         }
     }
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.mainContainer}>
                 <ScrollView>
                     <View style={styles.imageView}>
                         <Image
                             style={styles.logo}
-                            source={require('../../assets/images/newlogo.png')}>                      
+                            source={require('../../assets/images/YLogAppLogo.png')}>                      
                         </Image>
                     </View>
                     <View style={styles.credentialContainer}>
@@ -67,7 +68,7 @@ export default class LogIn extends React.Component {
                         <View style={styles.buttonView}>                           
                             <Button rounded
                                 style={styles.button}
-                                onPress={this.props.onPress}>
+                                onPress={()=> navigate('HomeScreen')}>
                                 <View style={{ width: _width * 0.8 }}>
                                     <Text style={styles.buttonText}>
                                         LOGIN

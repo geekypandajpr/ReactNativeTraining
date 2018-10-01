@@ -43,7 +43,7 @@ export default class Schedule extends React.Component {
                     theme={{
                         backgroundColor: '#fff',
                         //calendarBackground: '#46A891',
-                        calendarBackground: '#cecece',
+                        calendarBackground: '#EEEEEE',
                         //agendaKnobColor: '#F96700',
                         agendaKnobColor: EStyleSheet.value('$primaryColor'),
                         textSectionTitleColor: '#fff',

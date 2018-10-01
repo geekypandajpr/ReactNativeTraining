@@ -22,17 +22,18 @@ export default EStyleSheet.create({
     label_text: {
         fontSize: '1rem',
         fontWeight: 'bold',
-        color: '#FFF'
+        color: '#000'
     },
     value_text: {
         fontSize: '0.8rem',
-        color: '#FFF'
+        color: '#000'
     },
     event_date_view: {
         //backgroundColor: '#5ADC94',
         //backgroundColor: '#36B4A6',
-        backgroundColor: '$primaryColorLight',
-        //elevation: 10,
+        //backgroundColor: '$primaryColorLight',
+        backgroundColor: '#eeeeee',
+        elevation: 10,
         flex: 1,
         borderRadius: 5,
         padding: 10,
