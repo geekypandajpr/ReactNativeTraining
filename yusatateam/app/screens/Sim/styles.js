@@ -5,35 +5,23 @@ export default EStyleSheet.create({
     {
         flex: 1,
         backgroundColor: '#D3D3D3',
-        paddingTop: 35,
-        paddingLeft: 4,
-        paddingRight: 4,
+        
+       
     },
-    indexstyle:
-    {
-        backgroundColor: '#2d4150',
-        height: 40,
-        width: 40,
-        borderRadius: 20,
-        marginLeft: 5,
-        padding: 5,
-        paddingLeft: 5,
-        alignContent: 'center',
-        justifyContent: 'center',
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 20
-    },
+   
 
     listcontainer:
     {
         flex: 1,
-        margin: 5,
         backgroundColor: 'white',
         flexDirection: 'row',
-        borderRadius: 10,
+        borderRadius: 5,
         borderColor: 'white',
         borderWidth: 2,
+        marginLeft: 4,
+        marginRight:4,
+        marginTop:2,
+        marginBottom:2
     },
 
     secondView:
