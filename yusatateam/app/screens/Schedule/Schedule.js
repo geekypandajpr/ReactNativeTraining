@@ -24,8 +24,7 @@ export default class Schedule extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                {/* <Statusbar backgroundColor="#3E4357" barStyle="light-content" /> */}
-                <Toolbar title='Schedule'/>
+                <Toolbar title='Schedule' leftIcon='arrow-left' leftIconType='Feather'/>
                 <Agenda
                     items={this.state.items}
                     loadItemsForMonth={(month) => this.loadItems(month)}
@@ -41,15 +40,31 @@ export default class Schedule extends React.Component {
                     markedDates={eventList}
                     hideKnob={false}
                     theme={{
-                        backgroundColor: '#fff',
+                        'stylesheet.calendar.header': {
+                            dayHeader: {
+                                marginTop: 2,
+                                marginBottom: 7,
+                                width: 30,
+                                textAlign: 'center',
+                                fontSize: 14,
+                                color: '#2d4150',
+                            },
+                            todayText: {
+                                fontSize: 18,
+                                color: 'red',
+                                marginTop: 0,
+                            },
+                        },
+                        backgroundColor: '#00000010',
                         //calendarBackground: '#46A891',
-                        calendarBackground: '#EEEEEE',
+                        calendarBackground: '#FFFFFF',
                         //agendaKnobColor: '#F96700',
                         agendaKnobColor: EStyleSheet.value('$primaryColor'),
-                        textSectionTitleColor: '#fff',
+                        textSectionTitleColor: '#000',
                         //selectedDayBackgroundColor: '#F96700',
                         selectedDayBackgroundColor: EStyleSheet.value('$primaryColor'),
                         selectedDayTextColor: '#fff',
+                        //textDisabledColor: '#000',
                         todayTextColor: 'red',
                         //dayTextColor: '#2d4150',
                         dayTextColor: '#2d4150',

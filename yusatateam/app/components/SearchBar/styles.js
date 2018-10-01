@@ -2,6 +2,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor : 'lightgreen'
         //flexDirection: 'row',
         //margin :50,
         //backgroundColor: 'grey',
@@ -15,7 +16,7 @@ export default EStyleSheet.create({
     },
     searchIcon:
     {
-        flex:1,
+        flex:0.5,
         flexDirection:'row',
         marginTop:40,
         marginLeft : 10,
@@ -24,7 +25,8 @@ export default EStyleSheet.create({
         borderColor: 'gray',
          borderWidth: 1, 
           alignItems : 'center',
-          justifyContent : 'center'
+          justifyContent : 'center',
+          backgroundColor : 'white'
        
     },
     icon : {

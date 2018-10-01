@@ -1,7 +1,8 @@
 import React from 'react';
-import {View,Text,ScrollView,FlatList,Button} from 'react-native';
+import {View,ScrollView,FlatList,Button,TouchableOpacity,} from 'react-native';
+import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import styles from './styles';
-import {DeviceSimItem} from '../DeviceSimItem/DeviceSimItem';
+import { SearchBar } from '../../components';
 export default class VehicleList extends React.Component {
     constructor() {
         super();
@@ -39,36 +40,74 @@ export default class VehicleList extends React.Component {
                        Mobile: '09085-53379',
                        status: 'DEACTIVATE'
                    },
-                   {
-                       ORDER: 'HAVCMSV',
-                       ICCID: 'ICCID4',
-                       MSIDN: 'MSIDN4',
-                       Provider: 'IDEA',
-                       Mobile: '09085-53379',
-                       status: 'DEACTIVATE'
-                   }
-               ]
+                  
+               ],
+               items : [],
+               list : '',
+               status : true
            }
-       }
+           this.arrayholder = [] ;
+       };
+       componentDidMount() {
+              this.arrayholder = this.state.data ; }
+       filterList=(event) =>
+        {
+            this.setState({status : false});
+            console.log(this.state.list);
+            this.state.items = this.state.data.filter(x => x.MSIDN === this.state.list);
+            alert(JSON.stringify(this.state.items));
+        };
+        SearchFilterFunction(text){
+            
+            const newData = this.arrayholder.filter(function(item){
+                const itemData = item.MSIDN.toUpperCase()
+                const textData = text.toUpperCase()
+                return itemData.indexOf(textData) > -1
+            })
+                this.setState({
+                    data: newData,
+                    text: text
+                }
+            )
+    
+        }
        render() {
-           const {navigate} = this.props.navigation;
+        
            return (
                <View style={styles.container}>
-               <View style={styles.viewStyle}></View>
-                <View style={styles.flatView}>
-                   <FlatList 
-                       data={this.state.data}
-                       keyExtractor={(item, index) => item.toString()}
-                       renderItem={({ item, index }) => 
-                               <View style={styles.viewList}>
-                                   <Button style={styles.button}
-                                       title={item.MSIDN}
-                                       onPress={()=>navigate('DeviceSimItem')}
-                                       color="#999966"
-                                   ></Button>
-                               </View>  
-                       } ></FlatList>
+                <View style={styles.search}>
+                    <SearchBar click={this.ShowHideTextComponentView} 
+                 searchItem={(text) => this.SearchFilterFunction(text)} />
                  </View>
+                 <ScrollView style={styles.list}>
+                   <FlatList 
+                    data={this.state.data}
+                       keyExtractor={(item, index) => item.MSIDN.toString()}
+                       renderItem={({ item, index }) => 
+                       
+                               <View style={styles.viewList}>
+                               
+                                  <List>
+                                    <ListItem avatar>
+                                    <Left>
+                                        {/* <Thumbnail source={require('../../../assets/user.png')} /> */}
+                                    </Left>
+                                    <Body>
+                                    <TouchableOpacity  onPress={() => this.props.navigation.navigate('DeviceSimItem')}>
+                                        <Text>{item.MSIDN}</Text>
+                                        <Text note>{item.status}</Text>
+                                        </TouchableOpacity>
+                                    </Body>
+                                    <Right>
+                                        <Text note>3:43 pm</Text>
+                                    </Right>
+                                    </ListItem>
+                                </List>
+                               
+                               </View> 
+                             
+                       } ></FlatList> 
+                 </ScrollView>
                 </View>
            )
        }

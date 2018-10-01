@@ -1,13 +1,13 @@
 import React from 'react';
-import {View,Text,Button} from 'react-native';
+import {View,Text,Button,ScrollView} from 'react-native';
 import styles from './styles';
-import {SearchBar} from '../../components';
-import {VehicleList}  from '../VehicleList/VehicleList';
+import { SearchBar } from '../../components';
+import { VehicleList }  from '../VehicleList'
 export default class ViewVehicleList extends React.Component {
     constructor(){
         super();   
         this.state ={   
-          status:false 
+          status:true 
         }
       }  
     ShowHideTextComponentView = () =>{    
@@ -26,11 +26,11 @@ export default class ViewVehicleList extends React.Component {
             <View style={styles.search}>
                  <SearchBar click={this.ShowHideTextComponentView} />
                  </View>
-                 <View style={styles.list}>
+                 <ScrollView style={styles.list}>
                  {
                  this.state.status ? <VehicleList/> : null
                 }
-                </View>
+                </ScrollView>
             </View>
         );
       }

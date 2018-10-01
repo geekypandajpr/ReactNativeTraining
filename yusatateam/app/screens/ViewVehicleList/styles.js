@@ -4,7 +4,7 @@ export default EStyleSheet.create({
         flex :1,  
      },
      search : {
-         flex :0.2,
+         flex :0.15,
      },
      list : {
          flex :1
