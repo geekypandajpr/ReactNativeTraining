@@ -99,7 +99,7 @@ export default class Sim extends React.Component {
                         <View style={styles.listcontainer}>
                             <View style={{ flex: 1 }}>
                                 <RoundedImage
-                                    source={require('../../../assets/ImageP.jpg')}
+                                    source={require('../../../assets/Sim_Image.png')}
                                 />
                             </View>
 
@@ -110,28 +110,28 @@ export default class Sim extends React.Component {
 
                                 <View style={styles.secondView}>
                                     <View style={styles.secondView}>
-                                        <Text style={styles.secondHeads}>ICCID :</Text>
+                                        <Text style={styles.secondHeads}>ICCID : </Text>
                                         <Text style={styles.secondAns}>{item.ICCID}</Text>
                                     </View>
                                     <View style={styles.secondView}>
-                                        <Text style={styles.secondHeads}>ORD# :</Text>
+                                        <Text style={styles.secondHeads}>ORD# : </Text>
                                         <Text style={styles.secondAns}>{item.ORDER}</Text>
                                     </View>
                                 </View>
 
                                 <View style={styles.secondView}>
                                     <View style={styles.secondView}>
-                                        <Text style={styles.secondHeads}>MSIDN :</Text>
+                                        <Text style={styles.secondHeads}>MSIDN : </Text>
                                         <Text style={styles.secondAns}>{item.MSIDN}</Text>
                                     </View>
                                     <View style={styles.secondView}>
-                                        <Text style={styles.secondHeads}>PROVIDER :</Text>
+                                        <Text style={styles.secondHeads}>PROVIDER : </Text>
                                         <Text style={styles.secondAns}>{item.Provider}</Text>
                                     </View>
                                 </View>
 
                                 <View style={styles.secondView}>
-                                    <Text style={styles.secondHeads}>MOBILE :</Text>
+                                    <Text style={styles.secondHeads}>MOBILE : </Text>
                                     <Text style={styles.secondAns}>{item.Mobile}</Text>
                                 </View>
 
