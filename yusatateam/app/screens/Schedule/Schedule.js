@@ -1,8 +1,9 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Agenda } from 'react-native-calendars';
-import { Statusbar, ScheduleEvent, Toolbar } from '../../components';
+import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
@@ -41,11 +42,15 @@ export default class Schedule extends React.Component {
                     theme={{
                         backgroundColor: '#fff',
                         calendarBackground: '#46A891',
-                        agendaKnobColor: '#F96700',
+                        //calendarBackground: '#ffffff',
+                        //agendaKnobColor: '#F96700',
+                        agendaKnobColor: EStyleSheet.value('$primaryColor'),
                         textSectionTitleColor: '#fff',
-                        selectedDayBackgroundColor: '#F96700',
+                        //selectedDayBackgroundColor: '#F96700',
+                        selectedDayBackgroundColor: EStyleSheet.value('$primaryColor'),
                         selectedDayTextColor: '#fff',
                         todayTextColor: 'red',
+                        //dayTextColor: '#2d4150',
                         dayTextColor: '#2d4150',
                         textDisabledColor: '#d9e1e8',
                         arrowColor: 'orange',

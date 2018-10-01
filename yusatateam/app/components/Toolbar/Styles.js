@@ -9,7 +9,7 @@ export default EStylesheet.create({
     $headerTitleColor : '#fff',
 
     appBar: {
-        backgroundColor: '$headerColor',
+        backgroundColor: '$primaryColor',
         height: APPBAR_HEIGHT,
         elevation: 10,
         alignItems: 'center',
