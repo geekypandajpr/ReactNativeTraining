@@ -92,7 +92,7 @@ export default class Sim extends React.Component {
         return (
             <View style={styles.container}>
                 <Toolbar
-                    title="SIM"
+                    title="Sim" leftIcon='arrow-left' leftIconType='Feather'
                 ></Toolbar>
                 <FlatList
                     data={this.state.data}
@@ -100,9 +100,9 @@ export default class Sim extends React.Component {
                     renderItem={({ item, index }) =>
                         <View style={styles.listcontainer}>
                             <View style={{ flex: 1, alignContent: 'center', justifyContent: 'center' }}>
-                                <RoundedImage
+                                {/* <RoundedImage
                                     source={require('../../../assets/image5.jpg')}
-                                />
+                                /> */}
                             </View>
 
 

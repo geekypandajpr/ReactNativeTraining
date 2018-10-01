@@ -67,7 +67,7 @@ export default class LogIn extends React.Component {
                             </TouchableOpacity>
                         </View>
                         <View style={styles.buttonView}>
-                            <Button rounded
+                            <Button
                                 style={styles.button}
                                 onPress={() => navigate('HomeScreen')}>
                                 <View style={{ width: _width * 0.8 }}>

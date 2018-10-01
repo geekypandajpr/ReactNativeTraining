@@ -1,16 +1,19 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import styles from './Styles';
+import { Button } from 'native-base';
 
-const ScheduleEvent = ({item}) => (
+const ScheduleEvent = ({ item }) => (
     <View style={styles.event_date_view}>
         <View style={styles.text_container}>
             <View style={styles.text_view}>
                 <Text style={styles.label_text}>{item.serviceNumber}</Text>
-                
+
             </View>
             <View style={styles.status_view}>
-                {/* <Button title={item.status} onPress={()=>{console.log('button pressed')}}/> */}
+                <Button style={styles.statusButton}>
+                    <Text>Entered</Text>
+                </Button>
             </View>
         </View>
         <View style={styles.text_container}>
@@ -21,6 +24,9 @@ const ScheduleEvent = ({item}) => (
         <View style={styles.text_container}>
             <View style={styles.text_view}>
                 <Text style={styles.value_text}>{item.sim}</Text>
+            </View>
+            <View style={styles.status_view}>
+                <Text style={styles.value_text}>Airtel</Text>
             </View>
         </View>
         <View style={styles.text_container}>

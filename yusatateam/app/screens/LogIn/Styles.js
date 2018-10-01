@@ -15,10 +15,11 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     logo: {
-        width: 160,
-        height: 160,
+        width: 140,
+        height: 140,
         resizeMode: 'contain',
         marginTop: 50,
+        marginBottom: 20
     },
     credentialContainer: {
         flex: 2.5,
@@ -35,7 +36,8 @@ export default EStyleSheet.create({
     },
     buttonView: {
         flex: 1,
-        padding: 15
+        padding: 15,
+        marginTop: 10
     },
     button: {
         backgroundColor: '#229954',
@@ -48,13 +50,13 @@ export default EStyleSheet.create({
         fontWeight: 'bold',
         fontSize: 15,
         fontStyle: 'normal',
-        color: '#F6F315'
+        color: '#FFF'
     },
     versionTextView: {
         alignItems: 'center'
     },
     versionText: {
-        color: '#229954'
+        color: '#000'
     },
 
 })
