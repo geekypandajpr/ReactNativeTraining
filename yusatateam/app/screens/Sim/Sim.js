@@ -103,6 +103,7 @@ export default class Sim extends React.Component {
                                 />
                             </View>
 
+
                             <View style={{ flex: 4 }}>
 
 
