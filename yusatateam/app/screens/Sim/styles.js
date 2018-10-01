@@ -5,17 +5,35 @@ export default EStyleSheet.create({
     {
         flex: 1,
         backgroundColor: '#D3D3D3',
-        marginTop: 30,
-
+        paddingTop: 35,
+        paddingLeft: 4,
+        paddingRight: 4,
     },
+    indexstyle:
+    {
+        backgroundColor: '#2d4150',
+        height: 40,
+        width: 40,
+        borderRadius: 20,
+        marginLeft: 5,
+        padding: 5,
+        paddingLeft: 5,
+        alignContent: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20
+    },
+
     listcontainer:
     {
         flex: 1,
         margin: 5,
-        borderColor: 'black',
         backgroundColor: 'white',
         flexDirection: 'row',
-        borderWidth:2
+        borderRadius: 10,
+        borderColor: 'white',
+        borderWidth: 2,
     },
 
     secondView:
@@ -28,13 +46,13 @@ export default EStyleSheet.create({
     {
         fontWeight: 'bold',
         fontSize: 15,
-        fontStyle:'normal'
+        fontStyle: 'normal'
     },
 
     secondAns:
     {
         fontSize: 15,
-        fontStyle:'normal'
+        fontStyle: 'normal'
     }
 
 })

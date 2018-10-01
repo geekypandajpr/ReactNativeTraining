@@ -1,8 +1,10 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Agenda } from 'react-native-calendars';
-import { Statusbar, ScheduleEvent } from '../../components';
+import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
+import moment from 'moment';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
@@ -22,14 +24,15 @@ export default class Schedule extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Statusbar backgroundColor="#3E4357" barStyle="light-content" />
+                {/* <Statusbar backgroundColor="#3E4357" barStyle="light-content" /> */}
+                <Toolbar title='Schedule'/>
                 <Agenda
                     items={this.state.items}
                     loadItemsForMonth={(month) => this.loadItems(month)}
                     onCalendarToggled={(calendarOpened) => { console.log(calendarOpened) }}
                     onDayPress={(day) => { console.log('day pressed') }}
                     onDayChange={(day) => { console.log('day changed') }}
-                    selected={'2018-09-28'}
+                    selected={moment(new Date()).format('YYYY-MM-DD')}
                     pastScrollRange={100}
                     futureScrollRange={100}
                     renderItem={this.renderItem.bind(this)}
@@ -38,21 +41,42 @@ export default class Schedule extends React.Component {
                     markedDates={eventList}
                     hideKnob={false}
                     theme={{
-                        backgroundColor: '#fff',
-                        calendarBackground: '#46A891',
-                        agendaKnobColor: '#F96700',
-                        textSectionTitleColor: '#fff',
-                        selectedDayBackgroundColor: '#F96700',
+                        'stylesheet.calendar.header': {
+                            dayHeader: {
+                                marginTop: 2,
+                                marginBottom: 7,
+                                width: 30,
+                                textAlign: 'center',
+                                fontSize: 14,
+                                color: '#2d4150',
+                            },
+                            todayText: {
+                                fontSize: 18,
+                                color: 'red',
+                                marginTop: 0,
+                            },
+                        },
+                        backgroundColor: '#00000010',
+                        //calendarBackground: '#46A891',
+                        calendarBackground: '#FFFFFF',
+                        //agendaKnobColor: '#F96700',
+                        agendaKnobColor: EStyleSheet.value('$primaryColor'),
+                        textSectionTitleColor: '#000',
+                        //selectedDayBackgroundColor: '#F96700',
+                        selectedDayBackgroundColor: EStyleSheet.value('$primaryColor'),
                         selectedDayTextColor: '#fff',
+                        //textDisabledColor: '#000',
                         todayTextColor: 'red',
+                        //dayTextColor: '#2d4150',
                         dayTextColor: '#2d4150',
+                        monthTextColor: '#2d4150',
                         textDisabledColor: '#d9e1e8',
                         arrowColor: 'orange',
                         textMonthFontWeight: 'bold',
                         textDayFontSize: 12,
                         textMonthFontSize: 15,
-                        textDayHeaderFontSize: 14,
-                    }}
+                        textDayHeaderFontSize: 14
+                }}
                 />
             </View>
         );
@@ -66,8 +90,9 @@ export default class Schedule extends React.Component {
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
                     this.state.items[strTime].push({
-                        'serviceNumber' : 'A1ask53srP',
-                        'vehicleNumber' : 'JP-1522',
+                        'serviceNumber' : 'SERVE001AA',
+                        'status': 'Entered',
+                        'vehicleNumber' : 'JP01-1522',
                         'device' : 'DL125A',
                         'sim' : '+91-7856801255',
                         'jobDate' : '12/10/2018 14:50',
