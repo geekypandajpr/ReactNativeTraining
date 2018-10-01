@@ -8,6 +8,7 @@ import {
     from 'react-native';
 import styles from './styles';
 import { RoundedImage } from '../../components';
+import { Toolbar } from '../../components/Toolbar'
 
 export default class Sim extends React.Component {
     constructor() {
@@ -88,22 +89,21 @@ export default class Sim extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <Toolbar
+                    title="HOME"
+                ></Toolbar>
                 <FlatList
                     data={this.state.data}
                     keyExtractor={(item, index) => item.toString()}
                     renderItem={({ item, index }) =>
                         <View style={styles.listcontainer}>
                             <View style={{ flex: 1 }}>
-                                <RoundedImage
-                                    source={require('../../../assets/Sim_Image.png')}
-                                />
+                            <Text style={styles.indexstyle}>{index + 1}</Text>
                             </View>
 
                             <View style={{ flex: 4 }}>
-                                <View style={styles.secondView}>
-                                    <Text style={{ fontWeight: 'bold', fontSize: 20 }}>SIM </Text>
 
-                                </View>
+
 
                                 <View style={styles.secondView}>
                                     <View style={styles.secondView}>
@@ -133,22 +133,27 @@ export default class Sim extends React.Component {
                                 </View>
 
                                 <View style={styles.secondView}>
-                                    <View style={styles.secondView}></View>
-                                    {item.status == "ACTIVATE" ?
-                                        <Button
-                                            title={`${item.status}`}
-                                            onPress={alert}
-                                            color="#ff3300"
-                                        ></Button>
-                                        :
-                                        <Button
-                                            title={`${item.status}`}
-                                            onPress={alert}
-                                            color="green"
-                                        ></Button>
+                                    <View style={styles.secondView}>
+                                    </View>
+
+                                    {
+                                        item.status == "ACTIVATE" ?
+                                            <Button
+                                                title={`${item.status}`}
+                                                onPress={alert}
+                                                color="#e62e00"
+                                            ></Button>
+                                            :
+                                            <Button
+                                                title={`${item.status}`}
+                                                onPress={alert}
+                                                color="green"
+                                            ></Button>
                                     }
 
                                 </View>
+
+
 
                             </View>
                         </View>
