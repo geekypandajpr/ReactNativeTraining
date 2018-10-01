@@ -15,5 +15,11 @@ export default EStyleSheet.create({
      },
      viewList : {
          borderRadius :10,
-     }
+     },
+     search : {
+        flex :0.15,
+    },
+    list : {
+        flex :1
+    }
 })
