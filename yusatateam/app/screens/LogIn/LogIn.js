@@ -6,7 +6,7 @@ import {IconWithTextInput} from '../../components/IconWithTextInput';
 
 const _width = Dimensions.get('window').width;
 
-export default class LogIn extends React.Component {
+export default class LogIn  extends React.Component {
     static navigationOptions = {
         header: null,
     };
