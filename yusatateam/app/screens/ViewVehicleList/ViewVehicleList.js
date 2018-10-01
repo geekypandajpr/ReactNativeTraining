@@ -1,8 +1,8 @@
 import React from 'react';
 import {View,Text,Button,ScrollView} from 'react-native';
 import styles from './styles';
-import {SearchBar} from '../../component/SearchBar';
-import {VehicleList}  from '../VehicleList'
+import { SearchBar } from '../../components';
+import { VehicleList }  from '../VehicleList'
 export default class ViewVehicleList extends React.Component {
     constructor(){
         super();   

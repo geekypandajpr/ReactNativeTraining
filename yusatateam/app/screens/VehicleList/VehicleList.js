@@ -2,7 +2,7 @@ import React from 'react';
 import {View,ScrollView,FlatList,Button,TouchableOpacity,} from 'react-native';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import styles from './styles';
-import {SearchBar} from '../../component/SearchBar';
+import { SearchBar } from '../../components';
 export default class VehicleList extends React.Component {
     constructor() {
         super();
@@ -90,7 +90,7 @@ export default class VehicleList extends React.Component {
                                   <List>
                                     <ListItem avatar>
                                     <Left>
-                                        <Thumbnail source={require('../../../assets/user.png')} />
+                                        {/* <Thumbnail source={require('../../../assets/user.png')} /> */}
                                     </Left>
                                     <Body>
                                     <TouchableOpacity  onPress={() => this.props.navigation.navigate('DeviceSimItem')}>
