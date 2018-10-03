@@ -2,7 +2,7 @@ import React from 'react';
 import {
     View,
     TouchableOpacity,
-    BackHandler
+    BackHandler,Alert
 } from 'react-native';
 import styles from './Styles';
 import {

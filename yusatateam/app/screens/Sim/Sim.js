@@ -88,10 +88,8 @@ export default class Sim extends React.Component {
         }
 
     }
-    componentDidMount() {
-        Orientation.lockToPortrait();
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        this._getCountryList();
+    componentDidMount() {       
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);       
     }
 
     componentWillUnmount() {
@@ -111,7 +109,7 @@ export default class Sim extends React.Component {
                     title="Sim" 
                     leftIcon='arrow-left'
                     leftIconType='Feather'
-                    onLeftButtonPress={() => navigate.goBack()}
+                    onLeftButtonPress={() => navigate('HomeScreen')}
                     rightIcon='settings'
                     rightIconType='MaterialCommunityIcons'
                 ></Toolbar>
