@@ -4,7 +4,7 @@ const _width = Dimensions.get('window').width;
 export default EStyleSheet.create({
     mainContainer: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        //backgroundColor: '#ffffff',
         alignItems: 'center',
         justifyContent: 'center'
 
@@ -36,7 +36,7 @@ export default EStyleSheet.create({
     },
     buttonView: {
         flex: 1,
-        padding: 15,
+        padding: 12,
         marginTop: 10
     },
     button: {
@@ -56,7 +56,7 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     versionText: {
-        color: '#000'
+        color: '#229954'
     },
 
 })

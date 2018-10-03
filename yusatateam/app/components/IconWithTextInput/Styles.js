@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 const _width = Dimensions.get('window').width;
 export default EStyleSheet.create({
     credentialView: {
-        padding: 7,
+        padding: 9,
         justifyContent: 'space-around',
         width: _width * 0.85
     },
