@@ -16,8 +16,5 @@ export default EStyleSheet.create({
         borderRadius: 5,
         padding: 10,
         margin: 5
-    },
-    textView: {
-        fontSize: 14
     }
 });
