@@ -2,7 +2,7 @@ import React from 'react';
 import {View,ScrollView,FlatList,Button,TouchableOpacity,} from 'react-native';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import styles from './styles';
-import {SearchBar} from '../../component/SearchBar';
+import {SearchBar} from '../../components/SearchBar';
 export default class VehicleList extends React.Component {
     constructor() {
         super();
@@ -50,13 +50,7 @@ export default class VehicleList extends React.Component {
        };
        componentDidMount() {
               this.arrayholder = this.state.data ; }
-       filterList=(event) =>
-        {
-            this.setState({status : false});
-            console.log(this.state.list);
-            this.state.items = this.state.data.filter(x => x.MSIDN === this.state.list);
-            alert(JSON.stringify(this.state.items));
-        };
+      
         SearchFilterFunction(text){
             
             const newData = this.arrayholder.filter(function(item){
@@ -76,7 +70,7 @@ export default class VehicleList extends React.Component {
            return (
                <View style={styles.container}>
                 <View style={styles.search}>
-                    <SearchBar click={this.ShowHideTextComponentView} 
+                    <SearchBar  
                  searchItem={(text) => this.SearchFilterFunction(text)} />
                  </View>
                  <ScrollView style={styles.list}>
