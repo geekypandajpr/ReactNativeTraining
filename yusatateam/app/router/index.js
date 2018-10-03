@@ -5,8 +5,7 @@ import {
     Sim,
     Schedule,
     VehicleList,
-    DeviceSimItem,
-    ViewVehicleList
+    DeviceSimItem
 } from '../screens';
 
 const AppRouter = createStackNavigator(
@@ -43,12 +42,6 @@ const AppRouter = createStackNavigator(
         },
         DeviceSimItem: {
             screen: DeviceSimItem,
-            navigationOptions: {
-                header: null
-            }
-        },
-        ViewVehicleList: {
-            screen: ViewVehicleList,
             navigationOptions: {
                 header: null
             }

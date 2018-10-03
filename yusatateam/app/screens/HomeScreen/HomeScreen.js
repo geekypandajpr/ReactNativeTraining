@@ -68,7 +68,7 @@ export default class HomeScreen extends React.Component {
 
                 <View style={styles.thirdContainer}>
                     <View style={styles.associationContainer}>
-                        <TouchableOpacity onPress={() => navigate('ViewVehicleList')}>
+                        <TouchableOpacity onPress={() => navigate('VehicleList')}>
                             <IconWithText
                                 backgroundColor='#008e6d'
                                 name='group'
