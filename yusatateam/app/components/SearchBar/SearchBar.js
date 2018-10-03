@@ -14,8 +14,6 @@ export default class SearchBar extends React.Component {
                 <Ionicons  name="md-search" size={32} color="orange" onPress={this.props.click} />
                 </View>
             </View>
-
-
             </View>
         );
       }
