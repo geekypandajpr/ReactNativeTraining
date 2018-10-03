@@ -21,7 +21,7 @@ export default class LogIn extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <ImageBackground source={require('../../assets/images/backgroundImage.png')} style={{height:'100%',width:'100%'}}>
+            <ImageBackground source={require('../../assets/images/backgroundImage.png')} style={Styles.backgroundImage}>
             <View style={styles.mainContainer}>
             
                 <Statusbar backgroundColor={'#fff'} barStyle="dark-content" />

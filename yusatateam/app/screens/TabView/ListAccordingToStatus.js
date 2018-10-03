@@ -2,8 +2,8 @@ import React from 'react';
 import {View,ScrollView,FlatList,Button,TouchableOpacity,} from 'react-native';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import styles from './styles';
-import {SearchBar, Toolbar} from '../../components';
-export default class VehicleList extends React.Component {
+import { AppLoading } from 'expo';
+export default class ListAccordingToStatus extends React.Component {
     constructor() {
         super();
            this.state = {
@@ -67,18 +67,14 @@ export default class VehicleList extends React.Component {
        render() {
         
            return (
+            
                <View style={styles.container}>
-                    <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' 
-                    onLeftButtonPress={() => navigate.goBack()}
-                    rightIcon='setting'
-                    rightIconType='MaterialCommunityIcons'/>
-                    <SearchBar placeholder='Search by vehicle, sim, device'
-                        onChangeText={(text) => this.SearchFilterFunction(text)} />
                     <FlatList 
                         data={this.state.data}
                        keyExtractor={(item, index) => item.MSIDN.toString()}
                        renderItem={
                            ({ item, index }) => 
+                           this.state.data.status === 'Activate' ? <AppLoading /> :
                                <View style={styles.viewList}>
                                   <List>
                                     <ListItem avatar>
@@ -99,4 +95,4 @@ export default class VehicleList extends React.Component {
            )
        }
     }
-export { VehicleList }
+export { ListAccordingToStatus }
