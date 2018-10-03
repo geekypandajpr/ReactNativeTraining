@@ -3,7 +3,6 @@ import {View,TextInput} from 'react-native';
 import { Container, Header, Content, Button, Text,Right,Icon } from 'native-base';
 import styles from './styles';
 import { AppLoading } from 'expo';
-import {ViewVehicleList} from '../ViewVehicleList/ViewVehicleList';
 export default class DeviceSimItem extends React.Component {
     constructor(){
         super();   

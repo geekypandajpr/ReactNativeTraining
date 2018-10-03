@@ -5,6 +5,7 @@ import Tab5 from './tabFive';
 import styles from './styles';
 import {VehicleList} from '../VehicleList';
 import {DeviceSimItem} from '../DeviceSimItem';
+import {ListAccordingToStatus} from './ListAccordingToStatus'
 import { AppLoading } from 'expo';
 ​export default class TabView extends Component {
     constructor(){
@@ -29,7 +30,7 @@ import { AppLoading } from 'expo';
            
             <Tabs renderTabBar={()=> <ScrollableTab />}>
             <Tab heading="Tab1">
-                <VehicleList />
+                <ListAccordingToStatus />
             </Tab>
             <Tab heading="Tab2">
                 <DeviceSimItem />
