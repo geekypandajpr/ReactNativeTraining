@@ -69,11 +69,10 @@ export default class VehicleList extends React.Component {
            return (
                <View style={styles.container}>
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' />
-                    <View style={styles.search}>
-                        <SearchBar searchItem={(text) => this.SearchFilterFunction(text)} />
-                    </View>
-                   <FlatList 
-                    data={this.state.data}
+                    <SearchBar placeholder='Search by vehicle, sim, device'
+                        onChangeText={(text) => this.SearchFilterFunction(text)} />
+                    <FlatList 
+                        data={this.state.data}
                        keyExtractor={(item, index) => item.MSIDN.toString()}
                        renderItem={
                            ({ item, index }) => 
