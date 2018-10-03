@@ -20,5 +20,22 @@ export default EStyleSheet.create({
         marginLeft: 4,
         marginTop: 4,
         marginBottom: 2
+    },
+
+    modal_container: {
+        flex:1,
+        justifyContent:'space-around',
+        alignItems:'center',
+        backgroundColor:'#00000090',
+        flexDirection:'column',
+    },
+    modal_child_container: {
+        backgroundColor: '#FFFFFF',
+        bottom: 0,
+        height: '60%',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around',
     }
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity, Modal, } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
@@ -77,6 +77,7 @@ export default class Schedule extends React.Component {
                         textDayHeaderFontSize: 14
                 }}
                 />
+                <MyModal ref='modal'/>
             </View>
         );
     }
@@ -120,7 +121,9 @@ export default class Schedule extends React.Component {
 
     renderItem(item) {
         return (
-            <ScheduleEvent item={item}/>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => {this.refs.modal.setModalVisible(true)}} >
+                <ScheduleEvent item={item}/>
+            </TouchableOpacity>
         );
     }
 
@@ -141,3 +144,34 @@ export default class Schedule extends React.Component {
 }
 
 export { Schedule }
+
+class MyModal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalVisible: false
+        }
+    }
+
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
+    }
+
+    render() {
+        return (
+            <View style={{ marginTop: 22 }}>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => { this.setState({modalVisible: !this.state.modalVisible}) }}>
+                    <View style={styles.modal_container}>
+                        <View style={styles.modal_child_container}>
+                            <Text>HelloPrem</Text>
+                        </View>
+                    </View>
+                </Modal>
+            </View>
+        );
+    }
+}
