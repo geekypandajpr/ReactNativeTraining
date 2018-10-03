@@ -73,6 +73,7 @@ export default class Sim extends React.Component {
                     Mobile: '09085-53379',
                     status: 'Deactivate'
                 },
+                
                 {
                     ORDER: 'HAVCMSV',
                     ICCID: 'ICCID4',
