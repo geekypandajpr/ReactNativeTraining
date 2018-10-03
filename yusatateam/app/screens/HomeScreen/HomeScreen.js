@@ -8,6 +8,7 @@ import {
     IconWithText,
     Toolbar
 } from '../../components';
+import colors from '../../constants/colors';
 
 export default class HomeScreen extends React.Component {
     render() {
@@ -19,7 +20,7 @@ export default class HomeScreen extends React.Component {
                     <View style={styles.simContainer}>
                         <TouchableOpacity onPress={() => navigate('Sim')}>
                             <IconWithText
-                                backgroundColor='#37B4A4'
+                                backgroundColor={colors.SIMCARD_COLOR}
                                 name='sim'
                                 type='MaterialCommunityIcons'
                                 styles={styles.iconView}
