@@ -1,37 +1,30 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor : 'lightgreen'
-        //flexDirection: 'row',
-        //margin :50,
-        //backgroundColor: 'grey',
-       
+        height: 55,
+        backgroundColor : '#00000030',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    borderSearch:
-    {     
-        flex :8,
-        marginLeft : 10
-       
+    search_view: {
+        width: '95%',
+        height: 45,
+        backgroundColor: '#fff',
+        borderRadius: 2,
+        flexDirection: 'row'
     },
-    searchIcon:
-    {
-        flex:0.5,
-        flexDirection:'row',
-        marginTop:40,
-        marginLeft : 10,
-        borderRadius : 10,
-        width: "95%", 
-        borderColor: 'gray',
-         borderWidth: 1, 
-          alignItems : 'center',
-          justifyContent : 'center',
-          backgroundColor : 'white'
-       
+    icon_view: {
+        flex: 1.2,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    icon : {
-        flex : 1,
-        //marginTop : 20
+    textinput_view: {
+        flex: 10,
+        alignItems: 'center'
+    },
+    text_input: {
+        width: '100%',
+        height: '100%',
+        padding: 10
     }
-
 })

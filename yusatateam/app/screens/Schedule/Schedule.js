@@ -88,16 +88,18 @@ export default class Schedule extends React.Component {
                 const strTime = this.timeToString(time);
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
-                    this.state.items[strTime].push({
-                        'serviceNumber' : 'SERVE001AA',
-                        'status': 'Entered',
-                        'vehicleNumber' : 'JP01-1522',
-                        'device' : 'DL125A',
-                        'sim' : '+91-7856801255',
-                        'jobDate' : '12/10/2018 14:50',
-                        'status': 'Entered',
-                        'location' : '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033'
-                    });
+                    for(let j = 0; j < 2; j++) {
+                        this.state.items[strTime].push({
+                            'serviceNumber' : 'SERVE001AA',
+                            'status': 'Entered',
+                            'vehicleNumber' : 'JP01-1522',
+                            'device' : 'DL125A',
+                            'sim' : '+91-7856801255',
+                            'jobDate' : '12/10/2018 14:50',
+                            'status': 'Entered',
+                            'location' : '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033'
+                        });
+                    }
                 }
             }
             const newItems = {};
