@@ -20,10 +20,8 @@ export default class Schedule extends React.Component {
             items: {}
         };
     }
-    componentDidMount() {
-        Orientation.lockToPortrait();
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        this._getCountryList();
+    componentDidMount() {        
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);       
     }
 
     componentWillUnmount() {
@@ -39,7 +37,7 @@ export default class Schedule extends React.Component {
         return (
             <View style={styles.container}>
                 <Toolbar title='Schedule' leftIcon='arrow-left' leftIconType='Feather' 
-                onLeftButtonPress={() => navigate.goBack()}
+                onLeftButtonPress={() => navigate('HomeScreen')}
                 rightIcon='settings'
                 rightIconType='MaterialCommunityIcons'/>
                 <Agenda

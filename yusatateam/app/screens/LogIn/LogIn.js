@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Dimensions, TouchableOpacity, Text, ScrollView,ImageBackground,BackHandler } from 'react-native';
+import { View, Image, Dimensions, TouchableOpacity, Text, ScrollView,ImageBackground,BackHandler,Alert } from 'react-native';
 import styles from './Styles';
 import { Body, CheckBox, Button } from 'native-base';
 import { IconWithTextInput, Statusbar } from '../../components';
