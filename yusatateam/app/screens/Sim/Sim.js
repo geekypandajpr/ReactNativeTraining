@@ -9,7 +9,7 @@ import {
     from 'react-native';
 import styles from './styles';
 import { RoundedImage } from '../../components';
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons,Feather } from '@expo/vector-icons'
 import { Toolbar } from '../../components/Toolbar'
 
 export default class Sim extends React.Component {
@@ -93,7 +93,7 @@ export default class Sim extends React.Component {
         return (
             <View style={styles.container}>
                 <Toolbar
-                    title="Sim" leftIcon='arrow-left' leftIconType='Feather'
+                    title="Sim" 
                 ></Toolbar>
                 <FlatList
                     data={this.state.data}
@@ -101,9 +101,9 @@ export default class Sim extends React.Component {
                     renderItem={({ item, index }) =>
                         <View style={styles.listcontainer}>
                             <View style={{ flex: 1, alignContent: 'center', justifyContent: 'center' }}>
-                                {/* <RoundedImage
+                                <RoundedImage
                                     source={require('../../../assets/image5.jpg')}
-                                /> */}
+                                />
                             </View>
 
 
@@ -113,7 +113,7 @@ export default class Sim extends React.Component {
                                     <View style={styles.secondView}>
                                         <Text style={{ fontWeight: 'bold', fontSize: 22 }}>{item.ORDER}</Text>
                                     </View>
-                                    <View style={{ height: 35, width: 100, borderRadius: 10, borderWidth: 3, borderColor: 'white' }}>
+                                    <View style={{ height: 35, width: 110, borderRadius: 10, borderWidth: 3, borderColor: 'white' }}>
                                         <Button
                                             title={`${item.status}`}
                                             onPress={alert}
