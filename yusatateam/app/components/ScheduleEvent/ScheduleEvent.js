@@ -12,7 +12,7 @@ const ScheduleEvent = ({ item }) => (
                     <Text style={styles.label_text}>{item.serviceNumber}</Text>
                 </View>
                 <View style={styles.status_view}>
-                    <Button style={styles.statusButton}>
+                    <Button style={[styles.statusButton, {backgroundColor: item.color}]}>
                         <Text style={styles.status_text}>{item.status}</Text>
                     </Button>
                 </View>
