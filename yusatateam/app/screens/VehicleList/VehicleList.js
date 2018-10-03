@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,ScrollView,FlatList,Button,TouchableOpacity,} from 'react-native';
+import {View,ScrollView,FlatList,Button,TouchableOpacity,BackHandler} from 'react-native';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import styles from './styles';
 import {SearchBar, Toolbar} from '../../components';
@@ -49,7 +49,9 @@ export default class VehicleList extends React.Component {
            this.arrayholder = [] ;
        };
        componentDidMount() {
-              this.arrayholder = this.state.data ; }
+              this.arrayholder = this.state.data ;
+              BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+             }
         SearchFilterFunction(text){
             
             const newData = this.arrayholder.filter(function(item){
@@ -61,11 +63,18 @@ export default class VehicleList extends React.Component {
                     data: newData,
                     text: text
                 }
-            )
+            )    
+        }      
     
+        componentWillUnmount() {
+            BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+        }
+    
+        handleBackPress=()=>{
+            return true;
         }
        render() {
-        
+        const { navigate } = this.props.navigation;
            return (
                <View style={styles.container}>
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' 

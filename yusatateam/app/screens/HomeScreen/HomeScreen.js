@@ -2,6 +2,7 @@ import React from 'react';
 import {
     View,
     TouchableOpacity,
+    BackHandler
 } from 'react-native';
 import styles from './Styles';
 import {
@@ -11,6 +12,26 @@ import {
 import colors from '../../constants/colors';
 
 export default class HomeScreen extends React.Component {
+    componentDidMount() {        
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        Alert.alert(
+            'Exit App',
+            'Do you want to exit ?',
+            [
+              {text: 'NO', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: 'YES', onPress: () => BackHandler.exitApp()},
+            ],
+            { cancelable: false })
+      
+        return true;
+    }
     render() {
         const { navigate } = this.props.navigation;
         return (

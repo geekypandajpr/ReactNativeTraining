@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, } from 'react-native';
+import { Text, View, TouchableOpacity, Modal,BackHandler } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
@@ -19,6 +19,19 @@ export default class Schedule extends React.Component {
         this.state = {
             items: {}
         };
+    }
+    componentDidMount() {
+        Orientation.lockToPortrait();
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        this._getCountryList();
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress=()=>{
+        return true;
     }
 
     render() {

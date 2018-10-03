@@ -4,6 +4,7 @@ import {
     Text,
     FlatList,
     Button,
+    BackHandler,
     Image
 }
     from 'react-native';
@@ -87,9 +88,23 @@ export default class Sim extends React.Component {
         }
 
     }
+    componentDidMount() {
+        Orientation.lockToPortrait();
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        this._getCountryList();
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress=()=>{
+        return true;
+    }
 
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <Toolbar
