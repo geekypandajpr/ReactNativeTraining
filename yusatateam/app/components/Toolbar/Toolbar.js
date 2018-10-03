@@ -36,7 +36,7 @@ export default class Toolbar extends React.Component {
                 <Statusbar backgroundColor={EStyleSheet.value('$primaryColorDark')} barStyle="light-content" />
                 <Header style={styles.header}>
                     <Left>
-                        <Button transparent>
+                        <Button transparent onPress={this.props.onLeftButtonPress}>
                             <Icon name={this.props.leftIcon} type={this.props.leftIconType} style={styles.icon} />
                         </Button>
                     </Left>
@@ -46,7 +46,7 @@ export default class Toolbar extends React.Component {
                         </Title>
                     </Body>
                     <Right>
-                        <Button transparent>
+                        <Button transparent onPress={this.props.onRightButtonPress}>
                             <Icon name={this.props.rightIcon} type={this.props.rightIconType} style={styles.icon} />
                         </Button>
                     </Right>
