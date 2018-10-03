@@ -97,7 +97,7 @@ export default class Sim extends React.Component {
                     leftIcon='arrow-left'
                     leftIconType='Feather'
                     onLeftButtonPress={() => navigate.goBack()}
-                    rightIcon='setting'
+                    rightIcon='settings'
                     rightIconType='MaterialCommunityIcons'
                 ></Toolbar>
                 <FlatList

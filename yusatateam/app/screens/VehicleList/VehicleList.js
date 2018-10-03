@@ -70,7 +70,7 @@ export default class VehicleList extends React.Component {
                <View style={styles.container}>
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' 
                     onLeftButtonPress={() => navigate.goBack()}
-                    rightIcon='setting'
+                    rightIcon='settings'
                     rightIconType='MaterialCommunityIcons'/>
                     <SearchBar placeholder='Search by vehicle, sim, device'
                         onChangeText={(text) => this.SearchFilterFunction(text)} />
