@@ -22,9 +22,13 @@ export default class Schedule extends React.Component {
     }
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Toolbar title='Schedule' leftIcon='arrow-left' leftIconType='Feather'/>
+                <Toolbar title='Schedule' leftIcon='arrow-left' leftIconType='Feather' 
+                onLeftButtonPress={() => navigate.goBack()}
+                rightIcon='setting'
+                rightIconType='MaterialCommunityIcons'/>
                 <Agenda
                     items={this.state.items}
                     loadItemsForMonth={(month) => this.loadItems(month)}

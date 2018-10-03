@@ -9,6 +9,10 @@ export default EStyleSheet.create({
         justifyContent: 'center'
 
     },
+    backgroundImage: {
+        height:'100%',
+        width:'100%'
+    },
     imageView: {
         flex: 1.5,
         justifyContent: 'center',

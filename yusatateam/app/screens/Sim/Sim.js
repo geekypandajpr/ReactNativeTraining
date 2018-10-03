@@ -94,6 +94,11 @@ export default class Sim extends React.Component {
             <View style={styles.container}>
                 <Toolbar
                     title="Sim" 
+                    leftIcon='arrow-left'
+                    leftIconType='Feather'
+                    onLeftButtonPress={() => navigate.goBack()}
+                    rightIcon='setting'
+                    rightIconType='MaterialCommunityIcons'
                 ></Toolbar>
                 <FlatList
                     data={this.state.data}
