@@ -2,11 +2,15 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
     container: {
         flex: 1,
+        height: 40,
         backgroundColor : 'lightgreen'
         //flexDirection: 'row',
         //margin :50,
         //backgroundColor: 'grey',
        
+    },
+    search_view: {
+        height: '100%'
     },
     borderSearch:
     {     
@@ -25,10 +29,10 @@ export default EStyleSheet.create({
         borderRadius : 10,
         width: "95%", 
         borderColor: 'gray',
-         borderWidth: 1, 
-          alignItems : 'center',
-          justifyContent : 'center',
-          backgroundColor : 'white'
+        borderWidth: 1, 
+        alignItems : 'center',
+        justifyContent : 'center',
+        backgroundColor : 'white'
        
     },
     icon : {

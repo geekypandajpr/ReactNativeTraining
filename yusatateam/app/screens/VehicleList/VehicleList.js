@@ -2,7 +2,7 @@ import React from 'react';
 import {View,ScrollView,FlatList,Button,TouchableOpacity,} from 'react-native';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import styles from './styles';
-import {SearchBar} from '../../component/SearchBar';
+import {SearchBar, Toolbar} from '../../components';
 export default class VehicleList extends React.Component {
     constructor() {
         super();
@@ -68,10 +68,10 @@ export default class VehicleList extends React.Component {
         
            return (
                <View style={styles.container}>
+                    <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' />
                     <View style={styles.search}>
                         <SearchBar searchItem={(text) => this.SearchFilterFunction(text)} />
                     </View>
-                 <ScrollView style={styles.list}>
                    <FlatList 
                     data={this.state.data}
                        keyExtractor={(item, index) => item.MSIDN.toString()}
@@ -80,9 +80,6 @@ export default class VehicleList extends React.Component {
                                <View style={styles.viewList}>
                                   <List>
                                     <ListItem avatar>
-                                    <Left>
-                                        <Thumbnail source={require('../../../assets/user.png')} />
-                                    </Left>
                                     <Body>
                                     <TouchableOpacity  onPress={() => this.props.navigation.navigate('DeviceSimItem',{data: item})}>
                                         <Text>{item.MSIDN}</Text>
@@ -95,8 +92,7 @@ export default class VehicleList extends React.Component {
                                     </ListItem>
                                 </List>  
                                </View>  } >
-                       </FlatList> 
-                 </ScrollView>
+                       </FlatList>
                 </View>
            )
        }

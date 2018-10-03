@@ -20,7 +20,11 @@ export default EStyleSheet.create({
         width: 60,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'green'
+        backgroundColor: 'green',
+        borderRadius: 5
+    },
+    status_text:{
+        color: '#fff'
     },
     icon_view: {
         flex: 1
