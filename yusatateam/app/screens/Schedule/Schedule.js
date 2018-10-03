@@ -1,5 +1,15 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal,BackHandler } from 'react-native';
+import {
+    Text,
+    View,
+    TouchableOpacity,
+    Modal,
+    BackHandler,
+    TextInput,
+    Picker,
+    ScrollView
+} from 'react-native';
+import { Button } from 'native-base';
 import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
@@ -20,15 +30,15 @@ export default class Schedule extends React.Component {
             items: {}
         };
     }
-    componentDidMount() {        
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);       
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    handleBackPress=()=>{
+    handleBackPress = () => {
         return true;
     }
 
@@ -36,10 +46,10 @@ export default class Schedule extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Toolbar title='Schedule' leftIcon='arrow-left' leftIconType='Feather' 
-                onLeftButtonPress={() => navigate('HomeScreen')}
-                rightIcon='settings'
-                rightIconType='MaterialCommunityIcons'/>
+                <Toolbar title='Schedule' leftIcon='arrow-left' leftIconType='Feather'
+                    onLeftButtonPress={() => navigate('HomeScreen')}
+                    rightIcon='settings'
+                    rightIconType='MaterialCommunityIcons' />
                 <Agenda
                     items={this.state.items}
                     loadItemsForMonth={(month) => this.loadItems(month)}
@@ -90,9 +100,9 @@ export default class Schedule extends React.Component {
                         textDayFontSize: 12,
                         textMonthFontSize: 15,
                         textDayHeaderFontSize: 14
-                }}
+                    }}
                 />
-                <MyModal ref='modal'/>
+                <MyModal ref='modal' />
             </View>
         );
     }
@@ -105,24 +115,24 @@ export default class Schedule extends React.Component {
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
                     this.state.items[strTime].push({
-                        'serviceNumber' : 'SERVE001AA',
+                        'serviceNumber': 'SERVE001AA',
                         'status': 'Entered',
                         'color': '#1766A6',
-                        'vehicleNumber' : 'JP01-1522',
-                        'device' : 'DL125A',
-                        'sim' : '+91-7856801255',
-                        'jobDate' : '05 November 2018 14:50',
-                        'location' : '84/122 sector 8, pratap nagar, Jaipur'
+                        'vehicleNumber': 'JP01-1522',
+                        'device': 'DL125A',
+                        'sim': '+91-7856801255',
+                        'jobDate': '05 November 2018 14:50',
+                        'location': '84/122 sector 8, pratap nagar, Jaipur'
                     });
                     this.state.items[strTime].push({
-                        'serviceNumber' : 'SERVE002AB',
+                        'serviceNumber': 'SERVE002AB',
                         'status': 'Completed',
                         'color': '#47A64A',
-                        'vehicleNumber' : 'JP 01-4575',
-                        'device' : 'Atlanta',
-                        'sim' : '+91-6425500563',
-                        'jobDate' : '25 October 2018, 14:50',
-                        'location' : '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033'
+                        'vehicleNumber': 'JP 01-4575',
+                        'device': 'Atlanta',
+                        'sim': '+91-6425500563',
+                        'jobDate': '25 October 2018, 14:50',
+                        'location': '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033'
                     });
                 }
             }
@@ -136,8 +146,8 @@ export default class Schedule extends React.Component {
 
     renderItem(item) {
         return (
-            <TouchableOpacity activeOpacity={0.5} onPress={() => {this.refs.modal.setModalVisible(true)}} >
-                <ScheduleEvent item={item}/>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => { this.refs.modal.setModalVisible(true) }} >
+                <ScheduleEvent item={item} />
             </TouchableOpacity>
         );
     }
@@ -179,10 +189,98 @@ class MyModal extends React.Component {
                     animationType="slide"
                     transparent={true}
                     visible={this.state.modalVisible}
-                    onRequestClose={() => { this.setState({modalVisible: !this.state.modalVisible}) }}>
+                    onRequestClose={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
                     <View style={styles.modal_container}>
                         <View style={styles.modal_child_container}>
-                            <Text>HelloPrem</Text>
+                            <ScrollView showsVerticalScrollIndicator={false}>
+                                <View style={styles.upper_view}>
+
+                                    {/**Header View*/}
+                                    <View style={styles.header_view}>
+                                        <View style={styles.service_num}>
+                                            <Text style={styles.header_text}>SERVE001AA</Text>
+                                        </View>
+                                        <View style={styles.status_picker}>
+                                            <Picker
+                                                //selectedValue={this.state.language}
+                                                style={styles.picker}
+                                                onValueChange={(itemValue, itemIndex) => this.setState({ status: itemValue })}>
+                                                <Picker.Item label="Entered" value="Entered" />
+                                                <Picker.Item label="Accepted" value="Accepted" />
+                                                <Picker.Item label="Onjob" value="Onjob" />
+                                                <Picker.Item label="Completed" value="DevCompletedice4" />
+                                            </Picker>
+                                        </View>
+                                    </View>
+
+                                    {/** Sim Picker View*/}
+                                    <View style={styles.picker_view}>
+                                        <Picker
+                                            //selectedValue={this.state.language}
+                                            style={styles.picker}
+                                            onValueChange={(itemValue, itemIndex) => this.setState({ vehicle: itemValue })}>
+                                            <Picker.Item label="Vehicle1" value="Vehicle1" />
+                                            <Picker.Item label="Vehicle2" value="Vehicle2" />
+                                            <Picker.Item label="Vehicle3" value="Vehicle3" />
+                                            <Picker.Item label="Vehicle4" value="Vehicle4" />
+                                        </Picker>
+                                    </View>
+
+
+                                    {/** Device Picker View*/}
+                                    <View style={styles.picker_view}>
+                                        <Picker
+                                            //selectedValue={this.state.language}
+                                            style={styles.picker}
+                                            onValueChange={(itemValue, itemIndex) => this.setState({ device: itemValue })}>
+                                            <Picker.Item label="Device1" value="Device1" />
+                                            <Picker.Item label="Device2" value="Device2" />
+                                            <Picker.Item label="Device3" value="Device3" />
+                                            <Picker.Item label="Device4" value="Device4" />
+                                        </Picker>
+                                    </View>
+
+                                    {/** Sim Picker View*/}
+                                    <View style={styles.picker_view}>
+                                        <Picker
+                                            //selectedValue={this.state.language}
+                                            style={styles.picker}
+                                            onValueChange={(itemValue, itemIndex) => this.setState({ sim: itemValue })}>
+                                            <Picker.Item label="Sim1" value="Sim1" />
+                                            <Picker.Item label="Sim2" value="Sim2" />
+                                            <Picker.Item label="Sim3" value="Sim3" />
+                                            <Picker.Item label="Sim4" value="Sim4" />
+                                        </Picker>
+                                    </View>
+
+                                    {/**Comment box*/}
+                                    <View style={styles.comment_text_view}>
+                                        <Text style={styles.comment_text}>Comment</Text>
+                                    </View>
+                                    <View style={styles.comment_box}>
+                                        <View style={styles.text_input_view}>
+                                            <TextInput
+                                                placeholder='Write comment here...'
+                                                multiline={true}
+                                                underlineColorAndroid='transparent'
+                                                style={styles.text_input}
+                                                onChangeText={(text) => this.setState({ text })}
+                                                value={this.state.text}
+                                            />
+                                        </View>
+                                    </View>
+                                </View>
+
+                                {/**Button View*/}
+                                <View style={styles.lower_view}>
+                                    <View style={styles.button_view}>
+                                        <Button style={styles.submit_button}>
+                                            <Text style={styles.button_text}>Submit</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+
+                            </ScrollView>
                         </View>
                     </View>
                 </Modal>
