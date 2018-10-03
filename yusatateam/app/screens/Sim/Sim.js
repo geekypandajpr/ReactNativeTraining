@@ -3,11 +3,13 @@ import {
     View,
     Text,
     FlatList,
-    Button
+    Button,
+    Image
 }
     from 'react-native';
 import styles from './styles';
 import { RoundedImage } from '../../components';
+import { Ionicons,Feather } from '@expo/vector-icons'
 import { Toolbar } from '../../components/Toolbar'
 
 export default class Sim extends React.Component {
@@ -21,7 +23,7 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN1',
                     Provider: 'IDEA',
                     Mobile: '09085-53379',
-                    status: 'ACTIVATE'
+                    status: 'Activate'
                 },
                 {
                     ORDER: 'JSCKBK',
@@ -29,7 +31,7 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN2',
                     Provider: 'AIRTEL',
                     Mobile: '09085-45090',
-                    status: 'DEACTIVATE'
+                    status: 'Deactivate'
                 },
                 {
                     ORDER: 'UYGEYUJA',
@@ -37,7 +39,7 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN3',
                     Provider: 'AIRCEL',
                     Mobile: '09085-65879',
-                    status: 'ACTIVATE'
+                    status: 'Activate'
                 },
                 {
                     ORDER: 'HAVCMSV',
@@ -45,7 +47,7 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN4',
                     Provider: 'IDEA',
                     Mobile: '09085-53379',
-                    status: 'DEACTIVATE'
+                    status: 'Deactivate'
                 },
                 {
                     ORDER: 'HAVCMSV',
@@ -53,7 +55,7 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN4',
                     Provider: 'IDEA',
                     Mobile: '09085-53379',
-                    status: 'DEACTIVATE'
+                    status: 'Deactivate'
                 },
                 {
                     ORDER: 'UYGEYUJA',
@@ -61,7 +63,7 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN3',
                     Provider: 'AIRCEL',
                     Mobile: '09085-65879',
-                    status: 'ACTIVATE'
+                    status: 'Activate'
                 },
                 {
                     ORDER: 'HAVCMSV',
@@ -69,15 +71,16 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN4',
                     Provider: 'IDEA',
                     Mobile: '09085-53379',
-                    status: 'DEACTIVATE'
+                    status: 'Deactivate'
                 },
+                
                 {
                     ORDER: 'HAVCMSV',
                     ICCID: 'ICCID4',
                     MSIDN: 'MSIDN4',
                     Provider: 'IDEA',
                     Mobile: '09085-53379',
-                    status: 'ACTIVATE'
+                    status: 'Activate'
                 }
             ]
 
@@ -90,70 +93,79 @@ export default class Sim extends React.Component {
         return (
             <View style={styles.container}>
                 <Toolbar
-                    title="HOME"
+                    title="Sim" 
                 ></Toolbar>
                 <FlatList
                     data={this.state.data}
                     keyExtractor={(item, index) => item.toString()}
                     renderItem={({ item, index }) =>
                         <View style={styles.listcontainer}>
-                            <View style={{ flex: 1 }}>
+                            <View style={{ flex: 1, alignContent: 'center', justifyContent: 'center' }}>
                                 <RoundedImage
-                                    source={require('../../../assets/Sim_Image.png')}
+                                    source={require('../../../assets/image5.jpg')}
                                 />
                             </View>
 
 
                             <View style={{ flex: 4 }}>
 
-
-
                                 <View style={styles.secondView}>
                                     <View style={styles.secondView}>
-                                        <Text style={styles.secondHeads}>ICCID : </Text>
-                                        <Text style={styles.secondAns}>{item.ICCID}</Text>
+                                        <Text style={{ fontWeight: 'bold', fontSize: 22 }}>{item.ORDER}</Text>
                                     </View>
-                                    <View style={styles.secondView}>
-                                        <Text style={styles.secondHeads}>ORD# : </Text>
-                                        <Text style={styles.secondAns}>{item.ORDER}</Text>
-                                    </View>
-                                </View>
-
-                                <View style={styles.secondView}>
-                                    <View style={styles.secondView}>
-                                        <Text style={styles.secondHeads}>MSIDN : </Text>
-                                        <Text style={styles.secondAns}>{item.MSIDN}</Text>
-                                    </View>
-                                    <View style={styles.secondView}>
-                                        <Text style={styles.secondHeads}>PROVIDER : </Text>
-                                        <Text style={styles.secondAns}>{item.Provider}</Text>
-                                    </View>
-                                </View>
-
-                                <View style={styles.secondView}>
-                                    <Text style={styles.secondHeads}>MOBILE : </Text>
-                                    <Text style={styles.secondAns}>{item.Mobile}</Text>
-                                </View>
-
-                                <View style={styles.secondView}>
-                                    <View style={styles.secondView}>
+                                    <View style={{ height: 35, width: 110, borderRadius: 10, borderWidth: 3, borderColor: 'white' }}>
+                                        <Button
+                                            title={`${item.status}`}
+                                            onPress={alert}
+                                            color="#1f667e"
+                                        ></Button>
                                     </View>
 
-                                    {
-                                        item.status == "ACTIVATE" ?
+
+                                    {/* {
+                                        item.status == "Activate" ?
+                                        <View style={{borderRadius:8,borderWidth:2,borderColor:'white'}}>
                                             <Button
                                                 title={`${item.status}`}
-                                                onPress={alert}
-                                                color="#e62e00"
-                                            ></Button>
-                                            :
-                                            <Button
-                                                title={`${item.status}`}
-                                                onPress={alert}
-                                                color="green"
-                                            ></Button>
-                                    }
+                                                 onPress={alert}
+                                                 color="green"
+                                             ></Button>
+                                        </View>
+                                             :
+                                            <View style={{borderRadius:8,borderWidth:2,borderColor:'white'}}>
+                                             <Button
+                                                 title={`${item.status}`}
+                                                 onPress={alert}
+                                                 color="#e62e00"
+                                             ></Button>
+                                            </View>
+                                    } */}
 
+
+                                </View>
+
+                                <View style={styles.secondView}>
+                                    <Text style={styles.secondHeads}>MSIDN : </Text>
+                                    <Text style={styles.secondAns}>{item.MSIDN}</Text>
+                                </View>
+
+                                <View style={styles.secondView}>
+                                    <Text style={styles.secondHeads}>ICCID : </Text>
+                                    <Text style={styles.secondAns}>{item.ICCID}</Text>
+                                </View>
+
+
+
+                                <View style={styles.secondView}>
+                                    <View style={styles.secondView}>
+                                        <Text style={styles.secondAns}>{item.Mobile}</Text>
+                                    </View>
+                                    {/* <View style={{marginLeft:20}}>
+                                    <Ionicons name="ios-call" size={16} color="green" />
+                                    </View> */}
+                                    <View style={{ flex: 1, flexDirection: 'row', marginLeft: 30 }}>
+                                        <Text style={styles.secondHeads}>{item.Provider}</Text>
+                                    </View>
                                 </View>
 
 

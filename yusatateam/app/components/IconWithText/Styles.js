@@ -1,7 +1,7 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
     icon: {
-        fontSize: 40,
+        fontSize: 50,
         color: 'white'
     },
     mainContainer: {
@@ -19,6 +19,7 @@ export default EStyleSheet.create({
         justifyContent: "center",
         color: "white",
         textAlign: "center",
-        fontSize: '1.2rem',
+        fontSize: '1rem',
+        marginTop: 10
     },
 });

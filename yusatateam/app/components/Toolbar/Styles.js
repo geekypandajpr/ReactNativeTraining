@@ -1,6 +1,4 @@
 import EStylesheet from 'react-native-extended-stylesheet';
-import { Platform } from 'react-native';
-const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
 
 export default EStylesheet.create({
     $headerColor : '#1f667e',
@@ -8,19 +6,15 @@ export default EStylesheet.create({
     $headerTitleSize : '1.2rem',
     $headerTitleColor : '#fff',
 
-    appBar: {
-        backgroundColor: '$primaryColor',
-        height: APPBAR_HEIGHT,
-        elevation: 10,
-        alignItems: 'center',
-        flexDirection: 'row'
+    header: {
+        backgroundColor: '$primaryColor'
     },
-    toolbar_text: {
+    icon: {
+        fontSize: 24,
+        color: '$headerIconColor'
+    },
+    title: {
         color: '$headerTitleColor',
-        fontSize: '$headerTitleSize',
-        marginLeft: 30
-    },
-    menu_icon: {
-        marginLeft: 20
-    },
+        fontSize: '$headerTitleSize'
+    }
 })

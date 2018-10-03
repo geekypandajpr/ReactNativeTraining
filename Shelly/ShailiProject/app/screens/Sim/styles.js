@@ -5,23 +5,17 @@ export default EStyleSheet.create({
     {
         flex: 1,
         backgroundColor: '#D3D3D3',
-        
-       
-    },
-   
+        marginTop: 30,
 
+    },
     listcontainer:
     {
         flex: 1,
+        margin: 5,
+        borderColor: 'black',
         backgroundColor: 'white',
         flexDirection: 'row',
-        borderRadius: 5,
-        borderColor: 'white',
-        borderWidth: 2,
-        marginLeft: 4,
-        marginRight:4,
-        marginTop:2,
-        marginBottom:2
+        borderWidth:2
     },
 
     secondView:
@@ -33,14 +27,14 @@ export default EStyleSheet.create({
     secondHeads:
     {
         fontWeight: 'bold',
-        fontSize: 15,
-        fontStyle: 'normal'
+        fontSize: 17,
+        fontStyle:'normal'
     },
 
     secondAns:
     {
-        fontSize: 15,
-        fontStyle: 'normal'
+        fontSize: 17,
+        fontStyle:'normal'
     }
 
 })

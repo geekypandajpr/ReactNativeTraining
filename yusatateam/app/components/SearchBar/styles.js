@@ -11,7 +11,9 @@ export default EStyleSheet.create({
     borderSearch:
     {     
         flex :8,
-        marginLeft : 10
+        marginLeft : 10,
+        height: 60,
+        justifyContent: 'center'
        
     },
     searchIcon:

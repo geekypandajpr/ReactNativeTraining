@@ -8,13 +8,19 @@ export default EStyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        flexWrap: 'wrap'
+        //flexWrap: 'wrap'
     },
     status_view: {
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'flex-end',
-        flexWrap: 'wrap'
+        justifyContent: 'flex-end'
+    },
+    statusButton: {
+        height: 20,
+        width: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'green'
     },
     icon_view: {
         flex: 1

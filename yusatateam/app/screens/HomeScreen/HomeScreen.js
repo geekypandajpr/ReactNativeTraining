@@ -14,7 +14,7 @@ export default class HomeScreen extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.mainContainer}>
-                <Toolbar title='Home' />
+                <Toolbar title='Home' leftIcon='menu' rightIcon='power' rightIconType='MaterialCommunityIcons'/>
                 <View style={styles.firstContainer}>
                     <View style={styles.simContainer}>
                         <TouchableOpacity onPress={() => navigate('Sim')}>
@@ -68,7 +68,7 @@ export default class HomeScreen extends React.Component {
 
                 <View style={styles.thirdContainer}>
                     <View style={styles.associationContainer}>
-                        <TouchableOpacity onPress={() => navigate('ViewVehicleList')}>
+                        <TouchableOpacity onPress={() => navigate('VehicleList')}>
                             <IconWithText
                                 backgroundColor='#008e6d'
                                 name='group'

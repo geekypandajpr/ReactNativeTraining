@@ -8,11 +8,13 @@ export default EStyleSheet.create({
     },
     
       image: {
-        height: 80,
-        width: 80,
-        borderRadius: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
+        height: 70,
+        width: 70,
+        borderRadius: 35,
+        alignContent: 'center',
+         justifyContent: 'center',
+         marginTop:20
+       
         
     
       },

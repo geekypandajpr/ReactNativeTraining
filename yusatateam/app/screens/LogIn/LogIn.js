@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, Dimensions, TouchableOpacity, Text, ScrollView } from 'react-native';
 import styles from './Styles';
 import { Body, CheckBox, Button } from 'native-base';
-import { IconWithTextInput } from '../../components/IconWithTextInput';
+import { IconWithTextInput, Statusbar } from '../../components';
 
 const _width = Dimensions.get('window').width;
 
@@ -22,6 +22,7 @@ export default class LogIn extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.mainContainer}>
+                <Statusbar backgroundColor={'#fff'} barStyle="dark-content" />
                 <ScrollView>
                     <View style={styles.imageView}>
                         <Image
@@ -66,7 +67,7 @@ export default class LogIn extends React.Component {
                             </TouchableOpacity>
                         </View>
                         <View style={styles.buttonView}>
-                            <Button rounded
+                            <Button
                                 style={styles.button}
                                 onPress={() => navigate('HomeScreen')}>
                                 <View style={{ width: _width * 0.8 }}>
