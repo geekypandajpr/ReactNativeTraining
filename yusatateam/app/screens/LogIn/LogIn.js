@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Dimensions, TouchableOpacity, Text, ScrollView } from 'react-native';
+import { View, Image, Dimensions, TouchableOpacity, Text, ScrollView,ImageBackground } from 'react-native';
 import styles from './Styles';
 import { Body, CheckBox, Button } from 'native-base';
 import { IconWithTextInput, Statusbar } from '../../components';
@@ -21,7 +21,9 @@ export default class LogIn extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
+            <ImageBackground source={require('../../assets/images/backgroundImage.png')} style={{height:'100%',width:'100%'}}>
             <View style={styles.mainContainer}>
+            
                 <Statusbar backgroundColor={'#fff'} barStyle="dark-content" />
                 <ScrollView>
                     <View style={styles.imageView}>
@@ -67,7 +69,7 @@ export default class LogIn extends React.Component {
                             </TouchableOpacity>
                         </View>
                         <View style={styles.buttonView}>
-                            <Button
+                            <Button rounded
                                 style={styles.button}
                                 onPress={() => navigate('HomeScreen')}>
                                 <View style={{ width: _width * 0.8 }}>
@@ -82,7 +84,9 @@ export default class LogIn extends React.Component {
                         <Text style={styles.versionText}>v0.0.1</Text>
                     </View>
                 </ScrollView>
-            </View>
+                </View>
+                </ImageBackground>
+           
         )
     }
 }
