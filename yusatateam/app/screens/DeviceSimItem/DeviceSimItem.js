@@ -3,17 +3,17 @@ import {View,TextInput} from 'react-native';
 import { Container, Header, Content, Button, Text,Right,Icon } from 'native-base';
 import styles from './styles';
 import { AppLoading } from 'expo';
-import {ViewVehicleList} from '../ViewVehicleList/ViewVehicleList';
+
 export default class DeviceSimItem extends React.Component {
-    constructor(){
-        super();   
-        this.state ={   
+    constructor(props){
+        super(props);   
+        this.state = {   
           vehicle:'Tata',
           device : 'UNO',
           sim : 'AIRTEL',
           isLoading: true
         }
-      } ;
+      };
       async componentWillMount(){
         await Expo.Font.loadAsync({
             Roboto:require("native-base/Fonts/Roboto.ttf"),
