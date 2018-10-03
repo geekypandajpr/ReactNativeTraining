@@ -13,7 +13,7 @@ export default class Jobs extends React.Component {
             isLoading: true,
             tabStatus : 'Activated'
         },
-        status = ['Activate','Deactivate','Activate','Deactivate','Activate','Deactivate']
+        this.status = ['Activate','Deactivate','Activate','Deactivate','Activate','Deactivate']
     }
 
     async componentWillMount() {
@@ -24,10 +24,9 @@ export default class Jobs extends React.Component {
         })
         this.setState({ isLoading: false })
     };
-    getStatus = (i,ref,from)=>{
-        //alert(status[i]);
-        console.log(status[i]);
-        this.refs.modal.changeTabStatus(status[i])
+    getStatus(i,ref,from){
+        //console.log(i);
+        this.refs.modal.changeTabStatus(this.status[i])
 
     };
 
