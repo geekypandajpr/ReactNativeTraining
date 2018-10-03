@@ -16,32 +16,25 @@ export default EStyleSheet.create({
         justifyContent: 'flex-end'
     },
     statusButton: {
-        height: 20,
-        width: 60,
+        height: 25,
+        width: 80,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'green',
         borderRadius: 5
     },
     status_text:{
         color: '#fff'
     },
-    icon_view: {
-        flex: 1
-    },
     label_text: {
         fontSize: '1rem',
         fontWeight: 'bold',
-        color: '#000'
+        color: '$primaryColor'
     },
     value_text: {
         fontSize: '0.8rem',
         color: '#000'
     },
     event_date_view: {
-        //backgroundColor: '#5ADC94',
-        //backgroundColor: '#36B4A6',
-        //backgroundColor: '$primaryColorLight',
         backgroundColor: '#ffffff',
         elevation: 1,
         flex: 1,
@@ -52,11 +45,7 @@ export default EStyleSheet.create({
         marginTop: 4,
         marginBottom: 2
     },
-    empty_date_view: {
-        backgroundColor: '#5ADC94',
-        flex: 1,
-        borderRadius: 5,
-        padding: 10,
-        margin: 5
-    },
+    icon_view: {
+        flex: 0.1
+    }
 });

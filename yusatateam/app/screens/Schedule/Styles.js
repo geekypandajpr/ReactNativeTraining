@@ -11,10 +11,14 @@ export default EStyleSheet.create({
         margin: 5
     },
     empty_date_view: {
-        backgroundColor: '#5ADC94',
+        backgroundColor: '#ffffff',
+        elevation: 1,
         flex: 1,
         borderRadius: 5,
         padding: 10,
-        margin: 5
+        marginRight: 4,
+        marginLeft: 4,
+        marginTop: 4,
+        marginBottom: 2
     }
 });
