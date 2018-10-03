@@ -95,7 +95,8 @@ export default class Schedule extends React.Component {
                         'device' : 'DL125A',
                         'sim' : '+91-7856801255',
                         'jobDate' : '12/10/2018 14:50',
-                        'location' : '84/122 sector 8, pratap nagar, Jaipur 302033'
+                        'status': 'Entered',
+                        'location' : '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033'
                     });
                 }
             }
