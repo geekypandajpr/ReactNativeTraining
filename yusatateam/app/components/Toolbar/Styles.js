@@ -16,5 +16,9 @@ export default EStylesheet.create({
     title: {
         color: '$headerTitleColor',
         fontSize: '$headerTitleSize'
+    },
+    body: {
+        alignItems:'center',
+        justifyContent:'center'
     }
 })

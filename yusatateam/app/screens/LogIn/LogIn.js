@@ -87,6 +87,7 @@ export default class LogIn extends React.Component {
                                 getRef={(input) => { this.pswd = input; }}                              
                                 value={this.state.password}
                                 secureTextEntry={true}
+                                onSubmitEditing={this._logIn.bind(this)}
                                 onChangeText={(password) => this.setState({ password })}
                             />
                             <View style={styles.checkbox}>

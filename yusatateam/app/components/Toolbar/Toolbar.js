@@ -32,26 +32,26 @@ export default class Toolbar extends React.Component {
     render() {
         return (
             this.state.isLoading === true ? <AppLoading /> :
-            <View>
-                <Statusbar backgroundColor={EStyleSheet.value('$primaryColorDark')} barStyle="light-content" />
-                <Header style={styles.header}>
-                    <Left>
-                        <Button transparent onPress={this.props.onLeftButtonPress}>
-                            <Icon name={this.props.leftIcon} type={this.props.leftIconType} style={styles.icon} />
-                        </Button>
-                    </Left>
-                    <Body style={{alignItems:'center',justifyContent:'center'}}>
-                        <Title style={styles.title}>
-                            {this.props.title}
-                        </Title>
-                    </Body>
-                    <Right>
-                        <Button transparent onPress={this.props.onRightButtonPress}>
-                            <Icon name={this.props.rightIcon} type={this.props.rightIconType} style={styles.icon} />
-                        </Button>
-                    </Right>
-                </Header>
-            </View>
+                <View>
+                    <Statusbar backgroundColor={EStyleSheet.value('$primaryColorDark')} barStyle="light-content" />
+                    <Header style={styles.header}>
+                        <Left>
+                            <Button transparent onPress={this.props.onLeftButtonPress}>
+                                <Icon name={this.props.leftIcon} type={this.props.leftIconType} style={styles.icon} />
+                            </Button>
+                        </Left>
+                        <Body style={styles.body}>
+                            <Title style={styles.title}>
+                                {this.props.title}
+                            </Title>
+                        </Body>
+                        <Right>
+                            <Button transparent onPress={this.props.onRightButtonPress}>
+                                <Icon name={this.props.rightIcon} type={this.props.rightIconType} style={styles.icon} />
+                            </Button>
+                        </Right>
+                    </Header>
+                </View>
         )
     }
 }
