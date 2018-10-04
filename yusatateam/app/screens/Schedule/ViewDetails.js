@@ -17,12 +17,19 @@ export default class ViewDetails extends React.Component {
         this.state = {
             modalVisible: false,
             item: {},
-            status: ''
+            status: '',
+            device: '',
+            sim: ''
         }
     }
 
     setModalVisible(visible, item) {
-        this.setState({ modalVisible: visible, item: item });
+        this.setState({
+            modalVisible: visible,
+            item: item
+        }, function () {
+            this.setState({ status: this.state.item.status });
+        });
     }
 
     render() {
@@ -51,26 +58,6 @@ export default class ViewDetails extends React.Component {
                         <View style={styles.modal_child_container}>
                             <ScrollView showsVerticalScrollIndicator={false}>
 
-                                {/**Status and Service type View*/}
-                                <View style={styles.main_view}>
-                                    <View style={styles.first_view}>
-                                        <View style={styles.status_picker}>
-                                            <Picker
-                                                selectedValue={this.state.status}
-                                                style={styles.picker}
-                                                onValueChange={(itemValue, itemIndex) => this.setState({ status: itemValue })}>
-                                                <Picker.Item label="Entered" value="Entered" />
-                                                <Picker.Item label="Accepted" value="Accepted" />
-                                                <Picker.Item label="Onjob" value="Onjob" />
-                                                <Picker.Item label="Completed" value="Completed" />
-                                            </Picker>
-                                        </View>
-                                    </View>
-                                    <View style={styles.second_view}>
-                                        <Text style={styles.service_type_text}>{details.serviceType}</Text>
-                                    </View>
-                                </View>
-
                                 {/**Company Name and Vehicle Name View*/}
                                 <View style={styles.main_view}>
                                     <View style={styles.first_view}>
@@ -78,28 +65,6 @@ export default class ViewDetails extends React.Component {
                                     </View>
                                     <View style={styles.second_view}>
                                         <Text style={styles.value_text}>{details.vehicleNumber}</Text>
-                                    </View>
-                                </View>
-
-                                {/**Device View*/}
-                                <View style={styles.main_view}>
-                                    <View style={styles.first_view}>
-                                        <Text style={styles.value_text}>{details.device}</Text>
-                                    </View>
-                                    <View style={styles.second_view}>
-                                        <Text style={styles.view_more}>view device</Text>
-                                        <Entypo name='chevron-thin-right' color='gray' size={20} />
-                                    </View>
-                                </View>
-
-                                {/**Sim View*/}
-                                <View style={styles.main_view}>
-                                    <View style={styles.first_view}>
-                                        <Text style={styles.value_text}>{details.sim}</Text>
-                                    </View>
-                                    <View style={styles.second_view}>
-                                        <Text style={styles.view_more}>view sim</Text>
-                                        <Entypo name='chevron-thin-right' color='gray' size={20} />
                                     </View>
                                 </View>
 
@@ -128,11 +93,104 @@ export default class ViewDetails extends React.Component {
                                     </View>
                                 </View>
 
+                                {/**Status and Service type View*/}
+                                <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <View style={styles.status_picker}>
+                                            <Picker
+                                                selectedValue={this.state.status}
+                                                style={styles.picker}
+                                                onValueChange={(itemValue, itemIndex) => this.setState({ status: itemValue })}>
+                                                <Picker.Item label="Entered" value="Entered" />
+                                                <Picker.Item label="Accepted" value="Accepted" />
+                                                <Picker.Item label="Onjob" value="Onjob" />
+                                                <Picker.Item label="Completed" value="Completed" />
+                                            </Picker>
+                                        </View>
+                                    </View>
+                                    <View style={styles.second_view}>
+                                        <Text style={styles.service_type_text}>{details.serviceType}</Text>
+                                    </View>
+                                </View>
+
+                                {/**Device View*/}
+                                <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <View style={styles.status_picker}>
+                                            <Picker
+                                                selectedValue={this.state.device}
+                                                style={styles.picker}
+                                                onValueChange={(itemValue, itemIndex) => this.setState({ device: itemValue })}>
+                                                <Picker.Item label="Device1" value="Device1" />
+                                                <Picker.Item label="Device2" value="Device2" />
+                                                <Picker.Item label="Device3" value="Device3" />
+                                                <Picker.Item label="Device4" value="Device4" />
+                                            </Picker>
+                                        </View>
+                                    </View>
+                                </View>
+                                {/* <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <Text style={styles.value_text}>{details.device}</Text>
+                                    </View>
+                                    <View style={styles.second_view}>
+                                        <Text style={styles.view_more}>view device</Text>
+                                        <Entypo name='chevron-thin-right' color='gray' size={20} />
+                                    </View>
+                                </View> */}
+
+                                {/**Sim View*/}
+                                <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <View style={styles.status_picker}>
+                                            <Picker
+                                                selectedValue={this.state.sim}
+                                                style={styles.picker}
+                                                onValueChange={(itemValue, itemIndex) => this.setState({ sim: itemValue })}>
+                                                <Picker.Item label="Sim1" value="Sim1" />
+                                                <Picker.Item label="Sim2" value="Sim2" />
+                                                <Picker.Item label="Sim3" value="Sim3" />
+                                                <Picker.Item label="Sim4" value="Sim4" />
+                                            </Picker>
+                                        </View>
+                                    </View>
+                                </View>
+                                {/* <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <Text style={styles.value_text}>{details.sim}</Text>
+                                    </View>
+                                    <View style={styles.second_view}>
+                                        <Text style={styles.view_more}>view sim</Text>
+                                        <Entypo name='chevron-thin-right' color='gray' size={20} />
+                                    </View>
+                                </View> */}
+
+                                {/**Comment Box*/}
+                                <View style={styles.comment_view}>
+                                    <Text style={styles.value_text}>Comment</Text>
+                                    <View style={styles.comment_box}>
+                                        <View style={styles.comment_input_view}>
+                                            <TextInput
+                                                placeholder='Write comment here...'
+                                                multiline={true}
+                                                underlineColorAndroid='transparent'
+                                                style={styles.comment_text}
+                                                onChangeText={(text) => this.setState({ text })}
+                                                value={this.state.text}
+                                            />
+                                        </View>
+                                    </View>
+                                </View>
+
                                 {/**Close Button*/}
                                 <View style={styles.button_view}>
                                     <Button style={styles.submit_button}
                                         onPress={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
                                         <Text style={styles.button_text}>Close</Text>
+                                    </Button>
+                                    <Button style={styles.submit_button}
+                                        onPress={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
+                                        <Text style={styles.button_text}>Submit</Text>
                                     </Button>
                                 </View>
 
@@ -157,7 +215,7 @@ const styles = EStyleSheet.create({
     modal_child_container: {
         backgroundColor: '#FFFFFF',
         bottom: 0,
-        height: '60%',
+        height: '80%',
         width: '100%',
         paddingTop: 15,
         paddingLeft: 15,
@@ -186,7 +244,8 @@ const styles = EStyleSheet.create({
         fontFamily: '$fontFamily',
         fontSize: '0.8rem',
         fontWeight: 'bold',
-        color: '#000'
+        color: '#000',
+        margin: 5
     },
     schedule_view: {
         flex: 1,
@@ -200,7 +259,7 @@ const styles = EStyleSheet.create({
     },
     status_picker: {
         width: '100%',
-        height: 30,
+        height: 35,
         borderWidth: 1,
         borderColor: 'gray',
         borderRadius: 5,
@@ -216,7 +275,9 @@ const styles = EStyleSheet.create({
         width: 100,
         height: 40,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 20,
+        marginBottom: 20
     },
     button_text: {
         fontFamily: '$fontFamily',
@@ -245,12 +306,12 @@ const styles = EStyleSheet.create({
     value_text: {
         fontFamily: '$fontFamily',
         color: '#000',
-        fontSize: '1rem',
+        fontSize: '0.9rem',
         flexWrap: 'wrap'
     },
     service_type_text: {
         fontFamily: '$fontFamily',
-        fontSize: '1rem',
+        fontSize: '0.9rem',
         fontWeight: 'bold',
         color: '#1766A6'
     },
@@ -262,7 +323,30 @@ const styles = EStyleSheet.create({
     },
     view_more: {
         fontFamily: '$fontFamily',
-        fontSize: '0.8rem',
+        fontSize: '0.6rem',
         color: 'gray'
+    },
+
+    /**Comment Box View */
+    comment_view: {
+        flex: 1,
+        flexDirection: 'column'
+    },
+    comment_box: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    comment_input_view: {
+        width: '100%',
+        height: 100,
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 5
+    },
+    comment_text: {
+        fontFamily: '$fontFamily',
+        fontSize: '0.8rem',
+        color: '#000',
+        padding: 10
     }
 })
