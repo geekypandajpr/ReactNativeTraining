@@ -5,16 +5,17 @@ export default EStyleSheet.create({
         flexDirection: 'row',
         flex: 1
     },
-    text_view: {
+    first_view: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         //flexWrap: 'wrap'
     },
-    status_view: {
+    second_view: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        alignItems: 'center'
     },
     statusButton: {
         height: 25,
@@ -37,6 +38,11 @@ export default EStyleSheet.create({
         fontFamily: '$fontFamily',
         fontSize: '0.8rem',
         color: '#000'
+    },
+    view_more: {
+        fontFamily: '$fontFamily',
+        fontSize: '0.6rem',
+        color: 'gray'
     },
     service_type: {
         fontFamily: '$fontFamily',
