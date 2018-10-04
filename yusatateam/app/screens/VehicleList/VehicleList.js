@@ -92,7 +92,7 @@ export default class VehicleList extends React.Component {
                                   <List>
                                     <ListItem avatar>
                                     <Body>
-                                    <TouchableOpacity  onPress={() => this.props.navigation.navigate('DeviceSimItem',{data: item})}>
+                                    <TouchableOpacity  onPress={() => this.props.navigation.navigate('DeviceSimItem',{item})}>
                                         <Text>{item.MSIDN}</Text>
                                         <Text note>{item.status}</Text>
                                         </TouchableOpacity>
