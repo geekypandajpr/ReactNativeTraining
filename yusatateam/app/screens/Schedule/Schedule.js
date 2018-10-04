@@ -9,7 +9,7 @@ import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
 import moment from 'moment';
-import CompleteSchedule from './CompleteSchedule';
+import ViewDetails from './ViewDetails';
 import colors from '../../constants/colors';
 
 var eventList = {
@@ -92,7 +92,7 @@ export default class Schedule extends React.Component {
                         textDayHeaderFontSize: 14
                     }}
                 />
-                <CompleteSchedule ref='modal' />
+                <ViewDetails ref='modal' />
             </View>
         );
     }

@@ -17,32 +17,36 @@ const ScheduleEvent = (props) => (
             </View>
         </View>
 
-        {/**Compnay Name and Vehicle Number*/}
+        {/**Compnay Name*/}
         <View style={styles.text_container}>
             <View style={styles.first_view}>
                 <Text style={styles.value_text}>{props.companyName}</Text>
             </View>
-            <View style={styles.second_view}>
+        </View>
+
+        {/**Vehicle Number*/}
+        <View style={styles.text_container}>
+            <View style={styles.first_view}>
                 <Text style={styles.value_text}>{props.vehicleNumber}</Text>
             </View>
         </View>
 
         {/**Device View*/}
-        <View style={styles.text_container}>
+        {/* <View style={styles.text_container}>
             <View style={styles.first_view}>
                 <Text style={styles.value_text}>{props.device}</Text>
             </View>
-        </View>
+        </View> */}
 
         {/**Sim View*/}
-        <View style={styles.text_container}>
+        {/* <View style={styles.text_container}>
             <View style={styles.first_view}>
                 <Text style={styles.value_text}>{props.sim}</Text>
             </View>
             <View style={styles.second_view}>
                 <Text style={styles.value_text}>Airtel</Text>
             </View>
-        </View>
+        </View> */}
 
         {/**Schedule Date and Time View*/}
         <View style={styles.text_container}>
@@ -76,7 +80,7 @@ const ScheduleEvent = (props) => (
                 </Button>
             </View>
             <View style={styles.second_view}>
-                <TouchableOpacity style={styles.second_view} activeOpacity={0.3} onPress={props.viewMore} >
+                <TouchableOpacity style={styles.second_view} activeOpacity={0.2} onPress={props.viewMore} >
                     <Text style={styles.view_more}>view more</Text>
                     <Entypo name='chevron-thin-right' color='gray' size={20} />
                 </TouchableOpacity>
