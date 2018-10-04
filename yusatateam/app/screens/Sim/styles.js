@@ -73,8 +73,6 @@ export default EStyleSheet.create({
         borderRadius: 5,
         backgroundColor:'#1f667e'
     },
-
-    
     status_text:{
         color: '#fff'
     },
