@@ -13,9 +13,17 @@ const ScheduleEvent = ({ item }) => (
                 <Text style={styles.label_text}>{item.serviceNumber}</Text>
             </View>
             <View style={styles.status_view}>
-                <Button style={[styles.statusButton, { backgroundColor: item.color }]}>
-                    <Text style={styles.status_text}>{item.status}</Text>
-                </Button>
+                <Text style={styles.service_type}>{item.serviceType}</Text>
+            </View>
+        </View>
+
+        {/**Compnay Name and Vehicle Number*/}
+        <View style={styles.text_container}>
+            <View style={styles.text_view}>
+                <Text style={styles.value_text}>{item.companyName}</Text>
+            </View>
+            <View style={styles.status_view}>
+                <Text style={styles.value_text}>{item.vehicleNumber}</Text>
             </View>
         </View>
 
@@ -59,6 +67,19 @@ const ScheduleEvent = ({ item }) => (
                 </View>
             </View>
         </View>
+
+        {/**Status Button*/}
+        <View style={styles.text_container}>
+            <View style={styles.text_view}>
+                <Button style={[styles.statusButton, { backgroundColor: item.color }]}>
+                    <Text style={styles.status_text}>{item.status}</Text>
+                </Button>
+            </View>
+            <View style={styles.status_view}>
+                <Entypo name='chevron-thin-right' color='gray' size={20} />
+            </View>
+        </View>
+
     </View>
 );
 
