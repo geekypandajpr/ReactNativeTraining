@@ -164,9 +164,7 @@ export default class Schedule extends React.Component {
 
     renderItem(item) {
         return (
-            <TouchableOpacity activeOpacity={0.3} onPress={() => { this.refs.modal.setModalVisible(true, item) }} >
-                <ScheduleEvent item={item} />
-            </TouchableOpacity>
+            <ScheduleEvent {...item} viewMore={() => { this.refs.modal.setModalVisible(true, item) }}/>
         );
     }
 
