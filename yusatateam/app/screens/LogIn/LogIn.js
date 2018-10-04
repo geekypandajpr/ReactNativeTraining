@@ -73,7 +73,7 @@ export default class LogIn extends React.Component {
                         <View style={styles.credentialContainer}>
                             <IconWithTextInput
                                 name='person'
-                                placeHolder='User Name'
+                                placeholder='User Name'
                                 value={this.state.username}
                                 returnKeyType={'next'}
                                 keyboardType={'email-address'}
@@ -83,7 +83,7 @@ export default class LogIn extends React.Component {
                             />
                             <IconWithTextInput
                                 name='lock'
-                                placeHolder='Password'
+                                placeholder='Password'
                                 getRef={(input) => { this.pswd = input; }}                              
                                 value={this.state.password}
                                 secureTextEntry={true}
