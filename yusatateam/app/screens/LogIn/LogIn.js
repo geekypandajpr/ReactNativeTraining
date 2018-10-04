@@ -105,7 +105,8 @@ export default class LogIn extends React.Component {
                             <View style={styles.buttonView}>
                                 <Button rounded
                                     style={styles.button}
-                                    onPress={this._logIn.bind(this)}>
+                                   // onPress={this._logIn.bind(this)}
+                                    onPress={() => navigate('HomeScreen')}>
                                     <View style={{ width: _width * 0.8 }}>
                                         <Text style={styles.buttonText}>
                                             LOGIN
