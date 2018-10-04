@@ -16,6 +16,7 @@ export default class IconWithTextInput extends React.Component {
                         keyboardType={this.props.keyboardTypes}
                         returnKeyType={this.props.returnKeyTypes}
                         getRef={this.props.getRef}
+                        blurOnSubmit={this.props.blurOnSubmit}
                         onChangeText={this.props.onChangeText}
                         secureTextEntry={this.props.secureTextEntry}
                         onSubmitEditing={this.props.onSubmitEditing}
