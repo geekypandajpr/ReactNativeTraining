@@ -86,7 +86,7 @@ export default class ListAccordingToStatus extends React.Component {
                                 <List>
                                     <ListItem avatar>
                                         <Body>
-                                            <TouchableOpacity onPress={() => this.props.navigation.navigate('DeviceSimItem')}>
+                                            <TouchableOpacity onPress={() => this.props.navigation.navigate('DeviceSimItem',{item})}>
                                                 <Text>{item.MSIDN}</Text>
                                                 <Text note>{item.status}</Text>
                                             </TouchableOpacity>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './Styles';
 import { Button } from 'native-base';
 import { Entypo, MaterialIcons } from '@expo/vector-icons';
@@ -76,8 +76,10 @@ const ScheduleEvent = ({ item }) => (
                 </Button>
             </View>
             <View style={styles.second_view}>
-                <Text style={styles.view_more}>view more</Text>
-                <Entypo name='chevron-thin-right' color='gray' size={20} />
+                <TouchableOpacity activeOpacity={0.2} onPress={this.props.viewMore} >
+                    <Text style={styles.view_more}>view more</Text>
+                    <Entypo name='chevron-thin-right' color='gray' size={20} />
+                </TouchableOpacity>
             </View>
         </View>
 
