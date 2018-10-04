@@ -4,9 +4,9 @@ import {
     FlatList,
     TouchableHighlight,
     Dimensions,
-    Button
+   
 }from 'react-native';
-import { Text, Card } from 'native-base';
+import { Text, Card,Button } from 'native-base';
 import styles from './styles';
 import { AppLoading } from 'expo';
 import { RoundedImage, Toolbar } from '../../components';
@@ -22,7 +22,7 @@ export default class Sim extends React.Component {
                     ORDER: 'EVKGLI',
                     ICCID: 'ICCID1',
                     MSIDN: 'MSIDN1',
-                    Provider: 'IDEA',
+                    Provider: 'Idea',
                     Mobile: '09085-53379',
                     status: 'Activate'
                 },
@@ -30,7 +30,7 @@ export default class Sim extends React.Component {
                     ORDER: 'JSCKBK',
                     ICCID: 'ICCID2',
                     MSIDN: 'MSIDN2',
-                    Provider: 'AIRTEL',
+                    Provider: 'Aircel',
                     Mobile: '09085-45090',
                     status: 'Deactivate'
                 },
@@ -38,7 +38,7 @@ export default class Sim extends React.Component {
                     ORDER: 'UYGEYUJA',
                     ICCID: 'ICCID3',
                     MSIDN: 'MSIDN3',
-                    Provider: 'AIRCEL',
+                    Provider: 'Airtel',
                     Mobile: '09085-65879',
                     status: 'Activate'
                 },
@@ -46,7 +46,7 @@ export default class Sim extends React.Component {
                     ORDER: 'HAVCMSV',
                     ICCID: 'ICCID4',
                     MSIDN: 'MSIDN4',
-                    Provider: 'IDEA',
+                    Provider: 'Idea',
                     Mobile: '09085-53379',
                     status: 'Deactivate'
                 },
@@ -54,7 +54,7 @@ export default class Sim extends React.Component {
                     ORDER: 'HAVCMSV',
                     ICCID: 'ICCID4',
                     MSIDN: 'MSIDN4',
-                    Provider: 'IDEA',
+                    Provider: 'Idea',
                     Mobile: '09085-53379',
                     status: 'Deactivate'
                 },
@@ -62,7 +62,7 @@ export default class Sim extends React.Component {
                     ORDER: 'UYGEYUJA',
                     ICCID: 'ICCID3',
                     MSIDN: 'MSIDN3',
-                    Provider: 'AIRCEL',
+                    Provider: 'Aircel',
                     Mobile: '09085-65879',
                     status: 'Activate'
                 },
@@ -70,7 +70,7 @@ export default class Sim extends React.Component {
                     ORDER: 'HAVCMSV',
                     ICCID: 'ICCID4',
                     MSIDN: 'MSIDN4',
-                    Provider: 'IDEA',
+                    Provider: 'Idea',
                     Mobile: '09085-53379',
                     status: 'Deactivate'
                 },
@@ -79,14 +79,30 @@ export default class Sim extends React.Component {
                     ORDER: 'HAVCMSV',
                     ICCID: 'ICCID4',
                     MSIDN: 'MSIDN4',
-                    Provider: 'IDEA',
+                    Provider: 'Docomo',
                     Mobile: '09085-53379',
                     status: 'Activate'
-                }
-            ]
+                },
+
+                {
+                    ORDER: 'UYGEYUJA',
+                    ICCID: 'ICCID3',
+                    MSIDN: 'MSIDN3',
+                    Provider: 'Aircel',
+                    Mobile: '09085-65879',
+                    status: 'Activate'
+                },
+                {
+                    ORDER: 'HAVCMSV',
+                    ICCID: 'ICCID4',
+                    MSIDN: 'MSIDN4',
+                    Provider: 'Idea',
+                    Mobile: '09085-53379',
+                    status: 'Deactivate'
+                },
+           ]
 
         }
-
     }
 
     async componentWillMount() {
@@ -100,13 +116,17 @@ export default class Sim extends React.Component {
 
 
     render() {
+        const { navigate }=this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Toolbar
-                        title="Sim" leftIcon='arrow-left' leftIconType='Feather'
-                    ></Toolbar>
-                    <View style={styles.viewStyle}>
+                    
+                        <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' 
+                        onLeftButtonPress={() => navigate('HomeScreen')}
+                        rightIcon='settings'
+                        rightIconType='MaterialCommunityIcons'/>
+                    
+                   <View style={styles.viewStyle}>
                         <FlatList
                             data={this.state.data}
                             keyExtractor={(item, index) => item.toString()}
@@ -117,13 +137,13 @@ export default class Sim extends React.Component {
                                         <TouchableHighlight
                                             style={{
                                                 borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
-                                                width: Dimensions.get('window').width * 0.12,
-                                                height: Dimensions.get('window').width * 0.12,
+                                                width: Dimensions.get('window').width * 0.10,
+                                                height: Dimensions.get('window').width * 0.10,
                                                 backgroundColor: '#1f667e',
                                                 justifyContent: 'center',
                                                 alignItems: 'center',
                                                 marginTop: 8,
-                                                marginLeft: 7
+                                                marginLeft: 8
                                             }}
                                         >
                                             <Text style={styles.indexText}>{index + 1}</Text>
@@ -138,12 +158,9 @@ export default class Sim extends React.Component {
                                                     {item.ORDER}
                                                 </Text>
                                             </View>
-                                            <View style={styles.buttonView} >
-                                                <Button
-                                                    title={`${item.status}`}
-                                                    onPress={alert}
-                                                    color='#1f667e'
-                                                >
+                                            <View style={styles.status_view}>
+                                                <Button style={styles.statusButton}>
+                                                    <Text style={styles.status_text}>{item.status}</Text>
                                                 </Button>
                                             </View>
                                         </View>
@@ -172,8 +189,9 @@ export default class Sim extends React.Component {
 
                                 </Card>
                             }></FlatList>
+
                     </View>
-                </View>
+                    </View>
 
 
         );
