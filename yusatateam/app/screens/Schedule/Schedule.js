@@ -3,18 +3,14 @@ import {
     Text,
     View,
     TouchableOpacity,
-    Modal,
     BackHandler,
-    TextInput,
-    Picker,
-    ScrollView
 } from 'react-native';
-import { Button } from 'native-base';
 import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
 import moment from 'moment';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import CompleteSchedule from './CompleteSchedule';
 
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
@@ -102,7 +98,7 @@ export default class Schedule extends React.Component {
                         textDayHeaderFontSize: 14
                     }}
                 />
-                <MyModal ref='modal' />
+                <CompleteSchedule ref='modal' />
             </View>
         );
     }
@@ -146,7 +142,7 @@ export default class Schedule extends React.Component {
 
     renderItem(item) {
         return (
-            <TouchableOpacity activeOpacity={0.5} onPress={() => { this.refs.modal.setModalVisible(true) }} >
+            <TouchableOpacity activeOpacity={0.3} onPress={() => { this.refs.modal.setModalVisible(true) }} >
                 <ScheduleEvent item={item} />
             </TouchableOpacity>
         );
@@ -169,122 +165,3 @@ export default class Schedule extends React.Component {
 }
 
 export { Schedule }
-
-class MyModal extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            modalVisible: false
-        }
-    }
-
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
-
-    render() {
-        return (
-            <View style={{ marginTop: 22 }}>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
-                    <View style={styles.modal_container}>
-                        <View style={styles.modal_child_container}>
-                            <ScrollView showsVerticalScrollIndicator={false}>
-                                <View style={styles.upper_view}>
-
-                                    {/**Header View*/}
-                                    <View style={styles.header_view}>
-                                        <View style={styles.service_num}>
-                                            <Text style={styles.header_text}>SERVE001AA</Text>
-                                        </View>
-                                        <View style={styles.status_picker}>
-                                            <Picker
-                                                //selectedValue={this.state.language}
-                                                style={styles.picker}
-                                                onValueChange={(itemValue, itemIndex) => this.setState({ status: itemValue })}>
-                                                <Picker.Item label="Entered" value="Entered" />
-                                                <Picker.Item label="Accepted" value="Accepted" />
-                                                <Picker.Item label="Onjob" value="Onjob" />
-                                                <Picker.Item label="Completed" value="DevCompletedice4" />
-                                            </Picker>
-                                        </View>
-                                    </View>
-
-                                    {/** Sim Picker View*/}
-                                    <View style={styles.picker_view}>
-                                        <Picker
-                                            //selectedValue={this.state.language}
-                                            style={styles.picker}
-                                            onValueChange={(itemValue, itemIndex) => this.setState({ vehicle: itemValue })}>
-                                            <Picker.Item label="Vehicle1" value="Vehicle1" />
-                                            <Picker.Item label="Vehicle2" value="Vehicle2" />
-                                            <Picker.Item label="Vehicle3" value="Vehicle3" />
-                                            <Picker.Item label="Vehicle4" value="Vehicle4" />
-                                        </Picker>
-                                    </View>
-
-
-                                    {/** Device Picker View*/}
-                                    <View style={styles.picker_view}>
-                                        <Picker
-                                            //selectedValue={this.state.language}
-                                            style={styles.picker}
-                                            onValueChange={(itemValue, itemIndex) => this.setState({ device: itemValue })}>
-                                            <Picker.Item label="Device1" value="Device1" />
-                                            <Picker.Item label="Device2" value="Device2" />
-                                            <Picker.Item label="Device3" value="Device3" />
-                                            <Picker.Item label="Device4" value="Device4" />
-                                        </Picker>
-                                    </View>
-
-                                    {/** Sim Picker View*/}
-                                    <View style={styles.picker_view}>
-                                        <Picker
-                                            //selectedValue={this.state.language}
-                                            style={styles.picker}
-                                            onValueChange={(itemValue, itemIndex) => this.setState({ sim: itemValue })}>
-                                            <Picker.Item label="Sim1" value="Sim1" />
-                                            <Picker.Item label="Sim2" value="Sim2" />
-                                            <Picker.Item label="Sim3" value="Sim3" />
-                                            <Picker.Item label="Sim4" value="Sim4" />
-                                        </Picker>
-                                    </View>
-
-                                    {/**Comment box*/}
-                                    <View style={styles.comment_text_view}>
-                                        <Text style={styles.comment_text}>Comment</Text>
-                                    </View>
-                                    <View style={styles.comment_box}>
-                                        <View style={styles.text_input_view}>
-                                            <TextInput
-                                                placeholder='Write comment here...'
-                                                multiline={true}
-                                                underlineColorAndroid='transparent'
-                                                style={styles.text_input}
-                                                onChangeText={(text) => this.setState({ text })}
-                                                value={this.state.text}
-                                            />
-                                        </View>
-                                    </View>
-                                </View>
-
-                                {/**Button View*/}
-                                <View style={styles.lower_view}>
-                                    <View style={styles.button_view}>
-                                        <Button style={styles.submit_button}>
-                                            <Text style={styles.button_text}>Submit</Text>
-                                        </Button>
-                                    </View>
-                                </View>
-
-                            </ScrollView>
-                        </View>
-                    </View>
-                </Modal>
-            </View>
-        );
-    }
-}

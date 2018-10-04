@@ -15,15 +15,15 @@ export default EStyleSheet.create({
     },
     simContainer: {
         flex: 2,
-        marginLeft: 5,
-        marginTop: 5,
-        marginRight: 5
+        marginLeft: 8,
+        marginTop: 8,
+        marginRight: 8
 
     },
     deviceContainer: {
         flex: 2,
-        marginRight: 5,
-        marginTop: 5
+        marginRight: 8,
+        marginTop: 8
 
     },
     secondContainer: {
@@ -33,15 +33,15 @@ export default EStyleSheet.create({
     },
     jobContainer: {
         flex: 2,
-        marginLeft: 5,
-        marginTop: 5,
-        marginRight: 5
+        marginLeft: 8,
+        marginTop: 8,
+        marginRight: 8
 
     },
     scheduleContainer: {
         flex: 2,
-        marginRight: 5,
-        marginTop: 5
+        marginRight: 8,
+        marginTop: 8
     },
     thirdContainer: {
         flex: 1,
@@ -50,10 +50,10 @@ export default EStyleSheet.create({
     },
     associationContainer: {
         flex: 1,
-        marginRight: 5,
-        marginLeft: 5,
-        marginTop: 5,
-        marginBottom: 5
+        marginRight: 8,
+        marginLeft: 8,
+        marginTop: 8,
+        marginBottom: 8
     },
 })
 

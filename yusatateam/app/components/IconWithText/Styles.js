@@ -6,7 +6,7 @@ export default EStyleSheet.create({
     },
     mainContainer: {
         alignItems: "center",
-        borderRadius: 5,
+        borderRadius: 15,
 
     },
     iconContainer: {
@@ -19,7 +19,7 @@ export default EStyleSheet.create({
         justifyContent: "center",
         color: "white",
         textAlign: "center",
-        fontSize: '1rem',
+        fontSize: '1.5rem',
         marginTop: 10
     },
 });
