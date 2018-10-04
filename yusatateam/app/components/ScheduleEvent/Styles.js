@@ -28,7 +28,7 @@ export default EStyleSheet.create({
     label_text: {
         fontSize: '1rem',
         fontWeight: 'bold',
-        color: '$primaryColor'
+        color: '#000'
     },
     value_text: {
         fontSize: '0.8rem',

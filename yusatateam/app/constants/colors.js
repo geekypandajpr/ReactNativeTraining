@@ -19,6 +19,14 @@ const colors = {
         MONTH_TEXT_COLOR : '#2d4150',
         TEXT_DISABLED_COLOR : '#d9e1e8',
         ARROW_COLOR : 'orange',
+    },
+    SERVICE_STATUS_COLOR: {
+        ENTERED : '#0272A6',
+        ACCEPTED : '#01608C',
+        ON_JOB : '#014666',
+        COMPLETED : '#00344D',
+        RESCHEDULED : '#012333',
+        CANCELLED : '#A63719',
     }
 }
 export default colors;

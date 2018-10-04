@@ -107,7 +107,7 @@ export default class Schedule extends React.Component {
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE001AA',
                         'status': 'Entered',
-                        'color': '#1766A6',
+                        'color': colors.SERVICE_STATUS_COLOR.ENTERED,
                         'vehicleNumber': 'JP01-1522',
                         'device': 'DL125A',
                         'sim': '+91-7856801255',
@@ -117,7 +117,7 @@ export default class Schedule extends React.Component {
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE002AB',
                         'status': 'Completed',
-                        'color': '#47A64A',
+                        'color': colors.SERVICE_STATUS_COLOR.COMPLETED,
                         'vehicleNumber': 'JP 01-4575',
                         'device': 'Atlanta',
                         'sim': '+91-6425500563',
