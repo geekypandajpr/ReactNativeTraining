@@ -40,7 +40,7 @@ export default class Toolbar extends React.Component {
                             <Icon name={this.props.leftIcon} type={this.props.leftIconType} style={styles.icon} />
                         </Button>
                     </Left>
-                    <Body>
+                    <Body style={{alignItems:'center',justifyContent:'center'}}>
                         <Title style={styles.title}>
                             {this.props.title}
                         </Title>
