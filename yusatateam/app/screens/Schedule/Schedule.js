@@ -9,8 +9,8 @@ import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
 import moment from 'moment';
-import EStyleSheet from 'react-native-extended-stylesheet';
 import CompleteSchedule from './CompleteSchedule';
+import colors from '../../constants/colors';
 
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
@@ -68,30 +68,24 @@ export default class Schedule extends React.Component {
                                 width: 30,
                                 textAlign: 'center',
                                 fontSize: 14,
-                                color: '#2d4150',
+                                color: colors.CALENDARS.DAY_HEADER_COLOR,
                             },
                             todayText: {
                                 fontSize: 18,
-                                color: 'red',
+                                color: colors.CALENDARS.TODAY_TEXT_COLOR,
                                 marginTop: 0,
                             },
                         },
-                        backgroundColor: '#00000010',
-                        //calendarBackground: '#46A891',
-                        calendarBackground: '#FFFFFF',
-                        //agendaKnobColor: '#F96700',
-                        agendaKnobColor: EStyleSheet.value('$primaryColor'),
-                        textSectionTitleColor: '#000',
-                        //selectedDayBackgroundColor: '#F96700',
-                        selectedDayBackgroundColor: EStyleSheet.value('$primaryColor'),
-                        selectedDayTextColor: '#fff',
-                        //textDisabledColor: '#000',
-                        todayTextColor: 'red',
-                        //dayTextColor: '#2d4150',
-                        dayTextColor: '#2d4150',
-                        monthTextColor: '#2d4150',
-                        textDisabledColor: '#d9e1e8',
-                        arrowColor: 'orange',
+                        backgroundColor: colors.CALENDARS.BACKGROUND_COLOR,
+                        calendarBackground: colors.CALENDARS.CALENDAR_BACKGROUND_COLOR,
+                        agendaKnobColor: colors.CALENDARS.AGENDA_KNOB_COLOR,
+                        textSectionTitleColor: colors.CALENDARS.TEXT_SECTION_TITLE_COLOR,
+                        selectedDayBackgroundColor: colors.CALENDARS.SELECTED_DAY_BACKGROUND_COLOR,
+                        selectedDayTextColor: colors.CALENDARS.SELECTED_DAY_TEXT_COLOR,
+                        dayTextColor: colors.CALENDARS.DAY_TEXT_COLOR,
+                        monthTextColor: colors.CALENDARS.MONTH_TEXT_COLOR,
+                        textDisabledColor: colors.CALENDARS.TEXT_DISABLED_COLOR,
+                        arrowColor: colors.CALENDARS.ARROW_COLOR,
                         textMonthFontWeight: 'bold',
                         textDayFontSize: 12,
                         textMonthFontSize: 15,
@@ -113,7 +107,7 @@ export default class Schedule extends React.Component {
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE001AA',
                         'status': 'Entered',
-                        'color': '#1766A6',
+                        'color': colors.SERVICE_STATUS_COLOR.ENTERED,
                         'vehicleNumber': 'JP01-1522',
                         'device': 'DL125A',
                         'sim': '+91-7856801255',
@@ -123,7 +117,7 @@ export default class Schedule extends React.Component {
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE002AB',
                         'status': 'Completed',
-                        'color': '#47A64A',
+                        'color': colors.SERVICE_STATUS_COLOR.COMPLETED,
                         'vehicleNumber': 'JP 01-4575',
                         'device': 'Atlanta',
                         'sim': '+91-6425500563',
@@ -142,7 +136,7 @@ export default class Schedule extends React.Component {
 
     renderItem(item) {
         return (
-            <TouchableOpacity activeOpacity={0.3} onPress={() => { this.refs.modal.setModalVisible(true) }} >
+            <TouchableOpacity activeOpacity={0.3} onPress={() => { this.refs.modal.setModalVisible(true, item) }} >
                 <ScheduleEvent item={item} />
             </TouchableOpacity>
         );

@@ -9,12 +9,14 @@ import {
 } from 'react-native';
 import { Button } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default class CompleteSchedule extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             modalVisible: false,
+            item: {},
             vehicle: '',
             device: '',
             sim: '',
@@ -22,11 +24,12 @@ export default class CompleteSchedule extends React.Component {
         }
     }
 
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
+    setModalVisible(visible, item) {
+        this.setState({ modalVisible: visible, item: item });
     }
 
     render() {
+        const details = this.state.item;
         return (
             <View>
                 <Modal
@@ -36,7 +39,13 @@ export default class CompleteSchedule extends React.Component {
                     onRequestClose={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
                     <View style={styles.modal_container}>
                         <View style={styles.header_view}>
-                            <Text style={styles.header_text}>SERVE001AA</Text>
+                            <View style={styles.service_num}>
+                                <Text style={styles.header_text}>{details.serviceNumber}</Text>
+                            </View>
+                            <View style={styles.schedule_view}>
+                                <MaterialIcons name='schedule' size={20} color='#1766A6' />
+                                <Text style={styles.job_text}>{details.jobDate}</Text>
+                            </View>
                         </View>
                         <View style={styles.modal_child_container}>
                             <ScrollView showsVerticalScrollIndicator={false}>
@@ -149,20 +158,33 @@ const styles = EStyleSheet.create({
         paddingRight: 15
     },
     header_view: {
-        width:'100%',
-        height:50,
-        backgroundColor: '#1f667e',
+        width: '100%',
+        height: 50,
+        backgroundColor: '#EEEEF0',
         justifyContent: 'center',
-        elevation: 1,
+        elevation: 5,
+        flexDirection: 'row'
     },
     header_text: {
-        color: '#fff',
+        color: '#000',
         fontSize: '1rem',
         fontWeight: 'bold',
         margin: 15
     },
+    job_text: {
+        color: '#000',
+        fontSize: '0.8rem',
+        marginRight: 10
+    },
     service_num: {
-        flex: 1
+        flex: 1,
+        justifyContent: 'center'
+    },
+    schedule_view :{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
     },
     status_picker: {
         flex: 1,
