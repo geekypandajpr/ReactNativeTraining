@@ -29,12 +29,27 @@ export default class Jobs extends React.Component {
         this.refs.modal.changeTabStatus(this.status[i])
 
     };
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        return true;
+    }
 
     render() {
+        const { navigate }=this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View style={{flex:1}}>
-             <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather' />
+              <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather'
+                    onLeftButtonPress={() => navigate('HomeScreen')}
+                    rightIcon='settings'
+                    rightIconType='MaterialCommunityIcons' />
                 <Tabs onChangeTab={({ i, ref, from })=> this.getStatus(i,ref,from)} renderTabBar={() => <ScrollableTab />}>
                     <Tab heading="Entered">
                         <ListAccordingToStatus ref = "modal"/>

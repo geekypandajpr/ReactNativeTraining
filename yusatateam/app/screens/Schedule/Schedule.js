@@ -106,9 +106,11 @@ export default class Schedule extends React.Component {
                     this.state.items[strTime] = [];
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE001AA',
+                        'serviceType' : 'Install',
+                        'companyName' : 'Yusata Infotech Private Limited',
+                        'vehicleNumber': 'JP01-1522',
                         'status': 'Entered',
                         'color': colors.SERVICE_STATUS_COLOR.ENTERED,
-                        'vehicleNumber': 'JP01-1522',
                         'device': 'DL125A',
                         'sim': '+91-7856801255',
                         'jobDate': '05 November 2018 14:50',
@@ -116,13 +118,39 @@ export default class Schedule extends React.Component {
                     });
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE002AB',
+                        'serviceType' : 'Uninstall',
+                        'companyName' : 'Yusata Infotech Private Limited',
+                        'vehicleNumber': 'JP14-4555',
+                        'status': 'Accepted',
+                        'color': colors.SERVICE_STATUS_COLOR.ACCEPTED,
+                        'device': 'Atlanta',
+                        'sim': '+91-7845880012',
+                        'jobDate': '28 October 2018, 12:00',
+                        'location': '81/49 sector 8 pratp nagar'
+                    });
+                    this.state.items[strTime].push({
+                        'serviceNumber': 'SERVE003AC',
+                        'serviceType' : 'Replace',
+                        'companyName' : 'Yusata Infotech Private Limited',
+                        'vehicleNumber' : 'vehicle12',
+                        'status': 'Onjob',
+                        'color': colors.SERVICE_STATUS_COLOR.ON_JOB,
+                        'device': 'DEV7457866',
+                        'sim': '+91-9080706556',
+                        'jobDate': '05 November 2018, 11:12',
+                        'location': '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033'
+                    });
+                    this.state.items[strTime].push({
+                        'serviceNumber': 'SERVE004AD',
+                        'serviceType' : 'Repair',
+                        'companyName' : 'Yusata Infotech Private Limited',
+                        'vehicleNumber': 'JH52-14A5',
                         'status': 'Completed',
                         'color': colors.SERVICE_STATUS_COLOR.COMPLETED,
-                        'vehicleNumber': 'JP 01-4575',
-                        'device': 'Atlanta',
-                        'sim': '+91-6425500563',
-                        'jobDate': '25 October 2018, 14:50',
-                        'location': '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033'
+                        'device': 'DEVICE14588ESE',
+                        'sim': '+91-1201245636',
+                        'jobDate': '10 December 2018, 05:00',
+                        'location': '84/122 sector 8, pratap nagar'
                     });
                 }
             }

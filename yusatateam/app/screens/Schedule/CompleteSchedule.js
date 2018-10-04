@@ -7,7 +7,7 @@ import {
     Picker,
     ScrollView
 } from 'react-native';
-import { Button } from 'native-base';
+import { Button, CheckBox, Body } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -51,7 +51,7 @@ export default class CompleteSchedule extends React.Component {
                             <ScrollView showsVerticalScrollIndicator={false}>
                                 <View style={styles.upper_view}>
 
-                                    {/**Header View*/}
+                                    {/**Status View*/}
                                     <View style={styles.picker_view}>
                                         <Picker
                                             selectedValue={this.state.status}
@@ -141,6 +141,7 @@ export default class CompleteSchedule extends React.Component {
 }
 
 const styles = EStyleSheet.create({
+    '$fontFamily' : 'normal',
     modal_container: {
         flex: 1,
         justifyContent: 'flex-end',
@@ -157,6 +158,9 @@ const styles = EStyleSheet.create({
         paddingLeft: 15,
         paddingRight: 15
     },
+    checkbox_view: {
+        flexDirection: 'column'
+    },
     header_view: {
         width: '100%',
         height: 50,
@@ -166,12 +170,14 @@ const styles = EStyleSheet.create({
         flexDirection: 'row'
     },
     header_text: {
+        fontFamily: '$fontFamily',
         color: '#000',
         fontSize: '1rem',
         fontWeight: 'bold',
         margin: 15
     },
     job_text: {
+        fontFamily: '$fontFamily',
         color: '#000',
         fontSize: '0.8rem',
         marginRight: 10
@@ -205,6 +211,7 @@ const styles = EStyleSheet.create({
         justifyContent: 'flex-start',
     },
     comment_text: {
+        fontFamily: '$fontFamily',
         color: '#000',
         fontSize: '1rem'
     },
@@ -242,6 +249,7 @@ const styles = EStyleSheet.create({
         alignItems: 'center'
     },
     button_text: {
+        fontFamily: '$fontFamily',
         color: '#fff'
     },
     picker_view: {

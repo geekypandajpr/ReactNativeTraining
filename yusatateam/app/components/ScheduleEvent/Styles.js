@@ -1,5 +1,6 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
+    '$fontFamily': 'normal',
     text_container: {
         flexDirection: 'row',
         flex: 1
@@ -23,16 +24,25 @@ export default EStyleSheet.create({
         borderRadius: 5
     },
     status_text:{
-        color: '#fff'
+        color: '#fff',
+        fontFamily: '$fontFamily',
     },
     label_text: {
+        fontFamily: '$fontFamily',
         fontSize: '1rem',
         fontWeight: 'bold',
         color: '#000'
     },
     value_text: {
+        fontFamily: '$fontFamily',
         fontSize: '0.8rem',
         color: '#000'
+    },
+    service_type: {
+        fontFamily: '$fontFamily',
+        fontSize: '0.8rem',
+        fontWeight: 'bold',
+        color: '#1766A6'
     },
     event_date_view: {
         backgroundColor: '#ffffff',
