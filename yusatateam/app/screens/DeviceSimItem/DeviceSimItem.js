@@ -24,12 +24,17 @@ export default class DeviceSimItem extends React.Component {
     };
 
     render() {
+        const { navigate }=this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
+            <Toolbar title='Device & Sim' leftIcon='arrow-left' leftIconType='Feather'
+                    onLeftButtonPress={() => navigate('VehicleList')}
+                    rightIcon='settings'
+                    rightIconType='MaterialCommunityIcons' />
                  <View style={styles.ButtonView}>
                         <Button block success style={styles.button}>
-                                 <Text>{ this.state.vehicle}</Text>  
+                                 <Text>{this.props.navigation.state.params.item.MSIDN}</Text>  
                         </Button>
                         
                    </View>

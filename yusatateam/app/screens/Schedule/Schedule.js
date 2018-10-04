@@ -1,10 +1,16 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal,BackHandler } from 'react-native';
+import {
+    Text,
+    View,
+    TouchableOpacity,
+    BackHandler,
+} from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
 import moment from 'moment';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import CompleteSchedule from './CompleteSchedule';
+import colors from '../../constants/colors';
 
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
@@ -20,15 +26,15 @@ export default class Schedule extends React.Component {
             items: {}
         };
     }
-    componentDidMount() {        
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);       
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    handleBackPress=()=>{
+    handleBackPress = () => {
         return true;
     }
 
@@ -36,10 +42,10 @@ export default class Schedule extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Toolbar title='Schedule' leftIcon='arrow-left' leftIconType='Feather' 
-                onLeftButtonPress={() => navigate('HomeScreen')}
-                rightIcon='settings'
-                rightIconType='MaterialCommunityIcons'/>
+                <Toolbar title='Schedule' leftIcon='arrow-left' leftIconType='Feather'
+                    onLeftButtonPress={() => navigate('HomeScreen')}
+                    rightIcon='settings'
+                    rightIconType='MaterialCommunityIcons' />
                 <Agenda
                     items={this.state.items}
                     loadItemsForMonth={(month) => this.loadItems(month)}
@@ -62,37 +68,31 @@ export default class Schedule extends React.Component {
                                 width: 30,
                                 textAlign: 'center',
                                 fontSize: 14,
-                                color: '#2d4150',
+                                color: colors.CALENDARS.DAY_HEADER_COLOR,
                             },
                             todayText: {
                                 fontSize: 18,
-                                color: 'red',
+                                color: colors.CALENDARS.TODAY_TEXT_COLOR,
                                 marginTop: 0,
                             },
                         },
-                        backgroundColor: '#00000010',
-                        //calendarBackground: '#46A891',
-                        calendarBackground: '#FFFFFF',
-                        //agendaKnobColor: '#F96700',
-                        agendaKnobColor: EStyleSheet.value('$primaryColor'),
-                        textSectionTitleColor: '#000',
-                        //selectedDayBackgroundColor: '#F96700',
-                        selectedDayBackgroundColor: EStyleSheet.value('$primaryColor'),
-                        selectedDayTextColor: '#fff',
-                        //textDisabledColor: '#000',
-                        todayTextColor: 'red',
-                        //dayTextColor: '#2d4150',
-                        dayTextColor: '#2d4150',
-                        monthTextColor: '#2d4150',
-                        textDisabledColor: '#d9e1e8',
-                        arrowColor: 'orange',
+                        backgroundColor: colors.CALENDARS.BACKGROUND_COLOR,
+                        calendarBackground: colors.CALENDARS.CALENDAR_BACKGROUND_COLOR,
+                        agendaKnobColor: colors.CALENDARS.AGENDA_KNOB_COLOR,
+                        textSectionTitleColor: colors.CALENDARS.TEXT_SECTION_TITLE_COLOR,
+                        selectedDayBackgroundColor: colors.CALENDARS.SELECTED_DAY_BACKGROUND_COLOR,
+                        selectedDayTextColor: colors.CALENDARS.SELECTED_DAY_TEXT_COLOR,
+                        dayTextColor: colors.CALENDARS.DAY_TEXT_COLOR,
+                        monthTextColor: colors.CALENDARS.MONTH_TEXT_COLOR,
+                        textDisabledColor: colors.CALENDARS.TEXT_DISABLED_COLOR,
+                        arrowColor: colors.CALENDARS.ARROW_COLOR,
                         textMonthFontWeight: 'bold',
                         textDayFontSize: 12,
                         textMonthFontSize: 15,
                         textDayHeaderFontSize: 14
-                }}
+                    }}
                 />
-                <MyModal ref='modal'/>
+                <CompleteSchedule ref='modal' />
             </View>
         );
     }
@@ -105,24 +105,52 @@ export default class Schedule extends React.Component {
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
                     this.state.items[strTime].push({
-                        'serviceNumber' : 'SERVE001AA',
+                        'serviceNumber': 'SERVE001AA',
+                        'serviceType' : 'Install',
+                        'companyName' : 'Yusata Infotech Private Limited',
+                        'vehicleNumber': 'JP01-1522',
                         'status': 'Entered',
-                        'color': '#1766A6',
-                        'vehicleNumber' : 'JP01-1522',
-                        'device' : 'DL125A',
-                        'sim' : '+91-7856801255',
-                        'jobDate' : '05 November 2018 14:50',
-                        'location' : '84/122 sector 8, pratap nagar, Jaipur'
+                        'color': colors.SERVICE_STATUS_COLOR.ENTERED,
+                        'device': 'DL125A',
+                        'sim': '+91-7856801255',
+                        'jobDate': '05 November 2018 14:50',
+                        'location': '84/122 sector 8, pratap nagar, Jaipur'
                     });
                     this.state.items[strTime].push({
-                        'serviceNumber' : 'SERVE002AB',
+                        'serviceNumber': 'SERVE002AB',
+                        'serviceType' : 'Uninstall',
+                        'companyName' : 'Yusata Infotech Private Limited',
+                        'vehicleNumber': 'JP14-4555',
+                        'status': 'Accepted',
+                        'color': colors.SERVICE_STATUS_COLOR.ACCEPTED,
+                        'device': 'Atlanta',
+                        'sim': '+91-7845880012',
+                        'jobDate': '28 October 2018, 12:00',
+                        'location': '81/49 sector 8 pratp nagar'
+                    });
+                    this.state.items[strTime].push({
+                        'serviceNumber': 'SERVE003AC',
+                        'serviceType' : 'Replace',
+                        'companyName' : 'Yusata Infotech Private Limited',
+                        'vehicleNumber' : 'vehicle12',
+                        'status': 'Onjob',
+                        'color': colors.SERVICE_STATUS_COLOR.ON_JOB,
+                        'device': 'DEV7457866',
+                        'sim': '+91-9080706556',
+                        'jobDate': '05 November 2018, 11:12',
+                        'location': '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033'
+                    });
+                    this.state.items[strTime].push({
+                        'serviceNumber': 'SERVE004AD',
+                        'serviceType' : 'Repair',
+                        'companyName' : 'Yusata Infotech Private Limited',
+                        'vehicleNumber': 'JH52-14A5',
                         'status': 'Completed',
-                        'color': '#47A64A',
-                        'vehicleNumber' : 'JP 01-4575',
-                        'device' : 'Atlanta',
-                        'sim' : '+91-6425500563',
-                        'jobDate' : '25 October 2018, 14:50',
-                        'location' : '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033'
+                        'color': colors.SERVICE_STATUS_COLOR.COMPLETED,
+                        'device': 'DEVICE14588ESE',
+                        'sim': '+91-1201245636',
+                        'jobDate': '10 December 2018, 05:00',
+                        'location': '84/122 sector 8, pratap nagar'
                     });
                 }
             }
@@ -136,8 +164,8 @@ export default class Schedule extends React.Component {
 
     renderItem(item) {
         return (
-            <TouchableOpacity activeOpacity={0.5} onPress={() => {this.refs.modal.setModalVisible(true)}} >
-                <ScheduleEvent item={item}/>
+            <TouchableOpacity activeOpacity={0.3} onPress={() => { this.refs.modal.setModalVisible(true, item) }} >
+                <ScheduleEvent item={item} />
             </TouchableOpacity>
         );
     }
@@ -159,34 +187,3 @@ export default class Schedule extends React.Component {
 }
 
 export { Schedule }
-
-class MyModal extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            modalVisible: false
-        }
-    }
-
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
-
-    render() {
-        return (
-            <View style={{ marginTop: 22 }}>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => { this.setState({modalVisible: !this.state.modalVisible}) }}>
-                    <View style={styles.modal_container}>
-                        <View style={styles.modal_child_container}>
-                            <Text>HelloPrem</Text>
-                        </View>
-                    </View>
-                </Modal>
-            </View>
-        );
-    }
-}

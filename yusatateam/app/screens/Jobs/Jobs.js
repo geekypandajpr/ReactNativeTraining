@@ -6,7 +6,6 @@ import { DeviceSimItem } from '../DeviceSimItem/DeviceSimItem';
 import {ListAccordingToStatus} from './ListAccordingToStatus';
 import {Toolbar} from '../../components'
 import { AppLoading } from 'expo';
-import styles from './styles';
 export default class Jobs extends React.Component {
     constructor(props) {
         super(props)
@@ -14,7 +13,7 @@ export default class Jobs extends React.Component {
             isLoading: true,
             tabStatus : 'Activated'
         },
-        status = ['Activate','Deactivate','Activate','Deactivate','Activate','Deactivate']
+        this.status = ['Activate','Deactivate','Activate','Deactivate','Activate','Deactivate']
     }
 
     async componentWillMount() {
@@ -25,19 +24,33 @@ export default class Jobs extends React.Component {
         })
         this.setState({ isLoading: false })
     };
-    getStatus = (i,ref,from)=>{
-        //alert(status[i]);
-        //console.log(status[i]);
-        this.refs.modal.changeTabStatus(status[i])
+    getStatus(i,ref,from){
+        //console.log(i);
+        this.refs.modal.changeTabStatus(this.status[i])
 
     };
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        return true;
+    }
 
     render() {
+        const { navigate }=this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View style={{flex:1}}>
-             <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather' />
-                <Tabs style={styles.tabView} onChangeTab={({ i, ref, from })=> this.getStatus(i,ref,from)} renderTabBar={() => <ScrollableTab />}>
+              <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather'
+                    onLeftButtonPress={() => navigate('HomeScreen')}
+                    rightIcon='settings'
+                    rightIconType='MaterialCommunityIcons' />
+                <Tabs onChangeTab={({ i, ref, from })=> this.getStatus(i,ref,from)} renderTabBar={() => <ScrollableTab />}>
                     <Tab heading="Entered">
                         <ListAccordingToStatus ref = "modal"/>
                     </Tab>

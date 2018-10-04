@@ -22,9 +22,6 @@ export default EStyleSheet.create({
     },
     list : {
         flex :1
-    },
-    jobView : {
-        backgroundColor : 'grey'
     }
     
 })
