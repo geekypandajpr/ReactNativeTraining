@@ -5,23 +5,42 @@ export default EStyleSheet.create({
     {
         flex: 1,
         backgroundColor: '#D3D3D3',
-        
-       
-    },
-   
 
-    listcontainer:
+    },
+    viewStyle:
+    {
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 5
+    },
+
+    mainCard:
     {
         flex: 1,
-        backgroundColor: 'white',
+        flexDirection: 'row'
+    },
+
+    firstView:
+    {
+        flex: 1
+    },
+
+    secondViews:
+    {
+        flex: 4
+    },
+
+    firstRow:
+    {
+        flex: 1,
         flexDirection: 'row',
-        borderRadius: 5,
-        borderColor: 'white',
-        borderWidth: 2,
-        marginLeft: 4,
-        marginRight:4,
-        marginTop:2,
-        marginBottom:2
+        marginTop: 5
+    },
+
+    indexText:
+    {
+        color: '#FFF',
+        fontSize: 20
     },
 
     secondView:
@@ -30,17 +49,24 @@ export default EStyleSheet.create({
         flexDirection: 'row'
     },
 
-    secondHeads:
+    heading:
     {
-        fontWeight: 'bold',
-        fontSize: 15,
-        fontStyle: 'normal'
+        fontSize: 22,
+        color: "#1b1b18",
+        fontFamily: 'normal',
+        fontWeight: 'bold'
     },
 
-    secondAns:
+    buttonView:
     {
-        fontSize: 15,
-        fontStyle: 'normal'
+        height: 25,
+        width: 100,
+        paddingRight: 5,
+    },
+
+    providerStyle:
+    {
+        marginRight: 5
     }
 
 })

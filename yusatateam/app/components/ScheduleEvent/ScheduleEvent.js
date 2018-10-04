@@ -2,10 +2,12 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './Styles';
 import { Button } from 'native-base';
-import { Entypo } from '@expo/vector-icons';
+import { Entypo, MaterialIcons } from '@expo/vector-icons';
 
 const ScheduleEvent = ({ item }) => (
     <View style={styles.event_date_view}>
+
+        {/**Servcie Number and Status View*/}
         <View style={styles.text_container}>
             <View style={styles.text_view}>
                 <Text style={styles.label_text}>{item.serviceNumber}</Text>
@@ -16,11 +18,15 @@ const ScheduleEvent = ({ item }) => (
                 </Button>
             </View>
         </View>
+
+        {/**Device View*/}
         <View style={styles.text_container}>
             <View style={styles.text_view}>
                 <Text style={styles.value_text}>{item.device}</Text>
             </View>
         </View>
+
+        {/**Sim View*/}
         <View style={styles.text_container}>
             <View style={styles.text_view}>
                 <Text style={styles.value_text}>{item.sim}</Text>
@@ -29,11 +35,20 @@ const ScheduleEvent = ({ item }) => (
                 <Text style={styles.value_text}>Airtel</Text>
             </View>
         </View>
+
+        {/**Schedule Date and Time View*/}
         <View style={styles.text_container}>
             <View style={styles.text_view}>
-                <Text style={styles.value_text}>{item.jobDate}</Text>
+                <View style={styles.icon_view}>
+                    <MaterialIcons name='schedule' color='#1766A6' size={20} />
+                </View>
+                <View style={styles.text_view}>
+                    <Text style={styles.value_text}>{item.jobDate}</Text>
+                </View>
             </View>
         </View>
+
+        {/**Address view*/}
         <View style={styles.text_container}>
             <View style={styles.text_view}>
                 <View style={styles.icon_view}>
