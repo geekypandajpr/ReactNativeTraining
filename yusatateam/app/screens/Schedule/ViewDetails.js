@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { Button } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, Entypo } from '@expo/vector-icons';
 
 export default class ViewDetails extends React.Component {
     constructor(props) {
@@ -17,9 +17,6 @@ export default class ViewDetails extends React.Component {
         this.state = {
             modalVisible: false,
             item: {},
-            vehicle: '',
-            device: '',
-            sim: '',
             status: ''
         }
     }
@@ -38,6 +35,8 @@ export default class ViewDetails extends React.Component {
                     visible={this.state.modalVisible}
                     onRequestClose={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
                     <View style={styles.modal_container}>
+
+                        {/**Header View*/}
                         <View style={styles.header_view}>
                             <View style={styles.service_num}>
                                 <Text style={styles.header_text}>{details.serviceNumber}</Text>
@@ -47,88 +46,94 @@ export default class ViewDetails extends React.Component {
                                 <Text style={styles.job_text}>{details.jobDate}</Text>
                             </View>
                         </View>
+
+                        {/**Child View*/}
                         <View style={styles.modal_child_container}>
                             <ScrollView showsVerticalScrollIndicator={false}>
-                                <View style={styles.upper_view}>
 
-                                    {/**Status View*/}
-                                    <View style={styles.picker_view}>
-                                        <Picker
-                                            selectedValue={this.state.status}
-                                            style={styles.picker}
-                                            onValueChange={(itemValue, itemIndex) => this.setState({ status: itemValue })}>
-                                            <Picker.Item label="Entered" value="Entered" />
-                                            <Picker.Item label="Accepted" value="Accepted" />
-                                            <Picker.Item label="Onjob" value="Onjob" />
-                                            <Picker.Item label="Completed" value="Completed" />
-                                        </Picker>
+                                {/**Status and Service type View*/}
+                                <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <View style={styles.status_picker}>
+                                            <Picker
+                                                selectedValue={this.state.status}
+                                                style={styles.picker}
+                                                onValueChange={(itemValue, itemIndex) => this.setState({ status: itemValue })}>
+                                                <Picker.Item label="Entered" value="Entered" />
+                                                <Picker.Item label="Accepted" value="Accepted" />
+                                                <Picker.Item label="Onjob" value="Onjob" />
+                                                <Picker.Item label="Completed" value="Completed" />
+                                            </Picker>
+                                        </View>
                                     </View>
-
-                                    {/** Sim Picker View*/}
-                                    <View style={styles.picker_view}>
-                                        <Picker
-                                            selectedValue={this.state.vehicle}
-                                            style={styles.picker}
-                                            onValueChange={(itemValue, itemIndex) => this.setState({ vehicle: itemValue })}>
-                                            <Picker.Item label="Vehicle1" value="Vehicle1" />
-                                            <Picker.Item label="Vehicle2" value="Vehicle2" />
-                                            <Picker.Item label="Vehicle3" value="Vehicle3" />
-                                            <Picker.Item label="Vehicle4" value="Vehicle4" />
-                                        </Picker>
+                                    <View style={styles.second_view}>
+                                        <Text style={styles.service_type_text}>{details.serviceType}</Text>
                                     </View>
+                                </View>
 
-
-                                    {/** Device Picker View*/}
-                                    <View style={styles.picker_view}>
-                                        <Picker
-                                            selectedValue={this.state.device}
-                                            style={styles.picker}
-                                            onValueChange={(itemValue, itemIndex) => this.setState({ device: itemValue })}>
-                                            <Picker.Item label="Device1" value="Device1" />
-                                            <Picker.Item label="Device2" value="Device2" />
-                                            <Picker.Item label="Device3" value="Device3" />
-                                            <Picker.Item label="Device4" value="Device4" />
-                                        </Picker>
+                                {/**Company Name and Vehicle Name View*/}
+                                <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <Text style={styles.value_text}>{details.companyName}</Text>
                                     </View>
-
-                                    {/** Sim Picker View*/}
-                                    <View style={styles.picker_view}>
-                                        <Picker
-                                            selectedValue={this.state.sim}
-                                            style={styles.picker}
-                                            onValueChange={(itemValue, itemIndex) => this.setState({ sim: itemValue })}>
-                                            <Picker.Item label="Sim1" value="Sim1" />
-                                            <Picker.Item label="Sim2" value="Sim2" />
-                                            <Picker.Item label="Sim3" value="Sim3" />
-                                            <Picker.Item label="Sim4" value="Sim4" />
-                                        </Picker>
+                                    <View style={styles.second_view}>
+                                        <Text style={styles.value_text}>{details.vehicleNumber}</Text>
                                     </View>
+                                </View>
 
-                                    {/**Comment box*/}
-                                    <View style={styles.comment_text_view}>
-                                        <Text style={styles.comment_text}>Comment</Text>
+                                {/**Device View*/}
+                                <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <Text style={styles.value_text}>{details.device}</Text>
                                     </View>
-                                    <View style={styles.comment_box}>
-                                        <View style={styles.text_input_view}>
-                                            <TextInput
-                                                placeholder='Write comment here...'
-                                                multiline={true}
-                                                underlineColorAndroid='transparent'
-                                                style={styles.text_input}
-                                                onChangeText={(text) => this.setState({ text })}
-                                                value={this.state.text}
-                                            />
+                                    <View style={styles.second_view}>
+                                        <Text style={styles.view_more}>view device</Text>
+                                        <Entypo name='chevron-thin-right' color='gray' size={20} />
+                                    </View>
+                                </View>
+
+                                {/**Sim View*/}
+                                <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <Text style={styles.value_text}>{details.sim}</Text>
+                                    </View>
+                                    <View style={styles.second_view}>
+                                        <Text style={styles.view_more}>view sim</Text>
+                                        <Entypo name='chevron-thin-right' color='gray' size={20} />
+                                    </View>
+                                </View>
+
+                                {/**Technician View*/}
+                                <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <View style={styles.icon_view}>
+                                            <MaterialIcons name='person' size={24} color='#000' />
+                                        </View>
+                                        <View style={styles.icon_text_view}>
+                                            <Text style={styles.value_text}>{details.servicePerson}</Text>
+                                        </View>
+
+                                    </View>
+                                </View>
+
+                                {/**Location*/}
+                                <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <View style={styles.icon_view}>
+                                            <Entypo name='location-pin' color='red' size={24} />
+                                        </View>
+                                        <View style={styles.icon_text_view}>
+                                            <Text style={styles.value_text}>{details.location}</Text>
                                         </View>
                                     </View>
                                 </View>
 
-                                {/**Button View*/}
-                                <View style={styles.lower_view}>
-                                    <View style={styles.button_view}>
-                                        <Button style={styles.submit_button}>
-                                            <Text style={styles.button_text}>Submit</Text>
-                                        </Button>
-                                    </View>
+                                {/**Close Button*/}
+                                <View style={styles.button_view}>
+                                    <Button style={styles.submit_button}
+                                        onPress={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
+                                        <Text style={styles.button_text}>Close</Text>
+                                    </Button>
                                 </View>
 
                             </ScrollView>
@@ -141,7 +146,7 @@ export default class ViewDetails extends React.Component {
 }
 
 const styles = EStyleSheet.create({
-    '$fontFamily' : 'normal',
+    '$fontFamily': 'normal',
     modal_container: {
         flex: 1,
         justifyContent: 'flex-end',
@@ -152,14 +157,11 @@ const styles = EStyleSheet.create({
     modal_child_container: {
         backgroundColor: '#FFFFFF',
         bottom: 0,
-        height: '70%',
+        height: '60%',
         width: '100%',
         paddingTop: 15,
         paddingLeft: 15,
         paddingRight: 15
-    },
-    checkbox_view: {
-        flexDirection: 'column'
     },
     header_view: {
         width: '100%',
@@ -176,70 +178,38 @@ const styles = EStyleSheet.create({
         fontWeight: 'bold',
         margin: 15
     },
-    job_text: {
-        fontFamily: '$fontFamily',
-        color: '#000',
-        fontSize: '0.8rem',
-        marginRight: 10
-    },
     service_num: {
         flex: 1,
         justifyContent: 'center'
     },
-    schedule_view :{
+    job_text: {
+        fontFamily: '$fontFamily',
+        fontSize: '0.8rem',
+        fontWeight: 'bold',
+        color: '#000'
+    },
+    schedule_view: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row'
     },
+    picker: {
+        height: '100%',
+        width: '100%'
+    },
     status_picker: {
-        flex: 1,
         width: '100%',
-        height: 35,
+        height: 30,
         borderWidth: 1,
         borderColor: 'gray',
         borderRadius: 5,
-        marginTop: 4,
-        marginBottom: 4
-    },
-    upper_view: {
-        flex: 10,
-        //backgroundColor: 'red'
-    },
-    comment_text_view: {
-        width: '100%',
-        justifyContent: 'flex-start',
-    },
-    comment_text: {
-        fontFamily: '$fontFamily',
-        color: '#000',
-        fontSize: '1rem'
-    },
-    comment_box: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text_input_view: {
-        width: '100%',
-        height: 100,
-        borderWidth: 1,
-        borderColor: 'gray',
-        borderRadius: 5
-    },
-    text_input: {
-        width: '100%',
-        padding: 10
-    },
-    lower_view: {
         marginTop: 5,
-        marginBottom: 5,
-        flex: 2,
-        justifyContent: 'flex-end',
-        flexDirection: 'row',
-        //backgroundColor: 'green'
+        marginBottom: 5
     },
     button_view: {
-        justifyContent: 'center'
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
     },
     submit_button: {
         backgroundColor: '$primaryColor',
@@ -252,17 +222,47 @@ const styles = EStyleSheet.create({
         fontFamily: '$fontFamily',
         color: '#fff'
     },
-    picker_view: {
-        width: '100%',
-        height: 35,
-        borderWidth: 1,
-        borderColor: 'gray',
-        borderRadius: 5,
-        marginTop: 5,
-        marginBottom: 5
+    main_view: {
+        marginTop: 2,
+        marginBottom: 2,
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    picker: {
-        height: '100%',
-        width: '100%'
+    first_view: {
+        flexDirection: 'row',
+        flex: 1,
+        alignItems: 'center',
+        //flexWrap: 'wrap'
+    },
+    second_view: {
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    },
+    value_text: {
+        fontFamily: '$fontFamily',
+        color: '#000',
+        fontSize: '1rem',
+        flexWrap: 'wrap'
+    },
+    service_type_text: {
+        fontFamily: '$fontFamily',
+        fontSize: '1rem',
+        fontWeight: 'bold',
+        color: '#1766A6'
+    },
+    icon_view: {
+        flex: 0.1
+    },
+    icon_text_view: {
+        flex: 1
+    },
+    view_more: {
+        fontFamily: '$fontFamily',
+        fontSize: '0.8rem',
+        color: 'gray'
     }
 })

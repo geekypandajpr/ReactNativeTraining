@@ -113,8 +113,10 @@ export default class Schedule extends React.Component {
                         'color': colors.SERVICE_STATUS_COLOR.ENTERED,
                         'device': 'DL125A',
                         'sim': '+91-7856801255',
+                        'provider': 'Airtel',
                         'jobDate': '05 November 2018 14:50',
-                        'location': '84/122 sector 8, pratap nagar, Jaipur'
+                        'location': '84/122 sector 8, pratap nagar, Jaipur',
+                        'servicePerson' : 'Yash Gulati'
                     });
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE002AB',
@@ -125,8 +127,10 @@ export default class Schedule extends React.Component {
                         'color': colors.SERVICE_STATUS_COLOR.ACCEPTED,
                         'device': 'Atlanta',
                         'sim': '+91-7845880012',
+                        'provider': 'Airtel',
                         'jobDate': '28 October 2018, 12:00',
-                        'location': '81/49 sector 8 pratp nagar'
+                        'location': '81/49 sector 8 pratp nagar',
+                        'servicePerson' : 'Yash Gulati'
                     });
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE003AC',
@@ -137,8 +141,10 @@ export default class Schedule extends React.Component {
                         'color': colors.SERVICE_STATUS_COLOR.ON_JOB,
                         'device': 'DEV7457866',
                         'sim': '+91-9080706556',
+                        'provider': 'Airtel',
                         'jobDate': '05 November 2018, 11:12',
-                        'location': '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033'
+                        'location': '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033',
+                        'servicePerson' : 'Yash Gulati'
                     });
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE004AD',
@@ -149,8 +155,10 @@ export default class Schedule extends React.Component {
                         'color': colors.SERVICE_STATUS_COLOR.COMPLETED,
                         'device': 'DEVICE14588ESE',
                         'sim': '+91-1201245636',
+                        'provider': 'Airtel',
                         'jobDate': '10 December 2018, 05:00',
-                        'location': '84/122 sector 8, pratap nagar'
+                        'location': '84/122 sector 8, pratap nagar',
+                        'servicePerson' : 'Yash Gulati'
                     });
                 }
             }
