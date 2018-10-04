@@ -29,7 +29,7 @@ export default class DeviceSimItem extends React.Component {
             <View style={styles.container}>
                  <View style={styles.ButtonView}>
                         <Button block success style={styles.button}>
-                                 <Text>{ this.state.vehicle}</Text>  
+                                 <Text>{this.props.navigation.state.params.item.MSIDN}</Text>  
                         </Button>
                         
                    </View>
