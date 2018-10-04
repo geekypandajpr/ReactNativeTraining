@@ -215,7 +215,7 @@ const styles = EStyleSheet.create({
     modal_child_container: {
         backgroundColor: '#FFFFFF',
         bottom: 0,
-        height: '80%',
+        height: '70%',
         width: '100%',
         paddingTop: 15,
         paddingLeft: 15,
@@ -277,7 +277,8 @@ const styles = EStyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20,
-        marginBottom: 20
+        marginBottom: 20,
+        marginLeft: 20
     },
     button_text: {
         fontFamily: '$fontFamily',
