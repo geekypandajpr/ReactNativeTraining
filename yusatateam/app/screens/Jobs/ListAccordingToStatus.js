@@ -38,18 +38,21 @@ export default class ListAccordingToStatus extends React.Component {
                        MSIDN: 'MSIDN4',
                        Provider: 'IDEA',
                        Mobile: '09085-53379',
-                       status: 'DEACTIVATE'
+                       status: 'Deactivate'
                    },
                   
                ],
                items : [],
                list : '',
-               status : 'Activate'
+               status : 'Deactivate',
            }
            this.arrayholder = [] ;
        };
-       componentDidMount() {
-              this.arrayholder = this.state.data ; }
+
+       componentDidMount()
+       {
+        this.arrayholder = this.state.data ; 
+       }    
         SearchFilterFunction(text){
             
             const newData = this.arrayholder.filter(function(item){
@@ -65,7 +68,11 @@ export default class ListAccordingToStatus extends React.Component {
     
         };
         changeTabStatus = (tabStatus)=> {
-            this.setState({status :tabStatus});
+           //alert(tabStatus);
+            this.setState({status : tabStatus},function(){
+                console.log(this.state.status);
+            });
+           // alert(this.state.status);
         }
        render() {
         
@@ -79,22 +86,26 @@ export default class ListAccordingToStatus extends React.Component {
                        {
                            ({ item, index }) => 
                             {
+                              
                             if (item.status === this.state.status)
                             {
                                 return (
                                <View style={styles.viewList}>
                                   <List>
+                                      {
+                                           (item.status === this.state.status ? null :
                                     <ListItem avatar>
                                     <Body>
                                     <TouchableOpacity  onPress={() => this.props.navigation.navigate('DeviceSimItem')}>
                                         <Text>{item.MSIDN}</Text>
-                                        <Text note>{item.status}</Text>
+                                        <Text note>{this.state.status}</Text>
                                         </TouchableOpacity>
                                     </Body>
                                     <Right>
                                         <Text note>3:43 pm</Text>
                                     </Right>
                                     </ListItem>
+                                            ) }
                                 </List>  
                                </View> ) 
                                 }}

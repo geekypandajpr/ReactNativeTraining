@@ -6,6 +6,7 @@ import { DeviceSimItem } from '../DeviceSimItem/DeviceSimItem';
 import {ListAccordingToStatus} from './ListAccordingToStatus';
 import {Toolbar} from '../../components'
 import { AppLoading } from 'expo';
+import styles from './styles';
 export default class Jobs extends React.Component {
     constructor(props) {
         super(props)
@@ -26,7 +27,7 @@ export default class Jobs extends React.Component {
     };
     getStatus = (i,ref,from)=>{
         //alert(status[i]);
-        console.log(status[i]);
+        //console.log(status[i]);
         this.refs.modal.changeTabStatus(status[i])
 
     };
@@ -36,7 +37,7 @@ export default class Jobs extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
             <View style={{flex:1}}>
              <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather' />
-                <Tabs onChangeTab={({ i, ref, from })=> this.getStatus(i,ref,from)} renderTabBar={() => <ScrollableTab />}>
+                <Tabs style={styles.tabView} onChangeTab={({ i, ref, from })=> this.getStatus(i,ref,from)} renderTabBar={() => <ScrollableTab />}>
                     <Tab heading="Entered">
                         <ListAccordingToStatus ref = "modal"/>
                     </Tab>
