@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import styles from './Styles';
-import { Button } from 'native-base';
+import { Button, Text } from 'native-base';
 import { Entypo, MaterialIcons } from '@expo/vector-icons';
 
 const ScheduleEvent = (props) => (
@@ -13,7 +13,9 @@ const ScheduleEvent = (props) => (
                 <Text style={styles.label_text}>{props.serviceNumber}</Text>
             </View>
             <View style={styles.second_view}>
-                <Text style={styles.service_type}>{props.serviceType}</Text>
+                <View style={styles.service_type_view}>
+                    <Text style={styles.service_type}>{props.serviceType}</Text>
+                </View>
             </View>
         </View>
 
@@ -75,9 +77,9 @@ const ScheduleEvent = (props) => (
         {/**Status Button*/}
         <View style={styles.text_container}>
             <View style={styles.first_view}>
-                <Button style={[styles.statusButton, { backgroundColor: props.color }]}>
+                <View style={[styles.statusButton, { backgroundColor: props.color }]}>
                     <Text style={styles.status_text}>{props.status}</Text>
-                </Button>
+                </View>
             </View>
             <View style={styles.second_view}>
                 <TouchableOpacity style={styles.second_view} activeOpacity={0.2} onPress={props.viewMore} >

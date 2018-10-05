@@ -18,11 +18,13 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     statusButton: {
-        height: 25,
-        width: 80,
+        // height: 23,
+        // width: 80,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 5
+        borderRadius: 10,
+        padding:4,
+        height: 22
     },
     status_text:{
         color: '#fff',
@@ -36,13 +38,19 @@ export default EStyleSheet.create({
     },
     value_text: {
         fontFamily: '$fontFamily',
-        fontSize: '0.8rem',
+        fontSize: '0.85rem',
         color: '#000'
     },
     view_more: {
         fontFamily: '$fontFamily',
         fontSize: '0.6rem',
         color: 'gray'
+    },
+    service_type_view: {
+        borderRadius: 5,
+        borderColor: 'gray',
+        borderWidth: 1,
+        padding: 3
     },
     service_type: {
         fontFamily: '$fontFamily',

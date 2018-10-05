@@ -21,12 +21,12 @@ const colors = {
         ARROW_COLOR : 'orange',
     },
     SERVICE_STATUS_COLOR: {
-        ENTERED : '#0272A6',
-        ACCEPTED : '#0272A6',
-        ON_JOB : '#0272A6',
+        ENTERED : '#648C35',
+        ACCEPTED : '#01608C',
+        ON_JOB : '#502D8C',
         COMPLETED : '#0272A6',
-        RESCHEDULED : '#0272A6',
-        CANCELLED : '#0272A6',
+        RESCHEDULED : '#7C1F8C',
+        CANCELLED : '#8C251D',
     }
 }
 export default colors;

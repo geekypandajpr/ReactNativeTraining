@@ -38,6 +38,10 @@ export default class Schedule extends React.Component {
         return true;
     }
 
+    renderDay(day, item) {
+        console.log("day:"+JSON.stringify(day)+", "+JSON.stringify(item));
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -47,6 +51,7 @@ export default class Schedule extends React.Component {
                     rightIcon='settings'
                     rightIconType='MaterialCommunityIcons' />
                 <Agenda
+                    renderDay={(day, item) => {this.renderDay(day,item)}}
                     items={this.state.items}
                     loadItemsForMonth={(month) => this.loadItems(month)}
                     onCalendarToggled={(calendarOpened) => { console.log(calendarOpened) }}
