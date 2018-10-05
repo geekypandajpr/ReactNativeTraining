@@ -22,11 +22,11 @@ const colors = {
     },
     SERVICE_STATUS_COLOR: {
         ENTERED : '#0272A6',
-        ACCEPTED : '#01608C',
-        ON_JOB : '#014666',
-        COMPLETED : '#00344D',
-        RESCHEDULED : '#012333',
-        CANCELLED : '#A63719',
+        ACCEPTED : '#0272A6',
+        ON_JOB : '#0272A6',
+        COMPLETED : '#0272A6',
+        RESCHEDULED : '#0272A6',
+        CANCELLED : '#0272A6',
     }
 }
 export default colors;
