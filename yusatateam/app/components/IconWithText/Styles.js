@@ -6,7 +6,7 @@ export default EStyleSheet.create({
     },
     mainContainer: {
         alignItems: "center",
-        borderRadius: 15,
+        //borderRadius: 15,
 
     },
     iconContainer: {

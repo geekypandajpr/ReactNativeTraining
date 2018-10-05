@@ -13,6 +13,7 @@ import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import styles from './Styles';
 import { Statusbar } from '../../components';
+import colors from '../../constants/colors';
 
 export default class Toolbar extends React.Component {
     constructor(props) {
@@ -33,7 +34,7 @@ export default class Toolbar extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View>
-                    <Statusbar backgroundColor={EStyleSheet.value('$primaryColorDark')} barStyle="light-content" />
+                    <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
                     <Header style={styles.header}>
                         <Left>
                             <Button transparent onPress={this.props.onLeftButtonPress}>

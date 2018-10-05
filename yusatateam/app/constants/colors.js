@@ -1,7 +1,6 @@
 const colors = {
     HEADER_COLOR : '#0073b7',
-    
-    STATUSBAR_COLOR: '#154555',
+    STATUSBAR_COLOR: '#004887',
     SIMCARD_COLOR: '#f39c12',
     DEVICECARD_COLOR: '#00a65a',
     JOBSCARD_COLOR: '#00c0ef',
