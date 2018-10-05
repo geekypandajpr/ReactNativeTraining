@@ -146,7 +146,7 @@ export default class Schedule extends React.Component {
                         'companyName' : 'Yusata Infotech Private Limited',
                         'vehicleNumber' : 'vehicle12',
                         'status': 'Onjob',
-                        'color': colors.SERVICE_STATUS_COLOR.ON_JOB,
+                        'color': colors.SERVICE_STATUS_COLOR.ONJOB,
                         'device': 'DEV7457866',
                         'sim': '+91-9080706556',
                         'provider': 'Airtel',
