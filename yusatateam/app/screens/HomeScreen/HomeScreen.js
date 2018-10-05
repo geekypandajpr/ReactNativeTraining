@@ -43,7 +43,7 @@ export default class HomeScreen extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.mainContainer}>
-                <Toolbar title='Dashboard' leftIcon='ios-arrow-round-back' leftIconType='Ionicons' rightIcon='settings' rightIconType='MaterialCommunityIcons'/>
+                <Toolbar title='Dashboard' leftIcon='arrow-left' leftIconType='Feather' rightIcon='settings' rightIconType='MaterialCommunityIcons'/>
                 <View style={styles.firstContainer}>
                     <View style={styles.simContainer}>
                         <TouchableOpacity activeOpacity = {0.7}   onPress={()=> this.setState({toggle: !this.state.toggle})} onPress={() => navigate('Sim')}>
