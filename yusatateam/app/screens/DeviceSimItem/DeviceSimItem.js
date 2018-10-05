@@ -1,57 +1,68 @@
 import React from 'react';
-import {View,TextInput} from 'react-native';
-import { Container, Header, Content, Button, Text,Right,Icon } from 'native-base';
-import styles from './styles';
-import { AppLoading } from 'expo';
-
-export default class DeviceSimItem extends React.Component {
-    constructor(props){
-        super(props);   
-        this.state = {   
-          vehicle:'Tata',
-          device : 'UNO',
-          sim : 'AIRTEL',
-          isLoading: true
+import {Text,View,Modal,TextInput,Picker,ScrollView} from 'react-native';
+import { Button, CheckBox, Body } from 'native-base';
+import styles from './styles'
+export default class CompleteSchedule extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalVisible: false,
+            item: {},
+            vehicle: '',
+            device: '',
+            sim: '',
+            status: ''
         }
-      };
-      async componentWillMount(){
-        await Expo.Font.loadAsync({
-            Roboto:require("native-base/Fonts/Roboto.ttf"),
-            Roboto_medium:require("native-base/Fonts/Roboto_medium.ttf"),
-            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
-        })
-        this.setState({ isLoading: false })
-    };
-
+    }
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible});
+    }
     render() {
-        const { navigate }=this.props.navigation;
+        const details = this.state.item;
         return (
-            this.state.isLoading === true ? <AppLoading /> :
-            <View style={styles.container}>
-            <Toolbar title='Device & Sim' leftIcon='arrow-left' leftIconType='Feather'
-                    onLeftButtonPress={() => navigate('VehicleList')}
-                    rightIcon='settings'
-                    rightIconType='MaterialCommunityIcons' />
-                 <View style={styles.ButtonView}>
-                        <Button block success style={styles.button}>
-                                 <Text>{this.props.navigation.state.params.item.MSIDN}</Text>  
-                        </Button>
-                        
-                   </View>
-                   <View style={styles.ButtonView}>
-                          <Button block info style={styles.button}>
-                            <Text>{ this.state.device}</Text>
-                            
-                        </Button>
+            <View>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
+                    <View style={styles.modal_container}>
+                        <View style={styles.header_view}>
+                            <View style={styles.service_num}>
+                                <Text style={styles.header_text}>Select Vehicle,Device,Sim</Text>
+                            </View>                            
+                        </View>
+                        <View style={styles.modal_child_container}>
+                            <ScrollView showsVerticalScrollIndicator={false}>
+                                <View style={styles.upper_view}>
+                                    <View style={styles.picker_view}>
+                                    <Button block success>
+                                        <Text>Vehicle</Text>
+                                    </Button>                                
+                                    </View>                              
+                                    <View style={styles.picker_view}>
+                                        <Button block info>
+                                            <Text>Device</Text>
+                                        </Button>
+                                    </View>
+                                    <View style={styles.picker_view}>
+                                        <Button block warning>
+                                            <Text>Sim</Text>
+                                        </Button>
+                                    </View> 
+                                </View>
+                                <View style={styles.lower_view}>
+                                    <View style={styles.button_view}>
+                                        <Button style={styles.submit_button}>
+                                            <Text style={styles.button_text}>Submit</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                            </ScrollView>
+                        </View>
                     </View>
-                    <View style={styles.ButtonView}>
-                          <Button block warning style={styles.button}>
-                            <Text>{ this.state.sim}</Text>
-                            
-                        </Button>
-                    </View>
+                </Modal>
             </View>
         );
-      }
     }
-export { DeviceSimItem }
+}

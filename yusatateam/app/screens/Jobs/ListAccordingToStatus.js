@@ -3,6 +3,7 @@ import { View, ScrollView, FlatList, Button, TouchableOpacity, } from 'react-nat
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import styles from './styles';
 import { AppLoading } from 'expo';
+import DeviceSimItem from '../../screens/DeviceSimItem/DeviceSimItem'
 export default class ListAccordingToStatus extends React.Component {
     constructor() {
         super();
@@ -86,13 +87,13 @@ export default class ListAccordingToStatus extends React.Component {
                                 <List>
                                     <ListItem avatar>
                                         <Body>
-                                            <TouchableOpacity onPress={() => this.props.navigation.navigate('DeviceSimItem',{item})}>
+                                            <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true)}>
                                                 <Text>{item.MSIDN}</Text>
                                                 <Text note>{item.status}</Text>
                                             </TouchableOpacity>
                                         </Body>
                                         <Right>
-                                            <Text note>3:43 pm</Text>
+                                            <Text note>3:42 pm</Text>
                                         </Right>
                                     </ListItem>
                                 </List>
@@ -100,6 +101,7 @@ export default class ListAccordingToStatus extends React.Component {
                         </View>
                     } >
                 </FlatList>
+                <DeviceSimItem ref='modal' />
             </View>
         )
     }

@@ -8,9 +8,9 @@ export default EStyleSheet.create({
     },
     search_view: {
         width: '95%',
-        height: 45,
+        height: 40,
         backgroundColor: '#fff',
-        borderRadius: 2,
+        borderRadius: 10,
         flexDirection: 'row'
     },
     icon_view: {
