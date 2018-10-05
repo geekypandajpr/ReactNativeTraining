@@ -3,6 +3,7 @@ import {View,ScrollView,FlatList,Button,TouchableOpacity,BackHandler} from 'reac
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import styles from './styles';
 import {SearchBar, Toolbar} from '../../components';
+import DeviceSimItem from '../../screens/DeviceSimItem/DeviceSimItem';
 export default class VehicleList extends React.Component {
     constructor() {
         super();
@@ -92,7 +93,7 @@ export default class VehicleList extends React.Component {
                                   <List>
                                     <ListItem avatar>
                                     <Body>
-                                    <TouchableOpacity  onPress={() => this.props.navigation.navigate('DeviceSimItem',{item})}>
+                                    <TouchableOpacity  onPress={() => this.refs.modal.setModalVisible(true)}>
                                         <Text>{item.MSIDN}</Text>
                                         <Text note>{item.status}</Text>
                                         </TouchableOpacity>
@@ -104,6 +105,7 @@ export default class VehicleList extends React.Component {
                                 </List>  
                                </View>  } >
                        </FlatList>
+                       <DeviceSimItem ref='modal' />
                 </View>
            )
        }
