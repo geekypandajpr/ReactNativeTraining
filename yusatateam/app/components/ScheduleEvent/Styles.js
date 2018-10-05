@@ -33,8 +33,9 @@ export default EStyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
-        padding:10,
-        height: 22
+        padding: 2,
+        height: 22,
+        width: 90
     },
     status_text:{
         color: '#fff',
@@ -57,10 +58,13 @@ export default EStyleSheet.create({
         color: 'gray'
     },
     service_type_view: {
+        justifyContent: 'center',
+        alignItems: 'center',
         borderRadius: 5,
         borderColor: 'gray',
         borderWidth: 1,
-        padding: 4
+        padding: 2,
+        width: 65
     },
     service_type: {
         //fontFamily: '$fontFamily',
