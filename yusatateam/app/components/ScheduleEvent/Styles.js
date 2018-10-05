@@ -14,7 +14,8 @@ export default EStyleSheet.create({
     },
     text_container: {
         flexDirection: 'row',
-        flex: 1
+        flex: 1,
+        margin: 2
     },
     first_view: {
         flex: 1,
@@ -37,21 +38,21 @@ export default EStyleSheet.create({
     },
     status_text:{
         color: '#fff',
-        fontFamily: '$fontFamily',
+        //fontFamily: '$fontFamily',
     },
     label_text: {
-        fontFamily: '$fontFamily',
+        //fontFamily: '$fontFamily',
         fontSize: '1rem',
         fontWeight: 'bold',
         color: '#000'
     },
     value_text: {
-        fontFamily: '$fontFamily',
-        fontSize: '0.85rem',
+        //fontFamily: '$fontFamily',
+        fontSize: '0.8rem',
         color: '#000'
     },
     view_more: {
-        fontFamily: '$fontFamily',
+        //fontFamily: '$fontFamily',
         fontSize: '0.6rem',
         color: 'gray'
     },
@@ -62,7 +63,7 @@ export default EStyleSheet.create({
         padding: 4
     },
     service_type: {
-        fontFamily: '$fontFamily',
+        //fontFamily: '$fontFamily',
         fontSize: '0.8rem',
         fontWeight: 'bold',
         color: '#1766A6'
