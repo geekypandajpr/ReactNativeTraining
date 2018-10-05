@@ -11,7 +11,7 @@ import { AppLoading } from 'expo';
         super(props)
         this.state = {
             isLoading: true,
-            tabStatus : 'Activated'
+           
         },
         this.status = ['Activate','Deactivate','Activate','Deactivate','Activate','Deactivate']
     }
@@ -51,22 +51,16 @@ import { AppLoading } from 'expo';
                     rightIcon='settings'
                     rightIconType='MaterialCommunityIcons' />
                 <Tabs  onChangeTab={({ i, ref, from })=> this.getStatus(i,ref,from)} renderTabBar={() => <ScrollableTab />}>
-                    <Tab tabStyle={{ backgroundColor: "#1f667e" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#1f667e" }} heading="Entered">
+                    <Tab tabStyle={{ backgroundColor: "#1f667e" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#1f667e" }} heading="Pending">
                         <ListAccordingToStatus ref = "modal"/>
                     </Tab>
-                    <Tab tabStyle={{ backgroundColor: "#1f667e" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#1f667e" }} heading="Accepted">
-                        <ListAccordingToStatus  ref = "modal"/>
-                    </Tab>
-                    <Tab tabStyle={{ backgroundColor: "#1f667e" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#1f667e" }} heading="Onjob">
+                    <Tab tabStyle={{ backgroundColor: "#1f667e" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#1f667e" }} heading="Schedule">
                         <ListAccordingToStatus  ref = "modal"/>
                     </Tab>
                     <Tab tabStyle={{ backgroundColor: "#1f667e" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#1f667e" }} heading="Completed">
                         <ListAccordingToStatus  ref = "modal"/>
                     </Tab>
-                    <Tab tabStyle={{ backgroundColor: "#1f667e" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#1f667e" }} heading="Reschedule">
-                        <ListAccordingToStatus  ref = "modal"/>
-                    </Tab>
-                    <Tab tabStyle={{ backgroundColor: "#1f667e" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#1f667e" }} heading="Cancelled">
+                    <Tab tabStyle={{ backgroundColor: "#1f667e" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#1f667e" }} heading="ReSchedule">
                         <ListAccordingToStatus  ref = "modal"/>
                     </Tab>
                 </Tabs>
