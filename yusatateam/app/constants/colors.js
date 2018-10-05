@@ -1,6 +1,7 @@
 const colors = {
     HEADER_COLOR : '#0073b7',
     STATUSBAR_COLOR: '#004887',
+    
     SIMCARD_COLOR: '#f39c12',
     DEVICECARD_COLOR: '#00a65a',
     JOBSCARD_COLOR: '#00c0ef',
@@ -9,7 +10,7 @@ const colors = {
 
     CALENDARS: {
         CALENDAR_BACKGROUND_COLOR : '#FFFFFF',
-        BACKGROUND_COLOR : '#00000020',
+        BACKGROUND_COLOR : '#00000030',
         DAY_HEADER_COLOR : '#2d4150',
         TODAY_TEXT_COLOR : 'red',
         AGENDA_KNOB_COLOR : '#0073b7',
@@ -20,17 +21,17 @@ const colors = {
         MONTH_TEXT_COLOR : '#2d4150',
         TEXT_DISABLED_COLOR : '#d9e1e8',
         ARROW_COLOR : 'orange',
-        AGENDA_DAY_NUM_COLOR : 'white',
-        AGENDA_DAY_TEXT_COLOR: 'white',
+        AGENDA_DAY_NUM_COLOR : '#000',
+        AGENDA_DAY_TEXT_COLOR: '#000',
         AGENDA_TODAY_COLOR: '#0073b7'
     },
     SERVICE_STATUS_COLOR: {
-        ENTERED : '#648C35',
-        ACCEPTED : '#01608C',
-        ON_JOB : '#502D8C',
-        COMPLETED : '#0272A6',
-        RESCHEDULED : '#7C1F8C',
-        CANCELLED : '#8C251D',
+        ENTERED : '#0073b7',
+        ACCEPTED : '#5E35A6',
+        ON_JOB : '#007aff',
+        COMPLETED : '#5cb85c',
+        RESCHEDULED : '#f0ad4e',
+        CANCELLED : '#d9534f',
     }
 }
 export default colors;
