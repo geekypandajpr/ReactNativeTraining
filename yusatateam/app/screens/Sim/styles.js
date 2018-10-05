@@ -88,13 +88,9 @@ export default EStyleSheet.create({
         backgroundColor: '#1f667e',
         marginRight: 10
     },
-<<<<<<< HEAD
 
-    status_text: {
-
-=======
     status_text:{
->>>>>>> a68f8f751c642398776946eec06b7d00eaf32f4d
+
         color: '#fff'
     },
 
