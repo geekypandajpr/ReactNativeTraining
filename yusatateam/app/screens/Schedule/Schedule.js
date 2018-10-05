@@ -127,17 +127,17 @@ export default class Schedule extends React.Component {
                         'servicePerson' : 'Yash Gulati'
                     });
                     this.state.items[strTime].push({
-                        'serviceNumber': 'SERVE002AB',
-                        'serviceType' : 'Uninstall',
+                        'serviceNumber': 'SERVE001AA',
+                        'serviceType' : 'Install',
                         'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber': 'JP14-4555',
-                        'status': 'Completed',
-                        'color': colors.SERVICE_STATUS_COLOR.COMPLETED,
-                        'device': 'Atlanta',
-                        'sim': '+91-7845880012',
+                        'vehicleNumber': 'JP01-1522',
+                        'status': 'Accepted',
+                        'color': colors.SERVICE_STATUS_COLOR.ACCEPTED,
+                        'device': 'DL125A',
+                        'sim': '+91-7856801255',
                         'provider': 'Airtel',
-                        'jobDate': '28 October 2018, 12:00',
-                        'location': '81/49 sector 8 pratp nagar',
+                        'jobDate': '05 November 2018 14:50',
+                        'location': '84/122 sector 8, pratap nagar, Jaipur',
                         'servicePerson' : 'Yash Gulati'
                     });
                     this.state.items[strTime].push({
@@ -154,6 +154,21 @@ export default class Schedule extends React.Component {
                         'location': '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033',
                         'servicePerson' : 'Yash Gulati'
                     });
+                    this.state.items[strTime].push({
+                        'serviceNumber': 'SERVE002AB',
+                        'serviceType' : 'Uninstall',
+                        'companyName' : 'Yusata Infotech Private Limited',
+                        'vehicleNumber': 'JP14-4555',
+                        'status': 'Completed',
+                        'color': colors.SERVICE_STATUS_COLOR.COMPLETED,
+                        'device': 'Atlanta',
+                        'sim': '+91-7845880012',
+                        'provider': 'Airtel',
+                        'jobDate': '28 October 2018, 12:00',
+                        'location': '81/49 sector 8 pratp nagar',
+                        'servicePerson' : 'Yash Gulati'
+                    });
+                    
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE004AD',
                         'serviceType' : 'Repair',

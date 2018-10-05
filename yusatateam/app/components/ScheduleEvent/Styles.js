@@ -34,7 +34,7 @@ export default EStyleSheet.create({
         alignItems: 'center',
         borderRadius: 10,
         padding: 2,
-        height: 22,
+        height: 25,
         width: 90
     },
     status_text:{
