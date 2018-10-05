@@ -4,13 +4,13 @@ import {
     FlatList,
     TouchableHighlight,
     Dimensions,
-    Text,
+  
 } from 'react-native';
-import { Card, Button } from 'native-base';
+import { Card,Button,Text } from 'native-base';
 import styles from './styles';
 import { AppLoading } from 'expo';
 import { Toolbar } from '../../components';
-import { Ionicons, Feather } from '@expo/vector-icons'
+import { Ionicons, Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default class Sim extends React.Component {
     constructor() {
@@ -24,7 +24,8 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN1',
                     Provider: 'Idea',
                     Mobile: '09085-53379',
-                    status: 'Activate'
+                    status: 'Activate',
+                    color :'green'
                 },
                 {
                     ORDER: 'JSCKBK',
@@ -32,7 +33,8 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN2',
                     Provider: 'Aircel',
                     Mobile: '09085-45090',
-                    status: 'Deactivate'
+                    status: 'Deactivate',
+                    color:'red'
                 },
                 {
                     ORDER: 'UYGEYUJA',
@@ -40,7 +42,8 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN3',
                     Provider: 'Airtel',
                     Mobile: '09085-65879',
-                    status: 'Activate'
+                    status: 'Activate',
+                    color :'green'
                 },
                 {
                     ORDER: 'HAVCMSV',
@@ -48,7 +51,8 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN4',
                     Provider: 'Idea',
                     Mobile: '09085-53379',
-                    status: 'Deactivate'
+                    status: 'Deactivate',
+                    color:'red'
                 },
                 {
                     ORDER: 'HAVCMSV',
@@ -56,7 +60,8 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN4',
                     Provider: 'Idea',
                     Mobile: '09085-53379',
-                    status: 'Deactivate'
+                    status: 'Deactivate',
+                    color:'red'
                 },
                 {
                     ORDER: 'UYGEYUJA',
@@ -64,7 +69,8 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN3',
                     Provider: 'Aircel',
                     Mobile: '09085-65879',
-                    status: 'Activate'
+                    status: 'Activate',
+                    color :'green'
                 },
                 {
                     ORDER: 'HAVCMSV',
@@ -72,7 +78,8 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN4',
                     Provider: 'Idea',
                     Mobile: '09085-53379',
-                    status: 'Deactivate'
+                    status: 'Deactivate',
+                    color:'red'
                 },
 
                 {
@@ -81,7 +88,8 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN4',
                     Provider: 'Docomo',
                     Mobile: '09085-53379',
-                    status: 'Activate'
+                    status: 'Activate',
+                    color :'green'
                 },
 
                 {
@@ -90,7 +98,8 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN3',
                     Provider: 'Aircel',
                     Mobile: '09085-65879',
-                    status: 'Activate'
+                    status: 'Activate',
+                    color :'green'
                 },
                 {
                     ORDER: 'HAVCMSV',
@@ -98,10 +107,10 @@ export default class Sim extends React.Component {
                     MSIDN: 'MSIDN4',
                     Provider: 'Idea',
                     Mobile: '09085-53379',
-                    status: 'Deactivate'
+                    status: 'Deactivate',
+                    color:'red'
                 },
             ]
-
         }
     }
 
@@ -114,17 +123,16 @@ export default class Sim extends React.Component {
         this.setState({ isLoading: false })
     }
 
-
     render() {
         const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
 
-                    <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather'
+                    <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' 
                         onLeftButtonPress={() => navigate('HomeScreen')}
                         rightIcon='settings'
-                        rightIconType='MaterialCommunityIcons' />
+                         rightIconType='MaterialCommunityIcons' />
 
                     <View style={styles.viewStyle}>
                         <FlatList
@@ -133,59 +141,78 @@ export default class Sim extends React.Component {
                             renderItem={({ item, index }) =>
                                 <Card style={styles.mainCard}>
 
-                                    <View style={styles.firstView}>
+                                    <View style={styles.First_View}>
                                         <TouchableHighlight
                                             style={{
-                                                borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
-                                                width: Dimensions.get('window').width * 0.10,
-                                                height: Dimensions.get('window').width * 0.10,
-                                                backgroundColor: '#1f667e',
+                                                // borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+                                                // width: Dimensions.get('window').width * 0.13,
+                                                // height: Dimensions.get('window').width * 0.13,
                                                 justifyContent: 'center',
                                                 alignItems: 'center',
-                                                marginTop: 9,
-                                                marginLeft: 7
+                                                height:56,
+                                                width:56,
+                                                borderRadius:28,
+                                                borderWidth:1,
+                                                borderColor:'gray'
+
                                             }}
                                         >
-                                            <Text style={styles.indexText}>{index + 1}</Text>
+                                            <MaterialCommunityIcons name="sim" size={48}  color="#1f667e" />
+                                            {/* <Text style={styles.indexText}>{index+1}</Text> */}
                                         </TouchableHighlight>
                                     </View>
 
-                                    <View style={styles.secondViews}>
+                                    <View style={styles.Second_View}>
 
-                                        <View style={styles.firstRow}>
-                                            <View style={styles.secondView}>
-                                                <Text style={styles.heading}>
-                                                    {item.ORDER}
-                                                </Text>
+                                        <View style={styles.Margin_Row}>
+                                            <View style={styles.Level_Second}>
+                                                <Text style={styles.Header_Style}>{item.ORDER}</Text>
                                             </View>
-                                            <View style={styles.status_view}>
-                                                <Button style={styles.statusButton}>
-                                                    <Text style={styles.status_text}>{item.status}</Text>
-                                                </Button>
+                                            
+                                           
+                                            <View style={[styles.Active_Button,{backgroundColor:item.color}]} >
+                                                <Text style={styles.Active_Style}>{item.status}</Text>
+                                            </View>
+                                            
+                                        </View>
+
+                                        <View style={styles.Level_Row}>
+                                            <View style={{ justifyContent: 'flex-start' }}>
+                                                <Text style={styles.Text_Style}>MSIDN</Text>
+                                            </View>
+                                            <View style={{ marginLeft: 3 }}>
+                                                <Text style={styles.Text_Style}> : </Text>
+                                            </View>
+                                            <View style={{justifyContent: 'flex-end',alignItems: 'center'}}>
+                                                <Text style={styles.View_Style}>{item.MSIDN}</Text>
                                             </View>
                                         </View>
 
-                                        <View style={styles.secondView}>
-                                            <Text style={styles.viewHead}> MSIDN : </Text>
-                                            <Text style={styles.viewAns}>{item.MSIDN}</Text>
-                                        </View>
-
-                                        <View style={styles.secondView}>
-                                            <Text style={styles.viewHead}> ICCID : </Text>
-                                            <Text style={styles.viewAns}>{item.ICCID}</Text>
-                                        </View>
-
-                                        <View style={styles.secondView}>
-                                            <View style={styles.secondView}>
-                                                <Text style={styles.viewHead}>{item.Mobile}</Text>
+                                        <View style={styles.Level_Row}>
+                                            <View style={{ justifyContent: 'flex-start' }}>
+                                                <Text style={styles.Text_Style}>ICCID</Text>
                                             </View>
+                                            <View style={{ marginLeft: 3 }}>
+                                                <Text style={styles.Text_Style}> : </Text>
+                                            </View>
+                                            <View style={{ marginLeft: 5,justifyContent: 'flex-end',
+                                            alignItems: 'center' }}>
+                                                <Text style={styles.View_Style}>{item.ICCID}</Text>
+                                            </View>
+                                        </View>
 
-                                            <View>
-                                                <Text style={styles.providerStyle} >{item.Provider}</Text>
+                                        <View style={[styles.Level_Row, { marginBottom: 5 }]}>
+                                            <View style={styles.Level_Second}>
+                                                <Text style={styles.View_Style}>{item.Mobile}</Text>
+                                            </View>
+                                            <View style={styles.Provider_View} >
+                                                <Text style={styles.providerStyle}>{item.Provider}</Text>
                                             </View>
                                         </View>
 
                                     </View>
+
+                                  
 
                                 </Card>
                             }></FlatList>

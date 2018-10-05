@@ -19,79 +19,105 @@ export default EStyleSheet.create({
         flex: 1,
         flexDirection: 'row',
     },
-    firstView:
+    First_View:
     {
-        flex: 1
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+
     },
-    secondViews:
+    Second_View:
     {
-        flex: 4
+        flex: 4,
+
     },
-    firstRow:
+    Level_Second:
+    {
+        flex: 1,
+        justifyContent: 'flex-start'
+    },
+
+    Level_Row:
+    {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    Margin_Row:
     {
         flex: 1,
         flexDirection: 'row',
         marginTop: 5
+    },
+    Header_Style:
+    {
+        fontFamily: 'normal',
+        fontSize: '1rem',
+        fontWeight: 'bold',
+        color: '#000'
+    },
+    Text_Style:
+    {
+        fontFamily: 'normal',
+        fontSize: '0.9rem',
+        color: '#000'
+    },
+    View_Style:
+    {
+        fontFamily: 'normal',
+        fontSize: '0.9rem',
+        color: 'gray'
+
     },
     indexText:
     {
         color: '#FFF',
         fontSize: 20
     },
-    secondView:
+
+    providerStyle:
     {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent:'flex-start'
-    },
-    heading:
-    {
+
+
         fontFamily: 'normal',
-        fontSize: '1.2rem',
+        fontSize: '1rem',
         fontWeight: 'bold',
-        color: '#000000'
+        color: '#1f667e',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    viewHead:
+    Provider_View:
     {
-        fontFamily: 'normal',
-        fontSize: 17,
-        fontWeight: 'bold',
-        color: '#00000095',
-        
-    },
-    viewAns:
-    {
-        fontFamily: 'normal',
-        fontSize: 16,
-        color: '#00000070',
-       
-    },
-   providerStyle:
-    {
-        fontFamily: 'normal',
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#00000095',
-        marginRight: 35
-    },
-    status_view: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
-    },
-    statusButton: {
-        height: 30,
-        width: 80,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: 'gray',
+        width: 70,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 5,
-        backgroundColor: '#1f667e',
         marginRight: 10
     },
 
-    status_text:{
+    Active_Button:
 
-        color: '#fff'
+    {
+        borderRadius: 10,
+        borderWidth: 3,
+        width: 90,
+        borderColor: 'white',
+        marginRight: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
+    Active_Style:
+    {
+
+        fontFamily: 'normal',
+        fontSize: '1rem',
+        fontWeight: 'bold',
+        color: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
+
+    }
+
 
 })
