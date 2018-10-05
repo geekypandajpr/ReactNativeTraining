@@ -2,7 +2,8 @@ import React from 'react';
 import {
     View,
     TouchableOpacity,
-    BackHandler,Alert
+    BackHandler,
+    Alert
 } from 'react-native';
 import styles from './Styles';
 import {
@@ -19,7 +20,6 @@ export default class HomeScreen extends React.Component {
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
-
     handleBackPress = () => {
         Alert.alert(
             'Exit App',
@@ -32,16 +32,24 @@ export default class HomeScreen extends React.Component {
       
         return true;
     }
+    constructor () {
+        super()
+        this.state = {
+           toggle: false 
+        }
+      }
+    
     render() {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.mainContainer}>
-                <Toolbar title='Home' leftIcon='menu' rightIcon='settings' rightIconType='MaterialCommunityIcons'/>
+                <Toolbar title='Dashboard' leftIcon='ios-arrow-round-back' leftIconType='Ionicons' rightIcon='settings' rightIconType='MaterialCommunityIcons'/>
                 <View style={styles.firstContainer}>
                     <View style={styles.simContainer}>
-                        <TouchableOpacity onPress={() => navigate('Sim')}>
+                        <TouchableOpacity activeOpacity = {0.7}   onPress={()=> this.setState({toggle: !this.state.toggle})} onPress={() => navigate('Sim')}>
                             <IconWithText
-                                backgroundColor={colors.SIMCARD_COLOR}
+                                backgroundColor={colors.HOMESCREEN.SIMCARD_COLOR}
+                                badgeText= "6"
                                 name='sim'
                                 type='MaterialCommunityIcons'
                                 styles={styles.iconView}
@@ -50,9 +58,10 @@ export default class HomeScreen extends React.Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.deviceContainer}>
-                        <TouchableOpacity onPress={() => navigate('Sim')}>
+                        <TouchableOpacity activeOpacity = {0.7} onPress={() => navigate('Sim')}>
                             <IconWithText
-                                backgroundColor={colors.DEVICECARD_COLOR}
+                                backgroundColor={colors.HOMESCREEN.DEVICECARD_COLOR}
+                                badgeText= "4"
                                 name='devices'
                                 type='MaterialIcons'
                                 styles={styles.iconView}
@@ -63,9 +72,10 @@ export default class HomeScreen extends React.Component {
                 </View>
                 <View style={styles.secondContainer}>
                     <View style={styles.jobContainer}>
-                        <TouchableOpacity onPress={() => navigate('Jobs')}>
+                        <TouchableOpacity activeOpacity = {0.7} onPress={() => navigate('Jobs')}>
                             <IconWithText
-                                backgroundColor={colors.JOBSCARD_COLOR}
+                                backgroundColor={colors.HOMESCREEN.JOBSCARD_COLOR}
+                                badgeText= "5"
                                 name='new-message'
                                 type='Entypo'
                                 styles={styles.iconView}
@@ -75,9 +85,10 @@ export default class HomeScreen extends React.Component {
                     </View>
 
                     <View style={styles.scheduleContainer}>
-                        <TouchableOpacity onPress={() => navigate('Schedule')}>
+                        <TouchableOpacity activeOpacity = {0.7} onPress={() => navigate('Schedule')}>
                             <IconWithText
-                                backgroundColor={colors.SCHEDULECARD_COLOR}
+                                backgroundColor={colors.HOMESCREEN.SCHEDULECARD_COLOR}
+                                badgeText= "2"
                                 name='schedule'
                                 type='MaterialIcons'
                                 styles={styles.iconView}
@@ -90,9 +101,10 @@ export default class HomeScreen extends React.Component {
 
                 <View style={styles.thirdContainer}>
                     <View style={styles.associationContainer}>
-                        <TouchableOpacity onPress={() => navigate('VehicleList')}>
+                        <TouchableOpacity activeOpacity = {0.7} onPress={() => navigate('VehicleList')}>
                             <IconWithText
-                                backgroundColor={colors.ASSOCIATIONCARD_COLOR}
+                                backgroundColor={colors.HOMESCREEN.ASSOCIATIONCARD_COLOR}
+                                badgeText= "3"
                                 name='group'
                                 type='FontAwesome'
                                 styles={styles.iconView}

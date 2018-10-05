@@ -4,6 +4,10 @@ export default EStyleSheet.create({
         fontSize: 50,
         color: 'white'
     },
+    badgetext: {
+        justifyContent: "center",
+        alignItems: "center",
+    },
     mainContainer: {
         alignItems: "center",
         //borderRadius: 15,
