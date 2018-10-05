@@ -11,19 +11,13 @@ export default EStyleSheet.create({
         paddingLeft: 5,
         paddingRight: 5,
         paddingTop: 5,
-        flex:1
-        
+        flex: 1
+
     },
     mainCard:
     {
         flex: 1,
         flexDirection: 'row',
-        shadowOffset: { width: 10, height: 10 },  
-        shadowColor: 'black',  
-        shadowOpacity: 1,  
-        elevation: 3,  
-        zIndex:999,  
-       
     },
     firstView:
     {
@@ -47,18 +41,38 @@ export default EStyleSheet.create({
     secondView:
     {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent:'flex-start'
     },
     heading:
     {
-        fontSize: 20,
-        color: "#1b1b18",
         fontFamily: 'normal',
-        fontWeight: 'bold'
+        fontSize: '1.2rem',
+        fontWeight: 'bold',
+        color: '#000000'
     },
-    providerStyle:
+    viewHead:
     {
-        marginRight: 5
+        fontFamily: 'normal',
+        fontSize: 17,
+        fontWeight: 'bold',
+        color: '#00000095',
+        
+    },
+    viewAns:
+    {
+        fontFamily: 'normal',
+        fontSize: 16,
+        color: '#00000070',
+       
+    },
+   providerStyle:
+    {
+        fontFamily: 'normal',
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#00000095',
+        marginRight: 35
     },
     status_view: {
         flex: 1,
@@ -66,14 +80,21 @@ export default EStyleSheet.create({
         justifyContent: 'flex-end'
     },
     statusButton: {
-        height: 25,
-        width: 115,
+        height: 30,
+        width: 80,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
-        backgroundColor:'#1f667e'
+        backgroundColor: '#1f667e',
+        marginRight: 10
     },
+<<<<<<< HEAD
+
+    status_text: {
+
+=======
     status_text:{
+>>>>>>> a68f8f751c642398776946eec06b7d00eaf32f4d
         color: '#fff'
     },
 

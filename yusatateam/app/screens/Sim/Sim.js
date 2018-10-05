@@ -4,12 +4,12 @@ import {
     FlatList,
     TouchableHighlight,
     Dimensions,
-   
-}from 'react-native';
-import { Text, Card,Button } from 'native-base';
+    Text,
+} from 'react-native';
+import { Card, Button } from 'native-base';
 import styles from './styles';
 import { AppLoading } from 'expo';
-import { RoundedImage, Toolbar } from '../../components';
+import { Toolbar } from '../../components';
 import { Ionicons, Feather } from '@expo/vector-icons'
 
 export default class Sim extends React.Component {
@@ -100,7 +100,7 @@ export default class Sim extends React.Component {
                     Mobile: '09085-53379',
                     status: 'Deactivate'
                 },
-           ]
+            ]
 
         }
     }
@@ -116,17 +116,17 @@ export default class Sim extends React.Component {
 
 
     render() {
-        const { navigate }=this.props.navigation;
+        const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    
-                        <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' 
+
+                    <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather'
                         onLeftButtonPress={() => navigate('HomeScreen')}
                         rightIcon='settings'
-                        rightIconType='MaterialCommunityIcons'/>
-                    
-                   <View style={styles.viewStyle}>
+                        rightIconType='MaterialCommunityIcons' />
+
+                    <View style={styles.viewStyle}>
                         <FlatList
                             data={this.state.data}
                             keyExtractor={(item, index) => item.toString()}
@@ -142,8 +142,8 @@ export default class Sim extends React.Component {
                                                 backgroundColor: '#1f667e',
                                                 justifyContent: 'center',
                                                 alignItems: 'center',
-                                                marginTop: 8,
-                                                marginLeft: 8
+                                                marginTop: 9,
+                                                marginLeft: 7
                                             }}
                                         >
                                             <Text style={styles.indexText}>{index + 1}</Text>
@@ -166,18 +166,18 @@ export default class Sim extends React.Component {
                                         </View>
 
                                         <View style={styles.secondView}>
-                                            <Text> MSIDN : </Text>
-                                            <Text note>{item.MSIDN}</Text>
+                                            <Text style={styles.viewHead}> MSIDN : </Text>
+                                            <Text style={styles.viewAns}>{item.MSIDN}</Text>
                                         </View>
 
                                         <View style={styles.secondView}>
-                                            <Text> ICCID : </Text>
-                                            <Text note>{item.ICCID}</Text>
+                                            <Text style={styles.viewHead}> ICCID : </Text>
+                                            <Text style={styles.viewAns}>{item.ICCID}</Text>
                                         </View>
 
                                         <View style={styles.secondView}>
                                             <View style={styles.secondView}>
-                                                <Text >{item.Mobile}</Text>
+                                                <Text style={styles.viewHead}>{item.Mobile}</Text>
                                             </View>
 
                                             <View>
@@ -191,7 +191,7 @@ export default class Sim extends React.Component {
                             }></FlatList>
 
                     </View>
-                    </View>
+                </View>
 
 
         );
