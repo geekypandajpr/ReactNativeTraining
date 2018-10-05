@@ -95,9 +95,9 @@ export default class Schedule extends React.Component {
                         textDayFontSize: 12,
                         textMonthFontSize: 15,
                         textDayHeaderFontSize: 14,
-                        agendaDayNumColor:'red',
-                        agendaDayTextColor: 'red',
-                        agendaTodayColor: 'red'
+                        agendaDayNumColor: colors.CALENDARS.AGENDA_DAY_NUM_COLOR,
+                        agendaDayTextColor: colors.CALENDARS.AGENDA_DAY_TEXT_COLOR,
+                        agendaTodayColor: colors.CALENDARS.AGENDA_TODAY_COLOR
                     }}
                 />
                 <ViewDetails ref='modal' />

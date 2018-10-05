@@ -20,6 +20,9 @@ const colors = {
         MONTH_TEXT_COLOR : '#2d4150',
         TEXT_DISABLED_COLOR : '#d9e1e8',
         ARROW_COLOR : 'orange',
+        AGENDA_DAY_NUM_COLOR : 'white',
+        AGENDA_DAY_TEXT_COLOR: 'white',
+        AGENDA_TODAY_COLOR: '#0073b7'
     },
     SERVICE_STATUS_COLOR: {
         ENTERED : '#648C35',
