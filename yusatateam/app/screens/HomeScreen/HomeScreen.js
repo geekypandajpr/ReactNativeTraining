@@ -52,7 +52,7 @@ export default class HomeScreen extends React.Component {
                     <View style={styles.deviceContainer}>
                         <TouchableOpacity onPress={() => navigate('Sim')}>
                             <IconWithText
-                                backgroundColor='#0960CA'
+                                backgroundColor={colors.DEVICECARD_COLOR}
                                 name='devices'
                                 type='MaterialIcons'
                                 styles={styles.iconView}
@@ -65,7 +65,7 @@ export default class HomeScreen extends React.Component {
                     <View style={styles.jobContainer}>
                         <TouchableOpacity onPress={() => navigate('Jobs')}>
                             <IconWithText
-                                backgroundColor='#7AB944'
+                                backgroundColor={colors.JOBSCARD_COLOR}
                                 name='new-message'
                                 type='Entypo'
                                 styles={styles.iconView}
@@ -77,7 +77,7 @@ export default class HomeScreen extends React.Component {
                     <View style={styles.scheduleContainer}>
                         <TouchableOpacity onPress={() => navigate('Schedule')}>
                             <IconWithText
-                                backgroundColor='#9381D5'
+                                backgroundColor={colors.SCHEDULECARD_COLOR}
                                 name='schedule'
                                 type='MaterialIcons'
                                 styles={styles.iconView}
@@ -92,7 +92,7 @@ export default class HomeScreen extends React.Component {
                     <View style={styles.associationContainer}>
                         <TouchableOpacity onPress={() => navigate('VehicleList')}>
                             <IconWithText
-                                backgroundColor='#008e6d'
+                                backgroundColor={colors.ASSOCIATIONCARD_COLOR}
                                 name='group'
                                 type='FontAwesome'
                                 styles={styles.iconView}

@@ -1,4 +1,5 @@
 import EStylesheet from 'react-native-extended-stylesheet';
+import colors from '../../constants/colors';
 
 export default EStylesheet.create({
     $headerColor : '#1f667e',
@@ -7,7 +8,7 @@ export default EStylesheet.create({
     $headerTitleColor : '#fff',
 
     header: {
-        backgroundColor: '$primaryColor'
+        backgroundColor: colors.HEADER_COLOR
     },
     icon: {
         fontSize: 24,
@@ -16,5 +17,9 @@ export default EStylesheet.create({
     title: {
         color: '$headerTitleColor',
         fontSize: '$headerTitleSize'
+    },
+    body: {
+        alignItems:'center',
+        justifyContent:'center'
     }
 })

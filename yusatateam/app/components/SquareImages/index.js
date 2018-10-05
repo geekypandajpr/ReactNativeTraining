@@ -1,1 +1,0 @@
-export { SquareImage } from './Squareimages';

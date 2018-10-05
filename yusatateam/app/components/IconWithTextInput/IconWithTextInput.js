@@ -9,7 +9,7 @@ export default class IconWithTextInput extends React.Component {
         return (
             <View style={styles.credentialView}>
                 <Item floatingLabel>
-                    <Icon active name={this.props.name} style={{ color: '#229954' }} />
+                    <Icon active name={this.props.name} style={styles.icon} />
                     <Label>{this.props.placeholder}</Label>
                     <Input
                         value={this.props.value}
@@ -26,4 +26,5 @@ export default class IconWithTextInput extends React.Component {
         )
     }
 }
+
 export { IconWithTextInput }

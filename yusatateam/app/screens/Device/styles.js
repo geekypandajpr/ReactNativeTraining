@@ -80,16 +80,17 @@ export default EStyleSheet.create({
         justifyContent: 'flex-end'
     },
     statusButton: {
-        height: 30,
-        width: 80,
+        height: 25,
+        width: 90,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
         backgroundColor: '#1f667e',
-        marginRight: 10
+        marginRight: 10,
+        marginBottom : 10
     },
 
-    status_text:{
+    status_text: {
 
         color: '#fff'
     },

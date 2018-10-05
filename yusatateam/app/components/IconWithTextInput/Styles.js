@@ -7,4 +7,7 @@ export default EStyleSheet.create({
         justifyContent: 'space-around',
         width: _width * 0.85
     },
+    icon: {
+        color: '#229954'
+    }
 })

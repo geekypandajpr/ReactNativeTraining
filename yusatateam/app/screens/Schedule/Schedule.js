@@ -9,7 +9,7 @@ import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
 import moment from 'moment';
-import CompleteSchedule from './CompleteSchedule';
+import ViewDetails from './ViewDetails';
 import colors from '../../constants/colors';
 
 var eventList = {
@@ -38,6 +38,10 @@ export default class Schedule extends React.Component {
         return true;
     }
 
+    renderDay(day, item) {
+        return (<View><Text>{day ? day.dateString: 'item'}</Text></View>);
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -47,6 +51,7 @@ export default class Schedule extends React.Component {
                     rightIcon='settings'
                     rightIconType='MaterialCommunityIcons' />
                 <Agenda
+                    //renderDay={(day, item) => this.renderDay(day, item)}
                     items={this.state.items}
                     loadItemsForMonth={(month) => this.loadItems(month)}
                     onCalendarToggled={(calendarOpened) => { console.log(calendarOpened) }}
@@ -92,7 +97,7 @@ export default class Schedule extends React.Component {
                         textDayHeaderFontSize: 14
                     }}
                 />
-                <CompleteSchedule ref='modal' />
+                <ViewDetails ref='modal' />
             </View>
         );
     }
@@ -113,8 +118,10 @@ export default class Schedule extends React.Component {
                         'color': colors.SERVICE_STATUS_COLOR.ENTERED,
                         'device': 'DL125A',
                         'sim': '+91-7856801255',
+                        'provider': 'Airtel',
                         'jobDate': '05 November 2018 14:50',
-                        'location': '84/122 sector 8, pratap nagar, Jaipur'
+                        'location': '84/122 sector 8, pratap nagar, Jaipur',
+                        'servicePerson' : 'Yash Gulati'
                     });
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE002AB',
@@ -125,8 +132,10 @@ export default class Schedule extends React.Component {
                         'color': colors.SERVICE_STATUS_COLOR.ACCEPTED,
                         'device': 'Atlanta',
                         'sim': '+91-7845880012',
+                        'provider': 'Airtel',
                         'jobDate': '28 October 2018, 12:00',
-                        'location': '81/49 sector 8 pratp nagar'
+                        'location': '81/49 sector 8 pratp nagar',
+                        'servicePerson' : 'Yash Gulati'
                     });
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE003AC',
@@ -137,8 +146,10 @@ export default class Schedule extends React.Component {
                         'color': colors.SERVICE_STATUS_COLOR.ON_JOB,
                         'device': 'DEV7457866',
                         'sim': '+91-9080706556',
+                        'provider': 'Airtel',
                         'jobDate': '05 November 2018, 11:12',
-                        'location': '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033'
+                        'location': '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033',
+                        'servicePerson' : 'Yash Gulati'
                     });
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE004AD',
@@ -149,8 +160,10 @@ export default class Schedule extends React.Component {
                         'color': colors.SERVICE_STATUS_COLOR.COMPLETED,
                         'device': 'DEVICE14588ESE',
                         'sim': '+91-1201245636',
+                        'provider': 'Airtel',
                         'jobDate': '10 December 2018, 05:00',
-                        'location': '84/122 sector 8, pratap nagar'
+                        'location': '84/122 sector 8, pratap nagar',
+                        'servicePerson' : 'Yash Gulati'
                     });
                 }
             }
@@ -164,9 +177,7 @@ export default class Schedule extends React.Component {
 
     renderItem(item) {
         return (
-            <TouchableOpacity activeOpacity={0.3} onPress={() => { this.refs.modal.setModalVisible(true, item) }} >
-                <ScheduleEvent item={item} />
-            </TouchableOpacity>
+            <ScheduleEvent {...item} viewMore={() => { this.refs.modal.setModalVisible(true, item) }}/>
         );
     }
 

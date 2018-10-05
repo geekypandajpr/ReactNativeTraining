@@ -1,11 +1,12 @@
 const colors = {
-    HEADER_COLOR : '#1f667e',
-    STATUSBAR_COLOR: '#154555',
-    SIMCARD_COLOR: '#37B4A4',
-    DEVICECARD_COLOR: '#0960CA',
-    JOBSCARD_COLOR: '#7AB944',
-    SCHEDULECARD_COLOR: '#9381D5',
-    ASSOCIATIONCARD_COLOR: '#F99500',
+    HEADER_COLOR : '#0073b7',
+    STATUSBAR_COLOR: '#004887',
+    SIMCARD_COLOR: '#f39c12',
+    DEVICECARD_COLOR: '#00a65a',
+    JOBSCARD_COLOR: '#00c0ef',
+    SCHEDULECARD_COLOR: '#d81b60',
+    ASSOCIATIONCARD_COLOR: '#dd4b39',
+
     CALENDARS: {
         CALENDAR_BACKGROUND_COLOR : '#FFFFFF',
         BACKGROUND_COLOR : '#00000010',
@@ -21,12 +22,12 @@ const colors = {
         ARROW_COLOR : 'orange',
     },
     SERVICE_STATUS_COLOR: {
-        ENTERED : '#0272A6',
+        ENTERED : '#648C35',
         ACCEPTED : '#01608C',
-        ON_JOB : '#014666',
-        COMPLETED : '#00344D',
-        RESCHEDULED : '#012333',
-        CANCELLED : '#A63719',
+        ON_JOB : '#502D8C',
+        COMPLETED : '#0272A6',
+        RESCHEDULED : '#7C1F8C',
+        CANCELLED : '#8C251D',
     }
 }
 export default colors;

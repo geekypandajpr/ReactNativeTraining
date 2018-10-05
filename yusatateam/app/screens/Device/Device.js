@@ -11,95 +11,76 @@ import styles from './styles';
 import { AppLoading } from 'expo';
 import { Toolbar } from '../../components';
 import { Ionicons, Feather } from '@expo/vector-icons'
-
-export default class Sim extends React.Component {
+export default class Device extends React.Component {
     constructor() {
         super();
         this.state = {
             isLoading: true,
             data: [
                 {
-                    ORDER: 'EVKGLI',
-                    ICCID: 'ICCID1',
-                    MSIDN: 'MSIDN1',
-                    Provider: 'Idea',
-                    Mobile: '09085-53379',
-                    status: 'Activate'
+                    ORDER: '12VtlF0Lf',
+                    IMEI: 'IMEI 100',
+                    ESN: 'ESN 100',
+                    Manufacturer: 'Hp',
+                    status: 'Tested Ok'
                 },
                 {
-                    ORDER: 'JSCKBK',
-                    ICCID: 'ICCID2',
-                    MSIDN: 'MSIDN2',
-                    Provider: 'Aircel',
-                    Mobile: '09085-45090',
-                    status: 'Deactivate'
+                    ORDER: '14VtlF0Lf',
+                    IMEI: 'IMEI 101',
+                    ESN: 'ESN 101',
+                    Manufacturer: 'Dell',
+                    status: 'Ready to use'
                 },
                 {
-                    ORDER: 'UYGEYUJA',
-                    ICCID: 'ICCID3',
-                    MSIDN: 'MSIDN3',
-                    Provider: 'Airtel',
-                    Mobile: '09085-65879',
-                    status: 'Activate'
+                    ORDER: '13VtlF0Lf',
+                    IMEI: 'IMEI 11',
+                    ESN: 'ESN 12',
+                    Manufacturer: 'Lenovo',
+                    status: 'Defective'
                 },
                 {
-                    ORDER: 'HAVCMSV',
-                    ICCID: 'ICCID4',
-                    MSIDN: 'MSIDN4',
-                    Provider: 'Idea',
-                    Mobile: '09085-53379',
-                    status: 'Deactivate'
+                    ORDER: '12VtlF0Lf',
+                    IMEI: 'IMEI 100',
+                    ESN: 'ESN 100',
+                    Manufacturer: 'Dell',
+                    status: 'Tested Ok'
                 },
                 {
-                    ORDER: 'HAVCMSV',
-                    ICCID: 'ICCID4',
-                    MSIDN: 'MSIDN4',
-                    Provider: 'Idea',
-                    Mobile: '09085-53379',
-                    status: 'Deactivate'
+                    ORDER: '14VtlF0Lf',
+                    IMEI: 'IMEI 101',
+                    ESN: 'ESN 101',
+                    Manufacturer: 'Hp',
+                    status: 'Ready to use'
                 },
                 {
-                    ORDER: 'UYGEYUJA',
-                    ICCID: 'ICCID3',
-                    MSIDN: 'MSIDN3',
-                    Provider: 'Aircel',
-                    Mobile: '09085-65879',
-                    status: 'Activate'
+                    ORDER: '13VtlF0Lf',
+                    IMEI: 'IMEI 11',
+                    ESN: 'ESN 12',
+                    Manufacturer: 'Lenovo',
+                    status: 'Defective'
                 },
                 {
-                    ORDER: 'HAVCMSV',
-                    ICCID: 'ICCID4',
-                    MSIDN: 'MSIDN4',
-                    Provider: 'Idea',
-                    Mobile: '09085-53379',
-                    status: 'Deactivate'
+                    ORDER: '12VtlF0Lf',
+                    IMEI: 'IMEI 100',
+                    ESN: 'ESN 100',
+                    Manufacturer: 'Hp',
+                    status: 'Tested Ok'
+                },
+                {
+                    ORDER: '14VtlF0Lf',
+                    IMEI: 'IMEI 101',
+                    ESN: 'ESN 101',
+                    Manufacturer: 'Hp',
+                    status: 'Ready to use'
+                },
+                {
+                    ORDER: '13VtlF0Lf',
+                    IMEI: 'IMEI 11',
+                    ESN: 'ESN 12',
+                    Manufacturer: 'Hp',
+                    status: 'Defective'
                 },
 
-                {
-                    ORDER: 'HAVCMSV',
-                    ICCID: 'ICCID4',
-                    MSIDN: 'MSIDN4',
-                    Provider: 'Docomo',
-                    Mobile: '09085-53379',
-                    status: 'Activate'
-                },
-
-                {
-                    ORDER: 'UYGEYUJA',
-                    ICCID: 'ICCID3',
-                    MSIDN: 'MSIDN3',
-                    Provider: 'Aircel',
-                    Mobile: '09085-65879',
-                    status: 'Activate'
-                },
-                {
-                    ORDER: 'HAVCMSV',
-                    ICCID: 'ICCID4',
-                    MSIDN: 'MSIDN4',
-                    Provider: 'Idea',
-                    Mobile: '09085-53379',
-                    status: 'Deactivate'
-                },
             ]
 
         }
@@ -113,18 +94,17 @@ export default class Sim extends React.Component {
         })
         this.setState({ isLoading: false })
     }
-
-
     render() {
-        const { navigate } = this.props.navigation;
+        //const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
+                    <Toolbar title='Device' leftIcon='arrow-left' leftIconType='Feather' />
 
-                    <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather'
+                    {/* <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather'
                         onLeftButtonPress={() => navigate('HomeScreen')}
                         rightIcon='settings'
-                        rightIconType='MaterialCommunityIcons' />
+                        rightIconType='MaterialCommunityIcons' /> */}
 
                     <View style={styles.viewStyle}>
                         <FlatList
@@ -155,27 +135,34 @@ export default class Sim extends React.Component {
                                         <View style={styles.firstRow}>
                                             <View style={styles.secondView}>
                                                 <Text style={styles.heading}>
-                                                    {item.ORDER}
+                                                    {item.IMEI}
                                                 </Text>
                                             </View>
                                             <View style={styles.status_view}>
-                                                <Button style={styles.statusButton}>
+                                                <Button bordered style={styles.statusButton}>
                                                     <Text style={styles.status_text}>{item.status}</Text>
                                                 </Button>
                                             </View>
                                         </View>
 
                                         <View style={styles.secondView}>
-                                            <Text style={styles.viewHead}> MSIDN : </Text>
-                                            <Text style={styles.viewAns}>{item.MSIDN}</Text>
+                                            <Text style={styles.viewHead}> ORDER# : </Text>
+                                            <Text style={styles.viewAns}>{item.ORDER}</Text>
                                         </View>
 
                                         <View style={styles.secondView}>
-                                            <Text style={styles.viewHead}> ICCID : </Text>
-                                            <Text style={styles.viewAns}>{item.ICCID}</Text>
+                                            <View style={styles.secondView}>
+                                                <Text style={styles.viewHead}> ESN : </Text>
+                                                <Text style={styles.viewAns}>{item.ESN}</Text>
+                                            </View>
+                                            <View >
+                                                <Text style={styles.providerStyle}>
+                                                    {item.Manufacturer}
+                                                </Text>
+                                            </View>
                                         </View>
 
-                                        <View style={styles.secondView}>
+                                        {/* <View style={styles.secondView}>
                                             <View style={styles.secondView}>
                                                 <Text style={styles.viewHead}>{item.Mobile}</Text>
                                             </View>
@@ -183,7 +170,7 @@ export default class Sim extends React.Component {
                                             <View>
                                                 <Text style={styles.providerStyle} >{item.Provider}</Text>
                                             </View>
-                                        </View>
+                                        </View> */}
 
                                     </View>
 
@@ -197,5 +184,6 @@ export default class Sim extends React.Component {
         );
     }
 
+
 }
-export { Sim }
+export { Device }

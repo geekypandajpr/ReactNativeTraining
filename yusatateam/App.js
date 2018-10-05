@@ -2,9 +2,9 @@ import React from 'react';
 import Index from './app/index';
 import EStyleSheet from 'react-native-extended-stylesheet';
 EStyleSheet.build({
-    $primaryColor: '#1f667e',
-    $primaryColorDark: '#154555',
-    $primaryColorLight: '#5494ad',
+    $primaryColor: '#0073b7',
+    $primaryColorDark: '#004887',
+    $primaryColorLight: '#56a1ea',
     $primaryColortext: '#FFFFFF',
     $fontSize: '0.8rem',
 });
