@@ -66,15 +66,7 @@ export default class LogIn extends React.Component {
                     <ScrollView keyboardShouldPersistTaps="always" contentContainerStyle={{ flexGrow: 1 }}>
                         <Statusbar backgroundColor={'transparent'} barStyle="light-content" />
                         <View style={styles.mainContainer}>
-                            {/* <View style={{flex: 1.5,backgroundColor:'red'}}></View>
-                            <View style={{flex: 2,backgroundColor:'green'}}></View>
-                            <View style={{flex: 0.5,backgroundColor:'orange'}}>
-                                <TextInput
-                                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                                    onChangeText={(text) => this.setState({text})}
-                                    value={this.state.text}
-                                />
-                            </View> */}
+                            
                             {/**Logo View*/}
                             <View style={styles.imageView}>
                                 <Image
