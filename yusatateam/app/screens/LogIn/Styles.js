@@ -20,7 +20,7 @@ export default EStyleSheet.create({
         resizeMode: 'contain'
     },
     input_view: {
-        marginTop: 20,
+        marginTop: 15,
         width: '90%'
     },
     credentialContainer: {
@@ -40,7 +40,7 @@ export default EStyleSheet.create({
         marginLeft: 20
     },
     remember_me_text: {
-        color: '#000',
+        color: '#fff',
         fontSize: '1rem'
     },
     button_view: {

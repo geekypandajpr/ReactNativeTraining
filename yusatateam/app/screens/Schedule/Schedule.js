@@ -1,8 +1,7 @@
 import React from 'react';
 import {
     Text,
-    View,
-    BackHandler,
+    View
 } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
@@ -25,17 +24,6 @@ export default class Schedule extends React.Component {
             items: {}
         };
         this.modalRef = React.createRef();
-    }
-    componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    }
-
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    }
-
-    handleBackPress = () => {
-        return true;
     }
 
     renderDay(day, item) {
