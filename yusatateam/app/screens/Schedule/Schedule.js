@@ -25,6 +25,7 @@ export default class Schedule extends React.Component {
         this.state = {
             items: {}
         };
+        this.modalRef = React.createRef();
     }
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -100,7 +101,7 @@ export default class Schedule extends React.Component {
                         agendaTodayColor: colors.CALENDARS.AGENDA_TODAY_COLOR
                     }}
                 />
-                <ViewDetails ref='modal' />
+                <ViewDetails ref={this.modalRef} />
             </View>
         );
     }
