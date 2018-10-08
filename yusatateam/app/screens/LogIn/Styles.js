@@ -2,14 +2,15 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
     mainContainer: {
-        flex: 1
+        flex: 1,
+        //justifyContent: 'space-between'
     },
     backgroundImage: {
         height:'100%',
         width:'100%'
     },
     imageView: {
-        flex: 1,
+        flex: 1.5,
         justifyContent: 'center',
         alignItems: 'center',
         //backgroundColor: 'green'

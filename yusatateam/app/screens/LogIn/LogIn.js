@@ -3,7 +3,8 @@ import {
     View,
     Image,
     ImageBackground,
-    ScrollView
+    ScrollView,
+    TextInput
 } from 'react-native';
 import styles from './Styles';
 import { AppLoading } from 'expo';
@@ -62,10 +63,18 @@ export default class LogIn extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <ImageBackground source={require('../../assets/images/backgroundImage.png')}
                     style={styles.backgroundImage}>
-                    <ScrollView keyboardShouldPersistTaps="always" showsVerticalScrollIndicator={false}
-                        contentContainerStyle={{ flex: 1 }}>
+                    <ScrollView keyboardShouldPersistTaps="always" contentContainerStyle={{ flexGrow: 1 }}>
                         <Statusbar backgroundColor={'transparent'} barStyle="light-content" />
                         <View style={styles.mainContainer}>
+                            {/* <View style={{flex: 1.5,backgroundColor:'red'}}></View>
+                            <View style={{flex: 2,backgroundColor:'green'}}></View>
+                            <View style={{flex: 0.5,backgroundColor:'orange'}}>
+                                <TextInput
+                                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                                    onChangeText={(text) => this.setState({text})}
+                                    value={this.state.text}
+                                />
+                            </View> */}
                             {/**Logo View*/}
                             <View style={styles.imageView}>
                                 <Image
