@@ -1,66 +1,69 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Dimensions } from 'react-native';
-const _width = Dimensions.get('window').width;
+
 export default EStyleSheet.create({
     mainContainer: {
-        flex: 1,
-        //backgroundColor: '#ffffff',
-        alignItems: 'center',
-        justifyContent: 'center'
-
+        flex: 1
     },
     backgroundImage: {
         height:'100%',
         width:'100%'
     },
     imageView: {
-        flex: 1.5,
+        flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        //backgroundColor: 'green'
     },
     logo: {
         width: 140,
         height: 140,
-        resizeMode: 'contain',
-        marginTop: 50,
-        marginBottom: 20
+        resizeMode: 'contain'
     },
     credentialContainer: {
-        flex: 2.5,
-        justifyContent: 'center'
+        flex: 2,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        flexDirection: 'column',
+        //backgroundColor: 'red'
     },    
     checkbox: {
-        width: _width * 0.85,
-        flexDirection: 'row',
         marginTop: 20,
+        width: '90%',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
     },
-    checkboxBody: {
-        alignItems: 'flex-start',
+    remember_me: {
         marginLeft: 20
     },
-    buttonView: {
-        flex: 1,
-        padding: 12,
-        marginTop: 10
+    remember_me_text: {
+        color: '#000',
+        fontSize: '1rem'
+    },
+    button_view: {
+        width: '90%',
+        marginTop: 20
     },
     button: {
+        width: '100%',
         backgroundColor: '#229954',
-        width: _width * 0.8,
         alignItems: 'center',
         justifyContent: 'center'
     },
-    buttonText: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 15,
+    button_text: {
         fontStyle: 'normal',
         color: '#FFF'
     },
-    versionTextView: {
-        alignItems: 'center'
+    lower_view :{
+        flex: 0.5,
+        //backgroundColor: 'orange',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        flexDirection: 'column',
     },
-    versionText: {
-        color: '#229954'
+    version_text: {
+        color: '#FFF',
+        fontSize: '0.8rem',
+        padding: 10
     },
 
 })

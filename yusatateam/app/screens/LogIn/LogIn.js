@@ -1,7 +1,15 @@
 import React from 'react';
-import { View, Image, Dimensions, TouchableOpacity, Text, ScrollView, ImageBackground, BackHandler, Alert } from 'react-native';
+import {
+    View,
+    Image,
+    Dimensions,
+    ScrollView,
+    ImageBackground,
+    Alert
+} from 'react-native';
 import styles from './Styles';
-import { Body, CheckBox, Button } from 'native-base';
+import { AppLoading } from 'expo';
+import { CheckBox, Button, Text} from 'native-base';
 import { IconWithTextInput, Statusbar } from '../../components';
 
 const _width = Dimensions.get('window').width;
@@ -15,29 +23,20 @@ export default class LogIn extends React.Component {
         this.state = {
             username: '',
             password: '',
-            remember: true
+            remember: true,
+            isLoading: true
         }
     }
-    componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+
+    async componentWillMount(){
+        await Expo.Font.loadAsync({
+            Roboto:require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium:require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+        })
+        this.setState({ isLoading: false })
     }
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    }
-
-    handleBackPress = () => {
-        Alert.alert(
-            'Exit App',
-            'Do you want to exit ?',
-            [
-                { text: 'NO', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-                { text: 'YES', onPress: () => BackHandler.exitApp() },
-            ],
-            { cancelable: false })
-
-        return true;
-    }
     _focusNextField(id) {
         this[id]._root.focus();
     }
@@ -59,19 +58,23 @@ export default class LogIn extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <ImageBackground source={require('../../assets/images/backgroundImage.png')} style={styles.backgroundImage}>
+            this.state.isLoading === true ? <AppLoading /> :
+            // <ImageBackground source={require('../../assets/images/backgroundImage.png')} style={styles.backgroundImage}>
                 <View style={styles.mainContainer}>
-
-                    <Statusbar backgroundColor={'#fff'} barStyle="dark-content" />
-                    <ScrollView>
+                    {/* <Statusbar backgroundColor={'#fff'} barStyle="dark-content" /> */}
+                    
+                    {/* <ScrollView contentContainerStyle={styles.mainContainer}> */}
+                        {/**Logo View*/}
                         <View style={styles.imageView}>
                             <Image
                                 style={styles.logo}
                                 source={require('../../assets/images/YLogAppLogo.png')}>
                             </Image>
                         </View>
+
+                        {/**Login Credentials View*/}
                         <View style={styles.credentialContainer}>
-                            <IconWithTextInput
+                             <IconWithTextInput
                                 name='person'
                                 placeholder='User Name'
                                 value={this.state.username}
@@ -91,36 +94,36 @@ export default class LogIn extends React.Component {
                                 onChangeText={(password) => this.setState({ password })}
                             />
                             <View style={styles.checkbox}>
+                                <View>
                                 <CheckBox
                                     checked={this.state.remember}
                                     color='#229954'
                                     onPress={() => this.setState({
                                         remember: !this.state.remember
                                     })}
-                                />                               
-                                    <Body
-                                        style={styles.checkboxBody} >
-                                        <Text>Remember Me</Text>
-                                    </Body>                                
+                                />
+                                </View>
+                                <View style={styles.remember_me}>
+                                    <Text style={styles.remember_me_text}>Remember me</Text>
+                                </View>
+                                
                             </View>
-                            <View style={styles.buttonView}>
-                                <Button rounded
+                            <View style={styles.button_view}>
+                                <Button
                                     style={styles.button}
                                     onPress={this._logIn.bind(this)}>
-                                    <View style={{ width: _width * 0.8 }}>
-                                        <Text style={styles.buttonText}>
-                                            LOGIN
-                                    </Text>
-                                    </View>
+                                    <Text style={styles.button_text}>  LOGIN </Text>
                                 </Button>
                             </View>
                         </View>
-                        <View style={styles.versionTextView}>
-                            <Text style={styles.versionText}>v0.0.1</Text>
+
+                        {/**Version view*/}
+                        <View style={styles.lower_view}>
+                            <Text style={styles.version_text}>v0.0.1</Text>
                         </View>
-                    </ScrollView>
+                    {/* </ScrollView> */}
                 </View>
-            </ImageBackground>
+            // </ImageBackground>
 
         )
     }

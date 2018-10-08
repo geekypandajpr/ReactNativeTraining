@@ -2,7 +2,6 @@ import React from 'react';
 import {
     Text,
     View,
-    TouchableOpacity,
     BackHandler,
 } from 'react-native';
 import { Agenda } from 'react-native-calendars';
@@ -45,10 +44,11 @@ export default class Schedule extends React.Component {
 
     render() {
         const { navigate } = this.props.navigation;
+        const { goBack } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <Toolbar title='Schedule' leftIcon='arrow-left' leftIconType='Feather'
-                    onLeftButtonPress={() => navigate('HomeScreen')}
+                    onLeftButtonPress={() => goBack()}
                     rightIcon='settings'
                     rightIconType='MaterialCommunityIcons' />
                 <Agenda
