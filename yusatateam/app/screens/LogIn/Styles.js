@@ -19,6 +19,10 @@ export default EStyleSheet.create({
         height: 140,
         resizeMode: 'contain'
     },
+    input_view: {
+        marginTop: 20,
+        width: '90%'
+    },
     credentialContainer: {
         flex: 2,
         justifyContent: 'flex-start',

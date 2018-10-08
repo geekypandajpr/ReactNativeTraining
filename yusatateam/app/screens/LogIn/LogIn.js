@@ -10,7 +10,7 @@ import {
 import styles from './Styles';
 import { AppLoading } from 'expo';
 import { CheckBox, Button, Text} from 'native-base';
-import { IconWithTextInput, Statusbar } from '../../components';
+import { InputWithIcon, Statusbar } from '../../components';
 
 const _width = Dimensions.get('window').width;
 
@@ -74,34 +74,40 @@ export default class LogIn extends React.Component {
 
                         {/**Login Credentials View*/}
                         <View style={styles.credentialContainer}>
-                             <IconWithTextInput
-                                name='person'
-                                placeholder='User Name'
-                                value={this.state.username}
-                                returnKeyType={'next'}
-                                keyboardType={'email-address'}
-                                blurOnSubmit={false}
-                                onSubmitEditing={() => this._focusNextField('pswd')}
-                                onChangeText={(username) => this.setState({ username })}
-                            />
-                            <IconWithTextInput
-                                name='lock'
-                                placeholder='Password'
-                                getRef={(input) => { this.pswd = input; }}                              
-                                value={this.state.password}
-                                secureTextEntry={true}
-                                onSubmitEditing={this._logIn.bind(this)}
-                                onChangeText={(password) => this.setState({ password })}
-                            />
-                            <View style={styles.checkbox}>
-                                <View>
-                                <CheckBox
-                                    checked={this.state.remember}
-                                    color='#229954'
-                                    onPress={() => this.setState({
-                                        remember: !this.state.remember
-                                    })}
+                            <View style={styles.input_view}>
+                                <InputWithIcon
+                                    name='person'
+                                    placeholder='User Name'
+                                    value={this.state.username}
+                                    returnKeyType={'next'}
+                                    keyboardType={'email-address'}
+                                    blurOnSubmit={false}
+                                    onSubmitEditing={() => this._focusNextField('pswd')}
+                                    onChangeText={(username) => this.setState({ username })}
                                 />
+                            </View>
+                             
+                            <View style={styles.input_view}>
+                                <InputWithIcon
+                                    name='lock'
+                                    placeholder='Password'
+                                    getRef={(input) => { this.pswd = input; }}                              
+                                    value={this.state.password}
+                                    secureTextEntry={true}
+                                    onSubmitEditing={this._logIn.bind(this)}
+                                    onChangeText={(password) => this.setState({ password })}
+                                />
+                            </View>
+
+                            <View style={styles.checkbox}>
+                                <View style={{marginLeft:0}}>
+                                    <CheckBox
+                                        checked={this.state.remember}
+                                        color='#229954'
+                                        onPress={() => this.setState({
+                                            remember: !this.state.remember
+                                        })}
+                                    />
                                 </View>
                                 <View style={styles.remember_me}>
                                     <Text style={styles.remember_me_text}>Remember me</Text>
