@@ -9,7 +9,7 @@ export default class InputWithIcon extends React.Component {
         return (
             <View style={styles.container}>
                 <Item floatingLabel>
-                    <Icon active name={this.props.name} style={styles.icon} />
+                    <Icon active name={this.props.name} style={{color:this.props.iconColor}} />
                     <Label>{this.props.placeholder}</Label>
                     <Input
                         value={this.props.value}

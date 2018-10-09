@@ -27,10 +27,11 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },    
     checkbox: {
-        marginTop: 20,
+        marginTop: 25,
         width: '85%',
         flexDirection: 'row',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
+        marginLeft: 0
     },
     remember_me: {
         marginLeft: 20
@@ -41,7 +42,8 @@ export default EStyleSheet.create({
     },
     button_view: {
         width: '85%',
-        marginTop: 20
+        marginTop: 25,
+        marginBottom: 25
     },
     button: {
         width: '100%',

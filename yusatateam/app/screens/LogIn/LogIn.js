@@ -59,10 +59,10 @@ export default class LogIn extends React.Component {
     render() {
         return (
             this.state.isLoading === true ? <AppLoading /> :
-            <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/backgroundImage.png')} >
+            <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/LoginScreenBG.jpg')} >
                 {/* <View style={styles.container}> */}
                     <Statusbar backgroundColor={'transparent'} barStyle="light-content" />
-                    <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps='handled'>
+                    <ScrollView keyboardShouldPersistTaps='handled'>
                         <View style={styles.credentialContainer}>
                             {/**Logo*/}
                             <View style={styles.imageView}>
@@ -76,6 +76,7 @@ export default class LogIn extends React.Component {
                             <View style={styles.input_view}>
                                 <InputWithIcon
                                     name='person'
+                                    iconColor='#fff'
                                     placeholder='User Name'
                                     value={this.state.username}
                                     returnKeyType={'next'}
@@ -90,6 +91,7 @@ export default class LogIn extends React.Component {
                             <View style={styles.input_view}>
                                 <InputWithIcon
                                     name='lock'
+                                    iconColor='#FFF'
                                     placeholder='Password'
                                     returnKeyType={'go'}
                                     getRef={(input) => { this.password = input; }}
@@ -102,15 +104,13 @@ export default class LogIn extends React.Component {
 
                             {/**Remember me checkbox*/}
                             <View style={styles.checkbox}>
-                                <View>
-                                    <CheckBox
-                                        checked={this.state.remember}
-                                        color='#229954'
-                                        onPress={() => this.setState({
-                                            remember: !this.state.remember
-                                        })}
-                                    />
-                                </View>
+                                <CheckBox
+                                    checked={this.state.remember}
+                                    color='#229954'
+                                    onPress={() => this.setState({
+                                        remember: !this.state.remember
+                                    })}
+                                />
                                 <View style={styles.remember_me}>
                                     <Text style={styles.remember_me_text}>Remember me</Text>
                                 </View>
