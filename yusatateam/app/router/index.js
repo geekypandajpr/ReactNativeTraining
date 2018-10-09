@@ -5,7 +5,8 @@ import {
     Sim,
     Schedule,
     VehicleList,
-    Jobs
+    Jobs,
+    Settings
 } from '../screens';
 
 const RouteConfigs = {
@@ -41,6 +42,12 @@ const RouteConfigs = {
     },
     Jobs: {
         screen: Jobs,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Settings: {
+        screen: Settings,
         navigationOptions: {
             header: null
         }

@@ -5,3 +5,4 @@ export { VehicleList } from './VehicleList';
 export { DeviceSimItem } from './DeviceSimItem';
 export { Sim } from './Sim';
 export { Jobs } from './Jobs';
+export { Settings } from './Settings';

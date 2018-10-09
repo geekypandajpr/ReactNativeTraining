@@ -38,8 +38,7 @@ export default class LogIn extends React.Component {
     _doLogin() {
         if (this._checkRequiredFields()) {
             this.props.navigation.navigate('HomeScreen');
-        }
-        else {
+        } else {
             Toast.show({
                 position: 'bottom',
                 type: 'danger',
@@ -61,9 +60,9 @@ export default class LogIn extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/backgroundImage.png')} >
-                <View style={styles.container}>
+                {/* <View style={styles.container}> */}
                     <Statusbar backgroundColor={'transparent'} barStyle="light-content" />
-                    <ScrollView>
+                    <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps='handled'>
                         <View style={styles.credentialContainer}>
                             {/**Logo*/}
                             <View style={styles.imageView}>
@@ -127,7 +126,7 @@ export default class LogIn extends React.Component {
                             </View>
                         </View>
                     </ScrollView>
-                </View>
+                {/* </View> */}
             </ImageBackground>
         )
     }
