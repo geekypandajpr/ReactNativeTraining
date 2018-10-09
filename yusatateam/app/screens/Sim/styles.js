@@ -17,7 +17,7 @@ export default EStyleSheet.create({
     {
         flex: 1,
         flexDirection: 'row',
-        borderRadius:10,
+        borderRadius:5,
         borderWidth:3,
         borderColor:'white'
 
@@ -79,7 +79,7 @@ export default EStyleSheet.create({
         color: '#1f667e',
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 10
+        
         
     },
     Provider_View:
