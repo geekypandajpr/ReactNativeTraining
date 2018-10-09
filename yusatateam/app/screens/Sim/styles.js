@@ -11,32 +11,32 @@ export default EStyleSheet.create({
         paddingLeft: 5,
         paddingRight: 5,
         paddingTop: 5,
-        flex: 1
-
+        flex: 1,
     },
     mainCard:
     {
         flex: 1,
         flexDirection: 'row',
+        borderRadius:10,
+        borderWidth:3,
+        borderColor:'white'
+
     },
     First_View:
     {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-
     },
     Second_View:
     {
         flex: 4,
-
     },
     Level_Second:
     {
         flex: 1,
         justifyContent: 'flex-start'
     },
-
     Level_Row:
     {
         flex: 1,
@@ -48,42 +48,39 @@ export default EStyleSheet.create({
         flexDirection: 'row',
         marginTop: 5
     },
+    Level_Head:
+    { 
+        justifyContent:'flex-start' 
+    },
     Header_Style:
     {
-        fontFamily: 'normal',
+        fontStyle: 'normal',
         fontSize: '1rem',
-        fontWeight: 'bold',
+        fontWeight: '500',
         color: '#000'
     },
     Text_Style:
     {
-        fontFamily: 'normal',
+        fontStyle: 'normal',
         fontSize: '0.9rem',
         color: '#000'
     },
     View_Style:
     {
-        fontFamily: 'normal',
+        fontStyle: 'normal',
         fontSize: '0.9rem',
         color: 'gray'
-
     },
-    indexText:
-    {
-        color: '#FFF',
-        fontSize: 20
-    },
-
     providerStyle:
     {
-
-
-        fontFamily: 'normal',
+        fontStyle: 'normal',
         fontSize: '1rem',
         fontWeight: 'bold',
         color: '#1f667e',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginRight: 10
+        
     },
     Provider_View:
     {
@@ -95,28 +92,30 @@ export default EStyleSheet.create({
         alignItems: 'center',
         marginRight: 10
     },
-
-    Active_Button:
-
+    Status_Button:
     {
         borderRadius: 10,
         borderWidth: 3,
         width: 90,
         borderColor: 'white',
-        marginRight: 10,
+        marginRight: 8,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    Active_Style:
+    Status_Style:
     {
-
-        fontFamily: 'normal',
+        fontStyle: 'normal',
         fontSize: '1rem',
         fontWeight: 'bold',
         color: 'white',
         justifyContent: 'center',
         alignItems: 'center'
-
+    },
+    Level_Style:
+    {
+        marginLeft: 5,
+        justifyContent: 'flex-end',
+        alignItems: 'center'
     }
 
 
