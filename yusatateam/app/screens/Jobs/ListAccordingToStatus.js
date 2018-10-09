@@ -84,19 +84,20 @@ export default class ListAccordingToStatus extends React.Component {
                     renderItem={({ item, index }) =>
                         <View style={styles.viewList}>
                             {this.state.status == item.status ?
-                                <List>
-                                    <ListItem avatar>
-                                        <Body>
-                                            <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true)}>
-                                                <Text>{item.MSIDN}</Text>
-                                                <Text note>{item.status}</Text>
-                                            </TouchableOpacity>
-                                        </Body>
-                                        <Right>
-                                            <Text note>3:42 pm</Text>
-                                        </Right>
-                                    </ListItem>
-                                </List>
+                                 <List style={styles.list}>
+                                 <ListItem avatar noBorder >
+                                 <Body>
+                                 <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true)}>
+                                         <Text  style={styles.text}>{item.ORDER} </Text>   
+                                    <Text   style={styles.text1}>{item.MSIDN}</Text>               
+                                         <Text note >{item.ICCID}    {item.Mobile}     {item.Provider}</Text>   
+                                     </TouchableOpacity>
+                                 </Body>
+                                 <Right>
+                                     <Text note style={{marginRight : 15}}>{item.status}</Text>
+                                 </Right>
+                                 </ListItem>
+                             </List>
                                 : null}
                         </View>
                     } >

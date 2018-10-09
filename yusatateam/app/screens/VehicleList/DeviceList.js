@@ -4,7 +4,7 @@ import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnai
 import styles from './styles';
 import {SearchBar, Toolbar} from '../../components';
 import DeviceSimItem from '../../screens/DeviceSimItem/DeviceSimItem';
-export default class VehicleList extends React.Component {
+export default class DeviceList extends React.Component {
     constructor() {
         super();
            this.state = {
@@ -90,20 +90,19 @@ export default class VehicleList extends React.Component {
                        renderItem={
                            ({ item, index }) => 
                                <View style={styles.viewList}>
-                                   <List style={styles.list}>
-                                    <ListItem avatar noBorder >
+                                  <List>
+                                    <ListItem avatar>
                                     <Body>
-                                    <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true)}>
-                                            <Text  style={styles.text}>{item.ORDER} </Text>   
-                                       <Text   style={styles.text1}>{item.MSIDN}</Text>               
-                                            <Text note >{item.ICCID}    {item.Mobile}     {item.Provider}</Text>   
+                                    <TouchableOpacity  onPress={() => this.refs.modal.setModalVisible(true)}>
+                                        <Text>{item.MSIDN}</Text>
+                                        <Text note>{item.status}</Text>
                                         </TouchableOpacity>
                                     </Body>
                                     <Right>
-                                        <Text note style={{marginRight : 15}}>{item.status}</Text>
+                                        <Text note>3:43 pm</Text>
                                     </Right>
                                     </ListItem>
-                                </List>
+                                </List>  
                                </View>  } >
                        </FlatList>
                        <DeviceSimItem ref='modal' />
@@ -111,4 +110,4 @@ export default class VehicleList extends React.Component {
            )
        }
     }
-export { VehicleList }
+export { DeviceList }

@@ -5,10 +5,14 @@ export default EStyleSheet.create({
      },
      flatView : {
          flex :2, 
-
      },
-     button : {
-        
+     text : {
+        fontSize : 30,
+        color : '#20B2AA', 
+     },
+     text1 : {
+        fontSize : 22,
+        // color : '#20B2AA', 
      },
      viewList : {
          borderRadius :10,
@@ -21,6 +25,10 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     list : {
-        flex :1
+        backgroundColor : 'white',
+        borderRadius : 20,
+        margin : 15,
+        marginBottom : 0,
+        borderStyle : 'dotted'
     }
 })

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Text,View,Modal,TextInput,Picker,ScrollView} from 'react-native';
 import { Button, CheckBox, Body } from 'native-base';
-import styles from './styles'
+import styles from './styles';
+import {VehicleList,SimList,DeviceList} from '../../screens/VehicleList/index';
 export default class CompleteSchedule extends React.Component {
     constructor(props) {
         super(props);
@@ -36,7 +37,7 @@ export default class CompleteSchedule extends React.Component {
                             <ScrollView showsVerticalScrollIndicator={false}>
                                 <View style={styles.upper_view}>
                                     <View style={styles.picker_view}>
-                                    <Button block success>
+                                    <Button block success >
                                         <Text>Vehicle</Text>
                                     </Button>                                
                                     </View>                              

@@ -21,7 +21,19 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     list : {
-        flex :1
-    }
+        backgroundColor : 'white',
+        borderRadius : 20,
+        margin : 15,
+        marginBottom : 0,
+        borderStyle : 'dotted'
+    },
+    text : {
+        fontSize : 30,
+        color : '#20B2AA', 
+     },
+     text1 : {
+        fontSize : 22,
+        // color : '#20B2AA', 
+     },
     
 })
