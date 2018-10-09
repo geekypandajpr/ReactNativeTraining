@@ -3,8 +3,7 @@ import {
     View,
     Image,
     ImageBackground,
-    ScrollView,
-    TextInput
+    ScrollView
 } from 'react-native';
 import styles from './Styles';
 import { AppLoading } from 'expo';
@@ -61,13 +60,12 @@ export default class LogIn extends React.Component {
     render() {
         return (
             this.state.isLoading === true ? <AppLoading /> :
-                <ImageBackground source={require('../../assets/images/backgroundImage.png')}
-                    style={styles.backgroundImage}>
-                    <ScrollView keyboardShouldPersistTaps="always" contentContainerStyle={{ flexGrow: 1 }}>
-                        <Statusbar backgroundColor={'transparent'} barStyle="light-content" />
-                        <View style={styles.mainContainer}>
-                            
-                            {/**Logo View*/}
+            <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/backgroundImage.png')} >
+                <View style={styles.container}>
+                    <Statusbar backgroundColor={'transparent'} barStyle="light-content" />
+                    <ScrollView>
+                        <View style={styles.credentialContainer}>
+                            {/**Logo*/}
                             <View style={styles.imageView}>
                                 <Image
                                     style={styles.logo}
@@ -75,65 +73,62 @@ export default class LogIn extends React.Component {
                                 </Image>
                             </View>
 
-                            {/**Login Credentials View*/}
-                            <View style={styles.credentialContainer}>
-                                <View style={styles.input_view}>
-                                    <InputWithIcon
-                                        name='person'
-                                        placeholder='User Name'
-                                        value={this.state.username}
-                                        returnKeyType={'next'}
-                                        keyboardType={'email-address'}
-                                        blurOnSubmit={false}
-                                        onSubmitEditing={() => this._focusNextField('password')}
-                                        onChangeText={(username) => this.setState({ username })}
+                            {/**Username*/}
+                            <View style={styles.input_view}>
+                                <InputWithIcon
+                                    name='person'
+                                    placeholder='User Name'
+                                    value={this.state.username}
+                                    returnKeyType={'next'}
+                                    keyboardType={'email-address'}
+                                    blurOnSubmit={false}
+                                    onSubmitEditing={() => this._focusNextField('password')}
+                                    onChangeText={(username) => this.setState({ username })}
+                                />
+                            </View>
+
+                            {/**Password*/}
+                            <View style={styles.input_view}>
+                                <InputWithIcon
+                                    name='lock'
+                                    placeholder='Password'
+                                    returnKeyType={'go'}
+                                    getRef={(input) => { this.password = input; }}
+                                    value={this.state.password}
+                                    secureTextEntry={true}
+                                    onSubmitEditing={this._doLogin}
+                                    onChangeText={(password) => this.setState({ password })}
+                                />
+                            </View>
+
+                            {/**Remember me checkbox*/}
+                            <View style={styles.checkbox}>
+                                <View>
+                                    <CheckBox
+                                        checked={this.state.remember}
+                                        color='#229954'
+                                        onPress={() => this.setState({
+                                            remember: !this.state.remember
+                                        })}
                                     />
                                 </View>
-
-                                <View style={styles.input_view}>
-                                    <InputWithIcon
-                                        name='lock'
-                                        placeholder='Password'
-                                        returnKeyType={'go'}
-                                        getRef={(input) => { this.password = input; }}
-                                        value={this.state.password}
-                                        secureTextEntry={true}
-                                        onSubmitEditing={this._doLogin}
-                                        onChangeText={(password) => this.setState({ password })}
-                                    />
-                                </View>
-
-                                <View style={styles.checkbox}>
-                                    <View>
-                                        <CheckBox
-                                            checked={this.state.remember}
-                                            color='#229954'
-                                            onPress={() => this.setState({
-                                                remember: !this.state.remember
-                                            })}
-                                        />
-                                    </View>
-                                    <View style={styles.remember_me}>
-                                        <Text style={styles.remember_me_text}>Remember me</Text>
-                                    </View>
-                                </View>
-
-                                <View style={styles.button_view}>
-                                    <Button
-                                        style={styles.button}
-                                        onPress={this._doLogin}>
-                                        <Text style={styles.button_text}>  LOGIN </Text>
-                                    </Button>
+                                <View style={styles.remember_me}>
+                                    <Text style={styles.remember_me_text}>Remember me</Text>
                                 </View>
                             </View>
 
-                            {/**Version view*/}
-                            <View style={styles.lower_view}>
-                                <Text style={styles.version_text}>v0.0.1</Text>
+                            {/**Login button*/}
+                            <View style={styles.button_view}>
+                                <Button
+                                    style={styles.button}
+                                    onPress={this._doLogin}>
+                                    <Text style={styles.button_text}>  LOGIN </Text>
+                                </Button>
                             </View>
                         </View>
                     </ScrollView>
-                </ImageBackground>
+                </View>
+            </ImageBackground>
         )
     }
 }

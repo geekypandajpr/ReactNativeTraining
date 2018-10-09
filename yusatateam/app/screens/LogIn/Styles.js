@@ -1,19 +1,17 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
-    mainContainer: {
-        flex: 1,
-        //justifyContent: 'space-between'
+    container: {
+        flex: 1
     },
     backgroundImage: {
-        height:'100%',
-        width:'100%'
+        height: '100%',
+        width: '100%'
     },
     imageView: {
-        flex: 1.5,
+        height: 240,
         justifyContent: 'center',
-        alignItems: 'center',
-        //backgroundColor: 'green'
+        alignItems: 'center'
     },
     logo: {
         width: 140,
@@ -22,20 +20,17 @@ export default EStyleSheet.create({
     },
     input_view: {
         marginTop: 15,
-        width: '90%'
+        width: '85%'
     },
     credentialContainer: {
-        flex: 2,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        flexDirection: 'column',
-        //backgroundColor: 'red'
+        justifyContent: 'center',
+        alignItems: 'center'
     },    
     checkbox: {
         marginTop: 20,
-        width: '90%',
+        width: '85%',
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
     remember_me: {
         marginLeft: 20
@@ -45,7 +40,7 @@ export default EStyleSheet.create({
         fontSize: '1rem'
     },
     button_view: {
-        width: '90%',
+        width: '85%',
         marginTop: 20
     },
     button: {
@@ -57,18 +52,5 @@ export default EStyleSheet.create({
     button_text: {
         fontStyle: 'normal',
         color: '#FFF'
-    },
-    lower_view :{
-        flex: 0.5,
-        //backgroundColor: 'orange',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        flexDirection: 'column',
-    },
-    version_text: {
-        color: '#FFF',
-        fontSize: '0.8rem',
-        padding: 10
-    },
-
+    }
 })
