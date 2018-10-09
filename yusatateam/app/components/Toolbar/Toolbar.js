@@ -41,7 +41,7 @@ export default class Toolbar extends React.Component {
                                 <Icon name={this.props.leftIcon} type={this.props.leftIconType} style={styles.icon} />
                             </Button>
                         </Left>
-                        <Body style={styles.body}>
+                        <Body>
                             <Title style={styles.title}>
                                 {this.props.title}
                             </Title>
