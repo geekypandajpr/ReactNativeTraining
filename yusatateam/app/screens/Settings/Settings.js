@@ -31,6 +31,7 @@ export default class Settings extends React.Component {
         this.setState({ isLoading: false });
     }
     render() {
+        const { goBack } = this.props.navigation;
         return(
             this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
