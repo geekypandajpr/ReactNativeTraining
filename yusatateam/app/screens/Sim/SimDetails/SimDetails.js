@@ -1,58 +1,91 @@
 import React from 'react';
-import {View,
-        Text,
-        Alert,
-        TouchableHighlight,
-        Modal
+import {
+    View,
+    Modal
 } from 'react-native';
+import { Text } from 'native-base';
 import styles from './styles';
-export default class SimDetails extends React.Component{
-   constructor(props){
-       super(props);
-      this.state={
-          modalVisible:false,
+export default class SimDetails extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalVisible: false,
         }
-   }
-   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
-  }
+    }
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
+    }
 
-    render()
-    {
-        return(
+    render() {
+        return (
             <View>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-          }}>
-          <View style={{  flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        backgroundColor: '#00000090',
-        flexDirection: 'column', }}>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {
+                        this.setModalVisible(!this.state.modalVisible);
+                    }}>
+                    <View style={styles.container}>
 
-            <View style={{ backgroundColor: '#FFFFFF',
-            bottom: 0,
-            height: '70%',
-            width: '100%',
-            paddingTop: 15,
-            paddingLeft: 15,
-            paddingRight: 15 }}>
-              <Text>Hello World!</Text>
+                        <View style={styles.header_view}>
 
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
+                            <View style={styles.service_num}>
+                                <Text style={styles.header_text}>Item12</Text>
+                            </View>
+                            
+                            <View style={styles.schedule_view}>
+                                <View style={[styles.Status_Button, { backgroundColor: "#5cb85c" }]} >
+                                    <Text style={styles.Status_Style}>Active</Text>
+                                </View>
+                            </View>
+                        </View>
+
+                        <View style={styles.View_Container}>
+
+                            <View style={{flexDirection:'row'}}>
+                                <Text>ItemNumber</Text>
+                                <Text note>Item12</Text>
+                            </View>
+                            <View >
+                                <Text>orderNumber</Text>
+                                <Text note>ORDER001</Text>
+                            </View>
+                            <View >
+                                <Text>iccid</Text>
+                                <Text note>iccid252</Text>
+                            </View>
+                            <View >
+                                <Text>msidn</Text>
+                                <Text note>msidn1256</Text>
+                            </View>
+                            <View >
+                                <Text>plan</Text>
+                                <Text note>planTest</Text>
+                            </View>
+
+                            
+                                <View>
+                                    <Text>itemDescription :</Text>
+                                    <Text note>this is device</Text>
+                                </View>
+                            
+
+                            <View style={{ flexDirection: 'row' }} >
+                                <View>
+                                    <Text>+91 85465256555</Text>
+                                </View>
+                                <View style={styles.Provider_View} >
+                                    <Text style={styles.providerStyle}>Airtel</Text>
+                                </View>
+                            </View>
+
+                           
+
+                        </View>
+                    </View>
+                </Modal>
             </View>
-          </View>
-        </Modal>
-        </View>
 
         );
     }
