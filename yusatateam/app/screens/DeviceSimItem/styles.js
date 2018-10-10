@@ -9,9 +9,9 @@ export default EStyleSheet.create({
         flexDirection: 'column',
     },
     modal_child_container: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'lightgrey',
         bottom: 0,
-        height: '36%',
+        height: '76%',
         width: '100%',
         paddingTop: 15,
         paddingLeft: 15,
@@ -35,7 +35,8 @@ export default EStyleSheet.create({
     },
   
     lower_view: {
-        marginTop: 5,
+        paddingTop : 15,
+        marginTop: 15,
         marginBottom: 5,
         flex: 2,
         justifyContent: 'flex-end',
@@ -58,12 +59,43 @@ export default EStyleSheet.create({
     },
     picker_view: {
         
-      
-        borderRadius: 20,
+        backgroundColor :'white',
+        borderRadius: 3,
         margin: 5,
+        // alignItems : 'center',
+        // justifyContent : 'center'
+        paddingLeft : 15
     },
     picker: {
         height: '100%',
         width: '100%'
+    },
+    comment_text_view: {
+        width: '100%',
+        justifyContent: 'flex-start',
+    },
+    comment_text: {
+        fontFamily: '$fontFamily',
+        color: '#000',
+        fontSize: '1rem'
+    },
+    comment_box: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    text_input_view: {
+        width: '100%',
+        height: 100,
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 5,
+        backgroundColor :'white'
+    },
+    text_input: {
+        width: '100%',
+        padding: 10
+    },
+    upper_view : {
+     
     }
 })

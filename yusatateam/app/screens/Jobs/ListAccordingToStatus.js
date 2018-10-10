@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, ScrollView, FlatList, Button, TouchableOpacity, } from 'react-native';
-import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
+import { View, ScrollView, FlatList, TouchableOpacity, } from 'react-native';
+import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text ,Button} from 'native-base';
 import styles from './styles';
 import { AppLoading } from 'expo';
 import DeviceSimItem from '../../screens/DeviceSimItem/DeviceSimItem'
@@ -9,43 +9,66 @@ export default class ListAccordingToStatus extends React.Component {
         super();
         this.state = {
             data: [
-                {
-                    ORDER: 'EVKGLI',
-                    ICCID: 'ICCID1',
-                    MSIDN: 'MSIDN1',
-                    Provider: 'Tata Docomo',
-                    Mobile: '09085-53379',
-                    status: 'Activate'
+                 {
+                    'jobNumber' : 'VOCT092015',
+                    'jobStatus' : 'completed',
+                    'companyName' : 'Yusata infotech',
+                    'jobType' : 'Install',
+                    'jobName' : 'Job Name',
+                    'scheduleDate' : '10/10/2018 20:00',
+                    'servicePerson' : 'Yash Gulati',
+                    'contactPerson' : 'Mr. Vinayak Sharma',
+                    'contactNumber' : '+91 8945623622',
+                    'cashOnDelivery' : 'yes',
+                    'amount' : 'Rs. 5000',
+                    'training' : 'yes'
                 },
                 {
-                    ORDER: 'JSCKBK',
-                    ICCID: 'ICCID2',
-                    MSIDN: 'MSIDN2',
-                    Provider: 'AIRTEL',
-                    Mobile: '09085-45090',
-                    status: 'Deactivate'
+                    'jobNumber' : 'VOCT092016',
+                    'jobStatus' : 'completed',
+                    'companyName' : 'Yusata infotech',
+                    'jobType' : 'Install',
+                    'jobName' : 'Job Name',
+                    'scheduleDate' : '10/10/2018 20:00',
+                    'servicePerson' : 'Yash Gulati',
+                    'contactPerson' : 'Rahul',
+                    'contactNumber' : '+91 8945623622',
+                    'cashOnDelivery' : 'yes',
+                    'amount' : 'Rs. 5000',        
+                    'training' : 'yes'
                 },
                 {
-                    ORDER: 'UYGEYUJA',
-                    ICCID: 'ICCID3',
-                    MSIDN: 'MSIDN3',
-                    Provider: 'AIRCEL',
-                    Mobile: '09085-65879',
-                    status: 'Activate'
+                    'jobNumber' : 'VOCT092017',
+                    'jobStatus' : 'completed',
+                    'companyName' : 'Yusata infotech',
+                    'jobType' : 'Install',
+                    'jobName' : 'Job Name',
+                    'scheduleDate' : '10/10/2018 20:00',
+                    'servicePerson' : 'Yash Gulati',
+                    'contactPerson' : 'Rahul',
+                    'contactNumber' : '+91 8945623622',
+                    'cashOnDelivery' : 'yes',
+                    'amount' : 'Rs. 5000',          
+                    'training' : 'yes'
                 },
                 {
-                    ORDER: 'HAVCMSV',
-                    ICCID: 'ICCID4',
-                    MSIDN: 'MSIDN4',
-                    Provider: 'IDEA',
-                    Mobile: '09085-53379',
-                    status: 'Deactivate'
+                    'jobNumber' : 'VOCT092018',
+                    'jobStatus' : 'completed',
+                    'companyName' : 'Yusata infotech',
+                    'jobType' : 'Install',
+                    'jobName' : 'Job Name',
+                    'scheduleDate' : '10/10/2018 20:00',
+                    'servicePerson' : 'Yash Gulati',
+                    'contactPerson' : 'Rahul',
+                    'contactNumber' : '+91 8945623622',
+                    'cashOnDelivery' : 'yes',
+                    'amount' : 'Rs. 5000',
+                    'training' : 'yes'
                 },
-
             ],
             items: [],
             list: '',
-            status: 'Activate'
+            status: 'completed'
         }
         this.arrayholder = [];
         this.changeTabStatus = this.changeTabStatus.bind(this);
@@ -56,7 +79,7 @@ export default class ListAccordingToStatus extends React.Component {
     SearchFilterFunction(text) {
 
         const newData = this.arrayholder.filter(function (item) {
-            const itemData = item.MSIDN.toUpperCase()
+            const itemData = item.jobNumber.toUpperCase()
             const textData = text.toUpperCase()
             return itemData.indexOf(textData) > -1
         })
@@ -80,23 +103,41 @@ export default class ListAccordingToStatus extends React.Component {
             <View style={styles.container}>
                 <FlatList
                     data={this.state.data}
-                    keyExtractor={(item, index) => item.MSIDN.toString()}
+                    keyExtractor={(item, index) => item.jobNumber.toString()}
                     renderItem={({ item, index }) =>
                         <View style={styles.viewList}>
-                            {this.state.status == item.status ?
-                                 <List style={styles.list}>
-                                 <ListItem avatar noBorder >
-                                 <Body>
-                                 <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true)}>
-                                         <Text  style={styles.text}>{item.ORDER} </Text>   
-                                    <Text   style={styles.text1}>{item.MSIDN}</Text>               
-                                         <Text note >{item.ICCID}    {item.Mobile}     {item.Provider}</Text>   
-                                     </TouchableOpacity>
-                                 </Body>
-                                 <Right>
-                                     <Text note style={{marginRight : 15}}>{item.status}</Text>
-                                 </Right>
-                                 </ListItem>
+                            {this.state.status == item.jobStatus ?
+                                 <List style={{ 
+                                 backgroundColor : 'white',
+                                //  borderRadius : 20,
+                                 margin : 15,
+                                 marginBottom : 0}}>
+                                 <View avatar noBorder >
+                                 <View>
+                         <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true,item)}>
+                                    <View style={{flexDirection :'row',flex :1}}> 
+                                        <Text style={styles.text}>{item.jobNumber}</Text>
+                                        <Text style={{alignItems :'flex-end',justifyContent :'flex-end',flex :5}}>{item.scheduleDate}</Text> 
+                                    </View>
+                                 <View style={{flexDirection :'row',flex :1}}>
+                                 <Text style={{flex : 8,paddingLeft : 15}}>{item.contactPerson}</Text> 
+                                 <Text style={{color : '#CD853F',alignItems :'flex-end',justifyContent :'flex-end',flex :3}}>{item.jobStatus}</Text>
+                                 </View>
+                                 <View style={{flex :1,flexDirection :'row'}}>
+                                     <View style={{flex : 8,paddingLeft : 15}}>
+                                        <Text>{item.companyName}</Text>   
+                                        <Text>{item.contactNumber}</Text>
+                                     </View>
+                                         <Right style={{flex :3}}>
+                                            <Button transparent  success>
+                                                 <Text>{item.jobType}</Text>
+                                            </Button>
+                                         </Right>
+                                 </View>   
+                            </TouchableOpacity>
+                                 </View>
+                                
+                                 </View>
                              </List>
                                 : null}
                         </View>
