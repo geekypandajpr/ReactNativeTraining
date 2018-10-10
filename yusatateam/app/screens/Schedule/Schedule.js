@@ -197,7 +197,9 @@ export default class Schedule extends React.Component {
 
     renderItem(item) {
         return (
-            <ScheduleEvent {...item} viewMore={() => { this.modalRef.current.setModalVisible(true, item) }}/>
+            <ScheduleEvent {...item}
+                doAction={() => { this.modalRef.current.setModalVisible(true, item) }}
+                viewMore={() => { this.modalRef.current.setModalVisible(true, item) }}/>
         );
     }
 

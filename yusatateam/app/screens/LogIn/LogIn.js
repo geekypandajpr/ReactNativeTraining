@@ -8,8 +8,7 @@ import {
 import styles from './Styles';
 import { AppLoading } from 'expo';
 import { CheckBox, Button, Text, Toast } from 'native-base';
-import { InputWithIcon, Statusbar } from '../../components';
-
+import { InputWithIcon, Statusbar, StatefulButton } from '../../components';
 export default class LogIn extends React.Component {
     constructor(props) {
         super(props);
@@ -118,17 +117,28 @@ export default class LogIn extends React.Component {
 
                             {/**Login button*/}
                             <View style={styles.button_view}>
+                                {/* <StatefulButton 
+                                    label='Login'
+                                    loadingLabel='loading...'
+                                    colorAnimation={['#229954', '#8BC34A', '#229954']}
+                                    onPress={this.signUp}
+                                    styles={{button: styles.animated_button, label: styles.button_text}}/> */}
                                 <Button
                                     style={styles.button}
                                     onPress={this._doLogin}>
                                     <Text style={styles.button_text}>  LOGIN </Text>
                                 </Button>
                             </View>
+
+                            
                         </View>
                     </ScrollView>
                 {/* </View> */}
             </ImageBackground>
         )
+    }
+    signUp() {
+        alert('hello');
     }
 }
 

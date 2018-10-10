@@ -54,5 +54,9 @@ export default EStyleSheet.create({
     button_text: {
         fontStyle: 'normal',
         color: '#FFF'
+    },
+    animated_button: {
+        backgroundColor: '#229954',
+        height: 45
     }
 })

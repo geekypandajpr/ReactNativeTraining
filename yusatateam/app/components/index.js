@@ -5,3 +5,4 @@ export { SearchBar } from './SearchBar';
 export { IconWithText } from './IconWithText';
 export { RoundedImage } from './RoundedImage';
 export { InputWithIcon } from './InputWithIcon';
+export { StatefulButton } from './StatefulButton';
