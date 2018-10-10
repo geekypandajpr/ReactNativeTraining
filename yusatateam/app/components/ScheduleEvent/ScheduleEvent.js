@@ -3,6 +3,7 @@ import { View, TouchableOpacity } from 'react-native';
 import styles from './Styles';
 import { Button, Text } from 'native-base';
 import { Entypo, MaterialIcons } from '@expo/vector-icons';
+import { StatefulButton } from '../../components';
 
 const ScheduleEvent = (props) => (
     <View style={styles.event_date_view}>
@@ -13,9 +14,15 @@ const ScheduleEvent = (props) => (
                 <Text style={styles.label_text}>{props.serviceNumber}</Text>
             </View>
             <View style={styles.second_view}>
-                <Button transparent style={styles.service_type_view}>
+            <StatefulButton 
+                label={props.serviceType}
+                loadingLabel='wait...'
+                colorAnimation={['transparent', 'transparent', 'transparent']}
+                onPress={props.doAction}
+                styles={{button: styles.service_type_view, label: styles.service_type}}/>
+                {/* <Button transparent style={styles.service_type_view}>
                     <Text uppercase={false} style={styles.service_type}>{props.serviceType}</Text>
-                </Button>
+                </Button> */}
             </View>
         </View>
 

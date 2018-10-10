@@ -54,7 +54,7 @@ export default EStyleSheet.create({
     },
     view_more: {
         //fontFamily: '$fontFamily',
-        fontSize: '0.7rem',
+        fontSize: '0.8rem',
         color: 'gray'
     },
     service_type_view: {
