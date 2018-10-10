@@ -78,9 +78,7 @@ export default EStyleSheet.create({
         color: '#1f667e',
         justifyContent: 'center',
         alignItems: 'center',
-        
-        
-    },
+     },
     Provider_View:
     {
         borderRadius: 5,
