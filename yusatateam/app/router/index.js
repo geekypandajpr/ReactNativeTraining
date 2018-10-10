@@ -3,6 +3,7 @@ import {
     LogIn,
     HomeScreen,
     Sim,
+    Device,
     Schedule,
     VehicleList,
     Jobs,
@@ -36,6 +37,12 @@ const RouteConfigs = {
     },
     Sim: {
         screen: Sim,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Device: {
+        screen: Device,
         navigationOptions: {
             header: null
         }

@@ -13,9 +13,9 @@ const ScheduleEvent = (props) => (
                 <Text style={styles.label_text}>{props.serviceNumber}</Text>
             </View>
             <View style={styles.second_view}>
-                <View style={styles.service_type_view}>
-                    <Text style={styles.service_type}>{props.serviceType}</Text>
-                </View>
+                <Button transparent style={styles.service_type_view}>
+                    <Text uppercase={false} style={styles.service_type}>{props.serviceType}</Text>
+                </Button>
             </View>
         </View>
 

@@ -43,7 +43,7 @@ export default class HomeScreen extends React.Component {
             currentColor2: "#ff9f95"
         });
         const { navigate } = this.props.navigation;
-        navigate('Sim')
+        navigate('Device')
     }
     jobsClick() 
     {
