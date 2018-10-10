@@ -4,11 +4,13 @@ import {
     FlatList,
     TouchableHighlight,
     Dimensions,
+    modal
 } from 'react-native';
 import { Card, Button, Text } from 'native-base';
 import styles from './styles';
 import { AppLoading } from 'expo';
 import { Toolbar } from '../../components';
+import { SimDetails } from './SimDetails';
 import SimData from '../../assets/JSONData/SimData'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
@@ -17,7 +19,9 @@ export default class Sim extends React.Component {
         super();
         this.state = {
             isLoading: true,
-        }
+            
+        };
+        this.modalRef = React.createRef();
     }
 
     async componentWillMount() {
@@ -44,6 +48,12 @@ export default class Sim extends React.Component {
                             data={SimData}
                             keyExtractor={(item, index) => item.toString()}
                             renderItem={({ item, index }) =>
+                            <TouchableHighlight
+                                onPress={() => {
+                                    this.modalRef.current.setModalVisible(true)
+                                }}>
+                           
+                          
                                 <Card style={styles.mainCard}>
 
                                     <View style={styles.First_View}>
@@ -114,8 +124,10 @@ export default class Sim extends React.Component {
                                     </View>
 
                                 </Card>
+                                </TouchableHighlight>
                             }></FlatList>
                     </View>
+                    <SimDetails ref={this.modalRef}/>
                 </View>
         );
     }

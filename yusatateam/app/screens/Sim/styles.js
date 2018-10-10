@@ -20,7 +20,6 @@ export default EStyleSheet.create({
         borderRadius:5,
         borderWidth:3,
         borderColor:'white'
-
     },
     First_View:
     {

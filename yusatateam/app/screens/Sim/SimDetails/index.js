@@ -1,1 +1,1 @@
-s.js
+export { SimDetails } from './SimDetails';
