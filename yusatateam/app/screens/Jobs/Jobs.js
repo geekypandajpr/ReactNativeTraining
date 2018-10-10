@@ -1,9 +1,7 @@
 import React from 'react';
 import { Tab, Tabs, ScrollableTab } from 'native-base';
 import { View, BackHandler } from 'react-native';
-import { VehicleList } from '../VehicleList/VehicleList';
-import { DeviceSimItem } from '../DeviceSimItem/DeviceSimItem';
-import {ListAccordingToStatus} from './ListAccordingToStatus';
+import JobDetails from './JobDetails/JobDetails';
 import {Toolbar} from '../../components'
 import { AppLoading } from 'expo';
  class Jobs extends React.Component {
@@ -52,16 +50,16 @@ import { AppLoading } from 'expo';
                     rightIconType='MaterialCommunityIcons' />
                 <Tabs  onChangeTab={({ i, ref, from })=> this.getStatus(i,ref,from)} renderTabBar={() => <ScrollableTab />}>
                     <Tab tabStyle={{ backgroundColor: "#0073b7" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#0073b7" }} heading="Pending">
-                        <ListAccordingToStatus ref = "modal"/>
+                        <JobDetails ref = "modal"/>
                     </Tab>
                     <Tab tabStyle={{ backgroundColor: "#0073b7" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#0073b7" }} heading="Schedule">
-                        <ListAccordingToStatus  ref = "modal"/>
+                        <JobDetails  ref = "modal"/>
                     </Tab>
                     <Tab tabStyle={{ backgroundColor: "#0073b7" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#0073b7" }} heading="Completed">
-                        <ListAccordingToStatus  ref = "modal"/>
+                        <JobDetails  ref = "modal"/>
                     </Tab>
                     <Tab tabStyle={{ backgroundColor: "#0073b7" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#0073b7" }} heading="ReSchedule">
-                        <ListAccordingToStatus  ref = "modal"/>
+                        <JobDetails  ref = "modal"/>
                     </Tab>
                 </Tabs>
             </View>
