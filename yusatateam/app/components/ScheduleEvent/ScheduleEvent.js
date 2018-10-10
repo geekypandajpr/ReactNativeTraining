@@ -4,15 +4,18 @@ import styles from './Styles';
 import { Button, Text } from 'native-base';
 import { Entypo, MaterialIcons } from '@expo/vector-icons';
 import { StatefulButton } from '../../components';
+import { DoAssociation } from '../../screens';
 
 export default class ScheduleEvent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
+        this.modalRef = React.createRef();
+        this.completeJob = this.completeJob.bind(this);
     }
 
     completeJob() {
-        
+        // this.refs.modal.setModalVisible(true, item);
     }
 
     render() {
@@ -88,7 +91,7 @@ export default class ScheduleEvent extends React.Component {
 
                     </View>
                 )}
-
+                {/* <DoAssociation ref='modal'/> */}
             </View>
         )
     }
