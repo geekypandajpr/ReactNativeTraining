@@ -4,5 +4,6 @@ export { Schedule } from './Schedule';
 export { VehicleList } from './VehicleList';
 export { DeviceSimItem } from './DeviceSimItem';
 export { Sim } from './Sim';
+export { Device } from './Device';
 export { Jobs } from './Jobs';
 export { Settings } from './Settings';

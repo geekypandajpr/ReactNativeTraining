@@ -54,7 +54,7 @@ export default EStyleSheet.create({
     },
     view_more: {
         //fontFamily: '$fontFamily',
-        fontSize: '0.6rem',
+        fontSize: '0.7rem',
         color: 'gray'
     },
     service_type_view: {
@@ -64,7 +64,8 @@ export default EStyleSheet.create({
         borderColor: 'gray',
         borderWidth: 1,
         padding: 2,
-        width: 65
+        height: 25,
+        width: 90
     },
     service_type: {
         //fontFamily: '$fontFamily',
