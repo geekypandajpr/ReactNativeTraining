@@ -82,7 +82,7 @@ export default class DoAssociation extends React.Component {
                                 <View style={styles.main_view}>
                                     <View style={styles.first_view}>
                                         <View style={styles.icon_view}>
-                                            <MaterialCommunityIcons name='van-utility' color='#d9534f' size={24} />
+                                            <MaterialCommunityIcons name='van-utility' color='#1766A6' size={24} />
                                         </View>
                                         <View style={styles.icon_text_view}>
                                             <Text style={styles.value_text}>{details.vehicleNumber}</Text>
