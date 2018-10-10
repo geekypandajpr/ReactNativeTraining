@@ -17,9 +17,9 @@ export default EStyleSheet.create({
     {
         flex: 1,
         flexDirection: 'row',
-        borderRadius:5,
-        borderWidth:3,
-        borderColor:'white'
+        borderRadius: 5,
+        borderWidth: 3,
+        borderColor: 'white'
     },
     First_View:
     {
@@ -48,8 +48,8 @@ export default EStyleSheet.create({
         marginTop: 5
     },
     Level_Head:
-    { 
-        justifyContent:'flex-start' 
+    {
+        justifyContent: 'flex-start'
     },
     Header_Style:
     {
