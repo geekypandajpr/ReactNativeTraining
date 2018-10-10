@@ -30,15 +30,14 @@ export default class Sim extends React.Component {
     }
 
     render() {
-        //const { navigate } = this.props.navigation;
+        const { navigate } = this.props.navigation;
+        const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
 
-                    <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' />
-                    {/* // onLeftButtonPress={() => navigate('HomeScreen')}
-                        // rightIcon='settings'
-                        // rightIconType='MaterialCommunityIcons' /> */}
+                    <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}/>
 
                     <View style={styles.viewStyle}>
                         <FlatList
