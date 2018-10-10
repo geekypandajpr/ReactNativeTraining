@@ -11,6 +11,10 @@ export default class ScheduleEvent extends React.Component {
         this.state = {}
     }
 
+    completeJob() {
+        
+    }
+
     render() {
         return (
             <View>
@@ -26,7 +30,7 @@ export default class ScheduleEvent extends React.Component {
                                     label={item.serviceType}
                                     loadingLabel='wait...'
                                     colorAnimation={['transparent', 'transparent', 'transparent']}
-                                    onPress={this.props.doAction}
+                                    onPress={this.completeJob}
                                     styles={{ button: styles.service_type_view, label: styles.service_type }} />
                                 {/* <Button transparent style={styles.service_type_view}>
                                     <Text uppercase={false} style={styles.service_type}>{item.serviceType}</Text>

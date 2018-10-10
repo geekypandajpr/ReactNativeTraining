@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { Button } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { MaterialIcons, Entypo } from '@expo/vector-icons';
+import { MaterialIcons, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default class ViewDetails extends React.Component {
     constructor(props) {
@@ -58,13 +58,33 @@ export default class ViewDetails extends React.Component {
                         <View style={styles.modal_child_container}>
                             <ScrollView showsVerticalScrollIndicator={false}>
 
+                                <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <Text style={styles.value_text}>Premsagar Choudhary</Text>
+                                    </View>
+                                    <View style={styles.second_view}>
+                                        <Text style={styles.value_text}>+91 84650156556</Text>
+                                    </View>
+                                </View>
+
                                 {/**Company Name and Vehicle Name View*/}
                                 <View style={styles.main_view}>
                                     <View style={styles.first_view}>
                                         <Text style={styles.value_text}>{details.companyName}</Text>
                                     </View>
-                                    <View style={styles.second_view}>
+                                    {/* <View style={styles.second_view}>
                                         <Text style={styles.value_text}>{details.vehicleNumber}</Text>
+                                    </View> */}
+                                </View>
+
+                                <View style={styles.main_view}>
+                                    <View style={styles.first_view}>
+                                        <View style={styles.icon_view}>
+                                            <MaterialCommunityIcons name='van-utility' color='#000' size={24} />
+                                        </View>
+                                        <View style={styles.icon_text_view}>
+                                            <Text style={styles.value_text}>{details.vehicleNumber}</Text>
+                                        </View>
                                     </View>
                                 </View>
 
@@ -129,15 +149,6 @@ export default class ViewDetails extends React.Component {
                                         </View>
                                     </View>
                                 </View>
-                                {/* <View style={styles.main_view}>
-                                    <View style={styles.first_view}>
-                                        <Text style={styles.value_text}>{details.device}</Text>
-                                    </View>
-                                    <View style={styles.second_view}>
-                                        <Text style={styles.view_more}>view device</Text>
-                                        <Entypo name='chevron-thin-right' color='gray' size={20} />
-                                    </View>
-                                </View> */}
 
                                 {/**Sim View*/}
                                 <View style={styles.main_view}>
@@ -155,15 +166,6 @@ export default class ViewDetails extends React.Component {
                                         </View>
                                     </View>
                                 </View>
-                                {/* <View style={styles.main_view}>
-                                    <View style={styles.first_view}>
-                                        <Text style={styles.value_text}>{details.sim}</Text>
-                                    </View>
-                                    <View style={styles.second_view}>
-                                        <Text style={styles.view_more}>view sim</Text>
-                                        <Entypo name='chevron-thin-right' color='gray' size={20} />
-                                    </View>
-                                </View> */}
 
                                 {/**Comment Box*/}
                                 <View style={styles.comment_view}>

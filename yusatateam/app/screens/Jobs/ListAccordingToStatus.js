@@ -130,7 +130,7 @@ export default class ListAccordingToStatus extends React.Component {
                                      </View>
                                          <Right style={{flex :3}}>
                                             <Button transparent  success>
-                                                 <Text>{item.jobType}</Text>
+                                                 <Text uppercase={false}>{item.jobType}</Text>
                                             </Button>
                                          </Right>
                                  </View>   
