@@ -1,95 +1,107 @@
 import React from 'react';
-import { View, Image, Dimensions, TouchableOpacity, Text, ScrollView, ImageBackground, BackHandler, Alert } from 'react-native';
+import {
+    View,
+    Image,
+    ImageBackground,
+    ScrollView
+} from 'react-native';
 import styles from './Styles';
-import { Body, CheckBox, Button } from 'native-base';
-import { IconWithTextInput, Statusbar } from '../../components';
-
-const _width = Dimensions.get('window').width;
-
+import { AppLoading } from 'expo';
+import { CheckBox, Button, Text, Toast } from 'native-base';
+import { InputWithIcon, Statusbar, StatefulButton } from '../../components';
 export default class LogIn extends React.Component {
-    static navigationOptions = {
-        header: null,
-    };
     constructor(props) {
         super(props);
         this.state = {
             username: '',
             password: '',
-            remember: true
+            remember: true,
+            isLoading: true
         }
-    }
-    componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        this._doLogin = this._doLogin.bind(this);
     }
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+        })
+        this.setState({ isLoading: false });
     }
 
-    handleBackPress = () => {
-        Alert.alert(
-            'Exit App',
-            'Do you want to exit ?',
-            [
-                { text: 'NO', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-                { text: 'YES', onPress: () => BackHandler.exitApp() },
-            ],
-            { cancelable: false })
-
-        return true;
-    }
     _focusNextField(id) {
         this[id]._root.focus();
     }
 
-    _logIn(){
-        if(this._requiredFields()){
+    _doLogin() {
+        if (this._checkRequiredFields()) {
             this.props.navigation.navigate('HomeScreen');
-        }
-        else{
-            Alert.alert('Please fill all the fields');
+        } else {
+            Toast.show({
+                position: 'bottom',
+                type: 'danger',
+                duration: 3000,
+                text: 'Invalid Credentials',
+                buttonText: 'Ok',
+            });
         }
     }
-    _requiredFields() {
-        if (this.state.username=='' || this.state.password=='') {
+
+    _checkRequiredFields() {
+        if (this.state.username == '' || this.state.password == '') {
             return false;
         }
         return true;
     }
-    render() {
-        const { navigate } = this.props.navigation;
-        return (
-            <ImageBackground source={require('../../assets/images/backgroundImage.png')} style={styles.backgroundImage}>
-                <View style={styles.mainContainer}>
 
-                    <Statusbar backgroundColor={'#fff'} barStyle="dark-content" />
-                    <ScrollView>
-                        <View style={styles.imageView}>
-                            <Image
-                                style={styles.logo}
-                                source={require('../../assets/images/YLogAppLogo.png')}>
-                            </Image>
-                        </View>
+    render() {
+        return (
+            this.state.isLoading === true ? <AppLoading /> :
+            <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/LoginScreenBG.jpg')} >
+                {/* <View style={styles.container}> */}
+                    <Statusbar backgroundColor={'transparent'} barStyle="light-content" />
+                    <ScrollView keyboardShouldPersistTaps='handled'>
                         <View style={styles.credentialContainer}>
-                            <IconWithTextInput
-                                name='person'
-                                placeholder='User Name'
-                                value={this.state.username}
-                                returnKeyType={'next'}
-                                keyboardType={'email-address'}
-                                blurOnSubmit={false}
-                                onSubmitEditing={() => this._focusNextField('pswd')}
-                                onChangeText={(username) => this.setState({ username })}
-                            />
-                            <IconWithTextInput
-                                name='lock'
-                                placeholder='Password'
-                                getRef={(input) => { this.pswd = input; }}                              
-                                value={this.state.password}
-                                secureTextEntry={true}
-                                onSubmitEditing={this._logIn.bind(this)}
-                                onChangeText={(password) => this.setState({ password })}
-                            />
+                            {/**Logo*/}
+                            <View style={styles.imageView}>
+                                <Image
+                                    style={styles.logo}
+                                    source={require('../../assets/images/YLogAppLogo.png')}>
+                                </Image>
+                            </View>
+
+                            {/**Username*/}
+                            <View style={styles.input_view}>
+                                <InputWithIcon
+                                    name='person'
+                                    iconColor='#fff'
+                                    placeholder='User Name'
+                                    value={this.state.username}
+                                    returnKeyType={'next'}
+                                    keyboardType={'email-address'}
+                                    blurOnSubmit={false}
+                                    onSubmitEditing={() => this._focusNextField('password')}
+                                    onChangeText={(username) => this.setState({ username })}
+                                />
+                            </View>
+
+                            {/**Password*/}
+                            <View style={styles.input_view}>
+                                <InputWithIcon
+                                    name='lock'
+                                    iconColor='#FFF'
+                                    placeholder='Password'
+                                    returnKeyType={'go'}
+                                    getRef={(input) => { this.password = input; }}
+                                    value={this.state.password}
+                                    secureTextEntry={true}
+                                    onSubmitEditing={this._doLogin}
+                                    onChangeText={(password) => this.setState({ password })}
+                                />
+                            </View>
+
+                            {/**Remember me checkbox*/}
                             <View style={styles.checkbox}>
                                 <CheckBox
                                     checked={this.state.remember}
@@ -97,32 +109,36 @@ export default class LogIn extends React.Component {
                                     onPress={() => this.setState({
                                         remember: !this.state.remember
                                     })}
-                                />                               
-                                    <Body
-                                        style={styles.checkboxBody} >
-                                        <Text>Remember Me</Text>
-                                    </Body>                                
+                                />
+                                <View style={styles.remember_me}>
+                                    <Text style={styles.remember_me_text}>Remember me</Text>
+                                </View>
                             </View>
-                            <View style={styles.buttonView}>
-                                <Button rounded
+
+                            {/**Login button*/}
+                            <View style={styles.button_view}>
+                                {/* <StatefulButton 
+                                    label='Login'
+                                    loadingLabel='loading...'
+                                    colorAnimation={['#229954', '#8BC34A', '#229954']}
+                                    onPress={this.signUp}
+                                    styles={{button: styles.animated_button, label: styles.button_text}}/> */}
+                                <Button
                                     style={styles.button}
-                                    onPress={this._logIn.bind(this)}>
-                                    <View style={{ width: _width * 0.8 }}>
-                                        <Text style={styles.buttonText}>
-                                            LOGIN
-                                    </Text>
-                                    </View>
+                                    onPress={this._doLogin}>
+                                    <Text style={styles.button_text}>  LOGIN </Text>
                                 </Button>
                             </View>
-                        </View>
-                        <View style={styles.versionTextView}>
-                            <Text style={styles.versionText}>v0.0.1</Text>
+
+                            
                         </View>
                     </ScrollView>
-                </View>
+                {/* </View> */}
             </ImageBackground>
-
         )
+    }
+    signUp() {
+        alert('hello');
     }
 }
 

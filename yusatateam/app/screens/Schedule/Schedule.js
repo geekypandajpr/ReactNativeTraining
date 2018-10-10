@@ -1,9 +1,7 @@
 import React from 'react';
 import {
     Text,
-    View,
-    TouchableOpacity,
-    BackHandler,
+    View
 } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
@@ -25,17 +23,7 @@ export default class Schedule extends React.Component {
         this.state = {
             items: {}
         };
-    }
-    componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    }
-
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    }
-
-    handleBackPress = () => {
-        return true;
+        this.modalRef = React.createRef();
     }
 
     renderDay(day, item) {
@@ -44,12 +32,12 @@ export default class Schedule extends React.Component {
 
     render() {
         const { navigate } = this.props.navigation;
+        const { goBack } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Toolbar title='Schedule' leftIcon='arrow-left' leftIconType='Feather'
-                    onLeftButtonPress={() => navigate('HomeScreen')}
-                    rightIcon='settings'
-                    rightIconType='MaterialCommunityIcons' />
+                <Toolbar title='Schedule'
+                    leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
+                    setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
                 <Agenda
                     //renderDay={(day, item) => this.renderDay(day, item)}
                     items={this.state.items}
@@ -100,7 +88,7 @@ export default class Schedule extends React.Component {
                         agendaTodayColor: colors.CALENDARS.AGENDA_TODAY_COLOR
                     }}
                 />
-                <ViewDetails ref='modal' />
+                <ViewDetails ref={this.modalRef} />
             </View>
         );
     }
@@ -146,7 +134,7 @@ export default class Schedule extends React.Component {
                         'companyName' : 'Yusata Infotech Private Limited',
                         'vehicleNumber' : 'vehicle12',
                         'status': 'Onjob',
-                        'color': colors.SERVICE_STATUS_COLOR.ON_JOB,
+                        'color': colors.SERVICE_STATUS_COLOR.ONJOB,
                         'device': 'DEV7457866',
                         'sim': '+91-9080706556',
                         'provider': 'Airtel',
@@ -209,7 +197,9 @@ export default class Schedule extends React.Component {
 
     renderItem(item) {
         return (
-            <ScheduleEvent {...item} viewMore={() => { this.refs.modal.setModalVisible(true, item) }}/>
+            <ScheduleEvent item={[item]}
+                doAction={() => { this.modalRef.current.setModalVisible(true, item) }}
+                viewMore={() => { this.modalRef.current.setModalVisible(true, item) }}/>
         );
     }
 

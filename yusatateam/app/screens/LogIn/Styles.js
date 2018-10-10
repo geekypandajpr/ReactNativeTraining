@@ -1,66 +1,62 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Dimensions } from 'react-native';
-const _width = Dimensions.get('window').width;
-export default EStyleSheet.create({
-    mainContainer: {
-        flex: 1,
-        //backgroundColor: '#ffffff',
-        alignItems: 'center',
-        justifyContent: 'center'
 
+export default EStyleSheet.create({
+    container: {
+        flex: 1
     },
     backgroundImage: {
-        height:'100%',
-        width:'100%'
+        height: '100%',
+        width: '100%'
     },
     imageView: {
-        flex: 1.5,
+        height: 240,
         justifyContent: 'center',
         alignItems: 'center'
     },
     logo: {
         width: 140,
         height: 140,
-        resizeMode: 'contain',
-        marginTop: 50,
-        marginBottom: 20
+        resizeMode: 'contain'
+    },
+    input_view: {
+        marginTop: 15,
+        width: '85%'
     },
     credentialContainer: {
-        flex: 2.5,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },    
     checkbox: {
-        width: _width * 0.85,
+        marginTop: 25,
+        width: '85%',
         flexDirection: 'row',
-        marginTop: 20,
+        justifyContent: 'flex-start',
+        marginLeft: 0
     },
-    checkboxBody: {
-        alignItems: 'flex-start',
+    remember_me: {
         marginLeft: 20
     },
-    buttonView: {
-        flex: 1,
-        padding: 12,
-        marginTop: 10
+    remember_me_text: {
+        color: '#fff',
+        fontSize: '1rem'
+    },
+    button_view: {
+        width: '85%',
+        marginTop: 25,
+        marginBottom: 25
     },
     button: {
+        width: '100%',
         backgroundColor: '#229954',
-        width: _width * 0.8,
         alignItems: 'center',
         justifyContent: 'center'
     },
-    buttonText: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 15,
+    button_text: {
         fontStyle: 'normal',
         color: '#FFF'
     },
-    versionTextView: {
-        alignItems: 'center'
-    },
-    versionText: {
-        color: '#229954'
-    },
-
+    animated_button: {
+        backgroundColor: '#229954',
+        height: 45
+    }
 })

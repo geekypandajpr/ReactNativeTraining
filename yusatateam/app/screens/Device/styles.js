@@ -11,88 +11,109 @@ export default EStyleSheet.create({
         paddingLeft: 5,
         paddingRight: 5,
         paddingTop: 5,
-        flex: 1
-
+        flex: 1,
     },
     mainCard:
     {
         flex: 1,
         flexDirection: 'row',
+        borderRadius: 5,
+        borderWidth: 3,
+        borderColor: 'white'
     },
-    firstView:
+    First_View:
     {
-        flex: 1
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    secondViews:
+    Second_View:
     {
-        flex: 4
+        flex: 4,
     },
-    firstRow:
+    Level_Second:
+    {
+        flex: 1,
+        justifyContent: 'flex-start'
+    },
+    Level_Row:
+    {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    Margin_Row:
     {
         flex: 1,
         flexDirection: 'row',
         marginTop: 5
     },
-    indexText:
+    Level_Head:
     {
-        color: '#FFF',
-        fontSize: 20
+        justifyContent: 'flex-start'
     },
-    secondView:
+    Header_Style:
     {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent:'flex-start'
+        fontStyle: 'normal',
+        fontSize: '1rem',
+        fontWeight: '500',
+        color: '#000'
     },
-    heading:
+    Text_Style:
     {
-        fontFamily: 'normal',
-        fontSize: '1.2rem',
+        fontStyle: 'normal',
+        fontSize: '0.9rem',
+        color: '#000'
+    },
+    View_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '0.9rem',
+        color: 'gray'
+    },
+    providerStyle:
+    {
+        fontStyle: 'normal',
+        fontSize: '1rem',
         fontWeight: 'bold',
-        color: '#000000'
-    },
-    viewHead:
-    {
-        fontFamily: 'normal',
-        fontSize: 17,
-        fontWeight: 'bold',
-        color: '#00000095',
-        
-    },
-    viewAns:
-    {
-        fontFamily: 'normal',
-        fontSize: 16,
-        color: '#00000070',
-       
-    },
-   providerStyle:
-    {
-        fontFamily: 'normal',
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#00000095',
-        marginRight: 35
-    },
-    status_view: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
-    },
-    statusButton: {
-        height: 25,
-        width: 90,
+        color: '#1f667e',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    Provider_View:
+    {
         borderRadius: 5,
-        backgroundColor: '#1f667e',
-        marginRight: 10,
-        marginBottom : 10
+        borderWidth: 1,
+        borderColor: 'gray',
+        width: 70,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 11
     },
-
-    status_text: {
-
-        color: '#fff'
+    Status_Button:
+    {
+        borderRadius: 10,
+        borderWidth: 3,
+        width: 110,
+        borderColor: 'white',
+        marginRight: 8,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
+    Status_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1rem',
+        fontWeight: 'bold',
+        color: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    Level_Style:
+    {
+        marginLeft: 5,
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    }
+
 
 })

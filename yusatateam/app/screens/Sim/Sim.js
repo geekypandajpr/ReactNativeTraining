@@ -4,105 +4,24 @@ import {
     FlatList,
     TouchableHighlight,
     Dimensions,
-    Text,
+    modal
 } from 'react-native';
-import { Card, Button } from 'native-base';
+import { Card, Button, Text } from 'native-base';
 import styles from './styles';
 import { AppLoading } from 'expo';
 import { Toolbar } from '../../components';
-import { Ionicons, Feather } from '@expo/vector-icons'
+import { SimDetails } from './SimDetails';
+import SimData from '../../assets/JSONData/SimData'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default class Sim extends React.Component {
     constructor() {
         super();
         this.state = {
             isLoading: true,
-            data: [
-                {
-                    ORDER: 'EVKGLI',
-                    ICCID: 'ICCID1',
-                    MSIDN: 'MSIDN1',
-                    Provider: 'Idea',
-                    Mobile: '09085-53379',
-                    status: 'Activate'
-                },
-                {
-                    ORDER: 'JSCKBK',
-                    ICCID: 'ICCID2',
-                    MSIDN: 'MSIDN2',
-                    Provider: 'Aircel',
-                    Mobile: '09085-45090',
-                    status: 'Deactivate'
-                },
-                {
-                    ORDER: 'UYGEYUJA',
-                    ICCID: 'ICCID3',
-                    MSIDN: 'MSIDN3',
-                    Provider: 'Airtel',
-                    Mobile: '09085-65879',
-                    status: 'Activate'
-                },
-                {
-                    ORDER: 'HAVCMSV',
-                    ICCID: 'ICCID4',
-                    MSIDN: 'MSIDN4',
-                    Provider: 'Idea',
-                    Mobile: '09085-53379',
-                    status: 'Deactivate'
-                },
-                {
-                    ORDER: 'HAVCMSV',
-                    ICCID: 'ICCID4',
-                    MSIDN: 'MSIDN4',
-                    Provider: 'Idea',
-                    Mobile: '09085-53379',
-                    status: 'Deactivate'
-                },
-                {
-                    ORDER: 'UYGEYUJA',
-                    ICCID: 'ICCID3',
-                    MSIDN: 'MSIDN3',
-                    Provider: 'Aircel',
-                    Mobile: '09085-65879',
-                    status: 'Activate'
-                },
-                {
-                    ORDER: 'HAVCMSV',
-                    ICCID: 'ICCID4',
-                    MSIDN: 'MSIDN4',
-                    Provider: 'Idea',
-                    Mobile: '09085-53379',
-                    status: 'Deactivate'
-                },
-
-                {
-                    ORDER: 'HAVCMSV',
-                    ICCID: 'ICCID4',
-                    MSIDN: 'MSIDN4',
-                    Provider: 'Docomo',
-                    Mobile: '09085-53379',
-                    status: 'Activate'
-                },
-
-                {
-                    ORDER: 'UYGEYUJA',
-                    ICCID: 'ICCID3',
-                    MSIDN: 'MSIDN3',
-                    Provider: 'Aircel',
-                    Mobile: '09085-65879',
-                    status: 'Activate'
-                },
-                {
-                    ORDER: 'HAVCMSV',
-                    ICCID: 'ICCID4',
-                    MSIDN: 'MSIDN4',
-                    Provider: 'Idea',
-                    Mobile: '09085-53379',
-                    status: 'Deactivate'
-                },
-            ]
-
-        }
+            
+        };
+        this.modalRef = React.createRef();
     }
 
     async componentWillMount() {
@@ -114,86 +33,102 @@ export default class Sim extends React.Component {
         this.setState({ isLoading: false })
     }
 
-
     render() {
         const { navigate } = this.props.navigation;
+        const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
 
-                    <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather'
-                        onLeftButtonPress={() => navigate('HomeScreen')}
-                        rightIcon='settings'
-                        rightIconType='MaterialCommunityIcons' />
+                    <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}/>
 
                     <View style={styles.viewStyle}>
                         <FlatList
-                            data={this.state.data}
+                            data={SimData}
                             keyExtractor={(item, index) => item.toString()}
                             renderItem={({ item, index }) =>
+                            <TouchableHighlight
+                                onPress={() => {
+                                    this.modalRef.current.setModalVisible(true)
+                                }}>
+                           
+                          
                                 <Card style={styles.mainCard}>
 
-                                    <View style={styles.firstView}>
+                                    <View style={styles.First_View}>
                                         <TouchableHighlight
                                             style={{
-                                                borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
-                                                width: Dimensions.get('window').width * 0.10,
-                                                height: Dimensions.get('window').width * 0.10,
-                                                backgroundColor: '#1f667e',
+                                                // borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+                                                // width: Dimensions.get('window').width * 0.13,
+                                                // height: Dimensions.get('window').width * 0.13,
                                                 justifyContent: 'center',
                                                 alignItems: 'center',
-                                                marginTop: 9,
-                                                marginLeft: 7
+                                                height: 54,
+                                                width: 54,
+                                                borderRadius: 27,
+                                                borderWidth: 1,
+                                                borderColor: 'gray'
+
                                             }}
                                         >
-                                            <Text style={styles.indexText}>{index + 1}</Text>
+                                            <MaterialCommunityIcons name="sim" size={47} color="#1f667e" />
                                         </TouchableHighlight>
                                     </View>
 
-                                    <View style={styles.secondViews}>
+                                    <View style={styles.Second_View}>
 
-                                        <View style={styles.firstRow}>
-                                            <View style={styles.secondView}>
-                                                <Text style={styles.heading}>
-                                                    {item.ORDER}
-                                                </Text>
+                                        <View style={styles.Margin_Row}>
+                                            <View style={styles.Level_Second}>
+                                                <Text style={styles.Header_Style}>{item.ORDER}</Text>
                                             </View>
-                                            <View style={styles.status_view}>
-                                                <Button style={styles.statusButton}>
-                                                    <Text style={styles.status_text}>{item.status}</Text>
-                                                </Button>
+
+                                            <View style={[styles.Status_Button, { backgroundColor: item.color }]} >
+                                                <Text style={styles.Status_Style}>{item.status}</Text>
                                             </View>
                                         </View>
 
-                                        <View style={styles.secondView}>
-                                            <Text style={styles.viewHead}> MSIDN : </Text>
-                                            <Text style={styles.viewAns}>{item.MSIDN}</Text>
-                                        </View>
-
-                                        <View style={styles.secondView}>
-                                            <Text style={styles.viewHead}> ICCID : </Text>
-                                            <Text style={styles.viewAns}>{item.ICCID}</Text>
-                                        </View>
-
-                                        <View style={styles.secondView}>
-                                            <View style={styles.secondView}>
-                                                <Text style={styles.viewHead}>{item.Mobile}</Text>
+                                        <View style={styles.Level_Row}>
+                                            <View style={styles.Level_Head}>
+                                                <Text style={styles.Text_Style}>MSIDN</Text>
                                             </View>
+                                            <View style={{ marginLeft: 3 }}>
+                                                <Text style={styles.Text_Style}> : </Text>
+                                            </View>
+                                            <View style={styles.Level_Style}>
+                                                <Text style={styles.View_Style}>{item.MSIDN}</Text>
+                                            </View>
+                                        </View>
 
-                                            <View>
-                                                <Text style={styles.providerStyle} >{item.Provider}</Text>
+                                        <View style={styles.Level_Row}>
+                                            <View style={styles.Level_Head}>
+                                                <Text style={styles.Text_Style}>ICCID</Text>
+                                            </View>
+                                            <View style={{ marginLeft: 3 }}>
+                                                <Text style={styles.Text_Style}> : </Text>
+                                            </View>
+                                            <View style={styles.Level_Style}>
+                                                <Text style={styles.View_Style}>{item.ICCID}</Text>
+                                            </View>
+                                        </View>
+
+                                        <View style={[styles.Level_Row, { marginBottom: 5 }]}>
+                                            <View style={styles.Level_Second}>
+                                                <Text style={styles.View_Style}>{item.Mobile}</Text>
+                                            </View>
+                                            <View style={styles.Provider_View} >
+                                                <Text style={styles.providerStyle}>{item.Provider}</Text>
                                             </View>
                                         </View>
 
                                     </View>
 
                                 </Card>
+                                </TouchableHighlight>
                             }></FlatList>
-
                     </View>
+                    <SimDetails ref={this.modalRef}/>
                 </View>
-
-
         );
     }
 

@@ -1,6 +1,13 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
+    container:{
+        width: "100%",
+        height: "100%",
+    },
+    textInputAlt: {
+        color: 'red',
+    },
     iconView: {
         color: 'white',
 
@@ -17,7 +24,7 @@ export default EStyleSheet.create({
         flex: 2,
         marginLeft: 5,
         marginTop: 5,
-        marginRight: 5
+        marginRight: 5,
 
     },
     deviceContainer: {
@@ -54,6 +61,6 @@ export default EStyleSheet.create({
         marginLeft: 5,
         marginTop: 5,
         marginBottom: 5
-    },
+    }
 })
 
