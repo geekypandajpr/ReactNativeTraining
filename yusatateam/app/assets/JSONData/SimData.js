@@ -60,7 +60,7 @@ const result= [
         Provider: 'Idea',
         Mobile: '09085-53379',
         status: 'Deactivate',
-        color: '#5cb85c'
+        color: '#d9534f'
     },
     {
         ORDER: 'HAVCMSV',

@@ -10,7 +10,7 @@ import styles from './styles';
 import { AppLoading } from 'expo';
 import { Toolbar } from '../../components';
 import SimData from '../../assets/JSONData/SimData'
-import { Ionicons, Feather, MaterialCommunityIcons } from '@expo/vector-icons'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default class Sim extends React.Component {
     constructor() {
