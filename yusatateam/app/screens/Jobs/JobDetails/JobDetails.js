@@ -120,8 +120,8 @@ export default class jobDetails extends React.Component {
                                         <Text style={{alignItems :'flex-end',justifyContent :'flex-end',flex :5}}>{item.scheduleDate}</Text> 
                                     </View>
                                  <View style={{flexDirection :'row',flex :1}}>
-                                 <Text style={{flex : 8,paddingLeft : 15}}>{item.contactPerson}</Text> 
-                                 <Text style={{color : '#CD853F',alignItems :'flex-end',justifyContent :'flex-end',flex :3}}>{item.jobStatus}</Text>
+                                    <Text style={{flex : 8,paddingLeft : 15}}>{item.contactPerson}</Text> 
+                                    <Text style={{color : '#CD853F',alignItems :'flex-end',justifyContent :'flex-end',flex :3}}>{item.jobStatus}</Text>
                                  </View>
                                  <View style={{flex :1,flexDirection :'row'}}>
                                      <View style={{flex : 8,paddingLeft : 15}}>
