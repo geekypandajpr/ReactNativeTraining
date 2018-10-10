@@ -2,11 +2,11 @@ const colors = {
     HEADER_COLOR: '#0073b7',
     STATUSBAR_COLOR: '#004887',
     HOMESCREEN: {
-        SIMCARD_COLOR: '#f39c12',
-        DEVICECARD_COLOR: '#00a65a',
-        JOBSCARD_COLOR: '#00c0ef',
-        SCHEDULECARD_COLOR: '#d81b60',
-        ASSOCIATIONCARD_COLOR: '#dd4b39',
+        SIMCARD_COLOR: '#F98866',
+        DEVICECARD_COLOR: '#229990',
+        JOBSCARD_COLOR: '#5BC8AC',
+        SCHEDULECARD_COLOR: '#F2C059',
+        ASSOCIATIONCARD_COLOR: '#31A9B8',
     },
 
     CALENDARS: {

@@ -1,36 +1,23 @@
 import React from 'react';
 import {
     View,
-    Text,
-    Button,
-    TouchableOpacity
+    Text
 } from 'react-native';
 import { Icon, Badge } from 'native-base';
 import styles from './Styles';
 
 export default class IconWithText extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state =
-            {
-                currentColor: "#1a4876"
-            };
-    }
-    onClick() {
-        this.setState({ currentColor: "red" });
-    }
     render() {
         return (
-            <View style={styles.mainContainer}>
+            <View style={[styles.mainContainer, { backgroundColor: this.props.backgroundColor }]}>
                     <View style={styles.iconContainer}>
                         <View style={styles.iconBadgeContainer}>
                             <Icon name={this.props.name}
                                 type={this.props.type}
                                 style={styles.icon}>
                             </Icon>
-                            <Badge
-                                style={styles.badgetext}>
-                                <Text style={{ color: '#fff' }}>
+                            <Badge style={styles.badgeContainer}>
+                                <Text style={styles.badgeTextContainer}>
                                     {this.props.badgeText}
                                 </Text>
                             </Badge>
@@ -47,3 +34,5 @@ export default class IconWithText extends React.Component {
 }
 
 export { IconWithText }
+
+// {backgroundColor: this.props.badgeBackgroundColor}
