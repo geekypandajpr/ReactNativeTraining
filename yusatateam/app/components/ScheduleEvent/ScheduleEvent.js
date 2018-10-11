@@ -14,8 +14,8 @@ export default class ScheduleEvent extends React.Component {
         this.completeJob = this.completeJob.bind(this);
     }
 
-    completeJob() {
-        // this.refs.modal.setModalVisible(true, item);
+    completeJob(item) {
+        this.modalRef.current.setModalVisible(true, item);
     }
 
     render() {
@@ -33,7 +33,7 @@ export default class ScheduleEvent extends React.Component {
                                     label={item.serviceType}
                                     loadingLabel='wait...'
                                     colorAnimation={['transparent', 'transparent', 'transparent']}
-                                    onPress={this.completeJob}
+                                    onPress={()=>this.completeJob(item)}
                                     styles={{ button: styles.service_type_view, label: styles.service_type }} />
                                 {/* <Button transparent style={styles.service_type_view}>
                                     <Text uppercase={false} style={styles.service_type}>{item.serviceType}</Text>
@@ -91,7 +91,7 @@ export default class ScheduleEvent extends React.Component {
 
                     </View>
                 )}
-                {/* <DoAssociation ref='modal'/> */}
+                <DoAssociation ref={this.modalRef}/>
             </View>
         )
     }

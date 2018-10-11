@@ -8,6 +8,7 @@ export default EStyleSheet.create({
      },
      text : {
         fontSize : 30,
+        flex :6,
         color : '#20B2AA', 
      },
      text1 : {
@@ -15,7 +16,7 @@ export default EStyleSheet.create({
         // color : '#20B2AA', 
      },
      viewList : {
-         borderRadius :10,
+         borderRadius :1,
      },
      search : {
         //flex :0.15,
@@ -26,9 +27,10 @@ export default EStyleSheet.create({
     },
     list : {
         backgroundColor : 'white',
-        borderRadius : 20,
+        borderRadius : 5,
         margin : 15,
         marginBottom : 0,
-        borderStyle : 'dotted'
+        borderStyle : 'dotted',
+        paddingLeft : 15
     }
 })

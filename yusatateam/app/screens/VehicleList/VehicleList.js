@@ -90,18 +90,22 @@ export default class VehicleList extends React.Component {
                            ({ item, index }) => 
                                <View style={styles.viewList}>
                                    <List style={styles.list}>
-                                    <ListItem avatar noBorder >
-                                    <Body>
+                                    <View avatar noBorder >
+                                    <View>
                                     <TouchableOpacity >
-                                            <Text  style={styles.text}>{item.ORDER} </Text>   
+                                        <View style={{flexDirection :'row'}}>
+                                                <Text  style={styles.text}>{item.ORDER} </Text>   
+                                                <Text note style={{marginRight : 5,flex :1.5,paddingTop :5}}>{item.status}</Text>
+                                        </View>
+                                           
                                        <Text   style={styles.text1}>{item.MSIDN}</Text>               
                                             <Text note >{item.ICCID}    {item.Mobile}     {item.Provider}</Text>   
                                         </TouchableOpacity>
-                                    </Body>
+                                    </View>
                                     <Right>
-                                        <Text note style={{marginRight : 15}}>{item.status}</Text>
+                                       
                                     </Right>
-                                    </ListItem>
+                                    </View>
                                 </List>
                                </View>  } >
                        </FlatList>
