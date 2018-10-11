@@ -29,7 +29,7 @@ export default class JobDetails extends React.Component {
                     <View style={styles.modal_container}>
                         <View style={styles.header_view}>
                             <View style={styles.service_num}>
-                                <Text style={styles.header_text}>Detail List</Text>
+                                <Text style={styles.header_text}>{details.jobNumber}</Text>
                             </View>                            
                         </View>
                         <View style={styles.modal_child_container}>
@@ -38,7 +38,7 @@ export default class JobDetails extends React.Component {
                                     <View style={styles.picker_view}>
                                     <View style={{flexDirection :'row'}}>
                                                 <Text >Job No</Text>
-                                                <Text style={{paddingLeft : 80}} >{details.jobNumber}</Text>
+                                                <Text style={{paddingLeft : 80,color : '#FF6347'}} >{details.jobNumber}</Text>
                                         </View>
                                         <View style={{flexDirection :'row'}}>
                                                 <Text >Contact Person</Text>

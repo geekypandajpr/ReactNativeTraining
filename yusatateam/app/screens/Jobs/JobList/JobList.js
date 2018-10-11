@@ -19,9 +19,9 @@ export default class JobList extends React.Component {
                     'servicePerson' : 'Yash Gulati',
                     'contactPerson' : 'Mr. Vinayak Sharma',
                     'contactNumber' : '+91 8945623622',
-                    'cashOnDelivery' : 'yes',
+                    'cashOnDelivery' : 'Yes',
                     'amount' : 'Rs. 5000',
-                    'training' : 'yes'
+                    'training' : 'Yes'
                 },
                 {
                     'jobNumber' : 'VOCT092016',
