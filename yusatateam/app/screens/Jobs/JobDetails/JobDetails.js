@@ -3,7 +3,7 @@ import { View, ScrollView, FlatList, TouchableOpacity, } from 'react-native';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text ,Button} from 'native-base';
 import styles from './styles';
 import { AppLoading } from 'expo';
-import DeviceSimItem from '../../DeviceSimItem/DeviceSimItem'
+import JobList from '../JobList'
 export default class jobDetails extends React.Component {
     constructor() {
         super();
@@ -143,7 +143,7 @@ export default class jobDetails extends React.Component {
                         </View>
                     } >
                 </FlatList>
-                <DeviceSimItem ref='modal' />
+                <JobList ref='modal' />
             </View>
         )
     }
