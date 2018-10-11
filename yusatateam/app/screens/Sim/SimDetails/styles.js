@@ -26,7 +26,7 @@ export default EStyleSheet.create({
         margin: 15
     },
     Order_text:
-   {
+    {
         fontStyle: 'normal',
         fontSize: '1.2rem',
         color: '#000',
@@ -39,28 +39,23 @@ export default EStyleSheet.create({
         color: 'gray',
         fontWeight: '100',
     },
-   
-    Text_Style:
+   Text_Style:
     {
         fontStyle: 'normal',
         fontSize: '1.1rem',
         color: '#000',
-       
     },
     View_Style:
     {
         fontStyle: 'normal',
         fontSize: '1.1rem',
         color: 'gray',
-        
-        
-     },
+    },
     service_num: {
         flex: 1,
         justifyContent: 'center'
     },
     job_text: {
-        
         fontSize: '0.8rem',
         fontWeight: 'bold',
         color: '#000',
@@ -68,17 +63,13 @@ export default EStyleSheet.create({
     },
     schedule_view: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         flexDirection: 'row',
-        marginRight:10
+        alignItems:'center',
+        marginLeft:140
     },
-   
-    View_Container:
+   View_Container:
     {
-      
         backgroundColor: '#FFFFFF',
-        
         height: '55%',
         width: '100%',
         paddingTop: 15,
@@ -93,14 +84,14 @@ export default EStyleSheet.create({
         width: 70,
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft:100
+        marginLeft:90
     },
     providerStyle:
     {
         fontStyle: 'normal',
         fontSize: '1rem',
         fontWeight: 'bold',
-        color: '#1f667e',
+        color: '#0073b7',
         justifyContent: 'center',
         alignItems: 'center',
      },
@@ -109,7 +100,7 @@ export default EStyleSheet.create({
     {
         borderRadius: 10,
         borderWidth: 3,
-        width: 90,
+        width: 100,
         height:35,
         borderColor: '#EEEEF0',
         justifyContent: 'center',
