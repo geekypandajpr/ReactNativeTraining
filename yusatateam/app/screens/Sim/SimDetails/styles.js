@@ -25,6 +25,19 @@ export default EStyleSheet.create({
         fontWeight: 'bold',
         margin: 15
     },
+   
+    Text_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1rem',
+        color: '#000',
+    },
+    View_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1rem',
+        color: 'gray',
+     },
     service_num: {
         flex: 1,
         justifyContent: 'center'
@@ -42,11 +55,12 @@ export default EStyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row'
     },
+   
     View_Container:
     {
       
         backgroundColor: '#FFFFFF',
-       // bottom: 0,
+        
         height: '65%',
         width: '100%',
         paddingTop: 15,
