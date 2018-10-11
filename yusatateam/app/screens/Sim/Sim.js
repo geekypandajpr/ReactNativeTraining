@@ -72,7 +72,7 @@ export default class Sim extends React.Component {
 
                                             }}
                                         >
-                                            <MaterialCommunityIcons name="sim" size={47} color="#1f667e" />
+                                            <MaterialCommunityIcons name="sim" size={45} color="#1f667e" />
                                         </TouchableHighlight>
                                     </View>
 

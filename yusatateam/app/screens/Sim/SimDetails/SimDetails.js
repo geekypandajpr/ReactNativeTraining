@@ -2,10 +2,12 @@ import React from 'react';
 import {
     View,
     Modal,
-    TextInput
+    TextInput,
+    Button
 } from 'react-native';
 import { Text } from 'native-base';
 import styles from './styles';
+import { Ionicons,FontAwesome } from '@expo/vector-icons';
 export default class SimDetails extends React.Component {
     constructor(props) {
         super(props);
@@ -45,48 +47,101 @@ export default class SimDetails extends React.Component {
                         <View style={styles.View_Container}>
 
                             <View style={{ flexDirection: 'row' }}>
-                            <View style={{flex:1,flexDirection:'row'}}>
-                                <View >
-                                    <Text style={styles.Text_Style}>orderNumber : </Text>
-                                </View>
-                                <View style={{ marginLeft: 10 }}>
-                                    <Text style={styles.View_Style}>ORDER001</Text>
-                                </View>
-                                </View> 
-                            </View>
-                            <View style={{ flexDirection: 'row',marginTop:3 }}>
-                                <View >
-                                    <Text style={styles.Text_Style}>iccid :</Text>
-                                </View>
-                                <View style={{ marginLeft: 10 }}>
-                                    <Text style={styles.View_Style}>iccid252</Text>
+                                <View style={{ flex: 1, flexDirection: 'row' }}>
+                                    <View >
+
+                                        <Text style={styles.Order_text}>OrderNumber :</Text>
+                                    </View>
+                                    <View style={{ marginLeft: 10 }}>
+                                        <Text style={styles.Order_texts}>ORDER001</Text>
+                                    </View>
                                 </View>
                             </View>
-                            <View style={{ flexDirection: 'row',marginTop:3 }}>
+                            <View style={{ flexDirection: 'row', marginTop: 3 }}>
                                 <View >
-                                    <Text style={styles.Text_Style}>msidn :</Text>
+                                    <Text style={styles.Text_Style}>iccid </Text>
+                                </View>
+                                <View style={{marginLeft:10}}>
+                                    <Text>:</Text>
+                                </View>
+                                <View style={{ marginLeft: 10 }}>
+                                    <Text style={[styles.View_Style, { marginLeft: 13 }]}>iccid252</Text>
+                                </View>
+                            </View>
+
+                            <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                                <View >
+                                    <Text style={styles.Text_Style}>msidn </Text>
+                                </View>
+                                <View style={{marginLeft:10}}>
+                                    <Text>:</Text>
                                 </View>
                                 <View style={{ marginLeft: 10 }}>
                                     <Text style={styles.View_Style}>msidn1256</Text>
                                 </View>
                             </View>
-                            <View style={{ flexDirection: 'row',marginTop:3 }}>
+
+                            <View style={{ flexDirection: 'row', marginTop: 3 }}>
                                 <View >
-                                    <Text style={styles.Text_Style}>unitPrice :</Text>
+                                    <Text style={styles.Text_Style}>Price </Text>
                                 </View>
-                                <View style={{ marginLeft: 10 }}>
+                                <View style={{marginLeft:10}}>
+                                    <Text>:</Text>
+                                </View>
+                                <View style={{ marginLeft: 10,marginTop:3 }}>
+                                    <FontAwesome name='rupee' size={22} color='gray'/>
+                                </View>
+                                <View>
                                     <Text style={styles.View_Style}>1520</Text>
                                 </View>
                             </View>
-                            <View style={{marginTop:6}}>
+
+                            <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                                <View >
+                                    <Text style={styles.Text_Style}>plan </Text>
+                                </View>
+                                <View style={{marginLeft:10}}>
+                                    <Text>:</Text>
+                                </View>
+                                <View style={{ marginLeft: 10 }}>
+                                    <Text style={[styles.View_Style, { marginLeft: 9 }]}>plantext</Text>
+                                </View>
+                            </View>
+
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <View >
+                                    <Ionicons name='ios-call' size={27} color='#5cb85c' />
+                                </View>
+                                <View style={{marginLeft:10}}>
+                                    <Text style={styles.View_Style}>+91 85465256555</Text>
+                                </View>
+                                <View style={styles.Provider_View} >
+                                    <Text style={styles.providerStyle}>Airtel</Text>
+                                </View>
+                            </View>
+                            <View style={{ marginTop: 6 }}>
                                 <View >
                                     <Text style={styles.Text_Style}>itemDescription - </Text>
                                 </View>
                                 <View >
-                                    <Text style={styles.View_Style}>this is device</Text>
+                                    <Text style={styles.View_Style}>This is device,used for purpose of installation
+                                    in the vehicle device install after test </Text>
                                 </View>
                             </View>
-                          
+                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <View style={{ flex: 1 }}></View>
+                                <View style={{ flex: 1, marginBottom: 0, width:30, marginRight: 0 }}>
+                                    <Button
+                                        onPress={() => {
+                                            this.setModalVisible(!this.state.modalVisible);
+                                        }}
+                                        title="Close"
+                                        color="#0073b7"
+
+                                    />
+                                </View>
+                            </View>
+
                         </View>
                     </View>
                 </Modal>

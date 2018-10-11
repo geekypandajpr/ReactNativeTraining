@@ -21,22 +21,39 @@ export default EStyleSheet.create({
     header_text: {
         
         color: '#000',
-        fontSize: '1rem',
+        fontSize: '1.1rem',
         fontWeight: 'bold',
         margin: 15
+    },
+    Order_text:
+   {
+        fontStyle: 'normal',
+        fontSize: '1.2rem',
+        color: '#000',
+        fontWeight: '100',
+    },
+    Order_texts:
+    {
+        fontStyle: 'normal',
+        fontSize: '1.2rem',
+        color: 'gray',
+        fontWeight: '100',
     },
    
     Text_Style:
     {
         fontStyle: 'normal',
-        fontSize: '1rem',
+        fontSize: '1.1rem',
         color: '#000',
+       
     },
     View_Style:
     {
         fontStyle: 'normal',
-        fontSize: '1rem',
+        fontSize: '1.1rem',
         color: 'gray',
+        
+        
      },
     service_num: {
         flex: 1,
@@ -53,7 +70,8 @@ export default EStyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginRight:10
     },
    
     View_Container:
@@ -61,11 +79,21 @@ export default EStyleSheet.create({
       
         backgroundColor: '#FFFFFF',
         
-        height: '65%',
+        height: '55%',
         width: '100%',
         paddingTop: 15,
         paddingLeft: 15,
         paddingRight: 15
+    },
+    Provider_View:
+    {
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: 'gray',
+        width: 70,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft:100
     },
     providerStyle:
     {
@@ -76,16 +104,7 @@ export default EStyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
      },
-    Provider_View:
-    {
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: 'gray',
-        width: 70,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft :130
-    },
+  
     Status_Button:
     {
         borderRadius: 10,
@@ -93,7 +112,6 @@ export default EStyleSheet.create({
         width: 90,
         height:35,
         borderColor: '#EEEEF0',
-    
         justifyContent: 'center',
         alignItems: 'center'
     },
