@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { Text } from 'native-base';
 import styles from './styles';
-import { Ionicons,FontAwesome } from '@expo/vector-icons';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 export default class SimDetails extends React.Component {
     constructor(props) {
         super(props);
@@ -57,61 +57,61 @@ export default class SimDetails extends React.Component {
                             </View>
 
                             <View style={{ flexDirection: 'row', marginTop: 3 }}>
-                                <View >
-                                    <Text style={styles.Text_Style}>iccid </Text>
+                                <View style={styles.Level_Flex}>
+                                    <Text style={styles.Text_Style}>Iccid </Text>
                                 </View>
-                                <View style={{paddingLeft:17}}>
+                                <View style={styles.Column_Flex}>
                                     <Text>:</Text>
                                 </View>
-                                <View style={{ marginLeft: 10 }}>
-                                    <Text style={[styles.View_Style, { marginLeft: 13 }]}>iccid252</Text>
+                                <View style={styles.Text_Flex}>
+                                    <Text style={styles.View_Style}>iccid252</Text>
                                 </View>
                             </View>
 
                             <View style={{ flexDirection: 'row', marginTop: 3 }}>
-                                <View >
-                                    <Text style={styles.Text_Style}>msidn </Text>
+                                <View style={styles.Level_Flex} >
+                                    <Text style={styles.Text_Style}>Msidn</Text>
                                 </View>
-                                <View style={{paddingLeft:3}}>
-                                    <Text> : </Text>
+                                <View style={styles.Column_Flex}>
+                                    <Text>:</Text>
                                 </View>
-                                <View style={{ marginLeft: 17 }}>
+                                <View style={styles.Text_Flex}>
                                     <Text style={styles.View_Style}>msidn1256</Text>
                                 </View>
                             </View>
 
                             <View style={{ flexDirection: 'row', marginTop: 3 }}>
-                                <View >
+                                <View style={styles.Level_Flex} >
                                     <Text style={styles.Text_Style}>Price </Text>
                                 </View>
-                                <View style={{paddingLeft: 10}}>
-                                    <Text> : </Text>
+                                <View style={styles.Column_Flex}>
+                                    <Text>:</Text>
                                 </View>
-                                <View style={{ marginLeft: 17,marginTop:4 }}>
-                                    <FontAwesome name='rupee' size={22} color='gray'/>
-                                    </View>
-                                    <View>
+                                {/* <View style={{ flex: 2, justifyContent: 'flex-start', marginTop: 4 }}>
+                                    <FontAwesome name='rupee' size={20} color='gray' />
+                                </View> */}
+                                <View style={styles.Text_Flex}>
                                     <Text style={styles.View_Style}>1520</Text>
                                 </View>
                             </View>
 
                             <View style={{ flexDirection: 'row', marginTop: 3 }}>
-                                <View >
-                                    <Text style={styles.Text_Style}>plan </Text>
+                                <View style={styles.Level_Flex} >
+                                    <Text style={styles.Text_Style}>Plan </Text>
                                 </View>
-                                <View style={{paddingLeft:12}}>
-                                    <Text> : </Text>
+                                <View style={styles.Column_Flex}>
+                                    <Text>:</Text>
                                 </View>
-                                <View style={{ marginLeft: 10 }}>
-                                    <Text style={[styles.View_Style, { marginLeft: 9 }]}>plantext</Text>
+                                <View style={styles.Text_Flex}>
+                                    <Text style={styles.View_Style}>plantext</Text>
                                 </View>
                             </View>
 
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <View style={styles.Mobile_Level}>
                                 <View >
                                     <Ionicons name='ios-call' size={27} color='#5cb85c' />
                                 </View>
-                                <View style={{marginLeft:10}}>
+                                <View style={{ marginLeft: 8 }}>
                                     <Text style={styles.View_Style}>+91 85465256555</Text>
                                 </View>
                                 <View style={styles.Provider_View} >
@@ -121,16 +121,16 @@ export default class SimDetails extends React.Component {
 
                             <View style={{ marginTop: 6 }}>
                                 <View >
-                                    <Text style={styles.Text_Style}>itemDescription - </Text>
+                                    <Text style={styles.Text_Style}>Item Description - </Text>
                                 </View>
                                 <View >
-                                    <Text style={styles.View_Style}>This is device,used for purpose of installation
+                                    <Text style={styles.ViewDescription_Text} >This is device,used for purpose of installation
                                     in the vehicle device install after test </Text>
                                 </View>
                             </View>
-                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                            <View style={styles.Button_View}>
                                 <View style={{ flex: 1 }}></View>
-                                <View style={{ flex: 1, width:30, marginLeft:100 }}>
+                                <View style={styles.Button_Style}>
                                     <Button
                                         onPress={() => {
                                             this.setModalVisible(!this.state.modalVisible);

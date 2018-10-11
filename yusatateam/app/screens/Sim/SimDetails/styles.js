@@ -50,6 +50,14 @@ export default EStyleSheet.create({
         fontStyle: 'normal',
         fontSize: '1.1rem',
         color: 'gray',
+        marginLeft: 11
+    },
+    ViewDescription_Text:
+    {
+        fontStyle: 'normal',
+        fontSize: '1.1rem',
+        color: 'gray',
+       
     },
     service_num: {
         flex: 1,
@@ -115,6 +123,34 @@ export default EStyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-
+    Level_Flex:
+    {
+        flex:0.5
+    },
+    Column_Flex:
+    {
+      flex: 0.1
+    },
+    Text_Flex:
+    {
+        flex:2,
+        justifyContent: 'flex-start'
+    },
+    Mobile_Level:{ 
+        flexDirection: 'row',
+     marginTop: 6 
+    },
+    Button_View:
+    { 
+        flex: 1,
+         flexDirection: 'row',
+         marginTop:6 
+        },
+        Button_Style:
+        {
+             flex: 1, 
+             width: 30, 
+             marginLeft: 100 
+        }
 
 })
