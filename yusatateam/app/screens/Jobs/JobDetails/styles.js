@@ -7,6 +7,7 @@ export default EStyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#00000090',
         flexDirection: 'column',
+        
     },
     modal_child_container: {
         backgroundColor: 'lightgrey',

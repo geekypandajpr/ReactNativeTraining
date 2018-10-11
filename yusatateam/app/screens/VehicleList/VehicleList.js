@@ -38,7 +38,7 @@ export default class VehicleList extends React.Component {
                        MSIDN: 'MSIDN4',
                        Provider: 'IDEA',
                        Mobile: '09085-53379',
-                       status: 'DEACTIVATE'
+                       status: 'Deactivate'
                    },
                   
                ],
@@ -88,14 +88,14 @@ export default class VehicleList extends React.Component {
                        keyExtractor={(item, index) => item.MSIDN.toString()}
                        renderItem={
                            ({ item, index }) => 
-                               <View style={styles.viewList}>
-                                   <List style={styles.list}>
+                               <View  style={styles.viewList}>
+                                   <List elevation={5} style={styles.list}>
                                     <View avatar noBorder >
                                     <View>
                                     <TouchableOpacity >
                                         <View style={{flexDirection :'row'}}>
                                                 <Text  style={styles.text}>{item.ORDER} </Text>   
-                                                <Text note style={{marginRight : 5,flex :1.5,paddingTop :5}}>{item.status}</Text>
+                                                <Text  style={{flex :2,padding :5,color : '#CD5C5C'}}>{item.status}</Text>
                                         </View>
                                            
                                        <Text   style={styles.text1}>{item.MSIDN}</Text>               

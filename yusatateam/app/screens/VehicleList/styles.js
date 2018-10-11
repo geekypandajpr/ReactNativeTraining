@@ -7,9 +7,12 @@ export default EStyleSheet.create({
          flex :2, 
      },
      text : {
-        fontSize : 30,
+        fontSize : 25,
         flex :6,
-        color : '#20B2AA', 
+        color : '#4682B4', 
+           textShadowColor: '#D3D3D3',
+           textShadowOffset: { width: 1, height: 4 },
+           textShadowRadius: 5
      },
      text1 : {
         fontSize : 22,
@@ -17,6 +20,7 @@ export default EStyleSheet.create({
      },
      viewList : {
          borderRadius :1,
+        
      },
      search : {
         //flex :0.15,
@@ -26,11 +30,20 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     list : {
-        backgroundColor : 'white',
+        backgroundColor : '#F0FFF0',
         borderRadius : 5,
         margin : 15,
         marginBottom : 0,
         borderStyle : 'dotted',
-        paddingLeft : 15
+        paddingLeft : 15,
+
+        shadowColor: '#000000',
+        shadowOffset: {
+          width: 1,
+          height: 5
+        },
+        shadowRadius: 5,
+        shadowOpacity: 1.0
+        
     }
 })
