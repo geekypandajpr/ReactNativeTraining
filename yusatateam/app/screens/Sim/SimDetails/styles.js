@@ -19,7 +19,7 @@ export default EStyleSheet.create({
         flexDirection: 'row'
     },
     header_text: {
-        
+
         color: '#000',
         fontSize: '1.1rem',
         fontWeight: 'bold',
@@ -39,7 +39,7 @@ export default EStyleSheet.create({
         color: 'gray',
         fontWeight: '100',
     },
-   Text_Style:
+    Text_Style:
     {
         fontStyle: 'normal',
         fontSize: '1.1rem',
@@ -57,7 +57,7 @@ export default EStyleSheet.create({
         fontStyle: 'normal',
         fontSize: '1.1rem',
         color: 'gray',
-       
+
     },
     service_num: {
         flex: 1,
@@ -72,10 +72,10 @@ export default EStyleSheet.create({
     schedule_view: {
         flex: 1,
         flexDirection: 'row',
-        alignItems:'center',
-        marginLeft:140
+        alignItems: 'center',
+        marginLeft: 140
     },
-   View_Container:
+    View_Container:
     {
         backgroundColor: '#FFFFFF',
         height: '55%',
@@ -92,7 +92,7 @@ export default EStyleSheet.create({
         width: 70,
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft:90
+        marginLeft: 90
     },
     providerStyle:
     {
@@ -102,14 +102,14 @@ export default EStyleSheet.create({
         color: '#0073b7',
         justifyContent: 'center',
         alignItems: 'center',
-     },
-  
+    },
+
     Status_Button:
     {
         borderRadius: 10,
         borderWidth: 3,
         width: 100,
-        height:35,
+        height: 35,
         borderColor: '#EEEEF0',
         justifyContent: 'center',
         alignItems: 'center'
@@ -125,32 +125,32 @@ export default EStyleSheet.create({
     },
     Level_Flex:
     {
-        flex:0.5
+        flex: 0.5
     },
     Column_Flex:
     {
-      flex: 0.1
+        flex: 0.1
     },
     Text_Flex:
     {
-        flex:2,
+        flex: 2,
         justifyContent: 'flex-start'
     },
-    Mobile_Level:{ 
+    Mobile_Level: {
         flexDirection: 'row',
-     marginTop: 6 
+        marginTop: 6
     },
     Button_View:
-    { 
+    {
         flex: 1,
-         flexDirection: 'row',
-         marginTop:6 
-        },
-        Button_Style:
-        {
-             flex: 1, 
-             width: 30, 
-             marginLeft: 100 
-        }
+        flexDirection: 'row',
+        marginTop: 6
+    },
+    Button_Style:
+    {
+        flex: 1,
+        width: 30,
+        marginLeft: 100
+    }
 
 })

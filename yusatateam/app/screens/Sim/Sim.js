@@ -4,7 +4,6 @@ import {
     FlatList,
     TouchableHighlight,
     Dimensions,
-    modal
 } from 'react-native';
 import { Card, Button, Text } from 'native-base';
 import styles from './styles';
@@ -19,7 +18,7 @@ export default class Sim extends React.Component {
         super();
         this.state = {
             isLoading: true,
-            
+
         };
         this.modalRef = React.createRef();
     }
@@ -41,93 +40,93 @@ export default class Sim extends React.Component {
                 <View style={styles.container}>
 
                     <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}/>
+                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
 
                     <View style={styles.viewStyle}>
                         <FlatList
                             data={SimData}
                             keyExtractor={(item, index) => item.toString()}
                             renderItem={({ item, index }) =>
-                            <TouchableHighlight
-                                onPress={() => {
-                                    this.modalRef.current.setModalVisible(true)
-                                }}>
-                           
-                          
-                                <Card style={styles.mainCard}>
+                                <TouchableHighlight
+                                    onPress={() => {
+                                        this.modalRef.current.setModalVisible(true)
+                                    }}>
 
-                                    <View style={styles.First_View}>
-                                        <TouchableHighlight
-                                            style={{
-                                                // borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
-                                                // width: Dimensions.get('window').width * 0.13,
-                                                // height: Dimensions.get('window').width * 0.13,
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                                height: 54,
-                                                width: 54,
-                                                borderRadius: 27,
-                                                borderWidth: 1,
-                                                borderColor: 'gray'
 
-                                            }}
-                                        >
-                                            <MaterialCommunityIcons name="sim" size={45} color="#1f667e" />
-                                        </TouchableHighlight>
-                                    </View>
+                                    <Card style={styles.mainCard}>
 
-                                    <View style={styles.Second_View}>
+                                        <View style={styles.First_View}>
+                                            <TouchableHighlight
+                                                style={{
+                                                    // borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+                                                    // width: Dimensions.get('window').width * 0.13,
+                                                    // height: Dimensions.get('window').width * 0.13,
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                    height: 54,
+                                                    width: 54,
+                                                    borderRadius: 27,
+                                                    borderWidth: 1,
+                                                    borderColor: 'gray'
 
-                                        <View style={styles.Margin_Row}>
-                                            <View style={styles.Level_Second}>
-                                                <Text style={styles.Header_Style}>{item.ORDER}</Text>
-                                            </View>
-
-                                            <View style={[styles.Status_Button, { backgroundColor: item.color }]} >
-                                                <Text style={styles.Status_Style}>{item.status}</Text>
-                                            </View>
+                                                }}
+                                            >
+                                                <MaterialCommunityIcons name="sim" size={45} color="#1f667e" />
+                                            </TouchableHighlight>
                                         </View>
 
-                                        <View style={styles.Level_Row}>
-                                            <View style={styles.Level_Head}>
-                                                <Text style={styles.Text_Style}>MSIDN</Text>
+                                        <View style={styles.Second_View}>
+
+                                            <View style={styles.Margin_Row}>
+                                                <View style={styles.Level_Second}>
+                                                    <Text style={styles.Header_Style}>{item.ORDER}</Text>
+                                                </View>
+
+                                                <View style={[styles.Status_Button, { backgroundColor: item.color }]} >
+                                                    <Text style={styles.Status_Style}>{item.status}</Text>
+                                                </View>
                                             </View>
-                                            <View style={{ marginLeft: 3 }}>
-                                                <Text style={styles.Text_Style}> : </Text>
+
+                                            <View style={styles.Level_Row}>
+                                                <View style={styles.Level_Head}>
+                                                    <Text style={styles.Text_Style}>MSIDN</Text>
+                                                </View>
+                                                <View style={{ flex: 0.1 }}>
+                                                    <Text style={styles.Text_Style}> : </Text>
+                                                </View>
+                                                <View style={styles.Level_Style}>
+                                                    <Text style={styles.View_Style}>{item.MSIDN}</Text>
+                                                </View>
                                             </View>
-                                            <View style={styles.Level_Style}>
-                                                <Text style={styles.View_Style}>{item.MSIDN}</Text>
+
+                                            <View style={styles.Level_Row}>
+                                                <View style={styles.Level_Head}>
+                                                    <Text style={styles.Text_Style}>ICCID</Text>
+                                                </View>
+                                                <View style={{ flex: 0.1 }}>
+                                                    <Text style={styles.Text_Style}> : </Text>
+                                                </View>
+                                                <View style={styles.Level_Style}>
+                                                    <Text style={styles.View_Style}>{item.ICCID}</Text>
+                                                </View>
                                             </View>
+
+                                            <View style={[styles.Level_Row, { marginBottom: 5 }]}>
+                                                <View style={styles.Level_Second}>
+                                                    <Text style={styles.Mobile_Style}>{item.Mobile}</Text>
+                                                </View>
+                                                <View style={styles.Provider_View} >
+                                                    <Text style={styles.providerStyle}>{item.Provider}</Text>
+                                                </View>
+                                            </View>
+
                                         </View>
 
-                                        <View style={styles.Level_Row}>
-                                            <View style={styles.Level_Head}>
-                                                <Text style={styles.Text_Style}>ICCID</Text>
-                                            </View>
-                                            <View style={{ marginLeft: 3 }}>
-                                                <Text style={styles.Text_Style}> : </Text>
-                                            </View>
-                                            <View style={styles.Level_Style}>
-                                                <Text style={styles.View_Style}>{item.ICCID}</Text>
-                                            </View>
-                                        </View>
-
-                                        <View style={[styles.Level_Row, { marginBottom: 5 }]}>
-                                            <View style={styles.Level_Second}>
-                                                <Text style={styles.View_Style}>{item.Mobile}</Text>
-                                            </View>
-                                            <View style={styles.Provider_View} >
-                                                <Text style={styles.providerStyle}>{item.Provider}</Text>
-                                            </View>
-                                        </View>
-
-                                    </View>
-
-                                </Card>
+                                    </Card>
                                 </TouchableHighlight>
                             }></FlatList>
                     </View>
-                    <SimDetails ref={this.modalRef}/>
+                    <SimDetails ref={this.modalRef} />
                 </View>
         );
     }

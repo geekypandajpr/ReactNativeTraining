@@ -49,6 +49,7 @@ export default EStyleSheet.create({
     },
     Level_Head:
     {
+        flex:0.5,
         justifyContent: 'flex-start'
     },
     Header_Style:
@@ -68,7 +69,14 @@ export default EStyleSheet.create({
     {
         fontStyle: 'normal',
         fontSize: '0.9rem',
-        color: 'gray'
+        color: 'gray',
+        marginLeft: 10
+    },
+    modal_style:
+    {
+        fontStyle: 'normal',
+        fontSize: '0.9rem',
+        color: 'gray',
     },
     providerStyle:
     {
@@ -110,9 +118,8 @@ export default EStyleSheet.create({
     },
     Level_Style:
     {
-        marginLeft: 5,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
+        flex: 2,
+        justifyContent: 'flex-start'
     }
 
 
