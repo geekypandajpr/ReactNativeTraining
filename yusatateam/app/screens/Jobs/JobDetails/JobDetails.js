@@ -106,7 +106,8 @@ export default class JobDetails extends React.Component {
                                 </View>
                                 <View style={styles.lower_view}>
                                     <View style={styles.button_view}>
-                                        <Button style={styles.submit_button}>
+                                        <Button style={styles.submit_button}
+                                        onPress={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
                                             <Text style={styles.button_text}>Submit</Text>
                                         </Button>
                                     </View>

@@ -9,7 +9,7 @@ export default EStyleSheet.create({
         flexDirection: 'column',
     },
     modal_child_container: {
-        backgroundColor: 'gray',
+        backgroundColor: 'lightgrey',
         bottom: 0,
         height: '76%',
         width: '100%',

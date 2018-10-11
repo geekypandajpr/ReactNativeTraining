@@ -109,7 +109,7 @@ export default class JobList extends React.Component {
                             {this.state.status == item.jobStatus ?
                                  <List style={{ 
                                  backgroundColor : 'white',
-                                //  borderRadius : 20,
+                                 borderRadius : 5,
                                  margin : 15,
                                  marginBottom : 0}}>
                                  <View avatar noBorder >
@@ -117,7 +117,7 @@ export default class JobList extends React.Component {
                          <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true,item)}>
                                     <View style={{flexDirection :'row',flex :1}}> 
                                         <Text style={styles.text}>{item.jobNumber}</Text>
-                                        <Text style={{alignItems :'flex-end',justifyContent :'flex-end',flex :5}}>{item.scheduleDate}</Text> 
+                                        <Text style={{flex :5,paddingTop:5}}>{item.scheduleDate}</Text> 
                                     </View>
                                  <View style={{flexDirection :'row',flex :1}}>
                                     <Text style={{flex : 8,paddingLeft : 15}}>{item.contactPerson}</Text> 
@@ -129,7 +129,7 @@ export default class JobList extends React.Component {
                                         <Text>{item.contactNumber}</Text>
                                      </View>
                                          <Right style={{flex :3}}>
-                                            <Button transparent  success>
+                                            <Button rounded  success style={{height : 20,marginRight :15}}>
                                                  <Text uppercase={false}>{item.jobType}</Text>
                                             </Button>
                                          </Right>
