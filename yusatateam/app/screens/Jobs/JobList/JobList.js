@@ -107,7 +107,7 @@ export default class JobList extends React.Component {
                     renderItem={({ item, index }) =>
                         <View style={styles.viewList}>
                             {this.state.status == item.jobStatus ?
-                                 <List style={{ 
+                                 <List elevation={5} style={{ 
                                  backgroundColor : 'white',
                                  borderRadius : 5,
                                  margin : 15,
