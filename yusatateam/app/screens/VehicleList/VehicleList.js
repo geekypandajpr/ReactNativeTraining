@@ -3,7 +3,6 @@ import {View,ScrollView,FlatList,Button,TouchableOpacity,BackHandler} from 'reac
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import styles from './styles';
 import {SearchBar, Toolbar} from '../../components';
-
 export default class VehicleList extends React.Component {
     constructor() {
         super();
@@ -93,7 +92,7 @@ export default class VehicleList extends React.Component {
                                    <List style={styles.list}>
                                     <ListItem avatar noBorder >
                                     <Body>
-                                    <TouchableOpacity>
+                                    <TouchableOpacity >
                                             <Text  style={styles.text}>{item.ORDER} </Text>   
                                        <Text   style={styles.text1}>{item.MSIDN}</Text>               
                                             <Text note >{item.ICCID}    {item.Mobile}     {item.Provider}</Text>   
@@ -106,7 +105,6 @@ export default class VehicleList extends React.Component {
                                 </List>
                                </View>  } >
                        </FlatList>
-                      
                 </View>
            )
        }

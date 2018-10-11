@@ -1,151 +1,123 @@
 import React from 'react';
-import { View, ScrollView, FlatList, TouchableOpacity, } from 'react-native';
-import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text ,Button} from 'native-base';
+import {Text,View,Modal,TextInput } from 'react-native';
+import { Button } from 'native-base';
 import styles from './styles';
-import { AppLoading } from 'expo';
-import JobList from '../JobList'
-export default class jobDetails extends React.Component {
-    constructor() {
-        super();
+export default class JobDetails extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
-            data: [
-                 {
-                    'jobNumber' : 'VOCT092015',
-                    'jobStatus' : 'completed',
-                    'companyName' : 'Yusata infotech',
-                    'jobType' : 'Install',
-                    'jobName' : 'Job Name',
-                    'scheduleDate' : '10/10/2018 20:00',
-                    'servicePerson' : 'Yash Gulati',
-                    'contactPerson' : 'Mr. Vinayak Sharma',
-                    'contactNumber' : '+91 8945623622',
-                    'cashOnDelivery' : 'yes',
-                    'amount' : 'Rs. 5000',
-                    'training' : 'yes'
-                },
-                {
-                    'jobNumber' : 'VOCT092016',
-                    'jobStatus' : 'completed',
-                    'companyName' : 'Yusata infotech',
-                    'jobType' : 'Install',
-                    'jobName' : 'Job Name',
-                    'scheduleDate' : '10/10/2018 20:00',
-                    'servicePerson' : 'Yash Gulati',
-                    'contactPerson' : 'Rahul',
-                    'contactNumber' : '+91 8945623622',
-                    'cashOnDelivery' : 'yes',
-                    'amount' : 'Rs. 5000',        
-                    'training' : 'yes'
-                },
-                {
-                    'jobNumber' : 'VOCT092017',
-                    'jobStatus' : 'completed',
-                    'companyName' : 'Yusata infotech',
-                    'jobType' : 'Install',
-                    'jobName' : 'Job Name',
-                    'scheduleDate' : '10/10/2018 20:00',
-                    'servicePerson' : 'Yash Gulati',
-                    'contactPerson' : 'Rahul',
-                    'contactNumber' : '+91 8945623622',
-                    'cashOnDelivery' : 'yes',
-                    'amount' : 'Rs. 5000',          
-                    'training' : 'yes'
-                },
-                {
-                    'jobNumber' : 'VOCT092018',
-                    'jobStatus' : 'completed',
-                    'companyName' : 'Yusata infotech',
-                    'jobType' : 'Install',
-                    'jobName' : 'Job Name',
-                    'scheduleDate' : '10/10/2018 20:00',
-                    'servicePerson' : 'Yash Gulati',
-                    'contactPerson' : 'Rahul',
-                    'contactNumber' : '+91 8945623622',
-                    'cashOnDelivery' : 'yes',
-                    'amount' : 'Rs. 5000',
-                    'training' : 'yes'
-                },
-            ],
-            items: [],
-            list: '',
-            status: 'completed'
+            modalVisible: false,
+            item: {},
+            vehicle: '',
+            device: '',
+            sim: '',
+            status: ''
         }
-        this.arrayholder = [];
-        this.changeTabStatus = this.changeTabStatus.bind(this);
-    };
-    componentDidMount() {
-        this.arrayholder = this.state.data;
     }
-    SearchFilterFunction(text) {
-
-        const newData = this.arrayholder.filter(function (item) {
-            const itemData = item.jobNumber.toUpperCase()
-            const textData = text.toUpperCase()
-            return itemData.indexOf(textData) > -1
-        })
-        this.setState({
-            data: newData,
-            text: text
-        }
-        )
-
-    };
-    changeTabStatus(tabStatus){
-        this.setState({status: tabStatus},
-            function(){
-                console.log(this.state.status)
-        });
+    setModalVisible(visible,item) {
+        this.setState({ modalVisible: visible,item : item});
     }
-
     render() {
+        const details = this.state.item;
         return (
-
-            <View style={styles.container}>
-                <FlatList
-                    data={this.state.data}
-                    keyExtractor={(item, index) => item.jobNumber.toString()}
-                    renderItem={({ item, index }) =>
-                        <View style={styles.viewList}>
-                            {this.state.status == item.jobStatus ?
-                                 <List style={{ 
-                                 backgroundColor : 'white',
-                                //  borderRadius : 20,
-                                 margin : 15,
-                                 marginBottom : 0}}>
-                                 <View avatar noBorder >
-                                 <View>
-                         <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true,item)}>
-                                    <View style={{flexDirection :'row',flex :1}}> 
-                                        <Text style={styles.text}>{item.jobNumber}</Text>
-                                        <Text style={{alignItems :'center',justifyContent :'center',flex :5}}>{item.scheduleDate}</Text> 
-                                    </View>
-                                 <View style={{flexDirection :'row',flex :1}}>
-                                    <Text style={{flex : 8,paddingLeft : 15}}>{item.contactPerson}</Text> 
-                                    <Text style={{color : '#CD853F',alignItems :'flex-end',justifyContent :'flex-end',flex :3}}>{item.jobStatus}</Text>
-                                 </View>
-                                 <View style={{flex :1,flexDirection :'row'}}>
-                                     <View style={{flex : 8,paddingLeft : 15}}>
-                                        <Text>{item.companyName}</Text>   
-                                        <Text>{item.contactNumber}</Text>
-                                     </View>
-                                         <Right style={{flex :3}}>
-                                            <Button rounded  success style={{height : 20,marginRight :10}}>
-                                                 <Text uppercase={false}>{item.jobType}</Text>
-                                            </Button>
-                                         </Right>
-                                 </View>   
-                            </TouchableOpacity>
-                                 </View>
-                                
-                                 </View>
-                             </List>
-                                : null}
+            <View>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
+                    <View style={styles.modal_container}>
+                        <View style={styles.header_view}>
+                            <View style={styles.service_num}>
+                                <Text style={styles.header_text}>Detail List</Text>
+                            </View>                            
                         </View>
-                    } >
-                </FlatList>
-                <JobList ref='modal' />
+                        <View style={styles.modal_child_container}>
+                            <View showsVerticalScrollIndicator={false}>
+                                <View style={styles.upper_view}>
+                                    <View style={styles.picker_view}>
+                                    <View style={{flexDirection :'row'}}>
+                                                <Text >Job No</Text>
+                                                <Text style={{paddingLeft : 80}} >{details.jobNumber}</Text>
+                                        </View>
+                                        <View style={{flexDirection :'row'}}>
+                                                <Text >Contact Person</Text>
+                                                <Text style={{paddingLeft : 30}} >{details.contactPerson}</Text>
+                                        </View>
+                                        <View style={{flexDirection :'row'}}>
+                                                <Text >Contact No</Text>
+                                                <Text style={{paddingLeft : 55}} >{details.contactNumber}</Text>
+                                        </View>
+                                        <View style={{flexDirection :'row'}}>
+                                                <Text >Job Name</Text>
+                                                <Text style={{paddingLeft : 58}} >{details.jobName}</Text>
+                                        </View>
+                                        <View style={{flexDirection :'row'}}>
+                                                <Text >Job Type</Text>
+                                                <Text style={{paddingLeft : 70}} >{details.jobType}</Text>
+                                        </View>
+                                        <View style={{flexDirection :'row'}}>
+                                                <Text >Job Status</Text>
+                                                <Text style={{paddingLeft : 55}} >{details.jobStatus}</Text>
+                                        </View>
+                                                                
+                                    </View>                              
+                                    <View style={styles.picker_view}>
+                                    <View style={{flexDirection :'row'}}>
+                                                <Text >Service Person </Text>
+                                                <Text style={{paddingLeft : 25}} >{details.servicePerson}</Text>
+                                        </View>
+                                        <View style={{flexDirection :'row'}}>
+                                                <Text >Schedule Date </Text>
+                                                <Text style={{paddingLeft : 30}} >{details.scheduleDate}</Text>
+                                        </View>
+                                        <View style={{flexDirection :'row'}}>
+                                                <Text >Company Name </Text>
+                                                <Text style={{paddingLeft : 20}} >{details.companyName}</Text>
+                                        </View>
+                                        <View style={{flexDirection :'row'}}>
+                                                <Text >COD </Text>
+                                                <Text style={{paddingLeft : 95}} >{details.cashOnDelivery}</Text>
+                                        </View>
+                                        <View style={{flexDirection :'row'}}>
+                                                <Text >Amount</Text>
+                                                <Text style={{paddingLeft : 75}} >{details.amount}</Text>
+                                        </View>
+                                        <View style={{flexDirection :'row'}}>
+                                                <Text >Training </Text>
+                                                <Text style={{paddingLeft : 75}} >{details.training}</Text>
+                                        </View>  
+                                    </View>
+                                    <View style={styles.comment_text_view}>
+                                        <Text style={styles.comment_text}>Comment</Text>
+                                    </View>
+                                    <View style={styles.comment_box}>
+                                        <View style={styles.text_input_view}>
+                                            <TextInput
+                                                placeholder='Write comment here...'
+                                                multiline={true}
+                                                underlineColorAndroid='transparent'
+                                                style={styles.text_input}
+                                                onChangeText={(text) => this.setState({ text })}
+                                                value={this.state.text}
+                                            />
+                                        </View>
+                                    </View>
+                                </View>
+                                <View style={styles.lower_view}>
+                                    <View style={styles.button_view}>
+                                        <Button style={styles.submit_button}>
+                                            <Text style={styles.button_text}>Submit</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
             </View>
-        )
+        );
     }
 }
-export { jobDetails }
+
+export { JobDetails }
