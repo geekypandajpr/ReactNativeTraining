@@ -8,19 +8,30 @@ import {
     ScrollView
 } from 'react-native';
 import { Button } from 'native-base';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import styles from './Styles';
+import { AppLoading } from 'expo';
 import { MaterialIcons, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default class ViewDetails extends React.Component {
+export default class DoAssociation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             modalVisible: false,
+            isLoading: true,
             item: {},
             status: '',
             device: '',
             sim: ''
         }
+    }
+
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+        })
+        this.setState({ isLoading: false })
     }
 
     setModalVisible(visible, item) {
@@ -35,6 +46,7 @@ export default class ViewDetails extends React.Component {
     render() {
         const details = this.state.item;
         return (
+            this.state.isLoading === true ? <AppLoading /> :
             <View>
                 <Modal
                     animationType="slide"
@@ -58,29 +70,19 @@ export default class ViewDetails extends React.Component {
                         <View style={styles.modal_child_container}>
                             <ScrollView showsVerticalScrollIndicator={false}>
 
-                                <View style={styles.main_view}>
-                                    <View style={styles.first_view}>
-                                        <Text style={styles.value_text}>Premsagar Choudhary</Text>
-                                    </View>
-                                    <View style={styles.second_view}>
-                                        <Text style={styles.value_text}>+91 84650156556</Text>
-                                    </View>
-                                </View>
-
-                                {/**Company Name and Vehicle Name View*/}
+                                {/**Company Name*/}
                                 <View style={styles.main_view}>
                                     <View style={styles.first_view}>
                                         <Text style={styles.value_text}>{details.companyName}</Text>
                                     </View>
-                                    {/* <View style={styles.second_view}>
-                                        <Text style={styles.value_text}>{details.vehicleNumber}</Text>
-                                    </View> */}
                                 </View>
 
+
+                                {/**Vehicle View*/}
                                 <View style={styles.main_view}>
                                     <View style={styles.first_view}>
                                         <View style={styles.icon_view}>
-                                            <MaterialCommunityIcons name='van-utility' color='#000' size={24} />
+                                            <MaterialCommunityIcons name='van-utility' color='#1766A6' size={24} />
                                         </View>
                                         <View style={styles.icon_text_view}>
                                             <Text style={styles.value_text}>{details.vehicleNumber}</Text>
@@ -88,29 +90,11 @@ export default class ViewDetails extends React.Component {
                                     </View>
                                 </View>
 
-                                {/**Technician View*/}
-                                <View style={styles.main_view}>
-                                    <View style={styles.first_view}>
-                                        <View style={styles.icon_view}>
-                                            <MaterialIcons name='person' size={24} color='#000' />
-                                        </View>
-                                        <View style={styles.icon_text_view}>
-                                            <Text style={styles.value_text}>{details.servicePerson}</Text>
-                                        </View>
-
-                                    </View>
-                                </View>
-
-                                {/**Location*/}
-                                <View style={styles.main_view}>
-                                    <View style={styles.first_view}>
-                                        <View style={styles.icon_view}>
-                                            <Entypo name='location-pin' color='red' size={24} />
-                                        </View>
-                                        <View style={styles.icon_text_view}>
-                                            <Text style={styles.value_text}>{details.location}</Text>
-                                        </View>
-                                    </View>
+                                <View style={styles.addres_view}>
+                                    <Text style={styles.address_header_text}>Contact:</Text>
+                                    <Text style={styles.address_text}>{details.contactPerson}</Text>
+                                    <Text style={styles.address_text}>{details.contactMobilenumber}</Text>
+                                    <Text style={styles.address_text}>{details.location}</Text>
                                 </View>
 
                                 {/**Status and Service type View*/}
@@ -129,7 +113,9 @@ export default class ViewDetails extends React.Component {
                                         </View>
                                     </View>
                                     <View style={styles.second_view}>
-                                        <Text style={styles.service_type_text}>{details.serviceType}</Text>
+                                        <View style={styles.service_type_view}>
+                                            <Text style={styles.service_type_text}>{details.serviceType}</Text>
+                                        </View>
                                     </View>
                                 </View>
 
@@ -205,151 +191,4 @@ export default class ViewDetails extends React.Component {
     }
 }
 
-const styles = EStyleSheet.create({
-    '$fontFamily': 'normal',
-    modal_container: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        backgroundColor: '#00000090',
-        flexDirection: 'column',
-    },
-    modal_child_container: {
-        backgroundColor: '#FFFFFF',
-        bottom: 0,
-        height: '70%',
-        width: '100%',
-        paddingTop: 15,
-        paddingLeft: 15,
-        paddingRight: 15
-    },
-    header_view: {
-        width: '100%',
-        height: 50,
-        backgroundColor: '#EEEEF0',
-        justifyContent: 'center',
-        elevation: 5,
-        flexDirection: 'row'
-    },
-    header_text: {
-        fontFamily: '$fontFamily',
-        color: '#000',
-        fontSize: '1rem',
-        fontWeight: 'bold',
-        margin: 15
-    },
-    service_num: {
-        flex: 1,
-        justifyContent: 'center'
-    },
-    job_text: {
-        fontFamily: '$fontFamily',
-        fontSize: '0.8rem',
-        fontWeight: 'bold',
-        color: '#000',
-        margin: 5
-    },
-    schedule_view: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row'
-    },
-    picker: {
-        height: '100%',
-        width: '100%'
-    },
-    status_picker: {
-        width: '100%',
-        height: 35,
-        borderWidth: 1,
-        borderColor: 'gray',
-        borderRadius: 5,
-        marginTop: 5,
-        marginBottom: 5
-    },
-    button_view: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
-    },
-    submit_button: {
-        backgroundColor: '$primaryColor',
-        width: 100,
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20,
-        marginBottom: 20,
-        marginLeft: 20
-    },
-    button_text: {
-        fontFamily: '$fontFamily',
-        color: '#fff'
-    },
-    main_view: {
-        marginTop: 2,
-        marginBottom: 2,
-        flexDirection: 'row',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    first_view: {
-        flexDirection: 'row',
-        flex: 1,
-        alignItems: 'center',
-        //flexWrap: 'wrap'
-    },
-    second_view: {
-        flexDirection: 'row',
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
-    },
-    value_text: {
-        fontFamily: '$fontFamily',
-        color: '#000',
-        fontSize: '0.9rem',
-        flexWrap: 'wrap'
-    },
-    service_type_text: {
-        fontFamily: '$fontFamily',
-        fontSize: '0.9rem',
-        fontWeight: 'bold',
-        color: '#1766A6'
-    },
-    icon_view: {
-        flex: 0.1
-    },
-    icon_text_view: {
-        flex: 1
-    },
-    view_more: {
-        fontFamily: '$fontFamily',
-        fontSize: '0.6rem',
-        color: 'gray'
-    },
-
-    /**Comment Box View */
-    comment_view: {
-        flex: 1,
-        flexDirection: 'column'
-    },
-    comment_box: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    comment_input_view: {
-        width: '100%',
-        height: 100,
-        borderWidth: 1,
-        borderColor: 'gray',
-        borderRadius: 5
-    },
-    comment_text: {
-        fontFamily: '$fontFamily',
-        fontSize: '0.8rem',
-        color: '#000',
-        padding: 10
-    }
-})
+export { DoAssociation }

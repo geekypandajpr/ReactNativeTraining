@@ -1,10 +1,11 @@
 import React from 'react';
 import { Tab, Tabs, ScrollableTab } from 'native-base';
 import { View, BackHandler } from 'react-native';
-import JobDetails from './JobDetails/JobDetails';
-import {Toolbar} from '../../components'
+import { Toolbar } from '../../components'
 import { AppLoading } from 'expo';
- class Jobs extends React.Component {
+import  JobList  from './JobList/JobList';
+
+export default class Jobs extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -50,16 +51,16 @@ import { AppLoading } from 'expo';
                     rightIconType='MaterialCommunityIcons' />
                 <Tabs  onChangeTab={({ i, ref, from })=> this.getStatus(i,ref,from)} renderTabBar={() => <ScrollableTab />}>
                     <Tab tabStyle={{ backgroundColor: "#0073b7" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#0073b7" }} heading="Pending">
-                        <JobDetails ref = "modal"/>
+                        <JobList ref = "modal"/>
                     </Tab>
                     <Tab tabStyle={{ backgroundColor: "#0073b7" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#0073b7" }} heading="Schedule">
-                        <JobDetails  ref = "modal"/>
+                        <JobList  ref = "modal"/>
                     </Tab>
                     <Tab tabStyle={{ backgroundColor: "#0073b7" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#0073b7" }} heading="Completed">
-                        <JobDetails  ref = "modal"/>
+                        <JobList  ref = "modal"/>
                     </Tab>
                     <Tab tabStyle={{ backgroundColor: "#0073b7" }} textStyle={{color : '#C0C0C0'}} activeTabStyle={{ backgroundColor: "#0073b7" }} heading="ReSchedule">
-                        <JobDetails  ref = "modal"/>
+                        <JobList  ref = "modal"/>
                     </Tab>
                 </Tabs>
             </View>

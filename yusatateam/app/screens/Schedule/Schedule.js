@@ -7,7 +7,7 @@ import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
 import moment from 'moment';
-import ViewDetails from './ViewDetails';
+import { DoAssociation } from '../../screens';
 import colors from '../../constants/colors';
 
 var eventList = {
@@ -88,7 +88,7 @@ export default class Schedule extends React.Component {
                         agendaTodayColor: colors.CALENDARS.AGENDA_TODAY_COLOR
                     }}
                 />
-                <ViewDetails ref={this.modalRef} />
+                <DoAssociation ref={this.modalRef} />
             </View>
         );
     }
@@ -112,7 +112,9 @@ export default class Schedule extends React.Component {
                         'provider': 'Airtel',
                         'jobDate': '05 November 2018 14:50',
                         'location': '84/122 sector 8, pratap nagar, Jaipur',
-                        'servicePerson' : 'Yash Gulati'
+                        'servicePerson' : 'Yash Gulati',
+                        'contactPerson': 'Premsagar Choudhary',
+                        'contactMobilenumber': '+91 8562565512'
                     });
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE001AA',
@@ -126,7 +128,9 @@ export default class Schedule extends React.Component {
                         'provider': 'Airtel',
                         'jobDate': '05 November 2018 14:50',
                         'location': '84/122 sector 8, pratap nagar, Jaipur',
-                        'servicePerson' : 'Yash Gulati'
+                        'servicePerson' : 'Yash Gulati',
+                        'contactPerson': 'Premsagar Choudhary',
+                        'contactMobilenumber': '+91 8562565512'
                     });
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE003AC',
@@ -140,7 +144,9 @@ export default class Schedule extends React.Component {
                         'provider': 'Airtel',
                         'jobDate': '05 November 2018, 11:12',
                         'location': '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033',
-                        'servicePerson' : 'Yash Gulati'
+                        'servicePerson' : 'Yash Gulati',
+                        'contactPerson': 'Premsagar Choudhary',
+                        'contactMobilenumber': '+91 8562565512'
                     });
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE002AB',
@@ -154,7 +160,9 @@ export default class Schedule extends React.Component {
                         'provider': 'Airtel',
                         'jobDate': '28 October 2018, 12:00',
                         'location': '81/49 sector 8 pratp nagar',
-                        'servicePerson' : 'Yash Gulati'
+                        'servicePerson' : 'Yash Gulati',
+                        'contactPerson': 'Premsagar Choudhary',
+                        'contactMobilenumber': '+91 8562565512'
                     });
                     
                     this.state.items[strTime].push({
@@ -169,7 +177,9 @@ export default class Schedule extends React.Component {
                         'provider': 'Airtel',
                         'jobDate': '10 December 2018, 05:00',
                         'location': '84/122 sector 8, pratap nagar',
-                        'servicePerson' : 'Yash Gulati'
+                        'servicePerson' : 'Yash Gulati',
+                        'contactPerson': 'Premsagar Choudhary',
+                        'contactMobilenumber': '+91 8562565512'
                     });
                     this.state.items[strTime].push({
                         'serviceNumber': 'SERVE004AD',
@@ -183,7 +193,9 @@ export default class Schedule extends React.Component {
                         'provider': 'Airtel',
                         'jobDate': '10 December 2018, 05:00',
                         'location': '84/122 sector 8, pratap nagar',
-                        'servicePerson' : 'Yash Gulati'
+                        'servicePerson' : 'Yash Gulati',
+                        'contactPerson': 'Premsagar Choudhary',
+                        'contactMobilenumber': '+91 8562565512'
                     });
                 }
             }

@@ -7,3 +7,4 @@ export { Sim } from './Sim';
 export { Device } from './Device';
 export { Jobs } from './Jobs';
 export { Settings } from './Settings';
+export { DoAssociation } from './DoAssociation';
