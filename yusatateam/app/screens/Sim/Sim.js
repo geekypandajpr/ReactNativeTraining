@@ -4,6 +4,7 @@ import {
     FlatList,
     TouchableHighlight,
     Dimensions,
+    TouchableWithoutFeedback
 } from 'react-native';
 import { Card, Button, Text } from 'native-base';
 import styles from './styles';
@@ -47,7 +48,7 @@ export default class Sim extends React.Component {
                             data={SimData}
                             keyExtractor={(item, index) => item.toString()}
                             renderItem={({ item, index }) =>
-                                <TouchableHighlight
+                                <TouchableWithoutFeedback
                                     onPress={() => {
                                         this.modalRef.current.setModalVisible(true)
                                     }}>
@@ -123,7 +124,7 @@ export default class Sim extends React.Component {
                                         </View>
 
                                     </Card>
-                                </TouchableHighlight>
+                                </TouchableWithoutFeedback>
                             }></FlatList>
                     </View>
                     <SimDetails ref={this.modalRef} />
