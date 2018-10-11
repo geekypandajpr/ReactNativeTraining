@@ -21,29 +21,41 @@ export default EStyleSheet.create({
     header_text: {
         
         color: '#000',
-        fontSize: '1rem',
+        fontSize: '1.1rem',
         fontWeight: 'bold',
         margin: 15
     },
-   
-    Text_Style:
+    Order_text:
     {
         fontStyle: 'normal',
-        fontSize: '1rem',
+        fontSize: '1.2rem',
+        color: '#000',
+        fontWeight: '100',
+    },
+    Order_texts:
+    {
+        fontStyle: 'normal',
+        fontSize: '1.2rem',
+        color: 'gray',
+        fontWeight: '100',
+    },
+   Text_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1.1rem',
         color: '#000',
     },
     View_Style:
     {
         fontStyle: 'normal',
-        fontSize: '1rem',
+        fontSize: '1.1rem',
         color: 'gray',
-     },
+    },
     service_num: {
         flex: 1,
         justifyContent: 'center'
     },
     job_text: {
-        
         fontSize: '0.8rem',
         fontWeight: 'bold',
         color: '#000',
@@ -51,31 +63,19 @@ export default EStyleSheet.create({
     },
     schedule_view: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems:'center',
+        marginLeft:140
     },
-   
-    View_Container:
+   View_Container:
     {
-      
         backgroundColor: '#FFFFFF',
-        
-        height: '65%',
+        height: '55%',
         width: '100%',
         paddingTop: 15,
         paddingLeft: 15,
         paddingRight: 15
     },
-    providerStyle:
-    {
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        fontWeight: 'bold',
-        color: '#1f667e',
-        justifyContent: 'center',
-        alignItems: 'center',
-     },
     Provider_View:
     {
         borderRadius: 5,
@@ -84,16 +84,25 @@ export default EStyleSheet.create({
         width: 70,
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft :130
+        marginLeft:90
     },
+    providerStyle:
+    {
+        fontStyle: 'normal',
+        fontSize: '1rem',
+        fontWeight: 'bold',
+        color: '#0073b7',
+        justifyContent: 'center',
+        alignItems: 'center',
+     },
+  
     Status_Button:
     {
         borderRadius: 10,
         borderWidth: 3,
-        width: 90,
+        width: 100,
         height:35,
         borderColor: '#EEEEF0',
-    
         justifyContent: 'center',
         alignItems: 'center'
     },
