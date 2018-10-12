@@ -1,69 +1,70 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity, } from 'react-native';
-import { List,Right,Text ,Button} from 'native-base';
+import { List, Right, Text, Button, Icon } from 'native-base';
 import styles from './styles';
 import { AppLoading } from 'expo';
-import  JobDetails  from '../JobDetails/JobDetails';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import JobDetails from '../JobDetails/JobDetails';
 export default class JobList extends React.Component {
     constructor() {
         super();
         this.state = {
             data: [
-                 {
-                    'jobNumber' : 'VOCT092015',
-                    'jobStatus' : 'completed',
-                    'companyName' : 'Yusata infotech',
-                    'jobType' : 'Install',
-                    'jobName' : 'Job Name',
-                    'scheduleDate' : '10/10/2018 20:00',
-                    'servicePerson' : 'Yash Gulati',
-                    'contactPerson' : 'Mr. Vinayak Sharma',
-                    'contactNumber' : '+91 8945623622',
-                    'cashOnDelivery' : 'Yes',
-                    'amount' : 'Rs. 5000',
-                    'training' : 'Yes'
+                {
+                    'jobNumber': 'VOCT092015',
+                    'jobStatus': 'completed',
+                    'companyName': 'Yusata infotech',
+                    'jobType': 'Install',
+                    'jobName': 'Job Name',
+                    'scheduleDate': '10/10/2018 20:00',
+                    'servicePerson': 'Yash Gulati',
+                    'contactPerson': 'Mr. Vinayak Sharma',
+                    'contactNumber': '+91 8945623622',
+                    'cashOnDelivery': 'Yes',
+                    'amount': 'Rs. 5000',
+                    'training': 'Yes'
                 },
                 {
-                    'jobNumber' : 'VOCT092016',
-                    'jobStatus' : 'completed',
-                    'companyName' : 'Yusata infotech',
-                    'jobType' : 'Install',
-                    'jobName' : 'Job Name',
-                    'scheduleDate' : '10/10/2018 20:00',
-                    'servicePerson' : 'Yash Gulati',
-                    'contactPerson' : 'Rahul',
-                    'contactNumber' : '+91 8945623622',
-                    'cashOnDelivery' : 'yes',
-                    'amount' : 'Rs. 5000',        
-                    'training' : 'yes'
+                    'jobNumber': 'VOCT092016',
+                    'jobStatus': 'completed',
+                    'companyName': 'Yusata infotech',
+                    'jobType': 'Install',
+                    'jobName': 'Job Name',
+                    'scheduleDate': '10/10/2018 20:00',
+                    'servicePerson': 'Yash Gulati',
+                    'contactPerson': 'Rahul',
+                    'contactNumber': '+91 8945623622',
+                    'cashOnDelivery': 'yes',
+                    'amount': 'Rs. 5000',
+                    'training': 'yes'
                 },
                 {
-                    'jobNumber' : 'VOCT092017',
-                    'jobStatus' : 'completed',
-                    'companyName' : 'Yusata infotech',
-                    'jobType' : 'Install',
-                    'jobName' : 'Job Name',
-                    'scheduleDate' : '10/10/2018 20:00',
-                    'servicePerson' : 'Yash Gulati',
-                    'contactPerson' : 'Rahul',
-                    'contactNumber' : '+91 8945623622',
-                    'cashOnDelivery' : 'yes',
-                    'amount' : 'Rs. 5000',          
-                    'training' : 'yes'
+                    'jobNumber': 'VOCT092017',
+                    'jobStatus': 'completed',
+                    'companyName': 'Yusata infotech',
+                    'jobType': 'Install',
+                    'jobName': 'Job Name',
+                    'scheduleDate': '10/10/2018 20:00',
+                    'servicePerson': 'Yash Gulati',
+                    'contactPerson': 'Rahul',
+                    'contactNumber': '+91 8945623622',
+                    'cashOnDelivery': 'yes',
+                    'amount': 'Rs. 5000',
+                    'training': 'yes'
                 },
                 {
-                    'jobNumber' : 'VOCT092018',
-                    'jobStatus' : 'completed',
-                    'companyName' : 'Yusata infotech',
-                    'jobType' : 'Install',
-                    'jobName' : 'Job Name',
-                    'scheduleDate' : '10/10/2018 20:00',
-                    'servicePerson' : 'Yash Gulati',
-                    'contactPerson' : 'Rahul',
-                    'contactNumber' : '+91 8945623622',
-                    'cashOnDelivery' : 'yes',
-                    'amount' : 'Rs. 5000',
-                    'training' : 'yes'
+                    'jobNumber': 'VOCT092018',
+                    'jobStatus': 'completed',
+                    'companyName': 'Yusata infotech',
+                    'jobType': 'Install',
+                    'jobName': 'Job Name',
+                    'scheduleDate': '10/10/2018 20:00',
+                    'servicePerson': 'Yash Gulati',
+                    'contactPerson': 'Rahul',
+                    'contactNumber': '+91 8945623622',
+                    'cashOnDelivery': 'yes',
+                    'amount': 'Rs. 5000',
+                    'training': 'yes'
                 },
             ],
             items: [],
@@ -90,11 +91,11 @@ export default class JobList extends React.Component {
         )
 
     };
-    changeTabStatus(tabStatus){
-        this.setState({status: tabStatus},
-            function(){
+    changeTabStatus(tabStatus) {
+        this.setState({ status: tabStatus },
+            function () {
                 console.log(this.state.status)
-        });
+            });
     }
 
     render() {
@@ -107,38 +108,51 @@ export default class JobList extends React.Component {
                     renderItem={({ item, index }) =>
                         <View style={styles.viewList}>
                             {this.state.status == item.jobStatus ?
-                                 <List elevation={5} style={{ 
-                                 backgroundColor : 'white',
-                                 borderRadius : 5,
-                                 margin : 15,
-                                 marginBottom : 0}}>
-                                 <View avatar noBorder >
-                                 <View>
-                         <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true,item)}>
-                                    <View style={{flexDirection :'row',flex :1}}> 
-                                        <Text style={styles.text}>{item.jobNumber}</Text>
-                                        <Text style={{flex :5,paddingTop:5}}>{item.scheduleDate}</Text> 
+                                <List elevation={5} style={{
+                                    backgroundColor: 'white',
+                                    borderRadius: 5,
+                                    margin: 15,
+                                    marginBottom: 0
+                                }}>
+                                    <View avatar noBorder >
+                                        <View>
+                                            <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)}>
+                                                <View style={{ flexDirection: 'row', flex: 1 }}>
+                                                    <Text style={styles.text}>{item.jobNumber}</Text>
+                                                    <Text style={{ flex: 5, paddingTop: 5 }}>{item.scheduleDate}</Text>
+                                                </View>
+                                                <View style={{ flexDirection: 'row', flex: 1 }}>
+                                                    <View style={{ paddingLeft: 8 }}>
+                                                        <Icon name='user' type="FontAwesome" style={{ fontSize: 20, color: '#FF7F50' }} /></View>
+                                                    <Text style={{ flex: 8, paddingLeft: 15 }}>{item.contactPerson}</Text>
+                                                    <Text style={{ color: '#CD853F', alignItems: 'flex-end', justifyContent: 'flex-end', flex: 3 }}>{item.jobStatus}</Text>
+                                                </View>
+                                                <View style={{ flex: 1, flexDirection: 'row' }}>
+                                                            <View style={{ paddingLeft: 8 }}>
+                                                                 <Icon name='ios-call' type="Ionicons" style={{ fontSize: 25, color: '#4682B4' }} />
+                                                            </View>
+                                                            <View style={{ flex: 8, paddingLeft: 15 }}>
+                                                                <Text>{item.contactNumber}</Text>
+                                                            </View>
+                                                </View>
+                                                <View style={{ flexDirection: 'row', flex: 1 }}>
+                                                    <View style={{ paddingLeft: 8 }}>
+                                                        <Icon name='building' type="FontAwesome" style={{ fontSize: 25, color: '#A0522D' }} />
+                                                    </View>
+                                                    <View style={{ flex: 8, paddingLeft: 15 }}>
+                                                            <Text>{item.companyName}</Text>
+                                                    </View>
+                                                    <Right style={{ flex: 3 }}>
+                                                        <Button rounded success style={{ height: 20, marginRight: 15 ,marginBottom : 15}}>
+                                                            <Text uppercase={false}>{item.jobType}</Text>
+                                                        </Button>
+                                                    </Right>
+                                                </View>
+                                            </TouchableOpacity>
+                                        </View>
+
                                     </View>
-                                 <View style={{flexDirection :'row',flex :1}}>
-                                    <Text style={{flex : 8,paddingLeft : 15}}>{item.contactPerson}</Text> 
-                                    <Text style={{color : '#CD853F',alignItems :'flex-end',justifyContent :'flex-end',flex :3}}>{item.jobStatus}</Text>
-                                 </View>
-                                 <View style={{flex :1,flexDirection :'row'}}>
-                                     <View style={{flex : 8,paddingLeft : 15}}>
-                                        <Text>{item.companyName}</Text>   
-                                        <Text>{item.contactNumber}</Text>
-                                     </View>
-                                         <Right style={{flex :3}}>
-                                            <Button rounded  success style={{height : 20,marginRight :15}}>
-                                                 <Text uppercase={false}>{item.jobType}</Text>
-                                            </Button>
-                                         </Right>
-                                 </View>   
-                            </TouchableOpacity>
-                                 </View>
-                                
-                                 </View>
-                             </List>
+                                </List>
                                 : null}
                         </View>
                     } >
