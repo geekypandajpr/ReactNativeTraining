@@ -100,6 +100,7 @@ export default class JobDetails extends React.Component {
                                                 multiline={true}
                                                 underlineColorAndroid='transparent'
                                                 style={styles.text_input}
+                                                returnKeyType= 'google'
                                                 onChangeText={(text) => this.setState({ text })}
                                                 value={this.state.text}/>
                                         </View>
