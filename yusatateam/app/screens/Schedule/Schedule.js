@@ -7,7 +7,7 @@ import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
 import moment from 'moment';
-import { DoAssociation } from '../../screens';
+import JobDetails from '../Jobs/JobDetails/JobDetails';
 import colors from '../../constants/colors';
 
 var eventList = {
@@ -88,7 +88,7 @@ export default class Schedule extends React.Component {
                         agendaTodayColor: colors.CALENDARS.AGENDA_TODAY_COLOR
                     }}
                 />
-                <DoAssociation ref={this.modalRef} />
+                <JobDetails ref={this.modalRef} />
             </View>
         );
     }
@@ -208,9 +208,29 @@ export default class Schedule extends React.Component {
     }
 
     renderItem(item) {
+        const value = {
+            'jobNumber': 'SERVE004AD',
+            'jobType' : 'Install',
+            'jobName' : 'Installation',
+            'companyName' : 'Yusata Infotech Private Limited',
+            'vehicleNumber': 'JH52-14A5',
+            'jobStatus': 'Reschedule',
+            'color': colors.SERVICE_STATUS_COLOR.RESCHEDULED,
+            'device': 'DEVICE14588ESE',
+            'sim': '+91-1201245636',
+            'provider': 'Airtel',
+            'scheduleDate': '10 December 2018, 05:00',
+            'location': '84/122 sector 8, pratap nagar',
+            'servicePerson' : 'Yash Gulati',
+            'contactPerson': 'Premsagar Choudhary',
+            'contactNumber': '+91 8562565512',
+            'cashOnDelivery': 'Yes',
+            'amount': '5000',
+            'training' : 'No'
+        }
         return (
             <ScheduleEvent item={[item]}
-                viewMore={() => { this.modalRef.current.setModalVisible(true, item) }}/>
+                viewMore={() => { this.modalRef.current.setModalVisible(true, value) }}/>
         );
     }
 

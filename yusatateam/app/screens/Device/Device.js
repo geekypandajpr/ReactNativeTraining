@@ -3,6 +3,7 @@ import {
     View,
     FlatList,
     TouchableHighlight,
+    TouchableWithoutFeedback,
     Dimensions,
 } from 'react-native';
 import { Card, Text } from 'native-base';
@@ -11,13 +12,15 @@ import { AppLoading } from 'expo';
 import { Toolbar } from '../../components';
 import DeviceData from '../../assets/JSONData/DeviceData'
 import { Octicons,FontAwesome } from '@expo/vector-icons'
+import { DeviceDetails } from './DeviceDeatails'
 
 export default class Device extends React.Component {
     constructor() {
         super();
         this.state = {
             isLoading: true,
-        }
+        };
+        this.modalRef = React.createRef();
     }
 
     async componentWillMount() {
@@ -44,6 +47,10 @@ export default class Device extends React.Component {
                             data={DeviceData}
                             keyExtractor={(item, index) => item.toString()}
                             renderItem={({ item, index }) =>
+                            <TouchableWithoutFeedback
+                            onPress={() => {
+                                this.modalRef.current.setModalVisible(true)
+                            }}>
                                 <Card style={styles.mainCard}>
 
                                     <View style={styles.First_View}>
@@ -62,7 +69,7 @@ export default class Device extends React.Component {
 
                                             }}
                                         >
-                                            <FontAwesome name="mobile-phone" size={52} color="#1f667e"
+                                            <FontAwesome name="mobile-phone" size={54} color="#1f667e"
                                              justifyContent="center" alignItems="center" />
                                         </TouchableHighlight>
                                     </View>
@@ -83,7 +90,7 @@ export default class Device extends React.Component {
                                             <View style={styles.Level_Head}>
                                                 <Text style={styles.Text_Style}>ORDER#</Text>
                                             </View>
-                                            <View style={{ marginLeft: 3 }}>
+                                            <View style={{flex:0.1 }}>
                                                 <Text style={styles.Text_Style}> : </Text>
                                             </View>
                                             <View style={styles.Level_Style}>
@@ -95,7 +102,7 @@ export default class Device extends React.Component {
                                             <View style={styles.Level_Head}>
                                                 <Text style={styles.Text_Style}>ESN</Text>
                                             </View>
-                                            <View style={{ marginLeft: 3 }}>
+                                            <View style={{ flex:0.1 }}>
                                                 <Text style={styles.Text_Style}> : </Text>
                                             </View>
                                             <View style={styles.Level_Style}>
@@ -105,7 +112,7 @@ export default class Device extends React.Component {
 
                                         <View style={[styles.Level_Row, { marginBottom: 5 }]}>
                                             <View style={styles.Level_Second}>
-                                                <Text style={styles.View_Style}>{item.Model}</Text>
+                                                <Text style={styles.modal_style}>{item.Model}</Text>
                                             </View>
                                             <View style={styles.Provider_View} >
                                                 <Text style={styles.providerStyle}>{item.Manufacturer}</Text>
@@ -115,8 +122,11 @@ export default class Device extends React.Component {
                                     </View>
 
                                 </Card>
+                               </TouchableWithoutFeedback>
+                               
                             }></FlatList>
                     </View>
+                    <DeviceDetails ref={this.modalRef}/>
                 </View>
         );
     }

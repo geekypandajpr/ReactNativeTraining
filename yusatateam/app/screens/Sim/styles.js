@@ -17,9 +17,9 @@ export default EStyleSheet.create({
     {
         flex: 1,
         flexDirection: 'row',
-        borderRadius:5,
-        borderWidth:3,
-        borderColor:'white'
+        borderRadius: 5,
+        borderWidth: 3,
+        borderColor: 'white'
     },
     First_View:
     {
@@ -48,8 +48,9 @@ export default EStyleSheet.create({
         marginTop: 5
     },
     Level_Head:
-    { 
-        justifyContent:'flex-start' 
+    {
+        flex: 0.4,
+        justifyContent: 'flex-start'
     },
     Header_Style:
     {
@@ -68,7 +69,14 @@ export default EStyleSheet.create({
     {
         fontStyle: 'normal',
         fontSize: '0.9rem',
-        color: 'gray'
+        color: 'gray',
+        marginLeft: 10
+    },
+    Mobile_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '0.9rem',
+        color: 'gray',
     },
     providerStyle:
     {
@@ -78,7 +86,7 @@ export default EStyleSheet.create({
         color: '#1f667e',
         justifyContent: 'center',
         alignItems: 'center',
-     },
+    },
     Provider_View:
     {
         borderRadius: 5,
@@ -110,9 +118,8 @@ export default EStyleSheet.create({
     },
     Level_Style:
     {
-        marginLeft: 5,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
+        flex: 2,
+        justifyContent: 'flex-start'
     }
 
 

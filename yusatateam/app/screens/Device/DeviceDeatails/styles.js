@@ -45,7 +45,13 @@ export default EStyleSheet.create({
         fontSize: '1.1rem',
         color: '#000',
     },
-   
+    View_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1.1rem',
+        color: 'gray',
+        marginLeft: 11
+    },
     ViewDescription_Text:
     {
         fontStyle: 'normal',
@@ -72,7 +78,7 @@ export default EStyleSheet.create({
     View_Container:
     {
         backgroundColor: '#FFFFFF',
-        height: '55%',
+        height: '65%',
         width: '100%',
         paddingTop: 15,
         paddingLeft: 15,
@@ -80,7 +86,6 @@ export default EStyleSheet.create({
     },
     Provider_View:
     {
-        flex: 1,
         borderRadius: 5,
         borderWidth: 1,
         borderColor: 'gray',
@@ -120,24 +125,16 @@ export default EStyleSheet.create({
     },
     Level_Flex:
     {
-        flex: 0.7
+        flex: 1.2
     },
     Column_Flex:
     {
-        flex: 0.1,
-        justifyContent:'flex-start'
+        flex: 0.1
     },
     Text_Flex:
     {
         flex: 2,
         justifyContent: 'flex-start'
-    },
-    View_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '1.1rem',
-        color: 'gray',
-        marginLeft: 10
     },
     Mobile_Level: {
         flexDirection: 'row',
@@ -154,34 +151,6 @@ export default EStyleSheet.create({
         flex: 1,
         width: 30,
         marginLeft: 100
-    },
-    Margin_View:
-    {
-        flexDirection: 'row',
-        marginTop: 3
-    },
-    column_price:
-    {
-        flex:0.1,
-        justifyContent:'flex-start',
-        alignItems:'flex-start'
-    },
-    View_price:
-    {
-        flex:2,
-        flexDirection:'row'
-    },
-    Rupee_icon:
-    {
-         flex: 0.1,
-        marginTop:4,
-        marginLeft:10
-    },
-    Text_price:
-    {
-        flex:1.9,
-        justifyContent:'flex-start',
-        alignItems:'flex-start'
     }
 
 })
