@@ -47,7 +47,7 @@ export default class Device extends React.Component {
                             data={DeviceData}
                             keyExtractor={(item, index) => item.toString()}
                             renderItem={({ item, index }) =>
-                            <TouchableHighlight
+                            <TouchableWithoutFeedback
                             onPress={() => {
                                 this.modalRef.current.setModalVisible(true)
                             }}>
@@ -122,7 +122,8 @@ export default class Device extends React.Component {
                                     </View>
 
                                 </Card>
-                                </TouchableHighlight>
+                               </TouchableWithoutFeedback>
+                               
                             }></FlatList>
                     </View>
                     <DeviceDetails ref={this.modalRef}/>
