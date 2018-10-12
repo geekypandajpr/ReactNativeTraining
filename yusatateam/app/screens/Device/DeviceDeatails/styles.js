@@ -38,6 +38,7 @@ export default EStyleSheet.create({
         fontSize: '1.2rem',
         color: 'gray',
         fontWeight: '100',
+        marginLeft: 11
     },
     Text_Style:
     {
@@ -125,16 +126,18 @@ export default EStyleSheet.create({
     },
     Level_Flex:
     {
-        flex: 1.2
+        flex: 1.4,
+        justifyContent:'center'
     },
     Column_Flex:
     {
-        flex: 0.1
+        flex: 0.1,
+        justifyContent:'center'
     },
     Text_Flex:
     {
         flex: 2,
-        justifyContent: 'flex-start'
+        justifyContent: 'center'
     },
     Mobile_Level: {
         flexDirection: 'row',

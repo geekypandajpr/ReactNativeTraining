@@ -49,7 +49,7 @@ export default EStyleSheet.create({
     },
     Level_Head:
     {
-        flex:0.5,
+        flex:0.7,
         justifyContent: 'flex-start'
     },
     Header_Style:

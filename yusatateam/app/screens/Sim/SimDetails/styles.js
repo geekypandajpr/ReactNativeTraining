@@ -45,6 +45,13 @@ export default EStyleSheet.create({
         fontSize: '1.1rem',
         color: '#000',
     },
+    View_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1rem',
+        color: 'gray',
+        marginLeft: 10
+    },
    
     ViewDescription_Text:
     {
@@ -120,25 +127,20 @@ export default EStyleSheet.create({
     },
     Level_Flex:
     {
-        flex: 0.7
+        flex: 0.6,
+        justifyContent:'center'
     },
     Column_Flex:
     {
         flex: 0.1,
-        justifyContent:'flex-start'
+        justifyContent:'center'
     },
     Text_Flex:
     {
         flex: 2,
-        justifyContent: 'flex-start'
+        justifyContent: 'center'
     },
-    View_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '1.1rem',
-        color: 'gray',
-        marginLeft: 10
-    },
+   
     Mobile_Level: {
         flexDirection: 'row',
         marginTop: 6

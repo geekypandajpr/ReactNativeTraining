@@ -45,13 +45,14 @@ export default class DeviceDetails extends React.Component {
                         <View style={styles.View_Container}>
 
                             <View style={{ flexDirection: 'row' }}>
-                                <View style={{ flex: 1, flexDirection: 'row' }}>
-                                    <View >
-                                        <Text style={styles.Order_text}>OrderNumber :</Text>
-                                    </View>
-                                    <View style={{ marginLeft: 10 }}>
-                                        <Text style={styles.Order_texts}>ORDER001</Text>
-                                    </View>
+                                <View style={styles.Level_Flex}>
+                                    <Text style={styles.Order_text}>OrderNumber</Text>
+                                </View>
+                                <View style={styles.Column_Flex}>
+                                    <Text>:</Text>
+                                </View>
+                                <View style={styles.Text_Flex}>
+                                    <Text style={styles.Order_texts}>ORDER001</Text>
                                 </View>
                             </View>
 
@@ -117,7 +118,7 @@ export default class DeviceDetails extends React.Component {
                                     <Text style={styles.View_Style}>peripheralTest</Text>
                                 </View>
                             </View>
-                            
+
                             <View style={{ flexDirection: 'row', marginTop: 3 }}>
                                 <View style={styles.Level_Flex} >
                                     <Text style={styles.Text_Style}>Model</Text>
@@ -130,7 +131,7 @@ export default class DeviceDetails extends React.Component {
                                 </View>
                             </View>
 
-                             <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                            <View style={{ flexDirection: 'row', marginTop: 3 }}>
                                 <View style={styles.Level_Flex} >
                                     <Text style={styles.Text_Style}>Manufacturer</Text>
                                 </View>

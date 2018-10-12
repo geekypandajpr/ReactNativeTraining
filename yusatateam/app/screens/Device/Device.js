@@ -69,7 +69,7 @@ export default class Device extends React.Component {
 
                                             }}
                                         >
-                                            <FontAwesome name="mobile-phone" size={54} color="#1f667e"
+                                            <FontAwesome name="mobile-phone" size={56} color="#1f667e"
                                              justifyContent="center" alignItems="center" />
                                         </TouchableHighlight>
                                     </View>
