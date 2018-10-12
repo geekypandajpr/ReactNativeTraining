@@ -2,10 +2,9 @@ import React from 'react';
 import {
     View,
     Modal,
-    TextInput,
-    Button
+    Button,
+    Text
 } from 'react-native';
-import { Text } from 'native-base';
 import styles from './styles';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 export default class SimDetails extends React.Component {
@@ -56,7 +55,7 @@ export default class SimDetails extends React.Component {
                                 </View>
                             </View>
 
-                            <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                            <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex}>
                                     <Text style={styles.Text_Style}>Iccid </Text>
                                 </View>
@@ -68,7 +67,7 @@ export default class SimDetails extends React.Component {
                                 </View>
                             </View>
 
-                            <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                            <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex} >
                                     <Text style={styles.Text_Style}>Msidn</Text>
                                 </View>
@@ -80,22 +79,25 @@ export default class SimDetails extends React.Component {
                                 </View>
                             </View>
 
-                            <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                            <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex} >
                                     <Text style={styles.Text_Style}>Price </Text>
                                 </View>
-                                <View style={styles.Column_Flex}>
+                                <View style={styles.column_price}>
                                     <Text>:</Text>
                                 </View>
-                                {/* <View style={{ flex: 2, justifyContent: 'flex-start', marginTop: 4 }}>
-                                    <FontAwesome name='rupee' size={20} color='gray' />
-                                </View> */}
-                                <View style={styles.Text_Flex}>
-                                    <Text style={styles.View_Style}>1520</Text>
+
+                                <View style={styles.View_price}>
+                                <View style={styles.Rupee_icon}>
+                                    <FontAwesome name='rupee' size={18} color='gray' />
+                                </View>
+                                <View style={styles.Text_price}>
+                                    <Text style={styles.ViewDescription_Text}>1520</Text>
+                                </View>
                                 </View>
                             </View>
 
-                            <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                            <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex} >
                                     <Text style={styles.Text_Style}>Plan </Text>
                                 </View>
@@ -108,18 +110,18 @@ export default class SimDetails extends React.Component {
                             </View>
 
                             <View style={styles.Mobile_Level}>
-                                <View >
+                                <View style={{ flex: 0.3 }}>
                                     <Ionicons name='ios-call' size={27} color='#5cb85c' />
                                 </View>
-                                <View style={{ marginLeft: 8 }}>
-                                    <Text style={styles.View_Style}>+91 85465256555</Text>
+                                <View style={{ flex:2 }}>
+                                    <Text style={styles.View_Style}>85465256555</Text>
                                 </View>
                                 <View style={styles.Provider_View} >
-                                    <Text style={styles.providerStyle}>Airtel</Text>
+                                    <Text style={styles.providerStyle}>lenovo</Text>
                                 </View>
                             </View>
 
-                            <View style={{ marginTop: 6 }}>
+                            <View style={{ marginTop:6 }}>
                                 <View >
                                     <Text style={styles.Text_Style}>Item Description - </Text>
                                 </View>
