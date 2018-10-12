@@ -50,7 +50,7 @@ export default EStyleSheet.create({
     Level_Head:
     {
         flex: 0.6,
-        justifyContent: 'flex-start'
+        justifyContent: 'center'
     },
     Header_Style:
     {
@@ -62,13 +62,13 @@ export default EStyleSheet.create({
     Text_Style:
     {
         fontStyle: 'normal',
-        fontSize: '0.9rem',
+        fontSize: '1rem',
         color: '#000'
     },
     View_Style:
     {
         fontStyle: 'normal',
-        fontSize: '0.9rem',
+        fontSize: '0.8rem',
         color: 'gray',
         marginLeft: 10
     },
@@ -119,7 +119,7 @@ export default EStyleSheet.create({
     Level_Style:
     {
         flex: 2,
-        justifyContent: 'flex-start'
+        justifyContent: 'center'
     }
 
 

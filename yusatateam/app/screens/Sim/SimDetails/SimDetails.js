@@ -44,14 +44,15 @@ export default class SimDetails extends React.Component {
 
                         <View style={styles.View_Container}>
 
-                            <View style={{ flexDirection: 'row' }}>
-                                <View style={{ flex: 1, flexDirection: 'row' }}>
-                                    <View >
-                                        <Text style={styles.Order_text}>OrderNumber :</Text>
-                                    </View>
-                                    <View style={{ marginLeft: 10 }}>
-                                        <Text style={styles.Order_texts}>ORDER001</Text>
-                                    </View>
+                             <View style={styles.Margin_View}>
+                                <View style={styles.Level_Flex}>
+                                    <Text style={styles.Order_text}>Order#</Text>
+                                </View>
+                                <View style={styles.Column_Flex}>
+                                    <Text>:</Text>
+                                </View>
+                                <View style={styles.Text_Flex}>
+                                    <Text style={styles.Order_texts}>order252</Text>
                                 </View>
                             </View>
 
@@ -110,10 +111,10 @@ export default class SimDetails extends React.Component {
                             </View>
 
                             <View style={styles.Mobile_Level}>
-                                <View style={{ flex: 0.3 }}>
+                                <View style={{ flex: 0.3,justifyContent:'center' }}>
                                     <Ionicons name='ios-call' size={27} color='#5cb85c' />
                                 </View>
-                                <View style={{ flex:2 }}>
+                                <View style={{ flex:2,justifyContent:'center' }}>
                                     <Text style={styles.View_Style}>85465256555</Text>
                                 </View>
                                 <View style={styles.Provider_View} >
@@ -122,10 +123,10 @@ export default class SimDetails extends React.Component {
                             </View>
 
                             <View style={{ marginTop:6 }}>
-                                <View >
+                                <View style={{justifyContent:'center'}}>
                                     <Text style={styles.Text_Style}>Item Description - </Text>
                                 </View>
-                                <View >
+                                <View style={{justifyContent:'center'}} >
                                     <Text style={styles.ViewDescription_Text} >This is device,used for purpose of installation
                                     in the vehicle device install after test </Text>
                                 </View>

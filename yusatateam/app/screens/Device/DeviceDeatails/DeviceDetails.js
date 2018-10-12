@@ -56,7 +56,7 @@ export default class DeviceDetails extends React.Component {
                                 </View>
                             </View>
 
-                            <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                            <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex}>
                                     <Text style={styles.Text_Style}>Imei </Text>
                                 </View>
@@ -68,7 +68,7 @@ export default class DeviceDetails extends React.Component {
                                 </View>
                             </View>
 
-                            <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                            <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex} >
                                     <Text style={styles.Text_Style}>Esn</Text>
                                 </View>
@@ -80,18 +80,21 @@ export default class DeviceDetails extends React.Component {
                                 </View>
                             </View>
 
-                            <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                            <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex} >
                                     <Text style={styles.Text_Style}>Price </Text>
                                 </View>
-                                <View style={styles.Column_Flex}>
+                                <View style={styles.column_price}>
                                     <Text>:</Text>
                                 </View>
-                                {/* <View style={{ flex: 2, justifyContent: 'flex-start', marginTop: 4 }}>
-                                    <FontAwesome name='rupee' size={20} color='gray' />
-                                </View> */}
-                                <View style={styles.Text_Flex}>
-                                    <Text style={styles.View_Style}>1520</Text>
+
+                                <View style={styles.View_price}>
+                                    <View style={styles.Rupee_icon}>
+                                        <FontAwesome name='rupee' size={18} color='gray' />
+                                    </View>
+                                    <View style={styles.Text_price}>
+                                        <Text style={styles.ViewDescription_Text}>1520</Text>
+                                    </View>
                                 </View>
                             </View>
 

@@ -35,9 +35,10 @@ export default EStyleSheet.create({
     Order_texts:
     {
         fontStyle: 'normal',
-        fontSize: '1.2rem',
+        fontSize: '1.1rem',
         color: 'gray',
         fontWeight: '100',
+        marginLeft:10
     },
     Text_Style:
     {
@@ -127,7 +128,7 @@ export default EStyleSheet.create({
     },
     Level_Flex:
     {
-        flex: 0.6,
+        flex: 0.8,
         justifyContent:'center'
     },
     Column_Flex:

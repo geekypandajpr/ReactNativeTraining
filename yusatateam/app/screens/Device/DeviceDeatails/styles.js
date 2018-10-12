@@ -35,7 +35,7 @@ export default EStyleSheet.create({
     Order_texts:
     {
         fontStyle: 'normal',
-        fontSize: '1.2rem',
+        fontSize: '1rem',
         color: 'gray',
         fontWeight: '100',
         marginLeft: 11
@@ -49,7 +49,7 @@ export default EStyleSheet.create({
     View_Style:
     {
         fontStyle: 'normal',
-        fontSize: '1.1rem',
+        fontSize: '1rem',
         color: 'gray',
         marginLeft: 11
     },
@@ -154,6 +154,34 @@ export default EStyleSheet.create({
         flex: 1,
         width: 30,
         marginLeft: 100
+    },
+    Margin_View:
+    {
+        flexDirection: 'row',
+        marginTop: 3
+    },
+    column_price:
+    {
+        flex:0.1,
+        justifyContent:'flex-start',
+        alignItems:'flex-start'
+    },
+    View_price:
+    {
+        flex:2,
+        flexDirection:'row'
+    },
+    Rupee_icon:
+    {
+         flex: 0.1,
+        marginTop:4,
+        marginLeft:10
+    },
+    Text_price:
+    {
+        flex:1.9,
+        justifyContent:'flex-start',
+        alignItems:'flex-start'
     }
 
 })
