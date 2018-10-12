@@ -1,13 +1,13 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
-    '$fontFamily' : 'normal',
+    '$fontFamily': 'normal',
     modal_container: {
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
         backgroundColor: '#00000090',
         flexDirection: 'column',
-        
+
     },
     modal_child_container: {
         backgroundColor: 'lightgrey',
@@ -18,7 +18,9 @@ export default EStyleSheet.create({
         paddingLeft: 15,
         paddingRight: 15
     },
-
+    service_num : {
+        flexDirection : 'row'
+    },
     header_view: {
         width: '100%',
         height: 50,
@@ -34,9 +36,8 @@ export default EStyleSheet.create({
         fontWeight: 'bold',
         margin: 15
     },
-  
     lower_view: {
-        paddingTop : 15,
+        paddingTop: 15,
         marginTop: 15,
         marginBottom: 5,
         flex: 2,
@@ -59,13 +60,13 @@ export default EStyleSheet.create({
         color: '#fff'
     },
     picker_view: {
-        
-        backgroundColor :'white',
+
+        backgroundColor: 'white',
         borderRadius: 3,
         margin: 5,
         // alignItems : 'center',
         // justifyContent : 'center'
-        paddingLeft : 15
+        paddingLeft: 15
     },
     picker: {
         height: '100%',
@@ -90,13 +91,13 @@ export default EStyleSheet.create({
         borderWidth: 1,
         borderColor: 'gray',
         borderRadius: 5,
-        backgroundColor :'white'
+        backgroundColor: 'white'
     },
     text_input: {
         width: '100%',
         padding: 10
     },
-    upper_view : {
-     
+    upper_view: {
+
     }
 })
