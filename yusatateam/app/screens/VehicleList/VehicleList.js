@@ -101,9 +101,6 @@ export default class VehicleList extends React.Component {
                                                 <Text note >{item.ICCID}    {item.Mobile}     {item.Provider}</Text>
                                             </TouchableOpacity>
                                         </View>
-                                        <Right>
-
-                                        </Right>
                                     </View>
                                 </List>
                             </View>} >

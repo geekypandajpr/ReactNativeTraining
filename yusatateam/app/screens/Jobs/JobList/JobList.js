@@ -106,42 +106,37 @@ export default class JobList extends React.Component {
                     renderItem={({ item, index }) =>
                         <View style={styles.viewList}>
                             {this.state.status == item.jobStatus ?
-                                <List elevation={5} style={{
-                                    backgroundColor: 'white',
-                                    borderRadius: 5,
-                                    margin: 15,
-                                    marginBottom: 0
-                                }}>
+                                <List elevation={5} style={styles.list}>
                                     <View avatar noBorder >
                                         <View>
                                             <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)}>
-                                                <View style={{ flexDirection: 'row', flex: 1 }}>
+                                                <View style={styles.listView}>
                                                     <Text style={styles.text}>{item.jobNumber}</Text>
-                                                    <Text style={{ flex: 5, paddingTop: 5 }}>{item.scheduleDate}</Text>
+                                                    <Text style={styles.text3}>{item.scheduleDate}</Text>
                                                 </View>
-                                                <View style={{ flexDirection: 'row', flex: 1 }}>
-                                                    <View style={{ paddingLeft: 8 }}>
-                                                        <Icon name='user' type="FontAwesome" style={{ fontSize: 20, color: '#FF7F50' }} /></View>
-                                                    <Text style={{ flex: 8, paddingLeft: 15 }}>{item.contactPerson}</Text>
-                                                    <Text style={{ color: '#CD853F', alignItems: 'flex-end', justifyContent: 'flex-end', flex: 3 }}>{item.jobStatus}</Text>
+                                                <View style={styles.listView}>
+                                                    <View style={styles.subSublist}>
+                                                        <Icon name='user' type="FontAwesome" style={styles.userIcon} /></View>
+                                                    <Text  style={styles.sublistView}>{item.contactPerson}</Text>
+                                                    <Text style={styles.text2}>{item.jobStatus}</Text>
                                                 </View>
-                                                <View style={{ flex: 1, flexDirection: 'row' }}>
-                                                    <View style={{ paddingLeft: 8 }}>
-                                                        <Icon name='ios-call' type="Ionicons" style={{ fontSize: 25, color: '#4682B4' }} />
+                                                <View style={styles.listView}>
+                                                    <View style={styles.subSublist}>
+                                                        <Icon name='ios-call' type="Ionicons" style={styles.callIcon} />
                                                     </View>
-                                                    <View style={{ flex: 8, paddingLeft: 15 }}>
+                                                    <View style={styles.sublistView}>
                                                         <Text>{item.contactNumber}</Text>
                                                     </View>
                                                 </View>
-                                                <View style={{ flexDirection: 'row', flex: 1 }}>
-                                                    <View style={{ paddingLeft: 8 }}>
-                                                        <Icon name='building' type="FontAwesome" style={{ fontSize: 25, color: '#A0522D' }} />
+                                                <View style={styles.listView}>
+                                                    <View style={styles.subSublist}>
+                                                        <Icon name='building' type="FontAwesome" style={styles.buildingIcon} />
                                                     </View>
-                                                    <View style={{ flex: 8, paddingLeft: 15 }}>
+                                                    <View style={styles.sublistView}>
                                                         <Text>{item.companyName}</Text>
                                                     </View>
                                                     <Right style={{ flex: 3 }}>
-                                                        <Button rounded success style={{ height: 20, marginRight: 15, marginBottom: 15 }}>
+                                                        <Button rounded success style={styles.button}>
                                                             <Text uppercase={false}>{item.jobType}</Text>
                                                         </Button>
                                                     </Right>

@@ -17,8 +17,6 @@ export default EStyleSheet.create({
     },
     viewList: {
         flex: 1,
-
-
     },
     search: {
         //flex :0.15,
@@ -29,11 +27,37 @@ export default EStyleSheet.create({
     },
     list: {
         backgroundColor: 'white',
-        borderRadius: 20,
+        borderRadius: 5,
         margin: 15,
-        marginBottom: 0,
-        borderStyle: 'dotted',
-        borderStyle: 'solid',
-        borderColor: 'black'
+        marginBottom: 0
+    },
+    listView : {
+        flexDirection: 'row', 
+        flex: 1
+    },
+    sublistView : {
+        flex: 8, 
+        paddingLeft: 15
+    },
+    subSublist : {
+        paddingLeft: 8 
+    },
+    button : {
+        height: 20, marginRight: 15, marginBottom: 15
+    },
+    callIcon : {
+        fontSize: 25, color: '#4682B4'
+    },
+    buildingIcon:{
+        fontSize: 25, color: '#A0522D'
+    },
+    userIcon : {
+        fontSize: 20, color: '#FF7F50'
+    },
+    text2 : {
+        color: '#CD853F', alignItems: 'flex-end', justifyContent: 'flex-end', flex: 3
+    },
+    text3 : {
+        flex: 5, paddingTop: 5
     }
 })

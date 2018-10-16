@@ -15,7 +15,7 @@ export default EStyleSheet.create({
         // textShadowRadius: 5
     },
     text1: {
-        fontSize: 22,
+        fontSize: 18,
         // color : '#20B2AA', 
     },
     viewList: {
@@ -30,7 +30,7 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     list: {
-        backgroundColor: '#F0FFF0',
+        backgroundColor: 'white',
         borderRadius: 5,
         margin: 15,
         marginBottom: 0,
