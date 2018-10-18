@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, Modal, TextInput } from 'react-native';
-import { Button,Icon } from 'native-base';
+import { Button, Icon } from 'native-base';
 import styles from './styles';
 export default class JobDetails extends React.Component {
     constructor(props) {
@@ -29,7 +29,7 @@ export default class JobDetails extends React.Component {
                     <View style={styles.modal_container}>
                         <View style={styles.header_view}>
                             <View style={styles.service_num}>
-                                 <View style={{ paddingLeft: 8,paddingTop : 15 }}>
+                                <View style={{ paddingLeft: 8, paddingTop: 15 }}>
                                     <Icon name='devices' type="MaterialIcons" style={{ fontSize: 25, color: '#7B68EE' }} />
                                 </View>
                                 <Text style={styles.header_text}>{details.jobNumber}</Text>
@@ -100,9 +100,9 @@ export default class JobDetails extends React.Component {
                                                 multiline={true}
                                                 underlineColorAndroid='transparent'
                                                 style={styles.text_input}
-                                                returnKeyType= 'google'
+                                                returnKeyType='google'
                                                 onChangeText={(text) => this.setState({ text })}
-                                                value={this.state.text}/>
+                                                value={this.state.text} />
                                         </View>
                                     </View>
                                 </View>
