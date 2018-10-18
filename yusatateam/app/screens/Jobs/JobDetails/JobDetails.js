@@ -71,7 +71,7 @@ export default class JobDetails extends React.Component {
                                         </View>
                                         <View style={{ flexDirection: 'row' }}>
                                             <Text >Schedule Date </Text>
-                                            <Text style={{ paddingLeft: 30 }} >{details.scheduleDate}</Text>
+                                            <Text style={{ paddingLeft: 30 }} >{details.scheduleDate}</Text>   
                                         </View>
                                         <View style={{ flexDirection: 'row' }}>
                                             <Text >Company Name </Text>
