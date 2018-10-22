@@ -34,7 +34,8 @@ export default EStyleSheet.create({
     Level_Second:
     {
         flex: 1,
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
+       
     },
     Level_Row:
     {
@@ -99,9 +100,9 @@ export default EStyleSheet.create({
     },
     Status_Button:
     {
-        borderRadius: 10,
+        borderRadius: 15,
         borderWidth: 3,
-        width: 90,
+        width: 100,
         borderColor: 'white',
         marginRight: 8,
         justifyContent: 'center',

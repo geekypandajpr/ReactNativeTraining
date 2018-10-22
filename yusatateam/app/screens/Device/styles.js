@@ -99,7 +99,7 @@ export default EStyleSheet.create({
     },
     Status_Button:
     {
-        borderRadius: 10,
+        borderRadius: 15,
         borderWidth: 3,
         width: 110,
         borderColor: 'white',
