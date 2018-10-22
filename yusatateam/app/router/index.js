@@ -7,10 +7,17 @@ import {
     Schedule,
     VehicleList,
     Jobs,
-    Settings
+    Settings,
+    Dashboard
 } from '../screens';
 
 const RouteConfigs = {
+    Dashboard: {
+        screen: Dashboard,
+        navigationOptions: {
+            header: null
+        }
+    },
     LogIn: {
         screen: LogIn,
         navigationOptions: {
