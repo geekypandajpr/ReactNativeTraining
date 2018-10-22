@@ -9,11 +9,15 @@ export default EStyleSheet.create({
         fontSize: 25,
         flex: 7,
         color: '#20B2AA',
-        paddingLeft: 15
+        paddingLeft: 15,
+        paddingTop : 10
     },
     text1: {
         fontSize: 22,
         // color : '#20B2AA', 
+    },
+    text3 : {
+        flex: 5, paddingTop: 5, paddingTop : 15
     },
     viewList: {
         flex: 1,
@@ -57,7 +61,5 @@ export default EStyleSheet.create({
     text2 : {
         color: '#CD853F', alignItems: 'flex-end', justifyContent: 'flex-end', flex: 3
     },
-    text3 : {
-        flex: 5, paddingTop: 5
-    }
+    
 })

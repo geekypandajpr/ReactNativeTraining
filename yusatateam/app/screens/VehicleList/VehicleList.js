@@ -97,8 +97,9 @@ export default class VehicleList extends React.Component {
                                                     <Text style={styles.text}>{item.ORDER} </Text>
                                                     <Text style={{ flex: 2, padding: 5, color: '#CD5C5C' }}>{item.status}</Text>
                                                 </View>
+                                                <View style={{paddingBottom :5}}>
                                                 <Text style={styles.text1}>{item.MSIDN}</Text>
-                                                <Text note >{item.ICCID}    {item.Mobile}     {item.Provider}</Text>
+                                                <Text note >{item.ICCID}    {item.Mobile}     {item.Provider}</Text></View>
                                             </TouchableOpacity>
                                         </View>
                                     </View>
