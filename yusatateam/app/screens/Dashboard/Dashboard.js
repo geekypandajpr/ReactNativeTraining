@@ -35,18 +35,54 @@ export default class Dashboard extends React.Component {
                     setting='md-person' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
 
                 <View style={styles.container}>
-                    <View style={{flex:1, flexDirection: 'row'}}>
+                    <View style={{flexDirection: 'row', height: '50%'}}>
                         <View style={{flex:1, flexDirection: 'column'}}>
-                            <View style={{flex:1, backgroundColor: 'gray'}}></View>
-                            <View style={{flex:1, backgroundColor: 'yellow'}}></View>
+                            <View style={{flex:1}}>
+                                <RoundedIcon 
+                                    name='devices'
+                                    type='MaterialIcons'
+                                    text='Device'
+                                />
+                            </View>
+                            <View style={{flex:1}}>
+                                <RoundedIcon 
+                                    name='sim'
+                                    type='MaterialCommunityIcons'
+                                    text='Sim'
+                                />
+                            </View>
                         </View>
                         <View style={{flex:1, flexDirection: 'column'}}>
-                            <View style={{flex:1, backgroundColor: 'red'}}></View>
-                            <View style={{flex:1, backgroundColor: 'orange'}}></View>
+                            <View style={{flex:1}}>
+                                <RoundedIcon 
+                                    name='schedule'
+                                    type='MaterialIcons'
+                                    text='Schedule'
+                                />
+                            </View>
+                            <View style={{flex:1}}>
+                                <RoundedIcon 
+                                    name='new-message'
+                                    type='Entypo'
+                                    text='Jobs'
+                                />
+                            </View>
                         </View>
                         <View style={{flex:1, flexDirection: 'column'}}>
-                            <View style={{flex:1, backgroundColor: 'green'}}></View>
-                            <View style={{flex:1, backgroundColor: 'yellow'}}></View>
+                            <View style={{flex:1}}>
+                                <RoundedIcon 
+                                    name='group'
+                                    type='FontAwesome'
+                                    text='Association'
+                                />
+                            </View>
+                            <View style={{flex:1}}>
+                                <RoundedIcon 
+                                    name='settings'
+                                    type='MaterialCommunityIcons'
+                                    text='Settings'
+                                />
+                            </View>
                         </View>
                     </View>
                 </View>

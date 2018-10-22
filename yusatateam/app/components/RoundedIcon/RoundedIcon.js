@@ -5,15 +5,15 @@ import {
     TouchableHighlight,
     Dimensions
 } from 'react-native';
-import { Icon } from 'native-base';
+import { Icon, Button } from 'native-base';
 import styles from './Styles'
 export default class RoundedIcon extends React.Component {
     render() {
         return (
-            <View style={styles.main_container}>
+            <View style={styles.container}>
 
-                <View>
-                    <TouchableHighlight
+                <View style={styles.upper}>
+                    <Button transparent
                         style={{
                             borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height),
                             width: Dimensions.get('window').width * 0.30,
@@ -22,18 +22,16 @@ export default class RoundedIcon extends React.Component {
                             alignItems: 'center',
                             borderWidth: 2,
                             borderColor:'#0073b7'
-                        }}
-                    >
+                        }} >
                         <Icon 
                             name={this.props.name}
                             type={this.props.type}
-                            style={styles.Icon_style}
-                        >
+                            style={styles.Icon_style} >
                         </Icon>
-                    </TouchableHighlight>
+                    </Button>
                 </View>
 
-                <View style={{paddingTop: 10 }}>
+                <View style={styles.lower}>
                     <Text style={styles.Text_Style}>
                     {this.props.text}
                     </Text>
