@@ -5,7 +5,7 @@ import {
 import { Card, Button, Text } from 'native-base';
 import styles from './Styles';
 import { AppLoading } from 'expo';
-import { Toolbar } from '../../components';
+import { Toolbar, RoundedIcon } from '../../components';
 
 export default class Dashboard extends React.Component {
     constructor() {
@@ -31,8 +31,26 @@ export default class Dashboard extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
                 <Toolbar title='Dashboard'
-                    leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                    setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
+                    leftIcon='home'
+                    setting='md-person' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
+
+                <View style={styles.container}>
+                    <View style={{flex:1, flexDirection: 'row'}}>
+                        <View style={{flex:1, flexDirection: 'column'}}>
+                            <View style={{flex:1, backgroundColor: 'gray'}}></View>
+                            <View style={{flex:1, backgroundColor: 'yellow'}}></View>
+                        </View>
+                        <View style={{flex:1, flexDirection: 'column'}}>
+                            <View style={{flex:1, backgroundColor: 'red'}}></View>
+                            <View style={{flex:1, backgroundColor: 'orange'}}></View>
+                        </View>
+                        <View style={{flex:1, flexDirection: 'column'}}>
+                            <View style={{flex:1, backgroundColor: 'green'}}></View>
+                            <View style={{flex:1, backgroundColor: 'yellow'}}></View>
+                        </View>
+                    </View>
+                </View>
+
             </View>
         );
     }
