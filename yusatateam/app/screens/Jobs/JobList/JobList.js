@@ -115,23 +115,18 @@ export default class JobList extends React.Component {
                                                     <Text style={styles.text3}>{item.scheduleDate}</Text>
                                                 </View>
                                                 <View style={styles.listView}>
-                                                    <View style={styles.subSublist}>
-                                                        <Icon name='user' type="FontAwesome" style={styles.userIcon} /></View>
+                                                
                                                     <Text  style={styles.sublistView}>{item.contactPerson}</Text>
                                                     <Text style={styles.text2}>{item.jobStatus}</Text>
                                                 </View>
                                                 <View style={styles.listView}>
-                                                    <View style={styles.subSublist}>
-                                                        <Icon name='ios-call' type="Ionicons" style={styles.callIcon} />
-                                                    </View>
+                                                    
                                                     <View style={styles.sublistView}>
                                                         <Text>{item.contactNumber}</Text>
                                                     </View>
                                                 </View>
                                                 <View style={styles.listView}>
-                                                    <View style={styles.subSublist}>
-                                                        <Icon name='building' type="FontAwesome" style={styles.buildingIcon} />
-                                                    </View>
+                                            
                                                     <View style={styles.sublistView}>
                                                         <Text>{item.companyName}</Text>
                                                     </View>
