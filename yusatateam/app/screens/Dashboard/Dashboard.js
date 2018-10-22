@@ -7,6 +7,7 @@ import { Card, Button, Text } from 'native-base';
 import styles from './Styles';
 import { AppLoading } from 'expo';
 import { Toolbar, RoundedIcon, Piechart } from '../../components';
+import Swiper from 'react-native-swiper';
 
 export default class Dashboard extends React.Component {
     constructor() {
@@ -37,6 +38,14 @@ export default class Dashboard extends React.Component {
                 
                 <View style={styles.container}>
                     {/* <ScrollView> */}
+                        <View style={{ flex: 1}}>
+                            <Swiper paginationStyle={{position: 'absolute', bottom: 0}}>
+                                <Piechart />
+                                <Piechart />
+                                <Piechart />
+                                <Piechart />
+                            </Swiper>
+                        </View>
                         <View style={{ flexDirection: 'row', flex: 1}}>
                             <View style={{flex:1, flexDirection: 'column'}}>
                                 <View style={{flex:1}}>

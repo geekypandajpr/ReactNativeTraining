@@ -7,4 +7,4 @@ export { RoundedImage } from './RoundedImage';
 export { InputWithIcon } from './InputWithIcon';
 export { StatefulButton } from './StatefulButton';
 export { RoundedIcon } from './RoundedIcon';
-export { Piechart } from './PieChart';
+export { Piechart } from './Piechart';

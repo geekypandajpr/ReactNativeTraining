@@ -18,11 +18,10 @@ export default EStyleSheet.create({
     },
     Text_Style: {
         fontStyle: 'normal',
-        fontSize: '1.2rem',
+        fontSize: '1rem',
         color: '#0073b7'
     },
     Icon_style: {
-        fontSize: 50,
         color: '#0073b7'
     }
 })
