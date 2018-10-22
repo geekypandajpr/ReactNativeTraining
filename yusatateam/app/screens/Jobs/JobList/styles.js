@@ -47,7 +47,11 @@ export default EStyleSheet.create({
         paddingLeft: 8 
     },
     button : {
-        height: 20, marginRight: 15, marginBottom: 15
+        height: 25,
+        width: 80,
+        margin: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     callIcon : {
         fontSize: 25, color: '#4682B4'
