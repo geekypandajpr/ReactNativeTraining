@@ -3,7 +3,7 @@ import {ScrollView , StatusBar, Text, View } from 'react-native';
 import PieChart from 'react-native-pie-chart';
  import styles from './styles'
  
-export default class PieChart extends Component {
+export default class Piechart extends Component {
   constructor() {
     super();
     this.state = {
@@ -106,4 +106,4 @@ export default class PieChart extends Component {
     );
   }
 }
-export {PieChart}
+export {Piechart}

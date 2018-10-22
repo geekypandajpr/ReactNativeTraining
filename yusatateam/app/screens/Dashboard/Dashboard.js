@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-    View
+    View,
+    ScrollView
 } from 'react-native';
 import { Card, Button, Text } from 'native-base';
 import styles from './Styles';
 import { AppLoading } from 'expo';
-import { Toolbar, RoundedIcon } from '../../components';
+import { Toolbar, RoundedIcon, Piechart } from '../../components';
 
 export default class Dashboard extends React.Component {
     constructor() {
@@ -33,58 +34,60 @@ export default class Dashboard extends React.Component {
                 <Toolbar title='Dashboard'
                     leftIcon='home'
                     setting='md-person' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
-
+                
                 <View style={styles.container}>
-                    <View style={{flexDirection: 'row', height: '50%'}}>
-                        <View style={{flex:1, flexDirection: 'column'}}>
-                            <View style={{flex:1}}>
-                                <RoundedIcon 
-                                    name='devices'
-                                    type='MaterialIcons'
-                                    text='Device'
-                                />
+                    {/* <ScrollView> */}
+                        <View style={{ flexDirection: 'row', flex: 1}}>
+                            <View style={{flex:1, flexDirection: 'column'}}>
+                                <View style={{flex:1}}>
+                                    <RoundedIcon 
+                                        name='devices'
+                                        type='MaterialIcons'
+                                        text='Device'
+                                    />
+                                </View>
+                                <View style={{flex:1}}>
+                                    <RoundedIcon 
+                                        name='sim'
+                                        type='MaterialCommunityIcons'
+                                        text='Sim'
+                                    />
+                                </View>
                             </View>
-                            <View style={{flex:1}}>
-                                <RoundedIcon 
-                                    name='sim'
-                                    type='MaterialCommunityIcons'
-                                    text='Sim'
-                                />
+                            <View style={{flex:1, flexDirection: 'column'}}>
+                                <View style={{flex:1}}>
+                                    <RoundedIcon 
+                                        name='schedule'
+                                        type='MaterialIcons'
+                                        text='Schedule'
+                                    />
+                                </View>
+                                <View style={{flex:1}}>
+                                    <RoundedIcon 
+                                        name='new-message'
+                                        type='Entypo'
+                                        text='Jobs'
+                                    />
+                                </View>
+                            </View>
+                            <View style={{flex:1, flexDirection: 'column'}}>
+                                <View style={{flex:1}}>
+                                    <RoundedIcon 
+                                        name='group'
+                                        type='FontAwesome'
+                                        text='Association'
+                                    />
+                                </View>
+                                <View style={{flex:1}}>
+                                    <RoundedIcon 
+                                        name='settings'
+                                        type='MaterialCommunityIcons'
+                                        text='Settings'
+                                    />
+                                </View>
                             </View>
                         </View>
-                        <View style={{flex:1, flexDirection: 'column'}}>
-                            <View style={{flex:1}}>
-                                <RoundedIcon 
-                                    name='schedule'
-                                    type='MaterialIcons'
-                                    text='Schedule'
-                                />
-                            </View>
-                            <View style={{flex:1}}>
-                                <RoundedIcon 
-                                    name='new-message'
-                                    type='Entypo'
-                                    text='Jobs'
-                                />
-                            </View>
-                        </View>
-                        <View style={{flex:1, flexDirection: 'column'}}>
-                            <View style={{flex:1}}>
-                                <RoundedIcon 
-                                    name='group'
-                                    type='FontAwesome'
-                                    text='Association'
-                                />
-                            </View>
-                            <View style={{flex:1}}>
-                                <RoundedIcon 
-                                    name='settings'
-                                    type='MaterialCommunityIcons'
-                                    text='Settings'
-                                />
-                            </View>
-                        </View>
-                    </View>
+                    {/* </ScrollView> */}
                 </View>
 
             </View>
