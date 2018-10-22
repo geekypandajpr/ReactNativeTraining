@@ -3,6 +3,7 @@ import { View, ScrollView, FlatList, Button, TouchableOpacity, BackHandler } fro
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import styles from './styles';
 import { SearchBar, Toolbar } from '../../components';
+import {VehicleDetails} from './VehicleDetails/VehicleDetails'
 export default class VehicleList extends React.Component {
     constructor() {
         super();
@@ -92,7 +93,7 @@ export default class VehicleList extends React.Component {
                                 <List elevation={5} style={styles.list}>
                                     <View avatar noBorder >
                                         <View>
-                                            <TouchableOpacity >
+                                            <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)}>
                                                 <View style={{ flexDirection: 'row' }}>
                                                     <Text style={styles.text}>{item.ORDER} </Text>
                                                     <Text style={{ flex: 2, padding: 5, color: '#CD5C5C' }}>{item.status}</Text>
@@ -106,6 +107,7 @@ export default class VehicleList extends React.Component {
                                 </List>
                             </View>} >
                 </FlatList>
+                <VehicleDetails ref='modal' />
             </View>
         )
     }

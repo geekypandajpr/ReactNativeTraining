@@ -50,6 +50,7 @@ export default EStyleSheet.create({
         height: 25,
         width: 80,
         margin: 10,
+        marginTop : 0,
         justifyContent: 'center',
         alignItems: 'center'
     },

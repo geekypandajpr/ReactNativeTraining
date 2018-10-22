@@ -62,7 +62,7 @@ export default EStyleSheet.create({
 
     },
     service_num: {
-        flex: 1.5,
+        flex: 1,
         justifyContent: 'center'
     },
     job_text: {
@@ -75,7 +75,7 @@ export default EStyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: 100
+        marginLeft: 140
     },
     View_Container:
     {
@@ -92,7 +92,7 @@ export default EStyleSheet.create({
         borderRadius: 5,
         borderWidth: 1,
         borderColor: 'gray',
-        width: 90,
+        width: 70,
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 90
@@ -128,7 +128,7 @@ export default EStyleSheet.create({
     },
     Level_Flex:
     {
-        flex: 1.5,
+        flex: 0.8,
         justifyContent:'center'
     },
     Column_Flex:
@@ -150,15 +150,13 @@ export default EStyleSheet.create({
     {
         flex: 1,
         flexDirection: 'row',
-        marginTop: 15
+        marginTop: 6
     },
     Button_Style:
     {
         flex: 1,
         width: 30,
-        // marginLeft: 100,
-       
-       
+        marginLeft: 100
     },
     Margin_View:
     {
@@ -187,20 +185,6 @@ export default EStyleSheet.create({
         flex:1.9,
         justifyContent:'flex-start',
         alignItems:'flex-start'
-    },
-    button_view: {
-        flex :1,
-    },
-    submit_button: {
-        backgroundColor: '$primaryColor',
-        width: 50,
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20,
-        marginBottom: 20,
-        marginLeft: 20
-    },
-    
+    }
 
 })
