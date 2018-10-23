@@ -5,7 +5,7 @@ export default EStyleSheet.create({
         flex: 1,
     },
     upper: {
-        flex: 3,
+        flex: 4,
         justifyContent: 'center',
         alignItems: 'center',
         //backgroundColor: 'red'

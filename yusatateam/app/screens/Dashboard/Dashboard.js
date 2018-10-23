@@ -38,7 +38,7 @@ export default class Dashboard extends React.Component {
                 
                 <View style={styles.container}>
                     {/* <ScrollView> */}
-                        <View style={{ flex: 1}}>
+                        <View style={{ flex: 1, marginLeft: 4, marginRight: 4, marginTop: 4, marginBottom: 2}}>
                             <Swiper paginationStyle={{position: 'absolute', bottom: 0}}
                                 dot={<View
                                     style={{
@@ -63,7 +63,7 @@ export default class Dashboard extends React.Component {
                                 <Piechart />
                             </Swiper>
                         </View>
-                        <View style={{ flexDirection: 'row', flex: 1}}>
+                        <View style={{ flexDirection: 'row', flex: 1, marginLeft: 4, marginRight: 4, marginTop: 2, marginBottom: 4}}>
                             <View style={{flex:1, flexDirection: 'column'}}>
                                 <View style={{flex:1}}>
                                     <RoundedIcon 
