@@ -9,17 +9,6 @@ import { Icon } from 'native-base';
 import styles from './Styles'
 export default class RoundedIcon extends React.Component {
 
-    measure(event) {
-        console.log('event peroperties: ', event);
-        console.log(event.nativeEvent.layout.x+" "+ event.nativeEvent.layout.y);
-        // this.setState({
-        //     x: event.nativeEvent.layout.x,
-        //     y: event.nativeEvent.layout.y,
-        //     width: event.nativeEvent.layout.width,
-        //     height: event.nativeEvent.layout.height
-        // })
-    }
-
     render() {
         return (
             <View style={styles.container}>
