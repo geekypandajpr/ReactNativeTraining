@@ -38,7 +38,7 @@ export default class Dashboard extends React.Component {
                 
                 <View style={styles.container}>
                     {/* <ScrollView> */}
-                        <View style={{ flex: 1, marginLeft: 4, marginRight: 4, marginTop: 4, marginBottom: 2}}>
+                        <View style={styles.upper_view}>
                             <Swiper paginationStyle={{position: 'absolute', bottom: 0}}
                                 dot={<View
                                     style={{
@@ -63,8 +63,8 @@ export default class Dashboard extends React.Component {
                                 <Piechart />
                             </Swiper>
                         </View>
-                        <View style={{ flexDirection: 'row', flex: 1, marginLeft: 4, marginRight: 4, marginTop: 2, marginBottom: 4}}>
-                            <View style={{flex:1, flexDirection: 'column'}}>
+                        <View style={styles.lower_view}>
+                            <View style={styles.icon_view}>
                                 <View style={{flex:1}}>
                                     <RoundedIcon 
                                         name='devices'
@@ -84,7 +84,7 @@ export default class Dashboard extends React.Component {
                                     />
                                 </View>
                             </View>
-                            <View style={{flex:1, flexDirection: 'column'}}>
+                            <View style={styles.icon_view}>
                                 <View style={{flex:1}}>
                                     <RoundedIcon 
                                         name='calendar'
@@ -104,7 +104,7 @@ export default class Dashboard extends React.Component {
                                     />
                                 </View>
                             </View>
-                            <View style={{flex:1, flexDirection: 'column'}}>
+                            <View style={styles.icon_view}>
                                 <View style={{flex:1}}>
                                     <RoundedIcon 
                                         name='group'
