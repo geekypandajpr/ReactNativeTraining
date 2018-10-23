@@ -12,16 +12,12 @@ export default EStyleSheet.create({
     },
     lower: {
         flex: 1,
-        justifyContent: 'center',
+        //justifyContent: 'center',
         alignItems: 'center',
        // backgroundColor: 'green'
     },
     Text_Style: {
         fontStyle: 'normal',
-        fontSize: '1rem',
-        color: '#0073b7'
-    },
-    Icon_style: {
-        color: '#0073b7'
+        fontSize: '1rem'
     }
 })

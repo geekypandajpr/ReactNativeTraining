@@ -33,18 +33,19 @@ export default class RoundedIcon extends React.Component {
                             justifyContent: 'center',
                             alignItems: 'center',
                             borderWidth: 2,
-                            borderColor:'#0073b7'
+                            borderColor: this.props.color
                         }} >
                         <Icon 
                             name={this.props.name}
                             type={this.props.type}
-                            style={[styles.Icon_style, {fontSize: Math.round(Dimensions.get('window').width*0.2 + Dimensions.get('window').height)*0.2/4}]} >
+                            style={{fontSize: Math.round(Dimensions.get('window').width*0.2 + Dimensions.get('window').height)*0.2/4,
+                                color: this.props.color}} >
                         </Icon>
                     </TouchableHighlight>
                 </View>
 
                 <View style={styles.lower}>
-                    <Text style={styles.Text_Style}>
+                    <Text style={[styles.Text_Style, { color: this.props.color}]}>
                     {this.props.text}
                     </Text>
                 </View>

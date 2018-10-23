@@ -39,7 +39,24 @@ export default class Dashboard extends React.Component {
                 <View style={styles.container}>
                     {/* <ScrollView> */}
                         <View style={{ flex: 1}}>
-                            <Swiper paginationStyle={{position: 'absolute', bottom: 0}}>
+                            <Swiper paginationStyle={{position: 'absolute', bottom: 0}}
+                                dot={<View
+                                    style={{
+                                        backgroundColor:'rgba(0,0,0,.2)',
+                                        width: 15,
+                                        height: 2,
+                                        //borderRadius: 3,
+                                        margin: 2
+                                    }} />}
+                                activeDot={<View
+                                    style={{
+                                        backgroundColor:'#0073b7',
+                                        width: 15,
+                                        height: 2,
+                                        //borderRadius: 3,
+                                        margin: 2
+                                    }} />}
+                                >
                                 <Piechart />
                                 <Piechart />
                                 <Piechart />
@@ -53,6 +70,7 @@ export default class Dashboard extends React.Component {
                                         name='devices'
                                         type='MaterialIcons'
                                         text='Device'
+                                        color='#0073b7'
                                     />
                                 </View>
                                 <View style={{flex:1}}>
@@ -60,22 +78,25 @@ export default class Dashboard extends React.Component {
                                         name='sim'
                                         type='MaterialCommunityIcons'
                                         text='Sim'
+                                        color='#0073b7'
                                     />
                                 </View>
                             </View>
                             <View style={{flex:1, flexDirection: 'column'}}>
                                 <View style={{flex:1}}>
                                     <RoundedIcon 
-                                        name='schedule'
-                                        type='MaterialIcons'
+                                        name='calendar'
+                                        type='Foundation'
                                         text='Schedule'
+                                        color='#0073b7'
                                     />
                                 </View>
                                 <View style={{flex:1}}>
                                     <RoundedIcon 
-                                        name='new-message'
-                                        type='Entypo'
+                                        name='schedule'
+                                        type='MaterialIcons'
                                         text='Jobs'
+                                        color='#0073b7'
                                     />
                                 </View>
                             </View>
@@ -85,6 +106,7 @@ export default class Dashboard extends React.Component {
                                         name='group'
                                         type='FontAwesome'
                                         text='Association'
+                                        color='#0073b7'
                                     />
                                 </View>
                                 <View style={{flex:1}}>
@@ -92,6 +114,7 @@ export default class Dashboard extends React.Component {
                                         name='settings'
                                         type='MaterialCommunityIcons'
                                         text='Settings'
+                                        color='#0073b7'
                                     />
                                 </View>
                             </View>
