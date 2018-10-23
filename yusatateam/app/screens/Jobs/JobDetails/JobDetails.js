@@ -29,7 +29,7 @@ export default class JobDetails extends React.Component {
                     transparent={true}
                     visible={this.state.modalVisible}
                     onRequestClose={() => {
-                        this.setModalVisible(!this.state.modalVisible);
+                        this.setState({modalVisible: !this.state.modalVisible});
                     }}>
                     <View style={styles.container}>
 
@@ -126,7 +126,7 @@ export default class JobDetails extends React.Component {
                             </View>
                           <View style={{paddingTop : 20}}>
                                  <Button block success onPress={() => {
-                                            this.setModalVisible(!this.state.modalVisible);
+                                            this.setState({modalVisible: !this.state.modalVisible});
                                         }}>
                                     <Text>Success</Text>
                                 </Button>

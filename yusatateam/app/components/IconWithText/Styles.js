@@ -17,7 +17,7 @@ export default EStyleSheet.create({
     badgeContainer: {
         flexDirection: "row",
         borderRadius: 100,
-        backgroundColor: "#0073b7",
+        backgroundColor: "red",
         justifyContent: "center",
         alignItems: "center",
     },

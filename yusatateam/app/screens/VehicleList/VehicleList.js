@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, FlatList, Button, TouchableOpacity, BackHandler } from 'react-native';
+import { View, ScrollView, FlatList, Button, TouchableOpacity } from 'react-native';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import styles from './styles';
 import { SearchBar, Toolbar } from '../../components';
@@ -51,7 +51,6 @@ export default class VehicleList extends React.Component {
     };
     componentDidMount() {
         this.arrayholder = this.state.data;
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
     SearchFilterFunction(text) {
 
@@ -67,21 +66,14 @@ export default class VehicleList extends React.Component {
         )
     }
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    }
-
-    handleBackPress = () => {
-        return true;
-    }
     render() {
         const { navigate } = this.props.navigation;
+        const { goBack } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather'
-                    onLeftButtonPress={() => navigate('HomeScreen')}
-                    rightIcon='settings'
-                    rightIconType='MaterialCommunityIcons' />
+                <Toolbar title='Association'
+                    leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
+                    setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}/>
                 <SearchBar placeholder='Search by vehicle, sim, device'
                     onChangeText={(text) => this.SearchFilterFunction(text)} />
                 <FlatList
