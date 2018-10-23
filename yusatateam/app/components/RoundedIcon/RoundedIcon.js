@@ -16,18 +16,21 @@ export default class RoundedIcon extends React.Component {
                 <View style={styles.upper}>
                     <TouchableHighlight onPress={this.props.onPress}
                         style={{
-                            borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height)/2,
-                            width: Dimensions.get('screen').width * 0.2,
-                            height: Dimensions.get('screen').width * 0.2,
+                            // borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height)/2,
+                            // width: Dimensions.get('screen').width * 0.2,
+                            // height: Dimensions.get('screen').width * 0.2,
                             justifyContent: 'center',
                             alignItems: 'center',
+                            height: 80,
+                            width: 80,
+                            borderRadius: 40,
                             borderWidth: 2,
                             borderColor: this.props.color
                         }} >
                         <Icon 
                             name={this.props.name}
                             type={this.props.type}
-                            style={{fontSize: Math.round(Dimensions.get('window').width*0.2 + Dimensions.get('window').height)*0.2/4,
+                            style={{fontSize: 45,
                                 color: this.props.color}} >
                         </Icon>
                     </TouchableHighlight>
