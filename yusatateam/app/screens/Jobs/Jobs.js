@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tab, Tabs, ScrollableTab } from 'native-base';
-import { View, BackHandler } from 'react-native';
+import { View } from 'react-native';
 import { Toolbar } from '../../components'
 import { AppLoading } from 'expo';
 import JobList from './JobList/JobList';
@@ -26,28 +26,17 @@ export default class Jobs extends React.Component {
         //console.log(i);
         this.refs.modal.changeTabStatus(this.status[i])
 
-    };
-    componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    }
-
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    }
-
-    handleBackPress = () => {
-        return true;
     }
 
     render() {
         const { navigate } = this.props.navigation;
+        const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
-                    <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather'
-                        onLeftButtonPress={() => navigate('HomeScreen')}
-                        rightIcon='settings'
-                        rightIconType='MaterialCommunityIcons' />
+                    <Toolbar title='Jobs' 
+                        leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
+                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}/>
                     <Tabs onChangeTab={({ i, ref, from }) => this.getStatus(i, ref, from)} renderTabBar={() => <ScrollableTab />}>
                         <Tab tabStyle={{ backgroundColor: "#0073b7" }} textStyle={{ color: '#C0C0C0' }} activeTabStyle={{ backgroundColor: "#0073b7" }} heading="Pending">
                             <JobList ref="modal" />

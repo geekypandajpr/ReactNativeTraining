@@ -12,7 +12,7 @@ export default EStyleSheet.create({
     modal_child_container: {
         backgroundColor: '#FFFFFF',
         bottom: 0,
-        height: '70%',
+        height: '80%',
         width: '100%',
         paddingTop: 15,
         paddingLeft: 15,
@@ -48,7 +48,7 @@ export default EStyleSheet.create({
         fontSize: '0.8rem',
         fontWeight: 'bold',
         color: '#000',
-        margin: 5
+        marginRight: 15
     },
 
 
@@ -144,7 +144,7 @@ export default EStyleSheet.create({
     comment_text: {
         fontSize: '0.8rem',
         color: '#000',
-        padding: 10
+        padding: 8
     },
 
     /**Button Styles */
@@ -153,14 +153,24 @@ export default EStyleSheet.create({
         justifyContent: 'flex-end'
     },
     submit_button: {
-        backgroundColor: '$primaryColor',
-        width: 100,
+        backgroundColor: '#5cb85c',
+        width: '50%',
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20,
         marginBottom: 20,
-        marginLeft: 20
+        marginLeft: 5
+    },
+    cancel_button: {
+        backgroundColor: '#d9534f',
+        width: '50%',
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+        marginBottom: 20,
+        marginRight: 5
     },
     button_text: {
         color: '#fff'

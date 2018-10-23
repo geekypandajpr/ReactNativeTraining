@@ -13,7 +13,7 @@ export default class Piechart extends Component {
         const details = ['Total (2000)', 'Installed (200)', 'TestedOk (100)', 'ReadyToUse (500)', 'Defective (1000)'];
         const chart_wh = 190
         const series = [2000, 400, 700, 500, 400];
-        const sliceColor = ['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']
+        const sliceColor = ['#31A9B8', '#84e184', '#5BC8AC', '#F2C059', '#F98866']
         var PieData = [];
 
         for (let i = 0; i < this.props.details.length; i++) {

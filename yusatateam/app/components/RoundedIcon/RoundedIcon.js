@@ -9,23 +9,12 @@ import { Icon } from 'native-base';
 import styles from './Styles'
 export default class RoundedIcon extends React.Component {
 
-    measure(event) {
-        console.log('event peroperties: ', event);
-        console.log(event.nativeEvent.layout.x+" "+ event.nativeEvent.layout.y);
-        // this.setState({
-        //     x: event.nativeEvent.layout.x,
-        //     y: event.nativeEvent.layout.y,
-        //     width: event.nativeEvent.layout.width,
-        //     height: event.nativeEvent.layout.height
-        // })
-    }
-
     render() {
         return (
             <View style={styles.container}>
 
                 <View style={styles.upper}>
-                    <TouchableHighlight
+                    <TouchableHighlight onPress={this.props.onPress}
                         style={{
                             borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height)/2,
                             width: Dimensions.get('screen').width * 0.2,

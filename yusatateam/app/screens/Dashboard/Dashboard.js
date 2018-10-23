@@ -41,7 +41,7 @@ export default class Dashboard extends React.Component {
                 
                 <View style={styles.container}>
                     {/* <ScrollView> */}
-                        <View style={{ flex: 1}}>
+                        <View style={styles.upper_view}>
                             <Swiper paginationStyle={{position: 'absolute', bottom: 0}}
                                 dot={<View
                                     style={{
@@ -76,14 +76,15 @@ export default class Dashboard extends React.Component {
                                 sliceColor={sliceColorData} />
                             </Swiper>
                         </View>
-                        <View style={{ flexDirection: 'row', flex: 1}}>
-                            <View style={{flex:1, flexDirection: 'column'}}>
+                        <View style={styles.lower_view}>
+                            <View style={styles.icon_view}>
                                 <View style={{flex:1}}>
                                     <RoundedIcon 
                                         name='devices'
                                         type='MaterialIcons'
                                         text='Device'
                                         color='#0073b7'
+                                        onPress={() => navigate('Device')}
                                     />
                                 </View>
                                 <View style={{flex:1}}>
@@ -92,16 +93,18 @@ export default class Dashboard extends React.Component {
                                         type='MaterialCommunityIcons'
                                         text='Sim'
                                         color='#0073b7'
+                                        onPress={() => navigate('Sim')}
                                     />
                                 </View>
                             </View>
-                            <View style={{flex:1, flexDirection: 'column'}}>
+                            <View style={styles.icon_view}>
                                 <View style={{flex:1}}>
                                     <RoundedIcon 
                                         name='calendar'
                                         type='Foundation'
                                         text='Schedule'
                                         color='#0073b7'
+                                        onPress={() => navigate('Schedule')}
                                     />
                                 </View>
                                 <View style={{flex:1}}>
@@ -110,16 +113,18 @@ export default class Dashboard extends React.Component {
                                         type='MaterialIcons'
                                         text='Jobs'
                                         color='#0073b7'
+                                        onPress={() => navigate('Jobs')}
                                     />
                                 </View>
                             </View>
-                            <View style={{flex:1, flexDirection: 'column'}}>
+                            <View style={styles.icon_view}>
                                 <View style={{flex:1}}>
                                     <RoundedIcon 
                                         name='group'
                                         type='FontAwesome'
                                         text='Association'
                                         color='#0073b7'
+                                        onPress={() => navigate('VehicleList')}
                                     />
                                 </View>
                                 <View style={{flex:1}}>
@@ -128,6 +133,7 @@ export default class Dashboard extends React.Component {
                                         type='MaterialCommunityIcons'
                                         text='Settings'
                                         color='#0073b7'
+                                        onPress={() => navigate('Settings')}
                                     />
                                 </View>
                             </View>
