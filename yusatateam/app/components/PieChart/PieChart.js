@@ -6,9 +6,10 @@ import {
     StyleSheet
 } from 'react-native';
 import PieChart from 'react-native-pie-chart';
-import styles from './styles'
+import styles from './styles';
 
 export default class Piechart extends Component {
+    
     render() {
         const chart_wh = 190;
         var PieData = [];
