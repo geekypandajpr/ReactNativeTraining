@@ -71,6 +71,7 @@ export default class Dashboard extends React.Component {
                                         type='MaterialIcons'
                                         text='Device'
                                         color='#0073b7'
+                                        onPress={() => navigate('Device')}
                                     />
                                 </View>
                                 <View style={{flex:1}}>
@@ -79,6 +80,7 @@ export default class Dashboard extends React.Component {
                                         type='MaterialCommunityIcons'
                                         text='Sim'
                                         color='#0073b7'
+                                        onPress={() => navigate('Sim')}
                                     />
                                 </View>
                             </View>
@@ -89,6 +91,7 @@ export default class Dashboard extends React.Component {
                                         type='Foundation'
                                         text='Schedule'
                                         color='#0073b7'
+                                        onPress={() => navigate('Schedule')}
                                     />
                                 </View>
                                 <View style={{flex:1}}>
@@ -97,6 +100,7 @@ export default class Dashboard extends React.Component {
                                         type='MaterialIcons'
                                         text='Jobs'
                                         color='#0073b7'
+                                        onPress={() => navigate('Jobs')}
                                     />
                                 </View>
                             </View>
@@ -107,6 +111,7 @@ export default class Dashboard extends React.Component {
                                         type='FontAwesome'
                                         text='Association'
                                         color='#0073b7'
+                                        onPress={() => navigate('VehicleList')}
                                     />
                                 </View>
                                 <View style={{flex:1}}>
@@ -115,6 +120,7 @@ export default class Dashboard extends React.Component {
                                         type='MaterialCommunityIcons'
                                         text='Settings'
                                         color='#0073b7'
+                                        onPress={() => navigate('Settings')}
                                     />
                                 </View>
                             </View>

@@ -25,7 +25,7 @@ export default class RoundedIcon extends React.Component {
             <View style={styles.container}>
 
                 <View style={styles.upper}>
-                    <TouchableHighlight
+                    <TouchableHighlight onPress={this.props.onPress}
                         style={{
                             borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height)/2,
                             width: Dimensions.get('screen').width * 0.2,

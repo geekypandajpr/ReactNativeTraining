@@ -36,7 +36,7 @@ export default class LogIn extends React.Component {
 
     _doLogin() {
         if (this._checkRequiredFields()) {
-            this.props.navigation.navigate('HomeScreen');
+            this.props.navigation.navigate('Dashboard');
         } else {
             Toast.show({
                 position: 'bottom',

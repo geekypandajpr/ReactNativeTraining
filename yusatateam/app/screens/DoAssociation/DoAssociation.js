@@ -172,7 +172,7 @@ export default class DoAssociation extends React.Component {
 
                                 {/**Close Button*/}
                                 <View style={styles.button_view}>
-                                    <Button style={styles.submit_button}
+                                    <Button style={styles.cancel_button}
                                         onPress={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
                                         <Text style={styles.button_text}>Close</Text>
                                     </Button>
