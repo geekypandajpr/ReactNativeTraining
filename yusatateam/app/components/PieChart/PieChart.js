@@ -10,27 +10,27 @@ import styles from './styles'
 
 export default class Piechart extends Component {
     render() {
-        const details = ['Total (2000)', 'Installed (200)', 'TestedOk (100)', 'ReadyToUse (500)', 'Defective (1000)'];
-        const chart_wh = 190
-        const series = [2000, 400, 700, 500, 400];
-        const sliceColor = ['#31A9B8', '#84e184', '#5BC8AC', '#F2C059', '#F98866']
+        const chart_wh = 190;
         var PieData = [];
+        const sliceColor = this.props.sliceColor;
+        const series = this.props.series;
+        const details = this.props.details;
 
-        for (let i = 0; i < this.props.details.length; i++) {
-            PieData.push({data: this.props.details[i], color: this.props.sliceColor[i]});
+        for (let i = 0; i < details.length; i++) {
+            PieData.push({data: details[i], color: sliceColor[i]});
         }
 
         return (
             <View style={styles.container}>
                 <View style={styles.first_view}>
                     <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                        <View><Text style={{fontSize: 20, fontWeight:'900'}}>Device</Text></View>
+                        <View><Text style={{fontSize: 20, fontWeight:'900'}}>{this.props.heading}</Text></View>
                     </View>
                     <View style={{flex: 6, alignItems:'center'}}>
                         <PieChart
                             chart_wh={chart_wh}
-                            series={this.props.series}
-                            sliceColor={this.props.sliceColor}
+                            series={series}
+                            sliceColor={sliceColor}
                         />
                     </View>
                 </View>
