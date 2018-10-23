@@ -10,14 +10,14 @@ export default EStyleSheet.create({
         flex: 7,
         color: '#20B2AA',
         paddingLeft: 15,
-        paddingTop : 10
+        paddingTop : 2
     },
     text1: {
         fontSize: 22,
         // color : '#20B2AA', 
     },
     text3 : {
-        flex: 5, paddingTop: 5, paddingTop : 15
+        alignItems: 'flex-end', justifyContent: 'flex-end', flex: 5,paddingTop :10
     },
     viewList: {
         flex: 1,
@@ -32,7 +32,7 @@ export default EStyleSheet.create({
     list: {
         backgroundColor: 'white',
         borderRadius: 5,
-        margin: 15,
+        margin: 5,
         marginBottom: 0
     },
     listView : {
@@ -51,6 +51,7 @@ export default EStyleSheet.create({
         width: 80,
         margin: 10,
         marginTop : 0,
+        marginBottom : 5,
         justifyContent: 'center',
         alignItems: 'center'
     },

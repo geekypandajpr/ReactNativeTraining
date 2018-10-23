@@ -95,7 +95,7 @@ export default EStyleSheet.create({
         width: 90,
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 90
+        marginLeft: 60
     },
     providerStyle:
     {
