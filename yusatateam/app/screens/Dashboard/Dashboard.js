@@ -29,6 +29,9 @@ export default class Dashboard extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
+        const detailsData = ['Total (2000)', 'Installed (200)', 'TestedOk (100)', 'ReadyToUse (500)', 'Defective (1000)'];
+        const seriesData = [2000, 400, 700, 500, 400];
+        const sliceColorData = ['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
@@ -57,10 +60,20 @@ export default class Dashboard extends React.Component {
                                         margin: 2
                                     }} />}
                                 >
-                                <Piechart />
-                                <Piechart />
-                                <Piechart />
-                                <Piechart />
+                                <Piechart 
+                                details={detailsData}
+                                series={seriesData}
+                                sliceColor={sliceColorData} 
+                                />
+                                <Piechart details={detailsData}
+                                series={seriesData}
+                                sliceColor={sliceColorData} />
+                                <Piechart details={detailsData}
+                                series={seriesData}
+                                sliceColor={sliceColorData} />
+                                <Piechart details={detailsData}
+                                series={seriesData}
+                                sliceColor={sliceColorData} />
                             </Swiper>
                         </View>
                         <View style={{ flexDirection: 'row', flex: 1}}>

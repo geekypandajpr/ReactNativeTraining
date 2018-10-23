@@ -16,8 +16,8 @@ export default class Piechart extends Component {
         const sliceColor = ['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']
         var PieData = [];
 
-        for (let i = 0; i < details.length; i++) {
-            PieData.push({data: details[i], color: sliceColor[i]});
+        for (let i = 0; i < this.props.details.length; i++) {
+            PieData.push({data: this.props.details[i], color: this.props.sliceColor[i]});
         }
 
         return (
@@ -29,8 +29,8 @@ export default class Piechart extends Component {
                     <View style={{flex: 6, alignItems:'center'}}>
                         <PieChart
                             chart_wh={chart_wh}
-                            series={series}
-                            sliceColor={sliceColor}
+                            series={this.props.series}
+                            sliceColor={this.props.sliceColor}
                         />
                     </View>
                 </View>
