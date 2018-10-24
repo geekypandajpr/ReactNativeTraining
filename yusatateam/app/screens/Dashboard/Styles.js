@@ -19,7 +19,7 @@ export default EStyleSheet.create({
     upper_view: {
         backgroundColor: '#fff',
         flex: 1,
-        height: 280,
+        height: 260,
         width: '95%',
         borderRadius: 5,
         marginLeft: 8,
@@ -42,5 +42,23 @@ export default EStyleSheet.create({
     icon_view: {
         flex:1,
         flexDirection: 'column'
+    },
+    pagination: {
+        position: 'absolute',
+        bottom: 0
+    },
+    dot: {
+        backgroundColor:'rgba(0,0,0,.2)',
+        width: 15,
+        height: 2,
+        //borderRadius: 3,
+        margin: 2
+    },
+    activedot: {
+        backgroundColor:'#0073b7',
+        width: 15,
+        height: 2,
+        //borderRadius: 3,
+        margin: 2
     }
 })

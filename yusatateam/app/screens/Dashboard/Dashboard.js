@@ -40,24 +40,9 @@ export default class Dashboard extends React.Component {
                     <View style={styles.container1}>
                         <View style={styles.fixed}></View>
                         <View style={styles.upper_view}>
-                            <Swiper paginationStyle={{position: 'absolute', bottom: 0}}
-                                dot={<View
-                                    style={{
-                                        backgroundColor:'rgba(0,0,0,.2)',
-                                        width: 15,
-                                        height: 2,
-                                        //borderRadius: 3,
-                                        margin: 2
-                                    }} />}
-                                activeDot={<View
-                                    style={{
-                                        backgroundColor:'#0073b7',
-                                        width: 15,
-                                        height: 2,
-                                        //borderRadius: 3,
-                                        margin: 2
-                                    }} />}
-                                >
+                            <Swiper paginationStyle={styles.pagination}
+                                dot={<View style={styles.dot} />}
+                                activeDot={<View style={styles.activedot} />} >
                                 <Piechart
                                     heading='Devices'
                                     details={['Total (2000)', 'Installed (200)', 'Tested Ok (100)', 'Ready to use (500)', 'Defective (1000)']}
@@ -152,6 +137,6 @@ export default class Dashboard extends React.Component {
             </View>
         );
     }
-
 }
+
 export { Dashboard }
