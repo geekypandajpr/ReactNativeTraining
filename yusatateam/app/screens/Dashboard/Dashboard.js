@@ -86,9 +86,36 @@ export default class Dashboard extends React.Component {
                                     paginationStyle={styles.pagination}
                                     dot={<View style={styles.dot} />}
                                     activeDot={<View style={styles.activedot} />}>
-                                    <SummaryCard colors={[ '#6ddbea','#31a9b8','#007a88']}/>
-                                    <SummaryCard colors={[ '#b7ffb5','#84e184','#51ae56']}/>
-                                    <SummaryCard colors={[ '#fff289','#f2c059','#bc9029']}/>
+                                    <SummaryCard colors={[ '#6ddbea','#31a9b8','#007a88']}
+                                        icon='devices'
+                                        iconColor='#fff'
+                                        icontype='MaterialIcons'
+                                        heading='DEVICES'
+                                        headingColor='#d9534f'
+                                        total='2563'
+                                        text1='Ordered devices : 100'
+                                        text2='Installed devices : 20'
+                                    />
+                                    <SummaryCard colors={[ '#b7ffb5','#84e184','#51ae56']}
+                                        icon='sim'
+                                        iconColor='#fff'
+                                        icontype='MaterialCommunityIcons'
+                                        heading='SIMS'
+                                        headingColor='#d9534f'
+                                        total='2563'
+                                        text1='Ordered sims : 1050'
+                                        text2='Installed sims : 50'
+                                    />
+                                    <SummaryCard colors={[ '#fff289','#f2c059','#bc9029']}
+                                        icon='schedule'
+                                        iconColor='#fff'
+                                        icontype='MaterialIcons'
+                                        heading='JOBS'
+                                        headingColor='#d9534f'
+                                        total='43022'
+                                        text1='Scheduled jobs : 500'
+                                        text2='Completed jobs : 110'
+                                    />
                                 </Swiper>
                             </View>
                         </View>

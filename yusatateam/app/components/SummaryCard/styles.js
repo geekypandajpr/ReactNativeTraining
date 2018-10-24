@@ -9,38 +9,68 @@ export default EStyleSheet.create({
         height: '80%',
         width: '95%',
         borderRadius: 5,
-        elevation: 1
+        elevation: 1,
+        flexDirection: 'row'
     },
     view1: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
-        padding: 10
+        padding: 10,
+        //backgroundColor: 'red'
     },
     view2: {
+        flex: 5,
+        flexDirection: 'column',
+        //backgroundColor: 'green'
+    },
+    icon: {
+        fontSize: 40,
+        //color: '#d9534f'
+    },
+    heading_view: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    heading: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
+        //backgroundColor: 'yellow',
         padding: 10
     },
-    icon: {
-        fontSize: 24,
-        color: '#d9534f'
+    total: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        //backgroundColor: 'pink',
+        padding: 10
     },
-    heading: {
-        fontSize: '1rem',
-        color: '#000',
-        marginLeft: 10
+    heading_text: {
+        fontSize: '0.9rem',
+        //color: '#d9534f',
+        fontWeight: 'bold'
     },
-    text1: {
+    total_text: {
+        fontSize: '0.9rem',
+        color: 'gray',
+        //fontWeight: 'bold'
+    },
+    content_view: {
+        flex: 3,
+        //justifyContent: 'center',
+        //alignItems: 'flex-start',
+        flexDirection: 'column'
+        //padding: 10,
+        //backgroundColor: 'orange'
+    },
+    text: {
         fontSize: '0.8rem',
-        color: '#000',
-        marginRight: 10
-    },
-    text2: {
-        fontSize: '0.8rem',
-        color: '#000'
+        color: '#fff',
+        paddingLeft: 10,
+        paddingRight: 10
     }
 });
