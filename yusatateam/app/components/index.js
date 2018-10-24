@@ -8,3 +8,4 @@ export { InputWithIcon } from './InputWithIcon';
 export { StatefulButton } from './StatefulButton';
 export { RoundedIcon } from './RoundedIcon';
 export { Piechart } from './Piechart';
+export { SummaryCard } from './SummaryCard';

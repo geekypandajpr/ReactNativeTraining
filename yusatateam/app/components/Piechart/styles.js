@@ -11,7 +11,8 @@ export default EStyleSheet.create({
         flex: 2,
         //backgroundColor: 'red',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: 10
     },
     second_view: {
         flex: 1,
@@ -19,6 +20,7 @@ export default EStyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        padding: 10
     },
     square: {
         height: 10,
@@ -31,10 +33,14 @@ export default EStyleSheet.create({
     },
     view1: {
         flex: 1,
-        margin: 4
+        //backgroundColor: 'red'
     },
     view2: {
         flex: 4,
-        margin: 4
+        //backgroundColor: 'green'
+    },
+    text: {
+        fontSize: '0.8rem',
+        color: 'gray'
     }
 });
