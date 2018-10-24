@@ -3,7 +3,6 @@ import {
     View,
     ScrollView
 } from 'react-native';
-import { Card, Button, Text } from 'native-base';
 import styles from './Styles';
 import { AppLoading } from 'expo';
 import { Toolbar, RoundedIcon, Piechart } from '../../components';
@@ -42,7 +41,9 @@ export default class Dashboard extends React.Component {
                         <View style={styles.upper_view}>
                             <Swiper paginationStyle={styles.pagination}
                                 dot={<View style={styles.dot} />}
-                                activeDot={<View style={styles.activedot} />} >
+                                activeDot={<View style={styles.activedot} />}
+                                autoplay={true}
+                                autoplayTimeout={5}>
                                 <Piechart
                                     heading='Devices'
                                     details={['Total (2000)', 'Installed (200)', 'Tested Ok (100)', 'Ready to use (500)', 'Defective (1000)']}
