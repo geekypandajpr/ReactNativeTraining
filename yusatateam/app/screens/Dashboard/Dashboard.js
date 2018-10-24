@@ -36,8 +36,9 @@ export default class Dashboard extends React.Component {
                     leftIcon='home'
                     setting='md-person' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
                 
-                <View style={styles.container}>
-                    {/* <ScrollView> */}
+                <ScrollView>
+                    <View style={styles.container1}>
+                        <View style={styles.fixed}></View>
                         <View style={styles.upper_view}>
                             <Swiper paginationStyle={{position: 'absolute', bottom: 0}}
                                 dot={<View
@@ -77,7 +78,7 @@ export default class Dashboard extends React.Component {
                                 />
                                 <Piechart
                                     heading='Technicians'
-                                    details={['Total(2000)', 'Installed (200)', 'TestedOk (100)', 'ReadyToUse (500)', 'Defective (1000)']}
+                                    details={['Total jobs(2000)', "Yash gulati's jobs(200)", "Vivek sharma's jobs(200)", "Sunil's jobs(200)", "Rahul's jobs(200)"]}
                                     series={[2000, 400, 700, 500, 400]}
                                     sliceColor={['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']}
                                 />
@@ -145,8 +146,8 @@ export default class Dashboard extends React.Component {
                                 </View>
                             </View>
                         </View>
-                    {/* </ScrollView> */}
-                </View>
+                    </View>
+                </ScrollView>
 
             </View>
         );
