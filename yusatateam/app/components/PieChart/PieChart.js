@@ -42,6 +42,7 @@ export default class Piechart extends Component {
                             <View style={styles.view2}><Text>{item.data}</Text></View>
                         </View>
                     )}
+                    
                 </View>
             </View>
         );
