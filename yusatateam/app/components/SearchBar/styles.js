@@ -2,7 +2,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
     container: {
         height: 55,
-        backgroundColor : '#00000030',
+        backgroundColor : '#0073b7',
         justifyContent: 'center',
         alignItems: 'center'
     },
