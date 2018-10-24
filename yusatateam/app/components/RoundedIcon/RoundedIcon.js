@@ -1,50 +1,53 @@
 import React from 'react';
-import {
-    View,
-    Text,
-    TouchableHighlight,
-    TouchableOpacity,
-    Dimensions
-} from 'react-native';
-import { Icon, Button } from 'native-base';
+import { View } from 'react-native';
+import { Icon, Button, Text } from 'native-base';
 import styles from './Styles';
-import { LinearGradient } from 'expo';
+import { LinearGradient, AppLoading } from 'expo';
+
 export default class RoundedIcon extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            isLoading: true
+        };
+    }
+
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+        })
+        this.setState({ isLoading: false })
+    }
 
     render() {
         return (
+            this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
-                  <LinearGradient colors={this.props.colors} style={{ borderRadius: 10}}>
-                    <Button transparent style={styles. Button_Style}
-                    onPress={this.props.onPress}
+                  <LinearGradient colors={this.props.colors} style={{ borderRadius: 4}}
                     >
-                   
+                    <Button transparent style={styles.button_Style}
+                        onPress={this.props.onPress} >
                         <View style={{ flex: 1 }}>
-
-
                             <View style={styles.upper}>
                                 <Icon
                                     name={this.props.name}
                                     type={this.props.type}
-                                    style={{ fontSize: 40, color: this.props.color }}
+                                    style={{ fontSize: 30, color: this.props.color }}
                                 >
                                 </Icon>
                             </View>
-
                             <View style={styles.lower}>
-                                <Text style={[styles.Text_Style, { color: this.props.color }]}>
+                                <Text style={[styles.text_Style, { color: this.props.color }]}>
                                     {this.props.text}
                                 </Text>
                             </View>
                         
                         </View>
-                  
-                     
-                </Button>
+                    </Button>
                 </LinearGradient>
-               
             </View>
-
                
         );
 

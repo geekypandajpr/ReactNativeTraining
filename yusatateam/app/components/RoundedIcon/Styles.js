@@ -5,29 +5,28 @@ export default EStyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 2
-
     },
-    Button_Style:
-    {
-        height: 70,
-        width: 120,
-        borderRadius: 10
+    button_Style: {
+        height: '100%',
+        width: '100%'
     },
-    upper:
-    {
-        flex: 2.5,
+    upper: {
+        flex: 3,
+        height: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        //backgroundColor: 'red'
     },
-    lower:
-    {
+    lower: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center',
+        //backgroundColor: 'green',
+        //padding: 2
     },
 
-    Text_Style: {
+    text_Style: {
         fontStyle: 'normal',
-        fontSize: '1rem'
+        fontSize: '0.8rem'
     }
 })

@@ -2,9 +2,9 @@ import React from 'react';
 import {
     ScrollView
 } from 'react-native';
-import { Text, View, Icon } from 'native-base';
+import { Text, View, Icon, Card } from 'native-base';
 import styles from './Styles';
-import { AppLoading } from 'expo';
+import { AppLoading, LinearGradient } from 'expo';
 import { Toolbar, RoundedIcon, Piechart, SummaryCard } from '../../components';
 import Swiper from 'react-native-swiper';
 
@@ -38,6 +38,7 @@ export default class Dashboard extends React.Component {
                 <ScrollView>
                     <View style={styles.container1}>
                         <View style={styles.fixed}></View>
+
                         <View style={styles.upper_view}>
                             <Swiper paginationStyle={styles.pagination}
                                 dot={<View style={styles.dot} />}
@@ -71,6 +72,80 @@ export default class Dashboard extends React.Component {
                             </Swiper>
                         </View>
 
+
+                        
+
+                        <View style={styles.lower_view}>
+                            <View style={styles.icon_view}>
+                                <View style={styles.button_view}>
+                                    <RoundedIcon
+                                        name='devices'
+                                        type='MaterialIcons'
+                                        text='Device'
+                                        color='#fff'
+                                        onPress={() => navigate('Device')}
+                                        colors={[ '#b7ffb5','#84e184','#51ae56']}
+                                    />
+                                </View>
+                                <View style={styles.button_view}>
+                                    <RoundedIcon 
+                                        name='sim'
+                                        type='MaterialCommunityIcons'
+                                        text='Sim'
+                                        color='#fff'
+                                        onPress={() => navigate('Sim')}
+                                        colors={[ '#ffb994','#f98866','#c2593b']}
+                                    />
+                                </View>
+                            </View>
+                            <View style={styles.icon_view}>
+                                <View style={styles.button_view}>
+                                    <RoundedIcon 
+                                        name='calendar'
+                                        type='Foundation'
+                                        text='Schedule'
+                                        color='#fff'
+                                        onPress={() => navigate('Schedule')}
+                                        colors={[ '#fff289','#f2c059','#bc9029']}
+                                    />
+                                </View>
+                                <View style={styles.button_view}>
+                                    <RoundedIcon 
+                                        name='schedule'
+                                        type='MaterialIcons'
+                                        text='Jobs'
+                                        color='#fff'
+                                        onPress={() => navigate('Jobs')}
+                                        colors={[ '#8ffcde','#5bc8ac','#1f977d']}
+                                    />
+                                </View>
+                            </View>
+                            <View style={styles.icon_view}>
+                                <View style={styles.button_view}>
+                                    <RoundedIcon 
+                                        name='group'
+                                        type='FontAwesome'
+                                        text='Association'
+                                        color='#fff'
+                                        onPress={() => navigate('VehicleList')}
+                                        colors={[ '#6ddbea','#31a9b8','#007a88']}
+                                    />
+                                </View>
+                                <View style={styles.button_view}>
+                                    <RoundedIcon 
+                                        name='settings'
+                                        type='MaterialCommunityIcons'
+                                        text='Settings'
+                                        color='#fff'
+                                        onPress={() => navigate('Settings')}
+                                        colors={[ '#9eb9ff','#6789f8','#265dc4']}
+                                    />
+                                </View>
+                            </View>
+                            
+                        </View>
+
+
                         <View style={styles.daily_summary_view}>
                             <View style={styles.summary_view}>
                                 <View style={{flex: 1}}>
@@ -86,27 +161,27 @@ export default class Dashboard extends React.Component {
                                     paginationStyle={styles.pagination}
                                     dot={<View style={styles.dot} />}
                                     activeDot={<View style={styles.activedot} />}>
-                                    <SummaryCard colors={[ '#6ddbea','#31a9b8','#007a88']}
+                                    <SummaryCard colors={[ '#b7ffb5','#84e184','#51ae56']}
                                         icon='devices'
                                         iconColor='#fff'
                                         icontype='MaterialIcons'
                                         heading='DEVICES'
-                                        headingColor='#d9534f'
+                                        headingColor='#f0ad4e'
                                         total='2563'
                                         text1='Ordered devices : 100'
                                         text2='Installed devices : 20'
                                     />
-                                    <SummaryCard colors={[ '#b7ffb5','#84e184','#51ae56']}
+                                    <SummaryCard colors={[ '#ffb994','#f98866','#c2593b']}
                                         icon='sim'
                                         iconColor='#fff'
                                         icontype='MaterialCommunityIcons'
                                         heading='SIMS'
-                                        headingColor='#d9534f'
+                                        headingColor='#31a9b8'
                                         total='2563'
                                         text1='Ordered sims : 1050'
                                         text2='Installed sims : 50'
                                     />
-                                    <SummaryCard colors={[ '#fff289','#f2c059','#bc9029']}
+                                    <SummaryCard colors={[ '#8ffcde','#5bc8ac','#1f977d']}
                                         icon='schedule'
                                         iconColor='#fff'
                                         icontype='MaterialIcons'
@@ -120,69 +195,7 @@ export default class Dashboard extends React.Component {
                             </View>
                         </View>
 
-                        <View style={styles.lower_view}>
-                            <View style={styles.icon_view}>
-                                <View style={{flex:1}}>
-                                    <RoundedIcon 
-                                        name='devices'
-                                        type='MaterialIcons'
-                                        text='Device'
-                                        color='#0073b7'
-                                        onPress={() => navigate('Device')}
-                                    />
-                                </View>
-                                <View style={{flex:1}}>
-                                    <RoundedIcon 
-                                        name='sim'
-                                        type='MaterialCommunityIcons'
-                                        text='Sim'
-                                        color='#0073b7'
-                                        onPress={() => navigate('Sim')}
-                                    />
-                                </View>
-                            </View>
-                            <View style={styles.icon_view}>
-                                <View style={{flex:1}}>
-                                    <RoundedIcon 
-                                        name='calendar'
-                                        type='Foundation'
-                                        text='Schedule'
-                                        color='#0073b7'
-                                        onPress={() => navigate('Schedule')}
-                                    />
-                                </View>
-                                <View style={{flex:1}}>
-                                    <RoundedIcon 
-                                        name='schedule'
-                                        type='MaterialIcons'
-                                        text='Jobs'
-                                        color='#0073b7'
-                                        onPress={() => navigate('Jobs')}
-                                    />
-                                </View>
-                            </View>
-                            <View style={styles.icon_view}>
-                                <View style={{flex:1}}>
-                                    <RoundedIcon 
-                                        name='group'
-                                        type='FontAwesome'
-                                        text='Association'
-                                        color='#0073b7'
-                                        onPress={() => navigate('VehicleList')}
-                                    />
-                                </View>
-                                <View style={{flex:1}}>
-                                    <RoundedIcon 
-                                        name='settings'
-                                        type='MaterialCommunityIcons'
-                                        text='Settings'
-                                        color='#0073b7'
-                                        onPress={() => navigate('Settings')}
-                                    />
-                                </View>
-                            </View>
-                            
-                        </View>
+                        
                     </View>
                 </ScrollView>
 
