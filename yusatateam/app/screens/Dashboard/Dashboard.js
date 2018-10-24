@@ -71,7 +71,7 @@ export default class Dashboard extends React.Component {
                                 />
                             </Swiper>
                         </View>
-                        <SummaryCard style={{flex : 0.15}}/>
+                        
                         <View style={styles.lower_view}>
                             <View style={styles.icon_view}>
                                 <View style={{flex:1}}>
