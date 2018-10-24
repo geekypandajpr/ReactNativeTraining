@@ -26,7 +26,7 @@ export default EStyleSheet.create({
         //backgroundColor: 'green'
     },
     icon: {
-        fontSize: 40,
+        fontSize: 50,
         //color: '#d9534f'
     },
     heading_view: {
@@ -56,7 +56,7 @@ export default EStyleSheet.create({
     },
     total_text: {
         fontSize: '0.9rem',
-        color: 'gray',
+        color: '#00000090',
         //fontWeight: 'bold'
     },
     content_view: {

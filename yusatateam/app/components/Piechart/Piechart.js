@@ -38,7 +38,7 @@ export default class Piechart extends Component {
             <View style={styles.container}>
                 <View style={styles.first_view}>
                     <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                        <View><Text style={{fontSize: 20, fontWeight:'900'}}>{this.props.heading}</Text></View>
+                        <View><Text style={{fontSize: 20, fontWeight:'900', color: 'gray'}}>{this.props.heading}</Text></View>
                     </View>
                     <View style={{flex: 6, alignItems:'center'}}>
                         <PieChart

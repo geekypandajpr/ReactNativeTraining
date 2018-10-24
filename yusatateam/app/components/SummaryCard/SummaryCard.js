@@ -11,10 +11,15 @@ export default class SummaryCard extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.inner_container}>
-                    <LinearGradient colors={this.props.colors} style={{flex: 1, borderRadius: 5}}>
+                    <LinearGradient colors={this.props.colors} style={{flex: 1, borderRadius: 5}}
+                    //start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}
+                    >
                         <View style={{flexDirection: 'row', flex: 1}}>
                             <View style={styles.view1}>
                                 <Icon name={this.props.icon} type={this.props.icontype} style={[styles.icon,{color:this.props.iconColor}]}></Icon>
+                            </View>
+                            <View style={{flex:0.02, justifyContent:'center', alignItems: 'center'}}>
+                                <View style={{backgroundColor: 'gray', height: '80%', width: '100%'}}></View>
                             </View>
                             <View style={styles.view2}>
                                 <View style={styles.heading_view}>
