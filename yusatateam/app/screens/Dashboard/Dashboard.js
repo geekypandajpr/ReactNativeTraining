@@ -36,8 +36,9 @@ export default class Dashboard extends React.Component {
                     leftIcon='home'
                     setting='md-person' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
                 
-                <View style={styles.container}>
-                    {/* <ScrollView> */}
+                <ScrollView>
+                    <View style={styles.container1}>
+                        <View style={styles.fixed}></View>
                         <View style={styles.upper_view}>
                             <Swiper paginationStyle={{position: 'absolute', bottom: 0}}
                                 dot={<View
@@ -145,8 +146,8 @@ export default class Dashboard extends React.Component {
                                 </View>
                             </View>
                         </View>
-                    {/* </ScrollView> */}
-                </View>
+                    </View>
+                </ScrollView>
 
             </View>
         );
