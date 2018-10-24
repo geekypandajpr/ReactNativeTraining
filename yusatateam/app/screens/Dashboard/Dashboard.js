@@ -1,13 +1,12 @@
 import React from 'react';
 import {
-    View,
     ScrollView
 } from 'react-native';
+import { Text, View, Icon } from 'native-base';
 import styles from './Styles';
 import { AppLoading } from 'expo';
-import { Toolbar, RoundedIcon, Piechart } from '../../components';
+import { Toolbar, RoundedIcon, Piechart, SummaryCard } from '../../components';
 import Swiper from 'react-native-swiper';
-import {SummaryCard} from '../../components/SummaryCard/SummaryCard'
 
 export default class Dashboard extends React.Component {
     constructor() {
@@ -71,7 +70,29 @@ export default class Dashboard extends React.Component {
                                 />
                             </Swiper>
                         </View>
-                        
+
+                        <View style={styles.daily_summary_view}>
+                            <View style={styles.summary_view}>
+                                <View style={{flex: 1}}>
+                                    <Text style={styles.summary_text}>Summary</Text>
+                                </View>
+                                <View style={styles.calendar_view}>
+                                    <Icon name='calendar' type='Foundation' style={styles.calendar_icon}></Icon>
+                                </View>
+                            </View>
+                            <View style={styles.summary_card}>
+                                <Swiper
+                                    pagingEnabled={false}
+                                    paginationStyle={styles.pagination}
+                                    dot={<View style={styles.dot} />}
+                                    activeDot={<View style={styles.activedot} />}>
+                                    <SummaryCard colors={[ '#6ddbea','#31a9b8','#007a88']}/>
+                                    <SummaryCard colors={[ '#b7ffb5','#84e184','#51ae56']}/>
+                                    <SummaryCard colors={[ '#fff289','#f2c059','#bc9029']}/>
+                                </Swiper>
+                            </View>
+                        </View>
+
                         <View style={styles.lower_view}>
                             <View style={styles.icon_view}>
                                 <View style={{flex:1}}>
