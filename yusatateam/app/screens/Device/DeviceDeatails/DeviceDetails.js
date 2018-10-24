@@ -157,8 +157,7 @@ export default class DeviceDetails extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.Button_View}>
-                                <View style={{ flex: 1 }}></View>
-                                <View style={styles.Button_Style}>
+                               
                                     <Button
                                         onPress={() => {
                                             this.setModalVisible(!this.state.modalVisible);
@@ -167,7 +166,7 @@ export default class DeviceDetails extends React.Component {
                                         color="#0073b7"
 
                                     />
-                                </View>
+                               
                             </View>
 
                         </View>

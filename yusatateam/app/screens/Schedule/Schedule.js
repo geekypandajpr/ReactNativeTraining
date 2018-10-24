@@ -43,8 +43,8 @@ export default class Schedule extends React.Component {
                     items={this.state.items}
                     loadItemsForMonth={(month) => this.loadItems(month)}
                     onCalendarToggled={(calendarOpened) => { console.log(calendarOpened) }}
-                    onDayPress={(day) => { console.log('day pressed') }}
-                    onDayChange={(day) => { console.log('day changed') }}
+                    //onDayPress={(day) => { console.log('day pressed') }}
+                    //onDayChange={(day) => { console.log('day changed') }}
                     selected={moment(new Date()).format('YYYY-MM-DD')}
                     pastScrollRange={100}
                     futureScrollRange={100}

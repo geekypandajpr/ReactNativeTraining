@@ -3,7 +3,6 @@ import {
     View,
     ScrollView
 } from 'react-native';
-import { Card, Button, Text } from 'native-base';
 import styles from './Styles';
 import { AppLoading } from 'expo';
 import { Toolbar, RoundedIcon, Piechart } from '../../components';
@@ -30,9 +29,6 @@ export default class Dashboard extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
-        const detailsData = ['Total (2000)', 'Installed (200)', 'TestedOk (100)', 'ReadyToUse (500)', 'Defective (1000)'];
-        const seriesData = [2000, 400, 700, 500, 400];
-        const sliceColorData = ['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
@@ -40,41 +36,39 @@ export default class Dashboard extends React.Component {
                     leftIcon='home'
                     setting='md-person' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
                 
-                <View style={styles.container}>
-                    {/* <ScrollView> */}
+                <ScrollView>
+                    <View style={styles.container1}>
+                        <View style={styles.fixed}></View>
                         <View style={styles.upper_view}>
-                            <Swiper paginationStyle={{position: 'absolute', bottom: 0}}
-                                dot={<View
-                                    style={{
-                                        backgroundColor:'rgba(0,0,0,.2)',
-                                        width: 15,
-                                        height: 2,
-                                        //borderRadius: 3,
-                                        margin: 2
-                                    }} />}
-                                activeDot={<View
-                                    style={{
-                                        backgroundColor:'#0073b7',
-                                        width: 15,
-                                        height: 2,
-                                        //borderRadius: 3,
-                                        margin: 2
-                                    }} />}
-                                >
-                                <Piechart 
-                                details={detailsData}
-                                series={seriesData}
-                                sliceColor={sliceColorData} 
+                            <Swiper paginationStyle={styles.pagination}
+                                dot={<View style={styles.dot} />}
+                                activeDot={<View style={styles.activedot} />}
+                                autoplay={true}
+                                autoplayTimeout={5}>
+                                <Piechart
+                                    heading='Devices'
+                                    details={['Total (2000)', 'Installed (200)', 'Tested Ok (100)', 'Ready to use (500)', 'Defective (1000)']}
+                                    series={[2000, 400, 700, 500, 400]}
+                                    sliceColor={['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']} 
                                 />
-                                <Piechart details={detailsData}
-                                series={seriesData}
-                                sliceColor={sliceColorData} />
-                                <Piechart details={detailsData}
-                                series={seriesData}
-                                sliceColor={sliceColorData} />
-                                <Piechart details={detailsData}
-                                series={seriesData}
-                                sliceColor={sliceColorData} />
+                                <Piechart
+                                    heading='Sims'
+                                    details={['Total (2000)', 'Installed (200)', 'Activated (100)', 'Deactivated (500)']}
+                                    series={[2000, 400, 700, 500]}
+                                    sliceColor={['#F44336', '#2196F3', '#FFEB3B', '#4CAF50']}
+                                />
+                                <Piechart
+                                    heading='Jobs'
+                                    details={['Total jobs (2000)', 'Scheduled (200)', 'Completed (100)', 'Pending (500)', 'Cancelled (1000)']}
+                                    series={[2000, 400, 700, 500, 400]}
+                                    sliceColor={['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']}
+                                />
+                                <Piechart
+                                    heading='Technicians'
+                                    details={['Total jobs(2000)', "Yash gulati's jobs(200)", "Vivek sharma's jobs(200)", "Sunil's jobs(200)", "Rahul's jobs(200)"]}
+                                    series={[2000, 400, 700, 500, 400]}
+                                    sliceColor={['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']}
+                                />
                             </Swiper>
                         </View>
                         <SummaryCard style={{flex : 0.15}}/>
@@ -141,12 +135,12 @@ export default class Dashboard extends React.Component {
                             </View>
                             
                         </View>
-                    {/* </ScrollView> */}
-                </View>
+                    </View>
+                </ScrollView>
 
             </View>
         );
     }
-
 }
+
 export { Dashboard }

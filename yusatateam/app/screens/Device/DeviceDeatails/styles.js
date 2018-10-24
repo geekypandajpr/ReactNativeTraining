@@ -145,16 +145,16 @@ export default EStyleSheet.create({
     },
     Button_View:
     {
-        flex: 1,
-        flexDirection: 'row',
+        // flex: 1,
+        // flexDirection: 'row',
         marginTop: 6
     },
-    Button_Style:
-    {
-        flex: 1,
-        width: 30,
-        marginLeft: 100
-    },
+    // Button_Style:
+    // {
+    //     flex: 1,
+    //     width: 30,
+    //     marginLeft: 100
+    // },
     Margin_View:
     {
         flexDirection: 'row',
