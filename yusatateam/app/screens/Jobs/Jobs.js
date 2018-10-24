@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { Toolbar } from '../../components'
 import { AppLoading } from 'expo';
 import JobList from './JobList/JobList';
-
+import {JobSearch} from './JobSearch/JobSearch'
 export default class Jobs extends React.Component {
     constructor(props) {
         super(props)
@@ -36,7 +36,7 @@ export default class Jobs extends React.Component {
                 <View style={{ flex: 1 }}>
                     <Toolbar title='Jobs' 
                         leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
-                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}/>
+                        setting='md-search' settingType='Ionicons' onSettingsPress={() => this.refs.modal.setModalVisible(true)}/>
                     <Tabs onChangeTab={({ i, ref, from }) => this.getStatus(i, ref, from)} renderTabBar={() => <ScrollableTab />}>
                         <Tab tabStyle={{ backgroundColor: "#0073b7" }} textStyle={{ color: '#C0C0C0' }} activeTabStyle={{ backgroundColor: "#0073b7" }} heading="Pending">
                             <JobList ref="modal" />
@@ -51,6 +51,7 @@ export default class Jobs extends React.Component {
                             <JobList ref="modal" />
                         </Tab>
                     </Tabs>
+                    <JobSearch ref='modal' />
                 </View>
         );
     }

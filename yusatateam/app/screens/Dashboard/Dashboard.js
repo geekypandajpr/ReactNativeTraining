@@ -8,6 +8,7 @@ import styles from './Styles';
 import { AppLoading } from 'expo';
 import { Toolbar, RoundedIcon, Piechart } from '../../components';
 import Swiper from 'react-native-swiper';
+import {SummaryCard} from '../../components/SummaryCard/SummaryCard'
 
 export default class Dashboard extends React.Component {
     constructor() {
@@ -76,6 +77,7 @@ export default class Dashboard extends React.Component {
                                 sliceColor={sliceColorData} />
                             </Swiper>
                         </View>
+                        <SummaryCard style={{flex : 0.15}}/>
                         <View style={styles.lower_view}>
                             <View style={styles.icon_view}>
                                 <View style={{flex:1}}>
@@ -137,6 +139,7 @@ export default class Dashboard extends React.Component {
                                     />
                                 </View>
                             </View>
+                            
                         </View>
                     {/* </ScrollView> */}
                 </View>
