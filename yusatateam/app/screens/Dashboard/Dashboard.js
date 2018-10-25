@@ -5,7 +5,13 @@ import {
 import { Text, View, Icon ,CheckBox } from 'native-base';
 import styles from './Styles';
 import { AppLoading } from 'expo';
-import { Toolbar, SquareButton, Piechart, SummaryCard } from '../../components';
+import {
+    Toolbar,
+    SquareButton,
+    Piechart,
+    SummaryCard,
+    MultiSwitch
+} from '../../components';
 import Swiper from 'react-native-swiper';
 
 export default class Dashboard extends React.Component {
@@ -71,12 +77,12 @@ export default class Dashboard extends React.Component {
                                     series={[2000, 400, 400, 500, 700]}
                                     sliceColor={['#25456E', '#569FCC', '#E45509', '#F3BA85', '#A5CEDA']}
                                 />
-                                <Piechart
+                                {/* <Piechart
                                     heading='Technicians'
                                     details={['Total jobs(2000)', "Yash gulati's jobs(200)", "Vivek sharma's jobs(200)", "Sunil's jobs(200)", "Rahul's jobs(200)"]}
                                     series={[2000, 200, 700, 500, 600]}
                                     sliceColor={['#00BED6', '#9AC772', '#929292', '#74E0E0', '#023F5B']}
-                                />
+                                /> */}
                             </Swiper>
                         </View>
 
@@ -151,7 +157,7 @@ export default class Dashboard extends React.Component {
                                         name='apps'
                                         type='MaterialIcons'
                                         text='More'
-                                        iconColor='#6789f8'
+                                        iconColor='gray'
                                         textColor='#000'
                                         onPress={() => navigate('TechWorkSummary')}
                                         colors={[ '#9eb9ff','#6789f8','#265dc4']}
@@ -163,14 +169,17 @@ export default class Dashboard extends React.Component {
 
 
                         <View style={styles.daily_summary_view}>
-                            <View style={styles.summary_view}>
+                            <View style={styles.slider_view}>
+                                <MultiSwitch />
+                            </View>
+                            {/* <View style={styles.summary_view}>
                                 <View style={{flex: 1}}>
                                     <Text style={styles.summary_text}>Summary</Text>
                                 </View>
                                 <View style={styles.calendar_view}>
                                     <Icon name='calendar' type='Foundation' style={styles.calendar_icon}></Icon>
                                 </View>
-                            </View>
+                            </View> */}
                             <View style={styles.summary_card}>
                                 <Swiper
                                     pagingEnabled={false}
@@ -208,25 +217,7 @@ export default class Dashboard extends React.Component {
                                         text2='Completed jobs : 110'
                                     />
                                 </Swiper>
-                            </View>  
-                            <View style={styles.checkboxes}>
-                                <View style={styles.checkbox_view}>
-                                    <CheckBox checked={this.state.checkbox[0]} onPress={()=>this.onCheckboxPress(0)}/> 
-                                    <Text note style={styles.checkbox_Text}>Today's</Text>
-                                </View>
-                                <View style={styles.checkbox_view}>
-                                    <CheckBox checked={this.state.checkbox[1]} onPress={()=>this.onCheckboxPress(1)}/> 
-                                    <Text note style={styles.checkbox_Text}>Weekly</Text>
-                                </View>
-                                <View style={styles.checkbox_view}>
-                                    <CheckBox checked={this.state.checkbox[2]} onPress={()=>this.onCheckboxPress(2)}/> 
-                                    <Text note style={styles.checkbox_Text}>Monthly</Text>
-                                </View>
-                                <View style={styles.checkbox_view}>
-                                    <CheckBox checked={this.state.checkbox[3]} onPress={()=>this.onCheckboxPress(3)}/> 
-                                    <Text note style={styles.checkbox_Text}>Yearly</Text>
-                                </View>
-                            </View>    
+                            </View>      
                         </View>
 
                         
