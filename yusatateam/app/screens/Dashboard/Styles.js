@@ -31,13 +31,13 @@ export default EStyleSheet.create({
         flexDirection: 'row',
         flex: 1,
         //height: 280,
-        paddingTop: 5,
-        paddingBottom: 5,
-        paddingLeft: 2,
-        paddingRight: 2,
+        // paddingTop: 5,
+        // paddingBottom: 5,
+        // paddingLeft: 2,
+        // paddingRight: 2,
         width: '95%',
-        borderRadius: 5,
-        elevation: 1,
+        //borderRadius: 5,
+        //elevation: 1,
         marginBottom: 20
     },
     icon_view: {
@@ -46,11 +46,11 @@ export default EStyleSheet.create({
     },
     button_view: { 
         flex:1,
-        marginLeft: 4,
-        marginRight: 4,
-        marginBottom: 5,
-        marginTop: 5,
-        height: 60
+        marginLeft: 2,
+        marginRight: 2,
+        //marginBottom: 4,
+        //marginTop: 4,
+        height: 100
     },
     pagination: {
         position: 'absolute',

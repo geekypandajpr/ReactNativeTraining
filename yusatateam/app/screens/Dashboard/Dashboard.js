@@ -5,7 +5,7 @@ import {
 import { Text, View, Icon ,CheckBox } from 'native-base';
 import styles from './Styles';
 import { AppLoading } from 'expo';
-import { Toolbar, RoundedIcon, Piechart, SummaryCard } from '../../components';
+import { Toolbar, SquareButton, Piechart, SummaryCard } from '../../components';
 import Swiper from 'react-native-swiper';
 
 export default class Dashboard extends React.Component {
@@ -86,21 +86,23 @@ export default class Dashboard extends React.Component {
                         <View style={styles.lower_view}>
                             <View style={styles.icon_view}>
                                 <View style={styles.button_view}>
-                                    <RoundedIcon
+                                    <SquareButton
                                         name='devices'
                                         type='MaterialIcons'
                                         text='Device'
-                                        color='#fff'
+                                        iconColor='#84e184'
+                                        textColor='#000'
                                         onPress={() => navigate('Device')}
                                         colors={[ '#b7ffb5','#84e184','#51ae56']}
                                     />
                                 </View>
                                 <View style={styles.button_view}>
-                                    <RoundedIcon 
+                                    <SquareButton 
                                         name='sim'
                                         type='MaterialCommunityIcons'
                                         text='Sim'
-                                        color='#fff'
+                                        iconColor='#f98866'
+                                        textColor='#000'
                                         onPress={() => navigate('Sim')}
                                         colors={[ '#ffb994','#f98866','#c2593b']}
                                     />
@@ -108,21 +110,23 @@ export default class Dashboard extends React.Component {
                             </View>
                             <View style={styles.icon_view}>
                                 <View style={styles.button_view}>
-                                    <RoundedIcon 
+                                    <SquareButton 
                                         name='calendar'
                                         type='Foundation'
+                                        iconColor='#f2c059'
+                                        textColor='#000'
                                         text='Schedule'
-                                        color='#fff'
                                         onPress={() => navigate('Schedule')}
                                         colors={[ '#fff289','#f2c059','#bc9029']}
                                     />
                                 </View>
                                 <View style={styles.button_view}>
-                                    <RoundedIcon 
+                                    <SquareButton 
                                         name='schedule'
                                         type='MaterialIcons'
                                         text='Jobs'
-                                        color='#fff'
+                                        iconColor='#5bc8ac'
+                                        textColor='#000'
                                         onPress={() => navigate('Jobs')}
                                         colors={[ '#8ffcde','#5bc8ac','#1f977d']}
                                     />
@@ -130,21 +134,25 @@ export default class Dashboard extends React.Component {
                             </View>
                             <View style={styles.icon_view}>
                                 <View style={styles.button_view}>
-                                    <RoundedIcon 
+                                    <SquareButton 
                                         name='group'
                                         type='FontAwesome'
                                         text='Association'
-                                        color='#fff'
+                                        iconColor='#31a9b8'
+                                        textColor='#000'
                                         onPress={() => navigate('VehicleList')}
                                         colors={[ '#6ddbea','#31a9b8','#007a88']}
                                     />
                                 </View>
                                 <View style={styles.button_view}>
-                                    <RoundedIcon 
-                                        name='settings'
-                                        type='MaterialCommunityIcons'
-                                        text='Settings'
-                                        color='#fff'
+                                    <SquareButton 
+                                        //name='appstore-o'
+                                        //type='AntDesign'
+                                        name='apps'
+                                        type='MaterialIcons'
+                                        text='More'
+                                        iconColor='#6789f8'
+                                        textColor='#000'
                                         onPress={() => navigate('Settings')}
                                         colors={[ '#9eb9ff','#6789f8','#265dc4']}
                                     />
