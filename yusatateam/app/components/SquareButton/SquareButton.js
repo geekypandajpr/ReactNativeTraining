@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
 import { Icon, Button, Text } from 'native-base';
 import styles from './Styles';
 import { AppLoading } from 'expo';
@@ -22,26 +22,24 @@ export default class SquareButton extends React.Component {
     render() {
         return (
             this.state.isLoading === true ? <AppLoading /> :
-                <View style={styles.Container}>
-                    <Button  style={styles.Button_style}>
-                        <View style={{ flex: 1, }}>
-                            <View style={styles.upper}>
+            // <View style={styles.Container}>
+                <TouchableWithoutFeedback style={styles.Button_style} onPress={this.props.onPress}>
+                    <View style={styles.container}>
+                        <View style={styles.upper}>
                             <Icon
-                                    name={this.props.name}
-                                    type={this.props.type}
-                                    style={{ fontSize: 30, color: this.props.color }}
-                                >
+                                name={this.props.name}
+                                type={this.props.type}
+                                style={{ fontSize: 40, color: this.props.iconColor }} >
                             </Icon>
-                            </View>
-                            <View style={styles.lower}>
-                            <Text style={[styles.text_Style, { color: this.props.color }]}>
-                                    {this.props.text}
-                                </Text>
-                            </View>
                         </View>
-                    </Button>
-                </View>
-
+                        <View style={styles.lower}>
+                            <Text style={[styles.text_Style, { color: this.props.textColor }]}>
+                                {this.props.text}
+                            </Text>
+                        </View>
+                    </View>
+                </TouchableWithoutFeedback>
+            // </View>
         );
     }
 }

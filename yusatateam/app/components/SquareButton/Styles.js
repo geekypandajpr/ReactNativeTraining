@@ -1,31 +1,40 @@
 import  EStyleSheet from 'react-native-extended-stylesheet'
 export default EStyleSheet.create({
 
-    Container:
-    {
-        flex:1,
-        alignItems: 'center',
-        justifyContent: 'center',
+    container: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#fff',
+        elevation: 1,
+        //borderRadius: 2,
+        margin: 1
     },
-    Button_style:
-    {
+    Button_style: {
         height:'100%',
         width: '100%',
-        borderRadius:5
+        flexDirection: 'row',
+        justifyContent: 'center', 
+        alignItems: 'center',
+        //backgroundColor: 'gray'
+        //borderRadius:5
     },
      
     upper: {
-        flex: 3,
+        flex: 2,
         height: '100%',
-        justifyContent: 'center',
+        width: '100%',
+        justifyContent: 'flex-end',
         alignItems: 'center',
-        backgroundColor: 'red'
+        backgroundColor: 'transparent',
     },
     lower: {
         flex: 1,
+        height: '100%',
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'green',
+        backgroundColor: 'transparent',
         //padding: 2
     },
     text_Style: {
