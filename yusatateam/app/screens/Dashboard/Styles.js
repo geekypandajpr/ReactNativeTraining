@@ -72,7 +72,7 @@ export default EStyleSheet.create({
     },
 
     daily_summary_view: {
-        height: 160,
+        height: 200,
         width: '95%',
         elevation: 1,
         marginBottom: 10,
@@ -107,5 +107,10 @@ export default EStyleSheet.create({
     calendar_icon: {
         fontSize: 26,
         color: '#d9534f'
+    },
+    checkbox_Text : {
+        marginLeft :10,
+        fontSize : '0.8rem',
+        paddingLeft : 5
     }
 })

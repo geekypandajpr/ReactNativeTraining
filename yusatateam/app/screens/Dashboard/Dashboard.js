@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-    ScrollView
+    ScrollView,
 } from 'react-native';
-import { Text, View, Icon, Card } from 'native-base';
+import { Text, View, Icon, Card ,CheckBox } from 'native-base';
 import styles from './Styles';
 import { AppLoading, LinearGradient } from 'expo';
 import { Toolbar, RoundedIcon, Piechart, SummaryCard } from '../../components';
@@ -192,9 +192,28 @@ export default class Dashboard extends React.Component {
                                         text2='Completed jobs : 110'
                                     />
                                 </Swiper>
-                            </View>
+                            </View>  
+                                <View style={{flexDirection :'row',alignItems :'center',justifyContent :'center',width : '95%',height : 40}}>
+                                <View style={{flexDirection :'row'}}>
+                                <CheckBox checked={true}/> 
+                                            <Text note style={styles.checkbox_Text}>Today's</Text>
+                                </View>
+                                <View style={{flexDirection :'row'}}>
+                                <CheckBox checked={false}/> 
+                                            <Text note style={styles.checkbox_Text}>Weekly</Text>
+                                </View>
+                                <View style={{flexDirection :'row'}}>
+                                <CheckBox checked={false}/> 
+                                            <Text note style={styles.checkbox_Text}>Monthly</Text>
+                                </View>
+                                <View style={{flexDirection :'row'}}>
+                                <CheckBox checked={false}/> 
+                                            <Text note style={styles.checkbox_Text}>Yearly</Text>
+                                </View>
+                            </View>    
                         </View>
 
+                        
                         
                     </View>
                 </ScrollView>
