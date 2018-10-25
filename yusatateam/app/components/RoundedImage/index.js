@@ -1,1 +1,0 @@
-export {RoundedImage} from './RoundImage';
