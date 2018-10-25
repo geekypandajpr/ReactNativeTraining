@@ -108,9 +108,21 @@ export default EStyleSheet.create({
         fontSize: 26,
         color: '#d9534f'
     },
+    checkboxes: {
+        flexDirection :'row',
+        alignItems :'center',
+        justifyContent :'center',
+        width : '100%',
+        padding : 5
+    },
+    checkbox_view: {
+        flexDirection :'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     checkbox_Text : {
-        marginLeft :10,
-        fontSize : '0.8rem',
-        paddingLeft : 5
+        marginLeft: 10,
+        fontSize : '0.7rem',
+        padding : 5
     }
 })

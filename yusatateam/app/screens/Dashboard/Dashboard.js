@@ -2,9 +2,9 @@ import React from 'react';
 import {
     ScrollView,
 } from 'react-native';
-import { Text, View, Icon, Card ,CheckBox } from 'native-base';
+import { Text, View, Icon ,CheckBox } from 'native-base';
 import styles from './Styles';
-import { AppLoading, LinearGradient } from 'expo';
+import { AppLoading } from 'expo';
 import { Toolbar, RoundedIcon, Piechart, SummaryCard } from '../../components';
 import Swiper from 'react-native-swiper';
 
@@ -12,8 +12,10 @@ export default class Dashboard extends React.Component {
     constructor() {
         super();
         this.state = {
-            isLoading: true
+            isLoading: true,
+            checkbox: [true, false, false,false]
         };
+        //this.onCheckboxPress = this.onCheckboxPress.bind(this);
     }
 
     async componentWillMount() {
@@ -23,6 +25,12 @@ export default class Dashboard extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false })
+    }
+
+    onCheckboxPress(index) {
+        var arr = [false, false, false, false];
+        arr[index] = true;
+        this.setState({ checkbox: arr });
     }
 
     render() {
@@ -193,22 +201,22 @@ export default class Dashboard extends React.Component {
                                     />
                                 </Swiper>
                             </View>  
-                                <View style={{flexDirection :'row',alignItems :'center',justifyContent :'center',width : '95%',height : 40}}>
-                                <View style={{flexDirection :'row'}}>
-                                <CheckBox checked={true}/> 
-                                            <Text note style={styles.checkbox_Text}>Today's</Text>
+                            <View style={styles.checkboxes}>
+                                <View style={styles.checkbox_view}>
+                                    <CheckBox checked={this.state.checkbox[0]} onPress={()=>this.onCheckboxPress(0)}/> 
+                                    <Text note style={styles.checkbox_Text}>Today's</Text>
                                 </View>
-                                <View style={{flexDirection :'row'}}>
-                                <CheckBox checked={false}/> 
-                                            <Text note style={styles.checkbox_Text}>Weekly</Text>
+                                <View style={styles.checkbox_view}>
+                                    <CheckBox checked={this.state.checkbox[1]} onPress={()=>this.onCheckboxPress(1)}/> 
+                                    <Text note style={styles.checkbox_Text}>Weekly</Text>
                                 </View>
-                                <View style={{flexDirection :'row'}}>
-                                <CheckBox checked={false}/> 
-                                            <Text note style={styles.checkbox_Text}>Monthly</Text>
+                                <View style={styles.checkbox_view}>
+                                    <CheckBox checked={this.state.checkbox[2]} onPress={()=>this.onCheckboxPress(2)}/> 
+                                    <Text note style={styles.checkbox_Text}>Monthly</Text>
                                 </View>
-                                <View style={{flexDirection :'row'}}>
-                                <CheckBox checked={false}/> 
-                                            <Text note style={styles.checkbox_Text}>Yearly</Text>
+                                <View style={styles.checkbox_view}>
+                                    <CheckBox checked={this.state.checkbox[3]} onPress={()=>this.onCheckboxPress(3)}/> 
+                                    <Text note style={styles.checkbox_Text}>Yearly</Text>
                                 </View>
                             </View>    
                         </View>
