@@ -6,7 +6,7 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     inner_container: {
-        height: '80%',
+        height: '90%',
         width: '95%',
         borderRadius: 5,
         elevation: 1,
@@ -90,5 +90,14 @@ export default EStyleSheet.create({
     text_money : {
         fontSize : '2rem',
         color : '#fff'
+    },
+    touchView : {
+        height: 60,
+        width: 60,
+        borderRadius: 30,
+
+        //marginTop : 40,
+        marginLeft: 5,
+        backgroundColor: 'white'
     }
 });

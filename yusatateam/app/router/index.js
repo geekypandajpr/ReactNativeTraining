@@ -8,7 +8,8 @@ import {
     VehicleList,
     Jobs,
     Settings,
-    Dashboard
+    Dashboard,
+    TechWorkSummary
 } from '../screens';
 
 const RouteConfigs = {
@@ -62,6 +63,12 @@ const RouteConfigs = {
     },
     Settings: {
         screen: Settings,
+        navigationOptions: {
+            header: null
+        }
+    },
+    TechWorkSummary: {
+        screen: TechWorkSummary,
         navigationOptions: {
             header: null
         }
