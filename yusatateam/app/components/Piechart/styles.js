@@ -8,14 +8,14 @@ export default EStyleSheet.create({
         flexDirection: 'row'
     },
     first_view: {
-        flex: 1.5,
+        flex: 1,
         //backgroundColor: 'red',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10
     },
     second_view: {
-        flex: 1.5,
+        flex: 1,
         //backgroundColor: 'green',
         flexDirection: 'column',
         justifyContent: 'center',

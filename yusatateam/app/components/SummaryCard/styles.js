@@ -6,7 +6,7 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     inner_container: {
-        height: '80%',
+        height: '90%',
         width: '95%',
         borderRadius: 5,
         elevation: 1,

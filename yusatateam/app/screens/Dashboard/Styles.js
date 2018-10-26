@@ -17,28 +17,34 @@ export default EStyleSheet.create({
         position: 'absolute',
         top: 0
     },
+
+    /**Upper View */
     upper_view: {
-        backgroundColor: '#fff',
-        flex: 1,
-        height: 250,
-        width: '95%',
-        borderRadius: 5,
-        elevation: 1,
-        marginBottom: 20
+        //backgroundColor: 'red',
+        flex: 3.5,
+        width: '100%',
+        marginTop: 4
     },
-    lower_view: {
-        backgroundColor: '#fff',
+    switch: {
+        flex: 0.5,
+        //backgroundColor: 'orange',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    pie_chart: {
+        //backgroundColor: 'red',
+        flex: 3,
+    },
+
+
+    /**Middle View */
+    middle_view: {
+        //backgroundColor: 'green',
+        flex: 3,
         flexDirection: 'row',
-        flex: 1,
-        //height: 280,
-        // paddingTop: 5,
-        // paddingBottom: 5,
-        // paddingLeft: 2,
-        // paddingRight: 2,
-        width: '95%',
-        //borderRadius: 5,
-        //elevation: 1,
-        marginBottom: 20
+        width: '100%',
+        marginTop: 4,
+        marginBottom: 4
     },
     icon_view: {
         flex:1,
@@ -48,10 +54,28 @@ export default EStyleSheet.create({
         flex:1,
         marginLeft: 2,
         marginRight: 2,
-        //marginBottom: 4,
-        //marginTop: 4,
         height: 100
     },
+
+
+     /**Lower View */
+    lower_view: {
+        // backgroundColor: 'yellow',
+        flex: 3.5,
+        width: '100%',
+        marginBottom: 4
+    },
+    summary_switch: {
+        flex: 0.5,
+        // backgroundColor: 'red',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    summary_view: {
+        flex: 3,
+        // backgroundColor: 'green'
+    },
+    
     pagination: {
         position: 'absolute',
         bottom: 0
@@ -70,49 +94,4 @@ export default EStyleSheet.create({
         //borderRadius: 3,
         margin: 2
     },
-
-    daily_summary_view: {
-        height: 200,
-        width: '95%',
-        elevation: 1,
-        marginBottom: 10,
-        borderRadius: 5
-    },
-    summary_view: {
-        flex:1,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        height: 30,
-        backgroundColor: '#fff',
-        padding: 10,
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#d3d3d3'
-    },
-    summary_card: {
-        height: 130,
-        width: '100%',
-        backgroundColor: '#fff'
-    },
-    summary_text: {
-        fontSize: '1rem',
-        color: '#000'
-    },
-    calendar_view: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    calendar_icon: {
-        fontSize: 26,
-        color: '#d9534f'
-    },
-    slider_view: {
-        flexDirection :'row',
-        alignItems :'center',
-        justifyContent :'center',
-        width : '100%',
-        //padding : 5
-    }
 })

@@ -37,10 +37,10 @@ export default class Piechart extends Component {
             this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
                 <View style={styles.first_view}>
-                    <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
+                    {/* <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
                         <View><Text style={{fontSize: 20, fontWeight:'900', color: 'gray'}}>{this.props.heading}</Text></View>
-                    </View>
-                    <View style={{flex: 6, alignItems:'center'}}>
+                    </View> */}
+                    <View style={{flex: 1, alignItems:'center'}}>
                         <PieChart
                             chart_wh={chart_wh}
                             series={series}

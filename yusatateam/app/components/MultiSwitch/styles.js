@@ -2,9 +2,11 @@ import { Dimensions, StyleSheet } from 'react-native';
 const { width } = Dimensions.get('window');
 
 const Colors = {
-    mBackColor: '#efefef',
-    mBorderColor: '#efefef',
-    mSwitch: '#d9534f',
+    //mBackColor: '#efefef',
+    //mBorderColor: '#efefef',
+    mBackColor: '#d3d3d3',
+    mBorderColor: '#d3d3d3',
+    mSwitch: '#0073b7',
     shadowColor: '#A69E9E'
 };
 
@@ -17,7 +19,7 @@ const styles = StyleSheet.create({
 
     container: {
         width: Metrics.containerWidth,
-        height: 40,
+        height: '100%',
         flexDirection: 'row',
         backgroundColor: Colors.mBackColor,
         alignItems: 'center',
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
         left: 0,
         backgroundColor: Colors.mSwitch,
         borderRadius: 28,
-        height: 38,
+        height: '98%',
         alignItems: 'center',
         justifyContent: 'center',
         width: Metrics.switchWidth,
