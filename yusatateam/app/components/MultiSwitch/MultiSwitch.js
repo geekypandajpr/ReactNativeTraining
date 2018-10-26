@@ -22,11 +22,15 @@ export default class MultiSwitch extends Component {
             duration: 100,
             mainWidth: width - 30,
             switcherWidth: width / 2.7,
-            thresholdDistance: width - 8 - width / 2.4
+            thresholdDistance: width - 8 - width / 2.4,
+            pieValue : 'Sim'
+           
         };
         this.isParentScrollDisabled = false;
+       
     }
 
+        
     componentWillMount() {
         this._panResponder = PanResponder.create({
             onStartShouldSetPanResponder: () => true,
@@ -102,7 +106,13 @@ export default class MultiSwitch extends Component {
                 selectedPosition: 0
             });
         }, 100);
-        if (this.state.isComponentReady) this.props.onStatusChanged('Daily');
+        if (this.state.isComponentReady) this.props.onStatusChanged('Sim');
+        
+        this.setState({
+            pieValue : 'Sim'
+        });
+       // alert(this.state.pieValue)
+        this.props.updateState(this.state.pieValue);
     };
 
     inProgressSelected = () => {
@@ -117,7 +127,13 @@ export default class MultiSwitch extends Component {
                 selectedPosition: 1
             });
         }, 100);
-        if (this.state.isComponentReady) this.props.onStatusChanged('Weekly');
+        if (this.state.isComponentReady) this.props.onStatusChanged('Device');
+       
+        this.setState({
+            pieValue : 'Device'
+        });
+       // alert(this.state.pieValue)
+        this.props.updateState(this.state.pieValue);
     };
 
     completeSelected = () => {
@@ -137,26 +153,33 @@ export default class MultiSwitch extends Component {
                 selectedPosition: 2
             });
         }, 100);
-        if (this.state.isComponentReady) this.props.onStatusChanged('Monthly');
+        if (this.state.isComponentReady) this.props.onStatusChanged('Jobs');
+        
+        this.setState({
+            pieValue : 'Jobs'
+        });
+       // alert(this.state.pieValue)
+        this.props.updateState(this.state.pieValue);
+        
     };
 
     getStatus = () => {
         switch (this.state.selectedPosition) {
         case 0:
-            return 'Daily';
+            return 'Sim';
         case 1:
-            return 'Weekly';
+            return 'Device';
         case 2:
-            return 'Monthly';
+            return 'Jobs';
         }
     };
 
     render() {
         return (
             <View style={styles.container}>
-                <Buttons type="Daily" onPress={this.notStartedSelected} />
-                <Buttons type="Weekly" onPress={this.inProgressSelected} />
-                <Buttons type="Monthly" onPress={this.completeSelected} />
+                <Buttons type="Sim" onPress={this.notStartedSelected} />
+                <Buttons type="Device" onPress={this.inProgressSelected} />
+                <Buttons type="Jobs" onPress={this.completeSelected} />
                 <Animated.View
                     {...this._panResponder.panHandlers}
                     style={[

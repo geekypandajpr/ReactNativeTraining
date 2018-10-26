@@ -23,6 +23,7 @@ export default EStyleSheet.create({
     view2: {
         flex: 5,
         flexDirection: 'column',
+        
         //backgroundColor: 'green'
     },
     icon: {
@@ -47,15 +48,16 @@ export default EStyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         //backgroundColor: 'pink',
-        padding: 10
+        padding: 10,
+        
     },
     heading_text: {
-        fontSize: '0.9rem',
+        fontSize: '1.2rem',
         //color: '#d9534f',
         fontWeight: 'bold'
     },
     total_text: {
-        fontSize: '0.9rem',
+        fontSize: '1.1rem',
         color: '#00000090',
         //fontWeight: 'bold'
     },
@@ -68,7 +70,7 @@ export default EStyleSheet.create({
         //backgroundColor: 'orange'
     },
     text: {
-        fontSize: '0.8rem',
+        fontSize: '1rem',
         color: '#fff',
         paddingLeft: 10,
         paddingRight: 10
