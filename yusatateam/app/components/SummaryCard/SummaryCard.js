@@ -12,7 +12,7 @@ export default class SummaryCard extends React.Component {
             <View style={styles.container}>
                 <View style={styles.inner_container}>
                     <LinearGradient colors={this.props.colors} style={{flex: 1, borderRadius: 5}}
-                    //start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}
+                    start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}
                     >
                         <View style={{flexDirection: 'row', flex: 1}}>
                             <View style={styles.view1}>

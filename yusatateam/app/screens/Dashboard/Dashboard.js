@@ -74,7 +74,7 @@ export default class Dashboard extends React.Component {
                                 paginationStyle={styles.pagination}
                                 dot={<View style={styles.dot} />}
                                 activeDot={<View style={styles.activedot} />}>
-                                <SummaryCard colors={[ '#b7ffb5','#84e184','#51ae56']}
+                                <SummaryCard colors={['#51ae56','#84e184','#b7ffb5']}
                                     icon='devices'
                                     iconColor='#fff'
                                     icontype='MaterialIcons'
@@ -84,7 +84,7 @@ export default class Dashboard extends React.Component {
                                     text1='Ordered devices : 100'
                                     text2='Installed devices : 20'
                                 />
-                                <SummaryCard colors={[ '#ffb994','#f98866','#c2593b']}
+                                <SummaryCard colors={['#c2593b' ,'#f98866','#ffb994']}
                                     icon='sim'
                                     iconColor='#fff'
                                     icontype='MaterialCommunityIcons'
@@ -94,7 +94,7 @@ export default class Dashboard extends React.Component {
                                     text1='Ordered sims : 1050'
                                     text2='Installed sims : 50'
                                 />
-                                <SummaryCard colors={[ '#8ffcde','#5bc8ac','#1f977d']}
+                                <SummaryCard colors={['#1f977d','#5bc8ac','#8ffcde']}
                                     icon='schedule'
                                     iconColor='#fff'
                                     icontype='MaterialIcons'
