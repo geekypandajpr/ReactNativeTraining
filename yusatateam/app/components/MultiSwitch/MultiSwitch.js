@@ -15,7 +15,7 @@ export default class MultiSwitch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isComponentReady: true,
+            isComponentReady: false,
             position: new Animated.Value(0),
             posValue: 0,
             selectedPosition: 0,

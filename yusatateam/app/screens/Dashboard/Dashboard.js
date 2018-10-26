@@ -46,7 +46,7 @@ export default class Dashboard extends React.Component {
 
                     <View style={styles.upper_view}>
                         <View style={styles.switch}>
-                            <MultiSwitch />
+                            <MultiSwitch/>
                         </View>
                         <View style={styles.pie_chart}>
                             <Piechart
