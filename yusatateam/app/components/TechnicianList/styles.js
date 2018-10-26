@@ -71,13 +71,13 @@ export default EStyleSheet.create({
         //backgroundColor: 'orange'
     },
     text: {
-        fontSize: '1rem',
+        fontSize: '1.1rem',
         color: '#fff',
         paddingLeft: 10,
         paddingRight: 10
     },
     textnote : {
-        fontSize: '1rem',
+        fontSize: '1.1rem',
         paddingLeft: 10,
         paddingRight: 10
     },

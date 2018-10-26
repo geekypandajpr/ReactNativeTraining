@@ -13,7 +13,7 @@ export default class TechnicianList extends React.Component {
             <View style={styles.container}>
                 <View style={styles.inner_container}>
                     <LinearGradient colors={this.props.colors} style={{ flex: 1, borderRadius: 5 }}>
-                        <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableHighlight activeOpacity={0.2}
                                 onPress={this.props.onPress}
                                 style={styles.touchView} >
@@ -22,10 +22,10 @@ export default class TechnicianList extends React.Component {
                                     type={this.props.icontype}
                                     style={{
                                         color: this.props.iconColor,
-                                        justifyContent: 'center', 
+                                        justifyContent: 'center',
                                         alignItems: 'center',
-                                        marginTop : 18,
-                                    marginLeft: 15,
+                                        marginTop: 18,
+                                        marginLeft: 15,
                                     }} >
                                 </Icon>
                             </TouchableHighlight>
@@ -35,8 +35,6 @@ export default class TechnicianList extends React.Component {
                                     <Text note style={styles.textnote}>{this.props.text2}</Text>
                                 </View>
                             </View>
-
-
                             <View style={{ flex: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                                 <View style={styles.Rupee_icon}>
                                     <FontAwesome name='rupee' size={44} color='#fff' />
@@ -45,8 +43,6 @@ export default class TechnicianList extends React.Component {
                                     <Text style={styles.text_money}>1520</Text>
                                 </View>
                             </View>
-
-
                         </View>
                     </LinearGradient>
                 </View>
