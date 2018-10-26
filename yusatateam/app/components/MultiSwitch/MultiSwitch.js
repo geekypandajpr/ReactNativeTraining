@@ -9,19 +9,20 @@ import {
 import Buttons from './Buttons';
 import styles from './styles';
 const { width } = Dimensions.get('window');
+import colors from '../../constants/colors';
 // import PropTypes from 'prop-types';
 
 export default class MultiSwitch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isComponentReady: false,
+            isComponentReady: true,
             position: new Animated.Value(0),
             posValue: 0,
             selectedPosition: 0,
             duration: 100,
             mainWidth: width - 30,
-            switcherWidth: width / 2.7,
+            switcherWidth: width / 3,
             thresholdDistance: width - 8 - width / 2.4
         };
         this.isParentScrollDisabled = false;
@@ -103,7 +104,7 @@ export default class MultiSwitch extends Component {
             });
         }, 100);
         if (this.state.isComponentReady) {
-            this.props.onStatusChanged('Daily');
+            this.props.onStatusChanged('Sims');
         }
     };
 
@@ -120,7 +121,7 @@ export default class MultiSwitch extends Component {
             });
         }, 100);
         if (this.state.isComponentReady) {
-            this.props.onStatusChanged('Weekly');
+            this.props.onStatusChanged('Devices');
         }
     };
 
@@ -142,33 +143,45 @@ export default class MultiSwitch extends Component {
             });
         }, 100);
         if (this.state.isComponentReady) {
-             this.props.onStatusChanged('Monthly');
+             this.props.onStatusChanged('Jobs');
         }
     };
 
     getStatus = () => {
         switch (this.state.selectedPosition) {
         case 0:
-            return 'Daily';
+            return 'Sims';
         case 1:
-            return 'Weekly';
+            return 'Devices';
         case 2:
-            return 'Monthly';
+            return 'Jobs';
         }
     };
+
+    getColor = () => {
+        switch (this.state.selectedPosition) {
+            case 0:
+                return colors.HOMESCREEN.SIMCARD_COLOR;
+            case 1:
+                return colors.HOMESCREEN.DEVICECARD_COLOR;
+            case 2:
+                return colors.HOMESCREEN.JOBSCARD_COLOR;
+            }
+    }
 
     render() {
         return (
             <View style={styles.container}>
-                <Buttons type="Daily" onPress={this.notStartedSelected} />
-                <Buttons type="Weekly" onPress={this.inProgressSelected} />
-                <Buttons type="Monthly" onPress={this.completeSelected} />
+                <Buttons type="Sims" onPress={this.notStartedSelected} />
+                <Buttons type="Devices" onPress={this.inProgressSelected} />
+                <Buttons type="Jobs" onPress={this.completeSelected} />
                 <Animated.View
                     {...this._panResponder.panHandlers}
                     style={[
                         styles.switcher,
                         {
-                            transform: [{ translateX: this.state.position }]
+                            transform: [{ translateX: this.state.position }],
+                            backgroundColor: this.getColor()
                         }
                     ]}
                 >

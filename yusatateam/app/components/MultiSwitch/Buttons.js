@@ -7,14 +7,14 @@ import { Icon } from 'native-base';
 const getIcon = (type, active) => {
     let icn;
     switch (type) {
-    case 'Daily':
-        icn = "Today's";
+    case 'Sims':
+        icn = "Sims";
         break;
-    case 'Weekly':
-        icn = 'Week';
+    case 'Devices':
+        icn = 'Devices';
         break;
-    case 'Monthly':
-        icn = 'Month';
+    case 'Jobs':
+        icn = 'Jobs';
         break;
     }
     return icn;

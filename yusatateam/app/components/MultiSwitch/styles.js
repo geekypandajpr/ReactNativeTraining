@@ -12,7 +12,7 @@ const Colors = {
 
 const Metrics = {
     containerWidth: width - 30,
-    switchWidth: width / 2.7
+    switchWidth: width / 3
 };
 
 const styles = StyleSheet.create({
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         left: 0,
-        backgroundColor: Colors.mSwitch,
+        //backgroundColor: Colors.mSwitch,
         borderRadius: 28,
         height: '98%',
         alignItems: 'center',
