@@ -15,7 +15,7 @@ export default class MultiSwitch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isComponentReady: false,
+            isComponentReady: true,
             position: new Animated.Value(0),
             posValue: 0,
             selectedPosition: 0,
@@ -102,7 +102,9 @@ export default class MultiSwitch extends Component {
                 selectedPosition: 0
             });
         }, 100);
-        if (this.state.isComponentReady) this.props.onStatusChanged('Daily');
+        if (this.state.isComponentReady) {
+            this.props.onStatusChanged('Daily');
+        }
     };
 
     inProgressSelected = () => {
@@ -117,7 +119,9 @@ export default class MultiSwitch extends Component {
                 selectedPosition: 1
             });
         }, 100);
-        if (this.state.isComponentReady) this.props.onStatusChanged('Weekly');
+        if (this.state.isComponentReady) {
+            this.props.onStatusChanged('Weekly');
+        }
     };
 
     completeSelected = () => {
@@ -137,7 +141,9 @@ export default class MultiSwitch extends Component {
                 selectedPosition: 2
             });
         }, 100);
-        if (this.state.isComponentReady) this.props.onStatusChanged('Monthly');
+        if (this.state.isComponentReady) {
+             this.props.onStatusChanged('Monthly');
+        }
     };
 
     getStatus = () => {
