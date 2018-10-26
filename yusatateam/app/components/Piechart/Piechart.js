@@ -23,7 +23,7 @@ export default class Piechart extends Component {
     }
     
     render() {
-        const chart_wh = 190;
+        const chart_wh = 150;
         var PieData = [];
         const sliceColor = this.props.sliceColor;
         const series = this.props.series;
