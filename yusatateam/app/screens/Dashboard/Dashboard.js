@@ -10,7 +10,8 @@ import {
     SquareButton,
     Piechart,
     SummaryCard,
-    MultiSwitch
+    MultiSwitch,
+    SummarySwitch
 } from '../../components';
 import Swiper from 'react-native-swiper';
 
@@ -61,7 +62,11 @@ export default class Dashboard extends React.Component {
 
                     <View style={styles.lower_view}>
                         <View style={styles.summary_switch}>
-                            <MultiSwitch />
+                            <SummarySwitch
+                                buttonName1="Today's" buttonColor1='#31A9B8'
+                                buttonName2="Week" buttonColor2='#5BC8AC'
+                                buttonName3="Month" buttonColor3='#F98866'
+                                buttonName4="Custom" buttonColor4='#84e184' />
                         </View>
                         <View style={styles.summary_view}>
                             <Swiper

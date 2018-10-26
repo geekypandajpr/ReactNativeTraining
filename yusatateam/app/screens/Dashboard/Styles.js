@@ -63,7 +63,8 @@ export default EStyleSheet.create({
         // backgroundColor: 'yellow',
         flex: 3.5,
         width: '100%',
-        marginBottom: 4
+        marginBottom: 4,
+        marginTop: 4
     },
     summary_switch: {
         flex: 0.5,
