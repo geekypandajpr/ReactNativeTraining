@@ -1,5 +1,6 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 const Colors = {
     mBackColor: '#d3d3d3',
@@ -13,7 +14,7 @@ const Metrics = {
     switchWidth: width / 4
 };
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
 
     container: {
         width: Metrics.containerWidth,
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
         shadowColor: Colors.shadowColor
     },
+
     buttonStyle: {
         flex: 1,
         width: Metrics.containerWidth / 4,
@@ -51,8 +53,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         //borderRadius: 27.5
     },
+
     buttonText: {
-        fontSize: 16,
+        fontSize: '0.8rem',
         color: '#fff'
     }
 });

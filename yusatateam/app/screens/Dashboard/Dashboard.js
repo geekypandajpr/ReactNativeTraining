@@ -11,17 +11,27 @@ import {
     Piechart,
     SummaryCard,
     MultiSwitch,
-    SummarySwitch
+    SummarySwitch,
+    Barchart
 } from '../../components';
 import Swiper from 'react-native-swiper';
+import colors from '../../constants/colors';
 
 export default class Dashboard extends React.Component {
     constructor() {
         super();
         this.state = {
             isLoading: true,
-            pieValue: 'Sims'
-        };
+            pieColor: ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'],
+            pieSeries: [400, 200, 100, 100],
+            piedata: [
+                { value: 400, label: 'Total Sims', color: '#FD6260' },
+                { value: 200, label: 'Installed', color: '#B19DFF' },
+                { value: 100, label: 'Activated', color: '#02B8AB' },
+                { value: 100, label: 'Deactivated', color: '#F3C814' }
+            ]
+        }
+        this.onChangePieChart = this.onChangePieChart.bind(this);
     }
 
     async componentWillMount() {
@@ -33,35 +43,41 @@ export default class Dashboard extends React.Component {
         this.setState({ isLoading: false })
     }
 
-    changePieChart=(value)=> {
-        //console.log(value);
-        this.setState({pieValue: value})
-    }
-
-    pieChartView() {
-        if (this.state.pieValue == 'Sims') {
-            return <Piechart
-                heading='Sims'
-                details={['Total (2000)', 'Installed (200)', 'Activated (100)', 'Deactivated (500)']}
-                series={[2000, 800, 500, 700]}
-                sliceColor={['#FD6260', '#3C434B', '#02B8AB', '#F3C814']}
-            />;
+    onChangePieChart(value) {
+        if (value === 'Sims') {
+            var data = [
+                { value: 400, label: 'Total Sims', color: '#FD6260' },
+                { value: 200, label: 'Installed', color: '#B19DFF' },
+                { value: 100, label: 'Activated', color: '#02B8AB' },
+                { value: 100, label: 'Deactivated', color: '#F3C814' }
+            ];
+            var series = [400, 200, 100, 100];
+            var colors = ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'];
+            this.setState({ piedata: data, pieSeries: series, pieColor: colors });
         }
-        else if (this.state.pieValue == 'Devices') {
-            return <Piechart
-                heading='Devices'
-                details={['Total (2000)', 'Installed (200)', 'Tested Ok (100)', 'Ready to use (500)', 'Defective (1000)']}
-                series={[2000, 400, 700, 500, 400]}
-                sliceColor={['#FF8B7E', '#B19DFF', '#39C5DE', '#67C17B', '#FF9561']}
-            />;
+        else if (value === 'Devices') {
+            var data = [
+                { value: 200, label: 'Total Devices', color: '#FD6260' },
+                { value: 120, label: 'Installed', color: '#B19DFF' },
+                { value: 200, label: 'Tested Ok', color: '#02B8AB' },
+                { value: 100, label: 'Ready to use', color: '#F3C814' },
+                { value: 80, label: 'Defective', color: '#FF9561' }
+            ]
+            var series = [200, 120, 200, 100, 80];
+            var colors = ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814', '#FF9561'];
+            this.setState({ piedata: data, pieSeries: series, pieColor: colors });
         }
         else {
-            return <Piechart
-                heading='Jobs'
-                details={['Total jobs (2000)', 'Scheduled (200)', 'Completed (100)', 'Pending (500)', 'Cancelled (1000)']}
-                series={[2000, 400, 400, 500, 700]}
-                sliceColor={['#25456E', '#569FCC', '#E45509', '#F3BA85', '#A5CEDA']}
-            />;
+            var data = [
+                { value: 300, label: 'Total jobs', color: '#FD6260' },
+                { value: 100, label: 'Scheduled', color: '#B19DFF' },
+                { value: 120, label: 'Completed', color: '#02B8AB' },
+                { value: 60, label: 'Pending', color: '#F3C814' },
+                { value: 150, label: 'Cancelled', color: '#FF9561' },
+            ]
+            var series = [300, 100, 120, 60, 150];
+            var colors = ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814', '#FF9561'];
+            this.setState({ piedata: data, pieSeries: series, pieColor: colors });
 
         }
     }
@@ -81,53 +97,28 @@ export default class Dashboard extends React.Component {
 
                         <View style={styles.upper_view}>
                             <View style={styles.switch}>
-                                <MultiSwitch onStatusChanged={this.changePieChart} />
+                                <MultiSwitch onStatusChanged={this.onChangePieChart} />
                             </View>
                             <View style={styles.pie_chart}>
-                                {this.pieChartView()}
+                                <Piechart
+                                    piedata={this.state.piedata}
+                                    pieSeries={this.state.pieSeries}
+                                    pieColors={this.state.pieColor} />
                             </View>
                         </View>
 
 
                         <View style={styles.lower_view}>
                             <View style={styles.summary_view}>
-                                <SummaryCard />
-                                {/* <Swiper
+                                {/* <SummaryCard /> */}
+                                <Swiper
                                     pagingEnabled={false}
                                     paginationStyle={styles.pagination}
                                     dot={<View style={styles.dot} />}
                                     activeDot={<View style={styles.activedot} />}>
-                                    <SummaryCard colors={['#51ae56', '#84e184', '#b7ffb5']}
-                                        icon='devices'
-                                        iconColor='#fff'
-                                        icontype='MaterialIcons'
-                                        heading='DEVICES'
-                                        headingColor='#f0ad4e'
-                                        total='2563'
-                                        text1='Ordered devices : 100'
-                                        text2='Installed devices : 20'
-                                    />
-                                    <SummaryCard colors={['#c2593b', '#f98866', '#ffb994']}
-                                        icon='sim'
-                                        iconColor='#fff'
-                                        icontype='MaterialCommunityIcons'
-                                        heading='SIMS'
-                                        headingColor='#31a9b8'
-                                        total='2563'
-                                        text1='Ordered sims : 1050'
-                                        text2='Installed sims : 50'
-                                    />
-                                    <SummaryCard colors={['#1f977d', '#5bc8ac', '#8ffcde']}
-                                        icon='schedule'
-                                        iconColor='#fff'
-                                        icontype='MaterialIcons'
-                                        heading='JOBS'
-                                        headingColor='#d9534f'
-                                        total='43022'
-                                        text1='Scheduled jobs : 500'
-                                        text2='Completed jobs : 110'
-                                    />
-                                </Swiper> */}
+                                    <Barchart />
+                                    <Barchart />
+                                </Swiper>
                             </View>
                             <View style={styles.summary_switch}>
                                 <SummarySwitch
@@ -145,7 +136,7 @@ export default class Dashboard extends React.Component {
                                         name='devices'
                                         type='MaterialIcons'
                                         text='Device'
-                                        iconColor='#84e184'
+                                        iconColor={colors.HOMESCREEN.DEVICECARD_COLOR}
                                         textColor='#000'
                                         onPress={() => navigate('Device')}
                                         colors={['#b7ffb5', '#84e184', '#51ae56']}
@@ -156,7 +147,7 @@ export default class Dashboard extends React.Component {
                                         name='sim'
                                         type='MaterialCommunityIcons'
                                         text='Sim'
-                                        iconColor='#f98866'
+                                        iconColor={colors.HOMESCREEN.SIMCARD_COLOR}
                                         textColor='#000'
                                         onPress={() => navigate('Sim')}
                                         colors={['#ffb994', '#f98866', '#c2593b']}
@@ -167,7 +158,7 @@ export default class Dashboard extends React.Component {
                                     <SquareButton
                                         name='calendar'
                                         type='Foundation'
-                                        iconColor='#f2c059'
+                                        iconColor={colors.HOMESCREEN.SCHEDULECARD_COLOR}
                                         textColor='#000'
                                         text='Schedule'
                                         onPress={() => navigate('Schedule')}
@@ -179,7 +170,7 @@ export default class Dashboard extends React.Component {
                                         name='schedule'
                                         type='MaterialIcons'
                                         text='Jobs'
-                                        iconColor='#5bc8ac'
+                                        iconColor={colors.HOMESCREEN.JOBSCARD_COLOR}
                                         textColor='#000'
                                         onPress={() => navigate('Jobs')}
                                         colors={['#8ffcde', '#5bc8ac', '#1f977d']}
@@ -192,7 +183,7 @@ export default class Dashboard extends React.Component {
                                         name='group'
                                         type='MaterialIcons'
                                         text='Association'
-                                        iconColor='#31a9b8'
+                                        iconColor={colors.HOMESCREEN.ASSOCIATIONCARD_COLOR}
                                         textColor='#000'
                                         onPress={() => navigate('VehicleList')}
                                         colors={['#6ddbea', '#31a9b8', '#007a88']}
@@ -211,166 +202,6 @@ export default class Dashboard extends React.Component {
                                 </View>
                             </View>
                         </View>
-
-
-
-
-                        {/* <View style={styles.fixed}></View> */}
-
-                        {/* <View style={styles.upper_view}>
-                        <Swiper paginationStyle={styles.pagination}
-                            dot={<View style={styles.dot} />}
-                            activeDot={<View style={styles.activedot} />}
-                            autoplay={true}
-                            autoplayTimeout={5}>
-                            <Piechart
-                                heading='Devices'
-                                details={['Total (2000)', 'Installed (200)', 'Tested Ok (100)', 'Ready to use (500)', 'Defective (1000)']}
-                                series={[2000, 400, 700, 500, 400]}
-                                sliceColor={['#FF8B7E', '#B19DFF', '#39C5DE', '#67C17B', '#FF9561']} 
-                            />
-                            <Piechart
-                                heading='Sims'
-                                details={['Total (2000)', 'Installed (200)', 'Activated (100)', 'Deactivated (500)']}
-                                series={[2000, 800, 500, 700]}
-                                sliceColor={['#FD6260', '#3C434B', '#02B8AB', '#F3C814']}
-                            />
-                            <Piechart
-                                heading='Jobs'
-                                details={['Total jobs (2000)', 'Scheduled (200)', 'Completed (100)', 'Pending (500)', 'Cancelled (1000)']}
-                                series={[2000, 400, 400, 500, 700]}
-                                sliceColor={['#25456E', '#569FCC', '#E45509', '#F3BA85', '#A5CEDA']}
-                            />
-                        </Swiper>
-                    </View> */}
-
-
-
-
-                        {/* <View style={styles.lower_view}>
-                        <View style={styles.icon_view}>
-                            <View style={styles.button_view}>
-                                <SquareButton
-                                    name='devices'
-                                    type='MaterialIcons'
-                                    text='Device'
-                                    iconColor='#84e184'
-                                    textColor='#000'
-                                    onPress={() => navigate('Device')}
-                                    colors={[ '#b7ffb5','#84e184','#51ae56']}
-                                />
-                            </View>
-                            <View style={styles.button_view}>
-                                <SquareButton 
-                                    name='sim'
-                                    type='MaterialCommunityIcons'
-                                    text='Sim'
-                                    iconColor='#f98866'
-                                    textColor='#000'
-                                    onPress={() => navigate('Sim')}
-                                    colors={[ '#ffb994','#f98866','#c2593b']}
-                                />
-                            </View>
-                        </View>
-                        <View style={styles.icon_view}>
-                            <View style={styles.button_view}>
-                                <SquareButton 
-                                    name='calendar'
-                                    type='Foundation'
-                                    iconColor='#f2c059'
-                                    textColor='#000'
-                                    text='Schedule'
-                                    onPress={() => navigate('Schedule')}
-                                    colors={[ '#fff289','#f2c059','#bc9029']}
-                                />
-                            </View>
-                            <View style={styles.button_view}>
-                                <SquareButton 
-                                    name='schedule'
-                                    type='MaterialIcons'
-                                    text='Jobs'
-                                    iconColor='#5bc8ac'
-                                    textColor='#000'
-                                    onPress={() => navigate('Jobs')}
-                                    colors={[ '#8ffcde','#5bc8ac','#1f977d']}
-                                />
-                            </View>
-                        </View>
-                        <View style={styles.icon_view}>
-                            <View style={styles.button_view}>
-                                <SquareButton 
-                                    name='group'
-                                    type='FontAwesome'
-                                    text='Association'
-                                    iconColor='#31a9b8'
-                                    textColor='#000'
-                                    onPress={() => navigate('VehicleList')}
-                                    colors={[ '#6ddbea','#31a9b8','#007a88']}
-                                />
-                            </View>
-                            <View style={styles.button_view}>
-                                <SquareButton 
-                                    //name='appstore-o'
-                                    //type='AntDesign'
-                                    name='apps'
-                                    type='MaterialIcons'
-                                    text='More'
-                                    iconColor='gray'
-                                    textColor='#000'
-                                    onPress={() => navigate('TechWorkSummary')}
-                                    colors={[ '#9eb9ff','#6789f8','#265dc4']}
-                                />
-                            </View>
-                        </View>
-                        
-                    </View> */}
-
-
-                        {/* <View style={styles.daily_summary_view}>
-                        <View style={styles.slider_view}>
-                            <MultiSwitch />
-                        </View>
-                        <View style={styles.summary_card}>
-                            <Swiper
-                                pagingEnabled={false}
-                                paginationStyle={styles.pagination}
-                                dot={<View style={styles.dot} />}
-                                activeDot={<View style={styles.activedot} />}>
-                                <SummaryCard colors={[ '#b7ffb5','#84e184','#51ae56']}
-                                    icon='devices'
-                                    iconColor='#fff'
-                                    icontype='MaterialIcons'
-                                    heading='DEVICES'
-                                    headingColor='#f0ad4e'
-                                    total='2563'
-                                    text1='Ordered devices : 100'
-                                    text2='Installed devices : 20'
-                                />
-                                <SummaryCard colors={[ '#ffb994','#f98866','#c2593b']}
-                                    icon='sim'
-                                    iconColor='#fff'
-                                    icontype='MaterialCommunityIcons'
-                                    heading='SIMS'
-                                    headingColor='#31a9b8'
-                                    total='2563'
-                                    text1='Ordered sims : 1050'
-                                    text2='Installed sims : 50'
-                                />
-                                <SummaryCard colors={[ '#8ffcde','#5bc8ac','#1f977d']}
-                                    icon='schedule'
-                                    iconColor='#fff'
-                                    icontype='MaterialIcons'
-                                    heading='JOBS'
-                                    headingColor='#d9534f'
-                                    total='43022'
-                                    text1='Scheduled jobs : 500'
-                                    text2='Completed jobs : 110'
-                                />
-                            </Swiper>
-                        </View>      
-                    </View> */}
-
-
 
                     </View>
                 </View>

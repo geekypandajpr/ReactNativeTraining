@@ -21,7 +21,7 @@ export default class MultiSwitch extends Component {
             posValue: 0,
             selectedPosition: 0,
             duration: 100,
-            mainWidth: width - 30,
+            mainWidth: width - 20,
             switcherWidth: width / 3,
             thresholdDistance: width - 8 - width / 2.4
         };
@@ -44,43 +44,47 @@ export default class MultiSwitch extends Component {
             },
 
             onPanResponderMove: (evt, gestureState) => {
-                let finalValue = gestureState.dx + this.state.posValue;
-                if (
-                    finalValue >= 0 &&
-                    finalValue <= this.state.thresholdDistance
-                )
-                    this.state.position.setValue(
-                        this.state.posValue + gestureState.dx
-                    );
+                // let finalValue = gestureState.dx + this.state.posValue;
+                // if (
+                //     finalValue >= 0 &&
+                //     finalValue <= this.state.thresholdDistance
+                // )
+                //     this.state.position.setValue(
+                //         this.state.posValue + gestureState.dx
+                //     );
             },
 
             onPanResponderTerminationRequest: () => true,
 
             onPanResponderRelease: (evt, gestureState) => {
-                let finalValue = gestureState.dx + this.state.posValue;
-                //this.isParentScrollDisabled = false;
-                //this.props.disableScroll(true);
-                if (gestureState.dx > 0) {
-                    if (finalValue >= 0 && finalValue <= 30) {
-                        this.notStartedSelected();
-                    } else if (finalValue >= 30 && finalValue <= 121) {
-                        this.inProgressSelected();
-                    } else if (finalValue >= 121 && finalValue <= 280) {
-                        if (gestureState.dx > 0) {
-                            this.completeSelected();
-                        } else {
-                            this.inProgressSelected();
-                        }
-                    }
-                } else {
-                    if (finalValue >= 78 && finalValue <= 175) {
-                        this.inProgressSelected();
-                    } else if (finalValue >= -100 && finalValue <= 78) {
-                        this.notStartedSelected();
-                    } else {
-                        this.completeSelected();
-                    }
-                }
+                // let finalValue = gestureState.dx + this.state.posValue;
+
+
+                // //this.isParentScrollDisabled = false;
+                // //this.props.disableScroll(true);
+
+
+                // if (gestureState.dx > 0) {
+                //     if (finalValue >= 0 && finalValue <= 30) {
+                //         this.notStartedSelected();
+                //     } else if (finalValue >= 30 && finalValue <= 121) {
+                //         this.inProgressSelected();
+                //     } else if (finalValue >= 121 && finalValue <= 280) {
+                //         if (gestureState.dx > 0) {
+                //             this.completeSelected();
+                //         } else {
+                //             this.inProgressSelected();
+                //         }
+                //     }
+                // } else {
+                //     if (finalValue >= 78 && finalValue <= 175) {
+                //         this.inProgressSelected();
+                //     } else if (finalValue >= -100 && finalValue <= 78) {
+                //         this.notStartedSelected();
+                //     } else {
+                //         this.completeSelected();
+                //     }
+                // }
             },
 
             onPanResponderTerminate: () => {},
@@ -176,7 +180,7 @@ export default class MultiSwitch extends Component {
                 <Buttons type="Devices" onPress={this.inProgressSelected} />
                 <Buttons type="Jobs" onPress={this.completeSelected} />
                 <Animated.View
-                    {...this._panResponder.panHandlers}
+                    // {...this._panResponder.panHandlers}
                     style={[
                         styles.switcher,
                         {

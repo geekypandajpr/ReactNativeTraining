@@ -1,11 +1,12 @@
 import React from 'react';
 import {
     View,
+    Dimensions
 } from 'react-native';
 import { Text, Icon } from 'native-base';
 import styles from './styles';
-import { LinearGradient } from 'expo';
 import colors from '../../constants/colors';
+import PureChart from 'react-native-pure-chart';
 
 export default class SummaryCard extends React.Component {
     render() {
@@ -29,7 +30,7 @@ export default class SummaryCard extends React.Component {
 
 
                 <View style={{flex: 1, padding: 5}}>
-                    {/**Device View */}
+                    
                     <View style={styles.right_view}>
                         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                             <Icon name='devices' type='MaterialIcons'
@@ -42,7 +43,7 @@ export default class SummaryCard extends React.Component {
                         </View>
                     </View>
 
-                    {/**Sim view */}
+                  
                     <View style={styles.right_view}>
                         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                             <Icon name='sim' type='MaterialCommunityIcons'
@@ -55,7 +56,7 @@ export default class SummaryCard extends React.Component {
                         </View>
                     </View>
 
-                    {/**Jobs view */}
+                    
                     <View style={styles.right_view}>
                         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                             <Icon name='schedule' type='MaterialIcons'

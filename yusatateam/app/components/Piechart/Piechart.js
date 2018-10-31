@@ -4,12 +4,17 @@ import { Text } from 'native-base';
 import PieChart from 'react-native-pie-chart';
 import styles from './styles';
 import { AppLoading } from 'expo';
+import PureChart from 'react-native-pure-chart';
 
 export default class Piechart extends Component {
     constructor() {
         super();
         this.state = {
-            isLoading: true
+            isLoading: true,
+            piedata: [],
+            pie_wh: 150,
+            series: [],
+            sliceColor: []
         };
     }
 
@@ -21,38 +26,35 @@ export default class Piechart extends Component {
         })
         this.setState({ isLoading: false })
     }
+
+    componentDidMount() {
+        this.setState({piedata: this.props.piedata}, function() {
+            for(let index in this.state.piedata) {
+                this.state.series.push(this.state.piedata[index].value)
+                this.state.sliceColor.push(this.state.piedata[index].color)
+            }
+        });
+    }
     
     render() {
-        const chart_wh = 150;
-        var PieData = [];
-        const sliceColor = this.props.sliceColor;
-        const series = this.props.series;
-        const details = this.props.details;
-
-        for (let i = 0; i < details.length; i++) {
-            PieData.push({data: details[i], color: sliceColor[i]});
-        }
-
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
                 <View style={styles.first_view}>
-                    {/* <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                        <View><Text style={{fontSize: 20, fontWeight:'900', color: 'gray'}}>{this.props.heading}</Text></View>
-                    </View> */}
                     <View style={{flex: 1, alignItems:'center'}}>
                         <PieChart
-                            chart_wh={chart_wh}
-                            series={series}
-                            sliceColor={sliceColor}
+                            chart_wh={this.state.pie_wh}
+                            series={this.props.pieSeries}
+                            sliceColor={this.props.pieColors}
                         />
+                        {/* <PureChart data={this.props.piedata} type='pie' width={'100%'} height={10}/> */}
                     </View>
                 </View>
                 <View style={styles.second_view}>
-                    { PieData.map((item,index) => 
+                    { this.props.piedata.map((item,index) => 
                         <View key={index} style={styles.details_view}>
                             <View style={styles.view1}><View style={[styles.square,{backgroundColor: item.color}]}></View></View>
-                            <View style={styles.view2}><Text style={styles.text}>{item.data}</Text></View>
+                            <View style={styles.view2}><Text style={styles.text}>{item.label} : {item.value}</Text></View>
                         </View>
                     )}
                     
