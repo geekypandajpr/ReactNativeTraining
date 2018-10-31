@@ -24,7 +24,8 @@ export default EStyleSheet.create({
         //backgroundColor: 'red',
         flex: 3.5,
         width: '100%',
-        marginTop: 4
+        marginTop: 4,
+        marginBottom: 2,
     },
     switch: {
         flex: 0.5,

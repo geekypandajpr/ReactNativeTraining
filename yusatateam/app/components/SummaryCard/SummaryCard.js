@@ -21,8 +21,8 @@ export default class SummaryCard extends React.Component {
                         </View>
                         <View style={{backgroundColor: colors.HEADER_COLOR, height: 2, width: '80%'}}></View>
                         <View style={{flex: 4, justifyContent:'center', alignItems: 'center', flexDirection: 'row'}}>
-                            <Text style={{fontSize: 70, color: colors.HEADER_COLOR}}>0</Text>
-                            <Text style={{fontSize: 30, color: colors.HEADER_COLOR}}>%</Text>
+                            {/* <Text style={{fontSize: 70, color: colors.HEADER_COLOR}}>0</Text> */}
+                            <Text style={{fontSize: 30, color: colors.HEADER_COLOR}}>Details</Text>
                         </View>
                     </View>
                 </View>
@@ -32,7 +32,7 @@ export default class SummaryCard extends React.Component {
                 <View style={{flex: 1, padding: 5}}>
                     
                     <View style={styles.right_view}>
-                        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', borderLeftColor: 'red', borderLeftWidth:2}}>
                             <Icon name='devices' type='MaterialIcons'
                                 style={{fontSize: 30, color: colors.HOMESCREEN.DEVICECARD_COLOR}}>
                             </Icon>

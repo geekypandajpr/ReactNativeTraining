@@ -2,7 +2,7 @@ import React from 'react';
 import {
     ScrollView,
 } from 'react-native';
-import { Text, View, Icon, CheckBox } from 'native-base';
+import { Text, View } from 'native-base';
 import styles from './Styles';
 import { AppLoading } from 'expo';
 import {
@@ -107,18 +107,18 @@ export default class Dashboard extends React.Component {
                             </View>
                         </View>
 
-
                         <View style={styles.lower_view}>
+                            <Text style={{marginLeft: 20}}>Summary</Text>
                             <View style={styles.summary_view}>
-                                {/* <SummaryCard /> */}
-                                <Swiper
+                                <SummaryCard />
+                                {/* <Swiper
                                     pagingEnabled={false}
                                     paginationStyle={styles.pagination}
                                     dot={<View style={styles.dot} />}
                                     activeDot={<View style={styles.activedot} />}>
                                     <Barchart />
                                     <Barchart />
-                                </Swiper>
+                                </Swiper> */}
                             </View>
                             <View style={styles.summary_switch}>
                                 <SummarySwitch
@@ -152,7 +152,8 @@ export default class Dashboard extends React.Component {
                                         onPress={() => navigate('Sim')}
                                         colors={['#ffb994', '#f98866', '#c2593b']}
                                     />
-                                </View></View>
+                                </View>
+                            </View>
                             <View style={styles.icon_view}>
                                 <View style={styles.button_view}>
                                     <SquareButton
