@@ -68,6 +68,8 @@ export default class SummaryCard extends React.Component {
                             <Text style={{fontSize: 12, color: 'gray'}}>Total jobs : 200</Text>
                         </View>
                     </View>
+
+                    
                 </View>
 
                 {/* <View style={styles.inner_container}> */}
