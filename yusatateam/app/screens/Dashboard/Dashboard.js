@@ -92,30 +92,32 @@ export default class Dashboard extends React.Component {
                         leftIcon='home'
                         setting='md-person' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
 
-
                     <View style={styles.container1}>
 
                         <View style={styles.upper_view}>
-                            <View style={styles.switch}>
-                                <MultiSwitch onStatusChanged={this.onChangePieChart} />
-                            </View>
+                            
                             <View style={styles.pie_chart}>
                                 <Piechart
                                     piedata={this.state.piedata}
                                     pieSeries={this.state.pieSeries}
                                     pieColors={this.state.pieColor} />
                             </View>
+                            <View style={styles.switch}>
+                                <MultiSwitch onStatusChanged={this.onChangePieChart} />
+                            </View>
+
                         </View>
 
                         <View style={styles.lower_view}>
-                            <Text style={{marginLeft: 20}}>Summary</Text>
+
                             <View style={styles.summary_view}>
-                                <SummaryCard />
+                                <Barchart />
+                                {/* <SummaryCard /> */}
                                 {/* <Swiper
-                                    pagingEnabled={false}
-                                    paginationStyle={styles.pagination}
-                                    dot={<View style={styles.dot} />}
-                                    activeDot={<View style={styles.activedot} />}>
+                                        pagingEnabled={false}
+                                        paginationStyle={styles.pagination}
+                                        dot={<View style={styles.dot} />}
+                                        activeDot={<View style={styles.activedot} />}>
                                     <Barchart />
                                     <Barchart />
                                 </Swiper> */}
@@ -127,6 +129,7 @@ export default class Dashboard extends React.Component {
                                     buttonName3="Month" buttonColor3='#F98866'
                                     buttonName4="Custom" buttonColor4='#84e184' />
                             </View>
+
                         </View>
 
                         <View style={styles.middle_view}>

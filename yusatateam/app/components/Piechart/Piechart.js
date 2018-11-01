@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import { Text } from 'native-base';
 import PieChart from 'react-native-pie-chart';
 import styles from './styles';
@@ -43,7 +43,7 @@ export default class Piechart extends Component {
                 <View style={styles.first_view}>
                     <View style={{flex: 1, alignItems:'center'}}>
                         <PieChart
-                            chart_wh={this.state.pie_wh}
+                            chart_wh={ Dimensions.get('window').height*0.24}
                             series={this.props.pieSeries}
                             sliceColor={this.props.pieColors}
                         />

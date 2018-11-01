@@ -5,10 +5,12 @@ export default EStyleSheet.create({
         flexDirection: 'row',
     },
     bar_view: {
-        flex: 3,
+        flex: 6.5,
         backgroundColor: '#fff',
-        justifyContent: 'center',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        marginTop: 4
         //backgroundColor: 'red'
     },
     text1: {
@@ -21,5 +23,12 @@ export default EStyleSheet.create({
         paddingLeft: 10,
         color: 'gray',
         fontSize: '0.5rem'
+    },
+    right_view: {
+        flex: 1,
+        flexDirection: 'row',
+        margin: 2,
+        elevation: 1,
+        backgroundColor: '#fff'
     }
 });

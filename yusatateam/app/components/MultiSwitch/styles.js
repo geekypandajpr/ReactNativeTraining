@@ -5,8 +5,8 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 const Colors = {
     //mBackColor: '#efefef',
     //mBorderColor: '#efefef',
-    mBackColor: '#d3d3d3',
-    mBorderColor: '#d3d3d3',
+    mBackColor:   '#A9A9A9',
+    mBorderColor: '#A9A9A9',
     mSwitch: '#0073b7',
     shadowColor: '#A69E9E'
 };
@@ -55,7 +55,7 @@ const styles = EStyleSheet.create({
     },
     buttonText: {
         fontSize: '0.8rem',
-        color: '#fff'
+        color: '#000'
     }
 });
 
