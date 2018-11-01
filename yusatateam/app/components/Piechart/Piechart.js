@@ -59,6 +59,9 @@ export default class Piechart extends Component {
                     )}
                     
                 </View>
+
+
+                
             </View>
         );
     }
