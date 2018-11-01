@@ -3,17 +3,15 @@ const { width } = Dimensions.get('window');
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const Colors = {
-    //mBackColor: '#efefef',
-    //mBorderColor: '#efefef',
     mBackColor:   '#A9A9A9',
     mBorderColor: '#A9A9A9',
-    mSwitch: '#0073b7',
+    mSwitch: '#d9534f',
     shadowColor: '#A69E9E'
 };
 
 const Metrics = {
     containerWidth: width - 20,
-    switchWidth: width / 3
+    switchWidth: width / 4
 };
 
 const styles = EStyleSheet.create({
@@ -46,13 +44,16 @@ const styles = EStyleSheet.create({
         shadowRadius: 10,
         shadowColor: Colors.shadowColor
     },
+
     buttonStyle: {
         flex: 1,
-        width: Metrics.containerWidth / 3,
+        width: Metrics.containerWidth / 4,
         height: 54,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        //borderRadius: 27.5
     },
+
     buttonText: {
         fontSize: '0.8rem',
         color: '#000'

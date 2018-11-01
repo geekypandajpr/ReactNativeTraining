@@ -9,20 +9,19 @@ import {
 import Buttons from './Buttons';
 import styles from './styles';
 const { width } = Dimensions.get('window');
-import colors from '../../constants/colors';
 // import PropTypes from 'prop-types';
 
-export default class MultiSwitch extends Component {
+export default class SummarySwitch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isComponentReady: true,
+            isComponentReady: false,
             position: new Animated.Value(0),
             posValue: 0,
             selectedPosition: 0,
             duration: 100,
             mainWidth: width - 20,
-            switcherWidth: width / 3,
+            switcherWidth: width / 4,
             thresholdDistance: width - 8 - width / 2.4
         };
         this.isParentScrollDisabled = false;
@@ -45,44 +44,35 @@ export default class MultiSwitch extends Component {
 
             onPanResponderMove: (evt, gestureState) => {
                 // let finalValue = gestureState.dx + this.state.posValue;
-                // if (
-                //     finalValue >= 0 &&
-                //     finalValue <= this.state.thresholdDistance
-                // )
-                //     this.state.position.setValue(
-                //         this.state.posValue + gestureState.dx
-                //     );
+                // if ( finalValue >= 0 && finalValue <= this.state.thresholdDistance )
+                //     this.state.position.setValue( this.state.posValue + gestureState.dx );
             },
 
             onPanResponderTerminationRequest: () => true,
 
             onPanResponderRelease: (evt, gestureState) => {
-                // let finalValue = gestureState.dx + this.state.posValue;
-
-
-                // //this.isParentScrollDisabled = false;
-                // //this.props.disableScroll(true);
-
-
+                //let finalValue = gestureState.dx + this.state.posValue;
+                //this.isParentScrollDisabled = false;
+                //this.props.disableScroll(true);
                 // if (gestureState.dx > 0) {
                 //     if (finalValue >= 0 && finalValue <= 30) {
-                //         this.notStartedSelected();
+                //         this.dailySelected();
                 //     } else if (finalValue >= 30 && finalValue <= 121) {
-                //         this.inProgressSelected();
+                //         this.weeklySelected();
                 //     } else if (finalValue >= 121 && finalValue <= 280) {
                 //         if (gestureState.dx > 0) {
-                //             this.completeSelected();
+                //             this.customSelected();
                 //         } else {
-                //             this.inProgressSelected();
+                //             this.weeklySelected();
                 //         }
                 //     }
                 // } else {
                 //     if (finalValue >= 78 && finalValue <= 175) {
-                //         this.inProgressSelected();
+                //         this.weeklySelected();
                 //     } else if (finalValue >= -100 && finalValue <= 78) {
-                //         this.notStartedSelected();
+                //         this.dailySelected();
                 //     } else {
-                //         this.completeSelected();
+                //         this.customSelected();
                 //     }
                 // }
             },
@@ -96,7 +86,7 @@ export default class MultiSwitch extends Component {
         });
     }
 
-    notStartedSelected = () => {
+    dailySelected = () => {
         Animated.timing(this.state.position, {
             toValue: Platform.OS === 'ios' ? -2 : 0,
             duration: this.state.duration
@@ -107,29 +97,40 @@ export default class MultiSwitch extends Component {
                 selectedPosition: 0
             });
         }, 100);
-        if (this.state.isComponentReady) {
-            this.props.onStatusChanged('Sims');
-        }
+        if (this.state.isComponentReady) this.props.onStatusChanged('Daily');
     };
 
-    inProgressSelected = () => {
+    weeklySelected = () => {
         Animated.timing(this.state.position, {
-            toValue: this.state.mainWidth / 2 - this.state.switcherWidth / 2,
+            toValue: this.state.mainWidth / 2 - this.state.switcherWidth,
             duration: this.state.duration
         }).start();
         setTimeout(() => {
             this.setState({
                 posValue:
-                    this.state.mainWidth / 2 - this.state.switcherWidth / 2,
+                    this.state.mainWidth / 2 - this.state.switcherWidth,
                 selectedPosition: 1
             });
         }, 100);
-        if (this.state.isComponentReady) {
-            this.props.onStatusChanged('Devices');
-        }
+        if (this.state.isComponentReady) this.props.onStatusChanged('Weekly');
     };
 
-    completeSelected = () => {
+    monthlySelected = () => {
+        Animated.timing(this.state.position, {
+            toValue: this.state.mainWidth / 2,
+            duration: this.state.duration
+        }).start();
+        setTimeout(() => {
+            this.setState({
+                posValue:
+                    this.state.mainWidth / 2,
+                selectedPosition: 2
+            });
+        }, 100);
+        if (this.state.isComponentReady) this.props.onStatusChanged('Monthly');
+    };
+
+    customSelected = () => {
         Animated.timing(this.state.position, {
             toValue:
                 Platform.OS === 'ios'
@@ -143,44 +144,47 @@ export default class MultiSwitch extends Component {
                     Platform.OS === 'ios'
                         ? this.state.mainWidth - this.state.switcherWidth
                         : this.state.mainWidth - this.state.switcherWidth - 2,
-                selectedPosition: 2
+                selectedPosition: 3
             });
         }, 100);
-        if (this.state.isComponentReady) {
-             this.props.onStatusChanged('Jobs');
-        }
+        if (this.state.isComponentReady) this.props.onStatusChanged('Custom');
     };
 
     getStatus = () => {
         switch (this.state.selectedPosition) {
         case 0:
-            return 'Sims';
+            return this.props.buttonName1;
         case 1:
-            return 'Devices';
+            return this.props.buttonName2;
         case 2:
-            return 'Jobs';
+            return this.props.buttonName3;
+        case 3:
+            return this.props.buttonName4;
         }
     };
 
     getColor = () => {
         switch (this.state.selectedPosition) {
-            case 0:
-                return colors.HOMESCREEN.SIMCARD_COLOR;
-            case 1:
-                return colors.HOMESCREEN.DEVICECARD_COLOR;
-            case 2:
-                return colors.HOMESCREEN.JOBSCARD_COLOR;
-            }
-    }
+        case 0:
+            return this.props.buttonColor1;
+        case 1:
+            return this.props.buttonColor2;
+        case 2:
+            return this.props.buttonColor3;
+        case 3:
+            return this.props.buttonColor4;
+        }
+    };
 
     render() {
         return (
             <View style={styles.container}>
-                <Buttons type="Sims" onPress={this.notStartedSelected} />
-                <Buttons type="Devices" onPress={this.inProgressSelected} />
-                <Buttons type="Jobs" onPress={this.completeSelected} />
+                <Buttons type={this.props.buttonName1} onPress={this.dailySelected} />
+                <Buttons type={this.props.buttonName2} onPress={this.weeklySelected} />
+                <Buttons type={this.props.buttonName3} onPress={this.monthlySelected} />
+                <Buttons type={this.props.buttonName4} onPress={this.customSelected} />
                 <Animated.View
-                    // {...this._panResponder.panHandlers}
+                    {...this._panResponder.panHandlers}
                     style={[
                         styles.switcher,
                         {
@@ -189,14 +193,14 @@ export default class MultiSwitch extends Component {
                         }
                     ]}
                 >
-                    <Buttons type={this.getStatus()} active={true} />
+                    <Buttons type={this.getStatus()}/>
                 </Animated.View>
             </View>
         );
     }
 }
 
-export { MultiSwitch }
+export { SummarySwitch }
 
 // MultiSwitch.propTypes = {
 //     disableScroll: PropTypes.func,

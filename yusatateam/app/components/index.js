@@ -10,3 +10,5 @@ export { Piechart } from './Piechart';
 export { SummaryCard } from './SummaryCard';
 export { SquareButton } from './SquareButton';
 export { MultiSwitch } from './MultiSwitch';
+export { SummarySwitch } from './SummarySwitch';
+export { Barchart } from './Barchart';

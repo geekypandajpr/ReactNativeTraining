@@ -7,14 +7,17 @@ import { Icon } from 'native-base';
 const getIcon = (type, active) => {
     let icn;
     switch (type) {
-    case 'Sims':
-        icn = "Sims";
+    case 'Daily':
+        icn = "Today's";
         break;
-    case 'Devices':
-        icn = 'Devices';
+    case 'Weekly':
+        icn = 'Week';
         break;
-    case 'Jobs':
-        icn = 'Jobs';
+    case 'Monthly':
+        icn = 'Month';
+        break;
+    case 'Custom':
+        icn = 'Custom';
         break;
     }
     return icn;
@@ -25,8 +28,10 @@ const Buttons = props => {
         <View>
             <TouchableOpacity
                 onPress={props.onPress}
-                style={styles.buttonStyle} >
-                <Text name={props.icon} type={props.type} style={styles.buttonText}>{getIcon(props.type, props.active)}</Text>
+                style={[styles.buttonStyle,{backgroundColor: props.color}]} >
+                <Text style={styles.buttonText}>
+                    {props.type}
+                </Text>
             </TouchableOpacity>
         </View>
     );

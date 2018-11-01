@@ -2,15 +2,33 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
     container : {
         flex :1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        flexDirection: 'row',
+        //backgroundColor: '#d3d3d3'
     },
+    view1: {
+        flex: 1,
+        backgroundColor: 'green'
+    },
+    right_view: {
+        flex: 1,
+        flexDirection: 'row',
+        margin: 2,
+        elevation: 1,
+        backgroundColor: '#fff'
+    },
+
+
+
+
+
+
     inner_container: {
         height: '90%',
         width: '95%',
         borderRadius: 5,
         elevation: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        backgroundColor: '#000'
     },
     view1: {
         flex: 1,
