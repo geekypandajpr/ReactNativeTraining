@@ -3,25 +3,31 @@ import {
     View,
     Dimensions
 } from 'react-native';
-import { Text, Icon,Radio } from 'native-base';
+import { Text, Icon, Radio } from 'native-base';
 import styles from './Styles';
 import colors from '../../constants/colors';
 import PureChart from 'react-native-pure-chart';
 
+
+const barData = [
+    {
+        seriesName: 'Total Devices',
+        data: [
+            {x: 'Total', y: 300},
+            {x: 'Ordered', y: 120},
+            {x: 'Installed', y: 150},
+            {x: 'Delivered', y: 100}
+        ],
+        color: colors.HOMESCREEN.DEVICECARD_COLOR
+    }
+]
+
 export default class Barchart extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
-        var barData = [
-            {
-                seriesName: 'Total Devices',
-                data: [
-                    {x: 'Total', y: 300},
-                    {x: 'Ordered', y: 120},
-                    {x: 'Installed', y: 150},
-                    {x: 'Delivered', y: 100}
-                ],
-                color: colors.HOMESCREEN.DEVICECARD_COLOR
-            }
-        ]
+        
         return (
             <View style={styles.container}>
                 <View style={styles.bar_view}>

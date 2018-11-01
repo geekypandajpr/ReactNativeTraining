@@ -3,8 +3,8 @@ const { width } = Dimensions.get('window');
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const Colors = {
-    mBackColor:   '#A9A9A9',
-    mBorderColor: '#A9A9A9',
+    mBackColor: '#efefef',
+    mBorderColor: '#efefef',
     mSwitch: '#d9534f',
     shadowColor: '#A69E9E'
 };
