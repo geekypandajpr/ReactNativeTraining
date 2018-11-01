@@ -10,7 +10,7 @@ export default EStyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        marginTop: 4
+        marginTop: 4,
         //backgroundColor: 'red'
     },
     text1: {
@@ -30,5 +30,16 @@ export default EStyleSheet.create({
         margin: 2,
         elevation: 1,
         backgroundColor: '#fff'
+    },
+    radio_view: {
+        flex: 1,
+        alignItems :'center',
+        justifyContent :'flex-start',
+        flexDirection :'row'
+    },
+    radio_text: {
+        paddingLeft :5,
+        color: '#000',
+        fontSize: '0.8rem'
     }
 });

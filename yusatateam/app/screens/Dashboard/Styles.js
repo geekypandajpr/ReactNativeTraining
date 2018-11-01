@@ -9,7 +9,7 @@ export default EStyleSheet.create({
     container1: {
         flex: 1,
         alignItems: 'center',
-        //backgroundColor: '#d4d4d4'
+        backgroundColor: '#DCDCDC'
     },
     fixed: {
         height: 70,
@@ -21,17 +21,17 @@ export default EStyleSheet.create({
 
     /**Upper View */
     upper_view: {
-        //backgroundColor: 'red',
+        backgroundColor: 'white',
         flex: 3.5,
         width: '100%',
-        marginTop: 4,
-        marginBottom: 2,
+        marginBottom: 4,
     },
     switch: {
         flex: 0.5,
         //backgroundColor: 'orange',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 2
     },
     pie_chart: {
         //backgroundColor: 'red',
@@ -41,12 +41,11 @@ export default EStyleSheet.create({
 
     /**Middle View */
     middle_view: {
-        //backgroundColor: 'green',
+        backgroundColor: '#fff',
         flex: 3,
         flexDirection: 'row',
         width: '100%',
-        marginTop: 4,
-        marginBottom: 4
+        marginTop: 4
     },
     icon_view: {
         flex:1,
@@ -62,17 +61,16 @@ export default EStyleSheet.create({
 
      /**Lower View */
     lower_view: {
-        // backgroundColor: 'yellow',
+        backgroundColor: '#fff',
         flex: 3.5,
         width: '100%',
-        marginBottom: 4,
-        marginTop: 4,
     },
     summary_switch: {
         flex: 0.5,
         // backgroundColor: 'red',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 2
     },
     summary_view: {
         flex: 3,

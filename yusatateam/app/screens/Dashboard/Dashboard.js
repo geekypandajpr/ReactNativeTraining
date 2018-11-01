@@ -96,20 +96,26 @@ export default class Dashboard extends React.Component {
 
                         <View style={styles.upper_view}>
                             
+                            <View style={styles.switch}>
+                                <MultiSwitch onStatusChanged={this.onChangePieChart} />
+                            </View>
                             <View style={styles.pie_chart}>
                                 <Piechart
                                     piedata={this.state.piedata}
                                     pieSeries={this.state.pieSeries}
                                     pieColors={this.state.pieColor} />
                             </View>
-                            <View style={styles.switch}>
-                                <MultiSwitch onStatusChanged={this.onChangePieChart} />
-                            </View>
 
                         </View>
 
                         <View style={styles.lower_view}>
-
+                            <View style={styles.summary_switch}>
+                                <SummarySwitch
+                                    buttonName1="Today" buttonColor1='#31A9B8'
+                                    buttonName2="Week" buttonColor2='#5BC8AC'
+                                    buttonName3="Month" buttonColor3='#F98866'
+                                    buttonName4="Custom" buttonColor4='#84e184' />
+                            </View>
                             <View style={styles.summary_view}>
                                 <Barchart />
                                 {/* <SummaryCard /> */}
@@ -121,13 +127,6 @@ export default class Dashboard extends React.Component {
                                     <Barchart />
                                     <Barchart />
                                 </Swiper> */}
-                            </View>
-                            <View style={styles.summary_switch}>
-                                <SummarySwitch
-                                    buttonName1="Today" buttonColor1='#31A9B8'
-                                    buttonName2="Week" buttonColor2='#5BC8AC'
-                                    buttonName3="Month" buttonColor3='#F98866'
-                                    buttonName4="Custom" buttonColor4='#84e184' />
                             </View>
 
                         </View>
