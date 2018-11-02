@@ -3,12 +3,19 @@ import {
     View,
     Image,
     ImageBackground,
-    ScrollView
+    ScrollView,
+    TouchableWithoutFeedback
 } from 'react-native';
 import styles from './Styles';
 import { AppLoading } from 'expo';
-import { CheckBox, Button, Text, Toast } from 'native-base';
+import {
+    CheckBox,
+    Button,
+    Text,
+    Toast
+} from 'native-base';
 import { InputWithIcon, Statusbar, StatefulButton } from '../../components';
+
 export default class LogIn extends React.Component {
     constructor(props) {
         super(props);
@@ -56,37 +63,35 @@ export default class LogIn extends React.Component {
     }
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/LoginScreenBG.jpg')} >
-                {/* <View style={styles.container}> */}
                     <Statusbar backgroundColor={'transparent'} barStyle="light-content" />
-                    <ScrollView keyboardShouldPersistTaps='handled'>
-                        <View style={styles.credentialContainer}>
-                            {/**Logo*/}
+                    <ScrollView style={styles.scrollView} contentContainerStyle={{flex:1}}>
+                        <View style={styles.container}>
+
                             <View style={styles.imageView}>
                                 <Image
                                     style={styles.logo}
                                     source={require('../../assets/images/YLogAppLogo.png')}>
                                 </Image>
                             </View>
-
-                            {/**Username*/}
                             <View style={styles.input_view}>
                                 <InputWithIcon
                                     name='person'
                                     iconColor='#fff'
-                                    placeholder='User Name'
+                                    placeholder='Username'
                                     value={this.state.username}
                                     returnKeyType={'next'}
                                     keyboardType={'email-address'}
                                     blurOnSubmit={false}
                                     onSubmitEditing={() => this._focusNextField('password')}
                                     onChangeText={(username) => this.setState({ username })}
+                                    inputStyles={{width: '85%'}}
                                 />
                             </View>
 
-                            {/**Password*/}
                             <View style={styles.input_view}>
                                 <InputWithIcon
                                     name='lock'
@@ -98,31 +103,32 @@ export default class LogIn extends React.Component {
                                     secureTextEntry={true}
                                     onSubmitEditing={this._doLogin}
                                     onChangeText={(password) => this.setState({ password })}
+                                    inputStyles={{width: '85%'}}
                                 />
                             </View>
 
-                            {/**Remember me checkbox*/}
-                            <View style={styles.checkbox}>
-                                <CheckBox
-                                    checked={this.state.remember}
-                                    color='#229954'
-                                    onPress={() => this.setState({
-                                        remember: !this.state.remember
-                                    })}
-                                />
-                                <View style={styles.remember_me}>
-                                    <Text style={styles.remember_me_text}>Remember me</Text>
+                             <View style={styles.checkbox}>
+                                <View style={styles.checkbox_view}>
+                                    <CheckBox
+                                        checked={this.state.remember}
+                                        color='#229954'
+                                        onPress={() => this.setState({
+                                            remember: !this.state.remember
+                                        })}
+                                    />
+                                    <View style={styles.remember_me}>
+                                        <Text style={styles.remember_me_text}>Remember me</Text>
+                                    </View>
                                 </View>
+                                <View style={styles.forgot_view}>
+                                    <TouchableWithoutFeedback onPress={() => navigate('ForgotPassword')}>
+                                        <Text style={styles.forgot_text}> Forgot password ? </Text>
+                                    </TouchableWithoutFeedback>                                   
+                                </View>
+                                
                             </View>
 
-                            {/**Login button*/}
                             <View style={styles.button_view}>
-                                {/* <StatefulButton 
-                                    label='Login'
-                                    loadingLabel='loading...'
-                                    colorAnimation={['#229954', '#8BC34A', '#229954']}
-                                    onPress={this.signUp}
-                                    styles={{button: styles.animated_button, label: styles.button_text}}/> */}
                                 <Button
                                     style={styles.button}
                                     onPress={this._doLogin}>
@@ -130,10 +136,8 @@ export default class LogIn extends React.Component {
                                 </Button>
                             </View>
 
-                            
                         </View>
                     </ScrollView>
-                {/* </View> */}
             </ImageBackground>
         )
     }
@@ -143,3 +147,13 @@ export default class LogIn extends React.Component {
 }
 
 export { LogIn }
+
+
+
+/* <StatefulButton 
+    label='Login'
+    loadingLabel='loading...'
+    colorAnimation={['#229954', '#8BC34A', '#229954']}
+    onPress={this.signUp}
+    styles={{button: styles.animated_button, label: styles.button_text}}/> 
+*/

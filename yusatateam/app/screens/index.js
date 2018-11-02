@@ -8,4 +8,5 @@ export { Jobs } from './Jobs';
 export { Settings } from './Settings';
 export { DoAssociation } from './DoAssociation';
 export { Dashboard } from './Dashboard';
-export {TechWorkSummary} from './TechWorkSummary'
+export { TechWorkSummary } from './TechWorkSummary';
+export { ForgotPassword } from './ForgotPassword';

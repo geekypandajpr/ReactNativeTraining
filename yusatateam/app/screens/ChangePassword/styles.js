@@ -6,7 +6,8 @@ export default EStyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(184, 193, 199, 0.5)',
+        //backgroundColor: 'rgba(184, 193, 199, 0.5)',
+        backgroundColor: '#00000095',
         flexDirection: 'column',
     },
     sub_container: {
