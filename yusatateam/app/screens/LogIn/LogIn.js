@@ -42,7 +42,7 @@ export default class LogIn extends React.Component {
     componentDidMount() {
         const username = functions.getCredentials(constant.USERNAME);
         const password = functions.getCredentials(constant.PASSWORD);
-        console.log(username+" "+password);
+        console.log(username+" "+password)
         this.setState({
             username: username === undefined ? '' : username,
             password: password === undefined ? '' : password,

@@ -2,7 +2,7 @@ import { SecureStore } from 'expo';
 
 function getCredentials(key) {
     SecureStore.getItemAsync(key)
-    .then((data) => { console.log(data) })
+    .then((data) => { console.log(data); return data;})
     .catch((e) => { console.log(e) })
 }
 
