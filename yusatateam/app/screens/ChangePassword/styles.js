@@ -9,12 +9,12 @@ export default EStyleSheet.create({
         backgroundColor: 'rgba(184, 193, 199, 0.5)',
         flexDirection: 'column',
     },
-    sub_container : {
+    sub_container: {
         //backgroundColor :'white', 
-        justifyContent :'center',
-        alignItems :'center',
-        height : 450,
-        width :'95%'
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 450,
+        width: '95%'
     },
     header_view: {
         width: '100%',
@@ -40,4 +40,11 @@ export default EStyleSheet.create({
         paddingLeft: 15,
         paddingRight: 15
     },
+    button_view: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+        //paddingLeft: 20
+    }
 })

@@ -51,7 +51,7 @@ export default class ChangePassword extends React.Component {
                                     <Icon name='checkmark-circle' />
                                 </Item>
                             </View>
-                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', flex: 1, paddingLeft: 20 }}>
+                            <View style={styles.button_view}>
                                 <View style={{ flex: 1, margin : 5 }}>
                                     <Button block danger>
                                         <Text>Cancel</Text>
@@ -64,14 +64,9 @@ export default class ChangePassword extends React.Component {
                                 </View>
                             </View>
                         </View>
-
                     </View>
                     </View>
                 </Modal>
-
-
-
-
             </View>
 
         );
