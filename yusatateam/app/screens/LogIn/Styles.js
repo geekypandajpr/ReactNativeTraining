@@ -1,8 +1,15 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
+
+    scrollView: {
+        flex:1,
+        //backgroundColor:'blue'
+    },
     container: {
-        flex: 1
+        flex:1,
+        alignItems: 'center'
+        //backgroundColor:'red'
     },
     backgroundImage: {
         height: '100%',
@@ -11,7 +18,8 @@ export default EStyleSheet.create({
     imageView: {
         height: 240,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        //backgroundColor: 'green'
     },
     logo: {
         width: 140,
@@ -20,25 +28,41 @@ export default EStyleSheet.create({
     },
     input_view: {
         marginTop: 15,
-        width: '85%'
-    },
-    credentialContainer: {
+        width: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
-    },    
+        alignItems: 'center',
+        //backgroundColor: 'yellow'
+    },
     checkbox: {
         marginTop: 25,
         width: '85%',
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        marginLeft: 0
+        marginLeft: 0,
+        //backgroundColor: 'red'
+    },
+    checkbox_view: {
+        flex: 1,
+        alignItems:'center',
+        flexDirection: 'row'
     },
     remember_me: {
         marginLeft: 20
     },
     remember_me_text: {
         color: '#fff',
-        fontSize: '1rem'
+        fontSize: '0.8rem'
+    },
+    forgot_view: {
+        flex: 1,
+        //backgroundColor: 'green',
+        flexDirection:'row',
+        justifyContent: 'flex-end',
+        alignItems:'center'
+    },
+    forgot_text: {
+        color: '#000',
+        fontSize: '0.8rem'
     },
     button_view: {
         width: '85%',

@@ -9,7 +9,8 @@ import {
     Jobs,
     Settings,
     Dashboard,
-    TechWorkSummary
+    TechWorkSummary,
+    ForgotPassword
 } from '../screens';
 
 const RouteConfigs = {
@@ -69,6 +70,12 @@ const RouteConfigs = {
     },
     TechWorkSummary: {
         screen: TechWorkSummary,
+        navigationOptions: {
+            header: null
+        }
+    },
+    ForgotPassword: {
+        screen: ForgotPassword,
         navigationOptions: {
             header: null
         }
