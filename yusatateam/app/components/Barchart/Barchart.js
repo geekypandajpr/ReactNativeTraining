@@ -26,9 +26,9 @@ export default class Barchart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            devicebool: 'true',
-            simsbool: 'false',
-            jobsbool: 'false'
+            devicebool: true,
+            simsbool: false,
+            jobsbool: false
         }
     }
     render() {

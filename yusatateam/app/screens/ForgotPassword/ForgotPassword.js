@@ -1,17 +1,11 @@
 import React from 'react';
 import { View} from 'react-native';
-import styles from './Styles';
 import { AppLoading } from 'expo';
-import {
-    Button,
-    Item,
-    Input,
-    Label,
-    Text
-} from 'native-base';
-import { Statusbar, InputWithIcon } from '../../components';
+import { Button, Item, Input, Label, Text } from 'native-base';
+import { Statusbar } from '../../components';
 import { Feather } from '@expo/vector-icons';
 import colors from '../../constants/colors';
+import styles from './Styles';
 
 export default class ForgotPassword extends React.Component {
     constructor(props) {
@@ -34,12 +28,13 @@ export default class ForgotPassword extends React.Component {
     }
 
     onEmailChange(text) {
-        this.setState({ email: text })
+        this.setState({ email: text }, function() {
+            if(this.state.email !== '') { this.setState({ isButtonEnabled: false }) }
+            else { this.setState({ isButtonEnabled: true }) }
+        })
     }
 
-    doSubmit() {
-
-    }
+    doSubmit() {}
 
     render() {
         const { goBack } = this.props.navigation;
@@ -48,14 +43,16 @@ export default class ForgotPassword extends React.Component {
 
             <View style={{ flex: 1 }}>
                 <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
-                
                 <View style={styles.container}>
+
                     <View style={styles.appBar}>
                         <Feather name='arrow-left' color="#000" size={24} onPress={() => goBack()}/>
                     </View>
+
                     <View style={styles.forgot_view}>
                         <Text style={styles.forgot_text}>Forgot Password ?</Text>
                     </View>
+
                     <View style={styles.input_view}>
                         <Item floatingLabel>
                             <Label style={{color:'gray', fontSize: 15}}>Email</Label>
@@ -70,6 +67,7 @@ export default class ForgotPassword extends React.Component {
                             />
                         </Item>
                     </View>
+
                     <View style={styles.button_view}>
                         <Button disabled={this.state.isButtonEnabled}
                             style={styles.button}
@@ -77,6 +75,7 @@ export default class ForgotPassword extends React.Component {
                             <Text>Submit</Text>
                         </Button>
                     </View>
+
                 </View>
             </View>
         )
