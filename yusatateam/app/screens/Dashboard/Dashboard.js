@@ -112,10 +112,10 @@ export default class Dashboard extends React.Component {
                         <View style={styles.lower_view}>
                             <View style={styles.summary_switch}>
                                 <SummarySwitch
-                                    buttonName1="Today" buttonColor1='#31A9B8'
-                                    buttonName2="Week" buttonColor2='#5BC8AC'
-                                    buttonName3="Month" buttonColor3='#F98866'
-                                    buttonName4="Custom" buttonColor4='#84e184' />
+                                    buttonName1="Today" buttonColor1='#9491F8'
+                                    buttonName2="Week" buttonColor2='#8BB6F3'
+                                    buttonName3="Month" buttonColor3='#8AD3F3'
+                                    buttonName4="Custom" buttonColor4='#EDCD68' />
                             </View>
                             <View style={styles.summary_view}>
                                 <Barchart />
@@ -200,7 +200,7 @@ export default class Dashboard extends React.Component {
                                         text='Technician'
                                         iconColor='#6789F8'
                                         textColor='#000'
-                                        onPress={() => navigate('TechWorkSummary')}
+                                        onPress={() => navigate('VehicleList')}
                                         colors={['#9eb9ff', '#6789f8', '#265dc4']}
                                     />
                                 </View>

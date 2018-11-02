@@ -16,7 +16,7 @@ export default class SearchBar extends React.Component {
                             placeholder={this.props.placeholder}
                             underlineColorAndroid="transparent"
                             returnKeyType='search'
-                            autoFocus={true}
+                            autoFocus={false}
                             clearButtonMode="while-editing"
                             onChangeText={this.props.onChangeText}
                         />

@@ -1,103 +1,22 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
-    container : {
-        flex :1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    inner_container: {
-        height: '90%',
-        width: '95%',
-        borderRadius: 5,
-        elevation: 1,
-        flexDirection: 'row'
-    },
-    view1: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 10,
-        height: 30,
-        width: 30,
-        borderRadius: 30,
-        backgroundColor: '#fff'
-    },
-    view2: {
-        flex: 5,
-        flexDirection: 'column',
-        //backgroundColor: 'green'
-    },
-    icon: {
-        fontSize: 50,
-        //color: 'green'
-    },
-    heading_view: {
-        flex: 1,
-        flexDirection: 'row'
-    },
-    heading: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        //backgroundColor: 'yellow',
-        padding: 10
-    },
-    total: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        //backgroundColor: 'pink',
-        padding: 10
-    },
-    heading_text: {
-        fontSize: '0.9rem',
-        //color: '#d9534f',
-        fontWeight: 'bold'
-    },
-    total_text: {
-        fontSize: '0.9rem',
-        color: '#00000090',
-        //fontWeight: 'bold'
-    },
-    content_view: {
-        flex: 5,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        flexDirection: 'column'
-        //padding: 10,
-        //backgroundColor: 'orange'
-    },
-    text: {
-        fontSize: '1.1rem',
-        color: '#fff',
-        paddingLeft: 10,
-        paddingRight: 10
-    },
-    textnote : {
-        fontSize: '1.1rem',
-        paddingLeft: 10,
-        paddingRight: 10
-    },
-    Rupee_icon:
-    {
-         flex: 1,
-        marginTop:4,
-        marginLeft:10
-    },
-    text_money : {
-        fontSize : '2rem',
-        color : '#fff'
-    },
-    touchView : {
-        height: 60,
-        width: 60,
-        borderRadius: 30,
 
-        //marginTop : 40,
-        marginLeft: 5,
-        backgroundColor: 'white'
+    MainCard: {
+        flex: 1,
+        flexDirection: 'row',
+        borderRadius: 10,
+        borderWidth: 5,
+        borderColor: 'white',
+        //backgroundColor:'green'
+    },
+
+    Profile_View: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 54,
+        width: 54,
+        borderRadius: 27,
+        borderWidth: 1,
+        borderColor: 'gray'
     }
 });
