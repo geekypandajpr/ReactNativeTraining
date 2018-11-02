@@ -16,7 +16,7 @@ import {
 } from '../../components';
 import Swiper from 'react-native-swiper';
 import colors from '../../constants/colors';
-import {ChangePassword} from '../ChangePassword/changePassword';
+
 
 export default class Dashboard extends React.Component {
     constructor() {
@@ -91,7 +91,7 @@ export default class Dashboard extends React.Component {
                 <View style={styles.container}>
                     <Toolbar title='Dashboard'
                         leftIcon='home'
-                        setting='md-person' settingType='Ionicons' onSettingsPress={() => this.refs.modal.setModalVisible(true)} />
+                        setting='md-person' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
 
                     <View style={styles.container1}>
 
@@ -108,7 +108,7 @@ export default class Dashboard extends React.Component {
                             </View>
 
                         </View>
-                        <ChangePassword ref='modal' />
+                        
                         <View style={styles.lower_view}>
                             <View style={styles.summary_switch}>
                                 <SummarySwitch

@@ -15,7 +15,6 @@ import {
     Toast
 } from 'native-base';
 import { InputWithIcon, Statusbar, StatefulButton } from '../../components';
-
 export default class LogIn extends React.Component {
     constructor(props) {
         super(props);
@@ -27,7 +26,6 @@ export default class LogIn extends React.Component {
         }
         this._doLogin = this._doLogin.bind(this);
     }
-
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -36,11 +34,9 @@ export default class LogIn extends React.Component {
         })
         this.setState({ isLoading: false });
     }
-
     _focusNextField(id) {
         this[id]._root.focus();
     }
-
     _doLogin() {
         if (this._checkRequiredFields()) {
             this.props.navigation.navigate('Dashboard');
@@ -54,23 +50,20 @@ export default class LogIn extends React.Component {
             });
         }
     }
-
     _checkRequiredFields() {
         if (this.state.username == '' || this.state.password == '') {
             return false;
         }
         return true;
     }
-
     render() {
         const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
-            <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/LoginScreenBG.jpg')} >
+                <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/LoginScreenBG.jpg')} >
                     <Statusbar backgroundColor={'transparent'} barStyle="light-content" />
-                    <ScrollView style={styles.scrollView} contentContainerStyle={{flex:1}}>
+                    <ScrollView style={styles.scrollView} contentContainerStyle={{ flex: 1 }}>
                         <View style={styles.container}>
-
                             <View style={styles.imageView}>
                                 <Image
                                     style={styles.logo}
@@ -88,10 +81,9 @@ export default class LogIn extends React.Component {
                                     blurOnSubmit={false}
                                     onSubmitEditing={() => this._focusNextField('password')}
                                     onChangeText={(username) => this.setState({ username })}
-                                    inputStyles={{width: '85%'}}
+                                    inputStyles={{ width: '85%' }}
                                 />
                             </View>
-
                             <View style={styles.input_view}>
                                 <InputWithIcon
                                     name='lock'
@@ -103,11 +95,10 @@ export default class LogIn extends React.Component {
                                     secureTextEntry={true}
                                     onSubmitEditing={this._doLogin}
                                     onChangeText={(password) => this.setState({ password })}
-                                    inputStyles={{width: '85%'}}
+                                    inputStyles={{ width: '85%' }}
                                 />
                             </View>
-
-                             <View style={styles.checkbox}>
+                            <View style={styles.checkbox}>
                                 <View style={styles.checkbox_view}>
                                     <CheckBox
                                         checked={this.state.remember}
@@ -123,11 +114,9 @@ export default class LogIn extends React.Component {
                                 <View style={styles.forgot_view}>
                                     <TouchableWithoutFeedback onPress={() => navigate('ForgotPassword')}>
                                         <Text style={styles.forgot_text}> Forgot password ? </Text>
-                                    </TouchableWithoutFeedback>                                   
+                                    </TouchableWithoutFeedback>
                                 </View>
-                                
                             </View>
-
                             <View style={styles.button_view}>
                                 <Button
                                     style={styles.button}
@@ -135,17 +124,15 @@ export default class LogIn extends React.Component {
                                     <Text style={styles.button_text}>  LOGIN </Text>
                                 </Button>
                             </View>
-
                         </View>
                     </ScrollView>
-            </ImageBackground>
+                </ImageBackground>
         )
     }
     signUp() {
         alert('hello');
     }
 }
-
 export { LogIn }
 
 

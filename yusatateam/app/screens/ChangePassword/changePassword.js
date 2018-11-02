@@ -53,7 +53,10 @@ export default class ChangePassword extends React.Component {
                             </View>
                             <View style={styles.button_view}>
                                 <View style={{ flex: 1, margin : 5 }}>
-                                    <Button block danger>
+                                    <Button block danger
+                                     onPress={() => {
+                                        this.setModalVisible(!this.state.modalVisible);
+                                    }}>
                                         <Text>Cancel</Text>
                                     </Button>
                                 </View>

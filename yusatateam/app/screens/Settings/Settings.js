@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View
+    View,TouchableOpacity
 } from 'react-native';
 import {
     List,
@@ -15,6 +15,7 @@ import {
 import { AppLoading } from 'expo';
 import styles from './Styles';
 import { Toolbar } from '../../components';
+import {ChangePassword} from '../ChangePassword/changePassword';
 
 export default class Settings extends React.Component {
     constructor(props) {
@@ -55,6 +56,18 @@ export default class Settings extends React.Component {
                         </Body>
                     </ListItem>
                     <ListItem icon>
+                   
+                        <Left>
+                            <Icon active name='ios-notifications' type='Ionicons'/>
+                        </Left>
+                        <Body>
+                        <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true)}>
+                            <Text>Change Password</Text>
+                            </TouchableOpacity>
+                        </Body>
+                       
+                    </ListItem>
+                    <ListItem icon>
                         <Left>
                             <Icon active name='sync' type='MaterialCommunityIcons'/>
                         </Left>
@@ -63,9 +76,9 @@ export default class Settings extends React.Component {
                         </Body>
                     </ListItem>
                 </List>
+                <ChangePassword ref='modal' />
             </View>
         )
     }
 }
-
 export { Settings }
