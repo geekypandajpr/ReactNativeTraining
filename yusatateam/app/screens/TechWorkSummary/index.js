@@ -1,1 +1,0 @@
-export {TechWorkSummary} from './TechWorkSummary'

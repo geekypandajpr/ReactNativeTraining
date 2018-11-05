@@ -5,7 +5,7 @@ import {
 import styles from './styles';
 import { Toolbar } from '../../components';
 import { TechnicianList } from '../../components/TechnicianList'
-export default class TechWorkSummary extends React.Component {
+export default class Technicians extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
@@ -60,4 +60,4 @@ export default class TechWorkSummary extends React.Component {
     }
 
 }
-export { TechWorkSummary }
+export { Technicians }

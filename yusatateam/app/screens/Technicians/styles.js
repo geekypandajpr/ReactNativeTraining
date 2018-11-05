@@ -1,13 +1,11 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
-    container:
-    {
+    container: {
         flex: 1,
         backgroundColor: '#fff',
     },
-    viewStyle:
-    {
+    viewStyle: {
         paddingLeft: 5,
         paddingRight: 5,
         flex: 1,

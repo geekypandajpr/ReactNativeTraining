@@ -9,7 +9,7 @@ import {
     Jobs,
     Settings,
     Dashboard,
-    TechWorkSummary,
+    Technicians,
     ForgotPassword
 } from '../screens';
 
@@ -68,8 +68,8 @@ const RouteConfigs = {
             header: null
         }
     },
-    TechWorkSummary: {
-        screen: TechWorkSummary,
+    Technicians: {
+        screen: Technicians,
         navigationOptions: {
             header: null
         }

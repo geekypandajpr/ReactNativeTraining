@@ -40,18 +40,22 @@ export default class LogIn extends React.Component {
     }
 
     componentDidMount() {
-        const username = functions.getCredentials(constant.USERNAME);
-        const password = functions.getCredentials(constant.PASSWORD);
-        console.log(username+" "+password)
-        this.setState({
-            username: username === undefined ? '' : username,
-            password: password === undefined ? '' : password,
+        functions.getCredentials(constant.USERNAME)
+        .then((res) => {
+            if(res === null) { this.setState({ username: ''}) }
+            else { this.setState({ username: res }) }
         })
+        .catch((e) => console.log('Error in getting username from prefeernces'))
+
+        functions.getCredentials(constant.PASSWORD)
+        .then((res) => {
+            if(res === null) { this.setState({ password: ''}) }
+            else { this.setState({ password: res }) }
+        })
+        .catch((e) => console.log('Error in getting username from prefeernces'))
     }
 
-    _focusNextField(id) {
-        this[id]._root.focus();
-    }
+    _focusNextField(id) { this[id]._root.focus(); }
 
     _doLogin() {
         if (this._checkRequiredFields()) {
