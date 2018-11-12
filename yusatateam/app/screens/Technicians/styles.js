@@ -5,9 +5,7 @@ export default EStyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
-    viewStyle: {
-        paddingLeft: 5,
-        paddingRight: 5,
+    inner_container: {
         flex: 1,
     },
 })

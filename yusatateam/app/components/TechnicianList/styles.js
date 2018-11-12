@@ -1,54 +1,100 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
-    container:
-    {
+    container: {
         flex: 1,
-        backgroundColor: '#D3D3D3',
-       
     },
-    MainCard: {
+    card: {
         flex: 1,
         flexDirection: 'row',
-        borderRadius: 5,
-        borderWidth: 3,
-        borderColor: 'white',
-    
+        marginLeft: 8,
+        marginRight: 8
     },
-    viewStyle:
-    {
-        paddingLeft: 5,
-        paddingRight: 5,
-        paddingTop: 5,
+    colon_view: {
+        flex: 0.2,
+        //backgroundColor: 'pink',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    colon: {
+        fontSize: '0.8rem',
+        color: 'gray'
+    },
+    leftView: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    Profile_View: {
+    profile_view: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 80,
-        width: 80,
-        borderRadius: 40,
+        height: 50,
+        width: 50,
+        borderRadius: 25,
         borderWidth: 1,
-        borderColor: 'gray'
+        borderColor: '#DCDCDC'
     },
-    Text_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '1rem',
+    profile_pic: {
+        alignSelf: 'center',
+        height: 50,
+        width: 50,
+        borderRadius: 25
+    },
+    rightView: {
+        flex: 3.5,
+        marginRight: 6,
+        marginTop: 6,
+        marginBottom: 6
+    },
+    view_container: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    name: {
+        flex:2,
+        //backgroundColor: 'yellow',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    },
+    name_text: {
+        fontSize: '1.1rem',
         color: '#000'
     },
-    View_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '0.9rem',
-        color: 'gray',
-        marginLeft: 10
+    status: {
+        flex:1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        //backgroundColor: 'green',
     },
-
-    Call_Style:
-    {
-        fontStyle: 'normal',
+    status_text: {
         fontSize: '0.9rem',
-        color: 'gray',
-        
+        color: '#696969'
     },
+    phone: {
+        flex:1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        //backgroundColor: 'red'
+    },
+    phone_text: {
+        marginLeft: 8,
+        fontSize: '0.9rem',
+        color: '#696969'
+    },
+    totaljobs: {
+        flex:1,
+        //backgroundColor: 'yellow',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    },
+    jobs_text: {
+        fontSize: '0.9rem',
+        color: '#696969'
+    },
+    jobs_num: {
+        fontSize: '0.8rem',
+        color: '#A9A9A9'
+    }
 });

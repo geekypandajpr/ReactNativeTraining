@@ -12,3 +12,4 @@ export { SquareButton } from './SquareButton';
 export { MultiSwitch } from './MultiSwitch';
 export { SummarySwitch } from './SummarySwitch';
 export { Barchart } from './Barchart';
+export { TechnicianList } from './TechnicianList';

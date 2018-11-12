@@ -1,26 +1,14 @@
 import React from 'react';
-import {
-    View,
-    Text,
-    Button,
-    FlatList
-} from 'react-native';
+import { View, Image } from 'react-native';
 import { Ionicons, Entypo } from '@expo/vector-icons';
-import { Card, } from 'native-base';
-
+import { Card, Text } from 'native-base';
 import { AppLoading } from 'expo';
 import styles from './styles';
-import { Toolbar } from '../../components';
-import TechnicianData from '../../assets/JSONData/TechnicianData'
 
 export default class TechnicianList extends React.Component {
     constructor() {
         super();
-        this.state = {
-            isLoading: true,
-
-        };
-        this.modalRef = React.createRef();
+        this.state = { isLoading: true }
     }
 
     async componentWillMount() {
@@ -31,120 +19,69 @@ export default class TechnicianList extends React.Component {
         })
         this.setState({ isLoading: false })
     }
+
     render() {
-        // const { navigate } = this.props.navigation;
-        // const { goBack } = this.props.navigation;
+        const data = this.props.data;
         return (
-
             this.state.isLoading === true ? <AppLoading /> :
-                <View style={styles.container}>
-                    {/* <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} /> */}
+            <View style={styles.container}>
+                <Card style={styles.card}>
 
-                    <FlatList
-                        data={TechnicianData}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item, index }) =>
+                    <View style={styles.leftView}>
+                        <View style={styles.profile_view}>
+                            <Image style={styles.profile_pic} resizeMode='cover'
+                                source={require('../../assets/images/react-native.png')}
+                            />
+                        </View>
+                    </View>
 
+                    <View style={styles.rightView}>
 
-                            <Card style={styles.MainCard}>
-                                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                    <View style={styles.Profile_View}></View>
-                                </View>
+                        <View style={styles.view_container}>
+                            <View style={styles.name}>
+                                <Text style={styles.name_text}>{data.name}</Text>
+                            </View>
+                            <View style={styles.status}>
+                                <View style={{width: 8, height: 8, borderRadius: 4, backgroundColor: 'green'}}></View>
+                                <Text style={styles.status_text}>{data.status}</Text>
+                                <Entypo name='location-pin' size={15} color='#d9534f'/>
+                            </View>
+                        </View>
 
-                                <View style={{ flex: 3, marginTop: 5 }}>
+                        <View style={styles.view_container}>
+                            <View style={styles.phone}>
+                                <Ionicons name='md-call' size={15} color='#5cb85c' />
+                                <Text style={styles.phone_text}>{data.contactNumber}</Text>
+                            </View>
+                        </View>
 
-                                    <View style={{flex:1,flexDirection:'row'}}>
-                                        <View style={{flex:1,justifyContent:'center'}}>
-                                            <Text style={styles.Text_Style}>{item.Name}</Text>
-                                        </View>
-                                        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                                            <Ionicons name='ios-add-circle-outline' size={27}></Ionicons>
-                                        </View>
-                                    </View>
+                        <View style={styles.view_container}>
+                            <View style={styles.totaljobs}>
+                                <Text style={styles.jobs_text}>Total jobs</Text>
+                            </View>
+                            <View style={styles.colon_view}>
+                                <Text style={styles.colon}>:</Text>
+                            </View>
+                            <View style={styles.totaljobs}>
+                                <Text style={styles.jobs_num}>{data.totalJobs}</Text>
+                            </View>
+                        </View>
 
-                                  <View style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ flex: 0.2, justifyContent: 'center' }}>
-                                            <Ionicons name='ios-call' size={27} color='#5cb85c' />
-                                        </View>
-                                        <View style={{ flex: 2,justifyContent:'center' }}>
-                                            <Text style={styles.Call_Style}>9829876456</Text>
-                                        </View>
-                                    </View>
+                        <View style={styles.view_container}>
+                            <View style={styles.totaljobs}>
+                                <Text style={styles.jobs_text}>Complete jobs</Text>
+                            </View>
+                            <View style={styles.colon_view}>
+                                <Text style={styles.colon}>:</Text>
+                            </View>
+                            <View style={styles.totaljobs}>
+                                <Text style={styles.jobs_num}>{data.completedJobs}</Text>
+                            </View>
+                        </View>
 
-                                    <View style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ flex: 1.2, justifyContent: 'center' }}>
-                                            <Text style={styles.Text_Style}>Completed Job</Text>
-                                        </View>
-                                        <View style={{ flex: 0.1, justifyContent: 'center' }}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={{ flex: 1.2, justifyContent: 'center', marginLeft: 5 }}>
-                                            <Text style={styles.View_Style}>{item.Completed}</Text>
-                                        </View>
-                                    </View>
-
-                                    
-                                    <View style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ flex: 1.2, justifyContent: 'center' }}>
-                                            <Text style={styles.Text_Style}>Total Job</Text>
-                                        </View>
-                                        <View style={{ flex: 0.1, justifyContent: 'center' }}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={{ flex: 1.2, justifyContent: 'center', marginLeft: 5 }}>
-                                            <Text style={styles.View_Style}>{item.Completed}</Text>
-                                        </View>
-                                    </View>
-
-                                     <View style={{ flex: 1, flexDirection: 'row' }}> 
-                                        <View style={{ flex: 0.2, justifyContent: 'center' }}>
-                                            <Entypo name='location-pin' size={23} color='red' />
-                                        </View>
-                                        <View style={{ flex: 2, justifyContent: 'center' }}>
-                                            <Text style={styles.call_Style}>{item.Status}</Text>
-                                        </View>
-                                    </View>
-
-                                    {/* <View style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ flex: 1.2, justifyContent: 'center' }}>
-                                            <Text style={styles.Text_Style}>Completed </Text>
-                                        </View>
-                                        <View style={{ flex: 0.1, justifyContent: 'center' }}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={{ flex: 2, justifyContent: 'center', marginLeft: 5 }}>
-                                            <Text style={styles.View_Style}>{item.Completed}</Text>
-                                        </View>
-                                    </View> */}
-
-                                    
-
-                                    {/*
-                                        {/* <View style={{ flex: 1, marginBottom: 2 }}> */}
-
-                                            {/* */}
-                                            {/* <View style={{ borderRadius: 7, borderWidth: 1, borderColor: 'white' }}>
-                                                <Button style={{ height: 20, }}
-                                                    onPress={() => {
-                                                        alert
-                                                    }}
-                                                    title="Add"
-                                                    color="#0073b7"
-
-                                                />
-                                            </View> */}
-                                      
-                                    
-
-                                </View>
-                            </Card>
-                        }></FlatList>
-
-
-                </View>
-
-
+                    </View>
+                </Card>
+            </View>
         )
     }
 }
