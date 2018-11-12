@@ -83,7 +83,7 @@ const RouteConfigs = {
 }
 
 const StackNavigatorConfig = {
-    initialRouteName: 'Technicians',
+    initialRouteName: 'LogIn',
     headerMode: 'float'
 }
 
