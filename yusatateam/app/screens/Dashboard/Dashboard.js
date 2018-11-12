@@ -200,7 +200,7 @@ export default class Dashboard extends React.Component {
                                         text='Technician'
                                         iconColor='#6789F8'
                                         textColor='#000'
-                                        onPress={() => navigate('VehicleList')}
+                                        onPress={() => navigate('Technicians')}
                                         colors={['#9eb9ff', '#6789f8', '#265dc4']}
                                     />
                                 </View>
