@@ -1,0 +1,1 @@
+export { TechDetails } from './TechDetails' 

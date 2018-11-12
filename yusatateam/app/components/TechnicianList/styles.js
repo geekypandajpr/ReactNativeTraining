@@ -96,5 +96,18 @@ export default EStyleSheet.create({
     jobs_num: {
         fontSize: '0.8rem',
         color: '#A9A9A9'
+    },
+    icon_flex:{  
+        flex:0.5,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    },
+    jobs_flex:{  
+        flex:0.5,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+        
     }
 });

@@ -1,14 +1,24 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { 
+    View,
+    Image,
+    Modal,
+    TouchableWithoutFeedback } from 'react-native';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import { Card, Text } from 'native-base';
 import { AppLoading } from 'expo';
 import styles from './styles';
+import colors from '../../constants/colors';
+
+
 
 export default class TechnicianList extends React.Component {
     constructor() {
         super();
-        this.state = { isLoading: true }
+        this.state = {
+             isLoading: true 
+            };
+            this.modalRef=React.createRef();
     }
 
     async componentWillMount() {
@@ -25,6 +35,11 @@ export default class TechnicianList extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
+            <TouchableWithoutFeedback
+             onPress={() => {
+                this.modalRef.current.setModalVisible(true)
+            }}>
+            >
                 <Card style={styles.card}>
 
                     <View style={styles.leftView}>
@@ -73,13 +88,18 @@ export default class TechnicianList extends React.Component {
                             <View style={styles.colon_view}>
                                 <Text style={styles.colon}>:</Text>
                             </View>
-                            <View style={styles.totaljobs}>
+                            <View style={styles.jobs_flex}>
                                 <Text style={styles.jobs_num}>{data.completedJobs}</Text>
+                            </View>
+                            <View style={styles.icon_flex}>
+                                    <Ionicons name='ios-add-circle' size={25} color='#004887'/>
                             </View>
                         </View>
 
                     </View>
                 </Card>
+                </TouchableWithoutFeedback>
+              
             </View>
         )
     }
