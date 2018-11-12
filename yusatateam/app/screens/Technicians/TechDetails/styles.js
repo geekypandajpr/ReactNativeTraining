@@ -128,7 +128,7 @@ export default EStyleSheet.create({
     },
     Level_Flex:
     {
-        flex: 0.8,
+        flex: 1,
         justifyContent:'center'
     },
     Column_Flex:
@@ -138,13 +138,14 @@ export default EStyleSheet.create({
     },
     Text_Flex:
     {
-        flex: 2,
+        flex: 1,
         justifyContent: 'center'
     },
    
     Mobile_Level: {
         flexDirection: 'row',
-        marginTop: 6
+        marginTop: 6,
+        //flex:1
     },
     Button_View:
     {
