@@ -10,7 +10,7 @@ export default EStyleSheet.create({
         width: '95%',
         height: 40,
         backgroundColor: '#fff',
-        borderRadius: 10,
+        borderRadius: 8,
         flexDirection: 'row'
     },
     icon_view: {
