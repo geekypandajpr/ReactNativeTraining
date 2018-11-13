@@ -10,3 +10,4 @@ export { DoAssociation } from './DoAssociation';
 export { Dashboard } from './Dashboard';
 export { Technicians } from './Technicians';
 export { ForgotPassword } from './ForgotPassword';
+export { NotAssignedJobs } from './NotAssignedJobs';
