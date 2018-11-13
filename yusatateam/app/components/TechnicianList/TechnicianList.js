@@ -4,7 +4,7 @@ import {
     Image,
     Modal,
     TouchableWithoutFeedback } from 'react-native';
-import { Ionicons, Entypo } from '@expo/vector-icons';
+import { MaterialIcons, Ionicons, Entypo } from '@expo/vector-icons';
 import { Card, Text } from 'native-base';
 import { AppLoading } from 'expo';
 import styles from './styles';
@@ -85,7 +85,7 @@ export default class TechnicianList extends React.Component {
                                 <Text style={styles.jobs_num}>{data.completedJobs}</Text>
                             </View>
                             <View style={styles.icon_flex}>
-                                    <Ionicons name='ios-add-circle' size={25} color='#004887'/>
+                                <MaterialIcons name='add-circle-outline' size={25} color= {colors.HEADER_COLOR}/>
                             </View>
                         </View>
 
