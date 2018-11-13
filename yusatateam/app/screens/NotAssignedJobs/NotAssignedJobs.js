@@ -3,6 +3,49 @@ import { View, FlatList, Text } from 'react-native';
 import { Toolbar, JobsComponent } from '../../components';
 import styles from './Styles';
 
+const datas = [
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Install',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur'
+    },
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Uninstall',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur'
+    },
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Replace',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur'
+    },
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Repair',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur'
+    },
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Uninstall',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur'
+    }
+]
+
 export default class NotAssignedJobs extends React.Component {
     constructor(props) {
         super(props);
@@ -19,11 +62,12 @@ export default class NotAssignedJobs extends React.Component {
                 />
                 <View style={styles.inner_container}>
                     <FlatList
-                        data={[{'key': 1}]}
+                        data={datas}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <JobsComponent />
-                        } />
+                            <JobsComponent jobDatas={item}/>
+                        }
+                    />
                 </View>
             </View>
         )
