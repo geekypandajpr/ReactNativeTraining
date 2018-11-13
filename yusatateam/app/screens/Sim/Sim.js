@@ -19,8 +19,7 @@ export default class Sim extends React.Component {
         super();
         this.state = {
             isLoading: true,
-
-        };
+      };
         this.modalRef = React.createRef();
     }
 
@@ -52,9 +51,7 @@ export default class Sim extends React.Component {
                                     onPress={() => {
                                         this.modalRef.current.setModalVisible(true)
                                     }}>
-
-
-                                    <Card style={styles.mainCard}>
+                                <Card style={styles.mainCard}>
 
                                         <View style={styles.First_View}>
                                             <TouchableHighlight

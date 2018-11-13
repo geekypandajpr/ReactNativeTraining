@@ -6,7 +6,7 @@ import {
     Button
 } from 'react-native';
 import styles from './styles';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import { Ionicons, FontAwesome, Entypo } from '@expo/vector-icons';
 
 export default class TechDetails extends React.Component {
     constructor(props) {
@@ -32,30 +32,13 @@ export default class TechDetails extends React.Component {
                     <View style={styles.container}>
 
                         <View style={styles.header_view}>
-
                             <View style={styles.service_num}>
-                                <Text style={styles.header_text}>Item12</Text>
+                                <Text style={styles.header_text}>Akash Dhayal</Text>
                             </View>
-                            <View style={styles.schedule_view}>
-                                <View style={[styles.Status_Button, { backgroundColor: "#5cb85c" }]} >
-                                    <Text style={styles.Status_Style}>Active</Text>
-                                </View>
-                            </View>
+                            
                         </View>
 
                         <View style={styles.View_Container}>
-
-                            <View style={styles.Margin_View}>
-                                <View style={styles.Level_Flex}>
-                                    <Text style={styles.Order_text}>Name</Text>
-                                </View>
-                                <View style={styles.Column_Flex}>
-                                    <Text>:</Text>
-                                </View>
-                                <View style={styles.Text_Flex}>
-                                    <Text style={styles.Order_texts}>Akash </Text>
-                                </View>
-                            </View>
 
                             <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex}>
@@ -92,7 +75,6 @@ export default class TechDetails extends React.Component {
                                     <Text style={styles.View_Style}>1</Text>
                                 </View>
                             </View>
-                           
 
                             <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex} >
@@ -106,30 +88,47 @@ export default class TechDetails extends React.Component {
                                 </View>
                             </View>
 
-                            <View style={styles.Mobile_Level}>
-                                <View style={{ flex: 0.2, justifyContent: 'center',alignItems:'flex-start' }}>
-                                    <Ionicons name='ios-call' size={27} color='#5cb85c' />
+                            <View style={styles.Margin_View}>
+                                <View style={styles.Level_Flex} >
+                                    <Text style={styles.Text_Style}>Status</Text>
                                 </View>
-                                <View style={{ flex: 2, justifyContent: 'center',alignItems:'flex-start' }}>
-                                    <Text style={styles.View_Style}>85465256555</Text>
+                                <View style={styles.Column_Flex}>
+                                    <Text>:</Text>
                                 </View>
-                               
+                                <View style={styles.status}>
+                                    <Text style={styles.status_text}>On Job</Text>
+                                    <Entypo name='location-pin' size={20} color='#d9534f' />
+                                </View>
                             </View>
 
+                            <View style={styles.Mobile_Level}>
+                                <View style={{ flex: 0.15, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                    <Ionicons name='ios-call' size={27} color='#5cb85c' />
+                                </View>
+                                <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                    <Text style={styles.View_Style}>85465256555</Text>
+                                </View>
+
+                            </View>
                             
                             <View style={styles.Button_View}>
-
                                 <Button
+                                    onPress={() => {
+                                        this.setModalVisible(!this.state.modalVisible);
+                                    }}
+                                    title="Assign Job"
+                                    color="#0073b7"
+                                />
+                            </View>
+                            <View style={styles.Button_View}>
+                                <Button 
                                     onPress={() => {
                                         this.setModalVisible(!this.state.modalVisible);
                                     }}
                                     title="Close"
                                     color="#0073b7"
-
                                 />
-
                             </View>
-
                         </View>
                     </View>
                 </Modal>
