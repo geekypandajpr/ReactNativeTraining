@@ -14,14 +14,6 @@ const datas = [
     },
     {
         jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Uninstall',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur'
-    },
-    {
-        jobNumber: 'JOBS-05NOV2018',
         jobType: 'Replace',
         companyName: 'Yusata Infotech Private Limited',
         vehicleNumber: 'JP01-4522',

@@ -37,7 +37,7 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     jobType: {
-        width: 60,
+        width: 70,
         borderRadius: 4,
         borderColor: 'gray',
         borderWidth: 0.8,
