@@ -40,7 +40,7 @@ export default class Technicians extends React.Component {
                                 <TechnicianList
                                     data={item}
                                     onPress={this.techDetail}
-                                    assignJobs={() => navigate('NotAssignedJobs')}
+                                    assignJobs={() => navigate('OpenJobs')}
                                 />
                             } />
                     </View>

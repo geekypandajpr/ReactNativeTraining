@@ -38,7 +38,7 @@ const datas = [
     }
 ]
 
-export default class NotAssignedJobs extends React.Component {
+export default class OpenJobs extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isLoading: true }
@@ -67,4 +67,4 @@ export default class NotAssignedJobs extends React.Component {
     }
 }
 
-export { NotAssignedJobs }
+export { OpenJobs }
