@@ -22,14 +22,14 @@ export default class Technicians extends React.Component {
         }
 
     render() {
-        // const { navigate } = this.props.navigation;
-        // const { goBack } = this.props.navigation;
+        const { navigate } = this.props.navigation;
+        const { goBack } = this.props.navigation;
         return (
            
                 <View style={styles.container}>
                 
                     <Toolbar title='Technicians' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='md-settings' settingType='Ionicons'
+                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
 
                     <View style={styles.inner_container}>
