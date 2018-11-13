@@ -37,7 +37,11 @@ export default class Technicians extends React.Component {
                             data={techDatas}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
-                                <TechnicianList data={item} onPress={this.techDetail} />
+                                <TechnicianList
+                                    data={item}
+                                    onPress={this.techDetail}
+                                    assignJobs={() => navigate('NotAssignedJobs')}
+                                />
                             } />
                     </View>
                    <TechDetails ref={'modal'} />
