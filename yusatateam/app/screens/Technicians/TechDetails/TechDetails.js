@@ -102,10 +102,10 @@ export default class TechDetails extends React.Component {
                             </View>
 
                             <View style={styles.Mobile_Level}>
-                                <View style={{ flex: 0.15, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                <View style={styles.Icon_View}>
                                     <Ionicons name='ios-call' size={27} color='#5cb85c' />
                                 </View>
-                                <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                <View style={styles.Mobile_View}>
                                     <Text style={styles.View_Style}>85465256555</Text>
                                 </View>
 

@@ -78,14 +78,15 @@ export default EStyleSheet.create({
         flexDirection: 'row',
         marginTop: 6,
     },
-    
-   Job_Button:{
-           flex:1,
-        marginTop: 10,
-        //width:'50%',
-        //justifyContent:'flex-end',
-        //alignItems:'flex-end',
-        //marginRight:18,
+    Icon_View:{
+         flex: 0.15,
+         justifyContent: 'center', 
+         alignItems: 'flex-start' 
+    },
+    Mobile_View:{
+         flex: 2, 
+         justifyContent: 'center',
+          alignItems: 'flex-start' 
     },
     Button_View:{
         marginTop: 10,

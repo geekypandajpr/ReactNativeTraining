@@ -45,7 +45,7 @@ export default class Device extends React.Component {
                     <View style={styles.viewStyle}>
                         <FlatList
                             data={DeviceData}
-                            keyExtractor={(item, index) => item.toString()}
+                            keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                             <TouchableWithoutFeedback
                             onPress={() => {
