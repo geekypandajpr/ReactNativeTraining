@@ -57,8 +57,9 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     name_text: {
-        fontSize: '1.1rem',
-        color: '#000'
+        fontSize: '1rem',
+        color: '#000',
+        fontWeight: '500'
     },
     status: {
         flex:1,
@@ -68,8 +69,9 @@ export default EStyleSheet.create({
         //backgroundColor: 'green',
     },
     status_text: {
-        fontSize: '0.9rem',
-        color: '#696969'
+        fontSize: '0.8rem',
+        //color: '#696969',
+        color: '#000'
     },
     phone: {
         flex:1,
@@ -79,8 +81,9 @@ export default EStyleSheet.create({
     },
     phone_text: {
         marginLeft: 8,
-        fontSize: '0.9rem',
-        color: '#696969'
+        fontSize: '0.8rem',
+        //color: '#696969',
+        color: '#000'
     },
     totaljobs: {
         flex:1,
@@ -90,12 +93,14 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     jobs_text: {
-        fontSize: '0.9rem',
-        color: '#696969'
+        fontSize: '0.8rem',
+        //color: '#696969',
+        color: '#000'
     },
     jobs_num: {
         fontSize: '0.8rem',
-        color: '#A9A9A9'
+        //color: '#A9A9A9',
+        color: '#696969'
     },
     icon_flex:{  
         flex:0.5,

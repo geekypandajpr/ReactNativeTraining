@@ -51,7 +51,7 @@ export default class TechnicianList extends React.Component {
                             </View>
                             <View style={styles.status}>
                                 <Text style={styles.status_text}>{data.status}</Text>
-                                <Entypo name='location-pin' size={15} color='#d9534f'/>
+                                <Entypo name='location-pin' size={20} color='#d9534f'/>
                             </View>
                         </View>
 
