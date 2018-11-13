@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, FlatList, Text } from 'react-native';
-import { Toolbar, JobsComponent } from '../../components';
+import { Toolbar, JobsComponent, SearchBar } from '../../components';
 import styles from './Styles';
 
 const datas = [
@@ -53,6 +53,7 @@ export default class NotAssignedJobs extends React.Component {
                     setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                 />
                 <View style={styles.inner_container}>
+                    <SearchBar placeholder={'Search jobs'}/>
                     <FlatList
                         data={datas}
                         keyExtractor={(item, index) => index.toString()}

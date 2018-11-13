@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-    View,
-    Text,
-    Card
-} from 'native-base';
+import { View, Text, Card } from 'native-base';
 import { Foundation, FontAwesome } from '@expo/vector-icons';
 import styles from './Styles';
 import colors from '../../constants/colors';
@@ -25,7 +21,7 @@ export default class JobsComponent extends React.Component {
 
     render() {
         const jobDatas = this.props.jobDatas
-        return(
+        return (
             <View style={styles.container}>
                 <Card style={styles.card}>
                     <View style={styles.inner_container}>
@@ -50,12 +46,12 @@ export default class JobsComponent extends React.Component {
                         </View>
 
                         <View style={styles.sub_view}>
-                            <Foundation name='calendar' size={25} color={colors.HEADER_COLOR}/>
+                            <Foundation name='calendar' size={25} color={colors.HEADER_COLOR} />
                             <Text style={styles.sub_icon_text}>{jobDatas.scheduleDate}</Text>
                         </View>
 
                         <View style={styles.sub_view}>
-                            <FontAwesome name='map-marker' size={25} color={'red'}/>
+                            <FontAwesome name='map-marker' size={25} color={'red'} />
                             <Text style={styles.sub_icon_text}>{jobDatas.location}</Text>
                         </View>
 
