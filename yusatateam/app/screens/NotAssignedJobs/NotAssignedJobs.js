@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, FlatList, Text } from 'react-native';
-import { Toolbar } from '../../components';
+import { Toolbar, JobsComponent } from '../../components';
 import styles from './Styles';
 
 export default class NotAssignedJobs extends React.Component {
@@ -14,7 +14,7 @@ export default class NotAssignedJobs extends React.Component {
         const { goBack } = this.props.navigation;
         return(
             <View style={styles.container}>
-                <Toolbar title='Technicians' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                     setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                 />
                 <View style={styles.inner_container}>
@@ -22,7 +22,7 @@ export default class NotAssignedJobs extends React.Component {
                         data={[{'key': 1}]}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <View><Text>Hello</Text></View>
+                            <JobsComponent />
                         } />
                 </View>
             </View>
