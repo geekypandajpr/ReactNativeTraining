@@ -2,6 +2,7 @@ import React from 'react';
 import { View, FlatList, Text } from 'react-native';
 import { Toolbar, JobsComponent, SearchBar } from '../../components';
 import styles from './Styles';
+import colors from '../../constants/colors';
 
 const datas = [
     {
@@ -10,7 +11,8 @@ const datas = [
         companyName: 'Yusata Infotech Private Limited',
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur'
+        location: '84/122 sector 8 pratap nagar, jaipur',
+        color: colors.HOMESCREEN.SIMCARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -18,7 +20,8 @@ const datas = [
         companyName: 'Yusata Infotech Private Limited',
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur'
+        location: '84/122 sector 8 pratap nagar, jaipur',
+        color: colors.HOMESCREEN.DEVICECARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -26,7 +29,8 @@ const datas = [
         companyName: 'Yusata Infotech Private Limited',
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur'
+        location: '84/122 sector 8 pratap nagar, jaipur',
+        color: colors.HOMESCREEN.JOBSCARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -34,7 +38,80 @@ const datas = [
         companyName: 'Yusata Infotech Private Limited',
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur'
+        location: '84/122 sector 8 pratap nagar, jaipur',
+        color: colors.HOMESCREEN.SCHEDULECARD_COLOR
+    },
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Install',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur',
+        color: colors.HOMESCREEN.SIMCARD_COLOR
+    },
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Replace',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur',
+        color: colors.HOMESCREEN.DEVICECARD_COLOR
+    },
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Repair',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur',
+        color: colors.HOMESCREEN.JOBSCARD_COLOR
+    },
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Uninstall',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur',
+        color: colors.HOMESCREEN.SCHEDULECARD_COLOR
+    },
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Install',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur',
+        color: colors.HOMESCREEN.SIMCARD_COLOR
+    },
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Replace',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur',
+        color: colors.HOMESCREEN.DEVICECARD_COLOR
+    },
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Repair',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur',
+        color: colors.HOMESCREEN.JOBSCARD_COLOR
+    },
+    {
+        jobNumber: 'JOBS-05NOV2018',
+        jobType: 'Uninstall',
+        companyName: 'Yusata Infotech Private Limited',
+        vehicleNumber: 'JP01-4522',
+        scheduleDate: '05 Nov 2018 20:50',
+        location: '84/122 sector 8 pratap nagar, jaipur',
+        color: colors.HOMESCREEN.SCHEDULECARD_COLOR
     }
 ]
 

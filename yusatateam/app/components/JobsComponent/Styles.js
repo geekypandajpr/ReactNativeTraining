@@ -40,14 +40,14 @@ export default EStyleSheet.create({
         width: 70,
         borderRadius: 4,
         borderColor: 'gray',
-        borderWidth: 0.8,
+        borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
     jobText: {
-        color: colors.HEADER_COLOR,
+        color: colors.HOMESCREEN.SIMCARD_COLOR,
         fontSize: '0.8rem',
-        padding: 3
+        padding: 2
     },
     sub_text: {
         color: '#000',

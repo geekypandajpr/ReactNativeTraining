@@ -26,11 +26,17 @@ export default class Barchart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            devicebool: true,
-            simsbool: false,
-            jobsbool: false
+            radios: [true, false, false]
         }
+        this.onRadioPress = this.onRadioPress.bind(this);
     }
+
+    onRadioPress(key) {
+        const radios = [false, false, false];
+        radios[key] = true;
+        this.setState({ radios: radios });
+    }
+
     render() {
 
         return (
@@ -56,32 +62,23 @@ export default class Barchart extends React.Component {
                 </View>
                 <View style={{ flex: 2.5, padding: 5 }}>
                     <View style={styles.radio_view}>
-                        <Radio selected={this.state.devicebool}  
-                        onPress={() => {
-                          this.setState({
-                            devicebool : !this.state.devicebool
-                          })
-                        }}
+                        <Radio selected={this.state.radios[0]}
+                            selectedColor={colors.HOMESCREEN.DEVICECARD_COLOR}
+                            onPress={()=>this.onRadioPress(0)}
                         />
                         <Text style={styles.radio_text}>Devices</Text>
                     </View>
                     <View style={styles.radio_view}>
-                        <Radio selected={this.state.simsbool} 
-                        onPress={() => {
-                            this.setState({
-                                simsbool : !this.state.simsbool
-                            })
-                          }}
+                        <Radio selected={this.state.radios[1]}
+                            selectedColor={colors.HOMESCREEN.SIMCARD_COLOR}
+                            onPress={()=>this.onRadioPress(1)}
                         />
                         <Text style={styles.radio_text}>Sims</Text>
                     </View>
                     <View style={styles.radio_view}>
-                        <Radio selected={this.state.jobsbool}
-                        onPress={() => {
-                            this.setState({
-                                jobsbool : !this.state.jobsbool
-                            })
-                          }}
+                        <Radio selected={this.state.radios[2]}
+                            selectedColor={colors.HOMESCREEN.JOBSCARD_COLOR}
+                            onPress={()=>this.onRadioPress(2)}
                         />
                         <Text style={styles.radio_text}>Jobs</Text>
                     </View>
