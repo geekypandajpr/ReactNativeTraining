@@ -2,71 +2,42 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import colors from '../../constants/colors';
 
 export default EStyleSheet.create({
-    container: {
-        flex: 1,
+    list: {
+        backgroundColor: '#fff'
     },
-    card: {
-        flex: 1,
-        marginLeft: 8,
-        marginRight: 8
+    listitem: {
+        height: 80
     },
-    inner_container: {
+    body: {
+        marginLeft:12,
+        marginRight:10,
         flex: 1,
-        margin: 8
+        height: 80
     },
-    headerview: {
-        flex: 1,
+    first_view: {
+        flexDirection: 'row' 
+    },
+    job_type_view: {
+        flex:1,
         flexDirection: 'row',
-        //backgroundColor: 'red'
+        justifyContent: 'flex-end'
     },
-    jobNumView: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
-    },
-    jobNumText: {
-        color: '#000',
-        fontWeight: '500',
-        fontSize: '1rem'
-    },
-    jobTypeView: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center'
-    },
-    jobType: {
+    job_type: {
         width: 70,
         borderRadius: 4,
-        borderColor: 'gray',
+        borderColor: colors.HOMESCREEN.SCHEDULECARD_COLOR,
         borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    jobText: {
-        color: colors.HOMESCREEN.SIMCARD_COLOR,
-        fontSize: '0.8rem',
-        padding: 2
+    job_num: {
+        fontSize: '1rem',
+        color: '#000',
+        fontWeight: '500'
     },
     sub_text: {
-        color: '#000',
         fontSize: '0.8rem',
-        paddingTop: 2,
-        paddingBottom: 2
-    },
-    sub_icon_text: {
-        color: '#000',
-        fontSize: '0.8rem',
-        paddingTop: 2,
-        paddingBottom: 2,
-        paddingLeft: 4
-    },
-    sub_view: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        flexDirection: 'row',
-        //backgroundColor: 'green'
+        color: 'gray',
+        fontWeight: '300'
     }
 });
