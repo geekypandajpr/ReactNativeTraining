@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, Card, List, ListItem, Left, Right, CheckBox, Body } from 'native-base';
-import { Foundation, FontAwesome, Ionicons } from '@expo/vector-icons';
+import { TouchableNativeFeedback } from 'react-native';
+import { View, Text, List, ListItem, CheckBox, Body } from 'native-base';
 import styles from './Styles';
 import colors from '../../constants/colors';
 
@@ -8,6 +8,7 @@ export default class JobsComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isLoading: true, checkbox: false }
+        this.modalRef = React.createRef();
     }
 
     async componentWillMount() {
@@ -31,20 +32,24 @@ export default class JobsComponent extends React.Component {
                     />
 
                     <Body style={styles.body}>
-                        <View style={styles.first_view}>
-                            <View style={{flex:1}}>
-                                <Text style={styles.job_num}>{jobDatas.jobNumber}</Text>
-                            </View>
-                            <View style={styles.job_type_view}>
-                                <View style={styles.job_type}>
-                                    <Text style={styles.sub_text}>{jobDatas.jobType}</Text>
+                        <TouchableNativeFeedback onPress={this.props.viewDetails}>
+                            <View>
+                                <View style={styles.first_view}>
+                                    <View style={{flex:1}}>
+                                        <Text style={styles.job_num}>{jobDatas.jobNumber}</Text>
+                                    </View>
+                                    <View style={styles.job_type_view}>
+                                        <View style={styles.job_type}>
+                                            <Text style={styles.sub_text}>{jobDatas.jobType}</Text>
+                                        </View>
+                                    </View>
+                                </View>
+                                <View>
+                                    <Text style={styles.sub_text}> {jobDatas.scheduleDate} </Text>
+                                    <Text style={styles.sub_text}> {jobDatas.location} </Text>
                                 </View>
                             </View>
-                        </View>
-                        <View>
-                            <Text style={styles.sub_text}> {jobDatas.scheduleDate} </Text>
-                            <Text style={styles.sub_text}> {jobDatas.location} </Text>
-                        </View>
+                        </TouchableNativeFeedback>
                     </Body>
 
                 </ListItem>

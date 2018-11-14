@@ -25,7 +25,7 @@ export default EStyleSheet.create({
     job_type: {
         width: 70,
         borderRadius: 4,
-        borderColor: colors.HOMESCREEN.SCHEDULECARD_COLOR,
+        borderColor: colors.HOMESCREEN.SIMCARD_COLOR,
         borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center'
