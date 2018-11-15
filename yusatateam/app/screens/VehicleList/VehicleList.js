@@ -1,107 +1,136 @@
 import React from 'react';
-import { View, ScrollView, FlatList, Button, TouchableOpacity } from 'react-native';
-import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
+import {
+    View,
+    FlatList,
+    TouchableHighlight,
+    Dimensions,
+    TouchableWithoutFeedback
+} from 'react-native';
+import { Card, Button, Text } from 'native-base';
 import styles from './styles';
-import { SearchBar, Toolbar } from '../../components';
-import {VehicleDetails} from './VehicleDetails/VehicleDetails'
+import { AppLoading } from 'expo';
+import { Toolbar } from '../../components';
+import { VehicleDetails } from './VehicleDetails/VehicleDetails';
+import SimData from '../../assets/JSONData/SimData';
+import { Ionicons} from '@expo/vector-icons';
+
 export default class VehicleList extends React.Component {
     constructor() {
         super();
         this.state = {
-            data: [
-                {
-                    ORDER: 'EVKGLI',
-                    ICCID: 'ICCID1',
-                    MSIDN: 'MSIDN1',
-                    Provider: 'Tata Docomo',
-                    Mobile: '09085-53379',
-                    status: 'Activate'
-                },
-                {
-                    ORDER: 'JSCKBK',
-                    ICCID: 'ICCID2',
-                    MSIDN: 'MSIDN2',
-                    Provider: 'AIRTEL',
-                    Mobile: '09085-45090',
-                    status: 'Deactivate'
-                },
-                {
-                    ORDER: 'UYGEYUJA',
-                    ICCID: 'ICCID3',
-                    MSIDN: 'MSIDN3',
-                    Provider: 'AIRCEL',
-                    Mobile: '09085-65879',
-                    status: 'Activate'
-                },
-                {
-                    ORDER: 'HAVCMSV',
-                    ICCID: 'ICCID4',
-                    MSIDN: 'MSIDN4',
-                    Provider: 'IDEA',
-                    Mobile: '09085-53379',
-                    status: 'Deactivate'
-                },
-
-            ],
-            items: [],
-            list: '',
-            status: true
-        }
-        this.arrayholder = [];
-    };
-    componentDidMount() {
-        this.arrayholder = this.state.data;
+            isLoading: true,
+        };
+        this.modalRef = React.createRef();
     }
-    SearchFilterFunction(text) {
 
-        const newData = this.arrayholder.filter(function (item) {
-            const itemData = item.MSIDN.toUpperCase()
-            const textData = text.toUpperCase()
-            return itemData.indexOf(textData) > -1
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
-        this.setState({
-            data: newData,
-            text: text
-        }
-        )
+        this.setState({ isLoading: false })
     }
 
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
-            <View style={styles.container}>
-                <Toolbar title='Association'
-                    leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
-                    setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}/>
-                <SearchBar placeholder='Search by vehicle, sim, device'
-                    onChangeText={(text) => this.SearchFilterFunction(text)} />
-                <FlatList
-                    data={this.state.data}
-                    keyExtractor={(item, index) => item.MSIDN.toString()}
-                    renderItem={
-                        ({ item, index }) =>
-                            <View style={styles.viewList}>
-                                <List elevation={5} style={styles.list}>
-                                    <View avatar noBorder >
-                                        <View>
-                                            <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)}>
-                                                <View style={{ flexDirection: 'row' }}>
-                                                    <Text style={styles.text}>{item.ORDER} </Text>
-                                                    <Text style={{ flex: 2, padding: 5, color: '#CD5C5C' }}>{item.status}</Text>
+            this.state.isLoading === true ? <AppLoading /> :
+                <View style={styles.container}>
+
+                    <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
+
+                    <View style={styles.viewStyle}>
+                        <FlatList
+                            data={SimData}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={({ item, index }) =>
+                                <TouchableWithoutFeedback
+                                    onPress={() => {
+                                        this.refs.modal.setModalVisible(true, item)
+                                    }}>
+                                    <Card style={styles.mainCard}>
+
+                                        {/* <View style={styles.First_View}>
+                                            <TouchableHighlight
+                                                style={{
+                                                    // borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+                                                    // width: Dimensions.get('window').width * 0.13,
+                                                    // height: Dimensions.get('window').width * 0.13,
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                    height: 54,
+                                                    width: 54,
+                                                    borderRadius: 27,
+                                                    borderWidth: 1,
+                                                    borderColor: 'gray'
+
+                                                }}
+                                            >
+                                                <MaterialCommunityIcons name="car-pickup" size={45} color="#1f667e" />
+                                            </TouchableHighlight>
+                                        </View> */}
+
+                                        <View style={styles.Second_View}>
+
+                                            <View style={styles.Margin_Row}>
+                                                <View style={styles.Level_Second}>
+                                                    <Text style={styles.Header_Style}>{item.ORDER}</Text>
                                                 </View>
-                                                <View style={{paddingBottom :5}}>
-                                                <Text style={styles.text1}>{item.MSIDN}</Text>
-                                                <Text note >{item.ICCID}    {item.Mobile}     {item.Provider}</Text></View>
-                                            </TouchableOpacity>
+
+                                                <View style={[styles.Status_Button, { backgroundColor: item.color }]} >
+                                                    <Text style={styles.Status_Style}>{item.status}</Text>
+                                                </View>
+                                            </View>
+
+                                            <View style={styles.Level_Row}>
+                                                <View style={styles.Level_Head}>
+                                                    <Text style={styles.Text_Style}>MSIDN</Text>
+                                                </View>
+                                                <View style={{ flex: 0.1 }}>
+                                                    <Text style={styles.Text_Style}> : </Text>
+                                                </View>
+                                                <View style={styles.Level_Style}>
+                                                    <Text style={styles.View_Style}>{item.MSIDN}</Text>
+                                                </View>
+                                            </View>
+
+                                            <View style={styles.Level_Row}>
+                                                <View style={styles.Level_Head}>
+                                                    <Text style={styles.Text_Style}>ICCID</Text>
+                                                </View>
+                                                <View style={{ flex: 0.1 }}>
+                                                    <Text style={styles.Text_Style}> : </Text>
+                                                </View>
+                                                <View style={styles.Level_Style}>
+                                                    <Text style={styles.View_Style}>{item.ICCID}</Text>
+                                                </View>
+                                            </View>
+
+                                            <View style={[styles.Level_Row, { marginBottom: 5 }]}>
+                                                <View style={{ flex: 0.1, justifyContent: 'center' }}>
+                                                    <Ionicons name='ios-call' size={27} color='#5cb85c' />
+                                                </View>
+                                                <View style={styles.Level_Second}>
+                                                    <Text style={styles.Mobile_Style}>{item.Mobile}</Text>
+                                                </View>
+                                                <View style={styles.Provider_View} >
+                                                    <Text style={styles.providerStyle}>{item.Provider}</Text>
+                                                </View>
+                                            </View>
+
                                         </View>
-                                    </View>
-                                </List>
-                            </View>} >
-                </FlatList>
-                <VehicleDetails ref='modal' />
-            </View>
-        )
+
+                                    </Card>
+                                </TouchableWithoutFeedback>
+                            }></FlatList>
+                    </View>
+                    <VehicleDetails ref='modal' />
+                </View>
+        );
     }
+
 }
 export { VehicleList }

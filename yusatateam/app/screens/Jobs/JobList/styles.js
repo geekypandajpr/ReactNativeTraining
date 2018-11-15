@@ -2,13 +2,14 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'lightgrey'
+        backgroundColor: 'white'
     },
 
     text: {
-        fontSize: 25,
+        fontSize: 22,
         flex: 7,
-        color: '#20B2AA',
+        fontWeight: 'bold',
+        color: '#000000',
         paddingLeft: 15,
         paddingTop : 2
     },
@@ -30,8 +31,8 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     list: {
-        backgroundColor: 'white',
-        borderRadius: 5,
+        
+       
         margin: 5,
         marginBottom: 0
     },

@@ -1,41 +1,125 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+
 export default EStyleSheet.create({
-    container: {
+    container:
+    {
+        flex: 1,
+        backgroundColor: 'white',
+    },
+    viewStyle:
+    {
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 5,
         flex: 1,
     },
-    flatView: {
-        flex: 2,
+    mainCard:
+    {
+        flex: 1,
+        flexDirection: 'row',
     },
-    text: {
-        fontSize: 25,
-        flex: 6,
-        color: '#4682B4',
-        // textShadowColor: '#D3D3D3',
-        // textShadowOffset: { width: 1, height: 4 },
-        // textShadowRadius: 5
-    },
-    text1: {
-        fontSize: 18,
-        // color : '#20B2AA', 
-    },
-    viewList: {
-        borderRadius: 1,
-
-    },
-    search: {
-        //flex :0.15,
-        height: 60,
-        backgroundColor: 'gray',
+    First_View:
+    {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    list: {
-        backgroundColor: 'white',
+    Second_View:
+    {
+        flex: 4,
+        margin : 10
+    },
+    Level_Second:
+    {
+        flex: 1,
+        justifyContent: 'flex-start',
+       
+    },
+    Level_Row:
+    {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    Margin_Row:
+    {
+        flex: 1,
+        flexDirection: 'row',
+        marginTop: 5
+    },
+    Level_Head:
+    {
+        flex: 0.6,
+        justifyContent: 'center'
+    },
+    Header_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1.5rem',
+        fontWeight: '500',
+        color: '#000'
+    },
+    Text_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1.2rem',
+        color: '#000'
+    },
+    View_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1rem',
+        color: 'gray',
+        marginLeft: 10
+    },
+    Mobile_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1.1rem',
+        color: 'gray',
+    },
+    providerStyle:
+    {
+        fontStyle: 'normal',
+        fontSize: '1rem',
+        fontWeight: 'bold',
+        color: '#1f667e',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    Provider_View:
+    {
         borderRadius: 5,
-        margin: 15,
-        marginBottom: 0,
-        borderStyle: 'dotted',
-        paddingLeft: 15,
-
+        borderWidth: 1,
+        borderColor: 'gray',
+        width: 70,
+        justifyContent: 'center',
+        alignItems: 'center',
+       // marginRight: 10
+    },
+    Status_Button:
+    {
+        borderRadius: 15,
+        borderWidth: 3,
+        width: 100,
+        borderColor: 'white',
+       // marginRight: 8,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    Status_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1rem',
+        fontWeight: 'bold',
+        color: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    Level_Style:
+    {
+        flex: 2,
+        justifyContent: 'center'
     }
+
+
 })

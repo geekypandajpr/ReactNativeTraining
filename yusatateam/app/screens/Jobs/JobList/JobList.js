@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity, } from 'react-native';
-import { List, Right, Text, Button, Icon } from 'native-base';
+import { List, Right, Text, Button, Icon, Card } from 'native-base';
 import styles from './styles';
 import JobDetails from '../JobDetails/JobDetails';
 export default class JobList extends React.Component {
@@ -108,7 +108,7 @@ export default class JobList extends React.Component {
                             {this.state.status == item.jobStatus ?
                                 <List elevation={5} style={styles.list}>
                                     <View avatar noBorder >
-                                        <View>
+                                        <Card>
                                             <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)}>
                                                 <View style={styles.listView}>
                                                     <Text style={styles.text}>{item.jobNumber}</Text>
@@ -137,7 +137,7 @@ export default class JobList extends React.Component {
                                                     </Right>
                                                 </View>
                                             </TouchableOpacity>
-                                        </View>
+                                        </Card>
 
                                     </View>
                                 </List>
