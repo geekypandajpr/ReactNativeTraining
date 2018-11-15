@@ -3,7 +3,6 @@ import {
     View,
     FlatList,
     TouchableHighlight,
-    Dimensions,
     TouchableWithoutFeedback
 } from 'react-native';
 import { Card, Button, Text } from 'native-base';

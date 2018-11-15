@@ -13,7 +13,6 @@ const datas = [
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
         location: '84/122 sector 8 pratap nagar, jaipur',
-        color: colors.HOMESCREEN.SIMCARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -22,7 +21,6 @@ const datas = [
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
         location: '84/122 sector 8 pratap nagar, jaipur',
-        color: colors.HOMESCREEN.DEVICECARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -31,7 +29,6 @@ const datas = [
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
         location: '84/122 sector 8 pratap nagar, jaipur',
-        color: colors.HOMESCREEN.JOBSCARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -40,7 +37,6 @@ const datas = [
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
         location: '84/122 sector 8 pratap nagar, jaipur',
-        color: colors.HOMESCREEN.SCHEDULECARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -49,7 +45,6 @@ const datas = [
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
         location: '84/122 sector 8 pratap nagar, jaipur',
-        color: colors.HOMESCREEN.SIMCARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -58,7 +53,6 @@ const datas = [
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
         location: '84/122 sector 8 pratap nagar, jaipur',
-        color: colors.HOMESCREEN.DEVICECARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -67,7 +61,6 @@ const datas = [
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
         location: '84/122 sector 8 pratap nagar, jaipur',
-        color: colors.HOMESCREEN.JOBSCARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -76,7 +69,6 @@ const datas = [
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
         location: '84/122 sector 8 pratap nagar, jaipur',
-        color: colors.HOMESCREEN.SCHEDULECARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -85,7 +77,6 @@ const datas = [
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
         location: '84/122 sector 8 pratap nagar, jaipur',
-        color: colors.HOMESCREEN.SIMCARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -94,7 +85,6 @@ const datas = [
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
         location: '84/122 sector 8 pratap nagar, jaipur',
-        color: colors.HOMESCREEN.DEVICECARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -103,7 +93,6 @@ const datas = [
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
         location: '84/122 sector 8 pratap nagar, jaipur',
-        color: colors.HOMESCREEN.JOBSCARD_COLOR
     },
     {
         jobNumber: 'JOBS-05NOV2018',
@@ -112,7 +101,6 @@ const datas = [
         vehicleNumber: 'JP01-4522',
         scheduleDate: '05 Nov 2018 20:50',
         location: '84/122 sector 8 pratap nagar, jaipur',
-        color: colors.HOMESCREEN.SCHEDULECARD_COLOR
     }
 ]
 
