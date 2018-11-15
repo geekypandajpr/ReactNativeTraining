@@ -76,7 +76,6 @@ export default class JobList extends React.Component {
         this.arrayholder = this.state.data;
     }
     SearchFilterFunction(text) {
-
         const newData = this.arrayholder.filter(function (item) {
             const itemData = item.jobNumber.toUpperCase()
             const textData = text.toUpperCase()
@@ -87,7 +86,6 @@ export default class JobList extends React.Component {
             text: text
         }
         )
-
     };
     changeTabStatus(tabStatus) {
         this.setState({ status: tabStatus },
@@ -95,10 +93,8 @@ export default class JobList extends React.Component {
                 console.log(this.state.status)
             });
     }
-
     render() {
         return (
-
             <View style={styles.container}>
                 <FlatList
                     data={this.state.data}
@@ -106,27 +102,22 @@ export default class JobList extends React.Component {
                     renderItem={({ item, index }) =>
                         <View style={styles.viewList}>
                             {this.state.status == item.jobStatus ?
-                                <List elevation={5} style={styles.list}>
-                                    <View avatar noBorder >
-                                        <Card>
-                                            <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)}>
+                                        <Card  style={styles.mainCard}> 
+                                            <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)} style={{margin : 10}}>
                                                 <View style={styles.listView}>
                                                     <Text style={styles.text}>{item.jobNumber}</Text>
                                                     <Text style={styles.text3}>{item.scheduleDate}</Text>
                                                 </View>
-                                                <View style={styles.listView}>
-                                                
+                                                <View style={styles.listView}>                                                
                                                     <Text  style={styles.sublistView}>{item.contactPerson}</Text>
                                                     <Text style={styles.text2}>{item.jobStatus}</Text>
                                                 </View>
-                                                <View style={styles.listView}>
-                                                    
+                                                <View style={styles.listView}>                                                  
                                                     <View style={styles.sublistView}>
                                                         <Text>{item.contactNumber}</Text>
                                                     </View>
                                                 </View>
-                                                <View style={styles.listView}>
-                                            
+                                                <View style={styles.listView}>                                           
                                                     <View style={styles.sublistView}>
                                                         <Text>{item.companyName}</Text>
                                                     </View>
@@ -138,9 +129,6 @@ export default class JobList extends React.Component {
                                                 </View>
                                             </TouchableOpacity>
                                         </Card>
-
-                                    </View>
-                                </List>
                                 : null}
                         </View>
                     } >

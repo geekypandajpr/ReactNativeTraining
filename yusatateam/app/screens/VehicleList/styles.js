@@ -1,5 +1,4 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-
 export default EStyleSheet.create({
     container:
     {
@@ -8,15 +7,14 @@ export default EStyleSheet.create({
     },
     viewStyle:
     {
-        paddingLeft: 5,
-        paddingRight: 5,
-        paddingTop: 5,
         flex: 1,
     },
     mainCard:
     {
         flex: 1,
         flexDirection: 'row',
+        marginLeft :6,
+        marginRight :6
     },
     First_View:
     {
@@ -32,8 +30,7 @@ export default EStyleSheet.create({
     Level_Second:
     {
         flex: 1,
-        justifyContent: 'flex-start',
-       
+        justifyContent: 'center', 
     },
     Level_Row:
     {
@@ -44,7 +41,7 @@ export default EStyleSheet.create({
     {
         flex: 1,
         flexDirection: 'row',
-        marginTop: 5
+        //marginTop: 5
     },
     Level_Head:
     {
@@ -54,33 +51,33 @@ export default EStyleSheet.create({
     Header_Style:
     {
         fontStyle: 'normal',
-        fontSize: '1.5rem',
+        fontSize: '1rem',
         fontWeight: '500',
         color: '#000'
     },
     Text_Style:
     {
         fontStyle: 'normal',
-        fontSize: '1.2rem',
+        fontSize: '0.9rem',
         color: '#000'
     },
     View_Style:
     {
         fontStyle: 'normal',
-        fontSize: '1rem',
+        fontSize: '0.9rem',
         color: 'gray',
         marginLeft: 10
     },
     Mobile_Style:
     {
         fontStyle: 'normal',
-        fontSize: '1.1rem',
+        fontSize: '0.9rem',
         color: 'gray',
     },
     providerStyle:
     {
         fontStyle: 'normal',
-        fontSize: '1rem',
+        fontSize: '0.9rem',
         fontWeight: 'bold',
         color: '#1f667e',
         justifyContent: 'center',
@@ -109,17 +106,16 @@ export default EStyleSheet.create({
     Status_Style:
     {
         fontStyle: 'normal',
-        fontSize: '1rem',
+        fontSize: '0.9rem',
         fontWeight: 'bold',
         color: 'white',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding : 2
     },
     Level_Style:
     {
         flex: 2,
         justifyContent: 'center'
     }
-
-
 })

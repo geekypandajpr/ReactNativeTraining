@@ -4,21 +4,26 @@ export default EStyleSheet.create({
         flex: 1,
         backgroundColor: 'white'
     },
-
+    mainCard:
+    {
+        flex: 1,
+        marginLeft :6,
+        marginRight :6
+    },
     text: {
-        fontSize: 22,
+        fontSize: '1rem',
         flex: 7,
         fontWeight: 'bold',
         color: '#000000',
-        paddingLeft: 15,
-        paddingTop : 2
     },
     text1: {
-        fontSize: 22,
+        fontSize: '0.9rem',
         // color : '#20B2AA', 
     },
     text3 : {
-        alignItems: 'flex-end', justifyContent: 'flex-end', flex: 5,paddingTop :10
+        alignItems: 'flex-end', 
+        justifyContent: 'flex-end', 
+
     },
     viewList: {
         flex: 1,
@@ -31,8 +36,6 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     list: {
-        
-       
         margin: 5,
         marginBottom: 0
     },
@@ -42,17 +45,13 @@ export default EStyleSheet.create({
     },
     sublistView : {
         flex: 8, 
-        paddingLeft: 15
     },
     subSublist : {
-        paddingLeft: 8 
     },
     button : {
         height: 25,
         width: 80,
-        margin: 10,
-        marginTop : 0,
-        marginBottom : 5,
+       // margin: 10,
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -66,7 +65,9 @@ export default EStyleSheet.create({
         fontSize: 20, color: '#FF7F50'
     },
     text2 : {
-        color: '#CD853F', alignItems: 'flex-end', justifyContent: 'flex-end', flex: 3
+        color: '#CD853F', 
+        alignItems: 'flex-end',
+         justifyContent: 'flex-end'
     },
     
 })

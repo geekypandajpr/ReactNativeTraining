@@ -10,9 +10,8 @@ import styles from './styles';
 import { AppLoading } from 'expo';
 import { Toolbar } from '../../components';
 import { SimDetails } from './SimDetails';
-import SimData from '../../assets/JSONData/SimData'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
-
+import SimData from '../../assets/JSONData/SimData';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 export default class Sim extends React.Component {
     constructor() {
         super();
@@ -21,7 +20,6 @@ export default class Sim extends React.Component {
       };
         this.modalRef = React.createRef();
     }
-
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -30,17 +28,14 @@ export default class Sim extends React.Component {
         })
         this.setState({ isLoading: false })
     }
-
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-
                     <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
-
                     <View style={styles.viewStyle}>
                         <FlatList
                             data={SimData}
@@ -51,7 +46,6 @@ export default class Sim extends React.Component {
                                         this.modalRef.current.setModalVisible(true)
                                     }}>
                                 <Card style={styles.mainCard}>
-
                                         <View style={styles.First_View}>
                                             <TouchableHighlight
                                                 style={{
@@ -65,25 +59,20 @@ export default class Sim extends React.Component {
                                                     borderRadius: 27,
                                                     borderWidth: 1,
                                                     borderColor: 'gray'
-
                                                 }}
                                             >
                                                 <MaterialCommunityIcons name="sim" size={45} color="#1f667e" />
                                             </TouchableHighlight>
                                         </View>
-
                                         <View style={styles.Second_View}>
-
                                             <View style={styles.Margin_Row}>
                                                 <View style={styles.Level_Second}>
                                                     <Text style={styles.Header_Style}>{item.ORDER}</Text>
                                                 </View>
-
                                                 <View style={[styles.Status_Button, { backgroundColor: item.color }]} >
                                                     <Text style={styles.Status_Style}>{item.status}</Text>
                                                 </View>
                                             </View>
-
                                             <View style={styles.Level_Row}>
                                                 <View style={styles.Level_Head}>
                                                     <Text style={styles.Text_Style}>MSIDN</Text>
@@ -95,7 +84,6 @@ export default class Sim extends React.Component {
                                                     <Text style={styles.View_Style}>{item.MSIDN}</Text>
                                                 </View>
                                             </View>
-
                                             <View style={styles.Level_Row}>
                                                 <View style={styles.Level_Head}>
                                                     <Text style={styles.Text_Style}>ICCID</Text>
@@ -107,7 +95,6 @@ export default class Sim extends React.Component {
                                                     <Text style={styles.View_Style}>{item.ICCID}</Text>
                                                 </View>
                                             </View>
-
                                             <View style={[styles.Level_Row, { marginBottom: 5 }]}>
                                                 <View style={styles.Level_Second}>
                                                     <Text style={styles.Mobile_Style}>{item.Mobile}</Text>
@@ -116,9 +103,7 @@ export default class Sim extends React.Component {
                                                     <Text style={styles.providerStyle}>{item.Provider}</Text>
                                                 </View>
                                             </View>
-
                                         </View>
-
                                     </Card>
                                 </TouchableWithoutFeedback>
                             }></FlatList>
@@ -127,6 +112,5 @@ export default class Sim extends React.Component {
                 </View>
         );
     }
-
 }
 export { Sim }

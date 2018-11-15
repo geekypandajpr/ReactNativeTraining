@@ -13,7 +13,6 @@ export default class Jobs extends React.Component {
         },
             this.status = ['completed', 'Deactivate', 'completed', 'Deactivate', 'completed', 'Deactivate']
     }
-
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -25,9 +24,7 @@ export default class Jobs extends React.Component {
     getStatus(i, ref, from) {
         //console.log(i);
         this.refs.modal.changeTabStatus(this.status[i])
-
     }
-
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
@@ -56,5 +53,4 @@ export default class Jobs extends React.Component {
         );
     }
 }
-
 export { Jobs }
