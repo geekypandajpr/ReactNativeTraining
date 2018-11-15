@@ -7,26 +7,23 @@ import { Text, Icon, Radio } from 'native-base';
 import styles from './Styles';
 import colors from '../../constants/colors';
 import PureChart from 'react-native-pure-chart';
-
-
-const barData = [
-    {
-        seriesName: 'Total Devices',
-        data: [
-            { x: 'Total', y: 300 },
-            { x: 'Ordered', y: 120 },
-            { x: 'Installed', y: 150 },
-            { x: 'Delivered', y: 100 }
-        ],
-        color: colors.HOMESCREEN.DEVICECARD_COLOR
-    }
-]
-
 export default class Barchart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            radios: [true, false, false]
+            radios: [true, false, false],
+            barData : [
+                {
+                    seriesName: 'Total Devices',
+                    data: [
+                        { x: 'Total', y: 300 },
+                        { x: 'Ordered', y: 120 },
+                        { x: 'Installed', y: 150 },
+                        { x: 'Delivered', y: 100 }
+                    ],
+                    color: colors.HOMESCREEN.DEVICECARD_COLOR
+                }
+            ]
         }
         this.onRadioPress = this.onRadioPress.bind(this);
     }
@@ -34,7 +31,54 @@ export default class Barchart extends React.Component {
     onRadioPress(key) {
         const radios = [false, false, false];
         radios[key] = true;
-        this.setState({ radios: radios });
+        if(key=='0')
+        {
+            const barValues = [
+                {
+                    seriesName: 'Total Devices',
+                    data: [
+                        { x: 'Total', y: 300 },
+                        { x: 'Ordered', y: 120 },
+                        { x: 'Installed', y: 150 },
+                        { x: 'Delivered', y: 100 }
+                    ],
+                    color: colors.HOMESCREEN.DEVICECARD_COLOR
+                }
+            ]
+            this.setState({ radios: radios,barData : barValues });
+        }
+        if(key=='1')
+        {
+            const barValues = [
+                {
+                    seriesName: 'Total Devices',
+                    data: [
+                        { x: 'Total', y: 500 },
+                        { x: 'Ordered', y: 200 },
+                        { x: 'Installed', y: 150 },
+                        { x: 'Delivered', y: 150 }
+                    ],
+                    color: colors.HOMESCREEN.SIMCARD_COLOR
+                }
+            ]
+            this.setState({ radios: radios,barData : barValues });
+        }
+        if(key=='2')
+        {
+            const barValues = [
+                {
+                    seriesName: 'Total Devices',
+                    data: [
+                        { x: 'Total', y: 400 },
+                        { x: 'Ordered', y: 120 },
+                        { x: 'Installed', y: 150 },
+                        { x: 'Delivered', y: 130 }
+                    ],
+                    color: colors.HOMESCREEN.JOBSCARD_COLOR
+                }
+            ]
+            this.setState({ radios: radios,barData : barValues });
+        } 
     }
 
     render() {
@@ -49,7 +93,7 @@ export default class Barchart extends React.Component {
                         defaultColumnMargin={30}
                         numberOfYAxisGuideLine={5}
                         height={Dimensions.get('window').height * 0.19}
-                        data={barData}
+                        data={this.state.barData}
                         showEvenNumberXaxisLabel={false}
                         showOddNumberXaxisLabel={false}
                         //backgroundColor = 'red'
