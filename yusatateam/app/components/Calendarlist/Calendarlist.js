@@ -29,8 +29,8 @@ export default class Calendarlist extends React.Component {
             <View style={styles.calendar_view}>
                 <CalendarList
                     markedDates = {{
-                        [this.props.startDate]: {selected: true, selectedColor: 'green'},
-                        [this.props.endDate]: {selected: true, selectedColor: 'red'}
+                        [this.props.startDate]: {selected: true, selectedColor: '#5cb85c'},
+                        [this.props.endDate]: {selected: true, selectedColor: '#d9534f'}
                     }}
                     current={moment(new Date()).format('YYYY-MM-DD')}
                     pastScrollRange={100}

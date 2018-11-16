@@ -71,6 +71,7 @@ export default class ForgotPassword extends React.Component {
                     <View style={styles.button_view}>
                         <Button disabled={this.state.isButtonEnabled}
                             style={styles.button}
+                            //style={[styles.button,{backgroundColor: this.state.isButtonEnabled ? '#b5b5b5' : colors.HEADER_COLOR}]}
                             onPress={this.doSubmit} >
                             <Text>Submit</Text>
                         </Button>
