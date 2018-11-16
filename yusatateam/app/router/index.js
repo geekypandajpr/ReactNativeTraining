@@ -11,7 +11,8 @@ import {
     Dashboard,
     Technicians,
     ForgotPassword,
-    OpenJobs
+    OpenJobs,
+    Calendars
 } from '../screens';
 
 const RouteConfigs = {
@@ -83,6 +84,12 @@ const RouteConfigs = {
     },
     OpenJobs: {
         screen: OpenJobs,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Calendars: {
+        screen: Calendars,
         navigationOptions: {
             header: null
         }
