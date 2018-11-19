@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { AppLoading } from 'expo';
 import {
     View,
     Image,
@@ -6,8 +8,6 @@ import {
     ScrollView,
     TouchableWithoutFeedback
 } from 'react-native';
-import styles from './Styles';
-import { AppLoading } from 'expo';
 import {
     CheckBox,
     Button,
@@ -16,9 +16,10 @@ import {
 } from 'native-base';
 import { InputWithIcon, Statusbar, StatefulButton } from '../../components';
 import *as constant from '../../constants/constant';
-import { functions } from '../../constants/commonFunction';
+import { userActions } from '../../redux/actions/index';
+import styles from './Styles';
 
-export default class LogIn extends React.Component {
+export class LogIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,34 +40,13 @@ export default class LogIn extends React.Component {
         this.setState({ isLoading: false });
     }
 
-    componentDidMount() {
-        functions.getCredentials(constant.USERNAME)
-        .then((res) => {
-            if(res === null) { this.setState({ username: ''}) }
-            else { this.setState({ username: res }) }
-        })
-        .catch((e) => console.log('Error in getting username from prefeernces'))
-
-        functions.getCredentials(constant.PASSWORD)
-        .then((res) => {
-            if(res === null) { this.setState({ password: ''}) }
-            else { this.setState({ password: res }) }
-        })
-        .catch((e) => console.log('Error in getting username from prefeernces'))
-    }
-
     _focusNextField(id) { this[id]._root.focus(); }
 
     _doLogin() {
         if (this._checkRequiredFields()) {
-            if(this.state.remember) {
-                functions.saveCredentials(constant.USERNAME, this.state.username);
-                functions.saveCredentials(constant.PASSWORD, this.state.password);
-            } else {
-                functions.clearCredentials(constant.USERNAME);
-                functions.clearCredentials(constant.PASSWORD);
-            }
-            this.props.navigation.navigate('Dashboard');
+
+            this.props.loginRequest(this.state)
+            
         } else {
             Toast.show({
                 position: 'bottom',
@@ -165,7 +145,19 @@ export default class LogIn extends React.Component {
     }
 }
 
-export { LogIn }
+function mapStateToProps(state) {
+    return {
+        
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        loginRequest: (loginCredentials) => dispatch(userActions.loginRequest(loginCredentials))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(LogIn);
 
 
 
