@@ -1,80 +1,96 @@
 import React from 'react'
-import { View,
-    Text,
-    Dimensions 
-} from 'react-native';
-import PureChart from 'react-native-pure-chart';
-import { StackedBarChart, XAxis } from 'react-native-svg-charts';
-
-
-const data1 = [ 7, 30, 10, 17, 14, 17,22 ];
-const dataWeek = [ 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat','Sun' ]
+import { View, Text, Dimensions } from 'react-native';
+import * as shape from 'd3-shape'
+import * as scale from 'd3-scale'
+import { StackedBarChart, XAxis, YAxis } from 'react-native-svg-charts';
 
 export default class StackedBar extends React.Component{
     constructor(props){
         super(props);
         this.state={
              data : [
-                {   Completed: 10,
+                {   
+                    label: 'Mon',
+                    Completed: 10,
                     Pending : 5,
                     Scheduled: 4,
                 },
-                {   Completed: 12,
+                {
+                    label: 'Tues',
+                    Completed: 12,
                     Pending: 13,
                     Scheduled: 3,
                 },
-                {   Completed: 10,
+                {   
+                    label: 'Wed',
+                    Completed: 10,
                     Pending: 3,
                     Scheduled: 9,
                 },
-                {   Completed: 9,
+                {   
+                    label: 'Thurs',
+                    Completed: 9,
                     Pending: 4,
                     Scheduled: 5,
                 },
-                {   Completed: 12,
+                {   
+                    label: 'Fri',
+                    Completed: 12,
                     Pending: 6,
                     Scheduled: 4,
                 },
-                {   Completed: 11,
+                {   
+                    label: 'Sat',
+                    Completed: 11,
                     Pending: 5,
                     Scheduled: 6,
                 },
-                {   Completed: 8,
+                {   
+                    label: 'Sun',
+                    Completed: 8,
                     Pending: 4,
                     Scheduled: 6,
                 },
             ],
-             colors : [ '#7b4173', '#a55194', '#ce6dbd' ],
-             keys  :[ 'Completed', 'Pending', 'Scheduled' ]
+            colors : [ '#007aff', '#d9534f', '#5cb85c' ],
+            keys  :[ 'Completed', 'Pending', 'Scheduled' ]
         }
     
 }
     render(){
         return(
-            <View>
-            <StackedBarChart
-            style={{ height: 200,width:'100%' }}
-            keys={this.state.keys}
-            colors={this.state.colors}
-            data={this.state.data}
-            showGrid={true}
-            numberOfTicks={10}
-            spacingInner={0.1}
-            spacingOuter={0.1}
-            contentInset={{ top: 0, bottom: 0 , left: 0, right: 0}}
-            // valueAccessor ={(index,key)=>{
-            //     return(
-            //         <Text style={{ textAlign:'center'}}>{index}</Text>
-            //     )
-            // }}
-               
-            />
-            <XAxis
-                style={{ height: 40, paddingTop:10,backgroundColor: 'red' }}
-                data={data1}
-                formatLabel={(value, index) => dataWeek[ index ]}
-                contentInset={{ left: 10, right: 10 }}
-            />
+            <View style={{ marginTop: 20 }}>
+                <View style={{ height: 250, flexDirection: 'row' }}>
+                    <YAxis
+                        style={{ width:40 }}
+                        data={ StackedBarChart.extractDataPoints(this.state.data, this.state.keys) }
+                        contentInset={{ left: 50, right: 30}}
+                        svg={{fontSize: 8, fill: '#000'}}
+                        // scale={scale.scaleBand}
+                    />
+                    <StackedBarChart
+                        style={{ flex: 1 }}
+                        keys={this.state.keys}
+                        colors={this.state.colors}
+                        data={this.state.data}
+                        showGrid={true}
+                        // numberOfTicks={10}
+                        spacingInner={0.1}
+                        spacingOuter={0.1}
+                        contentInset={{ top: 0, bottom: 0 , left: 0, right: 0}}  
+                    />
+                </View>
+            
+                <XAxis
+                    style={{marginTop: 10, marginLeft: 40}}
+                    data={this.state.data}
+                    contentInset={{ top: 30, bottom: 30, }}
+                    yAccessor={({index}) => index}
+                    formatLabel={(value, index) => { return this.state.data[index].label}}
+                    svg={{ fontSize: 10, fill: 'black'}}
+                    // numberOfTicks = {8}
+                    scale={scale.scaleBand}
+                />
             </View>
         );
     }
