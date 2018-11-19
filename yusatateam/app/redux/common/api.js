@@ -7,12 +7,10 @@ export default class Api {
     
     static get(url) {
         return this.call(url, null, 'GET');
-
     }
 
     static post(url, params) {
         return this.call(url, params, 'POST');
-
     }
 
     static async call(route, params, methodType) {
@@ -33,7 +31,6 @@ export default class Api {
             console.log('Error in getting list');
             return error;
         })
-
     }
 
 }
