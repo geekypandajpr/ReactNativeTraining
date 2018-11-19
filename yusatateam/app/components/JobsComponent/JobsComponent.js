@@ -41,7 +41,7 @@ export default class JobsComponent extends React.Component {
                     }
 
                     <Body style={styles.body}>
-                        <TouchableWithoutFeedback onPress={this.props.viewDetails} onLongPress={this.onLongPress}>
+                        <TouchableWithoutFeedback onLongPress={this.onLongPress}>
                             <View>
                                 <View style={styles.first_view}>
                                     <View style={{flex:1}}>

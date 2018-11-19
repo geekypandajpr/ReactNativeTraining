@@ -4,7 +4,11 @@ import { View,
     Dimensions 
 } from 'react-native';
 import PureChart from 'react-native-pure-chart';
-import { StackedBarChart } from 'react-native-svg-charts';
+import { StackedBarChart, XAxis } from 'react-native-svg-charts';
+
+
+const data1 = [ 7, 30, 10, 17, 14, 17,22 ];
+const dataWeek = [ 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat','Sun' ]
 
 export default class StackedBar extends React.Component{
     constructor(props){
@@ -47,20 +51,31 @@ export default class StackedBar extends React.Component{
 }
     render(){
         return(
+            <View>
             <StackedBarChart
-            style={{ height: 200,width:'80%' }}
+            style={{ height: 200,width:'100%' }}
             keys={this.state.keys}
             colors={this.state.colors}
             data={this.state.data}
-            showGrid={false}
-            contentInset={{ top: 30, bottom: 30 }}
+            showGrid={true}
+            numberOfTicks={10}
+            spacingInner={0.1}
+            spacingOuter={0.1}
+            contentInset={{ top: 0, bottom: 0 , left: 0, right: 0}}
             // valueAccessor ={(index,key)=>{
             //     return(
             //         <Text style={{ textAlign:'center'}}>{index}</Text>
             //     )
             // }}
                
-        />
+            />
+            <XAxis
+                style={{ height: 40, paddingTop:10,backgroundColor: 'red' }}
+                data={data1}
+                formatLabel={(value, index) => dataWeek[ index ]}
+                contentInset={{ left: 10, right: 10 }}
+            />
+            </View>
         );
     }
 }
