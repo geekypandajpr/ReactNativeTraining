@@ -1,3 +1,3 @@
 export { Jobs } from './Jobs';
 export { JobDetails } from './JobDetails';
-export { JobList } from './JobList';
+export { JobCompleted,JobPending,JobReschedule,JobSchedule} from './JobTabPages';

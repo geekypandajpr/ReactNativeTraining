@@ -58,11 +58,11 @@ export default class JobSearch extends React.Component {
                             {/**Header View*/}
                             <View style={styles.header_view}>
                                 <View style={styles.service_num}>
-                                    <Text style={styles.header_text}>serviceNumber</Text>
+                                    <Text style={styles.header_text}>VOCT092015</Text>
                                 </View>
                                 <View style={styles.schedule_view}>
                                     <MaterialIcons name='schedule' size={20} color='#1766A6' />
-                                    <Text style={styles.job_text}>jobData</Text>
+                                    <Text style={styles.job_text}>10/10/2018 20:00</Text>
                                 </View>
                             </View>
                             {/**Child View*/}
@@ -71,7 +71,7 @@ export default class JobSearch extends React.Component {
                                     {/**Company Name*/}
                                     <View style={styles.main_view}>
                                         <View style={styles.first_view}>
-                                            <Text style={styles.value_text}>companyName</Text>
+                                            <Text style={styles.value_text}>Yusata Infotech</Text>
                                         </View>
                                     </View>
                                     {/**Vehicle View*/}
@@ -81,7 +81,7 @@ export default class JobSearch extends React.Component {
                                                 <MaterialCommunityIcons name='van-utility' color='#1766A6' size={24} />
                                             </View>
                                             <View style={styles.icon_text_view}>
-                                                <Text style={styles.value_text}>vehicleNumber</Text>
+                                                <Text style={styles.value_text}>RJ14-2245</Text>
                                             </View>
                                         </View>
                                     </View>
@@ -102,7 +102,7 @@ export default class JobSearch extends React.Component {
                                         </View>
                                         <View style={styles.second_view}>
                                             <View style={styles.service_type_view}>
-                                                <Text style={styles.service_type_text}>serviceType</Text>
+                                                <Text style={styles.service_type_text}>Completed</Text>
                                             </View>
                                         </View>
                                     </View>

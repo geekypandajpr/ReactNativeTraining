@@ -50,7 +50,7 @@ export default EStyleSheet.create({
     },
     button : {
         height: 25,
-        width: 80,
+        width: 100,
        // margin: 10,
         justifyContent: 'center',
         alignItems: 'center'

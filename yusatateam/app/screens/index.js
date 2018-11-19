@@ -11,4 +11,3 @@ export { Dashboard } from './Dashboard';
 export { Technicians } from './Technicians';
 export { ForgotPassword } from './ForgotPassword';
 export { OpenJobs } from './OpenJobs';
-export { Calendars } from './Calendars';

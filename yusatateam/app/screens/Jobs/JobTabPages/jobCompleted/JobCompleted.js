@@ -2,75 +2,20 @@ import React from 'react';
 import { View, FlatList, TouchableOpacity, } from 'react-native';
 import { List, Right, Text, Button, Icon, Card } from 'native-base';
 import styles from './styles';
-import JobDetails from '../JobDetails/JobDetails';
-export default class JobList extends React.Component {
+import JobDetails from '../../JobDetails/JobDetails';
+import completedData from '../../../../assets/JSONData/JobsData/completedData';
+
+export default class JobCompleted extends React.Component {
     constructor() {
         super();
         this.state = {
-            data: [
-                {
-                    'jobNumber': 'VOCT092015',
-                    'jobStatus': 'completed',
-                    'companyName': 'Yusata infotech Private Limited',
-                    'jobType': 'Install',
-                    'jobName': 'Job Name',
-                    'scheduleDate': '10/10/2018 20:00',
-                    'servicePerson': 'Yash Gulati',
-                    'contactPerson': 'Mr. Vinayak Sharma',
-                    'contactNumber': '+91 8945623622',
-                    'cashOnDelivery': 'Yes',
-                    'amount': 'Rs. 5000',
-                    'training': 'Yes'
-                },
-                {
-                    'jobNumber': 'VOCT092016',
-                    'jobStatus': 'completed',
-                    'companyName': 'Yusata infotech Private Limited',
-                    'jobType': 'Install',
-                    'jobName': 'Job Name',
-                    'scheduleDate': '10/10/2018 20:00',
-                    'servicePerson': 'Yash Gulati',
-                    'contactPerson': 'Rahul',
-                    'contactNumber': '+91 8945623622',
-                    'cashOnDelivery': 'yes',
-                    'amount': 'Rs. 5000',
-                    'training': 'yes'
-                },
-                {
-                    'jobNumber': 'VOCT092017',
-                    'jobStatus': 'completed',
-                    'companyName': 'Yusata infotech Private Limited',
-                    'jobType': 'Install',
-                    'jobName': 'Job Name',
-                    'scheduleDate': '10/10/2018 20:00',
-                    'servicePerson': 'Yash Gulati',
-                    'contactPerson': 'Rahul',
-                    'contactNumber': '+91 8945623622',
-                    'cashOnDelivery': 'yes',
-                    'amount': 'Rs. 5000',
-                    'training': 'yes'
-                },
-                {
-                    'jobNumber': 'VOCT092018',
-                    'jobStatus': 'completed',
-                    'companyName': 'Yusata infotech Private Limited',
-                    'jobType': 'Install',
-                    'jobName': 'Job Name',
-                    'scheduleDate': '10/10/2018 20:00',
-                    'servicePerson': 'Yash Gulati',
-                    'contactPerson': 'Rahul',
-                    'contactNumber': '+91 8945623622',
-                    'cashOnDelivery': 'yes',
-                    'amount': 'Rs. 5000',
-                    'training': 'yes'
-                },
-            ],
+            data: completedData,
             items: [],
             list: '',
-            status: 'completed'
+            //status: 'completed'
         }
         this.arrayholder = [];
-        this.changeTabStatus = this.changeTabStatus.bind(this);
+        //this.changeTabStatus = this.changeTabStatus.bind(this);
     };
     componentDidMount() {
         this.arrayholder = this.state.data;
@@ -87,12 +32,12 @@ export default class JobList extends React.Component {
         }
         )
     };
-    changeTabStatus(tabStatus) {
-        this.setState({ status: tabStatus },
-            function () {
-                console.log(this.state.status)
-            });
-    }
+    // changeTabStatus(tabStatus) {
+    //     this.setState({ status: tabStatus },
+    //         function () {
+    //             console.log(this.state.status)
+    //         });
+    // }
     render() {
         return (
             <View style={styles.container}>
@@ -101,7 +46,7 @@ export default class JobList extends React.Component {
                     keyExtractor={(item, index) => item.jobNumber.toString()}
                     renderItem={({ item, index }) =>
                         <View style={styles.viewList}>
-                            {this.state.status == item.jobStatus ?
+                            {/* {this.state.status == item.jobStatus ? */}
                                         <Card  style={styles.mainCard}> 
                                             <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)} style={{margin : 10}}>
                                                 <View style={styles.listView}>
@@ -129,7 +74,7 @@ export default class JobList extends React.Component {
                                                 </View>
                                             </TouchableOpacity>
                                         </Card>
-                                : null}
+                                {/* : null} */}
                         </View>
                     } >
                 </FlatList>
@@ -138,4 +83,4 @@ export default class JobList extends React.Component {
         )
     }
 }
-export { JobList }
+export { JobCompleted }
