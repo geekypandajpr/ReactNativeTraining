@@ -7,11 +7,11 @@ import {
     Dimensions,
 } from 'react-native';
 import { Card, Text } from 'native-base';
-import styles from './styles';
 import { AppLoading } from 'expo';
+import { FontAwesome } from '@expo/vector-icons'
+import styles from './styles';
 import { Toolbar } from '../../components';
 import DeviceData from '../../assets/JSONData/DeviceData'
-import { Octicons,FontAwesome } from '@expo/vector-icons'
 import { DeviceDetails } from './DeviceDeatails'
 
 export default class Device extends React.Component {

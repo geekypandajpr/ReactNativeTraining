@@ -5,8 +5,9 @@ import {
     Button
 } from 'react-native';
 import { Text } from 'native-base';
+import { FontAwesome } from '@expo/vector-icons';
 import styles from './styles';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+
 export default class DeviceDetails extends React.Component {
     constructor(props) {
         super(props);
