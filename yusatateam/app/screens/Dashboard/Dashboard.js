@@ -33,6 +33,7 @@ export default class Dashboard extends React.Component {
             ]
         }
         this.onChangePieChart = this.onChangePieChart.bind(this);
+        this.onBarchartChange = this.onBarchartChange.bind(this);
     }
 
     async componentWillMount() {
@@ -83,6 +84,12 @@ export default class Dashboard extends React.Component {
         }
     }
 
+    onBarchartChange(key) {
+        if(key === 'Custom') {
+            this.props.navigation.navigate('Calendars');
+        }
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         //const { goBack } = this.props.navigation;
@@ -111,7 +118,7 @@ export default class Dashboard extends React.Component {
                         
                         <View style={styles.lower_view}>
                             <View style={styles.summary_switch}>
-                                <SummarySwitch
+                                <SummarySwitch onStatusChanged={this.onBarchartChange}
                                     buttonName1="Today" buttonColor1='#9491F8'
                                     buttonName2="Week" buttonColor2='#8BB6F3'
                                     buttonName3="Month" buttonColor3='#8AD3F3'
