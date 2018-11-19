@@ -68,6 +68,7 @@ export default EStyleSheet.create({
         alignItems: 'center',
         //backgroundColor: 'green',
     },
+   
     status_text: {
         fontSize: '0.8rem',
         //color: '#696969',
@@ -92,6 +93,14 @@ export default EStyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center'
     },
+    Location_text: {
+        flex:3.5,
+        //backgroundColor: 'yellow',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        marginLeft:10
+    },
     jobs_text: {
         fontSize: '0.8rem',
         //color: '#696969',
@@ -114,5 +123,24 @@ export default EStyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center'
         
-    }
+    },
+    Status_Button:{
+        flex:1,
+        borderRadius: 18,
+        borderWidth: 4,
+        //width: 150,
+        borderColor: 'white',
+        //marginRight: 4,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        backgroundColor :'#0073b7'
+    },
+    Status_Style:{
+        fontStyle: 'normal',
+        fontSize: '1rem',
+        fontWeight: 'bold',
+        color: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
 });

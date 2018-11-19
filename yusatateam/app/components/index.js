@@ -15,3 +15,4 @@ export { Barchart } from './Barchart';
 export { TechnicianList } from './TechnicianList';
 export { JobsComponent } from './JobsComponent';
 export { Calendarlist } from './Calendarlist';
+export { StackedBar } from './StackedChart';

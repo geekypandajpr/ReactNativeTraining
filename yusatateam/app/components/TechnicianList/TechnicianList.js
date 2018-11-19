@@ -2,8 +2,7 @@ import React from 'react';
 import {
     View,
     Image,
-    Modal,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
 } from 'react-native';
 import { MaterialIcons, Ionicons, Entypo } from '@expo/vector-icons';
 import { Card, Text } from 'native-base';
@@ -50,10 +49,11 @@ export default class TechnicianList extends React.Component {
                                     <View style={styles.name}>
                                         <Text style={styles.name_text}>{data.name}</Text>
                                     </View>
-                                    <View style={styles.status}>
-                                        <Text style={styles.status_text}>{data.status}</Text>
-                                        <Entypo name='location-pin' size={20} color='#d9534f' />
-                                    </View>
+                                    <TouchableWithoutFeedback onPress={this.props.assignJobs}>
+                                        <View style={styles.Status_Button} >
+                                            <Text style={styles.Status_Style}>Assign </Text>
+                                        </View>
+                                    </TouchableWithoutFeedback>
                                 </View>
 
                                 <View style={styles.view_container}>
@@ -64,6 +64,25 @@ export default class TechnicianList extends React.Component {
                                 </View>
 
                                 <View style={styles.view_container}>
+                                    <View style={styles.totaljobs}>
+                                        <Text style={styles.jobs_text}>Status</Text>
+                                    </View>
+                                    <View style={styles.colon_view}>
+                                        <Text style={styles.colon}>:</Text>
+                                    </View>
+                                    <View style={styles.Location_text}>
+                                        <Text style={styles.jobs_num}>On Job</Text>
+                                    </View>
+                                </View>
+
+                                <View style={styles.view_container}>
+                                    <View style={styles.totaljobs}>
+                                        <Entypo name='location-pin' size={20} color='#d9534f' />
+                                        <Text style={styles.jobs_num}>Kumbha Marg,Pratp nagar</Text>
+                                    </View>
+                                </View>
+
+                                {/* <View style={styles.view_container}>
                                     <View style={styles.totaljobs}>
                                         <Text style={styles.jobs_text}>Total jobs</Text>
                                     </View>
@@ -91,7 +110,7 @@ export default class TechnicianList extends React.Component {
                                             onPress={this.props.assignJobs}
                                         />
                                     </View>
-                                </View>
+                                </View> */}
 
                             </View>
                         </Card>
