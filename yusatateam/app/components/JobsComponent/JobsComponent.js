@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableNativeFeedback } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native';
 import { View, Text, List, ListItem, CheckBox, Body } from 'native-base';
 import styles from './Styles';
 import colors from '../../constants/colors';
@@ -7,8 +7,9 @@ import colors from '../../constants/colors';
 export default class JobsComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isLoading: true, checkbox: false }
+        this.state = { isLoading: true, checkbox: false, isCheckboxVisible: false }
         this.modalRef = React.createRef();
+        this.onLongPress = this.onLongPress.bind(this);
     }
 
     async componentWillMount() {
@@ -20,19 +21,27 @@ export default class JobsComponent extends React.Component {
         this.setState({ isLoading: false })
     }
 
+    onLongPress() {
+        console.log('Long pressed');
+        this.setState({ isCheckboxVisible: true })
+    }
+
     render() {
         const jobDatas = this.props.jobDatas
         return (
             <List style={styles.list}>
                 <ListItem icon style={styles.listitem}>
 
-                    <CheckBox checked={this.state.checkbox}
-                        color={colors.HEADER_COLOR}
-                        onPress={() => {this.setState({ checkbox: !this.state.checkbox })}}
-                    />
+                    {this.isCheckboxVisible ? 
+                        <CheckBox checked={this.state.checkbox}
+                            color={colors.HEADER_COLOR}
+                            onPress={() => {this.setState({ checkbox: !this.state.checkbox })}}
+                        />
+                        : null
+                    }
 
                     <Body style={styles.body}>
-                        <TouchableNativeFeedback onPress={this.props.viewDetails}>
+                        <TouchableWithoutFeedback onPress={this.props.viewDetails} onLongPress={this.onLongPress}>
                             <View>
                                 <View style={styles.first_view}>
                                     <View style={{flex:1}}>
@@ -49,7 +58,7 @@ export default class JobsComponent extends React.Component {
                                     <Text style={styles.sub_text}> {jobDatas.location} </Text>
                                 </View>
                             </View>
-                        </TouchableNativeFeedback>
+                        </TouchableWithoutFeedback>
                     </Body>
 
                 </ListItem>

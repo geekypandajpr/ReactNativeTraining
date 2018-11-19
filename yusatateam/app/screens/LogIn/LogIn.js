@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
-import { View, Image, ImageBackground, ScrollView, TouchableNativeFeedback } from 'react-native';
+import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { CheckBox, Button, Text, Toast } from 'native-base';
 
 import { InputWithIcon, Statusbar } from '../../components';
@@ -38,7 +38,7 @@ export class LogIn extends React.Component {
         }
         // this.props.onFetchData(loginCredentials);
         this.props.navigation.navigate('Dashboard');
-        
+
         // if (this._checkRequiredFields()) {            
         // } else {
         //     Toast.show({
@@ -116,9 +116,9 @@ export class LogIn extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.forgot_view}>
-                                <TouchableNativeFeedback onPress={() => navigate('ForgotPassword')}>
+                                <TouchableWithoutFeedback onPress={() => navigate('ForgotPassword')}>
                                     <Text style={styles.forgot_text}> Forgot password ? </Text>
-                                </TouchableNativeFeedback>                                   
+                                </TouchableWithoutFeedback>                                   
                             </View>
                             
                         </View>

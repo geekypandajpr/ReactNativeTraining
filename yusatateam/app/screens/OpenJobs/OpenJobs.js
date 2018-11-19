@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
+import { Button, Footer, FooterTab } from 'native-base';
+
 import { Toolbar, JobsComponent, SearchBar } from '../../components';
 import styles from './Styles';
-import colors from '../../constants/colors';
-import { Ionicons } from '@expo/vector-icons';
 
 const datas = [
     {
@@ -129,9 +129,13 @@ export default class OpenJobs extends React.Component {
                             />
                         }
                     />
-                    <View style={styles.button_view}>
-                        <Ionicons name='ios-checkmark-circle' color={colors.HOMESCREEN.SIMCARD_COLOR} size={60} />
-                    </View>
+                    <Footer>
+                        <FooterTab>
+                            <Button style={styles.button}>
+                                <Text style={styles.buttonText}>Assign Jobs</Text>
+                            </Button>
+                        </FooterTab>
+                    </Footer>
                 </View>
             </View>
         )
