@@ -5,8 +5,9 @@ import {
     Button,
     Text
 } from 'react-native';
-import styles from './styles';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import styles from './styles';
+
 export default class SimDetails extends React.Component {
     constructor(props) {
         super(props);

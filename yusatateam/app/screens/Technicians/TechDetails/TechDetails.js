@@ -3,16 +3,47 @@ import {
     View,
     Text,
     Modal,
-    Button
 } from 'react-native';
-import styles from './styles';
+import { StackedBarChart } from 'react-native-svg-charts';
 import { Ionicons, FontAwesome, Entypo } from '@expo/vector-icons';
+import styles from './styles';
 
 export default class TechDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             modalVisible: false,
+            data : [
+                {
+                    // month: new Date(2015, 0, 1),
+                    apples: 3840,
+                    bananas: 1920,
+                    cherries: 960,
+                    dates: 400,
+                    oranges: 400,
+                },
+                {
+                    //month: new Date(2015, 1, 1),
+                    apples: 1600,
+                    bananas: 1440,
+                    cherries: 960,
+                    dates: 400,
+                },
+                {
+                    //month: new Date(2015, 2, 1),
+                    apples: 640,
+                    bananas: 960,
+                    cherries: 3640,
+                    dates: 400,
+                },
+                {
+                    //month: new Date(2015, 3, 1),
+                    apples: 3320,
+                    bananas: 480,
+                    cherries: 640,
+                    dates: 400,
+                },
+            ]
         }
     }
     setModalVisible(visible) {
@@ -20,6 +51,8 @@ export default class TechDetails extends React.Component {
     }
 
     render() {
+        const colors = [ '#7b4173', '#a55194', '#ce6dbd' ]
+        const keys   = [ 'apples', 'bananas', 'cherries' ]
         return (
             <View>
                 <Modal
@@ -35,100 +68,20 @@ export default class TechDetails extends React.Component {
                             <View style={styles.service_num}>
                                 <Text style={styles.header_text}>Akash Dhayal</Text>
                             </View>
-                            
                         </View>
 
                         <View style={styles.View_Container}>
+                         <StackedBarChart
+                                style={{ height: 200,width:'100%' }}
+                                keys={keys}
+                                colors={colors}
+                                data={this.state.data}
+                                showGrid={false}
+                                contentInset={{ top: 30, bottom: 30 }}
+                                
+                                   
+                            />
 
-                            <View style={styles.Margin_View}>
-                                <View style={styles.Level_Flex}>
-                                    <Text style={styles.Text_Style}>Total Jobs </Text>
-                                </View>
-                                <View style={styles.Column_Flex}>
-                                    <Text>:</Text>
-                                </View>
-                                <View style={styles.Text_Flex}>
-                                    <Text style={styles.View_Style}>10</Text>
-                                </View>
-                            </View>
-
-                            <View style={styles.Margin_View}>
-                                <View style={styles.Level_Flex} >
-                                    <Text style={styles.Text_Style}>Completed Jobs</Text>
-                                </View>
-                                <View style={styles.Column_Flex}>
-                                    <Text>:</Text>
-                                </View>
-                                <View style={styles.Text_Flex}>
-                                    <Text style={styles.View_Style}>5</Text>
-                                </View>
-                            </View>
-
-                            <View style={styles.Margin_View}>
-                                <View style={styles.Level_Flex} >
-                                    <Text style={styles.Text_Style}>In Progress Jobs</Text>
-                                </View>
-                                <View style={styles.Column_Flex}>
-                                    <Text>:</Text>
-                                </View>
-                                <View style={styles.Text_Flex}>
-                                    <Text style={styles.View_Style}>1</Text>
-                                </View>
-                            </View>
-
-                            <View style={styles.Margin_View}>
-                                <View style={styles.Level_Flex} >
-                                    <Text style={styles.Text_Style}>Pending Jobs</Text>
-                                </View>
-                                <View style={styles.Column_Flex}>
-                                    <Text>:</Text>
-                                </View>
-                                <View style={styles.Text_Flex}>
-                                    <Text style={styles.View_Style}>4</Text>
-                                </View>
-                            </View>
-
-                            <View style={styles.Margin_View}>
-                                <View style={styles.Level_Flex} >
-                                    <Text style={styles.Text_Style}>Status</Text>
-                                </View>
-                                <View style={styles.Column_Flex}>
-                                    <Text>:</Text>
-                                </View>
-                                <View style={styles.status}>
-                                    <Text style={styles.status_text}>On Job</Text>
-                                    <Entypo name='location-pin' size={20} color='#d9534f' />
-                                </View>
-                            </View>
-
-                            <View style={styles.Mobile_Level}>
-                                <View style={styles.Icon_View}>
-                                    <Ionicons name='ios-call' size={27} color='#5cb85c' />
-                                </View>
-                                <View style={styles.Mobile_View}>
-                                    <Text style={styles.View_Style}>85465256555</Text>
-                                </View>
-
-                            </View>
-                            
-                            <View style={styles.Button_View}>
-                                <Button
-                                    onPress={() => {
-                                        this.setModalVisible(!this.state.modalVisible);
-                                    }}
-                                    title="Assign Job"
-                                    color="#0073b7"
-                                />
-                            </View>
-                            <View style={styles.Button_View}>
-                                <Button 
-                                    onPress={() => {
-                                        this.setModalVisible(!this.state.modalVisible);
-                                    }}
-                                    title="Close"
-                                    color="#0073b7"
-                                />
-                            </View>
                         </View>
                     </View>
                 </Modal>

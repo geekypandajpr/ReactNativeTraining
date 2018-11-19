@@ -6,12 +6,13 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 import { Card, Button, Text } from 'native-base';
-import styles from './styles';
 import { AppLoading } from 'expo';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import styles from './styles';
 import { Toolbar } from '../../components';
 import { SimDetails } from './SimDetails';
 import SimData from '../../assets/JSONData/SimData';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 export default class Sim extends React.Component {
     constructor() {
         super();

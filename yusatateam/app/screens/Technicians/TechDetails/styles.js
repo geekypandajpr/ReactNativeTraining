@@ -29,7 +29,7 @@ export default EStyleSheet.create({
     },
     View_Container:{
         backgroundColor: '#FFFFFF',
-        height: '48%',
+        height: '100%',
         width: '100%',
         paddingTop: 15,
         paddingLeft: 15,
@@ -90,7 +90,6 @@ export default EStyleSheet.create({
     },
     Button_View:{
         marginTop: 10,
-       
     },
     
 })
