@@ -7,9 +7,8 @@ import colors from '../../constants/colors';
 export default class JobsComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isLoading: true, checkbox: false, isCheckboxVisible: false }
+        this.state = { isLoading: true, checkbox: false }
         this.modalRef = React.createRef();
-        this.onLongPress = this.onLongPress.bind(this);
     }
 
     async componentWillMount() {
@@ -21,27 +20,19 @@ export default class JobsComponent extends React.Component {
         this.setState({ isLoading: false })
     }
 
-    onLongPress() {
-        console.log('Long pressed');
-        this.setState({ isCheckboxVisible: true })
-    }
-
     render() {
         const jobDatas = this.props.jobDatas
         return (
             <List style={styles.list}>
                 <ListItem icon style={styles.listitem}>
 
-                    {this.isCheckboxVisible ? 
-                        <CheckBox checked={this.state.checkbox}
-                            color={colors.HEADER_COLOR}
-                            onPress={() => {this.setState({ checkbox: !this.state.checkbox })}}
-                        />
-                        : null
-                    }
+                    <CheckBox checked={this.state.checkbox}
+                        color={colors.HEADER_COLOR}
+                        onPress={() => {this.setState({ checkbox: !this.state.checkbox })}}
+                    />
 
                     <Body style={styles.body}>
-                        <TouchableWithoutFeedback onLongPress={this.onLongPress}>
+                        <TouchableWithoutFeedback onPress={this.props.viewDetails}>
                             <View>
                                 <View style={styles.first_view}>
                                     <View style={{flex:1}}>
