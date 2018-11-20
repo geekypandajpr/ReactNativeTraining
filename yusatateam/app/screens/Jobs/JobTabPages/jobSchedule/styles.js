@@ -4,6 +4,12 @@ export default EStyleSheet.create({
         flex: 1,
         backgroundColor: 'white'
     },
+    viewList: {
+        flex: 1,
+        flexDirection : 'row',
+        marginLeft :6,
+        marginRight :6
+    },
     mainCard:
     {
         flex: 1,
@@ -25,9 +31,7 @@ export default EStyleSheet.create({
         justifyContent: 'flex-end', 
 
     },
-    viewList: {
-        flex: 1,
-    },
+   
     search: {
         //flex :0.15,
         height: 60,
@@ -44,13 +48,13 @@ export default EStyleSheet.create({
         flex: 1
     },
     sublistView : {
-        flex: 8, 
+        flex: 7, 
     },
     subSublist : {
     },
     button : {
         height: 25,
-        width: 100,
+        width: 80,
        // margin: 10,
         justifyContent: 'center',
         alignItems: 'center'
@@ -69,5 +73,15 @@ export default EStyleSheet.create({
         alignItems: 'flex-end',
          justifyContent: 'flex-end'
     },
+    button_view: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+       
+        backgroundColor: 'transparent'
+    }
+    
     
 })
