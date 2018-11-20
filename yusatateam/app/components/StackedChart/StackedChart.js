@@ -94,12 +94,12 @@ export default class StackedBar extends React.Component{
                 />
                 <View style={{ flex:1,marginTop:10 }}>
                     <View style={{flex:1,flexDirection:'row', justifyContent:'center'}}>
-                        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                            <View style={[styles.Square,{backgroundColor:this.state.colors[0]}]}></View>
-                        </View>
-                        <View style={{flex:5,justifyContent:'center'}}>
-                            <Text style={styles.text}>{this.state.keys}</Text>
-                        </View>
+                        {this.state.keys.map((item, index) => 
+                            <View key={index} style={{flex:1,justifyContent:'center',alignItems:'center', flexDirection: 'row'}}>
+                                <View style={[styles.Square,{backgroundColor:this.state.colors[index]}]}></View>
+                                <Text style={styles.text}>{item}</Text>
+                            </View>
+                        )}
                     </View>
                 </View>
             </View>
