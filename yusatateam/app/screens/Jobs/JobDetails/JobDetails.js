@@ -128,7 +128,7 @@ export default class JobDetails extends React.Component {
                                  <Button block success onPress={() => {
                                             this.setState({modalVisible: !this.state.modalVisible});
                                         }}>
-                                    <Text>Success</Text>
+                                    <Text>Close</Text>
                                 </Button>
                               </View>
 

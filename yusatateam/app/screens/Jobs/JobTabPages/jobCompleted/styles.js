@@ -25,11 +25,6 @@ export default EStyleSheet.create({
         flexDirection: 'row'
     },
     right_sub_view: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
-    },
-    right_sub_view: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
@@ -83,14 +78,4 @@ export default EStyleSheet.create({
         color: '#F98866',
         fontSize: '0.8rem'
     },
-    footerbutton: {
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.HEADER_COLOR
-    },
-    footerbuttonText: {
-       color: '#fff',
-       fontSize: '1rem'
-    }
 })

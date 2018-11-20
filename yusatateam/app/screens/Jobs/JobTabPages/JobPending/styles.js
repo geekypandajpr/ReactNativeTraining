@@ -9,81 +9,58 @@ export default EStyleSheet.create({
         flex: 1,
         flexDirection : 'row',
         marginLeft :6,
-        marginRight :6
+        marginRight :6,
+        padding: 10
     },
-    mainCard:
-    {
+    sub_view: {
+        flexDirection: 'row'
+    },
+    jobNumText: {
+        fontSize: '1rem',
+        color: '#000',
+        fontWeight: '500'
+    },
+    right_sub_view: {
         flex: 1,
-        marginLeft :6,
-        marginRight :6
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    },
+    jobTypeView: {
+        borderRadius: 10,
+        borderWidth: 0.8,
+        borderColor: 'gray',
+        padding: 2,
+        width: 80,
+        height: 23,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    jobTypeText: {
+        color: '#F98866',
+        fontSize: '0.8rem'
+    },
+    left_view: {
+        flex: 1,
     },
     text: {
-        fontSize: '1rem',
-        flex: 7,
-        fontWeight: 'bold',
-        color: '#000000',
+        fontSize: '0.9rem',
+        color: '#000',
+    },
+    middle_view: {
+        flex: 0.2,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    right_view: {
+        flex: 1.5,
     },
     text1: {
         fontSize: '0.9rem',
-        // color : '#20B2AA', 
+        color: 'gray'
     },
-    text3 : {
-        alignItems: 'flex-end', 
-        justifyContent: 'flex-end', 
-
-    },
-   
-    search: {
-        //flex :0.15,
-        height: 60,
-        backgroundColor: 'gray',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    list: {
-        margin: 5,
-        marginBottom: 0
-    },
-    listView : {
-        flexDirection: 'row', 
-        flex: 1
-    },
-    sublistView : {
-        flex: 5, 
-    },
-    subSublist : {
-    },
-    button : {
-        height: 25,
-        width: 80,
-       // margin: 10,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    callIcon : {
-        fontSize: 25, color: '#4682B4'
-    },
-    buildingIcon:{
-        fontSize: 25, color: '#A0522D'
-    },
-    userIcon : {
-        fontSize: 20, color: '#FF7F50'
-    },
-    text2 : {
-        color: '#CD853F', 
-        alignItems: 'flex-end',
-         justifyContent: 'flex-end'
-    },
-    footerbutton: {
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor:  colors.HEADER_COLOR
-    },
-    footerbuttonText: {
-       color: '#fff',
-       fontSize: '1rem'
-    }
-    
-    
+    location: {
+        flex: 1,
+        // backgroundColor: 'red'
+    },    
 })
