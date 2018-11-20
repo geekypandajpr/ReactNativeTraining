@@ -83,14 +83,4 @@ export default EStyleSheet.create({
         color: '#F98866',
         fontSize: '0.8rem'
     },
-    footerbutton: {
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.HEADER_COLOR
-    },
-    footerbuttonText: {
-       color: '#fff',
-       fontSize: '1rem'
-    }
 })

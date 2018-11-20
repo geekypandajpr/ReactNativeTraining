@@ -120,13 +120,6 @@ export default class JobSchedule extends React.Component {
                         </Card>
                     } >
                 </FlatList>
-                <Footer>
-                    <FooterTab>
-                        <Button style={styles.footerbutton}>
-                            <Text style={styles.footerbuttonText}>Assign Jobs</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
                 <JobDetails ref='modal' />
             </View>
         )
