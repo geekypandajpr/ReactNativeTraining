@@ -66,14 +66,8 @@ export default EStyleSheet.create({
         flex: 1.5,
     },
     location: {
-        flex: 3,
-        // backgroundColor: 'red'
-    },
-    job_type: {
         flex: 1,
-        justifyContent: 'flex-end',
-        flexDirection: 'row',
-        // backgroundColor: 'green'
+        // backgroundColor: 'red'
     },
     jobTypeView: {
         borderRadius: 10,
@@ -86,7 +80,7 @@ export default EStyleSheet.create({
         alignItems: 'center',
     },
     jobTypeText: {
-        color: '#000',
+        color: '#F98866',
         fontSize: '0.8rem'
     },
     footerbutton: {

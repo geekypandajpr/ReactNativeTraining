@@ -48,8 +48,8 @@ export default class JobCompleted extends React.Component {
                                             <Text style={styles.jobNumText}>{item.jobNumber}</Text>
                                         </View>
                                         <View style={styles.right_sub_view}>
-                                            <View style={styles.status_view}>
-                                                <Text style={styles.jobText}>{item.jobStatus}</Text>
+                                            <View style={styles.jobTypeView}>
+                                                <Text style={styles.jobTypeText}>{item.jobType}</Text>
                                             </View>
                                         </View>
                                     </View>
@@ -93,11 +93,6 @@ export default class JobCompleted extends React.Component {
                                     <View style={styles.sub_view}>
                                         <View style={styles.location}>
                                             <Text style={styles.text1}>{item.location}</Text>
-                                        </View>
-                                        <View style={styles.job_type}>
-                                            <View style={styles.jobTypeView}>
-                                                <Text style={styles.jobTypeText}>{item.jobType}</Text>
-                                            </View>
                                         </View>
                                     </View>
 
