@@ -4,6 +4,7 @@ import { List, Right, Text, Button, Icon, Card,Footer,FooterTab} from 'native-ba
 import styles from './styles';
 import JobDetails from '../../JobDetails/JobDetails';
 import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
+import { Checkbox } from '../../../../components';
 
 
 export default class JobPending extends React.Component {
@@ -52,10 +53,7 @@ export default class JobPending extends React.Component {
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>
                             <View style={{ flex: 0.3, alignItems: 'flex-start', justifyContent: 'center' }}>
-                                <CheckBox
-                                    value={this.state.checkbox}
-                                    onValueChange={() => this.setState({ checkbox: !this.state.checkbox })}
-                                />
+                                <Checkbox />
                             </View>
                             <View style={{ flex: 2 }}>
                                 <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)} style={{ margin: 10 }}>
