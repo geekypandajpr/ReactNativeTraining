@@ -4,9 +4,9 @@ import {
     Modal,
     Text
 } from 'react-native';
-import {  Button} from 'native-base';
+import { Button } from 'native-base';
 import styles from './styles';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import { Ionicons, FontAwesome, Entypo } from '@expo/vector-icons';
 export default class JobDetails extends React.Component {
     constructor(props) {
         super(props);
@@ -29,7 +29,7 @@ export default class JobDetails extends React.Component {
                     transparent={true}
                     visible={this.state.modalVisible}
                     onRequestClose={() => {
-                        this.setState({modalVisible: !this.state.modalVisible});
+                        this.setState({ modalVisible: !this.state.modalVisible });
                     }}>
                     <View style={styles.container}>
 
@@ -38,18 +38,42 @@ export default class JobDetails extends React.Component {
                             <View style={styles.service_num}>
                                 <Text style={styles.header_text}>{details.jobNumber}</Text>
                             </View>
-                            <View style={styles.schedule_view}>
-                                <View style={[styles.Status_Button, { backgroundColor: "#5cb85c" }]} >
-                                    <Text style={styles.Status_Style}>{details.jobType}</Text>
+                            <View style={styles.right_sub_view}>
+                                <View style={styles.jobTypeView}>
+                                    <Text style={styles.jobTypeText}>{details.jobType}</Text>
                                 </View>
                             </View>
                         </View>
 
                         <View style={styles.View_Container}>
 
-                             <View style={styles.Margin_View}>
+                            <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex}>
-                                    <Text style={styles.Order_text}>Contact Person</Text>
+                                    <Text style={styles.Order_text}>Schedule Date</Text>
+                                </View>
+                                <View style={styles.Column_Flex}>
+                                    <Text>:</Text>
+                                </View>
+                                <View style={styles.Text_Flex}>
+                                    <Text style={styles.Order_texts}>{details.scheduleDate}</Text>
+                                </View>
+                            </View>
+
+                            <View style={styles.Margin_View}>
+                                <View style={styles.Level_Flex}>
+                                    <Text style={styles.Order_text}>Technician Name</Text>
+                                </View>
+                                <View style={styles.Column_Flex}>
+                                    <Text>:</Text>
+                                </View>
+                                <View style={styles.Text_Flex}>
+                                    <Text style={styles.Order_texts}>{details.servicePerson}</Text>
+                                </View>
+                            </View>
+
+                            <View style={styles.Margin_View}>
+                                <View style={styles.Level_Flex}>
+                                    <Text style={styles.Order_text}>Customer Name</Text>
                                 </View>
                                 <View style={styles.Column_Flex}>
                                     <Text>:</Text>
@@ -61,25 +85,37 @@ export default class JobDetails extends React.Component {
 
                             <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex}>
-                                    <Text style={styles.Text_Style}>Job Status</Text>
+                                    <Text style={styles.Order_text}>JobName</Text>
                                 </View>
                                 <View style={styles.Column_Flex}>
                                     <Text>:</Text>
                                 </View>
                                 <View style={styles.Text_Flex}>
-                                    <Text style={styles.View_Style}>{details.jobStatus}</Text>
+                                    <Text style={styles.Order_texts}>{details.jobName}</Text>
                                 </View>
                             </View>
 
                             <View style={styles.Margin_View}>
-                                <View style={styles.Level_Flex} >
-                                    <Text style={styles.Text_Style}>Service Person</Text>
+                                <View style={styles.Level_Flex}>
+                                    <Text style={styles.Order_text}>COD</Text>
                                 </View>
                                 <View style={styles.Column_Flex}>
                                     <Text>:</Text>
                                 </View>
                                 <View style={styles.Text_Flex}>
-                                    <Text style={styles.View_Style}>{details.servicePerson}</Text>
+                                    <Text style={styles.Order_texts}>{details.cashOnDelivery}</Text>
+                                </View>
+                            </View>
+
+                            <View style={styles.Margin_View}>
+                                <View style={styles.Level_Flex}>
+                                    <Text style={styles.Order_text}>Training</Text>
+                                </View>
+                                <View style={styles.Column_Flex}>
+                                    <Text>:</Text>
+                                </View>
+                                <View style={styles.Text_Flex}>
+                                    <Text style={styles.Order_texts}>{details.training}</Text>
                                 </View>
                             </View>
 
@@ -90,47 +126,42 @@ export default class JobDetails extends React.Component {
                                 <View style={styles.column_price}>
                                     <Text>:</Text>
                                 </View>
-
                                 <View style={styles.View_price}>
-                                <View style={styles.Rupee_icon}>
-                                    <FontAwesome name='rupee' size={18} color='gray' />
-                                </View>
-                                <View style={styles.Text_price}>
-                                    <Text style={styles.ViewDescription_Text}>{details.amount}</Text>
-                                </View>
+                                    <View style={styles.Rupee_icon}>
+                                        <FontAwesome name='rupee' size={18} color='gray' />
+                                    </View>
+                                    <View style={styles.Text_price}>
+                                        <Text style={styles.ViewDescription_Text}>{details.amount}</Text>
+                                    </View>
                                 </View>
                             </View>
 
-                            <View style={styles.Margin_View}>
-                                <View style={styles.Level_Flex} >
-                                    <Text style={styles.Text_Style}>Schedule Date</Text>
+
+                            <View style={styles.Mobile_Level}>
+                                <View style={{ flex: 0.12, justifyContent: 'center' }}>
+                                    <Ionicons name='ios-call' size={27} color='#5cb85c' />
                                 </View>
-                                <View style={styles.Column_Flex}>
-                                    <Text>:</Text>
-                                </View>
-                                <View style={styles.Text_Flex}>
-                                    <Text style={styles.View_Style}>{details.scheduleDate}</Text>
+                                <View style={{ flex: 2, justifyContent: 'center' }}>
+                                    <Text style={styles.View_Style}>{details.contactNumber}</Text>
                                 </View>
                             </View>
 
                             <View style={styles.Mobile_Level}>
-                                <View style={{ flex: 0.3,justifyContent:'center' }}>
-                                    <Ionicons name='ios-call' size={27} color='#5cb85c' />
+                                <View style={{ flex: 0.12, justifyContent: 'center' }}>
+                                    <Entypo name='location-pin' size={27} color='#d9534f' />
                                 </View>
-                                <View style={{ flex:2,justifyContent:'center' }}>
-                                    <Text style={styles.View_Style}>{details.contactNumber}</Text>
-                                </View>
-                                <View style={styles.Provider_View} >
-                                    <Text style={styles.providerStyle}>{details.jobName}</Text>
+                                <View style={{ flex: 2, justifyContent: 'center' }}>
+                                    <Text style={styles.View_Style}>{details.location}</Text>
                                 </View>
                             </View>
-                          <View style={{paddingTop : 20}}>
-                                 <Button block success onPress={() => {
-                                            this.setState({modalVisible: !this.state.modalVisible});
-                                        }}>
+
+                            <View style={{ paddingTop: 20 }}>
+                                <Button block success onPress={() => {
+                                    this.setState({ modalVisible: !this.state.modalVisible });
+                                }}>
                                     <Text>Close</Text>
                                 </Button>
-                              </View>
+                            </View>
 
                         </View>
                     </View>
