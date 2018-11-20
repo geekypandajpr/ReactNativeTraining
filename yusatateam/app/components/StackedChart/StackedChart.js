@@ -3,6 +3,7 @@ import { View, Text, Dimensions } from 'react-native';
 import * as shape from 'd3-shape'
 import * as scale from 'd3-scale'
 import { StackedBarChart, XAxis, YAxis } from 'react-native-svg-charts';
+import styles from './styles';
 
 export default class StackedBar extends React.Component{
     constructor(props){
@@ -59,8 +60,8 @@ export default class StackedBar extends React.Component{
 }
     render(){
         return(
-            <View style={{ marginTop: 20 }}>
-                <View style={{ height: 250, flexDirection: 'row' }}>
+            <View style={{ marginTop: 20,flex:1 }}>
+                <View style={{ height: 250, flexDirection: 'row',flex:1 }}>
                     <YAxis
                         style={{ width:40 }}
                         data={ StackedBarChart.extractDataPoints(this.state.data, this.state.keys) }
@@ -91,6 +92,16 @@ export default class StackedBar extends React.Component{
                     // numberOfTicks = {8}
                     scale={scale.scaleBand}
                 />
+                <View style={{ flex:1,marginTop:10 }}>
+                    <View style={{flex:1,flexDirection:'row', justifyContent:'center'}}>
+                        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                            <View style={[styles.Square,{backgroundColor:this.state.colors[0]}]}></View>
+                        </View>
+                        <View style={{flex:5,justifyContent:'center'}}>
+                            <Text style={styles.text}>{this.state.keys}</Text>
+                        </View>
+                    </View>
+                </View>
             </View>
         );
     }
