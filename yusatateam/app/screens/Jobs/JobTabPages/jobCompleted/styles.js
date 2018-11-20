@@ -9,70 +9,85 @@ export default EStyleSheet.create({
         flex: 1,
         flexDirection : 'row',
         marginLeft :6,
-        marginRight :6
+        marginRight :6,
+        padding: 10
     },
-    mainCard:
-    {
+    jobNumText: {
+        fontSize: '1rem',
+        color: '#000',
+        fontWeight: '500'
+    },
+    jobText: {
+        fontSize: '0.8rem',
+        color: '#fff',
+    },
+    sub_view: {
+        flexDirection: 'row'
+    },
+    right_sub_view: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    },
+    right_sub_view: {
         flex: 1,
-        marginLeft :6,
-        marginRight :6
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    },
+    status_view: {
+        borderRadius: 10,
+        // borderWidth: 0.8,
+        // borderColor: '#5cb85c',
+        padding: 2,
+        width: 80,
+        height: 23,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#5cb85c'
     },
     text: {
-        fontSize: '1rem',
-        flex: 7,
-        fontWeight: 'bold',
-        color: '#000000',
+        fontSize: '0.9rem',
+        color: '#000',
     },
     text1: {
         fontSize: '0.9rem',
-        // color : '#20B2AA', 
+        color: 'gray'
     },
-    text3 : {
-        alignItems: 'flex-end', 
-        justifyContent: 'flex-end', 
-
+    left_view: {
+        flex: 1,
     },
-   
-    search: {
-        //flex :0.15,
-        height: 60,
-        backgroundColor: 'gray',
+    middle_view: {
+        flex: 0.2,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    right_view: {
+        flex: 1.5,
+    },
+    location: {
+        flex: 3,
+        // backgroundColor: 'red'
+    },
+    job_type: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        flexDirection: 'row',
+        // backgroundColor: 'green'
+    },
+    jobTypeView: {
+        borderRadius: 10,
+        borderWidth: 0.8,
+        borderColor: 'gray',
+        padding: 2,
+        width: 80,
+        height: 23,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
-    list: {
-        margin: 5,
-        marginBottom: 0
-    },
-    listView : {
-        flexDirection: 'row', 
-        flex: 1
-    },
-    sublistView : {
-        flex: 5, 
-    },
-    subSublist : {
-    },
-    button : {
-        height: 25,
-        width: 105,
-       // margin: 10,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    callIcon : {
-        fontSize: 25, color: '#4682B4'
-    },
-    buildingIcon:{
-        fontSize: 25, color: '#A0522D'
-    },
-    userIcon : {
-        fontSize: 20, color: '#FF7F50'
-    },
-    text2 : {
-        color: '#CD853F', 
-        alignItems: 'flex-end',
-         justifyContent: 'flex-end'
+    jobTypeText: {
+        color: '#000',
+        fontSize: '0.8rem'
     },
     footerbutton: {
         width: '100%',
@@ -84,6 +99,4 @@ export default EStyleSheet.create({
        color: '#fff',
        fontSize: '1rem'
     }
-    
-    
 })
