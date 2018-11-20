@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     View,
+    ScrollView,
     Modal,
     Text
 } from 'react-native';
@@ -173,11 +174,11 @@ export default class JobDetails extends React.Component {
                                 </View>
                             </View>
 
-                            <View style={{ paddingTop: 20 }}>
+                            <View style={styles.close_button}>
                                 <Button block success onPress={() => {
                                     this.setState({ modalVisible: !this.state.modalVisible });
                                 }}>
-                                    <Text>Close</Text>
+                                    <Text style={styles.close_button_Text}>Close</Text>
                                 </Button>
                             </View>
 

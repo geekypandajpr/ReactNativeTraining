@@ -103,7 +103,7 @@ export default EStyleSheet.create({
     View_Container:
     {
         backgroundColor: '#FFFFFF',
-        height: '55%',
+        height: '70%',
         width: '100%',
         paddingTop: 15,
         paddingLeft: 15,
@@ -214,16 +214,17 @@ export default EStyleSheet.create({
     button_view: {
         flex :1,
     },
-    submit_button: {
-        backgroundColor: '$primaryColor',
-        width: 50,
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20,
-        marginBottom: 20,
-        marginLeft: 20
+    close_button: {
+        padding : 30,
+        paddingRight : 0,
+        position : 'absolute',
+        bottom :0,
+        width : '100%'
     },
+    close_button_Text : {
+        color: '#fff',
+        fontSize: '1rem'
+    }
     
 
 })
