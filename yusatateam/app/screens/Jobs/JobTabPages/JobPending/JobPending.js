@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity, CheckBox } from 'react-native';
-import { List, Right, Text, Button, Icon, Card } from 'native-base';
+import { List, Right, Text, Button, Icon, Card,Footer,FooterTab} from 'native-base';
 import styles from './styles';
 import JobDetails from '../../JobDetails/JobDetails';
 import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
-import colors from '../../../../constants/colors';
-import { Ionicons } from '@expo/vector-icons';
+
 
 export default class JobPending extends React.Component {
     constructor() {
@@ -94,11 +93,13 @@ export default class JobPending extends React.Component {
                         </Card>
                     } >
                 </FlatList>
-                <View style={styles.button_view}>
-                    <Button bordered warning>
-                        <Text>Assign</Text>
-                    </Button>
-                </View>
+                <Footer>
+                        <FooterTab>
+                            <Button style={styles.footerbutton}>
+                                <Text style={styles.footerbuttonText}>Assign Jobs</Text>
+                            </Button>
+                        </FooterTab>
+                    </Footer>
                 <JobDetails ref='modal' />
             </View>
         )

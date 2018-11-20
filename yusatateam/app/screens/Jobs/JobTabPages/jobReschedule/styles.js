@@ -1,8 +1,15 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import colors from '../../../../constants/colors';
 export default EStyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white'
+    },
+    viewList: {
+        flex: 1,
+        flexDirection : 'row',
+        marginLeft :6,
+        marginRight :6
     },
     mainCard:
     {
@@ -25,9 +32,7 @@ export default EStyleSheet.create({
         justifyContent: 'flex-end', 
 
     },
-    viewList: {
-        flex: 1,
-    },
+   
     search: {
         //flex :0.15,
         height: 60,
@@ -44,13 +49,13 @@ export default EStyleSheet.create({
         flex: 1
     },
     sublistView : {
-        flex: 8, 
+        flex: 5, 
     },
     subSublist : {
     },
     button : {
         height: 25,
-        width: 110,
+        width: 105,
        // margin: 10,
         justifyContent: 'center',
         alignItems: 'center'
@@ -69,5 +74,16 @@ export default EStyleSheet.create({
         alignItems: 'flex-end',
          justifyContent: 'flex-end'
     },
+    footerbutton: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.HEADER_COLOR
+    },
+    footerbuttonText: {
+       color: '#fff',
+       fontSize: '1rem'
+    }
+    
     
 })

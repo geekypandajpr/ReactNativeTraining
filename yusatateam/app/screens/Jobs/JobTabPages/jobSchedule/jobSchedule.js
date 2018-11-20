@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, FlatList, TouchableOpacity, } from 'react-native';
-import { List, Right, Text, Button, Icon, Card ,CheckBox} from 'native-base';
+import { View, FlatList, TouchableOpacity, CheckBox } from 'react-native';
+import { List, Right, Text, Button, Icon, Card,Footer,FooterTab} from 'native-base';
 import styles from './styles';
 import JobDetails from '../../JobDetails/JobDetails';
 import scheduleData from '../../../../assets/JSONData/JobsData/scheduleData';
@@ -42,19 +42,19 @@ export default class JobSchedule extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <FlatList
-                    data={this.state.data}
-                    keyExtractor={(item, index) => item.jobNumber.toString()}
-                    renderItem={({ item, index }) =>
-                        <Card style={styles.viewList}>
-                            <View style={{ flex: 0.3, alignItems: 'flex-start', justifyContent: 'center' }}>
-                                <CheckBox checked={this.state.checkbox}
-                                    color={colors.HEADER_COLOR}
-                                    onPress={() => { this.setState({ checkbox: !this.state.checkbox }) }}
-                                />
-                            </View>
-                            <View style={{ flex: 2 }}>
-                                <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)} style={{ margin: 10 }}>
+            <FlatList
+                data={this.state.data}
+                keyExtractor={(item, index) => item.jobNumber.toString()}
+                renderItem={({ item, index }) =>
+                    <Card style={styles.viewList}>
+                        <View style={{ flex: 0.3, alignItems: 'flex-start', justifyContent: 'center' }}>
+                            <CheckBox
+                                value={this.state.checkbox}
+                                onValueChange={() => this.setState({ checkbox: !this.state.checkbox })}
+                            />
+                        </View>
+                        <View style={{ flex: 2 }}>
+                        <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)} style={{ margin: 10 }}>
                                     <View style={styles.listView}>
                                         <Text style={styles.text}>{item.jobNumber}</Text>
                                         <Text style={styles.text3}>{item.scheduleDate}</Text>
@@ -79,17 +79,19 @@ export default class JobSchedule extends React.Component {
                                         </Right>
                                     </View>
                                 </TouchableOpacity>
-                            </View>
-                        </Card>
-                    } >
-                </FlatList>
-                <View style={styles.button_view}>
-                    <Button bordered warning>
-                        <Text>Assign</Text>
-                    </Button>
-                </View>
-                <JobDetails ref='modal' />
-            </View>
+                        </View>
+                    </Card>
+                } >
+            </FlatList>
+            <Footer>
+                    <FooterTab>
+                        <Button style={styles.footerbutton}>
+                            <Text style={styles.footerbuttonText}>Assign Jobs</Text>
+                        </Button>
+                    </FooterTab>
+                </Footer>
+            <JobDetails ref='modal' />
+        </View>
         )
     }
 }

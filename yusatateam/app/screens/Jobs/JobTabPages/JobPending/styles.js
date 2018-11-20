@@ -1,4 +1,5 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import colors from '../../../../constants/colors';
 export default EStyleSheet.create({
     container: {
         flex: 1,
@@ -48,7 +49,7 @@ export default EStyleSheet.create({
         flex: 1
     },
     sublistView : {
-        flex: 8, 
+        flex: 5, 
     },
     subSublist : {
     },
@@ -73,14 +74,15 @@ export default EStyleSheet.create({
         alignItems: 'flex-end',
          justifyContent: 'flex-end'
     },
-    button_view: {
+    footerbutton: {
+        width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'absolute',
-        bottom: 10,
-        right: 10,
-       
-        backgroundColor: 'transparent'
+        backgroundColor:  colors.HEADER_COLOR
+    },
+    footerbuttonText: {
+       color: '#fff',
+       fontSize: '1rem'
     }
     
     
