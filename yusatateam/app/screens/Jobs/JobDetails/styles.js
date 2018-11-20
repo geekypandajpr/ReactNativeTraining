@@ -103,7 +103,7 @@ export default EStyleSheet.create({
     View_Container:
     {
         backgroundColor: '#FFFFFF',
-        height: '70%',
+        height: '100%',
         width: '100%',
         paddingTop: 15,
         paddingLeft: 15,

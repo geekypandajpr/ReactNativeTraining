@@ -157,7 +157,7 @@ export default class JobDetails extends React.Component {
 
 
                             <View style={styles.Mobile_Level}>
-                                <View style={{ flex: 0.12, justifyContent: 'center' }}>
+                                <View style={{ flex: 0.2, justifyContent: 'center' }}>
                                     <Ionicons name='ios-call' size={27} color='#5cb85c' />
                                 </View>
                                 <View style={{ flex: 2, justifyContent: 'center' }}>
@@ -166,7 +166,7 @@ export default class JobDetails extends React.Component {
                             </View>
 
                             <View style={styles.Mobile_Level}>
-                                <View style={{ flex: 0.12, justifyContent: 'center' }}>
+                                <View style={{ flex: 0.2, justifyContent: 'center' }}>
                                     <Entypo name='location-pin' size={27} color='#d9534f' />
                                 </View>
                                 <View style={{ flex: 2, justifyContent: 'center' }}>
