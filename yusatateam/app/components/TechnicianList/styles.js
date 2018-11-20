@@ -87,7 +87,7 @@ export default EStyleSheet.create({
         color: '#000'
     },
     totaljobs: {
-        flex:1,
+        flex:0.7,
         //backgroundColor: 'yellow',
         flexDirection: 'row',
         justifyContent: 'flex-start',
@@ -99,7 +99,7 @@ export default EStyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        marginLeft:10
+        marginLeft:8
     },
     jobs_text: {
         fontSize: '0.8rem',

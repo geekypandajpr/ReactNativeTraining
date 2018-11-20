@@ -53,7 +53,7 @@ export default class StackedBar extends React.Component{
                     Scheduled: 6,
                 },
             ],
-            colors : [ '#007aff', '#d9534f', '#5cb85c' ],
+            colors : [ '#FD6260', '#B19DFF', '#02B8AB' ],
             keys  :[ 'Completed', 'Pending', 'Scheduled' ]
         }
     
@@ -66,7 +66,7 @@ export default class StackedBar extends React.Component{
                         style={{ width:40 }}
                         data={ StackedBarChart.extractDataPoints(this.state.data, this.state.keys) }
                         contentInset={{ left: 45, right: 25}}
-                        svg={{fontSize: 10, fontWeight :'bold'}}
+                        svg={{fontSize: 12, fontWeight :'700'}}
                         // scale={scale.scaleBand}
                     />
                     <StackedBarChart
@@ -81,21 +81,20 @@ export default class StackedBar extends React.Component{
                         contentInset={{ top: 0, bottom: 0 , left: 0, right: 0}}  
                     />
                 </View>
-            
                 <XAxis
                     style={{marginTop: 10, marginLeft: 40}}
                     data={this.state.data}
                     contentInset={{ top: 30, bottom: 30, }}
                     yAccessor={({index}) => index}
                     formatLabel={(value, index) => { return this.state.data[index].label}}
-                    svg={{ fontSize: 10, fill: 'black', fontWeight: 'bold',}}
+                    svg={{ fontSize: 10, fill: 'black', fontWeight: '700',}}
                     // numberOfTicks = {8}
                     scale={scale.scaleBand}
                 />
                 <View style={{ flex:1,marginTop:10 }}>
                     <View style={{flex:1,flexDirection:'row', justifyContent:'center'}}>
                         {this.state.keys.map((item, index) => 
-                            <View key={index} style={{flex:1,justifyContent:'center',alignItems:'center', flexDirection: 'row'}}>
+                            <View key={index} style={{flex:1,justifyContent:'center',alignItems:'flex-start', flexDirection: 'row'}}>
                                 <View style={[styles.Square,{backgroundColor:this.state.colors[index]}]}></View>
                                 <Text style={styles.text}>{item}</Text>
                             </View>

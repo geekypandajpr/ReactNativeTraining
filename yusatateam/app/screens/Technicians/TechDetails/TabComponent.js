@@ -4,6 +4,7 @@ import { AppLoading } from 'expo';
 import { Container, Tab, Tabs, ScrollableTab, TabHeading } from 'native-base';
 import { Toolbar } from '../../../components/Toolbar';
 import { TechDetails } from './TechDetails';
+import {FontAwesome,EvilIcons} from '@expo/vector-icons';
 import colors from '../../../constants/colors'
 
 export default class TabComponent extends React.Component {
@@ -29,6 +30,7 @@ export default class TabComponent extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
                     <Toolbar title='Details' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                           Calender='calendar' calenderType='FontAwesome' onCalenderPress={()=> navigate('Settings')}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
                    <Tabs renderTabBar={()=> <ScrollableTab />}>

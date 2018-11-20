@@ -46,6 +46,10 @@ export default class Toolbar extends React.Component {
                         </Title>
                     </Body>
                     <Right>
+                        <Button transparent onPress={this.props.onCalenderPress}>
+                            <Icon name={this.props.Calender} type={this.props.calenderType} style={styles.icon} />
+                        </Button>
+                    
                         <Button transparent onPress={this.props.onSettingsPress}>
                             <Icon name={this.props.setting} type={this.props.settingType} style={styles.icon} />
                         </Button>

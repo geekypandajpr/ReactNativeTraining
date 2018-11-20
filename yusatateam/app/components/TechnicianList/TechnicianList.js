@@ -82,35 +82,7 @@ export default class TechnicianList extends React.Component {
                                     </View>
                                 </View>
 
-                                {/* <View style={styles.view_container}>
-                                    <View style={styles.totaljobs}>
-                                        <Text style={styles.jobs_text}>Total jobs</Text>
-                                    </View>
-                                    <View style={styles.colon_view}>
-                                        <Text style={styles.colon}>:</Text>
-                                    </View>
-                                    <View style={styles.totaljobs}>
-                                        <Text style={styles.jobs_num}>{data.totalJobs}</Text>
-                                    </View>
-                                </View>
-
-                                <View style={styles.view_container}>
-                                    <View style={styles.totaljobs}>
-                                        <Text style={styles.jobs_text}>Complete jobs</Text>
-                                    </View>
-                                    <View style={styles.colon_view}>
-                                        <Text style={styles.colon}>:</Text>
-                                    </View>
-                                    <View style={styles.jobs_flex}>
-                                        <Text style={styles.jobs_num}>{data.completedJobs}</Text>
-                                    </View>
-                                    <View style={styles.icon_flex}>
-                                        <MaterialIcons name='add-circle-outline'
-                                            size={25} color={colors.HEADER_COLOR}
-                                            onPress={this.props.assignJobs}
-                                        />
-                                    </View>
-                                </View> */}
+                                
 
                             </View>
                         </Card>

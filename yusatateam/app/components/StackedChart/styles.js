@@ -19,6 +19,7 @@ view2: {
 text: {
     fontSize: '0.8rem',
     color: 'gray',
-    fontWeight:'200'
+    fontWeight:'200',
+    marginLeft:10
 }
 })
