@@ -1,1 +1,2 @@
-export { TechDetails } from './TechDetails' 
+export { TechDetails } from './TechDetails';
+export { TabComponent } from './TabComponent';

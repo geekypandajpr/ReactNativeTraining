@@ -16,9 +16,9 @@ export default class StackedBar extends React.Component{
                     Scheduled: 4,
                 },
                 {
-                    label: 'Tues',
+                    label: 'Tue',
                     Completed: 12,
-                    Pending: 13,
+                    Pending: 6,
                     Scheduled: 3,
                 },
                 {   
@@ -28,7 +28,7 @@ export default class StackedBar extends React.Component{
                     Scheduled: 9,
                 },
                 {   
-                    label: 'Thurs',
+                    label: 'Thur',
                     Completed: 9,
                     Pending: 4,
                     Scheduled: 5,
@@ -64,12 +64,12 @@ export default class StackedBar extends React.Component{
                     <YAxis
                         style={{ width:40 }}
                         data={ StackedBarChart.extractDataPoints(this.state.data, this.state.keys) }
-                        contentInset={{ left: 50, right: 30}}
-                        svg={{fontSize: 8, fill: '#000'}}
+                        contentInset={{ left: 45, right: 25}}
+                        svg={{fontSize: 10, fontWeight :'bold'}}
                         // scale={scale.scaleBand}
                     />
                     <StackedBarChart
-                        style={{ flex: 1 }}
+                        style={{ flex: 1}}
                         keys={this.state.keys}
                         colors={this.state.colors}
                         data={this.state.data}
@@ -87,7 +87,7 @@ export default class StackedBar extends React.Component{
                     contentInset={{ top: 30, bottom: 30, }}
                     yAccessor={({index}) => index}
                     formatLabel={(value, index) => { return this.state.data[index].label}}
-                    svg={{ fontSize: 10, fill: 'black'}}
+                    svg={{ fontSize: 10, fill: 'black', fontWeight: 'bold',}}
                     // numberOfTicks = {8}
                     scale={scale.scaleBand}
                 />

@@ -13,8 +13,8 @@ export default class Technicians extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        this.modalRef = React.createRef();
-        this.techDetail=this.techDetail.bind(this);
+        // this.modalRef = React.createRef();
+        // this.techDetail=this.techDetail.bind(this);
     }
    
     techDetail() {
@@ -39,12 +39,12 @@ export default class Technicians extends React.Component {
                             renderItem={({ item, index }) =>
                                 <TechnicianList
                                     data={item}
-                                    onPress={this.techDetail}
+                                    onPress={()=>navigate('TabComponent')}
                                     assignJobs={() => navigate('OpenJobs')}
                                 />
                             } />
                     </View>
-                   <TechDetails ref={'modal'} />
+                   {/* <TechDetails ref={'modal'} /> */}
                 </View>
         );
     }

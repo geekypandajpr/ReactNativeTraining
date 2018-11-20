@@ -12,8 +12,10 @@ import {
     Technicians,
     ForgotPassword,
     OpenJobs,
-    Calendars
+    Calendars,
+   
 } from '../screens';
+import { TabComponent } from '../screens/Technicians/TechDetails/TabComponent';
 
 const RouteConfigs = {
     Dashboard: {
@@ -93,7 +95,14 @@ const RouteConfigs = {
         navigationOptions: {
             header: null
         }
-    }
+    },
+    TabComponent:
+    {   
+        screen: TabComponent,
+        navigationOptions: {
+            header: null
+        }
+    },
 }
 
 const StackNavigatorConfig = {
