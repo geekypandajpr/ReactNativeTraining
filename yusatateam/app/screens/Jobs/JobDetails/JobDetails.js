@@ -20,6 +20,7 @@ export default class JobDetails extends React.Component {
         this.setState({ modalVisible: visible, item: item });
     }
 
+
     render() {
         const details = this.state.item;
         return (
@@ -59,6 +60,7 @@ export default class JobDetails extends React.Component {
                                 </View>
                             </View>
 
+                            { details.servicePerson == null ? null : 
                             <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex}>
                                     <Text style={styles.Order_text}>Technician Name</Text>
@@ -70,6 +72,7 @@ export default class JobDetails extends React.Component {
                                     <Text style={styles.Order_texts}>{details.servicePerson}</Text>
                                 </View>
                             </View>
+                            }
 
                             <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex}>
@@ -82,6 +85,21 @@ export default class JobDetails extends React.Component {
                                     <Text style={styles.Order_texts}>{details.contactPerson}</Text>
                                 </View>
                             </View>
+
+                            { details.completedDate == null ? null : 
+                                <View style={styles.Margin_View}>
+                                    <View style={styles.Level_Flex}>
+                                        <Text style={styles.Order_text}>Completed Date</Text>
+                                    </View>
+                                    <View style={styles.Column_Flex}>
+                                        <Text>:</Text>
+                                    </View>
+                                    <View style={styles.Text_Flex}>
+                                        <Text style={styles.Order_texts}>{details.completedDate}</Text>
+                                    </View>
+                                </View>
+                            }
+
 
                             <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex}>

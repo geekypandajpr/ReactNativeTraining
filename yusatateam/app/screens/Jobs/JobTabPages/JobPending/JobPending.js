@@ -106,18 +106,6 @@ export default class JobPending extends React.Component {
                                     </View>
 
                                     <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={styles.text}>Technician</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <Text style={styles.text1}>{item.servicePerson}</Text>
-                                        </View>
-                                    </View>
-
-                                    <View style={styles.sub_view}>
                                         <View style={styles.location}>
                                             <Text style={styles.text1}>{item.location}</Text>
                                         </View>

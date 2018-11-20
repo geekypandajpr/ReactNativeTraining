@@ -62,5 +62,15 @@ export default EStyleSheet.create({
     location: {
         flex: 1,
         // backgroundColor: 'red'
-    },    
+    }, 
+    footerbutton: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.HEADER_COLOR
+    },
+    footerbuttonText: {
+       color: '#fff',
+       fontSize: '1rem'
+    }    
 })
