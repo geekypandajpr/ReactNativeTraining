@@ -33,7 +33,9 @@ export default class JobDetails extends React.Component {
                     onRequestClose={() => {
                         this.setState({ modalVisible: !this.state.modalVisible });
                     }}>
+               
                     <View style={styles.container}>
+                   
 
                         <View style={styles.header_view}>
 
@@ -48,6 +50,7 @@ export default class JobDetails extends React.Component {
                         </View>
 
                         <View style={styles.View_Container}>
+                        <ScrollView showsVerticalScrollIndicator={false}>
 
                             <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex}>
@@ -181,9 +184,10 @@ export default class JobDetails extends React.Component {
                                     <Text style={styles.close_button_Text}>Close</Text>
                                 </Button>
                             </View>
-
+                            </ScrollView>
                         </View>
                     </View>
+                   
                 </Modal>
             </View>
 

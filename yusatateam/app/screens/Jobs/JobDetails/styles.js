@@ -103,7 +103,7 @@ export default EStyleSheet.create({
     View_Container:
     {
         backgroundColor: '#FFFFFF',
-        height: '100%',
+        height: '70%',
         width: '100%',
         paddingTop: 15,
         paddingLeft: 15,
@@ -215,11 +215,9 @@ export default EStyleSheet.create({
         flex :1,
     },
     close_button: {
-        padding : 30,
-        paddingRight : 0,
-        position : 'absolute',
-        bottom :0,
-        width : '100%'
+        padding : 10,
+        //paddingRight : 0,
+       
     },
     close_button_Text : {
         color: '#fff',
