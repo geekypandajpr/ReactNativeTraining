@@ -1,6 +1,6 @@
 const PendingData= [
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS201NOV2018',
         'jobStatus': 'Pending',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
@@ -14,7 +14,7 @@ const PendingData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS202NOV2018',
         'jobStatus': 'Pending',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
@@ -28,7 +28,7 @@ const PendingData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS203NOV2018',
         'jobStatus': 'Pending',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
@@ -42,7 +42,7 @@ const PendingData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS204NOV2018',
         'jobStatus': 'Pending',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
@@ -56,7 +56,7 @@ const PendingData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS205NOV2018',
         'jobStatus': 'Pending',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
@@ -70,7 +70,7 @@ const PendingData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS206NOV2018',
         'jobStatus': 'Pending',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
@@ -84,7 +84,7 @@ const PendingData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS207NOV2018',
         'jobStatus': 'Pending',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',

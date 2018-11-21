@@ -5,12 +5,15 @@ import {
     Modal,
     TextInput,
     Picker,
-    ScrollView
+    ScrollView,
+    FlatList
 } from 'react-native';
-import { Button } from 'native-base';
+import { List, ListItem, CheckBox, Body } from 'native-base';
 import styles from './styles';
-import { AppLoading } from 'expo';
-import { MaterialIcons, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Checkbox } from '../../../components';
+import { TouchableWithoutFeedback } from 'react-native';
+import { Toolbar, JobsComponent, SearchBar } from '../../../components';
+
 
 export default class JobSearch extends React.Component {
     constructor(props) {
@@ -21,8 +24,10 @@ export default class JobSearch extends React.Component {
             item: {},
             status: true,
             device: '',
-            sim: ''
+            sim: '',
+            data: '',
         }
+        this.arrayholder = [];
     }
 
     async componentWillMount() {
@@ -33,128 +38,69 @@ export default class JobSearch extends React.Component {
         })
         this.setState({ isLoading: false })
     }
+    SearchFilterFunction(text) {
 
-    setModalVisible(visible) {
+        const newData = this.state.data.filter(function (item) {
+            const itemData = item.jobNumber.toUpperCase()
+            const textData = text.toUpperCase()
+            return itemData.indexOf(textData) > -1
+        })
         this.setState({
-            modalVisible: visible,
-
-        }, function () {
-            this.setState({ status: true });
-        });
+            data: newData,
+            text: text
+        },
+        )
     }
-
     render() {
-
+        const { goBack } = this.props.navigation;
+        //const { navigate } = props.navigation;
+        const { state } = this.props.navigation;
+        const data = state.params.item;
+        this.state.data = data;
+        this.arrayholder = this.state.data;
+        //console.log(this.state.data);
         return (
-            this.state.isLoading === true ? <AppLoading /> :
-                <View>
-                    <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={this.state.modalVisible}
-                        onRequestClose={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
-                        <View style={styles.modal_container}>
+            <View style={styles.container}>
+                <Toolbar title='Jobs'
+                    leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                />
+                <SearchBar placeholder={'Search jobs'}
+                    onChangeText={(text) => this.SearchFilterFunction(text)} />
 
-                            {/**Header View*/}
-                            <View style={styles.header_view}>
-                                <View style={styles.service_num}>
-                                    <Text style={styles.header_text}>VOCT092015</Text>
-                                </View>
-                                <View style={styles.schedule_view}>
-                                    <MaterialIcons name='schedule' size={20} color='#1766A6' />
-                                    <Text style={styles.job_text}>10/10/2018 20:00</Text>
-                                </View>
-                            </View>
-                            {/**Child View*/}
-                            <View style={styles.modal_child_container}>
-                                <ScrollView showsVerticalScrollIndicator={false}>
-                                    {/**Company Name*/}
-                                    <View style={styles.main_view}>
-                                        <View style={styles.first_view}>
-                                            <Text style={styles.value_text}>Yusata Infotech</Text>
-                                        </View>
-                                    </View>
-                                    {/**Vehicle View*/}
-                                    <View style={styles.main_view}>
-                                        <View style={styles.first_view}>
-                                            <View style={styles.icon_view}>
-                                                <MaterialCommunityIcons name='van-utility' color='#1766A6' size={24} />
+                <FlatList
+                    data={this.state.data}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item, index }) =>
+                        <List style={styles.list}>
+                            <ListItem icon style={styles.listitem}>
+                                <Checkbox />
+                                <Body style={styles.body}>
+                                    <TouchableWithoutFeedback>
+                                        <View>
+                                            <View style={styles.first_view}>
+                                                <View style={{ flex: 1 }}>
+                                                    <Text style={styles.job_num}>{item.jobNumber}</Text>
+                                                </View>
+                                                <View style={styles.job_type_view}>
+                                                    <View style={styles.job_type}>
+                                                        <Text style={styles.sub_text}>{item.jobType}</Text>
+                                                    </View>
+                                                </View>
                                             </View>
-                                            <View style={styles.icon_text_view}>
-                                                <Text style={styles.value_text}>RJ14-2245</Text>
+                                            <View>
+                                                <Text style={styles.sub_text}> {item.scheduleDate} </Text>
+                                                <Text style={styles.sub_text}> {item.location} </Text>
                                             </View>
                                         </View>
-                                    </View>
-                                    {/**Status and Service type View*/}
-                                    <View style={styles.main_view}>
-                                        <View style={styles.first_view}>
-                                            <View style={styles.status_picker}>
-                                                <Picker
-                                                    selectedValue={this.state.status}
-                                                    style={styles.picker}
-                                                    onValueChange={(itemValue, itemIndex) => this.setState({ status: itemValue })}>
-                                                    <Picker.Item label="Entered" value="Entered" />
-                                                    <Picker.Item label="Accepted" value="Accepted" />
-                                                    <Picker.Item label="Onjob" value="Onjob" />
-                                                    <Picker.Item label="Completed" value="Completed" />
-                                                </Picker>
-                                            </View>
-                                        </View>
-                                        <View style={styles.second_view}>
-                                            <View style={styles.service_type_view}>
-                                                <Text style={styles.service_type_text}>Completed</Text>
-                                            </View>
-                                        </View>
-                                    </View>
+                                    </TouchableWithoutFeedback>
+                                </Body>
 
-                                    {/**Device View*/}
-                                    <View style={styles.main_view}>
-                                        <View style={styles.first_view}>
-                                            <View style={styles.status_picker}>
-                                                <Picker
-                                                    selectedValue={this.state.device}
-                                                    style={styles.picker}>
-                                                    <Picker.Item label="Device1" value="Device1" />
-                                                    <Picker.Item label="Device2" value="Device2" />
-                                                    <Picker.Item label="Device3" value="Device3" />
-                                                    <Picker.Item label="Device4" value="Device4" />
-                                                </Picker>
-                                            </View>
-                                        </View>
-                                    </View>
+                            </ListItem>
+                        </List>
+                    }
+                />
 
-                                    {/**Sim View*/}
-                                    <View style={styles.main_view}>
-                                        <View style={styles.first_view}>
-                                            <View style={styles.status_picker}>
-                                                <Picker
-                                                    selectedValue={this.state.sim}
-                                                    style={styles.picker}>
-                                                    <Picker.Item label="Sim1" value="Sim1" />
-                                                    <Picker.Item label="Sim2" value="Sim2" />
-                                                    <Picker.Item label="Sim3" value="Sim3" />
-                                                    <Picker.Item label="Sim4" value="Sim4" />
-                                                </Picker>
-                                            </View>
-                                        </View>
-                                    </View>
-                                    {/**Close Button*/}
-                                    <View style={styles.button_view}>
-                                        <Button style={styles.submit_button}
-                                            onPress={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
-                                            <Text style={styles.button_text}>Close</Text>
-                                        </Button>
-                                        <Button style={styles.submit_button}
-                                            onPress={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
-                                            <Text style={styles.button_text}>Submit</Text>
-                                        </Button>
-                                    </View>
-
-                                </ScrollView>
-                            </View>
-                        </View>
-                    </Modal>
-                </View>
+            </View>
         );
     }
 }

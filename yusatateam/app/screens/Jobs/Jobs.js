@@ -4,12 +4,16 @@ import { View } from 'react-native';
 import { Toolbar } from '../../components'
 import { AppLoading } from 'expo';
 import {JobCompleted,JobPending,JobReschedule,JobSchedule} from './JobTabPages';
-import {JobSearch} from './JobSearch/JobSearch'
+import pendingData from '../../assets/JSONData/JobsData/pendingData';
+import completedData from '../../assets/JSONData/JobsData/completedData';
+import reScheduleData from '../../assets/JSONData/JobsData/reScheduleData';
+import scheduleData from '../../assets/JSONData/JobsData/scheduleData';
 export default class Jobs extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             isLoading: true,
+            item : pendingData
         },
             this.status = ['Pending', 'Schedule', 'Completed', 'ReSchedule']
     }
@@ -21,10 +25,26 @@ export default class Jobs extends React.Component {
         })
         this.setState({ isLoading: false })
     };
-    // getStatus(i, ref, from) {
-    //     //console.log(i);
-    //     this.refs.modal.changeTabStatus(this.status[i])
-    // }
+   
+    getStatus(i, ref, from) {
+        console.log(this.status[i]);
+        if(this.status[i]=='Pending')
+        {
+            this.setState({item : pendingData});
+        }
+        if(this.status[i]=='Schedule')
+        {
+            this.setState({item : scheduleData});
+        }
+        if(this.status[i]=='Completed')
+        {
+            this.setState({item : completedData});
+        }
+        if(this.status[i]=='ReSchedule')
+        {
+            this.setState({item : reScheduleData});
+        }
+    }
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
@@ -33,9 +53,9 @@ export default class Jobs extends React.Component {
                 <View style={{ flex: 1 }}>
                     <Toolbar title='Jobs' 
                         leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
-                        setting='md-search' settingType='Ionicons' onSettingsPress={() => this.refs.modal.setModalVisible(true)}/>
+                        setting='md-search' settingType='Ionicons' onSettingsPress={() => navigate('JobSearch', { item: this.state.item })}/>
                     <Tabs 
-                    // onChangeTab={({ i, ref, from }) => this.getStatus(i, ref, from)} 
+                    onChangeTab={({ i }) => this.getStatus(i)} 
                     renderTabBar={() => <ScrollableTab />}>
                         <Tab tabStyle={{ backgroundColor: "#0073b7" }} textStyle={{ color: '#C0C0C0' }} activeTabStyle={{ backgroundColor: "#0073b7" }} heading="Pending">
                             <JobPending />
@@ -50,7 +70,7 @@ export default class Jobs extends React.Component {
                             <JobReschedule />
                         </Tab>
                     </Tabs>
-                    <JobSearch ref='modal' />
+                    
                 </View>
         );
     }

@@ -1,6 +1,6 @@
 const ScheduleData= [
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS620NOV2018',
         'jobStatus': 'completed',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
@@ -15,7 +15,7 @@ const ScheduleData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS720NOV2018',
         'jobStatus': 'completed',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
@@ -30,7 +30,7 @@ const ScheduleData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS820NOV2018',
         'jobStatus': 'completed',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
@@ -45,7 +45,7 @@ const ScheduleData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS920NOV2018',
         'jobStatus': 'completed',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
@@ -60,7 +60,7 @@ const ScheduleData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS220NOV2018',
         'jobStatus': 'completed',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
@@ -75,7 +75,7 @@ const ScheduleData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS320NOV2018',
         'jobStatus': 'completed',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
@@ -90,7 +90,7 @@ const ScheduleData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
+        'jobNumber': 'JOBS520NOV2018',
         'jobStatus': 'completed',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
