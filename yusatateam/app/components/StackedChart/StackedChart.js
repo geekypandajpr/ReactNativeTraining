@@ -61,7 +61,7 @@ export default class StackedBar extends React.Component{
     render(){
         return(
             <View style={{ marginTop: 20,flex:1 }}>
-                <View style={{ height: 250, flexDirection: 'row',flex:1 }}>
+                <View style={{ height: 250, flexDirection: 'row',flex:4 }}>
                     <YAxis
                         style={{ width:40 }}
                         data={ StackedBarChart.extractDataPoints(this.state.data, this.state.keys) }
@@ -77,7 +77,7 @@ export default class StackedBar extends React.Component{
                         showGrid={true}
                         // numberOfTicks={10}
                         spacingInner={0.1}
-                        spacingOuter={0.1}
+                        spacingOuter={0.5}
                         contentInset={{ top: 0, bottom: 0 , left: 0, right: 0}}  
                     />
                 </View>
@@ -91,7 +91,7 @@ export default class StackedBar extends React.Component{
                     // numberOfTicks = {8}
                     scale={scale.scaleBand}
                 />
-                <View style={{ flex:1,marginTop:10 }}>
+                <View style={{ flex:0.5,marginTop:10 }}>
                     <View style={{flex:1,flexDirection:'row', justifyContent:'center'}}>
                         {this.state.keys.map((item, index) => 
                             <View key={index} style={{flex:1,justifyContent:'center',alignItems:'flex-start', flexDirection: 'row'}}>

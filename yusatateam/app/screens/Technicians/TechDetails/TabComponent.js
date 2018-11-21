@@ -36,22 +36,27 @@ export default class TabComponent extends React.Component {
                    <Tabs renderTabBar={()=> <ScrollableTab />}>
 
                        <Tab tabStyle={{ backgroundColor: colors.HEADER_COLOR }} textStyle={{ color: '#C0C0C0' }} 
-                            activeTabStyle={{ backgroundColor: colors.HEADER_COLOR }} heading="Week1">
+                            activeTabStyle={{ backgroundColor: colors.HEADER_COLOR }} heading="1 to 7">
                             <TechDetails />
                         </Tab>
 
                         <Tab tabStyle={{ backgroundColor: colors.HEADER_COLOR }} textStyle={{ color: '#C0C0C0' }} 
-                            activeTabStyle={{ backgroundColor: colors.HEADER_COLOR }} heading="Week2">
+                            activeTabStyle={{ backgroundColor: colors.HEADER_COLOR }} heading="8 to 14">
                             <TechDetails />
                         </Tab>
 
                         <Tab tabStyle={{ backgroundColor: colors.HEADER_COLOR }} textStyle={{ color: '#C0C0C0' }} 
-                            activeTabStyle={{ backgroundColor: colors.HEADER_COLOR }} heading="Week3">
+                            activeTabStyle={{ backgroundColor: colors.HEADER_COLOR }} heading="14 to 21">
                             <TechDetails />
                         </Tab>
 
                         <Tab tabStyle={{ backgroundColor: colors.HEADER_COLOR }} textStyle={{ color: '#C0C0C0' }} 
-                            activeTabStyle={{ backgroundColor: colors.HEADER_COLOR }} heading="Week4">
+                            activeTabStyle={{ backgroundColor: colors.HEADER_COLOR }} heading="21 to 28">
+                            <TechDetails />
+                        </Tab>
+
+                        <Tab tabStyle={{ backgroundColor: colors.HEADER_COLOR }} textStyle={{ color: '#C0C0C0' }} 
+                            activeTabStyle={{ backgroundColor: colors.HEADER_COLOR }} heading="28 to 31">
                             <TechDetails />
                         </Tab>
 
