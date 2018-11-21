@@ -6,6 +6,7 @@ import { Toolbar } from '../../../components/Toolbar';
 import { TechDetails } from './TechDetails';
 import {FontAwesome,EvilIcons} from '@expo/vector-icons';
 import colors from '../../../constants/colors'
+import EStylesheet from 'react-native-extended-stylesheet'
 
 export default class TabComponent extends React.Component {
     constructor() {
@@ -35,13 +36,30 @@ export default class TabComponent extends React.Component {
                     />
                    <Tabs renderTabBar={()=> <ScrollableTab />}>
 
-                       <Tab tabStyle={{ backgroundColor: colors.HEADER_COLOR }} textStyle={{ color: '#C0C0C0' }} 
-                            activeTabStyle={{ backgroundColor: colors.HEADER_COLOR }} heading="1 to 7">
+                       <Tab 
+                             heading={
+                                 <TabHeading>
+                                     <View style={styles.tab_view}>
+                                     <Text style={styles.from}>Week1</Text>
+                                     <Text style={styles.date}>1 to 7</Text>
+                                     </View>
+                                 </TabHeading>
+                             }>
+                            
                             <TechDetails />
                         </Tab>
 
-                        <Tab tabStyle={{ backgroundColor: colors.HEADER_COLOR }} textStyle={{ color: '#C0C0C0' }} 
-                            activeTabStyle={{ backgroundColor: colors.HEADER_COLOR }} heading="8 to 14">
+                       
+                       <Tab 
+                             heading={
+                                 <TabHeading>
+                                     <View style={styles.tab_view}>
+                                     <Text style={styles.from}>Week1</Text>
+                                     <Text style={styles.date}>1 to 7</Text>
+                                     </View>
+                                 </TabHeading>
+                             }>
+                            
                             <TechDetails />
                         </Tab>
 
@@ -69,3 +87,24 @@ export default class TabComponent extends React.Component {
 
 }
 export { TabComponent }
+
+
+ const styles=EStylesheet.create({
+    tab_view: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: colors.HEADER_COLOR,
+        justifyContent:'center',
+        alignItems:'center'
+       
+    },
+    from: {
+        color: '#000',
+        fontSize: '0.9rem'
+    },
+    date: {
+        color: 'gray',
+        fontSize: '0.7rem'
+    }
+
+})
