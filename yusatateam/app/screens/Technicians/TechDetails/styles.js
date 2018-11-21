@@ -11,10 +11,16 @@ export default EStyleSheet.create({
     {
         flex: 1,
     },
+    upper_View: {
+        flex: 1,
+        flexDirection: 'row',
+        marginBottom: 10,
+        backgroundColor: '#fff'
+    },
     lowerView:
     {
         flex: 2,
-        backgroundColor:'#fff'
+        backgroundColor: '#fff'
     },
     Cname_text: {
         fontSize: '1rem',
@@ -23,9 +29,8 @@ export default EStyleSheet.create({
     },
     row_divide:
     {
-        margin :2,
+        margin: 2,
         flexDirection: 'row',
-        
     },
     profile_View: {
         flex: 1,
@@ -39,7 +44,6 @@ export default EStyleSheet.create({
         borderRadius: 50,
         borderWidth: 1,
     },
-    
     level_text: {
         fontSize: '0.8rem',
         color: '#000'
@@ -63,7 +67,21 @@ export default EStyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'flex-start'
+    },
+    Location_flex: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'flex-start'
+    },
+    Call_flex: {
+        flex: 2,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
     }
+
+
 
 
 })

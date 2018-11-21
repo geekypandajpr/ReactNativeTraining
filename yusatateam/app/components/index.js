@@ -1,6 +1,7 @@
 export { Activityindication } from './ActivityIndication';
 export { Barchart } from './Barchart';
 export { Calendarlist } from './Calendarlist';
+export { Checkbox } from './Checkbox';
 export { IconWithText } from './IconWithText';
 export { InputWithIcon } from './InputWithIcon';
 export { JobsComponent } from './JobsComponent';
@@ -17,7 +18,7 @@ export { SummaryCard } from './SummaryCard';
 export { SummarySwitch } from './SummarySwitch';
 export { TechnicianList } from './TechnicianList';
 export { Toolbar } from './Toolbar';
-export { Checkbox } from './Checkbox';
+
 
 
 

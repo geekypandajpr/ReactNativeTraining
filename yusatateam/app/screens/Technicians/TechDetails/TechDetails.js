@@ -18,7 +18,7 @@ export default class TechDetails extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{ flex: 1, flexDirection: 'row',marginBottom:10,backgroundColor:'#fff' }}>
+                <View style={styles.upper_View}>
                     <View style={styles.profile_View}>
                         <Image style={styles.profile_pic} resizeMode='cover'
                             source={require('../../../assets/images/react-native.png')}></Image>
@@ -49,7 +49,7 @@ export default class TechDetails extends React.Component {
                             <View style={styles.colon_flex}>
                                 <Text>:</Text>
                             </View>
-                            <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                            <View style={styles.Call_flex}>
                                 <Ionicons name='md-call' size={15} color='#5cb85c' />
                                 <Text style={[styles.level_text,{marginLeft:3}]}>9829567890</Text>
                             </View>
@@ -68,7 +68,7 @@ export default class TechDetails extends React.Component {
                         </View>
 
                         <View style={styles.row_divide}>
-                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center',alignItems:'flex-start' }}>
+                            <View style={styles.Location_flex}>
                             <Entypo name='location-pin' size={20} color='#d9534f' />
                                 <Text>Sector 10,Pratap Nagar,Kumbha Marg,Jaipur</Text>
                             </View>
