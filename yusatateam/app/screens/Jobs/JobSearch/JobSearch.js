@@ -25,11 +25,16 @@ export default class JobSearch extends React.Component {
             status: true,
             device: '',
             sim: '',
+            status: '',
             data: '',
+            data: this.props.navigation.state.params.item,
+            dropdownbool: false
         }
         this.arrayholder = [];
     }
-
+    componentDidMount() {
+        this.arrayholder = this.state.data;
+    }
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -39,8 +44,11 @@ export default class JobSearch extends React.Component {
         this.setState({ isLoading: false })
     }
     SearchFilterFunction(text) {
-
-        const newData = this.state.data.filter(function (item) {
+        var searchField;
+        //console.log(this.state.status);
+        if(this.state.status== 'jobNumber')
+        {
+          const newData = this.arrayholder.filter(function (item) {
             const itemData = item.jobNumber.toUpperCase()
             const textData = text.toUpperCase()
             return itemData.indexOf(textData) > -1
@@ -50,22 +58,54 @@ export default class JobSearch extends React.Component {
             text: text
         },
         )
+        }
+        if(this.state.status== 'scheduleDate')
+        {
+            const newData = this.arrayholder.filter(function (item) {
+                const itemData = item.scheduleDate.toUpperCase()
+                const textData = text.toUpperCase()
+                return itemData.indexOf(textData) > -1
+            })
+            this.setState({
+                data: newData,
+                text: text
+            },
+            )
+        }
+        if(this.state.status== 'jobType')
+        {
+            const newData = this.arrayholder.filter(function (item) {
+                const itemData = item.jobType.toUpperCase()
+                const textData = text.toUpperCase()
+                return itemData.indexOf(textData) > -1
+            })
+            this.setState({
+                data: newData,
+                text: text
+            },
+            )
+        }    
     }
+
     render() {
         const { goBack } = this.props.navigation;
-        //const { navigate } = props.navigation;
-        const { state } = this.props.navigation;
-        const data = state.params.item;
-        this.state.data = data;
-        this.arrayholder = this.state.data;
-        //console.log(this.state.data);
         return (
             <View style={styles.container}>
                 <Toolbar title='Jobs'
                     leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                    setting='filter' settingType='FontAwesome' onSettingsPress={() => this.setState({ dropdownbool: !this.state.dropdownbool })}
                 />
                 <SearchBar placeholder={'Search jobs'}
                     onChangeText={(text) => this.SearchFilterFunction(text)} />
+
+                {
+                    this.state.dropdownbool == false ? null : 
+                    <Picker selectedValue={this.state.status} onValueChange={(itemValue) => this.setState({ status: itemValue })}>
+                        <Picker.Item label="Job Name" value="jobNumber" />
+                        <Picker.Item label="Schedule Date" value="scheduleDate" />
+                        <Picker.Item label="Job Type" value="jobType" />
+                    </Picker>
+                }
 
                 <FlatList
                     data={this.state.data}
