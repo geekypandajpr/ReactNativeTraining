@@ -36,8 +36,7 @@ export default class TabComponent extends React.Component {
                     />
                    <Tabs>
 
-                        <Tab
-                            heading={
+                        <Tab heading={
                                 <TabHeading>
                                     <View style={styles.tab_view}>
                                         <Text style={styles.from}>Week1</Text>
@@ -49,8 +48,7 @@ export default class TabComponent extends React.Component {
                             <TechDetails />
                         </Tab>
 
-                        <Tab
-                            heading={
+                        <Tab heading={
                                 <TabHeading>
                                     <View style={styles.tab_view}>
                                         <Text style={styles.from}>Week2</Text>
@@ -62,8 +60,7 @@ export default class TabComponent extends React.Component {
                             <TechDetails />
                         </Tab>
 
-                        <Tab
-                            heading={
+                        <Tab heading={
                                 <TabHeading>
                                     <View style={styles.tab_view}>
                                         <Text style={styles.from}>Week3</Text>
@@ -75,8 +72,7 @@ export default class TabComponent extends React.Component {
                             <TechDetails />
                         </Tab>
 
-                        <Tab
-                            heading={
+                        <Tab heading={
                                 <TabHeading>
                                     <View style={styles.tab_view}>
                                         <Text style={styles.from}>Week4</Text>
@@ -88,8 +84,7 @@ export default class TabComponent extends React.Component {
                             <TechDetails />
                         </Tab>
 
-                        <Tab
-                            heading={
+                        <Tab heading={
                                 <TabHeading>
                                     <View style={styles.tab_view}>
                                         <Text style={styles.from}>Week5</Text>
