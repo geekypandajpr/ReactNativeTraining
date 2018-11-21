@@ -15,7 +15,6 @@ export { StatefulButton } from './StatefulButton';
 export { Statusbar } from './Statusbar';
 export { SummaryCard } from './SummaryCard';
 export { SummarySwitch } from './SummarySwitch';
-export { TechCalender } from './TechCalender';
 export { TechnicianList } from './TechnicianList';
 export { Toolbar } from './Toolbar';
 export { Checkbox } from './Checkbox';
