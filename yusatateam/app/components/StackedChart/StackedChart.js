@@ -29,7 +29,7 @@ export default class StackedBar extends React.Component{
                     Scheduled: 9,
                 },
                 {   
-                    label: 'Thur',
+                    label: 'Thr',
                     Completed: 9,
                     Pending: 4,
                     Scheduled: 5,
@@ -63,9 +63,9 @@ export default class StackedBar extends React.Component{
             <View style={{ marginTop: 20,flex:1 }}>
                 <View style={{ height: 250, flexDirection: 'row',flex:4 }}>
                     <YAxis
-                        style={{ width:40 }}
+                        style={{ width:30 }}
                         data={ StackedBarChart.extractDataPoints(this.state.data, this.state.keys) }
-                        contentInset={{ left: 45, right: 25}}
+                        contentInset={{ left: 70, }}
                         svg={{fontSize: 12, fontWeight :'700'}}
                         // scale={scale.scaleBand}
                     />
@@ -77,12 +77,12 @@ export default class StackedBar extends React.Component{
                         showGrid={true}
                         // numberOfTicks={10}
                         spacingInner={0.1}
-                        spacingOuter={0.5}
+                        spacingOuter={0.3}
                         contentInset={{ top: 0, bottom: 0 , left: 0, right: 0}}  
                     />
                 </View>
                 <XAxis
-                    style={{marginTop: 10, marginLeft: 40}}
+                    style={{marginTop: 10, marginLeft: 35}}
                     data={this.state.data}
                     contentInset={{ top: 30, bottom: 30, }}
                     yAccessor={({index}) => index}

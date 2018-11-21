@@ -18,12 +18,12 @@ export default class TechDetails extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{ flex: 1, flexDirection: 'row',marginTop:5,marginBottom:10,backgroundColor:'#fff' }}>
+                <View style={{ flex: 1, flexDirection: 'row',marginBottom:10,backgroundColor:'#fff' }}>
                     <View style={styles.profile_View}>
                         <Image style={styles.profile_pic} resizeMode='cover'
                             source={require('../../../assets/images/react-native.png')}></Image>
                     </View>
-                    <View style={{ flex: 2 }}>
+                    <View style={{ flex: 2,marginTop:10 }}>
                         <View style={styles.row_divide}>
                             <View style={{ justifyContent: 'flex-start', alignItems: 'center' }}>
                                 <Text style={styles.Cname_text}>Shaili Mittal</Text>
@@ -55,20 +55,21 @@ export default class TechDetails extends React.Component {
                             </View>
                         </View>
 
-                        <View style={styles.row_divide}>
+                         <View style={styles.row_divide}>
                             <View style={styles.Ques_flex}>
                                 <Text style={styles.name_text}>Status</Text>
                             </View>
                             <View style={styles.colon_flex}>
                                 <Text>:</Text>
                             </View>
-                            <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                <Entypo name='location-pin' size={20} color='#d9534f' />
+                            <View style={styles.Ans_flex}>
                                 <Text style={styles.level_text}>On Job</Text>
                             </View>
                         </View>
+
                         <View style={styles.row_divide}>
-                            <View style={styles.Location_flex}>
+                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center',alignItems:'flex-start' }}>
+                            <Entypo name='location-pin' size={20} color='#d9534f' />
                                 <Text>Sector 10,Pratap Nagar,Kumbha Marg,Jaipur</Text>
                             </View>
                         </View>
