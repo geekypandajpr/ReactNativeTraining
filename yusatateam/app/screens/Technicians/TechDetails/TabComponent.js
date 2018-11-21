@@ -34,23 +34,75 @@ export default class TabComponent extends React.Component {
                            Calender='calendar' calenderType='FontAwesome' onCalenderPress={()=> navigate('Settings')}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
-                   <Tabs renderTabBar={()=> <ScrollableTab />}>
+                   <Tabs>
 
-                       <Tab 
-                             heading={
-                                 <TabHeading>
-                                     <View style={styles.tab_view}>
-                                     <Text style={styles.from}>Week1</Text>
-                                     <Text style={styles.date}>1 to 7</Text>
-                                     </View>
-                                 </TabHeading>
-                             }>
-                            
+                        <Tab
+                            heading={
+                                <TabHeading>
+                                    <View style={styles.tab_view}>
+                                        <Text style={styles.from}>Week1</Text>
+                                        <Text style={styles.date}>1 to 7</Text>
+                                    </View>
+                                </TabHeading>
+                            }>
+
+                            <TechDetails />
+                        </Tab>
+
+                        <Tab
+                            heading={
+                                <TabHeading>
+                                    <View style={styles.tab_view}>
+                                        <Text style={styles.from}>Week2</Text>
+                                        <Text style={styles.date}>1 to 7</Text>
+                                    </View>
+                                </TabHeading>
+                            }>
+
+                            <TechDetails />
+                        </Tab>
+
+                        <Tab
+                            heading={
+                                <TabHeading>
+                                    <View style={styles.tab_view}>
+                                        <Text style={styles.from}>Week3</Text>
+                                        <Text style={styles.date}>1 to 7</Text>
+                                    </View>
+                                </TabHeading>
+                            }>
+
+                            <TechDetails />
+                        </Tab>
+
+                        <Tab
+                            heading={
+                                <TabHeading>
+                                    <View style={styles.tab_view}>
+                                        <Text style={styles.from}>Week4</Text>
+                                        <Text style={styles.date}>1 to 7</Text>
+                                    </View>
+                                </TabHeading>
+                            }>
+
+                            <TechDetails />
+                        </Tab>
+
+                        <Tab
+                            heading={
+                                <TabHeading>
+                                    <View style={styles.tab_view}>
+                                        <Text style={styles.from}>Week5</Text>
+                                        <Text style={styles.date}>1 to 7</Text>
+                                    </View>
+                                </TabHeading>
+                            }>
+
                             <TechDetails />
                         </Tab>
 
                        
-                       <Tab 
+                       {/* <Tab 
                              heading={
                                  <TabHeading>
                                      <View style={styles.tab_view}>
@@ -76,7 +128,7 @@ export default class TabComponent extends React.Component {
                         <Tab tabStyle={{ backgroundColor: colors.HEADER_COLOR }} textStyle={{ color: '#C0C0C0' }} 
                             activeTabStyle={{ backgroundColor: colors.HEADER_COLOR }} heading="28 to 31">
                             <TechDetails />
-                        </Tab>
+                        </Tab> */}
 
                     </Tabs>
 
