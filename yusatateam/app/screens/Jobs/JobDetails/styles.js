@@ -18,6 +18,10 @@ export default EStyleSheet.create({
         elevation: 5,
         flexDirection: 'row',
     },
+    service_num: {
+        flex: 7,
+        justifyContent: 'center'
+    },
     header_text: {
 
         color: '#000',
@@ -25,10 +29,7 @@ export default EStyleSheet.create({
         fontWeight: 'bold',
         margin: 15
     },
-    service_num: {
-        flex: 7,
-        justifyContent: 'center'
-    },
+  
     right_sub_view: {
         flex: 3,
         flexDirection: 'row',
@@ -50,13 +51,41 @@ export default EStyleSheet.create({
         color: '#F98866',
         fontSize: '0.8rem'
     },
-
+    View_Container:
+    {
+        backgroundColor: '#FFFFFF',
+        height: '70%',
+        width: '100%',
+        paddingTop: 15,
+        paddingLeft: 15,
+        paddingRight: 15
+    },
+    Margin_View:
+    {
+        flexDirection: 'row',
+        marginTop: 3
+    },
+    Level_Flex:
+    {
+        flex: 1.5,
+        justifyContent:'center'
+    },
     Order_text:
     {
         fontStyle: 'normal',
         fontSize: '1.2rem',
         color: '#000',
         fontWeight: '100',
+    },
+    Column_Flex:
+    {
+        flex: 0.1,
+        justifyContent:'center'
+    },
+    Text_Flex:
+    {
+        flex: 2,
+        justifyContent: 'center'
     },
     Order_texts:
     {
@@ -71,122 +100,6 @@ export default EStyleSheet.create({
         fontStyle: 'normal',
         fontSize: '1.1rem',
         color: '#000',
-    },
-    View_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        color: 'gray',
-        marginLeft: 10
-    },
-   
-    ViewDescription_Text:
-    {
-        fontStyle: 'normal',
-        fontSize: '1.1rem',
-        color: 'gray',
-
-    },
-  
-    job_text: {
-        fontSize: '0.8rem',
-        fontWeight: 'bold',
-        color: '#000',
-        margin: 5
-    },
-    schedule_view: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginLeft: 100
-    },
-    View_Container:
-    {
-        backgroundColor: '#FFFFFF',
-        height: '70%',
-        width: '100%',
-        paddingTop: 15,
-        paddingLeft: 15,
-        paddingRight: 15
-    },
-    Provider_View:
-    {
-        flex: 1,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: 'gray',
-        width: 90,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 60
-    },
-    providerStyle:
-    {
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        fontWeight: 'bold',
-        color: '#0073b7',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-    Status_Button:
-    {
-        borderRadius: 10,
-        borderWidth: 3,
-        width: 100,
-        height: 35,
-        borderColor: '#EEEEF0',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    Status_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        fontWeight: 'bold',
-        color: 'white',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    Level_Flex:
-    {
-        flex: 1.5,
-        justifyContent:'center'
-    },
-    Column_Flex:
-    {
-        flex: 0.1,
-        justifyContent:'center'
-    },
-    Text_Flex:
-    {
-        flex: 2,
-        justifyContent: 'center'
-    },
-   
-    Mobile_Level: {
-        flexDirection: 'row',
-        marginTop: 6
-    },
-    Button_View:
-    {
-        flex: 1,
-        flexDirection: 'row',
-        marginTop: 15
-    },
-    Button_Style:
-    {
-        flex: 1,
-        width: 30,
-        // marginLeft: 100,
-       
-       
-    },
-    Margin_View:
-    {
-        flexDirection: 'row',
-        marginTop: 3
     },
     column_price:
     {
@@ -211,18 +124,24 @@ export default EStyleSheet.create({
         justifyContent:'flex-start',
         alignItems:'flex-start'
     },
-    button_view: {
-        flex :1,
+    Mobile_Level: {
+        flexDirection: 'row',
+        marginTop: 6
+    },
+    View_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1rem',
+        color: 'gray',
+        marginLeft: 10
     },
     close_button: {
         padding : 10,
-        //paddingRight : 0,
-       
+        //paddingRight : 0, 
     },
     close_button_Text : {
         color: '#fff',
         fontSize: '1rem'
-    }
-    
+    },
 
 })
