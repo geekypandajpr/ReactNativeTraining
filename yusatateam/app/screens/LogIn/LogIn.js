@@ -5,8 +5,13 @@ import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } fr
 import { CheckBox, Button, Text, Toast } from 'native-base';
 
 import { InputWithIcon, Statusbar } from '../../components';
-import * as userActions from '../../redux/actions/userActions';
+import { loginRequest } from '../../redux/actions/userActions';
 import styles from './Styles';
+
+var loginCredentials = {
+    "password": "SunilS@123",
+    "userName": "sunil.sharma@yusata.com"
+}
 
 export class LogIn extends React.Component {
     constructor(props) {
@@ -36,19 +41,8 @@ export class LogIn extends React.Component {
             "password": "SunilS@123",
             "userName": "sunil.sharma@yusata.com"
         }
-        // this.props.onFetchData(loginCredentials);
-        this.props.navigation.navigate('Dashboard');
-
-        // if (this._checkRequiredFields()) {            
-        // } else {
-        //     Toast.show({
-        //         position: 'bottom',
-        //         type: 'danger',
-        //         duration: 3000,
-        //         text: 'Invalid Credentials',
-        //         buttonText: 'Ok',
-        //     });
-        // }
+        this.props.onFetchData(loginCredentials);
+        //this.props.navigation.navigate('Dashboard');
     }
 
     _checkRequiredFields() {
@@ -57,7 +51,7 @@ export class LogIn extends React.Component {
     }
 
     render() {
-        const { navigate } = this.props.navigation;
+        // const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/LoginScreenBG.jpg')} >
@@ -126,7 +120,9 @@ export class LogIn extends React.Component {
                         <View style={styles.button_view}>
                             <Button
                                 style={styles.button}
-                                onPress={this._doLogin}>
+                                onPress={() => {this.props.onFetchData(loginCredentials)}}
+                                // onPress={() => {this.props.navigation.navigate('Dashboard')}}
+                                >
                                 <Text style={styles.button_text}>  LOGIN </Text>
                             </Button>
                         </View>
@@ -140,14 +136,14 @@ export class LogIn extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        //appData: state.appData
+        appData: state.appData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onFetchData: (loginCredentials) => dispatch(userActions.loginRequest(loginCredentials))
+        onFetchData: (loginCredentials) => dispatch(loginRequest(loginCredentials))
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(LogIn);
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

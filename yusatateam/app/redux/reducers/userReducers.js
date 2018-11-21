@@ -7,7 +7,7 @@ const initialState = {
     error: false
 }
 
-export default function dataReducers (state = initialState, action) {
+export default function userReducers (state = initialState, action) {
     switch(action.type) {
         case USER.FETCHING_DATA:
             return Object.assign({}, state, {
