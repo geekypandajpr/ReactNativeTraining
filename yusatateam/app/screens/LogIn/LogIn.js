@@ -50,6 +50,10 @@ export class LogIn extends React.Component {
         return true;
     }
 
+
+ 
+
+
     render() {
         // const { navigate } = this.props.navigation;
         return (

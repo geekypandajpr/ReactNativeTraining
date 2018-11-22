@@ -13,8 +13,6 @@ import styles from './styles';
 import { Checkbox } from '../../../components';
 import { TouchableWithoutFeedback } from 'react-native';
 import { Toolbar, JobsComponent, SearchBar } from '../../../components';
-
-
 export default class JobSearch extends React.Component {
     constructor(props) {
         super(props);
@@ -26,7 +24,6 @@ export default class JobSearch extends React.Component {
             device: '',
             sim: '',
             status: '',
-            data: '',
             data: this.props.navigation.state.params.item,
             dropdownbool: false
         }
@@ -86,6 +83,16 @@ export default class JobSearch extends React.Component {
             )
         }    
     }
+    changeCheckboxStatus () 
+    {
+        if(this.state.data.checkStatus == false)
+        {
+            this.setState({checkbox : true})
+        }
+        else{
+            this.setState({checkbox : false})
+        }
+    }
 
     render() {
         const { goBack } = this.props.navigation;
@@ -113,7 +120,9 @@ export default class JobSearch extends React.Component {
                     renderItem={({ item, index }) =>
                         <List style={styles.list}>
                             <ListItem icon style={styles.listitem}>
-                                <Checkbox />
+                                <Checkbox checked={item.checkStatus}
+                                onPress={() => {this.changeCheckboxStatus}}
+                                />
                                 <Body style={styles.body}>
                                     <TouchableWithoutFeedback>
                                         <View>

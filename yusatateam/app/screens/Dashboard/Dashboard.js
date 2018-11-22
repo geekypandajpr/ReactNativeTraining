@@ -16,7 +16,7 @@ import {
 } from '../../components';
 import Swiper from 'react-native-swiper';
 import colors from '../../constants/colors';
-
+import { BackHandler } from 'react-native'
 
 export default class Dashboard extends React.Component {
     constructor() {
@@ -34,6 +34,7 @@ export default class Dashboard extends React.Component {
         }
         this.onChangePieChart = this.onChangePieChart.bind(this);
         this.onBarchartChange = this.onBarchartChange.bind(this);
+      
     }
 
     async componentWillMount() {
@@ -89,10 +90,15 @@ export default class Dashboard extends React.Component {
             this.props.navigation.navigate('Calendars');
         }
     }
-
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+                this.props.navigation.navigate('LogIn');                 
+                return true; 
+        });
+    }
     render() {
         const { navigate } = this.props.navigation;
-        //const { goBack } = this.props.navigation;
+        const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>

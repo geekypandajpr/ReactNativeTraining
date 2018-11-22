@@ -8,6 +8,7 @@ import pendingData from '../../assets/JSONData/JobsData/pendingData';
 import completedData from '../../assets/JSONData/JobsData/completedData';
 import reScheduleData from '../../assets/JSONData/JobsData/reScheduleData';
 import scheduleData from '../../assets/JSONData/JobsData/scheduleData';
+import { BackHandler } from 'react-native';
 export default class Jobs extends React.Component {
     constructor(props) {
         super(props)
@@ -27,7 +28,7 @@ export default class Jobs extends React.Component {
     };
    
     getStatus(i, ref, from) {
-        console.log(this.status[i]);
+       // console.log(this.status[i]);
         if(this.status[i]=='Pending')
         {
             this.setState({item : pendingData});
@@ -44,6 +45,12 @@ export default class Jobs extends React.Component {
         {
             this.setState({item : reScheduleData});
         }
+    }
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+                this.props.navigation.navigate('Dashboard');                 
+                return true; 
+        });
     }
     render() {
         const { navigate } = this.props.navigation;

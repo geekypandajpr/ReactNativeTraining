@@ -12,7 +12,7 @@ import styles from './styles';
 import { Toolbar } from '../../components';
 import { SimDetails } from './SimDetails';
 import SimData from '../../assets/JSONData/SimData';
-
+import { BackHandler } from 'react-native';
 export default class Sim extends React.Component {
     constructor() {
         super();
@@ -28,6 +28,12 @@ export default class Sim extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false })
+    }
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+                this.props.navigation.navigate('Dashboard');                 
+                return true; 
+        });
     }
     render() {
         const { navigate } = this.props.navigation;

@@ -13,7 +13,7 @@ import styles from './styles';
 import { Toolbar } from '../../components';
 import DeviceData from '../../assets/JSONData/DeviceData'
 import { DeviceDetails } from './DeviceDeatails'
-
+import { BackHandler } from 'react-native'
 export default class Device extends React.Component {
     constructor() {
         super();
@@ -31,7 +31,12 @@ export default class Device extends React.Component {
         })
         this.setState({ isLoading: false })
     }
-
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+                this.props.navigation.navigate('Dashboard');                 
+                return true; 
+        });
+    }
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;

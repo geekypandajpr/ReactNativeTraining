@@ -9,7 +9,7 @@ import styles from './Styles';
 import moment from 'moment';
 import JobDetails from '../Jobs/JobDetails/JobDetails';
 import colors from '../../constants/colors';
-
+import { BackHandler } from 'react-native';
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
     // '2018-09-17': {selected: true, selectedColor: 'red'},
@@ -29,7 +29,12 @@ export default class Schedule extends React.Component {
     renderDay(day, item) {
         return (<View><Text>{day ? day.dateString: 'item'}</Text></View>);
     }
-
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+                this.props.navigation.navigate('Dashboard');                 
+                return true; 
+        });
+    }
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;

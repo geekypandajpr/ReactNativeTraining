@@ -13,6 +13,7 @@ import { Toolbar } from '../../components';
 import { VehicleDetails } from './VehicleDetails/VehicleDetails';
 import vehicleData from '../../assets/JSONData/vehicleData';
 import { Ionicons} from '@expo/vector-icons';
+import { BackHandler } from 'react-native';
 export default class VehicleList extends React.Component {
     constructor() {
         super();
@@ -28,6 +29,12 @@ export default class VehicleList extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false })
+    }
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+                this.props.navigation.navigate('Dashboard');                 
+                return true; 
+        });
     }
     render() {
         const { navigate } = this.props.navigation;
