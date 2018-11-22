@@ -34,23 +34,16 @@ export default class TabComponent extends React.Component {
                         Calender='calendar' calenderType='FontAwesome' onCalenderPress={() => navigate('Settings')}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
-                    <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }}>
-
-                        <Tab heading={
-
-                            <View style={styles.tab_view}>
-                                <Text style={styles.Week}>Week1</Text>
-                                <Text style={styles.date}>1 to 7</Text>
-                            </View>
-                        }>
-                            <TechDetails />
-                        </Tab>
+                    
+                    <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }} 
+                        renderTabBar={()=> <ScrollableTab tabStyle={{backgroundColor:'red'}}/>}
+                        >
 
                         <Tab heading={
                             <TabHeading>
                                 <View style={styles.tab_view}>
-                                    <Text style={styles.Week}>Week2</Text>
-                                    <Text style={styles.date}>8 to 14</Text>
+                                    <Text style={styles.Week}>Week 1</Text>
+                                    <Text style={styles.date}>1 Nov to 7 Nov</Text>
                                 </View>
                             </TabHeading>
                         }>
@@ -60,8 +53,8 @@ export default class TabComponent extends React.Component {
                         <Tab heading={
                             <TabHeading>
                                 <View style={styles.tab_view}>
-                                    <Text style={styles.Week}>Week3</Text>
-                                    <Text style={styles.date}>15 to 21</Text>
+                                    <Text style={styles.Week}>Week 2</Text>
+                                    <Text style={styles.date}>8 Nov to 14 Nov</Text>
                                 </View>
                             </TabHeading>
                         }>
@@ -71,8 +64,8 @@ export default class TabComponent extends React.Component {
                         <Tab heading={
                             <TabHeading>
                                 <View style={styles.tab_view}>
-                                    <Text style={styles.Week}>Week4</Text>
-                                    <Text style={styles.date}>22 to 28</Text>
+                                    <Text style={styles.Week}>Week 3</Text>
+                                    <Text style={styles.date}>15 Nov to 21 Nov</Text>
                                 </View>
                             </TabHeading>
                         }>
@@ -82,8 +75,8 @@ export default class TabComponent extends React.Component {
                         <Tab heading={
                             <TabHeading>
                                 <View style={styles.tab_view}>
-                                    <Text style={styles.Week}>Week5</Text>
-                                    <Text style={styles.date}>29 to 31</Text>
+                                    <Text style={styles.Week}>Week 4</Text>
+                                    <Text style={styles.date}>22 Nov to 28 Nov</Text>
                                 </View>
                             </TabHeading>
                         }>
@@ -91,7 +84,6 @@ export default class TabComponent extends React.Component {
                         </Tab>
 
                     </Tabs>
-
 
                 </View>
         )
@@ -103,9 +95,9 @@ export { TabComponent }
 
 const styles = EStylesheet.create({
     tab_view: {
-        width: '100%',
+        // width: '100%',
         height: '100%',
-        backgroundColor: colors.HEADER_COLOR,
+        backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center'
 
