@@ -36,11 +36,10 @@ export default class TabComponent extends React.Component {
                     />
                     
                     <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }} 
-                        renderTabBar={()=> <ScrollableTab tabStyle={{backgroundColor:'red'}}/>}
-                        >
+                        renderTabBar={()=> <ScrollableTab/>} >
 
                         <Tab heading={
-                            <TabHeading>
+                            <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
                                     <Text style={styles.Week}>Week 1</Text>
                                     <Text style={styles.date}>1 Nov to 7 Nov</Text>
@@ -51,7 +50,7 @@ export default class TabComponent extends React.Component {
                         </Tab>
 
                         <Tab heading={
-                            <TabHeading>
+                            <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
                                     <Text style={styles.Week}>Week 2</Text>
                                     <Text style={styles.date}>8 Nov to 14 Nov</Text>
@@ -62,7 +61,7 @@ export default class TabComponent extends React.Component {
                         </Tab>
 
                         <Tab heading={
-                            <TabHeading>
+                            <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
                                     <Text style={styles.Week}>Week 3</Text>
                                     <Text style={styles.date}>15 Nov to 21 Nov</Text>
@@ -73,7 +72,7 @@ export default class TabComponent extends React.Component {
                         </Tab>
 
                         <Tab heading={
-                            <TabHeading>
+                            <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
                                     <Text style={styles.Week}>Week 4</Text>
                                     <Text style={styles.date}>22 Nov to 28 Nov</Text>
@@ -94,6 +93,9 @@ export { TabComponent }
 
 
 const styles = EStylesheet.create({
+    tabheading: {
+        backgroundColor: colors.HEADER_COLOR
+    },
     tab_view: {
         // width: '100%',
         height: '100%',
