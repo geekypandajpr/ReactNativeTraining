@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import MonthSelectorCalendar from 'react-native-month-selector';
+// import MonthSelectorCalendar from 'react-native-month-selector';
 
 
 export default class Year extends React.Component{
@@ -16,10 +16,10 @@ export default class Year extends React.Component{
      render(){
          return (
               <View style={{flex:1}}>
-                    <MonthSelectorCalendar
+                    {/* <MonthSelectorCalendar
                 selectedDate={this.state.month}
                 monthTapped={(date) => this.setState({ month: date })}
-                />
+                /> */}
               </View>
           );
       }

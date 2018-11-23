@@ -1,147 +1,81 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-
+import colors from '../../../constants/colors'
 export default EStyleSheet.create({
-
-    container:
-    {
+    container:{
         flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        backgroundColor: '#00000090',
-        flexDirection: 'column',
+        backgroundColor: '#efefef'
     },
-    header_view: {
-        width: '100%',
-        height: 50,
-        backgroundColor: '#EEEEF0',
-        justifyContent: 'center',
-        elevation: 5,
-        flexDirection: 'row',
+    header: {
+        backgroundColor:  colors.HEADER_COLOR
     },
-    service_num: {
-        flex: 7,
-        justifyContent: 'center'
-    },
-    header_text: {
-
-        color: '#000',
+    title: {
         fontSize: '1.1rem',
-        fontWeight: 'bold',
-        margin: 15
+        color: '#fff',
+        fontWeight: '500'
     },
-  
-    right_sub_view: {
-        flex: 3,
+    view: {
+        backgroundColor: '#fff',
+        padding: 8
+    },
+    sub_view: {
         flexDirection: 'row',
+    },
+    left_view: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    middle_view: {
+        flex: 0.2,
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight : 10
     },
-    jobTypeView: {
-        borderRadius: 10,
-        borderWidth: 0.8,
-        borderColor: 'gray',
-        padding: 2,
+    right_view: {
+        flex: 1.5,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    },
+    key_text: {
+        fontSize: '1rem',
+        color: '#000',
+        padding: 4
+    },
+    colon: {
+        color: 'gray',
+        padding: 4
+    },
+    value_text: {
+        fontSize: '0.8rem',
+        color: 'gray',
+        padding: 4
+    },
+    view1: {
+        backgroundColor: '#fff',
+        padding: 8,
+        marginTop: 8
+    },
+    job_type: {
         width: 80,
         height: 23,
+        borderColor: 'gray',
+        borderRadius: 4,
+        borderWidth: 0.8,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    status_view: {
+        width: 90,
+        height: 23,
+        borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#5cb85c'
     },
-    jobTypeText: {
-        color: '#F98866',
-        fontSize: '0.8rem'
-    },
-    View_Container:
-    {
-        backgroundColor: '#FFFFFF',
-        height: '70%',
-        width: '100%',
-        paddingTop: 15,
-        paddingLeft: 15,
-        paddingRight: 15
-    },
-    Margin_View:
-    {
-        flexDirection: 'row',
-        marginTop: 3
-    },
-    Level_Flex:
-    {
-        flex: 1.5,
-        justifyContent:'center'
-    },
-    Order_text:
-    {
-        fontStyle: 'normal',
-        fontSize: '1.2rem',
-        color: '#000',
-        fontWeight: '100',
-    },
-    Column_Flex:
-    {
-        flex: 0.1,
-        justifyContent:'center'
-    },
-    Text_Flex:
-    {
-        flex: 2,
-        justifyContent: 'center'
-    },
-    Order_texts:
-    {
-        fontStyle: 'normal',
-        fontSize: '1.1rem',
-        color: 'gray',
-        fontWeight: '100',
-        marginLeft:10
-    },
-    Text_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '1.1rem',
-        color: '#000',
-    },
-    column_price:
-    {
-        flex:0.1,
-        justifyContent:'flex-start',
-        alignItems:'flex-start'
-    },
-    View_price:
-    {
-        flex:2,
-        flexDirection:'row'
-    },
-    Rupee_icon:
-    {
-         flex: 0.1,
-        marginTop:4,
-        marginLeft:10
-    },
-    Text_price:
-    {
-        flex:1.9,
-        justifyContent:'flex-start',
-        alignItems:'flex-start'
-    },
-    Mobile_Level: {
-        flexDirection: 'row',
-        marginTop: 6
-    },
-    View_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        color: 'gray',
-        marginLeft: 10
-    },
-    close_button: {
-        padding : 10,
-        //paddingRight : 0, 
-    },
-    close_button_Text : {
+    status_text: {
         color: '#fff',
-        fontSize: '1rem'
+        fontSize: '0.8rem'
     },
 
 })

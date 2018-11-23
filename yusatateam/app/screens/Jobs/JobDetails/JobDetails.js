@@ -2,176 +2,215 @@ import React from 'react';
 import {
     View,
     ScrollView,
-    Modal,
-    Text
+    Modal
 } from 'react-native';
-import { Button } from 'native-base';
+import { Text, Header, Left, Body, Right } from 'native-base';
+import { AppLoading } from 'expo';
+import { Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
+
 import styles from './styles';
-import { Ionicons, FontAwesome, Entypo } from '@expo/vector-icons';
+import { Statusbar } from '../../../components';
+import colors from '../../../constants/colors';
+
 export default class JobDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoading: true,
             modalVisible: false,
-            item: {},
-            status: ''
+            item: {}
         }
     }
+
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+        })
+        this.setState({ isLoading: false });
+    };
+
     setModalVisible(visible, item) {
         this.setState({ modalVisible: visible, item: item });
     }
+
     render() {
         const details = this.state.item;
         return (
-            <View>
+            this.state.isLoading === true ? <AppLoading /> :
+            <View style={{ flex: 1 }}>
+                {/* <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" /> */}
                 <Modal
                     animationType="slide"
-                    transparent={true}
+                    transparent={false}
                     visible={this.state.modalVisible}
+                    onDismiss={() => {
+                        this.setState({ modalVisible: !this.state.modalVisible })
+                    }}
                     onRequestClose={() => {
-                        this.setState({ modalVisible: !this.state.modalVisible });
+                        this.setState({ modalVisible: !this.state.modalVisible })
                     }}>
-                    <View style={styles.container}>
-                        <View style={styles.header_view}>
-                            <View style={styles.service_num}>
-                                <Text style={styles.header_text}>{details.jobNumber}</Text>
-                            </View>
-                            <View style={styles.right_sub_view}>
-                                <View style={styles.jobTypeView}>
-                                    <Text style={styles.jobTypeText}>{details.jobType}</Text>
-                                </View>
-                            </View>
-                        </View>
-                        <View style={styles.View_Container}>
-                            <ScrollView showsVerticalScrollIndicator={false}>
-                                <View style={styles.Margin_View}>
-                                    <View style={styles.Level_Flex}>
-                                        <Text style={styles.Order_text}>Schedule Date</Text>
-                                    </View>
-                                    <View style={styles.Column_Flex}>
-                                        <Text>:</Text>
-                                    </View>
-                                    <View style={styles.Text_Flex}>
-                                        <Text style={styles.Order_texts}>{details.scheduleDate}</Text>
-                                    </View>
-                                </View>
-                                {details.servicePerson == null ? null :
-                                    <View style={styles.Margin_View}>
-                                        <View style={styles.Level_Flex}>
-                                            <Text style={styles.Order_text}>Technician Name</Text>
+                    <View style={{ flex: 1 }}>
+                        <Header style={styles.header}>
+                            <Body>
+                                <Text style={styles.title}>JOBS20NOV2018</Text>
+                            </Body>
+                            <Right>
+                                <Ionicons name='ios-close' color="#000" size={40} style={{ marginRight: 20 }}
+                                    onPress={() => this.setState({ modalVisible: !this.state.modalVisible })} />
+                            </Right>
+                        </Header>
+
+                        <View style={styles.container}>
+                            <ScrollView>
+                                <View style={styles.view}>
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>Job number</Text>
                                         </View>
-                                        <View style={styles.Column_Flex}>
-                                            <Text>:</Text>
+                                        <View style={styles.middle_view}>
+                                            <Text style={styles.colon}>:</Text>
                                         </View>
-                                        <View style={styles.Text_Flex}>
-                                            <Text style={styles.Order_texts}>{details.servicePerson}</Text>
+                                        <View style={styles.right_view}>
+                                            <Text style={styles.value_text}>JOBS20NOV2018</Text>
                                         </View>
                                     </View>
-                                }
-                                <View style={styles.Margin_View}>
-                                    <View style={styles.Level_Flex}>
-                                        <Text style={styles.Order_text}>Customer Name</Text>
-                                    </View>
-                                    <View style={styles.Column_Flex}>
-                                        <Text>:</Text>
-                                    </View>
-                                    <View style={styles.Text_Flex}>
-                                        <Text style={styles.Order_texts}>{details.contactPerson}</Text>
-                                    </View>
-                                </View>
-                                {details.completedDate == null ? null :
-                                    <View style={styles.Margin_View}>
-                                        <View style={styles.Level_Flex}>
-                                            <Text style={styles.Order_text}>Completed Date</Text>
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>Job type</Text>
                                         </View>
-                                        <View style={styles.Column_Flex}>
-                                            <Text>:</Text>
+                                        <View style={styles.middle_view}>
+                                            <Text style={styles.colon}>:</Text>
                                         </View>
-                                        <View style={styles.Text_Flex}>
-                                            <Text style={styles.Order_texts}>{details.completedDate}</Text>
+                                        <View style={styles.right_view}>
+                                            <View style={styles.job_type}>
+                                                <Text style={styles.value_text}>Install</Text>
+                                            </View>
                                         </View>
                                     </View>
-                                }
-                                <View style={styles.Margin_View}>
-                                    <View style={styles.Level_Flex}>
-                                        <Text style={styles.Order_text}>JobName</Text>
-                                    </View>
-                                    <View style={styles.Column_Flex}>
-                                        <Text>:</Text>
-                                    </View>
-                                    <View style={styles.Text_Flex}>
-                                        <Text style={styles.Order_texts}>{details.jobName}</Text>
-                                    </View>
-                                </View>
-                                <View style={styles.Margin_View}>
-                                    <View style={styles.Level_Flex}>
-                                        <Text style={styles.Order_text}>COD</Text>
-                                    </View>
-                                    <View style={styles.Column_Flex}>
-                                        <Text>:</Text>
-                                    </View>
-                                    <View style={styles.Text_Flex}>
-                                        <Text style={styles.Order_texts}>{details.cashOnDelivery}</Text>
-                                    </View>
-                                </View>
-                                <View style={styles.Margin_View}>
-                                    <View style={styles.Level_Flex}>
-                                        <Text style={styles.Order_text}>Training</Text>
-                                    </View>
-                                    <View style={styles.Column_Flex}>
-                                        <Text>:</Text>
-                                    </View>
-                                    <View style={styles.Text_Flex}>
-                                        <Text style={styles.Order_texts}>{details.training}</Text>
-                                    </View>
-                                </View>
-                                <View style={styles.Margin_View}>
-                                    <View style={styles.Level_Flex} >
-                                        <Text style={styles.Text_Style}>Amount </Text>
-                                    </View>
-                                    <View style={styles.column_price}>
-                                        <Text>:</Text>
-                                    </View>
-                                    <View style={styles.View_price}>
-                                        <View style={styles.Rupee_icon}>
-                                            <FontAwesome name='rupee' size={18} color='gray' />
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>Schedule date</Text>
                                         </View>
-                                        <View style={styles.Text_price}>
-                                            <Text style={styles.ViewDescription_Text}>{details.amount}</Text>
+                                        <View style={styles.middle_view}>
+                                            <Text style={styles.colon}>:</Text>
+                                        </View>
+                                        <View style={styles.right_view}>
+                                            <Text style={styles.value_text}>20 Nov 2018 12:50</Text>
                                         </View>
                                     </View>
-                                </View>
-                                <View style={styles.Mobile_Level}>
-                                    <View style={{ flex: 0.2, justifyContent: 'center' }}>
-                                        <Ionicons name='ios-call' size={27} color='#5cb85c' />
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>Completed date</Text>
+                                        </View>
+                                        <View style={styles.middle_view}>
+                                            <Text style={styles.colon}>:</Text>
+                                        </View>
+                                        <View style={styles.right_view}>
+                                            <Text style={styles.value_text}>-  -  -</Text>
+                                        </View>
                                     </View>
-                                    <View style={{ flex: 2, justifyContent: 'center' }}>
-                                        <Text style={styles.View_Style}>{details.contactNumber}</Text>
+
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>Technician</Text>
+                                        </View>
+                                        <View style={styles.middle_view}>
+                                            <Text style={styles.colon}>:</Text>
+                                        </View>
+                                        <View style={styles.right_view}>
+                                            <Text style={styles.value_text}>Yash Gulati</Text>
+                                        </View>
                                     </View>
-                                </View>
-                                <View style={styles.Mobile_Level}>
-                                    <View style={{ flex: 0.2, justifyContent: 'center' }}>
-                                        <Entypo name='location-pin' size={27} color='#d9534f' />
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>Job location</Text>
+                                        </View>
+                                        <View style={styles.middle_view}>
+                                            <Text style={styles.colon}>:</Text>
+                                        </View>
+                                        <View style={styles.right_view}>
+                                            <View><Entypo name='location-pin' size={24} color='#d9534f' /></View>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={styles.value_text}>
+                                                    84/122 sector 8 pratap nagar, jaipur rajasthan
+                                        </Text>
+                                            </View>
+                                        </View>
                                     </View>
-                                    <View style={{ flex: 2, justifyContent: 'center' }}>
-                                        <Text style={styles.View_Style}>{details.location}</Text>
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>Status</Text>
+                                        </View>
+                                        <View style={styles.middle_view}>
+                                            <Text style={styles.colon}>:</Text>
+                                        </View>
+                                        <View style={styles.right_view}>
+                                            <View style={styles.status_view}>
+                                                <Text style={styles.status_text}>Completed</Text>
+                                            </View>
+                                        </View>
                                     </View>
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>Amount</Text>
+                                        </View>
+                                        <View style={styles.middle_view}>
+                                            <Text style={styles.colon}>:</Text>
+                                        </View>
+                                        <View style={styles.right_view}>
+                                            <FontAwesome name='rupee' size={14} color='gray' />
+                                            <Text style={styles.value_text}>6500</Text>
+                                        </View>
+                                    </View>
+
                                 </View>
-                                <View style={styles.close_button}>
-                                    <Button block success onPress={() => {
-                                        this.setState({ modalVisible: !this.state.modalVisible });
-                                    }}>
-                                        <Text style={styles.close_button_Text}>Close</Text>
-                                    </Button>
-                                </View>
+
+                                <View style={styles.view1}>
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>Customer name</Text>
+                                        </View>
+                                        <View style={styles.middle_view}>
+                                            <Text style={styles.colon}>:</Text>
+                                        </View>
+                                        <View style={styles.right_view}>
+                                            <Text style={styles.value_text}>Premsagar Choudhary</Text>
+                                        </View>
+                                    </View>
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>Customer contact</Text>
+                                        </View>
+                                        <View style={styles.middle_view}>
+                                            <Text style={styles.colon}>:</Text>
+                                        </View>
+                                        <View style={styles.right_view}>
+                                            <Ionicons name='ios-call' size={24} color='#5cb85c' />
+                                            <Text style={styles.value_text}>+918605665320</Text>
+                                        </View>
+                                    </View>
+
+                                </View>                                
+
                             </ScrollView>
                         </View>
                     </View>
-
                 </Modal>
             </View>
-
         );
     }
 }
+
 export { JobDetails }

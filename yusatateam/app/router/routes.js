@@ -115,7 +115,7 @@ const RouteConfigs = {
         navigationOptions: {
             header: null
         }
-    },
+    }
 }
 
 const StackNavigatorConfig = {
