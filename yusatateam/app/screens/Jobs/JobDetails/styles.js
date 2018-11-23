@@ -61,9 +61,13 @@ export default EStyleSheet.create({
         height: 23,
         borderColor: 'gray',
         borderRadius: 4,
-        borderWidth: 0.8,
+        borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    job_type_text: {
+        color: 'gray',
+        fontSize: '0.8rem'
     },
     status_view: {
         width: 90,
@@ -77,5 +81,15 @@ export default EStyleSheet.create({
         color: '#fff',
         fontSize: '0.8rem'
     },
+    button_view: {
+        flex: 1,
+        backgroundColor: 'red'
+    },
+    button: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#d9534f'
+    }
 
 })
