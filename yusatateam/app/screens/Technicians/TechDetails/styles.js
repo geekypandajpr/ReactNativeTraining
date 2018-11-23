@@ -80,8 +80,4 @@ export default EStyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center'
     }
-
-
-
-
 })

@@ -31,7 +31,7 @@ export default class TabComponent extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
                     <Toolbar title='Details' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        Calender='calendar' calenderType='FontAwesome' onCalenderPress={() => navigate('Settings')}
+                        Calender='calendar' calenderType='FontAwesome' onCalenderPress={() => navigate('Year')}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
                     
