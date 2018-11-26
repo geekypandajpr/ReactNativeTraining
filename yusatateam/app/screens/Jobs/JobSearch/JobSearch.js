@@ -12,7 +12,7 @@ import {
 import { List, ListItem, Body, Button ,} from 'native-base';
 import styles from './styles';
 import { TouchableWithoutFeedback } from 'react-native';
-import { Toolbar, JobsComponent, SearchBar } from '../../../components';
+import { Toolbar, JobsComponent, SearchBar,JobDetailToolbar } from '../../../components';
 import { Checkbox } from '../../../components';
 
 var map1 = new Map();
@@ -31,15 +31,23 @@ export default class JobSearch extends React.Component {
             dropdownbool: false,
             checkboxes: [],
             plans: {},
-            checkbox: false
+            checkbox: false,
+            selected: "jobNumber"
         }
         this.arrayholder = [];
+        this.tollbarStatus = '';
         
     }
     componentDidMount() {
         this.arrayholder = this.state.data;
+        this.tollbarStatus = this.state.data[0].jobStatus;
 
     }
+    onValueChange(value: string) {
+        this.setState({
+          selected: value
+        });
+      }
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -49,12 +57,11 @@ export default class JobSearch extends React.Component {
         this.setState({ isLoading: false })
     }
     SearchFilterFunction(text) {
-        if (this.state.status == 'jobNumber') {
+        if (this.state.selected == 'jobNumber') {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.jobNumber.toUpperCase()
                 const textData = text.toUpperCase()
-
-                return itemData.indexOf(textData) > 0
+                return itemData.indexOf(textData) > -1
             })
             this.setState({
                 data: newData,
@@ -62,7 +69,7 @@ export default class JobSearch extends React.Component {
             },
             )
         }
-        if (this.state.status == 'scheduleDate') {
+        if (this.state.selected == 'scheduleDate') {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.scheduleDate.toUpperCase()
                 const textData = text.toUpperCase()
@@ -74,9 +81,37 @@ export default class JobSearch extends React.Component {
             },
             )
         }
-        if (this.state.status == 'jobType') {
+        if (this.state.selected == 'jobType') {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.jobType.toUpperCase()
+                const textData = text.toUpperCase()
+                console.log(textData);
+                console.log(itemData.indexOf(textData));
+                return itemData.indexOf(textData) > -1
+            })
+            this.setState({
+                data: newData,
+                text: text
+            },
+            )
+        }
+        if (this.state.selected == 'completedDate') {
+            const newData = this.arrayholder.filter(function (item) {
+                const itemData = item.completedDate.toUpperCase()
+                const textData = text.toUpperCase()
+                console.log(textData);
+                console.log(itemData.indexOf(textData));
+                return itemData.indexOf(textData) > -1
+            })
+            this.setState({
+                data: newData,
+                text: text
+            },
+            )
+        }
+        if (this.state.selected == 'servicePerson') {
+            const newData = this.arrayholder.filter(function (item) {
+                const itemData = item.servicePerson.toUpperCase()
                 const textData = text.toUpperCase()
                 console.log(textData);
                 console.log(itemData.indexOf(textData));
@@ -108,33 +143,26 @@ export default class JobSearch extends React.Component {
 
 
     render() {
-
+        const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         const checkboxes = this.state.checkboxes;
         console.log("MS CB1: " + checkboxes);
 
-
-        console.log(map1);
+        console.log('hello'+this.tollbarStatus);
+        //console.log(map1);
 
 
         return (
             <View style={styles.container}>
-                <Toolbar title='Jobs'
-                    leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                <JobDetailToolbar title='Jobs'
+                    leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() =>  navigate('Jobs', { checkData: this.state.checkboxes })}
                     setting='filter' settingType='FontAwesome' onSettingsPress={() => this.setState({ dropdownbool: !this.state.dropdownbool })}
+                    selectedValue={this.state.selected}
+                    onValueChange={this.onValueChange.bind(this)}
+                    status={this.tollbarStatus}
                 />
                 <SearchBar placeholder={'Search jobs'}
                     onChangeText={(text) => this.SearchFilterFunction(text)} />
-
-                {
-                    this.state.dropdownbool == false ? null :
-                        <Picker selectedValue={this.state.status} onValueChange={(itemValue) => this.setState({ status: itemValue })}>
-                            <Picker.Item label="Job Name" value="jobNumber" />
-                            <Picker.Item label="Schedule Date" value="scheduleDate" />
-                            <Picker.Item label="Job Type" value="jobType" />
-                        </Picker>
-                }
-
                 <FlatList
                     data={this.state.data}
                     keyExtractor={(item, index) => item.jobNumber}

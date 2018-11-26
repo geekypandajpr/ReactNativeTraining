@@ -18,6 +18,7 @@ export { SummaryCard } from './SummaryCard';
 export { SummarySwitch } from './SummarySwitch';
 export { TechnicianList } from './TechnicianList';
 export { Toolbar } from './Toolbar';
+export {JobDetailToolbar} from './JobDetailToolbar';
 
 
 

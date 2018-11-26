@@ -1,6 +1,11 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import colors from '../../../constants/colors';
 export default EStyleSheet.create({
+    $headerColor : '#1f667e',
+    $headerIconColor : '#fff',
+    $headerTitleSize : '1.2rem',
+    $headerTitleColor : '#fff',
+
     container: {
         flex: 1,
     },
@@ -41,5 +46,6 @@ export default EStyleSheet.create({
         fontSize: '0.8rem',
         color: 'gray',
         fontWeight: '300'
-    }
+    },
+    
 });

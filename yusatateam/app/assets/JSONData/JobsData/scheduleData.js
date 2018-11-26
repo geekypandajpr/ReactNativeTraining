@@ -1,7 +1,7 @@
 const ScheduleData= [
     {
         'jobNumber': 'JOBS620NOV2018',
-        'jobStatus': 'completed',
+        'jobStatus': 'schedule',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
         'jobName': 'Job Name',
@@ -16,7 +16,7 @@ const ScheduleData= [
     },
     {
         'jobNumber': 'JOBS720NOV2018',
-        'jobStatus': 'completed',
+        'jobStatus': 'schedule',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
         'jobName': 'Job Name',
@@ -31,7 +31,7 @@ const ScheduleData= [
     },
     {
         'jobNumber': 'JOBS820NOV2018',
-        'jobStatus': 'completed',
+        'jobStatus': 'schedule',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
         'jobName': 'Job Name',
@@ -46,7 +46,7 @@ const ScheduleData= [
     },
     {
         'jobNumber': 'JOBS920NOV2018',
-        'jobStatus': 'completed',
+        'jobStatus': 'schedule',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
         'jobName': 'Job Name',
@@ -61,7 +61,7 @@ const ScheduleData= [
     },
     {
         'jobNumber': 'JOBS220NOV2018',
-        'jobStatus': 'completed',
+        'jobStatus': 'schedule',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
         'jobName': 'Job Name',
@@ -75,8 +75,8 @@ const ScheduleData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS320NOV2018',
-        'jobStatus': 'completed',
+        'jobNumber': 'JOBS3120NOV2018',
+        'jobStatus': 'schedule',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
         'jobName': 'Job Name',
@@ -90,8 +90,8 @@ const ScheduleData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS520NOV2018',
-        'jobStatus': 'completed',
+        'jobNumber': 'JOBS5120NOV2018',
+        'jobStatus': 'schedule',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
         'jobName': 'Job Name',
@@ -105,8 +105,8 @@ const ScheduleData= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2018',
-        'jobStatus': 'completed',
+        'jobNumber': 'JOBS201NOV2018',
+        'jobStatus': 'schedule',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Install',
         'jobName': 'Job Name',

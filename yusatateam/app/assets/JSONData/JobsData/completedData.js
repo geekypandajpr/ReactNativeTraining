@@ -96,7 +96,7 @@ const completeddata= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2017',
+        'jobNumber': 'JOBS201NOV2017',
         'jobStatus': 'completed',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Repair',
@@ -112,7 +112,7 @@ const completeddata= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2017',
+        'jobNumber': 'JOBS203NOV2017',
         'jobStatus': 'completed',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Replace',
@@ -128,7 +128,7 @@ const completeddata= [
         'location': '84/122 sector 8, pratap nagar, jaipur rajasthan'
     },
     {
-        'jobNumber': 'JOBS20NOV2017',
+        'jobNumber': 'JOBS205NOV2017',
         'jobStatus': 'completed',
         'companyName': 'Yusata infotech Private Limited',
         'jobType': 'Replace',
