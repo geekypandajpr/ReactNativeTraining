@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, BackHandler } from 'react-native';
 import { AppLoading } from 'expo';
 import { Container, Tab, Tabs, ScrollableTab, TabHeading } from 'native-base';
 import { Toolbar } from '../../../components/Toolbar';
@@ -23,6 +23,19 @@ export default class TabComponent extends React.Component {
         })
         this.setState({ isLoading: false })
     };
+
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
 
     render() {
         const { navigate } = this.props.navigation;

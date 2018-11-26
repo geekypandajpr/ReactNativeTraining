@@ -51,7 +51,7 @@ export default class VehicleList extends React.Component {
                             renderItem={({ item, index }) =>
                                 <TouchableWithoutFeedback
                                     onPress={() => {
-                                        this.refs.modal.setModalVisible(true, item)
+                                        this.refs.modal.setModalVisible(false, item)
                                     }}>
                                     <Card style={styles.mainCard}>
                                         <View style={styles.Second_View}>

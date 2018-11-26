@@ -39,7 +39,7 @@ export default class JobDetails extends React.Component {
         const details = this.state.item;
         return (
             this.state.isLoading === true ? <AppLoading /> :
-            <View style={{ flex: 1 }}>
+            <View>
                 {/* <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" /> */}
                 <Modal
                     animationType="slide"

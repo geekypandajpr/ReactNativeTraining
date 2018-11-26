@@ -37,6 +37,7 @@ export default class Device extends React.Component {
                 return true; 
         });
     }
+    
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;

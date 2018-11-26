@@ -2,7 +2,8 @@ import React from 'react';
 import {
     View,
     FlatList,
-    Modal
+    Modal,
+    BackHandler
 } from 'react-native';
 import styles from './styles';
 import { Toolbar, TechnicianList } from '../../components';
@@ -20,6 +21,19 @@ export default class Technicians extends React.Component {
     techDetail() {
         this.refs.modal.setModalVisible(true);
         }
+
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
 
     render() {
         const { navigate } = this.props.navigation;

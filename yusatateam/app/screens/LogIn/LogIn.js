@@ -124,8 +124,8 @@ export class LogIn extends React.Component {
                         <View style={styles.button_view}>
                             <Button
                                 style={styles.button}
-                                onPress={() => {this.props.onFetchData(loginCredentials)}}
-                                // onPress={() => {this.props.navigation.navigate('Dashboard')}}
+                                //onPress={() => {this.props.onFetchData(loginCredentials)}}
+                                onPress={() => {this.props.navigation.navigate('Dashboard')}}
                                 >
                                 <Text style={styles.button_text}>  LOGIN </Text>
                             </Button>
