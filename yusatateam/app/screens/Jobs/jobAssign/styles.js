@@ -8,7 +8,7 @@ export default EStyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: '#efefef'
     },
     viewList: {
         flex: 1,

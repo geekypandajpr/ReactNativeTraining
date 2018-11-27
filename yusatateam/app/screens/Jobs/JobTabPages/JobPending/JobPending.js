@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, FlatList, TouchableOpacity, CheckBox } from 'react-native';
+import { View, FlatList, TouchableOpacity, CheckBox,TouchableWithoutFeedback } from 'react-native';
 import { List, Right, Text, Button, Icon, Card, Footer, FooterTab } from 'native-base';
 import styles from './styles';
 import JobDetails from '../../JobDetails/JobDetails';
 import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { Checkbox } from '../../../../components';
+import JobAssign from '../../jobAssign/jobAssign'
+
 
 
 export default class JobPending extends React.Component {
@@ -21,30 +23,8 @@ export default class JobPending extends React.Component {
         this.arrayholder = [];
         //this.changeTabStatus = this.changeTabStatus.bind(this);
     };
-    componentDidMount() {
-        this.arrayholder = this.state.data;
-    }
-    SearchFilterFunction(text) {
-        const newData = this.arrayholder.filter(function (item) {
-            const itemData = item.jobNumber.toUpperCase()
-            const textData = text.toUpperCase()
-            return itemData.indexOf(textData) > -1
-        })
-        this.setState({
-            data: newData,
-            text: text
-        }
-        )
-    };
-
-    // changeTabStatus(tabStatus) {
-    //     this.setState({ status: tabStatus },
-    //         function () {
-    //             console.log(this.state.status)
-    //         });
-    // }
-
     render() {
+        
         return (
             <View style={styles.container}>
                <FlatList
@@ -68,7 +48,6 @@ export default class JobPending extends React.Component {
                                             </View>
                                         </View>
                                     </View>
-
                                     <View style={styles.sub_view}>
                                         <View style={styles.left_view}>
                                             <Text style={styles.text}>Schedule date</Text>
@@ -115,15 +94,17 @@ export default class JobPending extends React.Component {
                             </View>
                         </Card>
                     } >
-                </FlatList>
+                </FlatList>       
                 <Footer>
                     <FooterTab>
-                        <Button style={styles.footerbutton}>
+                        <Button style={styles.footerbutton} onPress={ () => this.refs.assign.setModalVisible(true)}>
                             <Text style={styles.footerbuttonText}>Assign Jobs</Text>
                         </Button>
+                        
                     </FooterTab>
                 </Footer>
                 <JobDetails ref='modal' />
+                <JobAssign ref='assign'/>
             </View>
         )
     }

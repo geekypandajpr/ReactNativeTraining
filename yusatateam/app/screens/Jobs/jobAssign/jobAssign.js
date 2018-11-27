@@ -4,7 +4,8 @@ import {
     View,
     FlatList,
     TouchableOpacity,
-    Alert
+    Alert,
+    Modal
 } from 'react-native';
 import {Card} from 'native-base';
 import styles from './styles';
@@ -27,7 +28,9 @@ export default class JobAssign extends React.Component {
     componentDidMount() {
         this.arrayholder = this.state.data;
     }
-
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible});
+    }
     SearchFilterFunction(text) {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.name.toUpperCase()
@@ -54,12 +57,20 @@ export default class JobAssign extends React.Component {
           );
     }
     render() {
-        const { goBack } = this.props.navigation;
         return (
             <View style={styles.container}>
-            <Toolbar title='Jobs' 
-                        leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                      />
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onDismiss={() => {
+                        this.setState({ modalVisible: !this.state.modalVisible })
+                    }}
+                    onRequestClose={() => {
+                        this.setState({ modalVisible: !this.state.modalVisible })
+                    }}>
+                    <View style={{ flex: 1, backgroundColor: 'white' }}>
+                    <View style={{ height: '100%', width: '100%', position: 'absolute', bottom: 0 }}>
                 <SearchBar placeholder={'Search jobs'}
                     onChangeText={(text) => this.SearchFilterFunction(text)} />
                 <FlatList
@@ -125,8 +136,10 @@ export default class JobAssign extends React.Component {
                             </View>
                         </Card>
                     } >
-                </FlatList>       
-
+                </FlatList>  
+                </View>
+                </View>     
+                </Modal>
             </View>
         );
     }
