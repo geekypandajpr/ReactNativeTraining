@@ -10,6 +10,7 @@ import { AppLoading } from 'expo';
 
 import { JobsComponent, HeaderWithSearchbar } from '../../components';
 import styles from './Styles';
+import JobDetails from '../Jobs/JobDetails/JobDetails';
 
 const datas = [
     {
@@ -116,6 +117,7 @@ export default class OpenJobs extends React.Component {
         this.state = {
             isLoading: true
         }
+        this.jobDetailsRef = React.createRef();
     }
 
     componentDidMount() {
@@ -158,7 +160,7 @@ export default class OpenJobs extends React.Component {
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
                             <JobsComponent jobDatas={item}
-                                viewDetails={()=> {console.log('Job details page')}}
+                                viewDetails={()=> {this.jobDetailsRef.current.setModalVisible(true, {})}}
                             />
                         }
                     />
@@ -170,7 +172,7 @@ export default class OpenJobs extends React.Component {
                         </FooterTab>
                     </Footer>
                 </View>
-
+                <JobDetails ref={this.jobDetailsRef} />
             </View>
         )
     }
