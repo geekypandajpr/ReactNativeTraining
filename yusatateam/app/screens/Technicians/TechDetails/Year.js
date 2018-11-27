@@ -5,10 +5,13 @@ import {
     Modal,
     TouchableHighlight
 } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { MonthSelectorCalendar } from '../../../components/MonthSelectorCalendar/MonthSelectorCalendar';
 export default class Year extends React.Component {
     constructor() {
         super();
-        this.state={
+        this.state = {
+            month:'112018',
             modalVisible: false,
         }
     }
@@ -18,31 +21,46 @@ export default class Year extends React.Component {
     }
     render() {
         return (
-            <View style={{marginTop: 22}}>
-            <Modal
-              animationType="slide"
-              transparent={false}
-              visible={this.state.modalVisible}
-              onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
-              }}>
-              <View style={{marginTop: 22}}>
-                <View>
-                  <Text>Hello World!</Text>
-    
-                  <TouchableHighlight
-                    onPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);
+            <View style={{ marginTop: 22 }}>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {
+                        this.setModalVisible(!this.state.modalVisible);
                     }}>
-                    <Text>Hide Modal</Text>
-                  </TouchableHighlight>
-                </View>
-              </View>
-            </Modal>
-          </View>
-            
+                    <View style={styles.container}>
+                        <View style={styles.sub_container}>
+                            <MonthSelectorCalendar
+                                selectedDate={this.state.month}
+                                monthTapped={(date) => this.setState({ month: date })}
+                            />
+                        </View>
+                    </View>
+                </Modal>
+            </View>
+
         );
     }
 }
 
 export { Year }
+
+const styles = EStyleSheet.create({
+    container:
+    {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        //backgroundColor: 'rgba(184, 193, 199, 0.5)',
+        backgroundColor: '#00000095',
+        flexDirection: 'column',
+    },
+    sub_container: {
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '60%',
+        width: '100%'
+    },
+})
