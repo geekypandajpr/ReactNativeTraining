@@ -1,28 +1,54 @@
 import React from 'react';
-import moment from 'moment';
-import { View, Text } from 'react-native';
-import PropTypes from 'prop-types';
-// import MonthSelectorCalendar from 'react-native-month-selector';
-
-
-export default class Year extends React.Component{
-    constructor(){
+import {
+    View,
+    Text,
+    Modal
+} from 'react-native';
+export default class Year extends React.Component {
+    constructor() {
         super();
         this.state={
-            month : ''
+            modalVisible: false,
         }
     }
 
-     render(){
-         return (
-              <View style={{flex:1}}>
-                    {/* <MonthSelectorCalendar
-                selectedDate={this.state.month}
-                monthTapped={(date) => this.setState({ month: date })}
-                /> */}
-              </View>
-          );
-      }
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
     }
+    render() {
+        return (
+            <View style={{marginTop: 22}}>
+            <Modal
+              animationType="slide"
+              transparent={false}
+              visible={this.state.modalVisible}
+              onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+              }}>
+              <View style={{marginTop: 22}}>
+                <View>
+                  <Text>Hello World!</Text>
+    
+                  <TouchableHighlight
+                    onPress={() => {
+                      this.setModalVisible(!this.state.modalVisible);
+                    }}>
+                    <Text>Hide Modal</Text>
+                  </TouchableHighlight>
+                </View>
+              </View>
+            </Modal>
+    
+            <TouchableHighlight
+              onPress={() => {
+                this.setModalVisible(true);
+              }}>
+              <Text>Show Modal</Text>
+            </TouchableHighlight>
+          </View>
+            
+        );
+    }
+}
 
 export { Year }

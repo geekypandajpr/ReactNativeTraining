@@ -1,5 +1,9 @@
 import React from 'react';
-import { View, Text, BackHandler } from 'react-native';
+import {
+    View,
+    Text,
+    BackHandler
+} from 'react-native';
 import { AppLoading } from 'expo';
 import { Container, Tab, Tabs, ScrollableTab, TabHeading } from 'native-base';
 import { Toolbar } from '../../../components/Toolbar';
@@ -7,14 +11,18 @@ import { TechDetails } from './TechDetails';
 import { FontAwesome, EvilIcons } from '@expo/vector-icons';
 import colors from '../../../constants/colors'
 import EStylesheet from 'react-native-extended-stylesheet'
+import Year from './Year';
 
 export default class TabComponent extends React.Component {
     constructor() {
         super();
-        this.state = {
-            isLoading: true,
-        }
-    };
+        this.state = {};
+        this.modalRef = React.createRef();
+        this.techDetail = this.techDetail.bind(this);
+    }
+    techDetail(){
+        this.refs.modal.setModalVisible(true);
+    }
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -44,7 +52,7 @@ export default class TabComponent extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
                     <Toolbar title='Details' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        Calender='calendar' calenderType='FontAwesome' onCalenderPress={() => navigate('Year')}
+                        Calender='calendar' calenderType='FontAwesome' onCalenderPress={() =>  this.techDetail}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
                     
@@ -94,9 +102,8 @@ export default class TabComponent extends React.Component {
                         }>
                             <TechDetails />
                         </Tab>
-
-                    </Tabs>
-
+                </Tabs>
+                <Year ref={this.modalRef}/>
                 </View>
         )
     }
@@ -115,7 +122,6 @@ const styles = EStylesheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center'
-
     },
     Week: {
         color: '#fff',
