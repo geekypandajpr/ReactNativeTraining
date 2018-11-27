@@ -2,7 +2,8 @@ import React from 'react';
 import {
     View,
     Text,
-    Modal
+    Modal,
+    TouchableHighlight
 } from 'react-native';
 export default class Year extends React.Component {
     constructor() {
@@ -38,13 +39,6 @@ export default class Year extends React.Component {
                 </View>
               </View>
             </Modal>
-    
-            <TouchableHighlight
-              onPress={() => {
-                this.setModalVisible(true);
-              }}>
-              <Text>Show Modal</Text>
-            </TouchableHighlight>
           </View>
             
         );
