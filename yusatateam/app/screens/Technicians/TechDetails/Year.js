@@ -21,7 +21,7 @@ export default class Year extends React.Component {
     }
     render() {
         return (
-            <View style={{ marginTop: 22 }}>
+            <View>
                 <Modal
                     animationType="slide"
                     transparent={true}
