@@ -87,7 +87,7 @@ export default EStyleSheet.create({
         color: '#000'
     },
     totaljobs: {
-        flex:0.7,
+        flex:1,
         //backgroundColor: 'yellow',
         flexDirection: 'row',
         justifyContent: 'flex-start',
@@ -108,8 +108,7 @@ export default EStyleSheet.create({
     },
     jobs_num: {
         fontSize: '0.8rem',
-        //color: '#A9A9A9',
-        color: '#696969'
+      
     },
     icon_flex:{  
         flex:0.5,
@@ -142,5 +141,25 @@ export default EStyleSheet.create({
         color: 'white',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    right_sub_view: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    },
+    jobTypeView: {
+        borderRadius: 10,
+        borderWidth: 0.8,
+        borderColor: 'gray',
+        padding: 2,
+        width: 80,
+        height: 23,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    jobTypeText: {
+        color: '#F98866',
+        fontSize: '0.8rem'
     },
 });

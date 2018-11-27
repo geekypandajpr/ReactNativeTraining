@@ -29,6 +29,7 @@ export default class TechnicianList extends React.Component {
 
     render() {
         const data = this.props.data;
+
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
@@ -38,7 +39,7 @@ export default class TechnicianList extends React.Component {
                             <View style={styles.leftView}>
                                 <View style={styles.profile_view}>
                                     <Image style={styles.profile_pic} resizeMode='cover'
-                                        source={require('../../assets/images/react-native.png')}
+                                        source={require('../../assets/images/picture.png')}
                                     />
                                 </View>
                             </View>
@@ -50,8 +51,8 @@ export default class TechnicianList extends React.Component {
                                         <Text style={styles.name_text}>{data.name}</Text>
                                     </View>
                                     <TouchableWithoutFeedback onPress={this.props.assignJobs}>
-                                        <View style={styles.Status_Button} >
-                                            <Text style={styles.Status_Style}>Assign </Text>
+                                        <View style={styles.jobTypeView}>
+                                            <Text style={styles.jobTypeText}>Assign</Text>
                                         </View>
                                     </TouchableWithoutFeedback>
                                 </View>
@@ -63,6 +64,32 @@ export default class TechnicianList extends React.Component {
                                     </View>
                                 </View>
 
+                                {data.status === "On job" ?
+                                    <View style={styles.view_container}>
+                                        <View style={styles.totaljobs}>
+                                            <Text style={styles.jobs_text}>Job No.</Text>
+                                        </View>
+                                        <View style={styles.colon_view}>
+                                            <Text style={styles.colon}>:</Text>
+                                        </View>
+                                        <View style={styles.Location_text}>
+                                            <Text style={styles.jobs_num}>{data.jobNo}</Text>
+                                        </View>
+                                    </View>
+                                    :
+                                    <View style={styles.view_container}>
+                                        <View style={styles.totaljobs}>
+                                            <Text style={styles.jobs_text}>last job</Text>
+                                        </View>
+                                        <View style={styles.colon_view}>
+                                            <Text style={styles.colon}>:</Text>
+                                        </View>
+                                        <View style={styles.Location_text}>
+                                            <Text style={styles.jobs_num}>{data.lastJob}</Text>
+                                        </View>
+                                    </View>
+                                }
+
                                 <View style={styles.view_container}>
                                     <View style={styles.totaljobs}>
                                         <Text style={styles.jobs_text}>Status</Text>
@@ -71,18 +98,20 @@ export default class TechnicianList extends React.Component {
                                         <Text style={styles.colon}>:</Text>
                                     </View>
                                     <View style={styles.Location_text}>
-                                        <Text style={styles.jobs_num}>On Job</Text>
+                                        <Text style={[styles.jobs_num,{color:data.color}]}>{data.status}</Text>
                                     </View>
                                 </View>
 
-                                <View style={styles.view_container}>
-                                    <View style={styles.totaljobs}>
-                                        <Entypo name='location-pin' size={20} color='#d9534f' />
-                                        <Text style={styles.jobs_num}>Kumbha Marg,Pratp nagar</Text>
+                                {data.status === "On job" ?
+                                    <View style={styles.view_container}>
+                                        <View style={styles.totaljobs}>
+                                            <Entypo name='location-pin' size={20} color='#d9534f' />
+                                            <Text style={styles.jobs_num}>Kumbha Marg,Pratp nagar</Text>
+                                        </View>
                                     </View>
-                                </View>
+                                    : <View style={styles.view_container}></View>
+                                }
 
-                                
 
                             </View>
                         </Card>
