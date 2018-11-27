@@ -109,7 +109,7 @@ export default class JobDetailToolbar extends React.Component {
                             {this.props.title}
                         </Title>
                     </Body>
-                    <Right>
+                    <Right style={{borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da'}}>
                         {this.dropdownMenu()}
                         </Right>
                 </Header>
