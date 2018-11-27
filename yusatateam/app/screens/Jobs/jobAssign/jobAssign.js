@@ -10,8 +10,8 @@ import {
 import {Card} from 'native-base';
 import styles from './styles';
 import { TouchableWithoutFeedback } from 'react-native';
-import { Toolbar, SearchBar } from '../../../components';
-import Tdata from '../../../assets/JSONData/TechnicianData';
+import { Toolbar, SearchBar,TechnicianList } from '../../../components';
+import techDatas from '../../../assets/JSONData/TechnicianData';
 
 
 export default class JobAssign extends React.Component {
@@ -20,7 +20,7 @@ export default class JobAssign extends React.Component {
         this.state = {
             modalVisible: false,
             isLoading: true,
-            data: Tdata,
+            data: techDatas,
         }  
         this.arrayholder = [];
     }
@@ -73,70 +73,16 @@ export default class JobAssign extends React.Component {
                     <View style={{ height: '100%', width: '100%', position: 'absolute', bottom: 0 }}>
                 <SearchBar placeholder={'Search jobs'}
                     onChangeText={(text) => this.SearchFilterFunction(text)} />
-                <FlatList
-                    data={this.state.data}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item, index }) =>
-                        <Card style={styles.viewList}>
-                            <View style={{ flex: 2 }}>
-                                <TouchableOpacity onPress={this.alertBoxMessage}>
-
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_sub_view}>
-                                            <Text style={styles.jobNumText}>{item.name}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={styles.text}>Status</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <Text style={styles.text1}>{item.status}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={styles.text}>Contact No</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <Text style={styles.text1}>{item.contactNumber}</Text>
-                                        </View>
-                                    </View>
-
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={styles.text}>Total Jobs</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <Text style={styles.text1}>{item.totalJobs}</Text>
-                                        </View>
-                                    </View>
-
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={styles.text}>Completed Jobs</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <Text style={styles.text1}>{item.completedJobs}</Text>
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        </Card>
-                    } >
-                </FlatList>  
+                         <FlatList
+                            data={this.state.data}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={({ item, index }) =>
+                                <TechnicianList
+                                    data={item}
+                                     onPress={()=>navigate('TabComponent')}
+                                    assignJobs={() => navigate('OpenJobs')}
+                                />
+                            } />
                 </View>
                 </View>     
                 </Modal>
