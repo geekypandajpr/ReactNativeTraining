@@ -2,8 +2,9 @@ import React from 'react';
 import { View} from 'react-native';
 import { AppLoading } from 'expo';
 import { Button, Item, Input, Label, Text } from 'native-base';
-import { Statusbar } from '../../components';
 import { Feather } from '@expo/vector-icons';
+
+import { Statusbar } from '../../components';
 import colors from '../../constants/colors';
 import styles from './Styles';
 
@@ -32,6 +33,7 @@ export default class ForgotPassword extends React.Component {
             if(this.state.email !== '') { this.setState({ isButtonEnabled: false }) }
             else { this.setState({ isButtonEnabled: true }) }
         })
+        console.log(this.state.isButtonEnabled);
     }
 
     doSubmit() {}

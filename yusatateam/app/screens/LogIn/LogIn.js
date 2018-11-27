@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
 import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } from 'react-native';
-import { CheckBox, Button, Text, Toast } from 'native-base';
+import { CheckBox, Button, Text, Toast,Icon, Item, Input, Label } from 'native-base';
+import { MaterialIcons } from '@expo/vector-icons'
 
 import { InputWithIcon, Statusbar } from '../../components';
 import { loginRequest } from '../../redux/actions/userActions';
@@ -41,8 +42,8 @@ export class LogIn extends React.Component {
             "password": "SunilS@123",
             "userName": "sunil.sharma@yusata.com"
         }
-        this.props.onFetchData(loginCredentials);
-        //this.props.navigation.navigate('Dashboard');
+        //this.props.onFetchData(loginCredentials);
+        this.props.navigation.navigate('Dashboard');
     }
 
     _checkRequiredFields() {
@@ -50,12 +51,8 @@ export class LogIn extends React.Component {
         return true;
     }
 
-
- 
-
-
     render() {
-        // const { navigate } = this.props.navigation;
+        const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/LoginScreenBG.jpg')} >
@@ -73,13 +70,14 @@ export class LogIn extends React.Component {
                         <View style={styles.input_view}>
                             <InputWithIcon
                                 name='person'
+                                iconType="MaterialIcons"
                                 iconColor='#fff'
                                 placeholder='Username'
                                 value={this.state.username}
                                 returnKeyType={'next'}
                                 keyboardType={'email-address'}
                                 blurOnSubmit={false}
-                                onSubmitEditing={() => this._focusNextField('password')}
+                                //onSubmitEditing={() => this._focusNextField('password')}
                                 onChangeText={(username) => this.setState({ username })}
                                 inputStyles={{width: '85%'}}
                             />
@@ -88,13 +86,14 @@ export class LogIn extends React.Component {
                         <View style={styles.input_view}>
                             <InputWithIcon
                                 name='lock'
+                                iconType="MaterialIcons"
                                 iconColor='#FFF'
                                 placeholder='Password'
                                 returnKeyType={'go'}
                                 getRef={(input) => { this.password = input; }}
                                 value={this.state.password}
                                 secureTextEntry={true}
-                                onSubmitEditing={this._doLogin}
+                                //onSubmitEditing={this._doLogin}
                                 onChangeText={(password) => this.setState({ password })}
                                 inputStyles={{width: '85%'}}
                             />

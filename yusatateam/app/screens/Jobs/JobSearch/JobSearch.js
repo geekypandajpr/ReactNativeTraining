@@ -43,7 +43,7 @@ export default class JobSearch extends React.Component {
         this.tollbarStatus = this.state.data[0].jobStatus;
 
     }
-    onValueChange(value: string) {
+    onValueChange(value) {
         this.setState({
           selected: value
         });
