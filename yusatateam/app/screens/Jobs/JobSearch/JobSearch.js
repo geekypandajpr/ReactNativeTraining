@@ -127,7 +127,7 @@ export default class JobSearch extends React.Component {
 
 
     toggleCheckbox(id) {
-        console.log('has->'+this.state.map1.has(id))
+        //console.log('has->'+this.state.map1.has(id))
         let map1 = this.state.map1;
         if(this.state.map1.has(id))
         {
@@ -148,7 +148,7 @@ export default class JobSearch extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
-       console.log('hello');
+      // console.log('hello');
        // console.log('vin'+this.state.map1.has(item.jobNumber));
         return (
             <View style={styles.container}>
