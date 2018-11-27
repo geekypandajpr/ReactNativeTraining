@@ -39,7 +39,7 @@ export default class TechnicianList extends React.Component {
                             <View style={styles.leftView}>
                                 <View style={styles.profile_view}>
                                     <Image style={styles.profile_pic} resizeMode='cover'
-                                        source={require('../../assets/images/picture.png')}
+                                        source={require('../../assets/images/react-native.png')}
                                     />
                                 </View>
                             </View>
