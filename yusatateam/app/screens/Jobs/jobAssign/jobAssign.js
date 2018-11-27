@@ -57,6 +57,7 @@ export default class JobAssign extends React.Component {
           );
     }
     render() {
+
         return (
             <View style={styles.container}>
                 <Modal
@@ -79,8 +80,8 @@ export default class JobAssign extends React.Component {
                             renderItem={({ item, index }) =>
                                 <TechnicianList
                                     data={item}
-                                     onPress={()=>navigate('TabComponent')}
-                                    assignJobs={() => navigate('OpenJobs')}
+                                    
+                                    assignJobs={this.alertBoxMessage}
                                 />
                             } />
                 </View>
