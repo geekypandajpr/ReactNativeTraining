@@ -32,11 +32,18 @@ export default class Device extends React.Component {
         })
         this.setState({ isLoading: false })
     }
+    
     componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', () => {
-                this.props.navigation.navigate('Dashboard');                 
-                return true; 
-        });
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
     
     render() {

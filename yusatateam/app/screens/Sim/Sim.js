@@ -19,7 +19,7 @@ export default class Sim extends React.Component {
         super();
         this.state = {
             isLoading: true,
-      };
+        };
         this.modalRef = React.createRef();
     }
     async componentWillMount() {
@@ -30,12 +30,20 @@ export default class Sim extends React.Component {
         })
         this.setState({ isLoading: false })
     }
+    
     componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', () => {
-                this.props.navigation.navigate('Dashboard');                 
-                return true; 
-        });
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
