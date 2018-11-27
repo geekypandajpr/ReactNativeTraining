@@ -115,9 +115,12 @@ export default class OpenJobs extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true
+            isLoading: true,
+            searchValue: ''
         }
         this.jobDetailsRef = React.createRef();
+        this.onSearchTextChanged = this.onSearchTextChanged.bind(this);
+        this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
     }
 
     componentDidMount() {
@@ -142,6 +145,15 @@ export default class OpenJobs extends React.Component {
         this.setState({ isLoading: false })
     }
 
+    onSearchTextChanged(searchValue) {
+        console.log(searchValue);
+        this.setState({ searchValue });
+    }
+
+    onSearchClearPressed(){
+        this.onSearchTextChanged('');
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
@@ -150,6 +162,9 @@ export default class OpenJobs extends React.Component {
             <View style={styles.container}>
 
                 <HeaderWithSearchbar
+                    onChangeText={this.onSearchTextChanged}
+                    onSearchClear={this.onSearchClearPressed}
+                    searchValue={this.state.searchValue}
                     title={'Open Jobs'}
                     leftIcon='arrow-left'
                     goBack={() => goBack()}/>

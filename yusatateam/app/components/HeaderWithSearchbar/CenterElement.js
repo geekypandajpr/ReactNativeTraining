@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, Easing, Platform, TextInput, StyleSheet } from 'react-native';
+import { Animated, Easing, Platform, StyleSheet } from 'react-native';
 import { Body, Title, Item, Input } from 'native-base';
 import { AppLoading } from 'expo';
 
@@ -63,11 +63,11 @@ export default class CenterElement extends React.Component {
         return(
             this.state.isLoading === true ? <AppLoading /> :
 
-                <Body>
-                    <Animated.View style={[styles.container, {opacity: this.state.opacityValue}]}>
-                        {content}
-                    </Animated.View>
-                </Body>
+            <Body>
+                <Animated.View style={[styles.container, {opacity: this.state.opacityValue}]}>
+                    {content}
+                </Animated.View>
+            </Body>
         )
     }
 }

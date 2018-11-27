@@ -21,10 +21,10 @@ export default class TabComponent extends React.Component {
         this.techDetail = this.techDetail.bind(this);
     }
 
-    techDetail(){
+    techDetail() {
         this.modalRef.current.setModalVisible(true);
     }
-    
+
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -57,9 +57,9 @@ export default class TabComponent extends React.Component {
                         Calender='calendar' calenderType='FontAwesome' onCalenderPress={this.techDetail}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
-                    
-                    <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }} 
-                        renderTabBar={()=> <ScrollableTab/>} >
+
+                    <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }}
+                        renderTabBar={() => <ScrollableTab />} >
 
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
@@ -104,15 +104,14 @@ export default class TabComponent extends React.Component {
                         }>
                             <TechDetails />
                         </Tab>
-                </Tabs>
-                <Year ref={this.modalRef}/>
+                    </Tabs>
+                    <Year ref={this.modalRef} />
                 </View>
         )
     }
 
 }
 export { TabComponent }
-
 
 const styles = EStylesheet.create({
     tabheading: {
