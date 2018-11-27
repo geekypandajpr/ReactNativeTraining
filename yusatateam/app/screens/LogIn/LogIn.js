@@ -2,17 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
 import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } from 'react-native';
-import { CheckBox, Button, Text, Toast,Icon, Item, Input, Label } from 'native-base';
-import { MaterialIcons } from '@expo/vector-icons'
+import { CheckBox, Button, Text, Toast } from 'native-base';
 
 import { InputWithIcon, Statusbar } from '../../components';
 import { loginRequest } from '../../redux/actions/userActions';
 import styles from './Styles';
-
-var loginCredentials = {
-    "password": "SunilS@123",
-    "userName": "sunil.sharma@yusata.com"
-}
 
 export class LogIn extends React.Component {
     constructor(props) {
@@ -77,7 +71,7 @@ export class LogIn extends React.Component {
                                 returnKeyType={'next'}
                                 keyboardType={'email-address'}
                                 blurOnSubmit={false}
-                                //onSubmitEditing={() => this._focusNextField('password')}
+                                onSubmitEditing={() => this._focusNextField('password')}
                                 onChangeText={(username) => this.setState({ username })}
                                 inputStyles={{width: '85%'}}
                             />
@@ -93,7 +87,7 @@ export class LogIn extends React.Component {
                                 getRef={(input) => { this.password = input; }}
                                 value={this.state.password}
                                 secureTextEntry={true}
-                                //onSubmitEditing={this._doLogin}
+                                onSubmitEditing={this._doLogin}
                                 onChangeText={(password) => this.setState({ password })}
                                 inputStyles={{width: '85%'}}
                             />
@@ -123,9 +117,7 @@ export class LogIn extends React.Component {
                         <View style={styles.button_view}>
                             <Button
                                 style={styles.button}
-                                //onPress={() => {this.props.onFetchData(loginCredentials)}}
-                                onPress={() => {this.props.navigation.navigate('Dashboard')}}
-                                >
+                                onPress={this._doLogin} >
                                 <Text style={styles.button_text}>  LOGIN </Text>
                             </Button>
                         </View>

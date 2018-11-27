@@ -1,5 +1,5 @@
 import React from 'react';
-import { View} from 'react-native';
+import { View, BackHandler } from 'react-native';
 import { AppLoading } from 'expo';
 import { Button, Item, Input, Label, Text } from 'native-base';
 import { Feather } from '@expo/vector-icons';
@@ -26,6 +26,19 @@ export default class ForgotPassword extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false });
+    }
+
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
     onEmailChange(text) {

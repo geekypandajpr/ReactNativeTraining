@@ -8,11 +8,11 @@ export default class InputWithIcon extends React.Component {
     render() {
         return (
             <View style={this.props.inputStyles}>
-                <Item>
+                <Item floatingLabel>
                     <Icon name={this.props.name} type={this.props.iconType} style={{color:this.props.iconColor}} />
-                    {/* <Label style={{color:'#FFFFFF90', fontSize: 15}}>{this.props.placeholder}</Label> */}
+                    <Label style={{color:'#FFFFFF90', fontSize: 15}}>{this.props.placeholder}</Label>
                     <Input
-                        placeholder={this.props.placeholder}
+                        //placeholder={this.props.placeholder}
                         style={{color:'#fff', fontSize: 15}}
                         value={this.props.value}
                         keyboardType={this.props.keyboardType}
