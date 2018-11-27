@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tab, Tabs, ScrollableTab } from 'native-base';
-import { View } from 'react-native';
+import { View,BackHandler } from 'react-native';
 import { Toolbar } from '../../components'
 import { AppLoading } from 'expo';
 import {JobCompleted,JobPending,JobReschedule,JobSchedule} from './JobTabPages';
@@ -8,7 +8,7 @@ import pendingData from '../../assets/JSONData/JobsData/pendingData';
 import completedData from '../../assets/JSONData/JobsData/completedData';
 import reScheduleData from '../../assets/JSONData/JobsData/reScheduleData';
 import scheduleData from '../../assets/JSONData/JobsData/scheduleData';
-import { BackHandler } from 'react-native';
+
 export default class Jobs extends React.Component {
     constructor(props) {
         super(props)

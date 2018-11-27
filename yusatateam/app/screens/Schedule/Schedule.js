@@ -1,7 +1,8 @@
 import React from 'react';
 import {
     Text,
-    View
+    View,
+    BackHandler
 } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../components';
@@ -9,7 +10,7 @@ import styles from './Styles';
 import moment from 'moment';
 import JobDetails from '../Jobs/JobDetails/JobDetails';
 import colors from '../../constants/colors';
-import { BackHandler } from 'react-native';
+
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
     // '2018-09-17': {selected: true, selectedColor: 'red'},
