@@ -24,6 +24,7 @@ export default class TabComponent extends React.Component {
     techDetail(){
         this.modalRef.current.setModalVisible(true);
     }
+    
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
