@@ -30,12 +30,20 @@ export default class Schedule extends React.Component {
     renderDay(day, item) {
         return (<View><Text>{day ? day.dateString: 'item'}</Text></View>);
     }
+
     componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', () => {
-                this.props.navigation.navigate('Dashboard');                 
-                return true; 
-        });
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+    
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;

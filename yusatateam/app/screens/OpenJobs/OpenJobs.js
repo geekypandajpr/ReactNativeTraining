@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, FlatList, Text, BackHandler } from 'react-native';
-import { Button, Footer, FooterTab, Header, Left, Right, Body, Title } from 'native-base';
-import { Feather, Ionicons } from '@expo/vector-icons';
+import {
+    View,
+    FlatList,
+    Text,
+    BackHandler
+} from 'react-native';
+import { Button, Footer, FooterTab } from 'native-base';
 import { AppLoading } from 'expo';
 
-import { Toolbar, JobsComponent, SearchBar, Statusbar } from '../../components';
+import { JobsComponent, HeaderWithSearchbar } from '../../components';
 import styles from './Styles';
-import colors from '../../constants/colors';
-import LeftElement from './LeftElement';
-import CenterElement from './CenterElement';
-import RightElement from './RightElement';
+import JobDetails from '../Jobs/JobDetails/JobDetails';
 
 const datas = [
     {
@@ -114,10 +115,9 @@ export default class OpenJobs extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true,
-            isSearchActive: false,
-            searchValue: ''
+            isLoading: true
         }
+        this.jobDetailsRef = React.createRef();
     }
 
     componentDidMount() {
@@ -142,62 +142,25 @@ export default class OpenJobs extends React.Component {
         this.setState({ isLoading: false })
     }
 
-    onSearchPressed = () => {
-        this.setState({ isSearchActive: true });
-    }
-
-    onSearchTextChanged = (searchValue) => {
-        this.setState({ searchValue });
-    }
-
-    onSearchClearPressed = () => {
-        this.onSearchTextChanged('');
-    }
-
-    onSearchClosed = () => {
-        this.setState({ isSearchActive: false, searchValue: ''});
-    }
-
     render() {
-        const { isSearchActive, searchValue } = this.props;
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return(
             this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
-                <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                    setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
-                />
 
-               {/* <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
-
-                <Header>
-                    <LeftElement
-                        isSearchActive={isSearchActive}
-                        onSearchPress={this.onSearchPressed}
-                    />
-                    <CenterElement
-                        title='Open Jobs'
-                        isSearchActive={isSearchActive}
-                        onSearchPress={this.onSearchPressed}
-                        searchValue={searchValue}
-                    />
-                    <RightElement
-                        isSearchActive={this.state.isSearchActive}
-                        onSearchPress={this.onSearchPressed}
-                        searchValue={this.state.searchValue}
-                        onSearchClear={this.onSearchClearPressed}
-                    />
-                </Header> */}
-
+                <HeaderWithSearchbar
+                    title={'Open Jobs'}
+                    leftIcon='arrow-left'
+                    goBack={() => goBack()}/>
+                    
                 <View style={styles.inner_container}>
-                    <SearchBar placeholder={'Search jobs'}/>
                     <FlatList
                         data={datas}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
                             <JobsComponent jobDatas={item}
-                                viewDetails={()=> {console.log('Job details page')}}
+                                viewDetails={()=> {this.jobDetailsRef.current.setModalVisible(true, {})}}
                             />
                         }
                     />
@@ -209,6 +172,7 @@ export default class OpenJobs extends React.Component {
                         </FooterTab>
                     </Footer>
                 </View>
+                <JobDetails ref={this.jobDetailsRef} />
             </View>
         )
     }

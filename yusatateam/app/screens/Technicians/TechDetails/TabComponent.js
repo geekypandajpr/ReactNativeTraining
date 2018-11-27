@@ -20,8 +20,9 @@ export default class TabComponent extends React.Component {
         this.modalRef = React.createRef();
         this.techDetail = this.techDetail.bind(this);
     }
+
     techDetail(){
-        this.refs.modal.setModalVisible(true);
+        this.modalRef.current.setModalVisible(true);
     }
     async componentWillMount() {
         await Expo.Font.loadAsync({
@@ -52,7 +53,7 @@ export default class TabComponent extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
                     <Toolbar title='Details' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        Calender='calendar' calenderType='FontAwesome' onCalenderPress={() =>  this.techDetail}
+                        Calender='calendar' calenderType='FontAwesome' onCalenderPress={this.techDetail}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
                     
