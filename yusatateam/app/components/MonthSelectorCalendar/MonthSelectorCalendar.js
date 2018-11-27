@@ -1,25 +1,26 @@
 import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import styles from './Styles';
+import { View, Text, TouchableOpacity } from 'react-native';
 require('moment/locale/en-gb.js');
 require('moment/locale/id.js');
 require('moment/locale/zh-cn.js');
+
+import styles from './Styles';
 
 const dateFormat = 'DD-MM-YYYY';
 const monthYearFormat = 'MMYYYY';
 
 const getMonthListFirstDayDate = (date) => {
-  const monthList = [];
-  const year = date.format('YYYY');
-  for (let i = 1; i < 13; i += 1) {
-    monthList.push(moment(`01-${i}-${year}`, dateFormat));
-  }
-  return monthList;
+    const monthList = [];
+    const year = date.format('YYYY');
+    for (let i = 1; i < 13; i += 1) {
+        monthList.push(moment(`01-${i}-${year}`, dateFormat));
+    }
+    return monthList;
 };
 
-export default class MonthSelectorCalendar extends React.Component{
+export default class MonthSelectorCalendar extends React.Component {
 
     static propTypes = {
         selectedDate: PropTypes.any,
@@ -42,14 +43,14 @@ export default class MonthSelectorCalendar extends React.Component{
         monthDisabledStyle: PropTypes.any,
         onYearChanged: PropTypes.func,
         //locale: PropTypes.object,
-      }
-    
-      static defaultProps = {
+    }
+
+    static defaultProps = {
         selectedDate: moment(),
         currentDate: moment(),
         maxDate: moment(),
         minDate: moment('01-01-2000', 'DD-MM-YYYY'),
-        selectedBackgroundColor: '#000',
+        selectedBackgroundColor: '#d9534f',
         selectedMonthStyle: { color: '#fff' },
         seperatorHeight: 1,
         seperatorColor: '#b6c3cb',
@@ -59,152 +60,170 @@ export default class MonthSelectorCalendar extends React.Component{
         yearTextStyle: null,
         monthFormat: 'MMM',
         currentMonthTextStyle: {
-        color: '#22ee11',
+            color: '#22ee11',
         },
         monthTextStyle: { color: '#000' },
         initialView: moment(),
-        monthTapped: () => {},
+        monthTapped: () => { },
         monthDisabledStyle: { color: '#00000050' },
-        onYearChanged: () => {},
+        onYearChanged: () => { },
         locale: 'en-gb',
-      }
-      constructor(props) {
+    }
+    constructor(props) {
         super(props);
         this.handleMonthTaps = this.handleMonthTaps.bind(this);
         this.handNextPrevTaps = this.handNextPrevTaps.bind(this);
         this.state = { initialView: props.initialView };
-      }
-    
-      componentWillMount() {
+    }
+
+    componentWillMount() {
         moment.locale(this.props.locale);
-      }
-    
-      getSelectedBackgroundColor(month) {
+    }
+
+    getSelectedBackgroundColor(month) {
         if (this.props.selectedBackgroundColor
-          && month.format(monthYearFormat) === this.props.selectedDate) {
-          return { backgroundColor: this.props.selectedBackgroundColor };
+            && month.format(monthYearFormat) === this.props.selectedDate) {
+            return { backgroundColor: this.props.selectedBackgroundColor };
         }
         return {};
-      }
-      getSelectedForeGround(month) {
+    }
+
+    getSelectedForeGround(month) {
         if (this.props.selectedMonthStyle &&
-           month.format(monthYearFormat) === this.props.selectedDate) {
-          return this.props.selectedMonthStyle;
+            month.format(monthYearFormat) === this.props.selectedDate) {
+            return this.props.selectedMonthStyle;
         }
         if (month.format(monthYearFormat) === this.props.currentDate.format(monthYearFormat)) {
-          return this.props.currentMonthTextStyle;
+            return this.props.currentMonthTextStyle;
         }
         return {};
-      }
-    
-     getMonthActualComponent(month, isDisabled = false) {
+    }
+
+    getMonthActualComponent(month, isDisabled = false) {
         return (
-          <View
-            style={[isDisabled === true && { flex: 1, alignItems: 'center' }, styles.monthStyle, this.getSelectedBackgroundColor(month)]}
-          >
-            <Text
-              style={[styles.monthTextStyle,
-               this.props.monthTextStyle, this.getSelectedForeGround(month),
-               isDisabled === true && this.props.monthDisabledStyle,
-               ]}
+            <View
+                style={[isDisabled === true && { flex: 1, alignItems: 'center' }, styles.monthStyle, this.getSelectedBackgroundColor(month)]}
             >
-              {month.format(this.props.monthFormat)}
-            </Text>
-          </View>
+                <Text
+                    style={[styles.monthTextStyle,
+                    this.props.monthTextStyle, this.getSelectedForeGround(month),
+                    isDisabled === true && this.props.monthDisabledStyle,
+                    ]}
+                >
+                    {month.format(this.props.monthFormat)}
+                </Text>
+            </View>
         );
-      }
-    
-      getMonthComponent(month) {
+    }
+
+    getMonthComponent(month) {
         if (this.isMonthEnabled(month)) {
-          return (
-            <TouchableOpacity onPress={() => this.handleMonthTaps(month)} style={{ flex: 1, alignItems: 'center' }}>
-              {this.getMonthActualComponent(month)}
-            </TouchableOpacity>);
+            return (
+                <TouchableOpacity onPress={() => this.handleMonthTaps(month)} style={{ flex: 1, alignItems: 'center' }}>
+                    {this.getMonthActualComponent(month)}
+                </TouchableOpacity>);
         }
         return this.getMonthActualComponent(month, true);
-      }
-      isMonthEnabled(month) {
+    }
+    
+    isMonthEnabled(month) {
         const minDateYear = this.props.minDate.format('YYYYMM');
         const maxDateYear = this.props.maxDate.format('YYYYMM');
         const currentYear = month.format('YYYYMM');
         if (currentYear <= maxDateYear
-          && currentYear >= minDateYear) {
-          return true;
+            && currentYear >= minDateYear) {
+            return true;
         }
         return false;
-      }
-    
-      isYearEnabled(isNext) {
+    }
+
+    isYearEnabled(isNext) {
         const minYear = this.props.minDate.format('YYYY');
         const maxYear = this.props.maxDate.format('YYYY');
         const currentYear = this.state.initialView.format('YYYY');
         if ((isNext && currentYear < maxYear) || (!isNext && currentYear > minYear)) {
-          return true;
+            return true;
         }
         return false;
-      }
-    
-      handleMonthTaps(month) {
+    }
+
+    handleMonthTaps(month) {
         this.props.monthTapped(month);
-      }
-    
-      handNextPrevTaps(isNext) {
+    }
+
+    handNextPrevTaps(isNext) {
         if (this.isYearEnabled(isNext)) {
-          const currentInitialView = this.state.initialView.clone();
-          this.setState({ initialView: currentInitialView.add(isNext ? 1 : -1, 'Y') });
-          this.props.onYearChanged(this.state.currentInitialView);
+            const currentInitialView = this.state.initialView.clone();
+            this.setState({ initialView: currentInitialView.add(isNext ? 1 : -1, 'Y') });
+            this.props.onYearChanged(this.state.currentInitialView);
         }
-      }
-    
-      renderQ(months, qNo) {
+    }
+
+    renderQ(months, qNo) {
         const startMonth = qNo * 3;
         return (
-          <View style={[styles.horizontalFlexViewStyle]}>
-            {this.getMonthComponent(months[startMonth])}
-            {this.getMonthComponent(months[startMonth + 1])}
-            {this.getMonthComponent(months[startMonth + 2])}
-          </View>);
-      }
-    
-      renderHeader() {
+            <View style={[styles.horizontalFlexViewStyle]}>
+                {this.getMonthComponent(months[startMonth])}
+                {this.getMonthComponent(months[startMonth + 1])}
+                {this.getMonthComponent(months[startMonth + 2])}
+            </View>);
+    }
+
+    renderHeader() {
         return (
-          <View
-            style={[styles.horizontalFlexViewStyle,
-              {
-                borderBottomColor: this.props.seperatorColor,
-                borderBottomWidth: this.props.seperatorHeight,
-                alignSelf: 'center',
-                height: 64,
-              },
-              ]}
-          >
-            <TouchableOpacity onPress={() => this.handNextPrevTaps(false)}>
-              {this.props.prevIcon ? this.props.prevIcon : (<Text>Prev</Text>)}
-            </TouchableOpacity>
-            <View style={styles.yearViewStyle}>
-              <Text style={[styles.yearTextStyle, this.props.yearTextStyle]}>
-                {this.state.initialView.format('YYYY')}
-              </Text>
+            <View
+                style={[styles.horizontalFlexViewStyle,
+                {
+                    borderBottomColor: this.props.seperatorColor,
+                    borderBottomWidth: this.props.seperatorHeight,
+                    alignSelf: 'center',
+                    height: 35,
+                },
+                ]} >
+                <View style={{flex: 1, justifyContent: 'center',alignItems: 'center'}}>
+                    <TouchableOpacity onPress={() => this.handNextPrevTaps(false)}>
+                        {this.props.prevIcon ? this.props.prevIcon : (
+                            <View style={styles.previous}>
+                                <Text>Prev</Text>
+                            </View>
+                        )}
+                    </TouchableOpacity>
+                </View>
+
+                <View style={{flex: 1, justifyContent: 'center',alignItems: 'center'}}>
+                    <View style={styles.yearViewStyle}>
+                        <Text style={[styles.yearTextStyle, this.props.yearTextStyle]}>
+                            {this.state.initialView.format('YYYY')}
+                        </Text>
+                    </View>
+                </View>
+                
+                <View style={{flex: 1, justifyContent: 'center',alignItems: 'center'}}>
+                    <TouchableOpacity onPress={() => this.handNextPrevTaps(true)}>
+                        {this.props.nextIcon ? this.props.nextIcon : (
+                            <View style={styles.previous}>
+                                <Text>Next</Text>
+                            </View>
+                        )}
+                    </TouchableOpacity>
+                </View>
+                
             </View>
-            <TouchableOpacity onPress={() => this.handNextPrevTaps(true)}>
-              {this.props.nextIcon ? this.props.nextIcon : (<Text>Next</Text>)}
-            </TouchableOpacity>
-          </View>
         );
-      }
-    
-      render() {
+    }
+
+    render() {
         const months = getMonthListFirstDayDate(this.state.initialView);
         return (
-          <View style={[styles.container, this.props.containerStyle]}>
-            {this.renderHeader()}
-            {this.renderQ(months, 0)}
-            {this.renderQ(months, 1)}
-            {this.renderQ(months, 2)}
-            {this.renderQ(months, 3)}
-          </View>
+            <View style={[styles.container, this.props.containerStyle]}>
+                {this.renderHeader()}
+                {this.renderQ(months, 0)}
+                {this.renderQ(months, 1)}
+                {this.renderQ(months, 2)}
+                {this.renderQ(months, 3)}
+            </View>
         );
-      }
+    }
 
 }
 export { MonthSelectorCalendar }

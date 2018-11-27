@@ -61,6 +61,6 @@ const styles = EStyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: '60%',
-        width: '100%'
+        width: '90%'
     },
 })
