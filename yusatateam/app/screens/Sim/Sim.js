@@ -3,7 +3,8 @@ import {
     View,
     FlatList,
     TouchableHighlight,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    BackHandler
 } from 'react-native';
 import { Card, Button, Text } from 'native-base';
 import { AppLoading } from 'expo';
@@ -12,7 +13,7 @@ import styles from './styles';
 import { Toolbar } from '../../components';
 import { SimDetails } from './SimDetails';
 import SimData from '../../assets/JSONData/SimData';
-import { BackHandler } from 'react-native';
+
 export default class Sim extends React.Component {
     constructor() {
         super();

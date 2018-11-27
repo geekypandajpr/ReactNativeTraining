@@ -5,6 +5,7 @@ import {
     TouchableHighlight,
     TouchableWithoutFeedback,
     Dimensions,
+    BackHandler
 } from 'react-native';
 import { Card, Text } from 'native-base';
 import { AppLoading } from 'expo';
@@ -13,7 +14,7 @@ import styles from './styles';
 import { Toolbar } from '../../components';
 import DeviceData from '../../assets/JSONData/DeviceData'
 import { DeviceDetails } from './DeviceDeatails'
-import { BackHandler } from 'react-native'
+
 export default class Device extends React.Component {
     constructor() {
         super();
