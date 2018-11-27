@@ -58,8 +58,9 @@ export default class HeaderWithSearchbar extends React.Component {
     }
 
     onSearchClosed = () => {
-        this.setState({ isSearchActive: false, searchValue: ''});
+        this.setState({ isSearchActive: false });
         this.onSearchCloseRequested();
+        this.props.onSearchClear();
     }
 
     onSearchCloseRequested = () => {
@@ -154,14 +155,6 @@ export default class HeaderWithSearchbar extends React.Component {
         )
     }
 
-    onSearchTextChanged = (searchValue) => {
-        this.setState({ searchValue });
-    }
-
-    onSearchClearPressed = () => {
-        this.onSearchTextChanged('');
-    }
-
     render() {
         return(
             this.state.isLoading === true ? <AppLoading /> :
@@ -178,14 +171,14 @@ export default class HeaderWithSearchbar extends React.Component {
                     <CenterElement
                         title={this.props.title}
                         isSearchActive={this.state.isSearchActive}
-                        onSearchTextChange={this.onSearchTextChanged}
-                        searchValue={this.state.searchValue}
+                        onSearchTextChange={this.props.onChangeText}
+                        searchValue={this.props.searchValue}
                     />
                     <RightElement
                         isSearchActive={this.state.isSearchActive}
                         onSearchPress={this.onSearchPressed}
-                        searchValue={this.state.searchValue}
-                        onSearchClear={this.onSearchClearPressed}
+                        searchValue={this.props.searchValue}
+                        onSearchClear={this.props.onSearchClear}
                     />
                 </Header>
             </View>
