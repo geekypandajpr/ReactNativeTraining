@@ -116,6 +116,13 @@ const RouteConfigs = {
         navigationOptions: {
             header: null
         }
+    },
+    JobSearch:
+    {   
+        screen: JobSearch,
+        navigationOptions: {
+            header: null
+        }
     }
 }
 

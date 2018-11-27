@@ -7,15 +7,15 @@ import {
     Picker,
     ScrollView,
     FlatList,
-    CheckBox
+    
 } from 'react-native';
-import { List, ListItem, Body, Button ,} from 'native-base';
+import { List, ListItem, Body, Button ,CheckBox} from 'native-base';
 import styles from './styles';
 import { TouchableWithoutFeedback } from 'react-native';
 import { Toolbar, JobsComponent, SearchBar,JobDetailToolbar } from '../../../components';
 import { Checkbox } from '../../../components';
 
-var map1 = new Map();
+
 export default class JobSearch extends React.Component {
     constructor(props) {
         super(props);
@@ -29,10 +29,10 @@ export default class JobSearch extends React.Component {
             status: '',
             data: this.props.navigation.state.params.item,
             dropdownbool: false,
-            checkboxes: [],
             plans: {},
             checkbox: false,
-            selected: "jobNumber"
+            selected: "jobNumber",
+             map1 : new Map(),
         }
         this.arrayholder = [];
         this.tollbarStatus = '';
@@ -127,31 +127,29 @@ export default class JobSearch extends React.Component {
 
 
     toggleCheckbox(id) {
-
-        let checkboxes = this.state.checkboxes;
-        if (checkboxes.includes(id)) {
-            const index = checkboxes.indexOf(id);
-            checkboxes.splice(index, 1);
-            map1.delete(id);
-        } else {
-            checkboxes = checkboxes.concat(id);
-            map1.set(id, true);
+        console.log('has->'+this.state.map1.has(id))
+        let map1 = this.state.map1;
+        if(this.state.map1.has(id))
+        {
+            this.state.map1.delete(id);
+            
         }
-
-        this.setState({ checkboxes });
+        else
+        {
+            this.state.map1.set(id,true);
+           
+        }
+        console.log(this.state.map1.get(id))
+        this.setState({map1})
+        
     }
 
 
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
-        const checkboxes = this.state.checkboxes;
-        console.log("MS CB1: " + checkboxes);
-
-        console.log('hello'+this.tollbarStatus);
-        //console.log(map1);
-
-
+       console.log('hello');
+       // console.log('vin'+this.state.map1.has(item.jobNumber));
         return (
             <View style={styles.container}>
                 <JobDetailToolbar title='Jobs'
@@ -164,18 +162,19 @@ export default class JobSearch extends React.Component {
                 <SearchBar placeholder={'Search jobs'}
                     onChangeText={(text) => this.SearchFilterFunction(text)} />
                 <FlatList
+                    extraData={this.state}
                     data={this.state.data}
                     keyExtractor={(item, index) => item.jobNumber}
                     renderItem={({ item, index }) =>
 
                         <List style={styles.list}>
                             <ListItem icon style={styles.listitem}>
-                            <CheckBox
-                                    value={map1.get(item.jobNumber)}
-                                    onChange={() => this.toggleCheckbox(item.jobNumber)}
-                                />
-
-                                <Text>{map1.get(item.jobNumber)}</Text>
+                            <View onTouchStart={() => this.setState({ map1: this.state.map1 })}>
+                                <CheckBox
+                                        checked={this.state.map1.get(item.jobNumber)}
+                                        onPress={() => this.toggleCheckbox(item.jobNumber)} 
+                                    />
+                                </View>
                                 <Body style={styles.body}>
                                     <TouchableWithoutFeedback>
                                         <View>
