@@ -22,20 +22,40 @@ export default EStyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+
     yearViewStyle: {
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
         flex: 1,
     },
+    yearTextStyle: {
+        fontSize: '1rem',
+        color: '#fff',
+        fontWeight: '500'
+    },
     previous: {
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 4,
         borderWidth: 1,
-        borderColor: 'gray',
+        borderColor: '#fff',
         height: 35,
         width: 60
+    },
+    prev_text :{
+        fontSize: '0.9rem',
+        color: '#fff'
+    },
+    heading: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    heading_child: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 
 });

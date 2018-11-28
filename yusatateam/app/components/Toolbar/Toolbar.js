@@ -37,7 +37,7 @@ export default class Toolbar extends React.Component {
                 <Header style={styles.header}>
                     <Left>
                         <Button transparent onPress={this.props.onLeftButtonPress}>
-                            <Icon name={this.props.leftIcon} type={this.props.leftIconType} style={styles.icon} />
+                            <Icon name={this.props.leftIcon} type={this.props.leftIconType} style={styles.iconLeft} />
                         </Button>
                     </Left>
                     <Body>

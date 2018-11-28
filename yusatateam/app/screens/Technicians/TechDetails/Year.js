@@ -1,12 +1,9 @@
 import React from 'react';
-import {
-    View,
-    Text,
-    Modal,
-    TouchableHighlight
-} from 'react-native';
+import { View, Modal } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { MonthSelectorCalendar } from '../../../components/MonthSelectorCalendar/MonthSelectorCalendar';
+
+import { MonthSelectorCalendar } from '../../../components';
+
 export default class Year extends React.Component {
     constructor() {
         super();
@@ -14,11 +11,18 @@ export default class Year extends React.Component {
             month:'112018',
             modalVisible: false,
         }
+        this.selectMonth = this.selectMonth.bind(this);
     }
 
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
     }
+
+    selectMonth(date) {
+        this.props.selectedDate(date);
+        this.setModalVisible(false);
+    }
+
     render() {
         return (
             <View>
@@ -33,13 +37,12 @@ export default class Year extends React.Component {
                         <View style={styles.sub_container}>
                             <MonthSelectorCalendar
                                 selectedDate={this.state.month}
-                                monthTapped={(date) => this.setState({ month: date })}
+                                monthTapped={(date) => this.selectMonth(date)}
                             />
                         </View>
                     </View>
                 </Modal>
             </View>
-
         );
     }
 }

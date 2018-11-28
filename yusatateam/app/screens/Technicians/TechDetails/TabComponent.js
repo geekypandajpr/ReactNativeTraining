@@ -1,28 +1,28 @@
 import React from 'react';
-import {
-    View,
-    Text,
-    BackHandler
-} from 'react-native';
+import {  View, Text, BackHandler } from 'react-native';
 import { AppLoading } from 'expo';
-import { Container, Tab, Tabs, ScrollableTab, TabHeading } from 'native-base';
+import moment from 'moment';
+import EStylesheet from 'react-native-extended-stylesheet';
+import { Tab, Tabs, ScrollableTab, TabHeading } from 'native-base';
+import { FontAwesome, EvilIcons } from '@expo/vector-icons';
+
+import colors from '../../../constants/colors'
 import { Toolbar } from '../../../components/Toolbar';
 import { TechDetails } from './TechDetails';
-import { FontAwesome, EvilIcons } from '@expo/vector-icons';
-import colors from '../../../constants/colors'
-import EStylesheet from 'react-native-extended-stylesheet'
 import Year from './Year';
+
+
 
 export default class TabComponent extends React.Component {
     constructor() {
         super();
-        this.state = {};
+        moment.locale('en');
+        this.state = {
+            isLoading: true,
+            selectedMonth: moment(new Date()).format('MMM')
+        };
         this.modalRef = React.createRef();
         this.techDetail = this.techDetail.bind(this);
-    }
-
-    techDetail() {
-        this.modalRef.current.setModalVisible(true);
     }
 
     async componentWillMount() {
@@ -47,6 +47,14 @@ export default class TabComponent extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
+    techDetail() {
+        this.modalRef.current.setModalVisible(true);
+    }
+
+    onMonthSelect(date) {
+        this.setState({selectedMonth: moment(date).format('MMM')})
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
@@ -65,7 +73,7 @@ export default class TabComponent extends React.Component {
                             <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
                                     <Text style={styles.Week}>Week 1</Text>
-                                    <Text style={styles.date}>1 Nov to 7 Nov</Text>
+                                    <Text style={styles.date}>1 {this.state.selectedMonth} to 7 {this.state.selectedMonth}</Text>
                                 </View>
                             </TabHeading>
                         }>
@@ -76,7 +84,7 @@ export default class TabComponent extends React.Component {
                             <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
                                     <Text style={styles.Week}>Week 2</Text>
-                                    <Text style={styles.date}>8 Nov to 14 Nov</Text>
+                                    <Text style={styles.date}>8 {this.state.selectedMonth} to 14 {this.state.selectedMonth}</Text>
                                 </View>
                             </TabHeading>
                         }>
@@ -87,7 +95,7 @@ export default class TabComponent extends React.Component {
                             <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
                                     <Text style={styles.Week}>Week 3</Text>
-                                    <Text style={styles.date}>15 Nov to 21 Nov</Text>
+                                    <Text style={styles.date}>15 {this.state.selectedMonth} to 21 {this.state.selectedMonth}</Text>
                                 </View>
                             </TabHeading>
                         }>
@@ -98,14 +106,14 @@ export default class TabComponent extends React.Component {
                             <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
                                     <Text style={styles.Week}>Week 4</Text>
-                                    <Text style={styles.date}>22 Nov to 28 Nov</Text>
+                                    <Text style={styles.date}>22 {this.state.selectedMonth} to 28 {this.state.selectedMonth}</Text>
                                 </View>
                             </TabHeading>
                         }>
                             <TechDetails />
                         </Tab>
                     </Tabs>
-                    <Year ref={this.modalRef} />
+                    <Year ref={this.modalRef} selectedDate={(date) => this.onMonthSelect(date)}/>
                 </View>
         )
     }

@@ -50,7 +50,7 @@ export default class MonthSelectorCalendar extends React.Component {
         currentDate: moment(),
         maxDate: moment(),
         minDate: moment('01-01-2000', 'DD-MM-YYYY'),
-        selectedBackgroundColor: '#d9534f',
+        selectedBackgroundColor: '#1f667e',
         selectedMonthStyle: { color: '#fff' },
         seperatorHeight: 1,
         seperatorColor: '#b6c3cb',
@@ -60,7 +60,7 @@ export default class MonthSelectorCalendar extends React.Component {
         yearTextStyle: null,
         monthFormat: 'MMM',
         currentMonthTextStyle: {
-            color: '#22ee11',
+            color: '#d9534f',
         },
         monthTextStyle: { color: '#000' },
         initialView: moment(),
@@ -100,16 +100,14 @@ export default class MonthSelectorCalendar extends React.Component {
     }
 
     getMonthActualComponent(month, isDisabled = false) {
+        //console.log('month=> '+ month.format('M'));
         return (
-            <View
-                style={[isDisabled === true && { flex: 1, alignItems: 'center' }, styles.monthStyle, this.getSelectedBackgroundColor(month)]}
-            >
+            <View style={[isDisabled === true && { flex: 1, alignItems: 'center'},
+                styles.monthStyle, this.getSelectedBackgroundColor(month)]} >
                 <Text
                     style={[styles.monthTextStyle,
                     this.props.monthTextStyle, this.getSelectedForeGround(month),
-                    isDisabled === true && this.props.monthDisabledStyle,
-                    ]}
-                >
+                    isDisabled === true && this.props.monthDisabledStyle ]} >
                     {month.format(this.props.monthFormat)}
                 </Text>
             </View>
@@ -119,7 +117,8 @@ export default class MonthSelectorCalendar extends React.Component {
     getMonthComponent(month) {
         if (this.isMonthEnabled(month)) {
             return (
-                <TouchableOpacity onPress={() => this.handleMonthTaps(month)} style={{ flex: 1, alignItems: 'center' }}>
+                <TouchableOpacity onPress={() => this.handleMonthTaps(month)}
+                    style={{ flex: 1, alignItems: 'center'}}>
                     {this.getMonthActualComponent(month)}
                 </TouchableOpacity>);
         }
@@ -171,26 +170,22 @@ export default class MonthSelectorCalendar extends React.Component {
 
     renderHeader() {
         return (
-            <View
-                style={[styles.horizontalFlexViewStyle,
-                {
+            <View style={[styles.heading, {
                     borderBottomColor: this.props.seperatorColor,
                     borderBottomWidth: this.props.seperatorHeight,
-                    alignSelf: 'center',
-                    height: 35,
-                },
-                ]} >
-                <View style={{flex: 1, justifyContent: 'center',alignItems: 'center'}}>
+                    backgroundColor: '#1f667e'
+                    }]} >
+                <View style={styles.heading_child}>
                     <TouchableOpacity onPress={() => this.handNextPrevTaps(false)}>
                         {this.props.prevIcon ? this.props.prevIcon : (
                             <View style={styles.previous}>
-                                <Text>Prev</Text>
+                                <Text style={styles.prev_text}>Prev</Text>
                             </View>
                         )}
                     </TouchableOpacity>
                 </View>
 
-                <View style={{flex: 1, justifyContent: 'center',alignItems: 'center'}}>
+                <View style={styles.heading_child}>
                     <View style={styles.yearViewStyle}>
                         <Text style={[styles.yearTextStyle, this.props.yearTextStyle]}>
                             {this.state.initialView.format('YYYY')}
@@ -198,11 +193,11 @@ export default class MonthSelectorCalendar extends React.Component {
                     </View>
                 </View>
                 
-                <View style={{flex: 1, justifyContent: 'center',alignItems: 'center'}}>
+                <View style={styles.heading_child}>
                     <TouchableOpacity onPress={() => this.handNextPrevTaps(true)}>
                         {this.props.nextIcon ? this.props.nextIcon : (
                             <View style={styles.previous}>
-                                <Text>Next</Text>
+                                <Text style={styles.prev_text}>Next</Text>
                             </View>
                         )}
                     </TouchableOpacity>

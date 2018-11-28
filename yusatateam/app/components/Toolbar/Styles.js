@@ -10,8 +10,12 @@ export default EStylesheet.create({
     header: {
         backgroundColor: colors.HEADER_COLOR
     },
-    icon: {
+    iconLeft: {
         fontSize: 24,
+        color: '$headerIconColor'
+    },
+    icon: {
+        fontSize: 20,
         color: '$headerIconColor'
     },
     title: {

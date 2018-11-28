@@ -21,6 +21,7 @@ var eventList = {
 export default class Schedule extends React.Component {
     constructor(props) {
         super(props);
+        moment.locale('en');
         this.state = {
             items: {}
         };
