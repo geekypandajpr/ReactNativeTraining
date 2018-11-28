@@ -2,8 +2,8 @@ import React from 'react';
 import {
     View,
     Modal,
-    Button
 } from 'react-native';
+import { Button } from 'native-base';
 import { Text } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
 import styles from './styles';
@@ -158,16 +158,10 @@ export default class DeviceDetails extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.Button_View}>
-                               
-                                    <Button
-                                        onPress={() => {
-                                            this.setModalVisible(!this.state.modalVisible);
-                                        }}
-                                        title="Close"
-                                        color="#0073b7"
-
-                                    />
-                               
+                                <Button style={styles.button}
+                                    onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
+                                    <Text>Close</Text>
+                                </Button>
                             </View>
 
                         </View>
