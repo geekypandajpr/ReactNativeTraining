@@ -146,7 +146,6 @@ export default class OpenJobs extends React.Component {
     }
 
     onSearchTextChanged(searchValue) {
-        console.log(searchValue);
         this.setState({ searchValue });
     }
 

@@ -1,15 +1,17 @@
 import React from 'react';
 import { Tab, Tabs, ScrollableTab,TabHeading } from 'native-base';
 import { View, BackHandler,Text} from 'react-native';
-import { Toolbar } from '../../components'
 import { AppLoading } from 'expo';
+import EStylesheet from 'react-native-extended-stylesheet';
+
 import { JobCompleted, JobPending, JobReschedule, JobSchedule } from './JobTabPages';
+import { Toolbar } from '../../components';
 import pendingData from '../../assets/JSONData/JobsData/pendingData';
 import completedData from '../../assets/JSONData/JobsData/completedData';
 import reScheduleData from '../../assets/JSONData/JobsData/reScheduleData';
 import scheduleData from '../../assets/JSONData/JobsData/scheduleData';
-import colors from '../../constants/colors'
-import EStylesheet from 'react-native-extended-stylesheet'
+import colors from '../../constants/colors';
+import JobSearch from './JobSearch/JobSearch1';
 
 export default class Jobs extends React.Component {
     constructor(props) {
@@ -18,8 +20,11 @@ export default class Jobs extends React.Component {
             isLoading: true,
             item: pendingData
         },
-            this.status = ['Pending', 'Schedule', 'Completed', 'ReSchedule']
+        this.status = ['Pending', 'Schedule', 'Completed', 'ReSchedule'];
+        this.jobsearch = React.createRef();
+        this.openSearchPage = this.openSearchPage.bind(this);
     }
+
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -44,12 +49,24 @@ export default class Jobs extends React.Component {
             this.setState({ item: reScheduleData });
         }
     }
+
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', () => {
             this.props.navigation.navigate('Dashboard');
             return true;
         });
     }
+
+    openSearchPage() {
+        this.jobsearch.current.setModalVisible(true, this.state.item);
+    }
+
+    selectedValue(map) {
+        for(var key of map.keys()) {
+            console.log(key);
+        }
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
@@ -58,7 +75,7 @@ export default class Jobs extends React.Component {
                 <View style={{ flex: 1 }}>
                     <Toolbar title='Jobs'
                         leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='md-search' settingType='Ionicons' onSettingsPress={() => navigate('JobSearch', { item: this.state.item })} />
+                        setting='md-search' settingType='Ionicons' onSettingsPress={this.openSearchPage} />
                     <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }}
                         onChangeTab={({ i }) => this.getStatus(i)}
                         renderTabBar={() => <ScrollableTab />}>
@@ -101,7 +118,7 @@ export default class Jobs extends React.Component {
                         </Tab>
 
                     </Tabs>
-
+                    <JobSearch ref={this.jobsearch} getSelected={(mapvalue) => this.selectedValue(mapvalue)}/>
                 </View>
         );
     }

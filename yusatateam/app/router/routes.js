@@ -13,7 +13,6 @@ import ForgotPassword from '../screens/ForgotPassword/ForgotPassword';
 import OpenJobs from '../screens/OpenJobs/OpenJobs';
 import Calendars from '../screens/Calendars/Calendars';
 import { TabComponent } from '../screens/Technicians/TechDetails/TabComponent';
-import {JobSearch} from '../screens/Jobs/JobSearch/JobSearch'
 // import {
 //     LogIn,
 //     HomeScreen,
@@ -113,13 +112,6 @@ const RouteConfigs = {
     TabComponent:
     {   
         screen: TabComponent,
-        navigationOptions: {
-            header: null
-        }
-    },
-    JobSearch:
-    {   
-        screen: JobSearch,
         navigationOptions: {
             header: null
         }

@@ -97,7 +97,6 @@ export default class JobDetailToolbar extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View>
-                <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
                 <Header style={styles.header}>
                     <Left>
                         <Button transparent onPress={this.props.onLeftButtonPress}>
