@@ -55,7 +55,8 @@ export default class CenterElement extends React.Component {
         if(this.state.textInput) {
             content = (
                 <Item style={{borderBottomWidth: 0}}>
-                    <Input placeholder="Search here" value={searchValue} onChangeText={onSearchTextChange}/>
+                    <Input placeholder="Search here" autoFocus={true}
+                        value={searchValue} onChangeText={onSearchTextChange}/>
                 </Item>
             )
         }
