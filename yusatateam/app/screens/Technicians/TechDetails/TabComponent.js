@@ -4,14 +4,11 @@ import { AppLoading } from 'expo';
 import moment from 'moment';
 import EStylesheet from 'react-native-extended-stylesheet';
 import { Tab, Tabs, ScrollableTab, TabHeading } from 'native-base';
-import { FontAwesome, EvilIcons } from '@expo/vector-icons';
 
 import colors from '../../../constants/colors'
 import { Toolbar } from '../../../components/Toolbar';
 import { TechDetails } from './TechDetails';
 import Year from './Year';
-
-
 
 export default class TabComponent extends React.Component {
     constructor() {
@@ -19,7 +16,8 @@ export default class TabComponent extends React.Component {
         moment.locale('en');
         this.state = {
             isLoading: true,
-            selectedMonth: moment(new Date()).format('MMM')
+            selectedMonth: moment(new Date()).format('MMM'),
+            currentTab: 0
         };
         this.modalRef = React.createRef();
         this.techDetail = this.techDetail.bind(this);
@@ -66,8 +64,8 @@ export default class TabComponent extends React.Component {
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
 
-                    <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }}
-                        renderTabBar={() => <ScrollableTab />} >
+                    <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }} onChangeTab={({ i }) => this.setState({ currentTab: i })}
+                        renderTabBar={() => <ScrollableTab  style={{backgroundColor: colors.HEADER_COLOR}} />} >
 
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
@@ -75,8 +73,8 @@ export default class TabComponent extends React.Component {
                                     <Text style={styles.Week}>Week 1</Text>
                                     <Text style={styles.date}>1 {this.state.selectedMonth} to 7 {this.state.selectedMonth}</Text>
                                 </View>
-                            </TabHeading>
-                        }>
+                            </TabHeading>}
+                        >
                             <TechDetails />
                         </Tab>
 
@@ -123,10 +121,9 @@ export { TabComponent }
 
 const styles = EStylesheet.create({
     tabheading: {
-        backgroundColor: colors.HEADER_COLOR
+        backgroundColor: 'transparent'
     },
     tab_view: {
-        // width: '100%',
         height: '100%',
         backgroundColor: 'transparent',
         justifyContent: 'center',

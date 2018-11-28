@@ -32,28 +32,17 @@ export default class TechDetails extends React.Component {
 
                         <View style={styles.row_divide}>
                             <View style={styles.Ques_flex}>
-                                <Text style={styles.name_text}>Job No.</Text>
-                            </View>
-                            <View style={styles.colon_flex}>
-                                <Text>:</Text>
-                            </View>
-                            <View style={styles.Ans_flex}>
-                                <Text style={styles.level_text}>4</Text>
-                            </View>
-                        </View>
-
-                        <View style={styles.row_divide}>
-                            <View style={styles.Ques_flex}>
                                 <Text style={styles.name_text}>Call</Text>
                             </View>
                             <View style={styles.colon_flex}>
                                 <Text>:</Text>
                             </View>
                             <View style={styles.Call_flex}>
-                                <Ionicons name='md-call' size={15} color='#5cb85c' />
-                                <Text style={[styles.level_text,{marginLeft:3}]}>9829567890</Text>
+                                <Ionicons name='md-call' size={16} color='#5cb85c' />
+                                <Text style={[styles.level_text,{marginLeft:5}]}>9829567890</Text>
                             </View>
                         </View>
+
 
                          <View style={styles.row_divide}>
                             <View style={styles.Ques_flex}>
@@ -68,9 +57,21 @@ export default class TechDetails extends React.Component {
                         </View>
 
                         <View style={styles.row_divide}>
+                            <View style={styles.Ques_flex}>
+                                <Text style={styles.name_text}>Job No.</Text>
+                            </View>
+                            <View style={styles.colon_flex}>
+                                <Text>:</Text>
+                            </View>
+                            <View style={styles.Ans_flex}>
+                                <Text style={styles.level_text}>4</Text>
+                            </View>
+                        </View>
+
+                        <View style={styles.row_divide}>
                             <View style={styles.Location_flex}>
-                            <Entypo name='location-pin' size={20} color='#d9534f' />
-                                <Text>Sector 10,Pratap Nagar,Kumbha Marg,Jaipur</Text>
+                            <Entypo name='location-pin' size={24} color='#d9534f' />
+                                <Text style={styles.name_text}>Sector 10,Pratap Nagar,Kumbha Marg,Jaipur</Text>
                             </View>
                         </View>
                     </View>

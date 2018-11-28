@@ -27,6 +27,11 @@ export default EStyleSheet.create({
         color: '#000',
         fontWeight: '500'
     },
+    name_text: {
+        fontSize: '0.8rem',
+        color: '#000',
+        fontWeight: '400'
+    },
     row_divide:
     {
         margin: 2,
