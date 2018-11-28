@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-    View,
-    Modal,
-} from 'react-native';
-import { Button } from 'native-base';
-import { Text } from 'native-base';
+import { View, Modal } from 'react-native';
+import { Button, Text } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
+
 import styles from './styles';
 
 export default class DeviceDetails extends React.Component {

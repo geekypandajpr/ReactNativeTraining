@@ -1,12 +1,8 @@
 import React from 'react';
-import {
-    View,
-    Modal,
-   
-    Text
-} from 'react-native';
-import { Button } from 'native-base';
+import { View, Modal } from 'react-native';
+import { Button, Text } from 'native-base';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
+
 import styles from './styles';
 
 export default class SimDetails extends React.Component {
@@ -46,7 +42,7 @@ export default class SimDetails extends React.Component {
 
                         <View style={styles.View_Container}>
 
-                             <View style={styles.Margin_View}>
+                            <View style={styles.Margin_View}>
                                 <View style={styles.Level_Flex}>
                                     <Text style={styles.Order_text}>Order#</Text>
                                 </View>
@@ -91,12 +87,12 @@ export default class SimDetails extends React.Component {
                                 </View>
 
                                 <View style={styles.View_price}>
-                                <View style={styles.Rupee_icon}>
-                                    <FontAwesome name='rupee' size={18} color='gray' />
-                                </View>
-                                <View style={styles.Text_price}>
-                                    <Text style={styles.ViewDescription_Text}>1520</Text>
-                                </View>
+                                    <View style={styles.Rupee_icon}>
+                                        <FontAwesome name='rupee' size={18} color='gray' />
+                                    </View>
+                                    <View style={styles.Text_price}>
+                                        <Text style={styles.ViewDescription_Text}>1520</Text>
+                                    </View>
                                 </View>
                             </View>
 
@@ -113,10 +109,10 @@ export default class SimDetails extends React.Component {
                             </View>
 
                             <View style={styles.Mobile_Level}>
-                                <View style={{ flex: 0.3,justifyContent:'center' }}>
+                                <View style={{ flex: 0.3, justifyContent: 'center' }}>
                                     <Ionicons name='ios-call' size={27} color='#5cb85c' />
                                 </View>
-                                <View style={{ flex:2,justifyContent:'center' }}>
+                                <View style={{ flex: 2, justifyContent: 'center' }}>
                                     <Text style={styles.View_Style}>85465256555</Text>
                                 </View>
                                 <View style={styles.Provider_View} >
@@ -124,23 +120,23 @@ export default class SimDetails extends React.Component {
                                 </View>
                             </View>
 
-                            <View style={{ marginTop:6 }}>
-                                <View style={{justifyContent:'center'}}>
+                            <View style={{ marginTop: 6 }}>
+                                <View style={{ justifyContent: 'center' }}>
                                     <Text style={styles.Text_Style}>Item Description - </Text>
                                 </View>
-                                <View style={{justifyContent:'center'}} >
+                                <View style={{ justifyContent: 'center' }} >
                                     <Text style={styles.ViewDescription_Text} >This is device,used for purpose of installation
                                     in the vehicle device install after test </Text>
                                 </View>
                             </View>
 
                             <View style={styles.Button_View}>
-                            <Button style={styles.button}
-                                onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
-                                <Text>Close</Text>
-                            </Button>
+                                <Button style={styles.button}
+                                    onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
+                                    <Text>Close</Text>
+                                </Button>
                             </View>
-                            </View>
+                        </View>
                     </View>
                 </Modal>
             </View>
