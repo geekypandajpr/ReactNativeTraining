@@ -45,7 +45,7 @@ export default class JobDetailToolbar extends React.Component {
                             <Picker.Item label="Job Type" value="jobType" />
                         </Picker>
             }
-            if(this.props.status == 'schedule')
+            if(this.props.status == 'Schedule')
             {
                 return    <Picker
                 note
@@ -59,7 +59,7 @@ export default class JobDetailToolbar extends React.Component {
                 <Picker.Item label="Technician Name" value="servicePerson" />
             </Picker>
             }
-            if(this.props.status == 'completed')
+            if(this.props.status == 'Completed')
             {
                 return   <Picker
                             note
@@ -97,6 +97,7 @@ export default class JobDetailToolbar extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View>
+                <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
                 <Header style={styles.header}>
                     <Left>
                         <Button transparent onPress={this.props.onLeftButtonPress}>

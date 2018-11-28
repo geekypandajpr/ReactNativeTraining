@@ -32,7 +32,6 @@ export default class JobSearch extends React.Component {
             plans: {},
             checkbox: false,
             selected: "jobNumber",
-             map1 : new Map(),
         }
         this.arrayholder = [];
         this.tollbarStatus = '';

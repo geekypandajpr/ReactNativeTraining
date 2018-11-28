@@ -18,7 +18,8 @@ export default class Jobs extends React.Component {
         super(props)
         this.state = {
             isLoading: true,
-            item: pendingData
+            item: pendingData,
+            map1 : new Map(),
         },
         this.status = ['Pending', 'Schedule', 'Completed', 'ReSchedule'];
         this.jobsearch = React.createRef();
@@ -62,9 +63,10 @@ export default class Jobs extends React.Component {
     }
 
     selectedValue(map) {
-        for(var key of map.keys()) {
-            console.log(key);
-        }
+        // for(var key of map.keys()) {
+        //     console.log(key);
+        // }
+        this.setState({map1 : map})
     }
 
     render() {
@@ -87,7 +89,8 @@ export default class Jobs extends React.Component {
                                 </View>
                             </TabHeading>
                         }>
-                            <JobPending />
+                        
+                            <JobPending sampleProps={this.state.map1} />
                         </Tab>
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>

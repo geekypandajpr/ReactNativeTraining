@@ -1,16 +1,16 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
     container: {
-        height: 55,
-        backgroundColor : '#0073b7',
+        height: 50,
+        backgroundColor : '#efefef',
         justifyContent: 'center',
         alignItems: 'center'
     },
     search_view: {
-        width: '95%',
+        width: '98%',
         height: 40,
         backgroundColor: '#fff',
-        borderRadius: 8,
+        borderRadius: 2,
         flexDirection: 'row'
     },
     icon_view: {
@@ -26,5 +26,9 @@ export default EStyleSheet.create({
         width: '100%',
         height: '100%',
         padding: 10
+    },
+    dropdown : {
+         width: '95%',
+         color : 'white' 
     }
 })

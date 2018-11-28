@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity } from 'react-native';
 import { Text, Button, Card, Footer, FooterTab } from 'native-base';
-
+import { SearchBar } from '../../../../components';
 import styles from './styles';
 import JobDetails from '../../JobDetails/JobDetails';
 import completedData from '../../../../assets/JSONData/JobsData/completedData';
@@ -12,7 +12,8 @@ export default class JobCompleted extends React.Component {
         this.state = {
             data: completedData,
             items: [],
-            list: ''
+            list: '',
+            selected : 'jobNumber'
         }
         this.arrayholder = [];
     };
@@ -32,9 +33,90 @@ export default class JobCompleted extends React.Component {
         )
     };
 
+    onValueChange(value) {
+        this.setState({
+          selected: value
+        });
+      }
+
+    SearchFilterFunction(text) {
+        if (this.state.selected == 'jobNumber') {
+            const newData = this.arrayholder.filter(function (item) {
+                const itemData = item.jobNumber.toUpperCase()
+                const textData = text.toUpperCase()
+                return itemData.indexOf(textData) > -1
+            })
+            this.setState({
+                data: newData,
+                text: text
+            },
+            )
+        }
+        if (this.state.selected == 'scheduleDate') {
+            const newData = this.arrayholder.filter(function (item) {
+                const itemData = item.scheduleDate.toUpperCase()
+                const textData = text.toUpperCase()
+                return itemData.indexOf(textData) > -1
+            })
+            this.setState({
+                data: newData,
+                text: text
+            },
+            )
+        }
+        if (this.state.selected == 'jobType') {
+            const newData = this.arrayholder.filter(function (item) {
+                const itemData = item.jobType.toUpperCase()
+                const textData = text.toUpperCase()
+                console.log(textData);
+                console.log(itemData.indexOf(textData));
+                return itemData.indexOf(textData) > -1
+            })
+            this.setState({
+                data: newData,
+                text: text
+            },
+            )
+        }
+        if (this.state.selected == 'completedDate') {
+            const newData = this.arrayholder.filter(function (item) {
+                const itemData = item.completedDate.toUpperCase()
+                const textData = text.toUpperCase()
+                console.log(textData);
+                console.log(itemData.indexOf(textData));
+                return itemData.indexOf(textData) > -1
+            })
+            this.setState({
+                data: newData,
+                text: text
+            },
+            )
+        }
+        if (this.state.selected == 'servicePerson') {
+            const newData = this.arrayholder.filter(function (item) {
+                const itemData = item.servicePerson.toUpperCase()
+                const textData = text.toUpperCase()
+                console.log(textData);
+                console.log(itemData.indexOf(textData));
+                return itemData.indexOf(textData) > -1
+            })
+            this.setState({
+                data: newData,
+                text: text
+            },
+            )
+        }
+    }
+
+
     render() {
         return (
             <View style={styles.container}>
+            <SearchBar placeholder={'Search jobs'}
+                    onChangeText={(text) => this.SearchFilterFunction(text)} 
+                    selectedValue={this.state.selected}
+                    onValueChange={this.onValueChange.bind(this)}
+                    status={this.state.data[0].jobStatus}/>
                 <FlatList
                     data={this.state.data}
                     keyExtractor={(item, index) => index.toString()}
