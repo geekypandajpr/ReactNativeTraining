@@ -30,7 +30,7 @@ export default class Sim extends React.Component {
         })
         this.setState({ isLoading: false })
     }
-    
+
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
@@ -61,24 +61,12 @@ export default class Sim extends React.Component {
                                     onPress={() => {
                                         this.modalRef.current.setModalVisible(true)
                                     }}>
-                                <Card style={styles.mainCard}>
+                                    <Card style={styles.mainCard}>
                                         <View style={styles.First_View}>
-                                            <TouchableHighlight
-                                                style={{
-                                                    // borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
-                                                    // width: Dimensions.get('window').width * 0.13,
-                                                    // height: Dimensions.get('window').width * 0.13,
-                                                    justifyContent: 'center',
-                                                    alignItems: 'center',
-                                                    height: 54,
-                                                    width: 54,
-                                                    borderRadius: 27,
-                                                    borderWidth: 1,
-                                                    borderColor: 'gray'
-                                                }}
-                                            >
+                                            <View style={styles.profile_view}>
                                                 <MaterialCommunityIcons name="sim" size={45} color="#1f667e" />
-                                            </TouchableHighlight>
+                                            </View>
+
                                         </View>
                                         <View style={styles.Second_View}>
                                             <View style={styles.Margin_Row}>
@@ -89,6 +77,7 @@ export default class Sim extends React.Component {
                                                     <Text style={styles.Status_Style}>{item.status}</Text>
                                                 </View>
                                             </View>
+                                            
                                             <View style={styles.Level_Row}>
                                                 <View style={styles.Level_Head}>
                                                     <Text style={styles.Text_Style}>MSIDN</Text>
@@ -115,8 +104,8 @@ export default class Sim extends React.Component {
                                                 <View style={styles.Level_Second}>
                                                     <Text style={styles.Mobile_Style}>{item.Mobile}</Text>
                                                 </View>
-                                                <View style={styles.Provider_View} >
-                                                    <Text style={styles.providerStyle}>{item.Provider}</Text>
+                                                <View style={styles.jobTypeView}>
+                                                    <Text style={styles.jobTypeText}>{item.Provider}</Text>
                                                 </View>
                                             </View>
                                         </View>

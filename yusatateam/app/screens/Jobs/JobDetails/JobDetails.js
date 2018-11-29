@@ -4,7 +4,7 @@ import {
     ScrollView,
     Modal
 } from 'react-native';
-import { Text, Header, Button, Body, Right, Left } from 'native-base';
+import { Text, Header, Button,Body, Right, Left } from 'native-base';
 import { AppLoading } from 'expo';
 import { Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
 

@@ -6,16 +6,12 @@ export default EStyleSheet.create({
         backgroundColor: 'white',
     },
     viewStyle:{
-        paddingLeft: 4,
-        paddingRight: 4,
-        paddingTop: 4,
+        padding: 4,
         flex: 1,
     },
     mainCard:{
         flex: 1,
         flexDirection: 'row',
-        // borderRadius: 5,
-        // borderWidth: 3,
         borderColor: 'white'
     },
     First_View:{
@@ -23,6 +19,16 @@ export default EStyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    profile_view: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 54,
+        width: 54,
+        borderRadius: 27,
+        borderWidth: 1,
+        borderColor: '#DCDCDC',
+        alignSelf: 'center',
+       },
     Second_View:{
         flex: 4,
     },
@@ -33,7 +39,7 @@ export default EStyleSheet.create({
     },
     Level_Second:{
         flex: 1,
-        justifyContent: 'flex-start'
+        justifyContent: 'center'
     },
     Header_Style:{
         fontStyle: 'normal',
@@ -42,13 +48,15 @@ export default EStyleSheet.create({
         color: '#000'
     },
     Status_Button:{
-        borderRadius: 15,
-        borderWidth: 3,
-        width: 110,
+        borderRadius: 10,
+        borderWidth: 0.8,
         borderColor: 'white',
-        marginRight: 8,
+        padding: 2,
+        width: 110,
+        height: 25,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginRight: 10
     },
     Status_Style:{
         fontStyle: 'normal',
@@ -64,7 +72,7 @@ export default EStyleSheet.create({
     },
     Level_Head:{
         flex:0.7,
-        justifyContent: 'flex-start'
+        justifyContent: 'center'
     },
     Text_Style:{
         fontStyle: 'normal',
@@ -73,7 +81,7 @@ export default EStyleSheet.create({
     },
     Level_Style:{
         flex: 2,
-        justifyContent: 'flex-start'
+        justifyContent: 'center'
     },
     View_Style:{
         fontStyle: 'normal',
@@ -86,23 +94,22 @@ export default EStyleSheet.create({
         fontSize: '0.9rem',
         color: 'gray',
     },
-    Provider_View:{
-        borderRadius: 5,
-        borderWidth: 1,
+    jobTypeView: {
+        borderRadius: 10,
+        borderWidth: 0.8,
         borderColor: 'gray',
-        width: 70,
+        padding: 2,
+        width: 80,
+        height: 23,
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 11
+        marginRight: 10
     },
-    providerStyle:{
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        fontWeight: 'bold',
+    jobTypeText: {
         color: '#1f667e',
-        justifyContent: 'center',
-        alignItems: 'center',
+        fontSize: '0.8rem'
     },
+  
 
 
 })

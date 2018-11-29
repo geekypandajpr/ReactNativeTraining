@@ -19,9 +19,8 @@ export default EStyleSheet.create({
         flexDirection: 'row'
     },
     header_text: {
-
-        color: '#000',
-        fontSize: '1.1rem',
+        color: '#fff',
+        fontSize: '1.2rem',
         fontWeight: 'bold',
         margin: 15
     },
@@ -111,7 +110,7 @@ export default EStyleSheet.create({
         borderWidth: 3,
         width: 100,
         height: 35,
-        borderColor: '#EEEEF0',
+        borderColor: '#0073b7',
         justifyContent: 'center',
         alignItems: 'center'
     },
