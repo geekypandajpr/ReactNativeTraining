@@ -5,7 +5,8 @@ import styles from './styles';
 import JobDetails from '../../JobDetails/JobDetails';
 import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { SearchBar } from '../../../../components';
-import JobAssign from '../../jobAssign/jobAssign'
+import JobAssign from '../../jobAssign/jobAssign';
+import {FilterJob} from '../../../../components/FilterJob/FilterJob';
 
 
 
@@ -19,15 +20,24 @@ export default class JobPending extends React.Component {
             isLoading: true,
             checkbox: false,
             map1 : new Map(),
-            selected : 'jobNumber'
+            value : 'jobNumber',
+            status: 'Pending',
             //status: 'pending'
         }
         this.arrayholder = [];
-        //this.changeTabStatus = this.changeTabStatus.bind(this);
+        this.jobFilter = React.createRef();
+        this.openFilterPage = this.openFilterPage.bind(this);
     };
     componentDidMount() {
         this.arrayholder = this.state.data;
     }
+    selectedValue(data) {
+        this.setState({value : data})
+    }
+     openFilterPage() {
+        this.jobFilter.current.setModalVisible(true, this.state.data[0].jobStatus);
+    }
+
     toggleCheckbox(id) {
         //console.log('has->'+this.state.map1.has(id))
         let map1 = this.state.map1;
@@ -53,7 +63,7 @@ export default class JobPending extends React.Component {
       }
 
     SearchFilterFunction(text) {
-        if (this.state.selected == 'jobNumber') {
+        if (this.state.value == 'jobNumber') {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.jobNumber.toUpperCase()
                 const textData = text.toUpperCase()
@@ -65,7 +75,7 @@ export default class JobPending extends React.Component {
             },
             )
         }
-        if (this.state.selected == 'scheduleDate') {
+        if (this.state.value == 'scheduleDate') {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.scheduleDate.toUpperCase()
                 const textData = text.toUpperCase()
@@ -77,7 +87,7 @@ export default class JobPending extends React.Component {
             },
             )
         }
-        if (this.state.selected == 'jobType') {
+        if (this.state.value == 'jobType') {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.jobType.toUpperCase()
                 const textData = text.toUpperCase()
@@ -91,7 +101,7 @@ export default class JobPending extends React.Component {
             },
             )
         }
-        if (this.state.selected == 'completedDate') {
+        if (this.state.value == 'completedDate') {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.completedDate.toUpperCase()
                 const textData = text.toUpperCase()
@@ -105,7 +115,7 @@ export default class JobPending extends React.Component {
             },
             )
         }
-        if (this.state.selected == 'servicePerson') {
+        if (this.state.value == 'servicePerson') {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.servicePerson.toUpperCase()
                 const textData = text.toUpperCase()
@@ -125,15 +135,22 @@ export default class JobPending extends React.Component {
 
     render() {
         const {sampleProps} = this.props; 
-        //console.log(sampleProps);
+        console.log(this.state.value);
        //console.log(this.state.selected)
         return (
             <View style={styles.container}>
-            <SearchBar placeholder={'Search jobs'}
+            <View style={{flexDirection :'row',height: 50,}}>
+                <View style={{flex :10}}>
+                <SearchBar placeholder={'Search jobs'}
                     onChangeText={(text) => this.SearchFilterFunction(text)} 
-                    selectedValue={this.state.selected}
-                    onValueChange={this.onValueChange.bind(this)}
-                    status={pendingData[0].jobStatus}/>
+                   />
+                    </View>
+                        <View style={{flex : 3,borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',alignItems : 'center',justifyContent : 'center'}}>
+                            <Button full info onPress={this.openFilterPage}>
+                            <Text>Filter</Text>
+                            </Button>
+                        </View>
+                    </View>
                <FlatList
                     extraData={this.state}
                     data={this.state.data}
@@ -214,6 +231,7 @@ export default class JobPending extends React.Component {
                         
                     </FooterTab>
                 </Footer>
+                <FilterJob ref={this.jobFilter} getSelected={(data) => this.selectedValue(data)} />
                 <JobDetails ref='modal' />
                 <JobAssign ref='assign'/>
             </View>
