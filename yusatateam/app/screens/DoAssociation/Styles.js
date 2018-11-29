@@ -1,134 +1,121 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import colors from '../../constants/colors'
 
 export default EStyleSheet.create({
-    /**Modal Styles */
-    modal_container: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        backgroundColor: '#00000090',
-        flexDirection: 'column',
-    },
-    modal_child_container: {
-        backgroundColor: '#FFFFFF',
-        bottom: 0,
-        height: '80%',
-        width: '100%',
-        paddingTop: 15,
-        paddingLeft: 15,
-        paddingRight: 15
-    },
 
-    /**Header Styles */
-    header_view: {
-        width: '100%',
-        height: 50,
-        backgroundColor: '#EEEEF0',
-        justifyContent: 'center',
-        elevation: 5,
-        flexDirection: 'row'
-    },
-    service_num: {
+    main_container: {
         flex: 1,
-        justifyContent: 'center'
+        backgroundColor: '#fff' 
     },
-    header_text: {
-        color: '#000',
-        fontSize: '1rem',
-        fontWeight: 'bold',
-        margin: 15
+    container: {
+        height: '100%',
+        width: '100%'
     },
-    schedule_view: {
+    header: {
+        backgroundColor:  colors.HEADER_COLOR
+    },
+    title: {
+        fontSize: '1.1rem',
+        color: '#fff',
+        fontWeight: '500'
+    },
+    inner_container:{
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row'
+        backgroundColor: '#efefef'
     },
-    job_text: {
-        fontSize: '0.8rem',
-        fontWeight: 'bold',
-        color: '#000',
-        marginRight: 15
+    first_view: {
+        backgroundColor: '#fff',
+        padding: 8
     },
-
-
-    /**Body Styles */
-    main_view: {
-        marginTop: 2,
-        marginBottom: 2,
+    sub_view: {
         flexDirection: 'row',
+    },
+    left_view: {
         flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    middle_view: {
+        flex: 0.2,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    right_view: {
+        flex: 1.5,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    },
+    key_text: {
+        fontSize: '1rem',
+        color: '#000',
+        padding: 4
+    },
+    colon: {
+        color: 'gray',
+        padding: 4
+    },
+    value_text: {
+        fontSize: '0.8rem',
+        color: 'gray',
+        padding: 4
+    },
+    second_view: {
+        backgroundColor: '#fff',
+        padding: 8,
+        marginTop: 8
+    },
+    job_type: {
+        width: 80,
+        height: 23,
+        borderColor: 'gray',
+        borderRadius: 4,
+        borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    first_view: {
-        flexDirection: 'row',
-        flex: 1,
+    job_type_text: {
+        color: 'gray',
+        fontSize: '0.8rem'
+    },
+    status_view: {
+        width: 90,
+        height: 23,
+        borderRadius: 20,
+        justifyContent: 'center',
         alignItems: 'center',
-        //flexWrap: 'wrap'
+        backgroundColor: '#5cb85c'
     },
-    value_text: {
-        color: '#000',
-        fontSize: '0.9rem',
-        flexWrap: 'wrap'
+    status_text: {
+        color: '#fff',
+        fontSize: '0.8rem'
     },
-    icon_view: {
-        flex: 0.1
+    button_view: {
+        flex: 1,
+        backgroundColor: 'red'
     },
-    icon_text_view: {
-        flex: 1
-    },
-
-    status_picker: {
+    button: {
         width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#d9534f'
+    },
+    device_picker: {
+        flex: 1,
         height: 35,
-        borderWidth: 1,
+        borderWidth: 0.8,
         borderColor: 'gray',
-        borderRadius: 5,
-        marginTop: 5,
-        marginBottom: 5
+        borderRadius: 0,
+        margin: 2
+    },
+    picker_view: {
+        flex: 1,
+        flexDirection: 'row'
     },
     picker: {
         height: '100%',
         width: '100%'
-    },
-
-    second_view: {
-        flexDirection: 'row',
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
-    },
-    service_type_view: {
-        borderColor:'gray',
-        borderWidth: 1,
-        padding : 4,
-        borderRadius:5
-    },
-    service_type_text: {
-        fontSize: '0.9rem',
-        fontWeight: 'bold',
-        color: '#1766A6'
-    },
-    address_view: {
-        marginTop: 2,
-        marginBottom: 2,
-        flex: 1, 
-        justifyContent: 'center'
-    },
-    address_header_text: {
-        color:'#000',
-        fontSize: '1rem'
-    },
-    address_text: {
-        color:'gray',
-        fontSize: '0.9rem'
-    },
-
-    /**Comment Box View */
-    comment_view: {
-        flex: 1,
-        flexDirection: 'column'
     },
     comment_box: {
         alignItems: 'center',
@@ -137,42 +124,13 @@ export default EStyleSheet.create({
     comment_input_view: {
         width: '100%',
         height: 100,
-        borderWidth: 1,
+        borderWidth: 0.8,
         borderColor: 'gray',
-        borderRadius: 5
+        borderRadius: 0,
     },
     comment_text: {
         fontSize: '0.8rem',
         color: '#000',
         padding: 8
-    },
-
-    /**Button Styles */
-    button_view: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
-    },
-    submit_button: {
-        backgroundColor: '#5cb85c',
-        width: '50%',
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20,
-        marginBottom: 20,
-        marginLeft: 5
-    },
-    cancel_button: {
-        backgroundColor: '#d9534f',
-        width: '50%',
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20,
-        marginBottom: 20,
-        marginRight: 5
-    },
-    button_text: {
-        color: '#fff'
-    },
+    }
 });
