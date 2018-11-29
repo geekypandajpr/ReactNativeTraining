@@ -2,10 +2,10 @@ import React from 'react';
 import {
     View,
     Modal,
-    Text,
+    
     ScrollView
 } from 'react-native';
-import { Button, Header, Body, Left, Right, Title } from 'native-base';
+import { Text,Button, Header, Body, Left, Right, Title } from 'native-base';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import styles from './styles';
 import colors from '../../../constants/colors';
@@ -139,7 +139,7 @@ export default class SimDetails extends React.Component {
                                 <View style={styles.Button_View}>
                                     <Button style={styles.button}
                                         onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
-                                        <Text>Close</Text>
+                                        <Text style={{color:'#fff'}}>Close</Text>
                                     </Button>
                                 </View>
                             </ScrollView>

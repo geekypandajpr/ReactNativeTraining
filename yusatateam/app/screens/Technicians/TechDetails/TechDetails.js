@@ -23,7 +23,7 @@ export default class TechDetails extends React.Component {
                         <Image style={styles.profile_pic} resizeMode='cover'
                             source={require('../../../assets/images/react-native.png')}></Image>
                     </View>
-                    <View style={{ flex: 2,marginTop:10 }}>
+                    <View style={{ flex: 2,justifyContent:'center'}}>
                         <View style={styles.row_divide}>
                             <View style={{ justifyContent: 'flex-start', alignItems: 'center' }}>
                                 <Text style={styles.Cname_text}>Shaili Mittal</Text>

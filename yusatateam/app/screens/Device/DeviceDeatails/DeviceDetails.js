@@ -4,8 +4,8 @@ import {
     Modal,
     ScrollView
 } from 'react-native';
-import { Button, Header, Left, Right } from 'native-base';
-import { Text } from 'native-base';
+import { Button, Header, Left, Right,Text } from 'native-base';
+import {  } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
 import styles from './styles';
 import colors from '../../../constants/colors';
