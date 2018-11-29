@@ -87,8 +87,6 @@ export default class JobSchedule extends React.Component {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.jobType.toUpperCase()
                 const textData = text.toUpperCase()
-                console.log(textData);
-                console.log(itemData.indexOf(textData));
                 return itemData.indexOf(textData) > -1
             })
             this.setState({
@@ -101,8 +99,6 @@ export default class JobSchedule extends React.Component {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.completedDate.toUpperCase()
                 const textData = text.toUpperCase()
-                console.log(textData);
-                console.log(itemData.indexOf(textData));
                 return itemData.indexOf(textData) > -1
             })
             this.setState({
@@ -115,8 +111,6 @@ export default class JobSchedule extends React.Component {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.servicePerson.toUpperCase()
                 const textData = text.toUpperCase()
-                console.log(textData);
-                console.log(itemData.indexOf(textData));
                 return itemData.indexOf(textData) > -1
             })
             this.setState({
@@ -128,12 +122,12 @@ export default class JobSchedule extends React.Component {
     }
 
     render() {
-        console.log(this.state.value);
+        //console.log(this.state.value);
         return (
             <View style={styles.container}>
             <View style={{flexDirection :'row',height: 50,backgroundColor : '#efefef',justifyContent: 'center',alignItems: 'center'}}>
                 <View style={{flex :10}}>
-                <SearchBar placeholder={'Search jobs'}
+                <SearchBar placeholder={'Search By ' + this.state.value}
                     onChangeText={(text) => this.SearchFilterFunction(text)} 
                    />
                     </View>

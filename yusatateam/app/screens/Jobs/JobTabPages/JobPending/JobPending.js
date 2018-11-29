@@ -40,7 +40,6 @@ export default class JobPending extends React.Component {
     }
 
     toggleCheckbox(id) {
-        //console.log('has->'+this.state.map1.has(id))
         let map1 = this.state.map1;
         if(this.state.map1.has(id))
         {
@@ -52,7 +51,6 @@ export default class JobPending extends React.Component {
             this.state.map1.set(id,true);
            
         }
-        console.log(this.state.map1.get(id))
         this.setState({map1})
         
     }
@@ -91,9 +89,7 @@ export default class JobPending extends React.Component {
         if (this.state.value == 'jobType') {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.jobType.toUpperCase()
-                const textData = text.toUpperCase()
-                console.log(textData);
-                console.log(itemData.indexOf(textData));
+                const textData = text.toUpperCase()              
                 return itemData.indexOf(textData) > -1
             })
             this.setState({
@@ -106,8 +102,6 @@ export default class JobPending extends React.Component {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.completedDate.toUpperCase()
                 const textData = text.toUpperCase()
-                console.log(textData);
-                console.log(itemData.indexOf(textData));
                 return itemData.indexOf(textData) > -1
             })
             this.setState({
@@ -120,8 +114,6 @@ export default class JobPending extends React.Component {
             const newData = this.arrayholder.filter(function (item) {
                 const itemData = item.servicePerson.toUpperCase()
                 const textData = text.toUpperCase()
-                console.log(textData);
-                console.log(itemData.indexOf(textData));
                 return itemData.indexOf(textData) > -1
             })
             this.setState({
@@ -136,13 +128,13 @@ export default class JobPending extends React.Component {
 
     render() {
         const {sampleProps} = this.props; 
-        console.log(this.state.value);
+       // console.log(this.state.value);
        //console.log(this.state.selected)
         return (
             <View style={styles.container}>
             <View style={{flexDirection :'row',height: 50,backgroundColor : '#efefef',justifyContent: 'center',alignItems: 'center'}}>
                 <View style={{flex :10}}>
-                <SearchBar placeholder={'Search jobs'}
+                <SearchBar placeholder={'Search By ' + this.state.value}
                     onChangeText={(text) => this.SearchFilterFunction(text)} 
                    />
                     </View>
@@ -160,8 +152,8 @@ export default class JobPending extends React.Component {
                         <Card style={styles.viewList}>
                             <View style={{ flex: 0.3, alignItems: 'flex-start', justifyContent: 'center' }}>
                             <CheckBox
-                                        checked={sampleProps.get(item.jobNumber)}
-                                        onPress={() => this.toggleCheckbox(item.jobNumber)} 
+                                        checked={this.state.map1.get(item.jobNumber)}
+                                        onPress={() => this.toggleCheckbox(item.jobNumber)}
                                     />
                             </View>
                             <View style={{ flex: 2 }}>
