@@ -23,7 +23,6 @@ export default EStyleSheet.create({
         color: '#fff',
         fontSize: '1.2rem',
         fontWeight: 'bold',
-        margin: 15
     },
     Order_text:
     {
@@ -137,7 +136,7 @@ export default EStyleSheet.create({
     Button_View:
     {
         flex:1,
-        marginTop: 6
+        marginTop: 10
     },
     button: {
         width: '100%',
