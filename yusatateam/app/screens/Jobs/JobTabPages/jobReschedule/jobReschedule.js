@@ -14,7 +14,10 @@ export default class JobReschedule extends React.Component {
             data: reScheduleData,
             items: [],
             list: '',
-            selected : 'jobNumber'
+            selected : 'jobNumber',
+            status: 'ReSchedule',
+            value : 'jobNumber',
+
             //status: 'Reschedule'
         }
         this.arrayholder = [];
@@ -28,7 +31,7 @@ export default class JobReschedule extends React.Component {
         this.setState({value : data})
     }
      openFilterPage() {
-        this.jobFilter.current.setModalVisible(true, this.state.data[0].jobStatus);
+        this.jobFilter.current.setModalVisible(true, this.state.status);
     }
     SearchFilterFunction(text) {
         const newData = this.arrayholder.filter(function (item) {

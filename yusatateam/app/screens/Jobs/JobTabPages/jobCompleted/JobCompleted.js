@@ -14,7 +14,9 @@ export default class JobCompleted extends React.Component {
             data: completedData,
             items: [],
             list: '',
-            selected : 'jobNumber'
+            selected : 'jobNumber',
+            status: 'completed',
+            value : 'jobNumber',
         }
         this.arrayholder = [];
         this.jobFilter = React.createRef();
@@ -27,7 +29,7 @@ export default class JobCompleted extends React.Component {
         this.setState({value : data})
     }
      openFilterPage() {
-        this.jobFilter.current.setModalVisible(true, this.state.data[0].jobStatus);
+        this.jobFilter.current.setModalVisible(true, this.state.status);
     }
     SearchFilterFunction(text) {
         const newData = this.arrayholder.filter(function (item) {

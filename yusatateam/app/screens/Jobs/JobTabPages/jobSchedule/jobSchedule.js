@@ -15,7 +15,9 @@ export default class JobSchedule extends React.Component {
             items: [],
             list: '',
             checkbox: false,
-            selected : 'jobNumber'
+            selected : 'jobNumber',
+            status: 'schedule',
+            value : 'jobNumber',
             // status: 'schedule'
         }
         this.arrayholder = [];
@@ -29,7 +31,7 @@ export default class JobSchedule extends React.Component {
         this.setState({value : data})
     }
      openFilterPage() {
-        this.jobFilter.current.setModalVisible(true, this.state.data[0].jobStatus);
+        this.jobFilter.current.setModalVisible(true, this.state.status);
     }
     SearchFilterFunction(text) {
         const newData = this.arrayholder.filter(function (item) {

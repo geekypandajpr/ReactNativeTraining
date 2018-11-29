@@ -35,7 +35,7 @@ export default class JobPending extends React.Component {
         this.setState({value : data})
     }
      openFilterPage() {
-        this.jobFilter.current.setModalVisible(true, this.state.data[0].jobStatus);
+        this.jobFilter.current.setModalVisible(true, this.state.status);
     }
 
     toggleCheckbox(id) {
