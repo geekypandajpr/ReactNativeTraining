@@ -7,6 +7,7 @@ import scheduleData from '../../../../assets/JSONData/JobsData/scheduleData';
 import colors from '../../../../constants/colors';
 import { SearchBar } from '../../../../components';
 import {FilterJob} from '../../../../components/FilterJob/FilterJob';
+import { Ionicons,FontAwesome} from '@expo/vector-icons';
 export default class JobSchedule extends React.Component {
     constructor() {
         super();
@@ -130,16 +131,16 @@ export default class JobSchedule extends React.Component {
         console.log(this.state.value);
         return (
             <View style={styles.container}>
-           <View style={{flexDirection :'row',height: 50,}}>
+            <View style={{flexDirection :'row',height: 50,backgroundColor : '#efefef',justifyContent: 'center',alignItems: 'center'}}>
                 <View style={{flex :10}}>
                 <SearchBar placeholder={'Search jobs'}
                     onChangeText={(text) => this.SearchFilterFunction(text)} 
                    />
                     </View>
-                        <View style={{flex : 3,borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',alignItems : 'center',justifyContent : 'center'}}>
-                            <Button full info onPress={this.openFilterPage}>
-                            <Text>Filter</Text>
-                            </Button>
+                        <View style={{flex : 1.5,alignItems : 'center',justifyContent : 'center',height: 40,backgroundColor: '#0073b7',borderRadius: 2,marginRight:2}}>
+                        <TouchableOpacity  onPress={this.openFilterPage}>
+                        <FontAwesome name="filter" size={32} color="white" />
+                            </TouchableOpacity>
                         </View>
                     </View>
                 <FlatList
