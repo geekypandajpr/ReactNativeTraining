@@ -4,7 +4,7 @@ import {
     Modal,
     ScrollView
 } from 'react-native';
-import { Button,Header,Left,Right} from 'native-base';
+import { Button, Header, Left, Right } from 'native-base';
 import { Text } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
 import styles from './styles';
@@ -33,19 +33,18 @@ export default class DeviceDetails extends React.Component {
                     }}>
                     <View style={styles.container}>
 
-                    <View style={{width:'100%'}}>
-                    <Header style={{backgroundColor:colors.HEADER_COLOR}}>
-                        <Left >
-                        <Text style={styles.header_text}>Item12</Text>
-                        </Left>
-                        
-                        <Right>
-                        <View style={[styles.Status_Button, { backgroundColor: "#5cb85c" }]} >
-                                    <Text style={styles.Status_Style}>Active</Text>
-                                </View>
-                        </Right>
-                        </Header>
-                    </View>
+                        <View style={{ width: '100%' }}>
+                            <Header style={{ backgroundColor: colors.HEADER_COLOR }}>
+                                <Left >
+                                    <Text style={styles.header_text}>Item12</Text>
+                                </Left>
+                                <Right>
+                                    <View style={[styles.Status_Button, { backgroundColor: "#5cb85c" }]} >
+                                        <Text style={styles.Status_Style}>Active</Text>
+                                    </View>
+                                </Right>
+                            </Header>
+                        </View>
 
                         <View style={styles.View_Container}>
                             <ScrollView>

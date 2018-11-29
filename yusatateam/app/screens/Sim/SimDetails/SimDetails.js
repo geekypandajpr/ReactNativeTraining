@@ -5,7 +5,7 @@ import {
     Text,
     ScrollView
 } from 'react-native';
-import { Button, Header, Body, Left, Right,Title } from 'native-base';
+import { Button, Header, Body, Left, Right, Title } from 'native-base';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import styles from './styles';
 import colors from '../../../constants/colors';
@@ -33,24 +33,22 @@ export default class SimDetails extends React.Component {
                         this.setModalVisible(!this.state.modalVisible);
                     }}>
                     <View style={styles.container}>
-                    <View style={{width:'100%'}}>
-                    <Header style={{backgroundColor:colors.HEADER_COLOR}}>
-                        <Left >
-                        <Text style={styles.header_text}>Item12</Text>
-                        </Left>
-                        
-                        <Right>
-                        <View style={[styles.Status_Button, { backgroundColor: "#5cb85c" }]} >
-                                    <Text style={styles.Status_Style}>Active</Text>
-                                </View>
-                        </Right>
-                        </Header>
-                    </View>
+                        <View style={{ width: '100%' }}>
+                            <Header style={{ backgroundColor: colors.HEADER_COLOR }}>
+                                <Left >
+                                    <Text style={styles.header_text}>Item12</Text>
+                                </Left>
+                                <Right>
+                                    <View style={[styles.Status_Button, { backgroundColor: "#5cb85c" }]} >
+                                        <Text style={styles.Status_Style}>Active</Text>
+                                    </View>
+                                </Right>
+                            </Header>
+                        </View>
 
-               
                         <View style={styles.View_Container}>
                             <ScrollView>
-                                 <View style={styles.Margin_View}>
+                                <View style={styles.Margin_View}>
                                     <View style={styles.Level_Flex}>
                                         <Text style={styles.Order_text}>Order#</Text>
                                     </View>
