@@ -18,7 +18,7 @@ const colors = {
 
     CALENDARS: {
         CALENDAR_BACKGROUND_COLOR: '#FFFFFF',
-        BACKGROUND_COLOR: '#00000030',
+        BACKGROUND_COLOR: '#e2e2e2',
         DAY_HEADER_COLOR: '#2d4150',
         TODAY_TEXT_COLOR: 'red',
         AGENDA_KNOB_COLOR: '#0073b7',

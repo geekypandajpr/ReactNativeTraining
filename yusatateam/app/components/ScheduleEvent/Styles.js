@@ -3,7 +3,6 @@ export default EStyleSheet.create({
     '$fontFamily': 'normal',
     event_date_view: {
         backgroundColor: '#ffffff',
-        elevation: 1,
         flex: 1,
         borderRadius: 5,
         padding: 10,
