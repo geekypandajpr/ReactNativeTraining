@@ -6,7 +6,8 @@ const Tdata= [
         totalJobs: 65423,
         completedJobs: 15625,
         jobNo :5,
-        color: '#5cb85c'
+        color: '#5cb85c',
+        location :'Kumbha Marg,pratap nagar'
     },
     {
         name : 'Shaili Mittal',
@@ -15,7 +16,8 @@ const Tdata= [
         totalJobs: 5623,
         completedJobs: 1123,
         jobNo :4,
-        color: '#5cb85c'
+        color: '#5cb85c',
+        location :'Kumbha Marg,pratap nagar'
     },
     {
         name :'Deepak Singh',
@@ -33,7 +35,8 @@ const Tdata= [
         totalJobs: 6153,
         completedJobs: 322,
         jobNo :6,
-        color: '#5cb85c'
+        color: '#5cb85c',
+        location :'Kumbha Marg,pratap nagar'
     },
     {
         name :'Ashish Mallik',
@@ -51,7 +54,8 @@ const Tdata= [
         totalJobs: 1256,
         completedJobs: 1000,
         jobNo :5,
-        color: '#5cb85c'
+        color: '#5cb85c',
+        location :'Kumbha Marg,pratap nagar'
     },
     {
         name :'Rahul Kumar',
@@ -70,7 +74,8 @@ const Tdata= [
         totalJobs: 1256,
         completedJobs: 1000,
         jobNo :7,
-        color: '#5cb85c'
+        color: '#5cb85c',
+        location :'Kumbha Marg,pratap nagar'
     }
 ];
 

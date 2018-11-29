@@ -14,8 +14,8 @@ export default class TechnicianList extends React.Component {
     constructor() {
         super();
         this.state = {
-            isLoading: true
-        };
+            isLoading: true,
+         };
     }
 
     async componentWillMount() {
@@ -106,10 +106,10 @@ export default class TechnicianList extends React.Component {
                                     <View style={styles.view_container}>
                                         <View style={styles.totaljobs}>
                                             <Entypo name='location-pin' size={20} color='#d9534f' />
-                                            <Text style={styles.jobs_num}>Kumbha Marg,Pratp nagar</Text>
+                                            <Text style={styles.jobs_num}>{data.location}</Text>
                                         </View>
                                     </View>
-                                    : <View style={styles.view_container}></View>
+                                    :null
                                 }
 
 

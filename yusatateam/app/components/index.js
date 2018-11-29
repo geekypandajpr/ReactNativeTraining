@@ -19,6 +19,7 @@ export { SummarySwitch } from './SummarySwitch';
 export { TechnicianList } from './TechnicianList';
 export { Toolbar } from './Toolbar';
 export { HeaderWithSearchbar } from './HeaderWithSearchbar';
+export { SearchHeader } from './SearchHeader';
 export { JobDetailToolbar } from './JobDetailToolbar';
 export { MonthSelectorCalendar } from './MonthSelectorCalendar';
 

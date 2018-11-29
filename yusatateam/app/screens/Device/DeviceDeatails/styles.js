@@ -10,20 +10,30 @@ export default EStyleSheet.create({
         backgroundColor: '#00000090',
         flexDirection: 'column',
     },
-    header_view: {
-        width: '100%',
-        height: 50,
-        backgroundColor: '#EEEEF0',
-        justifyContent: 'center',
-        elevation: 5,
-        flexDirection: 'row'
-    },
     header_text: {
-
-        color: '#000',
-        fontSize: '1.1rem',
+        color: '#fff',
+        fontSize: '1.2rem',
         fontWeight: 'bold',
         margin: 15
+    },
+    Status_Button:
+    {
+        borderRadius: 10,
+        borderWidth: 3,
+        width: 100,
+        height: 35,
+        borderColor: '#0073b7',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    Status_Style:
+    {
+        fontStyle: 'normal',
+        fontSize: '1rem',
+        fontWeight: 'bold',
+        color: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     Order_text:
     {
@@ -85,45 +95,6 @@ export default EStyleSheet.create({
         paddingLeft: 15,
         paddingRight: 15
     },
-    Provider_View:
-    {
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: 'gray',
-        width: 70,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 90
-    },
-    providerStyle:
-    {
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        fontWeight: 'bold',
-        color: '#0073b7',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-    Status_Button:
-    {
-        borderRadius: 10,
-        borderWidth: 3,
-        width: 100,
-        height: 35,
-        borderColor: '#EEEEF0',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    Status_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        fontWeight: 'bold',
-        color: 'white',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
     Level_Flex:
     {
         flex: 1.4,
@@ -154,7 +125,6 @@ export default EStyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#d9534f'
     },
-   
     Margin_View:
     {
         flexDirection: 'row',

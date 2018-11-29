@@ -20,8 +20,8 @@ export default EStyleSheet.create({
     },
     header_text: {
 
-        color: '#000',
-        fontSize: '1.1rem',
+        color: '#fff',
+        fontSize: '1.2rem',
         fontWeight: 'bold',
         margin: 15
     },
@@ -53,29 +53,17 @@ export default EStyleSheet.create({
         color: 'gray',
         marginLeft: 10
     },
-   
-    ViewDescription_Text:
+   ViewDescription_Text:
     {
         fontStyle: 'normal',
         fontSize: '1.1rem',
-        color: 'gray',
-
+        color: 'gray'
     },
-    service_num: {
-        flex: 1,
-        justifyContent: 'center'
-    },
-    job_text: {
+   job_text: {
         fontSize: '0.8rem',
         fontWeight: 'bold',
         color: '#000',
         margin: 5
-    },
-    schedule_view: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginLeft: 140
     },
     View_Container:
     {
@@ -113,7 +101,7 @@ export default EStyleSheet.create({
         borderWidth: 3,
         width: 100,
         height: 35,
-        borderColor: '#EEEEF0',
+        borderColor: '#0073b7',
         justifyContent: 'center',
         alignItems: 'center'
     },
