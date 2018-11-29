@@ -4,7 +4,7 @@ export default EStyleSheet.create({
     event_date_view: {
         backgroundColor: '#ffffff',
         flex: 1,
-        borderRadius: 5,
+        borderRadius: 0,
         padding: 10,
         marginRight: 6,
         marginLeft: 0,
@@ -59,9 +59,9 @@ export default EStyleSheet.create({
     service_type_view: {
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 5,
+        borderRadius: 4,
         borderColor: 'gray',
-        borderWidth: 1,
+        borderWidth: 0.8,
         padding: 2,
         height: 25,
         width: 90
