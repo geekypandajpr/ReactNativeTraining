@@ -75,9 +75,9 @@ export default class Jobs extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
-                    <Toolbar title='Jobs'
-                        leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='md-search' settingType='Ionicons' onSettingsPress={this.openSearchPage} />
+                    <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
+                    />
                     <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }}
                         onChangeTab={({ i }) => this.getStatus(i)}
                         renderTabBar={() => <ScrollableTab />}>

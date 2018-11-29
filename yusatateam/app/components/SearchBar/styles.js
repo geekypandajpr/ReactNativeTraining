@@ -29,6 +29,6 @@ export default EStyleSheet.create({
     },
     dropdown : {
          width: '95%',
-         color : 'white' 
+         color : 'gray' 
     }
 })

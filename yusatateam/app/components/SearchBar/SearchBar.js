@@ -2,73 +2,26 @@ import React from 'react';
 import { View, TextInput } from 'react-native';
 import styles from './styles';
 import { Ionicons } from '@expo/vector-icons';
-import {Picker} from 'native-base'
+import {Picker,Button,Text} from 'native-base';
+import {FilterJob} from '../FilterJob/FilterJob'
 export default class SearchBar extends React.Component {
-    dropdownMenu()
-    {
-        if( this.props.status == 'Pending')
-        {
-         return   <Picker
-                        note
-                        mode="dropdown"
-                        placeholder="Select One"
-                        placeholderStyle={{ color: "#2874F0" }}
-                        style={styles.dropdown}
-                        selectedValue={this.props.selectedValue}
-                         onValueChange={this.props.onValueChange}>
-                        <Picker.Item label="Job N0#" value="jobNumber" />
-                        <Picker.Item label="Schedule Date" value="scheduleDate" />
-                        <Picker.Item label="Job Type" value="jobType" />
-                    </Picker>
+    constructor() {
+        super();
+        this.state = {
+            status: 'Pending',
+            value : 'jobNumber'
         }
-        if(this.props.status == 'schedule')
-        {
-            return    <Picker
-            note
-            mode="dropdown"
-            style={styles.dropdown}
-            selectedValue={this.props.selectedValue}
-             onValueChange={this.props.onValueChange}>
-            <Picker.Item label="Job N0#" value="jobNumber" />
-            <Picker.Item label="Schedule Date" value="scheduleDate" />
-            <Picker.Item label="Job Type" value="jobType" />
-            <Picker.Item label="Technician Name" value="servicePerson" />
-        </Picker>
-        }
-        if(this.props.status == 'completed')
-        {
-            return   <Picker
-                        note
-                        mode="dropdown"
-                        style={styles.dropdown}
-                        selectedValue={this.props.selectedValue}
-                         onValueChange={this.props.onValueChange}>
-                        <Picker.Item label="Job N0#" value="jobNumber" />
-                        <Picker.Item label="Schedule Date" value="scheduleDate" />
-                        <Picker.Item label="Job Type" value="jobType" />
-                        <Picker.Item label="Completion Date" value="completedDate" />
-                        <Picker.Item label="Technician Name" value="servicePerson" />
-                    </Picker> 
-        }
-        if(this.props.status == 'ReSchedule')
-        {
-            return     <Picker
-                        note
-                        mode="dropdown"
-                        style={styles.dropdown}
-                        selectedValue={this.props.selectedValue}
-                         onValueChange={this.props.onValueChange}>
-                        <Picker.Item label="Job N0#" value="jobNumber" />
-                        <Picker.Item label="Schedule Date" value="scheduleDate" />
-                        <Picker.Item label="Job Type" value="jobType" />
-                        <Picker.Item label="Completion Date" value="completedDate" />
-                        <Picker.Item label="Technician Name" value="servicePerson" />
-                    </Picker>
-        }
-
+        this.jobFilter = React.createRef();
+        this.openFilterPage = this.openFilterPage.bind(this);
+    };
+    selectedValue(data) {
+        this.setState({value : data})
     }
-
+    openFilterPage() {
+        this.jobFilter.current.setModalVisible(true, this.state.status);
+    }
     render() {
+        console.log(this.state.value)
         return (
             <View style={styles.container}>
                 <View style ={styles.search_view}>
@@ -86,10 +39,13 @@ export default class SearchBar extends React.Component {
                             onChangeText={this.props.onChangeText}
                         />
                     </View>
-                    <View style={{flex : 5,borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',alignItems : 'center',justifyContent : 'center'}}>
-                        {this.dropdownMenu()}
+                    <View style={{flex : 3,borderRadius: 4,borderWidth: 1,borderColor: '#d6d7da',alignItems : 'center',justifyContent : 'center'}}>
+                        <Button full info onPress={this.openFilterPage}>
+                        <Text>Filter</Text>
+                    </Button>
                     </View>
                 </View>
+                <FilterJob ref={this.jobFilter} getSelected={(data) => this.selectedValue(data)} />
             </View>
         );
       }

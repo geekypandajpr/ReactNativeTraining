@@ -126,7 +126,7 @@ export default class JobPending extends React.Component {
     render() {
         const {sampleProps} = this.props; 
         //console.log(sampleProps);
-       console.log(this.state.selected)
+       //console.log(this.state.selected)
         return (
             <View style={styles.container}>
             <SearchBar placeholder={'Search jobs'}
