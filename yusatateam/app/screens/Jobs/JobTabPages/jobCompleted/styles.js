@@ -5,6 +5,22 @@ export default EStyleSheet.create({
         flex: 1,
         backgroundColor: 'white'
     },
+    searchView : {
+        flexDirection :'row',
+        height: 50,
+        backgroundColor : '#efefef',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    filterIcon : {
+        flex : 1.5,
+        alignItems : 'center',
+        justifyContent : 'center',
+        height: 40,
+        backgroundColor: '#0073b7'
+        ,borderRadius: 2,
+        marginRight:2
+    },
     viewList: {
         flex: 1,
         flexDirection : 'row',
@@ -17,10 +33,6 @@ export default EStyleSheet.create({
         color: '#000',
         fontWeight: '500'
     },
-    jobText: {
-        fontSize: '0.8rem',
-        color: '#fff',
-    },
     sub_view: {
         flexDirection: 'row'
     },
@@ -30,16 +42,19 @@ export default EStyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center'
     },
-    status_view: {
+    jobTypeView: {
         borderRadius: 10,
-        // borderWidth: 0.8,
-        // borderColor: '#5cb85c',
+        borderWidth: 0.8,
+        borderColor: 'gray',
         padding: 2,
         width: 80,
         height: 23,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#5cb85c'
+    },
+    jobTypeText: {
+        color: '#F98866',
+        fontSize: '0.8rem'
     },
     text: {
         fontSize: '0.9rem',
@@ -63,19 +78,5 @@ export default EStyleSheet.create({
     location: {
         flex: 1,
         // backgroundColor: 'red'
-    },
-    jobTypeView: {
-        borderRadius: 10,
-        borderWidth: 0.8,
-        borderColor: 'gray',
-        padding: 2,
-        width: 80,
-        height: 23,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    jobTypeText: {
-        color: '#F98866',
-        fontSize: '0.8rem'
     },
 })

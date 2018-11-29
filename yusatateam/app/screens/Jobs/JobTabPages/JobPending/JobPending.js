@@ -1,29 +1,22 @@
 import React from 'react';
-import { View, FlatList, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
-import { List, Right, Text, Button, Icon, Card, Footer, FooterTab,CheckBox } from 'native-base';
+import { View, FlatList, TouchableOpacity} from 'react-native';
+import {FontAwesome} from '@expo/vector-icons';
+import { Text, Button, Card, Footer, FooterTab,CheckBox } from 'native-base';
 import styles from './styles';
 import JobDetails from '../../JobDetails/JobDetails';
 import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { SearchBar } from '../../../../components';
 import JobAssign from '../../jobAssign/jobAssign';
 import {FilterJob} from '../../../../components/FilterJob/FilterJob';
-import { Ionicons,FontAwesome} from '@expo/vector-icons';
-
-
 
 export default class JobPending extends React.Component {
     constructor() {
         super();
         this.state = {
             data: pendingData,
-            items: [],
-            list: '',
-            isLoading: true,
-            checkbox: false,
             map1 : new Map(),
             value : 'jobNumber',
             status: 'Pending',
-            //status: 'pending'
         }
         this.arrayholder = [];
         this.jobFilter = React.createRef();
@@ -54,13 +47,6 @@ export default class JobPending extends React.Component {
         this.setState({map1})
         
     }
-    
-    onValueChange(value) {
-        this.setState({
-          selected: value
-        });
-      }
-
     SearchFilterFunction(text) {
         if (this.state.value == 'jobNumber') {
             const newData = this.arrayholder.filter(function (item) {
@@ -127,18 +113,14 @@ export default class JobPending extends React.Component {
 
 
     render() {
-        const {sampleProps} = this.props; 
-       // console.log(this.state.value);
-       //console.log(this.state.selected)
         return (
             <View style={styles.container}>
-            <View style={{flexDirection :'row',height: 50,backgroundColor : '#efefef',justifyContent: 'center',alignItems: 'center'}}>
+                <View style={styles.searchView}>
                 <View style={{flex :10}}>
                 <SearchBar placeholder={'Search By ' + this.state.value}
-                    onChangeText={(text) => this.SearchFilterFunction(text)} 
-                   />
+                    onChangeText={(text) => this.SearchFilterFunction(text)}/>
                     </View>
-                        <View style={{flex : 1.5,alignItems : 'center',justifyContent : 'center',height: 40,backgroundColor: '#0073b7',borderRadius: 2,marginRight:2}}>
+                        <View style={styles.filterIcon}>
                         <TouchableOpacity  onPress={this.openFilterPage}>
                         <FontAwesome name="filter" size={32} color="white" />
                             </TouchableOpacity>

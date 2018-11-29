@@ -1,10 +1,7 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import colors from '../../../constants/colors'
 export default EStyleSheet.create({
-    container:{
-        flex: 1,
-        backgroundColor: '#efefef'
-    },
+   
     header: {
         backgroundColor:  colors.HEADER_COLOR
     },
@@ -12,6 +9,10 @@ export default EStyleSheet.create({
         fontSize: '1.1rem',
         color: '#fff',
         fontWeight: '500'
+    },
+    container:{
+        flex: 1,
+        backgroundColor: '#efefef'
     },
     view: {
         backgroundColor: '#fff',
@@ -26,35 +27,25 @@ export default EStyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
+    key_text: {
+        fontSize: '1rem',
+        color: '#000',
+        padding: 4
+    },
     middle_view: {
         flex: 0.2,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    colon: {
+        color: 'gray',
+        padding: 4
     },
     right_view: {
         flex: 1.5,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center'
-    },
-    key_text: {
-        fontSize: '1rem',
-        color: '#000',
-        padding: 4
-    },
-    colon: {
-        color: 'gray',
-        padding: 4
-    },
-    value_text: {
-        fontSize: '0.8rem',
-        color: 'gray',
-        padding: 4
-    },
-    view1: {
-        backgroundColor: '#fff',
-        padding: 8,
-        marginTop: 8
     },
     job_type: {
         width: 80,
@@ -69,6 +60,11 @@ export default EStyleSheet.create({
         color: 'gray',
         fontSize: '0.8rem'
     },
+    value_text: {
+        fontSize: '0.8rem',
+        color: 'gray',
+        padding: 4
+    },
     status_view: {
         width: 90,
         height: 23,
@@ -81,6 +77,11 @@ export default EStyleSheet.create({
         color: '#fff',
         fontSize: '0.8rem'
     },
+    view1: {
+        backgroundColor: '#fff',
+        padding: 8,
+        marginTop: 8
+    },
     button_view: {
         flex: 1,
         backgroundColor: 'red'
@@ -91,5 +92,4 @@ export default EStyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#d9534f'
     }
-
 })

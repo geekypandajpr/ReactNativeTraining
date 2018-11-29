@@ -1,31 +1,18 @@
 import React from 'react';
-import { Tab, Tabs, ScrollableTab,TabHeading } from 'native-base';
-import { View, BackHandler,Text} from 'react-native';
+import { Tab, Tabs, ScrollableTab, TabHeading } from 'native-base';
+import { View, BackHandler, Text } from 'react-native';
 import { AppLoading } from 'expo';
-import EStylesheet from 'react-native-extended-stylesheet';
-
+import styles from './styles'
 import { JobCompleted, JobPending, JobReschedule, JobSchedule } from './JobTabPages';
 import { Toolbar } from '../../components';
-import pendingData from '../../assets/JSONData/JobsData/pendingData';
-import completedData from '../../assets/JSONData/JobsData/completedData';
-import reScheduleData from '../../assets/JSONData/JobsData/reScheduleData';
-import scheduleData from '../../assets/JSONData/JobsData/scheduleData';
-import colors from '../../constants/colors';
-import JobSearch from './JobSearch/JobSearch1';
 
 export default class Jobs extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             isLoading: true,
-            item: pendingData,
-            map1 : new Map(),
-        },
-        this.status = ['Pending', 'Schedule', 'Completed', 'ReSchedule'];
-        this.jobsearch = React.createRef();
-        this.openSearchPage = this.openSearchPage.bind(this);
+        }
     }
-
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -34,41 +21,12 @@ export default class Jobs extends React.Component {
         })
         this.setState({ isLoading: false })
     };
-
-    getStatus(i, ref, from) {
-        // console.log(this.status[i]);
-        if (this.status[i] == 'Pending') {
-            this.setState({ item: pendingData });
-        }
-        if (this.status[i] == 'Schedule') {
-            this.setState({ item: scheduleData });
-        }
-        if (this.status[i] == 'Completed') {
-            this.setState({ item: completedData });
-        }
-        if (this.status[i] == 'ReSchedule') {
-            this.setState({ item: reScheduleData });
-        }
-    }
-
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', () => {
             this.props.navigation.navigate('Dashboard');
             return true;
         });
     }
-
-    openSearchPage() {
-        this.jobsearch.current.setModalVisible(true, this.state.item);
-    }
-
-    selectedValue(map) {
-        // for(var key of map.keys()) {
-        //     console.log(key);
-        // }
-        this.setState({map1 : map})
-    }
-
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
@@ -76,12 +34,9 @@ export default class Jobs extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
                     <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
-                    />
+                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
                     <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }}
-                        onChangeTab={({ i }) => this.getStatus(i)}
                         renderTabBar={() => <ScrollableTab />}>
-
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
@@ -89,8 +44,7 @@ export default class Jobs extends React.Component {
                                 </View>
                             </TabHeading>
                         }>
-                        
-                            <JobPending sampleProps={this.state.map1} />
+                            <JobPending />
                         </Tab>
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
@@ -121,28 +75,8 @@ export default class Jobs extends React.Component {
                         </Tab>
 
                     </Tabs>
-                    <JobSearch ref={this.jobsearch} getSelected={(mapvalue) => this.selectedValue(mapvalue)}/>
                 </View>
         );
     }
 }
 export { Jobs }
-
-const styles = EStylesheet.create({
-    tabheading: {
-        backgroundColor: colors.HEADER_COLOR
-    },
-    tab_view: {
-        // width: '100%',
-        height: '100%',
-        backgroundColor: 'transparent',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    TextView: {
-        color: '#fff',
-        fontSize: '1rem'
-    },
-    
-
-})

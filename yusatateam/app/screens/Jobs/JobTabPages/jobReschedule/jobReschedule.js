@@ -1,25 +1,24 @@
 import React from 'react';
-import { View, FlatList, TouchableOpacity} from 'react-native';
-import { List, Right, Text, Button, Icon, Card,Footer,FooterTab,CheckBox} from 'native-base';
+import { View, FlatList, TouchableOpacity } from 'react-native';
+import {FontAwesome } from '@expo/vector-icons';
+import {Text, Button, Card, Footer, FooterTab, CheckBox } from 'native-base';
 import styles from './styles';
 import JobDetails from '../../JobDetails/JobDetails';
 import reScheduleData from '../../../../assets/JSONData/JobsData/reScheduleData';
 import { SearchBar } from '../../../../components';
-import {FilterJob} from '../../../../components/FilterJob/FilterJob';
+import { FilterJob } from '../../../../components/FilterJob/FilterJob';
 import JobAssign from '../../jobAssign/jobAssign';
-import { Ionicons,FontAwesome} from '@expo/vector-icons';
+
 
 export default class JobReschedule extends React.Component {
     constructor() {
         super();
         this.state = {
             data: reScheduleData,
-            items: [],
-            list: '',
-            selected : 'jobNumber',
+            selected: 'jobNumber',
             status: 'ReSchedule',
-            value : 'jobNumber',
-            map1 : new Map(),
+            value: 'jobNumber',
+            map1: new Map(),
 
             //status: 'Reschedule'
         }
@@ -27,32 +26,30 @@ export default class JobReschedule extends React.Component {
         this.jobFilter = React.createRef();
         this.openFilterPage = this.openFilterPage.bind(this);
     };
+
     componentDidMount() {
         this.arrayholder = this.state.data;
     }
+
     selectedValue(data) {
-        this.setState({value : data})
+        this.setState({ value: data })
     }
-     openFilterPage() {
+
+    openFilterPage() {
         this.jobFilter.current.setModalVisible(true, this.state.status);
     }
 
     toggleCheckbox(id) {
         let map1 = this.state.map1;
-        if(this.state.map1.has(id))
-        {
+        if (this.state.map1.has(id)) {
             this.state.map1.delete(id);
-            
         }
-        else
-        {
-            this.state.map1.set(id,true);
-           
+        else {
+            this.state.map1.set(id, true);
         }
-        //console.log(this.state.map1.get(id))
-        this.setState({map1})
-        
+        this.setState({ map1 })
     }
+
     SearchFilterFunction(text) {
         const newData = this.arrayholder.filter(function (item) {
             const itemData = item.jobNumber.toUpperCase()
@@ -65,13 +62,6 @@ export default class JobReschedule extends React.Component {
         }
         )
     };
- 
-    onValueChange(value) {
-        this.setState({
-          selected: value
-        });
-      }
-
     SearchFilterFunction(text) {
         if (this.state.value == 'jobNumber') {
             const newData = this.arrayholder.filter(function (item) {
@@ -136,33 +126,30 @@ export default class JobReschedule extends React.Component {
     }
 
     render() {
-        //console.log(this.state.value);
         return (
-          
             <View style={styles.container}>
-             <View style={{flexDirection :'row',height: 50,backgroundColor : '#efefef',justifyContent: 'center',alignItems: 'center'}}>
-                <View style={{flex :10}}>
-                <SearchBar placeholder={'Search By ' + this.state.value}
-                    onChangeText={(text) => this.SearchFilterFunction(text)} 
-                   />
+                <View style={styles.searchView}>
+                    <View style={{ flex: 10 }}>
+                        <SearchBar placeholder={'Search By ' + this.state.value}
+                            onChangeText={(text) => this.SearchFilterFunction(text)} />
                     </View>
-                        <View style={{flex : 1.5,alignItems : 'center',justifyContent : 'center',height: 40,backgroundColor: '#0073b7',borderRadius: 2,marginRight:2}}>
-                        <TouchableOpacity  onPress={this.openFilterPage}>
-                        <FontAwesome name="filter" size={32} color="white" />
-                            </TouchableOpacity>
-                        </View>
+                    <View style={styles.filterIcon}>
+                        <TouchableOpacity onPress={this.openFilterPage}>
+                            <FontAwesome name="filter" size={32} color="white" />
+                        </TouchableOpacity>
                     </View>
-               <FlatList
-               extraData={this.state}
+                </View>
+                <FlatList
+                    extraData={this.state}
                     data={this.state.data}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>
                             <View style={{ flex: 0.3, alignItems: 'flex-start', justifyContent: 'center' }}>
                                 <CheckBox
-                                        checked={this.state.map1.get(item.jobNumber)}
-                                        onPress={() => this.toggleCheckbox(item.jobNumber)}
-                                    />
+                                    checked={this.state.map1.get(item.jobNumber)}
+                                    onPress={() => this.toggleCheckbox(item.jobNumber)}
+                                />
                             </View>
                             <View style={{ flex: 2 }}>
                                 <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)}>
@@ -239,15 +226,15 @@ export default class JobReschedule extends React.Component {
                 </FlatList>
                 <Footer>
                     <FooterTab>
-                        <Button style={styles.footerbutton} onPress={ () => this.refs.assign.setModalVisible(true)}>
+                        <Button style={styles.footerbutton} onPress={() => this.refs.assign.setModalVisible(true)}>
                             <Text style={styles.footerbuttonText}>Assign Jobs</Text>
                         </Button>
-                        
+
                     </FooterTab>
                 </Footer>
                 <FilterJob ref={this.jobFilter} getSelected={(data) => this.selectedValue(data)} />
                 <JobDetails ref='modal' />
-                <JobAssign ref='assign'/>
+                <JobAssign ref='assign' />
             </View>
         )
     }

@@ -1,16 +1,9 @@
 import React from 'react';
-import {
-    View,
-    ScrollView,
-    Modal
-} from 'react-native';
+import {View,ScrollView,Modal} from 'react-native';
 import { Text, Header, Button,Body, Right, Left } from 'native-base';
 import { AppLoading } from 'expo';
 import { Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
-
 import styles from './styles';
-import { Statusbar } from '../../../components';
-import colors from '../../../constants/colors';
 
 export default class JobDetails extends React.Component {
     constructor(props) {
@@ -36,11 +29,9 @@ export default class JobDetails extends React.Component {
     }
 
     render() {
-        const details = this.state.item;
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View>
-                {/* <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" /> */}
                 <Modal
                     animationType="slide"
                     transparent={true}
@@ -58,15 +49,11 @@ export default class JobDetails extends React.Component {
                                         <Text style={styles.title}>JOBS20NOV2018</Text>
                                     </Body>
                                     <Right>
-                                        {/* <Ionicons name='ios-close' color="#000" size={40} style={{ marginRight: 20 }}
-                                            onPress={() => this.setState({ modalVisible: !this.state.modalVisible })} /> */}
                                     </Right>
                                 </Header>
-
                                 <View style={styles.container}>
                                     <ScrollView>
                                         <View style={styles.view}>
-
                                             <View style={styles.sub_view}>
                                                 <View style={styles.left_view}>
                                                     <Text style={styles.key_text}>Job type</Text>
@@ -80,7 +67,6 @@ export default class JobDetails extends React.Component {
                                                     </View>
                                                 </View>
                                             </View>
-
                                             <View style={styles.sub_view}>
                                                 <View style={styles.left_view}>
                                                     <Text style={styles.key_text}>Schedule date</Text>
@@ -92,7 +78,6 @@ export default class JobDetails extends React.Component {
                                                     <Text style={styles.value_text}>20 Nov 2018 12:50</Text>
                                                 </View>
                                             </View>
-
                                             <View style={styles.sub_view}>
                                                 <View style={styles.left_view}>
                                                     <Text style={styles.key_text}>Completed date</Text>
@@ -104,8 +89,6 @@ export default class JobDetails extends React.Component {
                                                     <Text style={styles.value_text}>-  -  -</Text>
                                                 </View>
                                             </View>
-
-
                                             <View style={styles.sub_view}>
                                                 <View style={styles.left_view}>
                                                     <Text style={styles.key_text}>Technician</Text>
@@ -117,7 +100,6 @@ export default class JobDetails extends React.Component {
                                                     <Text style={styles.value_text}>Yash Gulati</Text>
                                                 </View>
                                             </View>
-
                                             <View style={styles.sub_view}>
                                                 <View style={styles.left_view}>
                                                     <Text style={styles.key_text}>Job location</Text>
@@ -134,7 +116,6 @@ export default class JobDetails extends React.Component {
                                                     </View>
                                                 </View>
                                             </View>
-
                                             <View style={styles.sub_view}>
                                                 <View style={styles.left_view}>
                                                     <Text style={styles.key_text}>Status</Text>
@@ -148,7 +129,6 @@ export default class JobDetails extends React.Component {
                                                     </View>
                                                 </View>
                                             </View>
-
                                             <View style={styles.sub_view}>
                                                 <View style={styles.left_view}>
                                                     <Text style={styles.key_text}>Payment mode</Text>
@@ -160,7 +140,6 @@ export default class JobDetails extends React.Component {
                                                     <Text style={styles.value_text}>COD</Text>
                                                 </View>
                                             </View>
-
                                             <View style={styles.sub_view}>
                                                 <View style={styles.left_view}>
                                                     <Text style={styles.key_text}>Amount</Text>
@@ -173,9 +152,7 @@ export default class JobDetails extends React.Component {
                                                     <Text style={styles.value_text}>6500</Text>
                                                 </View>
                                             </View>
-
                                         </View>
-
                                         <View style={styles.view1}>
                                             <View style={styles.sub_view}>
                                                 <View style={styles.left_view}>
@@ -188,7 +165,6 @@ export default class JobDetails extends React.Component {
                                                     <Text style={styles.value_text}>Premsagar Choudhary</Text>
                                                 </View>
                                             </View>
-
                                             <View style={styles.sub_view}>
                                                 <View style={styles.left_view}>
                                                     <Text style={styles.key_text}>Customer contact</Text>
@@ -202,7 +178,6 @@ export default class JobDetails extends React.Component {
                                                 </View>
                                             </View>
                                         </View>
-
                                         <View style={styles.view1}>
                                             <View style={styles.button_view}>
                                                 <Button style={styles.button}
@@ -211,7 +186,6 @@ export default class JobDetails extends React.Component {
                                                 </Button>
                                             </View>
                                         </View>
-
                                     </ScrollView>
                                 </View>
                             </View>

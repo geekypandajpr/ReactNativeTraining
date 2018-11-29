@@ -5,6 +5,22 @@ export default EStyleSheet.create({
         flex: 1,
         backgroundColor: 'white'
     },
+    searchView : {
+        flexDirection :'row',
+        height: 50,
+        backgroundColor : '#efefef',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    filterIcon : {
+        flex : 1.5,
+        alignItems : 'center',
+        justifyContent : 'center',
+        height: 40,
+        backgroundColor: '#0073b7'
+        ,borderRadius: 2,
+        marginRight:2
+    },
     viewList: {
         flex: 1,
         flexDirection : 'row',
@@ -47,6 +63,10 @@ export default EStyleSheet.create({
         fontSize: '0.9rem',
         color: '#000',
     },
+    text1: {
+        fontSize: '0.9rem',
+        color: 'gray'
+    },
     middle_view: {
         flex: 0.2,
         alignItems: 'center',
@@ -55,13 +75,9 @@ export default EStyleSheet.create({
     right_view: {
         flex: 1.5,
     },
-    text1: {
-        fontSize: '0.9rem',
-        color: 'gray'
-    },
+   
     location: {
         flex: 1,
-        // backgroundColor: 'red'
     }, 
     footerbutton: {
         width: '100%',

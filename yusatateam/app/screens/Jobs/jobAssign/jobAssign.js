@@ -1,9 +1,6 @@
 import React from 'react';
 import { View, FlatList, Alert,  Modal } from 'react-native';
 import { AppLoading } from 'expo';
-import { Header, Body, Item, Button, Input, Card } from 'native-base';
-import { Feather, MaterialIcons } from '@expo/vector-icons';
-
 import styles from './styles';
 import { TechnicianList, SearchHeader } from '../../../components';
 import techDatas from '../../../assets/JSONData/TechnicianData';

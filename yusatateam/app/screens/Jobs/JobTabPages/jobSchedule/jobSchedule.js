@@ -1,39 +1,38 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity, CheckBox } from 'react-native';
-import { List, Right, Text, Button, Icon, Card, Footer, FooterTab } from 'native-base';
+import { FontAwesome} from '@expo/vector-icons';
+import {Text, Card,} from 'native-base';
 import styles from './styles';
 import JobDetails from '../../JobDetails/JobDetails';
 import scheduleData from '../../../../assets/JSONData/JobsData/scheduleData';
-import colors from '../../../../constants/colors';
 import { SearchBar } from '../../../../components';
 import {FilterJob} from '../../../../components/FilterJob/FilterJob';
-import { Ionicons,FontAwesome} from '@expo/vector-icons';
+
 export default class JobSchedule extends React.Component {
     constructor() {
         super();
         this.state = {
             data: scheduleData,
-            items: [],
-            list: '',
-            checkbox: false,
-            selected : 'jobNumber',
             status: 'schedule',
             value : 'jobNumber',
-            // status: 'schedule'
         }
         this.arrayholder = [];
         this.jobFilter = React.createRef();
         this.openFilterPage = this.openFilterPage.bind(this);
     };
+
     componentDidMount() {
         this.arrayholder = this.state.data;
     }
+
     selectedValue(data) {
         this.setState({value : data})
     }
+
      openFilterPage() {
         this.jobFilter.current.setModalVisible(true, this.state.status);
     }
+    
     SearchFilterFunction(text) {
         const newData = this.arrayholder.filter(function (item) {
             const itemData = item.jobNumber.toUpperCase()
@@ -46,17 +45,6 @@ export default class JobSchedule extends React.Component {
         }
         )
     };
-    // changeTabStatus(tabStatus) {
-    //     this.setState({ status: tabStatus },
-    //         function () {
-    //             console.log(this.state.status)
-    //         });
-    // }
-    onValueChange(value) {
-        this.setState({
-          selected: value
-        });
-      }
 
     SearchFilterFunction(text) {
         if (this.state.value == 'jobNumber') {
@@ -122,16 +110,14 @@ export default class JobSchedule extends React.Component {
     }
 
     render() {
-        //console.log(this.state.value);
         return (
             <View style={styles.container}>
-            <View style={{flexDirection :'row',height: 50,backgroundColor : '#efefef',justifyContent: 'center',alignItems: 'center'}}>
+             <View style={styles.searchView}>
                 <View style={{flex :10}}>
                 <SearchBar placeholder={'Search By ' + this.state.value}
-                    onChangeText={(text) => this.SearchFilterFunction(text)} 
-                   />
+                    onChangeText={(text) => this.SearchFilterFunction(text)}/>
                     </View>
-                        <View style={{flex : 1.5,alignItems : 'center',justifyContent : 'center',height: 40,backgroundColor: '#0073b7',borderRadius: 2,marginRight:2}}>
+                        <View style={styles.filterIcon}>
                         <TouchableOpacity  onPress={this.openFilterPage}>
                         <FontAwesome name="filter" size={32} color="white" />
                             </TouchableOpacity>

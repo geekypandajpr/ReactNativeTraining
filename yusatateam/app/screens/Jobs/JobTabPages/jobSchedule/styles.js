@@ -1,9 +1,24 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import colors from '../../../../constants/colors';
 export default EStyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white'
+    },
+    searchView : {
+        flexDirection :'row',
+        height: 50,
+        backgroundColor : '#efefef',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    filterIcon : {
+        flex : 1.5,
+        alignItems : 'center',
+        justifyContent : 'center',
+        height: 40,
+        backgroundColor: '#0073b7'
+        ,borderRadius: 2,
+        marginRight:2
     },
     viewList: {
         flex: 1,
@@ -12,62 +27,19 @@ export default EStyleSheet.create({
         marginRight :6,
         padding: 10
     },
+    sub_view: {
+        flexDirection: 'row'
+    },
     jobNumText: {
         fontSize: '1rem',
         color: '#000',
         fontWeight: '500'
-    },
-    jobText: {
-        fontSize: '0.8rem',
-        color: '#fff',
-    },
-    sub_view: {
-        flexDirection: 'row'
-    },
-    right_sub_view: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
     },
     right_sub_view: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center'
-    },
-    status_view: {
-        borderRadius: 10,
-        // borderWidth: 0.8,
-        // borderColor: '#5cb85c',
-        padding: 2,
-        width: 80,
-        height: 23,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#5cb85c'
-    },
-    text: {
-        fontSize: '0.9rem',
-        color: '#000',
-    },
-    text1: {
-        fontSize: '0.9rem',
-        color: 'gray'
-    },
-    left_view: {
-        flex: 1,
-    },
-    middle_view: {
-        flex: 0.2,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    right_view: {
-        flex: 1.5,
-    },
-    location: {
-        flex: 1,
-        // backgroundColor: 'red'
     },
     jobTypeView: {
         borderRadius: 10,
@@ -83,4 +55,26 @@ export default EStyleSheet.create({
         color: '#F98866',
         fontSize: '0.8rem'
     },
+    left_view: {
+        flex: 1,
+    },
+    text: {
+        fontSize: '0.9rem',
+        color: '#000',
+    },
+    text1: {
+        fontSize: '0.9rem',
+        color: 'gray'
+    },
+    middle_view: {
+        flex: 0.2,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    right_view: {
+        flex: 1.5,
+    },
+    location: {
+        flex: 1,
+    },  
 })
