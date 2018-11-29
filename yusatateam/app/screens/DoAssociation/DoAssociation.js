@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-    Text,
-    View,
-    Modal,
-    TextInput,
-    Picker,
-    ScrollView
-} from 'react-native';
-import { Button } from 'native-base';
-import styles from './Styles';
+import { View,  Modal,  ScrollView, Picker, TextInput } from 'react-native';
+import { Text, Header, Button, Body, Right, Left } from 'native-base';
 import { AppLoading } from 'expo';
-import { MaterialIcons, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons, Entypo, FontAwesome, Feather } from '@expo/vector-icons';
+
+import styles from './Styles';
 
 export default class DoAssociation extends React.Component {
     constructor(props) {
@@ -19,10 +13,25 @@ export default class DoAssociation extends React.Component {
             modalVisible: false,
             isLoading: true,
             item: {},
-            status: '',
+            comments: '',
             device: '',
             sim: ''
         }
+        this.deviceList = [
+            {label: 'Device 1', value: ' Device 1'},
+            {label: 'Device 2', value: ' Device 2'},
+            {label: 'Device 3', value: ' Device 3'},
+            {label: 'Device 4', value: ' Device 4'},
+            {label: 'Device 5', value: ' Device 5'}
+        ];
+        this.simList = [
+            {label: 'Sim 1', value: ' Sim 1'},
+            {label: 'Sim 2', value: ' Sim 2'},
+            {label: 'Sim 3', value: ' Sim 3'},
+            {label: 'Sim 4', value: ' Sim 4'},
+            {label: 'Sim 5', value: ' Sim 5'}
+        ];
+        this.onClose = this.onClose.bind(this);
     }
 
     async componentWillMount() {
@@ -34,7 +43,7 @@ export default class DoAssociation extends React.Component {
         this.setState({ isLoading: false })
     }
 
-    setModalVisible(visible, item) {
+    setModalVisible(visible, item={}) {
         this.setState({
             modalVisible: visible,
             item: item
@@ -43,8 +52,11 @@ export default class DoAssociation extends React.Component {
         });
     }
 
+    onClose() {
+        this.setState({ modalVisible: !this.state.modalVisible })
+    }
+
     render() {
-        const details = this.state.item;
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View>
@@ -52,137 +64,221 @@ export default class DoAssociation extends React.Component {
                     animationType="slide"
                     transparent={true}
                     visible={this.state.modalVisible}
-                    onRequestClose={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
-                    <View style={styles.modal_container}>
+                    onDismiss={() => {
+                        this.setState({ modalVisible: !this.state.modalVisible })
+                    }}
+                    onRequestClose={() => {
+                        this.setState({ modalVisible: !this.state.modalVisible })
+                    }} >
 
-                        {/**Header View*/}
-                        <View style={styles.header_view}>
-                            <View style={styles.service_num}>
-                                <Text style={styles.header_text}>{details.serviceNumber}</Text>
-                            </View>
-                            <View style={styles.schedule_view}>
-                                <MaterialIcons name='schedule' size={20} color='#1766A6' />
-                                <Text style={styles.job_text}>{details.jobDate}</Text>
-                            </View>
-                        </View>
+                    <View style={styles.main_container}>
+                        <View style={styles.container}>
 
-                        {/**Child View*/}
-                        <View style={styles.modal_child_container}>
-                            <ScrollView showsVerticalScrollIndicator={false}>
+                            <Header style={styles.header}>
+                                <Left>
+                                    <Button transparent onPress={this.onClose}>
+                                        <Feather name='arrow-left' color='#fff' size={24} />
+                                    </Button>
+                                </Left>
+                                <Body>
+                                    <Text style={styles.title}>JOBS20NOV2018</Text>
+                                </Body>
+                                <Right/>
+                            </Header>
 
-                                {/**Company Name*/}
-                                <View style={styles.main_view}>
+                            <View style={styles.inner_container}>
+                                <ScrollView>
                                     <View style={styles.first_view}>
-                                        <Text style={styles.value_text}>{details.companyName}</Text>
-                                    </View>
-                                </View>
 
-
-                                {/**Vehicle View*/}
-                                <View style={styles.main_view}>
-                                    <View style={styles.first_view}>
-                                        <View style={styles.icon_view}>
-                                            <MaterialCommunityIcons name='van-utility' color='#1766A6' size={24} />
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>Job type</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <View style={styles.job_type}>
+                                                    <Text style={styles.job_type_text}>Install</Text>
+                                                </View>
+                                            </View>
                                         </View>
-                                        <View style={styles.icon_text_view}>
-                                            <Text style={styles.value_text}>{details.vehicleNumber}</Text>
+
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>Schedule date</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <Text style={styles.value_text}>20 Nov 2018 12:50</Text>
+                                            </View>
+                                        </View>
+
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>Completed date</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <Text style={styles.value_text}>-  -  -</Text>
+                                            </View>
+                                        </View>
+
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>Technician</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <Text style={styles.value_text}>Yash Gulati</Text>
+                                            </View>
+                                        </View>
+
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>Job location</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <View><Entypo name='location-pin' size={24} color='#d9534f' /></View>
+                                                <View style={{ flex: 1 }}>
+                                                    <Text style={styles.value_text}>
+                                                        84/122 sector 8 pratap nagar, jaipur rajasthan
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                        </View>
+
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>Status</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <View style={styles.status_view}>
+                                                    <Text style={styles.status_text}>Completed</Text>
+                                                </View>
+                                            </View>
+                                        </View>
+
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>Payment mode</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <Text style={styles.value_text}>COD</Text>
+                                            </View>
+                                        </View>
+
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>Amount</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <FontAwesome name='rupee' size={14} color='gray' />
+                                                <Text style={styles.value_text}>6500</Text>
+                                            </View>
                                         </View>
                                     </View>
-                                </View>
 
-                                <View style={styles.addres_view}>
-                                    <Text style={styles.address_header_text}>Contact:</Text>
-                                    <Text style={styles.address_text}>{details.contactPerson}</Text>
-                                    <Text style={styles.address_text}>{details.contactMobilenumber}</Text>
-                                    <Text style={styles.address_text}>{details.location}</Text>
-                                </View>
-
-                                {/**Status and Service type View*/}
-                                <View style={styles.main_view}>
-                                    <View style={styles.first_view}>
-                                        <View style={styles.status_picker}>
-                                            <Picker
-                                                selectedValue={this.state.status}
-                                                style={styles.picker}
-                                                onValueChange={(itemValue, itemIndex) => this.setState({ status: itemValue })}>
-                                                <Picker.Item label="Entered" value="Entered" />
-                                                <Picker.Item label="Accepted" value="Accepted" />
-                                                <Picker.Item label="Onjob" value="Onjob" />
-                                                <Picker.Item label="Completed" value="Completed" />
-                                            </Picker>
-                                        </View>
-                                    </View>
                                     <View style={styles.second_view}>
-                                        <View style={styles.service_type_view}>
-                                            <Text style={styles.service_type_text}>{details.serviceType}</Text>
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>Customer name</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <Text style={styles.value_text}>Premsagar Choudhary</Text>
+                                            </View>
+                                        </View>
+
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>Customer contact</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <Ionicons name='ios-call' size={24} color='#5cb85c' />
+                                                <Text style={styles.value_text}>+918605665320</Text>
+                                            </View>
                                         </View>
                                     </View>
-                                </View>
 
-                                {/**Device View*/}
-                                <View style={styles.main_view}>
-                                    <View style={styles.first_view}>
-                                        <View style={styles.status_picker}>
-                                            <Picker
-                                                selectedValue={this.state.device}
-                                                style={styles.picker}
-                                                onValueChange={(itemValue, itemIndex) => this.setState({ device: itemValue })}>
-                                                <Picker.Item label="Device1" value="Device1" />
-                                                <Picker.Item label="Device2" value="Device2" />
-                                                <Picker.Item label="Device3" value="Device3" />
-                                                <Picker.Item label="Device4" value="Device4" />
-                                            </Picker>
+                                    <View style={styles.second_view}>
+
+                                        <View style={styles.picker_view}>
+                                            <View style={styles.device_picker}>
+                                                <Picker
+                                                    selectedValue={this.state.device}
+                                                    style={styles.picker}
+                                                    onValueChange={(itemValue, itemIndex) => this.setState({ device: itemValue })}>
+                                                    {this.deviceList.map((item,index) =>
+                                                        <Picker.Item key={index} label={item.label} value={item.value} />
+                                                    )}
+                                                </Picker>
+                                            </View>
+                                            <View style={styles.device_picker}>
+                                                <Picker
+                                                    selectedValue={this.state.sim}
+                                                    style={styles.picker}
+                                                    onValueChange={(itemValue, itemIndex) => this.setState({ sim: itemValue })}>
+                                                    {this.simList.map((item,index) =>
+                                                        <Picker.Item key={index} label={item.label} value={item.value} />
+                                                    )}
+                                                </Picker>
+                                            </View>
+                                        </View>
+
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>Comments</Text>
+                                        </View>
+
+                                        <View style={styles.comment_box}>
+                                            <View style={styles.comment_input_view}>
+                                                <TextInput
+                                                    placeholder='Write comment here...'
+                                                    multiline={true}
+                                                    underlineColorAndroid='transparent'
+                                                    style={styles.comment_text}
+                                                    onChangeText={(text) => this.setState({ comments: text })}
+                                                    value={this.state.comments}
+                                                />
+                                            </View>
+                                        </View>
+
+                                    </View>
+
+                                    <View style={styles.second_view}>
+                                        <View style={styles.button_view}>
+                                            <Button style={styles.button}
+                                                onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
+                                                <Text>Close</Text>
+                                            </Button>
                                         </View>
                                     </View>
-                                </View>
 
-                                {/**Sim View*/}
-                                <View style={styles.main_view}>
-                                    <View style={styles.first_view}>
-                                        <View style={styles.status_picker}>
-                                            <Picker
-                                                selectedValue={this.state.sim}
-                                                style={styles.picker}
-                                                onValueChange={(itemValue, itemIndex) => this.setState({ sim: itemValue })}>
-                                                <Picker.Item label="Sim1" value="Sim1" />
-                                                <Picker.Item label="Sim2" value="Sim2" />
-                                                <Picker.Item label="Sim3" value="Sim3" />
-                                                <Picker.Item label="Sim4" value="Sim4" />
-                                            </Picker>
-                                        </View>
-                                    </View>
-                                </View>
-
-                                {/**Comment Box*/}
-                                <View style={styles.comment_view}>
-                                    <Text style={styles.value_text}>Comment</Text>
-                                    <View style={styles.comment_box}>
-                                        <View style={styles.comment_input_view}>
-                                            <TextInput
-                                                placeholder='Write comment here...'
-                                                multiline={true}
-                                                underlineColorAndroid='transparent'
-                                                style={styles.comment_text}
-                                                onChangeText={(text) => this.setState({ text })}
-                                                value={this.state.text}
-                                            />
-                                        </View>
-                                    </View>
-                                </View>
-
-                                {/**Close Button*/}
-                                <View style={styles.button_view}>
-                                    <Button style={styles.cancel_button}
-                                        onPress={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
-                                        <Text style={styles.button_text}>Close</Text>
-                                    </Button>
-                                    <Button style={styles.submit_button}
-                                        onPress={() => { this.setState({ modalVisible: !this.state.modalVisible }) }}>
-                                        <Text style={styles.button_text}>Submit</Text>
-                                    </Button>
-                                </View>
-
-                            </ScrollView>
+                                </ScrollView>
+                            </View>
                         </View>
                     </View>
                 </Modal>
