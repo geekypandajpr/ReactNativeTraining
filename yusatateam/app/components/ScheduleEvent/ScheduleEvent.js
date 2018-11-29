@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
-import styles from './Styles';
-import { Button, Text } from 'native-base';
+import { Button, Text, Card } from 'native-base';
 import { Entypo, MaterialIcons } from '@expo/vector-icons';
+
+import styles from './Styles';
 import { StatefulButton } from '../../components';
 import { DoAssociation } from '../../screens';
 
@@ -22,22 +23,23 @@ export default class ScheduleEvent extends React.Component {
         return (
             <View>
                 {this.props.item.map((item, index) =>
-                    <View style={styles.event_date_view} key={index}>
+                    <Card style={styles.event_date_view} key={index}>
 
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
                                 <Text style={styles.label_text}>{item.serviceNumber}</Text>
                             </View>
                             <View style={styles.second_view}>
-                                <StatefulButton
+                                {/* <StatefulButton
                                     label={item.serviceType}
                                     loadingLabel='wait...'
                                     colorAnimation={['transparent', 'transparent', 'transparent']}
                                     onPress={()=>this.completeJob(item)}
-                                    styles={{ button: styles.service_type_view, label: styles.service_type }} />
-                                {/* <Button transparent style={styles.service_type_view}>
+                                    styles={{ button: styles.service_type_view, label: styles.service_type }} /> */}
+                                <Button transparent style={styles.service_type_view} 
+                                    onPress={()=>this.completeJob(item)}>
                                     <Text uppercase={false} style={styles.service_type}>{item.serviceType}</Text>
-                                </Button> */}
+                                </Button>
                             </View>
                         </View>
 
@@ -89,7 +91,7 @@ export default class ScheduleEvent extends React.Component {
                             </View>
                         </View>
 
-                    </View>
+                    </Card>
                 )}
                 <DoAssociation ref={this.modalRef}/>
             </View>

@@ -125,7 +125,7 @@ export default class HeaderWithSearchbar extends React.Component {
                 key="searchBackground"
                 style={[bgStyle, {
                     left: bgPosition,
-                    backgroundColor: '#efefef',
+                    backgroundColor: '#e2e2e2',
                     transform: [{ scale: searchScaleValue }]
                 }]}
             />

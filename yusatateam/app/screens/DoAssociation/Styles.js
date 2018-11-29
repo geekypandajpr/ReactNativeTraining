@@ -71,7 +71,7 @@ export default EStyleSheet.create({
         height: 23,
         borderColor: 'gray',
         borderRadius: 4,
-        borderWidth: 1,
+        borderWidth: 0.8,
         justifyContent: 'center',
         alignItems: 'center'
     },
