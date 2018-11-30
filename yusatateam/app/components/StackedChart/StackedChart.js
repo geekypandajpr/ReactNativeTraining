@@ -14,12 +14,13 @@ export default class StackedBar extends React.Component{
 
     render(){
         const { data, colors,keys } = this.props;
+        const value = [25,21,22,18,4,8,0,-1]
         return(
             <View style={{ marginTop: 20,flex:1 }}>
                 <View style={{ height: 200, flexDirection: 'row',flex:4 }}>
                     <YAxis
                         style={{ width:30 }}
-                        data={ StackedBarChart.extractDataPoints(data, keys) }
+                        data={value}
                         contentInset={{ left: 70, }}
                         svg={{fontSize: 12, fontWeight :'700'}}
                         // scale={scale.scaleBand}

@@ -13,9 +13,9 @@ import { StackedBar, Toolbar } from '../../../components';
 const data = [
     {   
         label: 'Mon',
-        Completed: 10,
+        Completed: 15,
         Pending : 5,
-        Scheduled: 4,
+        Scheduled: 5,
     },
     {
         label: 'Tue',
