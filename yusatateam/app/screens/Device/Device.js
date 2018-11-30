@@ -13,14 +13,18 @@ import { FontAwesome } from '@expo/vector-icons'
 import styles from './styles';
 import { Toolbar } from '../../components';
 import DeviceData from '../../assets/JSONData/DeviceData'
-import { DeviceDetails } from './DeviceDeatails'
+import { DeviceDetails } from './DeviceDeatails';
+import {  SearchBar } from '../../components/SearchBar/SearchBar'
 
 export default class Device extends React.Component {
     constructor() {
         super();
         this.state = {
             isLoading: true,
+            data :[],
+            searchValue :''
         };
+        this.list = [];
         this.modalRef = React.createRef();
     }
 
@@ -35,6 +39,8 @@ export default class Device extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        this.setState({data : DeviceData})
+        this.list = DeviceData;
     }
 
     handleBackPress = () => {
@@ -44,6 +50,14 @@ export default class Device extends React.Component {
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+    searchFunction(text){
+        const newdata = this.list.filter(function(item){
+            const itemdata=item.ESN.toUpperCase();
+            const textdata =text.toUpperCase();
+            return itemdata.indexOf(textdata)>-1;
+        })
+        this.setState({data:newdata,searchValue:text})
     }
 
     render() {
@@ -55,10 +69,11 @@ export default class Device extends React.Component {
 
                     <Toolbar title='Device' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
-
+                        <SearchBar onChangeText = {(text)=>this.searchFunction(text)}
+                        ></SearchBar>
                     <View style={styles.viewStyle}>
                         <FlatList
-                            data={DeviceData}
+                            data={this.state.data}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                                 <TouchableWithoutFeedback
