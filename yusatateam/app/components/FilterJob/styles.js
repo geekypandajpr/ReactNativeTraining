@@ -16,7 +16,7 @@ export default EStyleSheet.create({
     },
     header_view: {
         width: '100%',
-        backgroundColor: 'gray',
+        backgroundColor: '#0073b7',
         justifyContent: 'center',
         elevation: 5,
         flexDirection: 'row'
