@@ -12,7 +12,8 @@ import Technicians from '../screens/Technicians/Technicians';
 import ForgotPassword from '../screens/ForgotPassword/ForgotPassword';
 import OpenJobs from '../screens/OpenJobs/OpenJobs';
 import Calendars from '../screens/Calendars/Calendars';
-import { TabComponent } from '../screens/Technicians/TechDetails/TabComponent';
+import TodaysJobs from '../screens/Technicians/TodaysJobs/TodaysJobs';
+import TechDetails from '../screens/Technicians/TechDetails/TechDetails'
 // import {
 //     LogIn,
 //     HomeScreen,
@@ -109,9 +110,16 @@ const RouteConfigs = {
             header: null
         }
     },
-    TabComponent:
+    TodaysJobs:
     {   
-        screen: TabComponent,
+        screen: TodaysJobs,
+        navigationOptions: {
+            header: null
+        }
+    },
+    TechDetails:
+    {   
+        screen: TechDetails,
         navigationOptions: {
             header: null
         }

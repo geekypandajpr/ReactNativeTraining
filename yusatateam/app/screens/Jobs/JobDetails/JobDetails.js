@@ -25,8 +25,7 @@ export default class JobDetails extends React.Component {
         this.setState({ isLoading: false });
     };
 
-    setModalVisible(visible, item) {
-        console.log(JSON.stringify(item));
+    setModalVisible(visible, item={}) {
         this.setState({ modalVisible: visible, item: item });
     }
 

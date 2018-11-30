@@ -125,22 +125,6 @@ export default class TechDetails extends React.Component {
                         />
                         
                     </View>
-
-                    <View style={styles.second_view}>
-                        <StackedBar
-                            data={data}
-                            colors={colors}
-                            keys={keys}
-                        />
-                    </View>
-
-                    <View style={styles.second_view}>
-                        <StackedBar
-                            data={data}
-                            colors={colors}
-                            keys={keys}
-                        />
-                    </View>
                 </ScrollView>
 
             </View >
