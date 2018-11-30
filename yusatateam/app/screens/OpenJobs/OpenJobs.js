@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    View,
-    FlatList,
-    Text,
-    BackHandler
-} from 'react-native';
+import { View, FlatList, Text, BackHandler } from 'react-native';
 import { Button, Footer, FooterTab } from 'native-base';
 import { AppLoading } from 'expo';
 
@@ -12,118 +7,119 @@ import { JobsComponent, HeaderWithSearchbar } from '../../components';
 import styles from './Styles';
 import JobDetails from '../Jobs/JobDetails/JobDetails';
 
-const datas = [
-    {
-        jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Install',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur',
-    },
-    {
-        jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Replace',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur',
-    },
-    {
-        jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Repair',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur',
-    },
-    {
-        jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Uninstall',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur',
-    },
-    {
-        jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Install',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur',
-    },
-    {
-        jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Replace',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur',
-    },
-    {
-        jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Repair',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur',
-    },
-    {
-        jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Uninstall',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur',
-    },
-    {
-        jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Install',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur',
-    },
-    {
-        jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Replace',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur',
-    },
-    {
-        jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Repair',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur',
-    },
-    {
-        jobNumber: 'JOBS-05NOV2018',
-        jobType: 'Uninstall',
-        companyName: 'Yusata Infotech Private Limited',
-        vehicleNumber: 'JP01-4522',
-        scheduleDate: '05 Nov 2018 20:50',
-        location: '84/122 sector 8 pratap nagar, jaipur',
-    }
-]
-
 export default class OpenJobs extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoading: true,
-            searchValue: ''
+            searchValue: '',
+            datas: [
+                {
+                    jobNumber: 'JOBS-06NOV2018',
+                    jobType: 'Install',
+                    companyName: 'Yusata Infotech Private Limited',
+                    vehicleNumber: 'JP01-4522',
+                    scheduleDate: '05 Nov 2018 20:50',
+                    location: '84/122 sector 8 pratap nagar, jaipur',
+                },
+                {
+                    jobNumber: 'JOBS-07NOV2018',
+                    jobType: 'Replace',
+                    companyName: 'Yusata Infotech Private Limited',
+                    vehicleNumber: 'JP01-4522',
+                    scheduleDate: '05 Nov 2018 20:50',
+                    location: '84/122 sector 8 pratap nagar, jaipur',
+                },
+                {
+                    jobNumber: 'JOBS-08NOV2018',
+                    jobType: 'Repair',
+                    companyName: 'Yusata Infotech Private Limited',
+                    vehicleNumber: 'JP01-4522',
+                    scheduleDate: '05 Nov 2018 20:50',
+                    location: '84/122 sector 8 pratap nagar, jaipur',
+                },
+                {
+                    jobNumber: 'JOBS-05NOV2018',
+                    jobType: 'Uninstall',
+                    companyName: 'Yusata Infotech Private Limited',
+                    vehicleNumber: 'JP01-4522',
+                    scheduleDate: '05 Nov 2018 20:50',
+                    location: '84/122 sector 8 pratap nagar, jaipur',
+                },
+                {
+                    jobNumber: 'JOBS-05NOV2018',
+                    jobType: 'Install',
+                    companyName: 'Yusata Infotech Private Limited',
+                    vehicleNumber: 'JP01-4522',
+                    scheduleDate: '05 Nov 2018 20:50',
+                    location: '84/122 sector 8 pratap nagar, jaipur',
+                },
+                {
+                    jobNumber: 'JOBS-05NOV2018',
+                    jobType: 'Replace',
+                    companyName: 'Yusata Infotech Private Limited',
+                    vehicleNumber: 'JP01-4522',
+                    scheduleDate: '05 Nov 2018 20:50',
+                    location: '84/122 sector 8 pratap nagar, jaipur',
+                },
+                {
+                    jobNumber: 'JOBS-05NOV2018',
+                    jobType: 'Repair',
+                    companyName: 'Yusata Infotech Private Limited',
+                    vehicleNumber: 'JP01-4522',
+                    scheduleDate: '05 Nov 2018 20:50',
+                    location: '84/122 sector 8 pratap nagar, jaipur',
+                },
+                {
+                    jobNumber: 'JOBS-05NOV2018',
+                    jobType: 'Uninstall',
+                    companyName: 'Yusata Infotech Private Limited',
+                    vehicleNumber: 'JP01-4522',
+                    scheduleDate: '05 Nov 2018 20:50',
+                    location: '84/122 sector 8 pratap nagar, jaipur',
+                },
+                {
+                    jobNumber: 'JOBS-05NOV2018',
+                    jobType: 'Install',
+                    companyName: 'Yusata Infotech Private Limited',
+                    vehicleNumber: 'JP01-4522',
+                    scheduleDate: '05 Nov 2018 20:50',
+                    location: '84/122 sector 8 pratap nagar, jaipur',
+                },
+                {
+                    jobNumber: 'JOBS-05NOV2018',
+                    jobType: 'Replace',
+                    companyName: 'Yusata Infotech Private Limited',
+                    vehicleNumber: 'JP01-4522',
+                    scheduleDate: '05 Nov 2018 20:50',
+                    location: '84/122 sector 8 pratap nagar, jaipur',
+                },
+                {
+                    jobNumber: 'JOBS-05NOV2018',
+                    jobType: 'Repair',
+                    companyName: 'Yusata Infotech Private Limited',
+                    vehicleNumber: 'JP01-4522',
+                    scheduleDate: '05 Nov 2018 20:50',
+                    location: '84/122 sector 8 pratap nagar, jaipur',
+                },
+                {
+                    jobNumber: 'JOBS-05NOV2018',
+                    jobType: 'Uninstall',
+                    companyName: 'Yusata Infotech Private Limited',
+                    vehicleNumber: 'JP01-4522',
+                    scheduleDate: '05 Nov 2018 20:50',
+                    location: '84/122 sector 8 pratap nagar, jaipur',
+                }
+            ]
         }
+        this.arrayList = [];
         this.jobDetailsRef = React.createRef();
         this.onSearchTextChanged = this.onSearchTextChanged.bind(this);
         this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
     }
 
     componentDidMount() {
+        this.arrayList = this.state.datas;
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
@@ -146,7 +142,18 @@ export default class OpenJobs extends React.Component {
     }
 
     onSearchTextChanged(searchValue) {
-        this.setState({ searchValue });
+        this.setState({ searchValue }, function(){
+            this.doSearch(searchValue);
+        });
+    }
+
+    doSearch(searchValue) {
+        const newData = this.arrayList.filter(function (item) {
+            const itemData = item.jobNumber.toUpperCase()
+            const textData = searchValue.toUpperCase()
+            return itemData.indexOf(textData) > -1
+        })
+        this.setState({ datas: newData })
     }
 
     onSearchClearPressed(){
@@ -154,14 +161,13 @@ export default class OpenJobs extends React.Component {
     }
 
     render() {
-        const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return(
             this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
 
                 <HeaderWithSearchbar
-                    onChangeText={this.onSearchTextChanged}
+                    onChangeText={(text)=>this.onSearchTextChanged(text)}
                     onSearchClear={this.onSearchClearPressed}
                     searchValue={this.state.searchValue}
                     title={'Open Jobs'}
@@ -170,10 +176,11 @@ export default class OpenJobs extends React.Component {
                     
                 <View style={styles.inner_container}>
                     <FlatList
-                        data={datas}
+                        extraData={this.state}
+                        data={this.state.datas}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <JobsComponent jobDatas={item}
+                            <JobsComponent key={index} jobDatas={item}
                                 viewDetails={()=> {this.jobDetailsRef.current.setModalVisible(true, {})}}
                             />
                         }
