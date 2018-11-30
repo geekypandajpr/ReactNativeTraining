@@ -13,7 +13,7 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     filterIcon : {
-        flex : 1.5,
+        flex : 1,
         alignItems : 'center',
         justifyContent : 'center',
         height: 40,

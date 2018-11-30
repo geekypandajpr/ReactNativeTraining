@@ -32,7 +32,7 @@ export default EStyleSheet.create({
     {
         backgroundColor: '#FFFFFF',
         width: '100%',
-        padding : 15
+        padding : 15,
     },
     button_view: {
         flexDirection: 'row',

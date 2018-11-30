@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Modal, TouchableOpacity } from 'react-native';
 import styles from './styles';
-import { Text, Button, Left, Right } from 'native-base';
+import { Text, Button, Left, Right, CheckBox,ListItem,Body } from 'native-base';
 import { Entypo } from '@expo/vector-icons'
 export default class FilterJob extends React.Component {
     constructor(props) {
@@ -11,6 +11,7 @@ export default class FilterJob extends React.Component {
             status: '',
             value: 'scheduleDate',
             selected: ['jobNumber', 'scheduleDate', 'jobType', 'servicePerson', 'completedDate'],
+            map1 : new Map(),
         }
         this.setModalVisible = this.setModalVisible.bind(this);
         this.onModalClose = this.onModalClose.bind(this);
@@ -19,10 +20,25 @@ export default class FilterJob extends React.Component {
     setModalVisible(visible, data) {
         this.setState({ modalVisible: visible, status: data });
     }
+    toggleCheckbox(id) {
+        let map1 = this.state.map1;
+        if(this.state.map1.has(id))
+        {
+            this.state.map1.delete(id);
+            
+        }
+        else
+        {
+            this.state.map1.set(id,true);
+           
+        }
+        this.setState({map1})
+        
+    }
 
-    onModalClose(key) {
-        // console.log(this.state.selected[key])
-        this.props.getSelected(this.state.selected[key]);
+    onModalClose() {
+        
+        this.props.getSelected(this.state.map1);
         this.setState({ modalVisible: !this.state.modalVisible });
     }
     render() {
@@ -41,46 +57,65 @@ export default class FilterJob extends React.Component {
                                 <Left>
                                     <Text style={styles.header_text}>Filter</Text>
                                 </Left>
-                                <TouchableOpacity onPress={() => {
-                                    this.setModalVisible(!this.state.modalVisible);
-                                }}>
+                                <TouchableOpacity onPress={() => this.onModalClose() }>
                                     <Right style={{ alignItems: 'center', justifyContent: 'center', marginRight: 5 }}>
                                         <Entypo name="cross" size={32} color="white" />
                                     </Right>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.View_Container}>
-                                <View style={{ padding: 5 }}>
-                                    <Button full info onPress={() => this.onModalClose(0)}>
+                                <ListItem>
+                                <CheckBox
+                                             checked={this.state.map1.get('jobNumber')}
+                                            onPress={() => this.toggleCheckbox('jobNumber')}
+                                        />
+                                        <Body>
                                         <Text>Job Number</Text>
-                                    </Button>
-                                </View>
-                                <View style={{ padding: 5 }}>
-                                <Button full info onPress={() => this.onModalClose(1)}>
+                                        </Body>
+                                    </ListItem>
+                                    <ListItem>
+                                    <CheckBox
+                                            checked={this.state.map1.get('scheduleDate')}
+                                            onPress={() => this.toggleCheckbox('scheduleDate')}
+                                        />
+                                        <Body>
                                         <Text>Schedule Date</Text>
-                                    </Button>
-                                </View>
-                                <View style={{ padding: 5 }}>
-                                <Button full info onPress={() => this.onModalClose(2)}>
+                                        </Body>
+                                    </ListItem>
+                                    <ListItem>
+                                    <CheckBox
+                                                checked={this.state.map1.get('jobType')}
+                                                onPress={() => this.toggleCheckbox('jobType')}
+                                            />
+                                        <Body>
                                         <Text>Job Type</Text>
-                                    </Button>
-                                </View>
-                                {
+                                        </Body>
+                                    </ListItem>
+                                    {
                                     this.state.status == 'Pending' ? null :
-                                        <View style={{ padding: 5 }}>
-                                          <Button full info onPress={() => this.onModalClose(3)}>
-                                                <Text>Technician Name</Text>
-                                            </Button>
-                                        </View>
-                                }
-                                {
+                                    <ListItem>
+                                         <CheckBox
+                                                checked={this.state.map1.get('servicePerson')}
+                                                onPress={() => this.toggleCheckbox('servicePerson')}
+                                            />
+                                        <Body>
+                                        <Text>Technician Name</Text>
+                                        </Body>
+                                    </ListItem>
+                                    }
+                                    {
                                     this.state.status == 'Pending' || this.state.status == 'schedule' ? null :
-                                        <View style={{ padding: 5 }}>
-                                            <Button full info onPress={() => this.onModalClose(4)}>
-                                                <Text>Completed Date</Text>
-                                            </Button>
-                                        </View>
-                                }
+                                    <ListItem>
+                                         <CheckBox
+                                                checked={this.state.map1.get('completedDate')}
+                                                onPress={() => this.toggleCheckbox('completedDate')}
+                                            />
+                                        <Body>
+                                        <Text>Daily Stand Up</Text>
+                                        </Body>
+                                    </ListItem>
+                                    }
+
                             </View>
                         </View>
                     </View>

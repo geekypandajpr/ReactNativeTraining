@@ -135,7 +135,7 @@ export default class JobReschedule extends React.Component {
                     </View>
                     <View style={styles.filterIcon}>
                         <TouchableOpacity onPress={this.openFilterPage}>
-                            <FontAwesome name="filter" size={32} color="white" />
+                            <FontAwesome name="filter" size={25} color="white" />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -224,6 +224,8 @@ export default class JobReschedule extends React.Component {
                         </Card>
                     } >
                 </FlatList>
+                {
+                   this.state.map1.size==0 ? null :
                 <Footer>
                     <FooterTab>
                         <Button style={styles.footerbutton} onPress={() => this.refs.assign.setModalVisible(true)}>
@@ -232,6 +234,7 @@ export default class JobReschedule extends React.Component {
 
                     </FooterTab>
                 </Footer>
+                }
                 <FilterJob ref={this.jobFilter} getSelected={(data) => this.selectedValue(data)} />
                 <JobDetails ref='modal' />
                 <JobAssign ref='assign' />

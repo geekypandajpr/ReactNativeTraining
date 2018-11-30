@@ -1,21 +1,21 @@
 import React from 'react';
-import { View, FlatList, TouchableOpacity} from 'react-native';
-import {FontAwesome} from '@expo/vector-icons';
-import { Text, Button, Card, Footer, FooterTab,CheckBox } from 'native-base';
+import { View, FlatList, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+import { Text, Button, Card, Footer, FooterTab, CheckBox } from 'native-base';
 import styles from './styles';
 import JobDetails from '../../JobDetails/JobDetails';
 import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { SearchBar } from '../../../../components';
 import JobAssign from '../../jobAssign/jobAssign';
-import {FilterJob} from '../../../../components/FilterJob/FilterJob';
+import { FilterJob } from '../../../../components/FilterJob/FilterJob';
 
 export default class JobPending extends React.Component {
     constructor() {
         super();
         this.state = {
             data: pendingData,
-            map1 : new Map(),
-            value : 'jobNumber',
+            map1: new Map(null),
+            value: new Map(),
             status: 'Pending',
         }
         this.arrayholder = [];
@@ -26,31 +26,80 @@ export default class JobPending extends React.Component {
         this.arrayholder = this.state.data;
     }
     selectedValue(data) {
-        this.setState({value : data})
+        this.setState({ value: data });
     }
-     openFilterPage() {
+    openFilterPage() {
         this.jobFilter.current.setModalVisible(true, this.state.status);
     }
 
     toggleCheckbox(id) {
         let map1 = this.state.map1;
-        if(this.state.map1.has(id))
-        {
+        if (this.state.map1.has(id)) {
             this.state.map1.delete(id);
-            
         }
-        else
-        {
-            this.state.map1.set(id,true);
-           
+        else {
+            this.state.map1.set(id, true);
         }
-        this.setState({map1})
-        
+        this.setState({ map1 })
     }
+
     SearchFilterFunction(text) {
-        if (this.state.value == 'jobNumber') {
+        // if(this.state.value.has('jobNumber') && this.state.value.has('scheduleDate') && this.state.value.has('jobType'))
+        // {
+        //     const newData = this.arrayholder.filter(function (item) {
+        //         var itemData = item.jobNumber.toUpperCase()+item.scheduleDate.toUpperCase()+item.jobType.toUpperCase()
+        //         const textData = text.toUpperCase()
+        //         return itemData.indexOf(textData) > -1
+        //     })
+        //     this.setState({
+        //         data: newData,
+        //         text: text
+        //     },
+        //     )
+        // }
+        // if(this.state.value.has('scheduleDate') && this.state.value.has('jobNumber') )
+        // {
+        //     const newData = this.arrayholder.filter(function (item) {
+        //         var itemData = item.scheduleDate.toUpperCase() + item.jobNumber.toUpperCase()
+        //         const textData = text.toUpperCase()
+        //         return itemData.indexOf(textData) > -1
+        //     })
+        //     this.setState({
+        //         data: newData,
+        //         text: text
+        //     },
+        //     )
+        // }
+        // if(this.state.value.has('jobType') && this.state.value.has('jobNumber'))
+        // {
+        //     const newData = this.arrayholder.filter(function (item) {
+        //         var itemData = item.jobType.toUpperCase() + item.jobNumber.toUpperCase()
+        //         const textData = text.toUpperCase()
+        //         return itemData.indexOf(textData) > -1
+        //     })
+        //     this.setState({
+        //         data: newData,
+        //         text: text
+        //     },
+        //     )
+        // }
+        // if(this.state.value.has('jobType') && this.state.value.has('scheduleDate'))
+        // {
+        //     const newData = this.arrayholder.filter(function (item) {
+        //         var itemData = item.jobType.toUpperCase()+item.scheduleDate.toUpperCase()
+        //         const textData = text.toUpperCase()
+        //         return itemData.indexOf(textData) > -1
+        //     })
+        //     this.setState({
+        //         data: newData,
+        //         text: text
+        //     },
+        //     )
+        // }
+        if(this.state.value.has('jobNumber'))
+        {
             const newData = this.arrayholder.filter(function (item) {
-                const itemData = item.jobNumber.toUpperCase()
+                var itemData = item.jobNumber.toUpperCase()
                 const textData = text.toUpperCase()
                 return itemData.indexOf(textData) > -1
             })
@@ -60,9 +109,10 @@ export default class JobPending extends React.Component {
             },
             )
         }
-        if (this.state.value == 'scheduleDate') {
+        if( this.state.value.has('scheduleDate'))
+        {
             const newData = this.arrayholder.filter(function (item) {
-                const itemData = item.scheduleDate.toUpperCase()
+                var itemData = item.scheduleDate.toUpperCase()
                 const textData = text.toUpperCase()
                 return itemData.indexOf(textData) > -1
             })
@@ -72,33 +122,10 @@ export default class JobPending extends React.Component {
             },
             )
         }
-        if (this.state.value == 'jobType') {
+        if(this.state.value.has('jobType') )
+        {
             const newData = this.arrayholder.filter(function (item) {
-                const itemData = item.jobType.toUpperCase()
-                const textData = text.toUpperCase()              
-                return itemData.indexOf(textData) > -1
-            })
-            this.setState({
-                data: newData,
-                text: text
-            },
-            )
-        }
-        if (this.state.value == 'completedDate') {
-            const newData = this.arrayholder.filter(function (item) {
-                const itemData = item.completedDate.toUpperCase()
-                const textData = text.toUpperCase()
-                return itemData.indexOf(textData) > -1
-            })
-            this.setState({
-                data: newData,
-                text: text
-            },
-            )
-        }
-        if (this.state.value == 'servicePerson') {
-            const newData = this.arrayholder.filter(function (item) {
-                const itemData = item.servicePerson.toUpperCase()
+                var itemData = item.jobType.toUpperCase()
                 const textData = text.toUpperCase()
                 return itemData.indexOf(textData) > -1
             })
@@ -109,41 +136,39 @@ export default class JobPending extends React.Component {
             )
         }
     }
-
-
-
     render() {
+
         return (
             <View style={styles.container}>
                 <View style={styles.searchView}>
-                <View style={{flex :10}}>
-                <SearchBar placeholder={'Search By ' + this.state.value}
-                    onChangeText={(text) => this.SearchFilterFunction(text)}/>
+                    <View style={{ flex: 10 }}>
+                        <SearchBar placeholder={'Search By '}
+                            onChangeText={(text) => this.SearchFilterFunction(text)} />
                     </View>
-                        <View style={styles.filterIcon}>
-                        <TouchableOpacity  onPress={this.openFilterPage}>
-                        <FontAwesome name="filter" size={32} color="white" />
-                            </TouchableOpacity>
-                        </View>
+                    <View style={styles.filterIcon}>
+                        <TouchableOpacity onPress={this.openFilterPage}>
+                            <FontAwesome name="filter" size={25} color="white" />
+                        </TouchableOpacity>
                     </View>
-               <FlatList
+                </View>
+                <FlatList
                     extraData={this.state}
                     data={this.state.data}
                     keyExtractor={(item, index) => item.jobNumber}
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>
                             <View style={{ flex: 0.3, alignItems: 'flex-start', justifyContent: 'center' }}>
-                            <CheckBox
-                                        checked={this.state.map1.get(item.jobNumber)}
-                                        onPress={() => this.toggleCheckbox(item.jobNumber)}
-                                    />
+                                <CheckBox
+                                    checked={this.state.map1.get(item.jobNumber)}
+                                    onPress={() => this.toggleCheckbox(item.jobNumber)}
+                                />
                             </View>
                             <View style={{ flex: 2 }}>
                                 <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)}>
 
                                     <View style={styles.sub_view}>
                                         <View style={styles.left_sub_view}>
-                                            <Text style={styles.jobNumText}>{ item.jobNumber}</Text>
+                                            <Text style={styles.jobNumText}>{item.jobNumber}</Text>
                                         </View>
                                         <View style={styles.right_sub_view}>
                                             <View style={styles.jobTypeView}>
@@ -197,18 +222,20 @@ export default class JobPending extends React.Component {
                             </View>
                         </Card>
                     } >
-                </FlatList>       
-                <Footer>
-                    <FooterTab>
-                        <Button style={styles.footerbutton} onPress={ () => this.refs.assign.setModalVisible(true)}>
-                            <Text style={styles.footerbuttonText}>Assign Jobs</Text>
-                        </Button>
-                        
-                    </FooterTab>
-                </Footer>
+                </FlatList>
+                {
+                   this.state.map1.size==0 ? null :
+                    <Footer>
+                        <FooterTab>
+                            <Button style={styles.footerbutton} onPress={() => this.refs.assign.setModalVisible(true)}>
+                                <Text style={styles.footerbuttonText}>Assign Jobs</Text>
+                            </Button>
+                        </FooterTab>
+                    </Footer>
+                }
                 <FilterJob ref={this.jobFilter} getSelected={(data) => this.selectedValue(data)} />
                 <JobDetails ref='modal' />
-                <JobAssign ref='assign'/>
+                <JobAssign ref='assign' />
             </View>
         )
     }

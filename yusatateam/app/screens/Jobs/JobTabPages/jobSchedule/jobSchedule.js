@@ -119,7 +119,7 @@ export default class JobSchedule extends React.Component {
                     </View>
                         <View style={styles.filterIcon}>
                         <TouchableOpacity  onPress={this.openFilterPage}>
-                        <FontAwesome name="filter" size={32} color="white" />
+                        <FontAwesome name="filter" size={25} color="white" />
                             </TouchableOpacity>
                         </View>
                     </View>
