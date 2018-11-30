@@ -53,7 +53,8 @@ export default class StackedBar extends React.Component{
                     Scheduled: 6,
                 },
             ],
-            colors : [ '#FD6260', '#B19DFF', '#02B8AB' ],
+            //colors : [ '#03B9A2', '#747C7F', '#37464B' ],
+            colors : [ '#F98866', '#84e184', '#5BC8AC' ],
             keys  :[ 'Completed', 'Pending', 'Scheduled' ]
         }
     
