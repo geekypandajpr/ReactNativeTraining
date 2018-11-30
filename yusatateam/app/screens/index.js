@@ -12,3 +12,4 @@ export { Technicians } from './Technicians';
 export { ForgotPassword } from './ForgotPassword';
 export { OpenJobs } from './OpenJobs';
 export { Calendars } from './Calendars';
+export { VehicleDetails } from './VehicleList/VehicleDetails/VehicleDetails'

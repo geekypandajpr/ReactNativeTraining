@@ -5,117 +5,34 @@ export default EStyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
     },
-    viewStyle:
+    Cust_name: {
+        fontSize: '1rem',
+        color: '#000',
+        fontWeight: '500'
+    },
+    middle_View:
     {
         flex: 1,
-    },
-    mainCard:
-    {
-        flex: 1,
-        flexDirection: 'row',
-        marginLeft :6,
-        marginRight :6
-    },
-    First_View:
-    {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    Second_View:
-    {
-        flex: 4,
-        margin : 10
-    },
-    Level_Second:
-    {
-        flex: 1,
-        justifyContent: 'center', 
-    },
-    Level_Row:
-    {
-        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
         flexDirection: 'row'
     },
-    Margin_Row:
+    View_more:
     {
-        flex: 1,
+        marginRight: 10,
+        color: '#808080'
+    },
+    lower_view:
+    {
         flexDirection: 'row',
-        //marginTop: 5
-    },
-    Level_Head:
-    {
-        flex: 0.6,
-        justifyContent: 'center'
-    },
-    Header_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        fontWeight: '500',
-        color: '#000'
-    },
-    Text_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '0.9rem',
-        color: '#000'
-    },
-    View_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '0.9rem',
-        color: 'gray',
-        marginLeft: 10
-    },
-    Mobile_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '0.9rem',
-        color: 'gray',
-    },
-    providerStyle:
-    {
-        fontStyle: 'normal',
-        fontSize: '0.9rem',
-        fontWeight: 'bold',
-        color: '#1f667e',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    Provider_View:
-    {
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: 'gray',
-        width: 70,
-        justifyContent: 'center',
-        alignItems: 'center',
-       // marginRight: 10
-    },
-    Status_Button:
-    {
-        borderRadius: 15,
-        borderWidth: 3,
-        width: 100,
-        borderColor: 'white',
-       // marginRight: 8,
-        justifyContent: 'center',
         alignItems: 'center'
     },
-    Status_Style:
-    {
-        fontStyle: 'normal',
-        fontSize: '0.9rem',
-        fontWeight: 'bold',
-        color: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding : 2
+    second_view: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
     },
-    Level_Style:
-    {
-        flex: 2,
-        justifyContent: 'center'
-    }
+
+
 })
