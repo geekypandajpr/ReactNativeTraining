@@ -13,6 +13,7 @@ import styles from './styles';
 import { Toolbar } from '../../components';
 import { SimDetails } from './SimDetails';
 import SimData from '../../assets/JSONData/SimData';
+import { SearchBar } from '../../components/SearchBar/SearchBar';
 
 export default class Sim extends React.Component {
     constructor() {
@@ -53,6 +54,7 @@ export default class Sim extends React.Component {
                     <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
                     <View style={styles.viewStyle}>
+                    <SearchBar></SearchBar>
                         <FlatList
                             data={SimData}
                             keyExtractor={(item, index) => index.toString()}
