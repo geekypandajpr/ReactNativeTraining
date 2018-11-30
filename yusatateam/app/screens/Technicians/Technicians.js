@@ -2,9 +2,9 @@ import React from 'react';
 import {
     View,
     FlatList,
-    Modal,
     BackHandler
 } from 'react-native';
+
 import styles from './styles';
 import { Toolbar, TechnicianList } from '../../components';
 import techDatas from '../../assets/JSONData/TechnicianData';
@@ -14,13 +14,11 @@ export default class Technicians extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        // this.modalRef = React.createRef();
-        // this.techDetail=this.techDetail.bind(this);
     }
-   
+
     techDetail() {
         this.refs.modal.setModalVisible(true);
-        }
+    }
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -39,27 +37,28 @@ export default class Technicians extends React.Component {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
-           
-                <View style={styles.container}>
-                
-                    <Toolbar title='Technicians' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
-                    />
 
-                    <View style={styles.inner_container}>
-                        <FlatList
-                            data={techDatas}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item, index }) =>
-                                <TechnicianList
-                                    data={item}
-                                    onPress={()=>navigate('TabComponent')}
-                                    assignJobs={() => navigate('OpenJobs')}
-                                />
-                            } />
-                    </View>
-                   {/* <TechDetails ref={'modal'} /> */}
+            <View style={styles.container}>
+
+                <Toolbar title='Technicians' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                    setting='ios-search' settingType='Ionicons'
+                />
+
+                <View style={styles.inner_container}>
+                    <FlatList
+                        data={techDatas}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item, index }) =>
+                            <TechnicianList
+                                data={item}
+                                viewTodaysJobs={() => navigate('TodaysJobs')}
+                                viewDetails={() => navigate('TechDetails')}
+                                assignJobs={() => navigate('OpenJobs')}
+                            />
+                        } />
                 </View>
+                {/* <TechDetails ref={'modal'} /> */}
+            </View>
         );
     }
 

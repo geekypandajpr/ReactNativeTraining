@@ -13,6 +13,7 @@ export default class JobDetails extends React.Component {
             modalVisible: false,
             item: {}
         }
+        this.setModalVisible = this.setModalVisible.bind(this);
     }
 
     async componentWillMount() {
@@ -25,12 +26,15 @@ export default class JobDetails extends React.Component {
     };
 
     setModalVisible(visible, item) {
+        console.log(JSON.stringify(item));
         this.setState({ modalVisible: visible, item: item });
     }
 
     render() {
+        const item = this.state.item;
         return (
             this.state.isLoading === true ? <AppLoading /> :
+            
             <View>
                 <Modal
                     animationType="slide"
@@ -46,7 +50,7 @@ export default class JobDetails extends React.Component {
                             <View style={{ height: '80%', width: '100%', position: 'absolute', bottom: 0 }}>
                                 <Header style={styles.header}>
                                     <Body>
-                                        <Text style={styles.title}>JOBS20NOV2018</Text>
+                                        <Text style={styles.title}>{item.jobNumber}</Text>
                                     </Body>
                                     <Right>
                                     </Right>
@@ -63,7 +67,7 @@ export default class JobDetails extends React.Component {
                                                 </View>
                                                 <View style={styles.right_view}>
                                                     <View style={styles.job_type}>
-                                                        <Text style={styles.job_type_text}>Install</Text>
+                                                        <Text style={styles.job_type_text}>{item.jobType}</Text>
                                                     </View>
                                                 </View>
                                             </View>
@@ -75,7 +79,7 @@ export default class JobDetails extends React.Component {
                                                     <Text style={styles.colon}>:</Text>
                                                 </View>
                                                 <View style={styles.right_view}>
-                                                    <Text style={styles.value_text}>20 Nov 2018 12:50</Text>
+                                                    <Text style={styles.value_text}>{item.scheduleDate}</Text>
                                                 </View>
                                             </View>
                                             <View style={styles.sub_view}>
@@ -86,7 +90,9 @@ export default class JobDetails extends React.Component {
                                                     <Text style={styles.colon}>:</Text>
                                                 </View>
                                                 <View style={styles.right_view}>
-                                                    <Text style={styles.value_text}>-  -  -</Text>
+                                                    <Text style={styles.value_text}>
+                                                    { item.completedDate != null ? item. completedDate : '-  -  -' }
+                                                    </Text>
                                                 </View>
                                             </View>
                                             <View style={styles.sub_view}>
@@ -97,7 +103,7 @@ export default class JobDetails extends React.Component {
                                                     <Text style={styles.colon}>:</Text>
                                                 </View>
                                                 <View style={styles.right_view}>
-                                                    <Text style={styles.value_text}>Yash Gulati</Text>
+                                                    <Text style={styles.value_text}>{item.technician}</Text>
                                                 </View>
                                             </View>
                                             <View style={styles.sub_view}>
@@ -111,7 +117,7 @@ export default class JobDetails extends React.Component {
                                                     <View><Entypo name='location-pin' size={24} color='#d9534f' /></View>
                                                     <View style={{ flex: 1 }}>
                                                         <Text style={styles.value_text}>
-                                                            84/122 sector 8 pratap nagar, jaipur rajasthan
+                                                            {item.jobLocation}
                                                         </Text>
                                                     </View>
                                                 </View>
@@ -125,7 +131,7 @@ export default class JobDetails extends React.Component {
                                                 </View>
                                                 <View style={styles.right_view}>
                                                     <View style={styles.status_view}>
-                                                        <Text style={styles.status_text}>Completed</Text>
+                                                        <Text style={styles.status_text}>{item.status}</Text>
                                                     </View>
                                                 </View>
                                             </View>
@@ -162,7 +168,7 @@ export default class JobDetails extends React.Component {
                                                     <Text style={styles.colon}>:</Text>
                                                 </View>
                                                 <View style={styles.right_view}>
-                                                    <Text style={styles.value_text}>Premsagar Choudhary</Text>
+                                                    <Text style={styles.value_text}>{item.customerName}</Text>
                                                 </View>
                                             </View>
                                             <View style={styles.sub_view}>
@@ -174,7 +180,7 @@ export default class JobDetails extends React.Component {
                                                 </View>
                                                 <View style={styles.right_view}>
                                                     <Ionicons name='ios-call' size={24} color='#5cb85c' />
-                                                    <Text style={styles.value_text}>+918605665320</Text>
+                                                    <Text style={styles.value_text}>{item.customerContact}</Text>
                                                 </View>
                                             </View>
                                         </View>

@@ -1,88 +1,66 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Dimensions } from 'react-native';
+
+const HEIGHT = Dimensions.get('window').height;
 
 export default EStyleSheet.create({
-
-    container:
-    {
+    container:{
         flex: 1,
-        backgroundColor: '#efefef',
+        backgroundColor: '#e2e2e2',
     },
-    upperView:
-    {
+    first_view: {
         flex: 1,
-    },
-    upper_View: {
-        flex: 1,
-        flexDirection: 'row',
-        marginBottom: 10,
+        //height: HEIGHT / 2,
         backgroundColor: '#fff'
     },
-    lowerView:
-    {
-        flex: 2,
+    second_view: {
+        flex: 1,
+        marginTop: 10,
+        //height: HEIGHT / 2,
         backgroundColor: '#fff'
     },
-    Cname_text: {
-        fontSize: '1rem',
+    date_view: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 0.8,
+        padding: 4,
+        borderColor: 'gray'
+    },
+    date: {
         color: '#000',
-        fontWeight: '500'
+        fontSize: '0.8rem'
     },
-    name_text: {
+    view: {
+        margin: 8,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    left_view: {
+        flex:1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColksor: 'red'
+    },
+    right_view: {
+        flex:1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor: 'green'
+    },
+    key_text: {
         fontSize: '0.8rem',
         color: '#000',
         fontWeight: '400'
     },
-    row_divide:
-    {
-        margin: 2,
-        flexDirection: 'row',
-    },
-    profile_View: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    profile_pic:
-    {
-        height: 100,
-        width: 100,
-        borderRadius: 50,
-        borderWidth: 1,
-    },
-    level_text: {
+    value_text: {
         fontSize: '0.8rem',
-        color: '#000'
+        color: 'gray'
     },
-    Ques_flex: {
-        flex: 0.8,
-        justifyContent: 'center'
-    },
-    colon_flex:
-    {
-        flex: 0.2,
-        justifyContent: 'center'
-    },
-    Ans_flex:
-    {
-        flex: 2,
-        justifyContent: 'center'
-    },
-    Location_flex:
-    {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start'
-    },
-    Location_flex: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'flex-start'
-    },
-    Call_flex: {
-        flex: 2,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
+    square: {
+        width: 14,
+        height: 14,
+        marginRight: 8
     }
 })
