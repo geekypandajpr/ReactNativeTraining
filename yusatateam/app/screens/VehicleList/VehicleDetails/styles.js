@@ -1,41 +1,59 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-
 export default EStyleSheet.create({
-
     container:
     {
         flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        backgroundColor: '#00000090',
-        flexDirection: 'column',
+        backgroundColor: '#fff'
     },
-    header_view: {
-        width: '100%',
-        height: 50,
-        backgroundColor: '#EEEEF0',
-        justifyContent: 'center',
-        elevation: 5,
+    inner_container:
+    {
+        padding: 4,
+        flex: 1
+    },
+    card_style:
+    {
+        flex: 1,
+        borderColor: 'white'
+    },
+    Padding_view:
+    {
+        paddingTop: 4,
+        paddingBottom: 4,
+        paddingLeft: 10,
+        paddingRight: 10
+    },
+    flex_one:
+    {
+        flex: 1
+    },
+    View_row:
+    {
+        flex: 1,
         flexDirection: 'row',
+        alignItems: 'center'
     },
-    service_num: {
-        flex: 7,
-        justifyContent: 'center'
-    },
-    header_text: {
-
+    Vehicle_no: {
+        fontSize: '1rem',
         color: '#000',
-        fontSize: '1.1rem',
-        fontWeight: 'bold',
-        margin: 15
+        fontWeight: '500'
     },
-  
-    right_sub_view: {
-        flex: 3,
+    Vehicle_num: {
+        fontSize: '0.9rem',
+        color: '#000',
+        fontWeight: '500',
+        marginLeft: 6
+    },
+    Sim_no:
+    {
+        flex: 2,
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight : 10
+        alignItems: 'center'
+    },
+    status_View:
+    {
+        flex: 1,
+        alignItems: 'flex-end',
+        justifyContent: 'center'
     },
     jobTypeView: {
         borderRadius: 10,
@@ -46,65 +64,10 @@ export default EStyleSheet.create({
         height: 23,
         justifyContent: 'center',
         alignItems: 'center',
+
     },
     jobTypeText: {
-        color: '#F98866',
+        color: '#1f667e',
         fontSize: '0.8rem'
-    },
-    View_Container:
-    {
-        backgroundColor: '#FFFFFF',
-        height: '50%',
-        width: '100%',
-        paddingTop: 15,
-        paddingLeft: 15,
-        paddingRight: 15
-    },
-    Margin_View:
-    {
-        flexDirection: 'row',
-        marginTop: 3
-    },
-    Level_Flex:
-    {
-        flex: 1.5,
-        justifyContent:'center'
-    },
-    Order_text:
-    {
-        fontStyle: 'normal',
-        fontSize: '1.2rem',
-        color: '#000',
-        fontWeight: '100',
-    },
-    Column_Flex:
-    {
-        flex: 0.1,
-        justifyContent:'center'
-    },
-    Text_Flex:
-    {
-        flex: 2,
-        justifyContent: 'center'
-    },
-    Order_texts:
-    {
-        fontStyle: 'normal',
-        fontSize: '1.1rem',
-        color: 'gray',
-        fontWeight: '100',
-        marginLeft:10
-    },
-    Mobile_Level: {
-        flexDirection: 'row',
-        marginTop: 6
-    },  
-    close_button: {
-        padding : 10,
-        //paddingRight : 0, 
-    },
-    close_button_Text : {
-        color: '#fff',
-        fontSize: '1rem'
     },
 })

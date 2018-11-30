@@ -1,101 +1,112 @@
 import React from 'react';
-import {
-    View,
-    Modal,
-    Text,
-    ScrollView
-} from 'react-native';
-import { Button } from 'native-base';
+import { ScrollView, FlatList, BackHandler } from 'react-native';
+import { View, Text, Card, Button } from 'native-base';
+import { AppLoading } from 'expo';
+import { Toolbar } from '../../../components/Toolbar/Toolbar'
 import styles from './styles';
 import { Ionicons, FontAwesome, Entypo } from '@expo/vector-icons';
+import DeviceData from '../../../assets/JSONData/DeviceData'
 export default class VehicleDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalVisible: false,
-            item: {},
+            isLoading: true
         }
     }
-    setModalVisible(visible, item) {
-        this.setState({ modalVisible: visible, item: item });
+
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+        })
+        this.setState({ isLoading: false })
     }
+
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+
     render() {
-            const details = this.state.item;
-            return (
-                <View>
-                    <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={this.state.modalVisible}
-                        onRequestClose={() => {
-                            this.setState({ modalVisible: !this.state.modalVisible });
-                        }}>
-                        <View style={styles.container}>
-                            <View style={styles.header_view}>
-                                <View style={styles.service_num}>
-                                    <Text style={styles.header_text}>{details.ORDER}</Text>
-                                </View>
-                                <View style={styles.right_sub_view}>
-                                    <View style={styles.jobTypeView}>
-                                        <Text style={styles.jobTypeText}>{details.status}</Text>
-                                    </View>
-                                </View>
-                            </View>
-                            <View style={styles.View_Container}>
-                                <ScrollView showsVerticalScrollIndicator={false}>
-                                    <View style={styles.Margin_View}>
-                                        <View style={styles.Level_Flex}>
-                                            <Text style={styles.Order_text}>MSIDN No</Text>
-                                        </View>
-                                        <View style={styles.Column_Flex}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={styles.Text_Flex}>
-                                            <Text style={styles.Order_texts}>{details.MSIDN}</Text>
-                                        </View>
-                                    </View>                                   
-                                        <View style={styles.Margin_View}>
-                                            <View style={styles.Level_Flex}>
-                                                <Text style={styles.Order_text}>ICCID No</Text>
+        const { navigate } = this.props.navigation;
+        const { goBack } = this.props.navigation;
+        return (
+            this.state.isLoading === true ? <AppLoading /> :
+                <View style={styles.container}>
+                    <Toolbar title='Customer Name' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
+
+                    <View style={styles.inner_container}>
+                        <FlatList
+                            data={DeviceData}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={({ item, index }) =>
+                                <Card style={styles.card_style}>
+
+                                    <View style={styles.Padding_view}>
+
+                                        <View style={styles.View_row}>
+                                            <View style={styles.flex_one}>
+                                                <Text style={styles.Vehicle_no}>Vehicle No</Text>
                                             </View>
-                                            <View style={styles.Column_Flex}>
-                                                <Text>:</Text>
+                                            <View style={{ flex: 3, flexDirection: 'row' }}>
+
+                                                <Text style={styles.Vehicle_num}>JP456789</Text>
                                             </View>
-                                            <View style={styles.Text_Flex}>
-                                                <Text style={styles.Order_texts}>{details.ICCID}</Text>
+                                        </View>
+
+                                        <View style={styles.View_row}>
+                                            <View style={styles.flex_one}>
+
+                                                <View style={styles.View_row}>
+                                                    <View style={styles.flex_one}>
+                                                        <Text>Sim</Text>
+                                                    </View>
+                                                    <View style={styles.Sim_no}>
+                                                        <Text >:</Text>
+                                                        <Text style={{ marginLeft: 6 }}>2</Text>
+                                                    </View>
+                                                </View>
+
+                                                <View style={styles.View_row}>
+                                                    <View style={styles.flex_one}>
+                                                        <Text>Device</Text>
+                                                    </View>
+                                                    <View style={styles.Sim_no}>
+                                                        <Text >:</Text>
+                                                        <Text style={{ marginLeft: 6 }}>3</Text>
+                                                    </View>
+                                                </View>
                                             </View>
-                                        </View>                                
-                                    <View style={styles.Margin_View}>
-                                        <View style={styles.Level_Flex}>
-                                            <Text style={styles.Order_text}>Provider</Text>
+                                            <View style={styles.status_View}>
+                                                <View style={styles.jobTypeView}>
+                                                    <Text style={styles.jobTypeText}>Complete</Text>
+                                                </View>
+                                            </View>
                                         </View>
-                                        <View style={styles.Column_Flex}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={styles.Text_Flex}>
-                                            <Text style={styles.Order_texts}>{details.Provider}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.Mobile_Level}>
-                                        <View style={{ flex: 0.2, justifyContent: 'center' }}>
-                                            <Ionicons name='ios-call' size={27} color='#5cb85c' />
-                                        </View>
-                                        <View style={{ flex: 2, justifyContent: 'center' }}>
-                                            <Text style={styles.View_Style}>{details.Mobile}</Text>
+                                        <View style={styles.View_row}>
+                                            <View style={styles.flex_one}>
+                                                <Text>Date</Text>
+                                            </View>
+                                            <View style={{ flex: 5, flexDirection: 'row' }}>
+                                                <Text >:</Text>
+                                                <Text style={{ marginLeft: 6 }}>24/04/2015</Text>
+                                            </View>
                                         </View>
                                     </View>
-                                    <View style={styles.close_button}>
-                                        <Button block success onPress={() => {
-                                            this.setState({ modalVisible: !this.state.modalVisible });
-                                        }}>
-                                            <Text style={styles.close_button_Text}>Close</Text>
-                                        </Button>
-                                    </View>
-                                </ScrollView>
-                            </View>
-                        </View>
-    
-                    </Modal>
+                                </Card>
+                            }></FlatList>
+                    </View>
                 </View>
         );
     }
