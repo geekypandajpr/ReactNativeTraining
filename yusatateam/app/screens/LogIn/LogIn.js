@@ -36,8 +36,8 @@ export class LogIn extends React.Component {
             "password": "SunilS@123",
             "userName": "sunil.sharma@yusata.com"
         }
-        //this.props.onFetchData(loginCredentials);
-        this.props.navigation.navigate('Dashboard');
+        this.props.onFetchData(loginCredentials);
+        //this.props.navigation.navigate('Dashboard');
     }
 
     _checkRequiredFields() {
