@@ -130,9 +130,7 @@ export class LogIn extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {
-        appData: state.appData
-    }
+    return {}
 }
 
 function mapDispatchToProps(dispatch) {
