@@ -15,6 +15,7 @@ import OpenJobs from '../screens/OpenJobs/OpenJobs';
 import Calendars from '../screens/Calendars/Calendars';
 import TodaysJobs from '../screens/Technicians/TodaysJobs/TodaysJobs';
 import TechDetails from '../screens/Technicians/TechDetails/TechDetails';
+import VehicleDetails from '../screens/VehicleList/VehicleDetails/VehicleDetails';
 
 // import {
 //     LogIn,
@@ -123,6 +124,13 @@ const RouteConfigs = {
     TechDetails:
     {   
         screen: TechDetails,
+        navigationOptions: {
+            header: null
+        }
+    },
+    VehicleDetails:
+    {   
+        screen: VehicleDetails,
         navigationOptions: {
             header: null
         }

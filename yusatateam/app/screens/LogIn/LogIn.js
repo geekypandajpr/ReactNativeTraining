@@ -5,7 +5,7 @@ import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } fr
 import { CheckBox, Button, Text, Toast } from 'native-base';
 
 import { InputWithIcon, Statusbar } from '../../components';
-import { loginRequest } from '../../redux/actions/userActions';
+import { userActions } from '../../redux/actions';
 import styles from './Styles';
 
 export class LogIn extends React.Component {
@@ -135,7 +135,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onFetchData: (loginCredentials) => dispatch(loginRequest(loginCredentials))
+        onFetchData: (loginCredentials) => dispatch(userActions.loginRequest(loginCredentials))
     }
 }
 

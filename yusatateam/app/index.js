@@ -12,9 +12,9 @@ export default class Index extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                {/* <Root> */}
+                <Root>
                     <Navigator />
-                {/* </Root> */}
+                </Root>
             </Provider>
         );
     }
