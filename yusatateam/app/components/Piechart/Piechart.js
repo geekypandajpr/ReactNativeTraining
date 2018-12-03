@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Dimensions } from 'react-native';
 import { Text } from 'native-base';
 import PieChart from 'react-native-pie-chart';
-import styles from './styles';
 import { AppLoading } from 'expo';
-import PureChart from 'react-native-pure-chart';
+
+import styles from './styles';
 
 export default class Piechart extends Component {
     constructor() {
@@ -40,6 +40,7 @@ export default class Piechart extends Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
+
                 <View style={styles.first_view}>
                     <View style={{flex: 1, alignItems:'center'}}>
                         <PieChart
@@ -47,21 +48,19 @@ export default class Piechart extends Component {
                             series={this.props.pieSeries}
                             sliceColor={this.props.pieColors}
                         />
-                        {/* <PureChart data={this.props.piedata} type='pie' width={'100%'} height={10}/> */}
                     </View>
                 </View>
+                
                 <View style={styles.second_view}>
                     { this.props.piedata.map((item,index) => 
                         <View key={index} style={styles.details_view}>
                             <View style={styles.view1}><View style={[styles.square,{backgroundColor: item.color}]}></View></View>
-                            <View style={styles.view2}><Text style={styles.text}>{item.label} : {item.value}</Text></View>
+                            <View style={styles.view2}><Text style={[styles.text,{fontFamily:'Roboto'}]}>{item.label} : {item.value}</Text></View>
                         </View>
                     )}
                     
                 </View>
 
-
-                
             </View>
         );
     }

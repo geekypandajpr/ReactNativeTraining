@@ -3,24 +3,19 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
     container: {
         flex: 1,
-        //justifyContent: 'center',
-        //alignItems: 'center',
         flexDirection: 'row'
     },
     first_view: {
-        flex: 1,
-        //backgroundColor: 'red',
+        flex: 1.4,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 5
     },
     second_view: {
         flex: 1,
-        //backgroundColor: 'green',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
-        padding: 10
+        paddingRight: 10
     },
     square: {
         height: 14,
@@ -29,22 +24,23 @@ export default EStyleSheet.create({
     details_view: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingTop: 3,
+        paddingBottom: 3
     },
     view1: {
-        flex: 1,
+        flex: 0.8,
         flexDirection:'row',
-        justifyContent: 'center',
-        //backgroundColor: 'red'
+        justifyContent: 'flex-start',
+        alignItems: 'center'
     },
     view2: {
         flex: 4,
         flexDirection:'row',
         justifyContent: 'flex-start'
-        //backgroundColor: 'green'
     },
     text: {
         fontSize: '0.8rem',
-        color: 'gray'
+        color: 'rgba(0,0,0,0.5)'
     }
 });

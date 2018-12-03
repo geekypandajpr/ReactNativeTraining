@@ -1,5 +1,6 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import colors from '../../constants/colors';
+
 export default EStyleSheet.create({
     container: {
         flex: 1,
@@ -55,12 +56,7 @@ export default EStyleSheet.create({
         //backgroundColor: 'pink',
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    colon: {
-        fontSize: '0.8rem',
-        color: 'gray'
-    },
-    
+    },    
     view_container: {
         flex: 1,
         flexDirection: 'row'
@@ -70,15 +66,15 @@ export default EStyleSheet.create({
         color: '#000',
         fontWeight: '500'
     },
-    jobType: {
+    assign_view: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center'
     },
-    jobTypeView: {
+    assign_button: {
         borderRadius: 10,
-        borderWidth: 1,
+        borderWidth: 0.8,
         borderColor: 'gray',
         padding: 1,
         width: 80,
@@ -86,17 +82,17 @@ export default EStyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    jobTypeText: {
+    assign_text: {
         color: '#F98866',
         fontSize: '0.7rem'
     },
     key_text: {
-        color: '#000',
-        fontSize: '0.9rem',
+        color: 'rgba(0,0,0,1)',
+        fontSize: '0.8rem',
         fontWeight: '400'
     },
     value_text: {
-        color: 'gray',
+        color: 'rgba(0,0,0,0.5)',
         fontSize: '0.8rem'
     },
     todays_job_view: {
@@ -117,9 +113,7 @@ export default EStyleSheet.create({
     viewMore: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-end', 
         alignItems: 'center'
     }
-
-    
 });

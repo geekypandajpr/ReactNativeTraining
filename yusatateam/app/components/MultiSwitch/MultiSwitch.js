@@ -179,15 +179,15 @@ export default class MultiSwitch extends Component {
             <View style={styles.container}>
                 <Buttons type={this.props.buttonName1}
                     onPress={this.notStartedSelected}
-                    buttonText={{color: 'gray', fontSize: 13}} 
+                    buttonText={{color: 'rgba(0,0,0,0.3)', fontSize: 13}} 
                 />
                 <Buttons type={this.props.buttonName2}
                     onPress={this.inProgressSelected}
-                    buttonText={{color: 'gray', fontSize: 13}}
+                    buttonText={{color: 'rgba(0,0,0,0.3)', fontSize: 13}}
                 />
                 <Buttons type={this.props.buttonName3}
                     onPress={this.completeSelected}
-                    buttonText={{color: 'gray', fontSize: 13}}
+                    buttonText={{color: 'rgba(0,0,0,0.3)', fontSize: 13}}
                 />
                 <Animated.View
                     {...this._panResponder.panHandlers}
