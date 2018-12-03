@@ -47,42 +47,42 @@ export default class Dashboard extends React.Component {
     }
 
     onChangePieChart(value) {
-        if (value === 'Sims') {
-            var data = [
-                { value: 400, label: 'Total Sims', color: '#FD6260' },
-                { value: 200, label: 'Installed', color: '#B19DFF' },
-                { value: 100, label: 'Activated', color: '#02B8AB' },
-                { value: 100, label: 'Deactivated', color: '#F3C814' }
-            ];
-            var series = [400, 200, 100, 100];
-            var colors = ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'];
-            this.setState({ piedata: data, pieSeries: series, pieColor: colors });
-        }
-        else if (value === 'Devices') {
-            var data = [
-                { value: 200, label: 'Total Devices', color: '#FD6260' },
-                { value: 120, label: 'Installed', color: '#B19DFF' },
-                { value: 200, label: 'Tested Ok', color: '#02B8AB' },
-                { value: 100, label: 'Ready to use', color: '#F3C814' },
-                { value: 80, label: 'Defective', color: '#FF9561' }
-            ]
-            var series = [200, 120, 200, 100, 80];
-            var colors = ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814', '#FF9561'];
-            this.setState({ piedata: data, pieSeries: series, pieColor: colors });
-        }
-        else {
-            var data = [
-                { value: 300, label: 'Total jobs', color: '#FD6260' },
-                { value: 100, label: 'Scheduled', color: '#B19DFF' },
-                { value: 120, label: 'Completed', color: '#02B8AB' },
-                { value: 60, label: 'Pending', color: '#F3C814' },
-                { value: 150, label: 'Cancelled', color: '#FF9561' },
-            ]
-            var series = [300, 100, 120, 60, 150];
-            var colors = ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814', '#FF9561'];
-            this.setState({ piedata: data, pieSeries: series, pieColor: colors });
+        // if (value === 'Sims') {
+        //     var data = [
+        //         { value: 400, label: 'Total Sims', color: '#FD6260' },
+        //         { value: 200, label: 'Installed', color: '#B19DFF' },
+        //         { value: 100, label: 'Activated', color: '#02B8AB' },
+        //         { value: 100, label: 'Deactivated', color: '#F3C814' }
+        //     ];
+        //     var series = [400, 200, 100, 100];
+        //     var colors = ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'];
+        //     this.setState({ piedata: data, pieSeries: series, pieColor: colors });
+        // }
+        // else if (value === 'Devices') {
+        //     var data = [
+        //         { value: 200, label: 'Total Devices', color: '#FD6260' },
+        //         { value: 120, label: 'Installed', color: '#B19DFF' },
+        //         { value: 200, label: 'Tested Ok', color: '#02B8AB' },
+        //         { value: 100, label: 'Ready to use', color: '#F3C814' },
+        //         { value: 80, label: 'Defective', color: '#FF9561' }
+        //     ]
+        //     var series = [200, 120, 200, 100, 80];
+        //     var colors = ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814', '#FF9561'];
+        //     this.setState({ piedata: data, pieSeries: series, pieColor: colors });
+        // }
+        // else {
+        //     var data = [
+        //         { value: 300, label: 'Total jobs', color: '#FD6260' },
+        //         { value: 100, label: 'Scheduled', color: '#B19DFF' },
+        //         { value: 120, label: 'Completed', color: '#02B8AB' },
+        //         { value: 60, label: 'Pending', color: '#F3C814' },
+        //         { value: 150, label: 'Cancelled', color: '#FF9561' },
+        //     ]
+        //     var series = [300, 100, 120, 60, 150];
+        //     var colors = ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814', '#FF9561'];
+        //     this.setState({ piedata: data, pieSeries: series, pieColor: colors });
 
-        }
+        // }
     }
 
     onBarchartChange(key) {
@@ -111,7 +111,11 @@ export default class Dashboard extends React.Component {
                         <View style={styles.upper_view}>
                             
                             <View style={styles.switch}>
-                                <MultiSwitch onStatusChanged={this.onChangePieChart} />
+                                <MultiSwitch onStatusChanged={this.onChangePieChart} 
+                                    buttonName1="Sims" buttonColor1='#9491F8'
+                                    buttonName2="Devices" buttonColor2='#8BB6F3'
+                                    buttonName3="Jobs" buttonColor3='#8AD3F3'
+                                />
                             </View>
                             <View style={styles.pie_chart}>
                                 <Piechart

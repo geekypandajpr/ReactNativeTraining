@@ -52,10 +52,6 @@ const styles = EStyleSheet.create({
         height: 54,
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    buttonText: {
-        fontSize: '0.8rem',
-        color: '#000'
     }
 });
 

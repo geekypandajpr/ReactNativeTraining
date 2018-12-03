@@ -29,7 +29,7 @@ const Buttons = props => {
             <TouchableOpacity
                 onPress={props.onPress}
                 style={[styles.buttonStyle,{backgroundColor: props.color}]} >
-                <Text style={styles.buttonText}>
+                <Text style={[props.buttonText]}>
                     {props.type}
                 </Text>
             </TouchableOpacity>

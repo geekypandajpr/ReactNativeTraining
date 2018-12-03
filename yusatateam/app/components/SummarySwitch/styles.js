@@ -53,11 +53,6 @@ const styles = EStyleSheet.create({
         alignItems: 'center',
         //borderRadius: 27.5
     },
-
-    buttonText: {
-        fontSize: '0.8rem',
-        color: '#000'
-    }
 });
 
 export default styles;
