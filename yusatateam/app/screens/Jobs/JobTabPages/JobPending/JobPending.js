@@ -96,8 +96,7 @@ export default class JobPending extends React.Component {
         //     },
         //     )
         // }
-        if(this.state.value.has('jobNumber'))
-        {
+        if (this.state.value.has('jobNumber')) {
             const newData = this.arrayholder.filter(function (item) {
                 var itemData = item.jobNumber.toUpperCase()
                 const textData = text.toUpperCase()
@@ -109,8 +108,7 @@ export default class JobPending extends React.Component {
             },
             )
         }
-        if( this.state.value.has('scheduleDate'))
-        {
+        if (this.state.value.has('scheduleDate')) {
             const newData = this.arrayholder.filter(function (item) {
                 var itemData = item.scheduleDate.toUpperCase()
                 const textData = text.toUpperCase()
@@ -122,8 +120,7 @@ export default class JobPending extends React.Component {
             },
             )
         }
-        if(this.state.value.has('jobType') )
-        {
+        if (this.state.value.has('jobType')) {
             const newData = this.arrayholder.filter(function (item) {
                 var itemData = item.jobType.toUpperCase()
                 const textData = text.toUpperCase()
@@ -224,14 +221,14 @@ export default class JobPending extends React.Component {
                     } >
                 </FlatList>
                 {
-                   this.state.map1.size==0 ? null :
-                    <Footer>
-                        <FooterTab>
-                            <Button style={styles.footerbutton} onPress={() => this.refs.assign.setModalVisible(true)}>
-                                <Text style={styles.footerbuttonText}>Assign Jobs</Text>
-                            </Button>
-                        </FooterTab>
-                    </Footer>
+                    this.state.map1.size == 0 ? null :
+                        <Footer>
+                            <FooterTab>
+                                <Button style={styles.footerbutton} onPress={() => this.refs.assign.setModalVisible(true)}>
+                                    <Text style={styles.footerbuttonText}>Assign Jobs</Text>
+                                </Button>
+                            </FooterTab>
+                        </Footer>
                 }
                 <FilterJob ref={this.jobFilter} getSelected={(data) => this.selectedValue(data)} />
                 <JobDetails ref='modal' />

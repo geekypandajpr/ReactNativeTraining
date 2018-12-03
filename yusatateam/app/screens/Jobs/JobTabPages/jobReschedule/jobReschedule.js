@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity } from 'react-native';
-import {FontAwesome } from '@expo/vector-icons';
-import {Text, Button, Card, Footer, FooterTab, CheckBox } from 'native-base';
+import { FontAwesome } from '@expo/vector-icons';
+import { Text, Button, Card, Footer, FooterTab, CheckBox } from 'native-base';
 import styles from './styles';
 import JobDetails from '../../JobDetails/JobDetails';
 import reScheduleData from '../../../../assets/JSONData/JobsData/reScheduleData';
@@ -225,15 +225,15 @@ export default class JobReschedule extends React.Component {
                     } >
                 </FlatList>
                 {
-                   this.state.map1.size==0 ? null :
-                <Footer>
-                    <FooterTab>
-                        <Button style={styles.footerbutton} onPress={() => this.refs.assign.setModalVisible(true)}>
-                            <Text style={styles.footerbuttonText}>Assign Jobs</Text>
-                        </Button>
+                    this.state.map1.size == 0 ? null :
+                        <Footer>
+                            <FooterTab>
+                                <Button style={styles.footerbutton} onPress={() => this.refs.assign.setModalVisible(true)}>
+                                    <Text style={styles.footerbuttonText}>Assign Jobs</Text>
+                                </Button>
 
-                    </FooterTab>
-                </Footer>
+                            </FooterTab>
+                        </Footer>
                 }
                 <FilterJob ref={this.jobFilter} getSelected={(data) => this.selectedValue(data)} />
                 <JobDetails ref='modal' />
