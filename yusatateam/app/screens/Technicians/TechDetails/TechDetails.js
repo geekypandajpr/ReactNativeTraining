@@ -52,8 +52,8 @@ const data = [
     },
 ];
 //colors : [ '#03B9A2', '#747C7F', '#37464B' ],
-// const colors = [ '#F98866', '#84e184', '#5BC8AC' ];
-const colors = ['#9491F8', '#8BB6F3', '#8AD3F3']
+const colors = [ '#F98866', '#84e184', '#5BC8AC' ];
+// const colors = ['#9491F8', '#8BB6F3', '#8AD3F3']
 const keys  = [ 'Completed', 'Pending', 'Scheduled' ];
 
 export default class TechDetails extends React.Component {
@@ -90,7 +90,7 @@ export default class TechDetails extends React.Component {
     }
 
     render() {
-        const week=['1','2','3','4','5','6']
+        const week=['1','2','3','4','5','6', '7', '8', '9', '10', '11']
         const { goBack } = this.props.navigation;
 
         return (
