@@ -164,13 +164,13 @@ export default class OpenJobs extends React.Component {
     }
 
     onCheckboxPressed(jobNumber) {
-        const map = new Map(jobNumber);
+        const map = new Map(this.state.map);
         if(map.has(jobNumber))
         {
            map.set(jobNumber,!map.get(jobNumber))
         }
         else{
-            map.set(jobNumber);
+            map.set(jobNumber,true);
         }
         this.setState({map:map})
     }
@@ -196,8 +196,8 @@ export default class OpenJobs extends React.Component {
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
                             <JobsComponent key={index} jobDatas={item}
-                                checked={false}
-                                onCheckboxPress={this.onCheckboxPressed(item.jobNumber)}
+                                checked={this.state.map.get(item.jobNumber)}
+                                onCheckboxPress={()=>this.onCheckboxPressed(item.jobNumber)}
                                 viewDetails={()=> {this.jobDetailsRef.current.setModalVisible(true, {})}}
                             />
                         }
