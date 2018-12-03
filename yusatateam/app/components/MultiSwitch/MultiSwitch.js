@@ -190,7 +190,7 @@ export default class MultiSwitch extends Component {
                     buttonText={{color: 'rgba(0,0,0,0.3)', fontSize: 13}}
                 />
                 <Animated.View
-                    {...this._panResponder.panHandlers}
+                    // {...this._panResponder.panHandlers}
                     style={[
                         styles.switcher,
                         {

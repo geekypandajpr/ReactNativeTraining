@@ -47,42 +47,33 @@ export default class Dashboard extends React.Component {
     }
 
     onChangePieChart(value) {
-        // if (value === 'Sims') {
-        //     var data = [
-        //         { value: 400, label: 'Total Sims', color: '#FD6260' },
-        //         { value: 200, label: 'Installed', color: '#B19DFF' },
-        //         { value: 100, label: 'Activated', color: '#02B8AB' },
-        //         { value: 100, label: 'Deactivated', color: '#F3C814' }
-        //     ];
-        //     var series = [400, 200, 100, 100];
-        //     var colors = ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'];
-        //     this.setState({ piedata: data, pieSeries: series, pieColor: colors });
-        // }
-        // else if (value === 'Devices') {
-        //     var data = [
-        //         { value: 200, label: 'Total Devices', color: '#FD6260' },
-        //         { value: 120, label: 'Installed', color: '#B19DFF' },
-        //         { value: 200, label: 'Tested Ok', color: '#02B8AB' },
-        //         { value: 100, label: 'Ready to use', color: '#F3C814' },
-        //         { value: 80, label: 'Defective', color: '#FF9561' }
-        //     ]
-        //     var series = [200, 120, 200, 100, 80];
-        //     var colors = ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814', '#FF9561'];
-        //     this.setState({ piedata: data, pieSeries: series, pieColor: colors });
-        // }
-        // else {
-        //     var data = [
-        //         { value: 300, label: 'Total jobs', color: '#FD6260' },
-        //         { value: 100, label: 'Scheduled', color: '#B19DFF' },
-        //         { value: 120, label: 'Completed', color: '#02B8AB' },
-        //         { value: 60, label: 'Pending', color: '#F3C814' },
-        //         { value: 150, label: 'Cancelled', color: '#FF9561' },
-        //     ]
-        //     var series = [300, 100, 120, 60, 150];
-        //     var colors = ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814', '#FF9561'];
-        //     this.setState({ piedata: data, pieSeries: series, pieColor: colors });
-
-        // }
+        if (value === 'Sims') {
+            var data = [
+                { value: 40, label: 'Total Sims', color: '#FD6260' },
+                { value: 20, label: 'Installed', color: '#B19DFF' },
+                { value: 20, label: 'Activated', color: '#02B8AB' },
+                { value: 25, label: 'Deactivated', color: '#F3C814' }
+            ];
+        }
+        else if (value === 'Devices') {
+            var data = [
+                { value: 50, label: 'Total Devices', color: '#FD6260' },
+                { value: 60, label: 'Installed', color: '#B19DFF' },
+                { value: 20, label: 'Tested Ok', color: '#02B8AB' },
+                { value: 30, label: 'Ready to use', color: '#F3C814' },
+                { value: 60, label: 'Defective', color: '#FF9561' }
+            ];
+        }
+        else {
+            var data = [
+                { value: 30, label: 'Total jobs', color: '#FD6260' },
+                { value: 50, label: 'Scheduled', color: '#B19DFF' },
+                { value: 40, label: 'Completed', color: '#02B8AB' },
+                { value: 40, label: 'Pending', color: '#F3C814' },
+                { value: 20, label: 'Cancelled', color: '#FF9561' },
+            ];
+        }
+        this.setState({piedata: data});
     }
 
     onBarchartChange(key) {
@@ -90,12 +81,14 @@ export default class Dashboard extends React.Component {
             this.props.navigation.navigate('Calendars');
         }
     }
+
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', () => {
                 this.props.navigation.navigate('LogIn');                 
                 return true; 
         });
     }
+
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
@@ -136,15 +129,6 @@ export default class Dashboard extends React.Component {
                             </View>
                             <View style={styles.summary_view}>
                                 <Barchart />
-                                {/* <SummaryCard /> */}
-                                {/* <Swiper
-                                        pagingEnabled={false}
-                                        paginationStyle={styles.pagination}
-                                        dot={<View style={styles.dot} />}
-                                        activeDot={<View style={styles.activedot} />}>
-                                    <Barchart />
-                                    <Barchart />
-                                </Swiper> */}
                             </View>
 
                         </View>
