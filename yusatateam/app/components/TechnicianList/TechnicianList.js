@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Image, TouchableWithoutFeedback } from 'react-native';
+import { View, Image, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { AppLoading } from 'expo';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, Entypo } from '@expo/vector-icons';
 import { Card, Text, Button } from 'native-base';
 
 import styles from './styles';
@@ -74,15 +74,23 @@ export default class TechnicianList extends React.Component {
 
                                 <View style={styles.main_view}>
                                     <View style={styles.view1}>
-                                        <Text style={styles.key_text}>Today's total jobs</Text>
+                                        <Text style={styles.key_text}>Today's jobs</Text>
                                     </View>
                                     <View style={styles.colon_view}>
                                         <Text style={styles.colon}>:</Text>
                                     </View>
                                     <View style={styles.view2}>
-                                        <Button transparent style={styles.todays_job_view} onPress={viewTodaysJobs}>
-                                            <Text style={styles.today_job_text}>10</Text>
-                                        </Button>
+                                        <View style={{flex:1, flexDirection:'row'}}>
+                                            <View style={{flex: 1}}>
+                                                <Text style={styles.value_text}>10</Text>
+                                            </View>
+                                            <TouchableOpacity onPress={viewTodaysJobs}>
+                                                <View style={styles.viewMore}>
+                                                    <Text style={styles.today_job_text}>view jobs</Text>
+                                                    <Entypo name='chevron-thin-right' color='#0073b7' size={16} />
+                                                </View>
+                                            </TouchableOpacity>
+                                        </View>
                                     </View>
                                 </View>
 

@@ -8,7 +8,7 @@ export { Jobs } from './Jobs';
 export { Settings } from './Settings';
 export { DoAssociation } from './DoAssociation';
 export { Dashboard } from './Dashboard';
-export { Technicians } from './Technicians';
+export { Technicians, TodaysJobs, TechDetails } from './Technicians';
 export { ForgotPassword } from './ForgotPassword';
 export { OpenJobs } from './OpenJobs';
 export { Calendars } from './Calendars';

@@ -26,7 +26,10 @@ const Buttons = props => {
             <TouchableOpacity
                 onPress={props.onPress}
                 style={styles.buttonStyle} >
-                <Text name={props.icon} type={props.type} style={styles.buttonText}>{getIcon(props.type, props.active)}</Text>
+                <Text name={props.icon} type={props.type}
+                    style={[props.buttonText]}>
+                    {getIcon(props.type, props.active)}
+                </Text>
             </TouchableOpacity>
         </View>
     );

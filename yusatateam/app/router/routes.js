@@ -1,4 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
+
 import LogIn from '../screens/LogIn/LogIn';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import Sim from '../screens/Sim/Sim';
@@ -13,7 +14,9 @@ import ForgotPassword from '../screens/ForgotPassword/ForgotPassword';
 import OpenJobs from '../screens/OpenJobs/OpenJobs';
 import Calendars from '../screens/Calendars/Calendars';
 import TodaysJobs from '../screens/Technicians/TodaysJobs/TodaysJobs';
-import TechDetails from '../screens/Technicians/TechDetails/TechDetails'
+import TechDetails from '../screens/Technicians/TechDetails/TechDetails';
+import VehicleDetails from '../screens/VehicleList/VehicleDetails/VehicleDetails';
+
 // import {
 //     LogIn,
 //     HomeScreen,
@@ -28,8 +31,9 @@ import TechDetails from '../screens/Technicians/TechDetails/TechDetails'
 //     ForgotPassword,
 //     OpenJobs,
 //     Calendars,
+//     TodaysJobs,
+//     TechDetails
 // } from '../screens';
-// import { TabComponent } from '../screens/Technicians/TechDetails/TabComponent';
 
 const RouteConfigs = {
     Dashboard: {
@@ -120,6 +124,13 @@ const RouteConfigs = {
     TechDetails:
     {   
         screen: TechDetails,
+        navigationOptions: {
+            header: null
+        }
+    },
+    VehicleDetails:
+    {   
+        screen: VehicleDetails,
         navigationOptions: {
             header: null
         }

@@ -43,38 +43,38 @@ export default class SummarySwitch extends Component {
             },
 
             onPanResponderMove: (evt, gestureState) => {
-                // let finalValue = gestureState.dx + this.state.posValue;
-                // if ( finalValue >= 0 && finalValue <= this.state.thresholdDistance )
-                //     this.state.position.setValue( this.state.posValue + gestureState.dx );
+                let finalValue = gestureState.dx + this.state.posValue;
+                if ( finalValue >= 0 && finalValue <= this.state.thresholdDistance )
+                    this.state.position.setValue( this.state.posValue + gestureState.dx );
             },
 
             onPanResponderTerminationRequest: () => true,
 
             onPanResponderRelease: (evt, gestureState) => {
-                //let finalValue = gestureState.dx + this.state.posValue;
+                let finalValue = gestureState.dx + this.state.posValue;
                 //this.isParentScrollDisabled = false;
                 //this.props.disableScroll(true);
-                // if (gestureState.dx > 0) {
-                //     if (finalValue >= 0 && finalValue <= 30) {
-                //         this.dailySelected();
-                //     } else if (finalValue >= 30 && finalValue <= 121) {
-                //         this.weeklySelected();
-                //     } else if (finalValue >= 121 && finalValue <= 280) {
-                //         if (gestureState.dx > 0) {
-                //             this.customSelected();
-                //         } else {
-                //             this.weeklySelected();
-                //         }
-                //     }
-                // } else {
-                //     if (finalValue >= 78 && finalValue <= 175) {
-                //         this.weeklySelected();
-                //     } else if (finalValue >= -100 && finalValue <= 78) {
-                //         this.dailySelected();
-                //     } else {
-                //         this.customSelected();
-                //     }
-                // }
+                if (gestureState.dx > 0) {
+                    if (finalValue >= 0 && finalValue <= 30) {
+                        this.dailySelected();
+                    } else if (finalValue >= 30 && finalValue <= 121) {
+                        this.weeklySelected();
+                    } else if (finalValue >= 121 && finalValue <= 280) {
+                        if (gestureState.dx > 0) {
+                            this.customSelected();
+                        } else {
+                            this.weeklySelected();
+                        }
+                    }
+                } else {
+                    if (finalValue >= 78 && finalValue <= 175) {
+                        this.weeklySelected();
+                    } else if (finalValue >= -100 && finalValue <= 78) {
+                        this.dailySelected();
+                    } else {
+                        this.customSelected();
+                    }
+                }
             },
 
             onPanResponderTerminate: () => {},
@@ -179,12 +179,24 @@ export default class SummarySwitch extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Buttons type={this.props.buttonName1} onPress={this.dailySelected} />
-                <Buttons type={this.props.buttonName2} onPress={this.weeklySelected} />
-                <Buttons type={this.props.buttonName3} onPress={this.monthlySelected} />
-                <Buttons type={this.props.buttonName4} onPress={this.customSelected} />
+                <Buttons type={this.props.buttonName1}
+                    onPress={this.dailySelected}
+                    buttonText={{color: 'gray', fontSize: 13}} 
+                />
+                <Buttons type={this.props.buttonName2}
+                    onPress={this.weeklySelected}
+                    buttonText={{color: 'gray', fontSize: 13}} 
+                />
+                <Buttons type={this.props.buttonName3}
+                    onPress={this.monthlySelected}
+                    buttonText={{color: 'gray', fontSize: 13}} 
+                />
+                <Buttons type={this.props.buttonName4}
+                    onPress={this.customSelected}
+                    buttonText={{color: 'gray', fontSize: 13}} 
+                />
                 <Animated.View
-                    {...this._panResponder.panHandlers}
+                    // {...this._panResponder.panHandlers}
                     style={[
                         styles.switcher,
                         {
@@ -193,7 +205,9 @@ export default class SummarySwitch extends Component {
                         }
                     ]}
                 >
-                    <Buttons type={this.getStatus()}/>
+                    <Buttons type={this.getStatus()} 
+                        buttonText={{color: '#fff', fontSize: 14, fontWeight: '400'}}
+                    />
                 </Animated.View>
             </View>
         );

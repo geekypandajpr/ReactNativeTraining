@@ -5,7 +5,7 @@ import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } fr
 import { CheckBox, Button, Text, Toast } from 'native-base';
 
 import { InputWithIcon, Statusbar } from '../../components';
-import { loginRequest } from '../../redux/actions/userActions';
+import { userActions } from '../../redux/actions';
 import styles from './Styles';
 
 export class LogIn extends React.Component {
@@ -36,8 +36,8 @@ export class LogIn extends React.Component {
             "password": "SunilS@123",
             "userName": "sunil.sharma@yusata.com"
         }
-        //this.props.onFetchData(loginCredentials);
-        this.props.navigation.navigate('Dashboard');
+        this.props.onFetchData(loginCredentials);
+        //this.props.navigation.navigate('Dashboard');
     }
 
     _checkRequiredFields() {
@@ -130,14 +130,12 @@ export class LogIn extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {
-        appData: state.appData
-    }
+    return {}
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onFetchData: (loginCredentials) => dispatch(loginRequest(loginCredentials))
+        onFetchData: (loginCredentials) => dispatch(userActions.loginRequest(loginCredentials))
     }
 }
 

@@ -45,7 +45,7 @@ export default EStyleSheet.create({
         alignItems: 'center'
     },
     view2: {
-        flex: 1,
+        flex: 1.5,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center'
@@ -113,6 +113,12 @@ export default EStyleSheet.create({
         color: colors.HEADER_COLOR,
         fontSize: '0.8rem',
         fontWeight: '400'
+    },
+    viewMore: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
     }
 
     

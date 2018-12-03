@@ -6,10 +6,11 @@ import {
     View,
     Platform
 } from 'react-native';
+
 import Buttons from './Buttons';
 import styles from './styles';
+
 const { width } = Dimensions.get('window');
-import colors from '../../constants/colors';
 // import PropTypes from 'prop-types';
 
 export default class MultiSwitch extends Component {
@@ -44,47 +45,47 @@ export default class MultiSwitch extends Component {
             },
 
             onPanResponderMove: (evt, gestureState) => {
-                // let finalValue = gestureState.dx + this.state.posValue;
-                // if (
-                //     finalValue >= 0 &&
-                //     finalValue <= this.state.thresholdDistance
-                // )
-                //     this.state.position.setValue(
-                //         this.state.posValue + gestureState.dx
-                //     );
+                let finalValue = gestureState.dx + this.state.posValue;
+                if (
+                    finalValue >= 0 &&
+                    finalValue <= this.state.thresholdDistance
+                )
+                    this.state.position.setValue(
+                        this.state.posValue + gestureState.dx
+                    );
             },
 
             onPanResponderTerminationRequest: () => true,
 
             onPanResponderRelease: (evt, gestureState) => {
-                // let finalValue = gestureState.dx + this.state.posValue;
+                let finalValue = gestureState.dx + this.state.posValue;
 
 
-                // //this.isParentScrollDisabled = false;
-                // //this.props.disableScroll(true);
+                //this.isParentScrollDisabled = false;
+                //this.props.disableScroll(true);
 
 
-                // if (gestureState.dx > 0) {
-                //     if (finalValue >= 0 && finalValue <= 30) {
-                //         this.notStartedSelected();
-                //     } else if (finalValue >= 30 && finalValue <= 121) {
-                //         this.inProgressSelected();
-                //     } else if (finalValue >= 121 && finalValue <= 280) {
-                //         if (gestureState.dx > 0) {
-                //             this.completeSelected();
-                //         } else {
-                //             this.inProgressSelected();
-                //         }
-                //     }
-                // } else {
-                //     if (finalValue >= 78 && finalValue <= 175) {
-                //         this.inProgressSelected();
-                //     } else if (finalValue >= -100 && finalValue <= 78) {
-                //         this.notStartedSelected();
-                //     } else {
-                //         this.completeSelected();
-                //     }
-                // }
+                if (gestureState.dx > 0) {
+                    if (finalValue >= 0 && finalValue <= 30) {
+                        this.notStartedSelected();
+                    } else if (finalValue >= 30 && finalValue <= 121) {
+                        this.inProgressSelected();
+                    } else if (finalValue >= 121 && finalValue <= 280) {
+                        if (gestureState.dx > 0) {
+                            this.completeSelected();
+                        } else {
+                            this.inProgressSelected();
+                        }
+                    }
+                } else {
+                    if (finalValue >= 78 && finalValue <= 175) {
+                        this.inProgressSelected();
+                    } else if (finalValue >= -100 && finalValue <= 78) {
+                        this.notStartedSelected();
+                    } else {
+                        this.completeSelected();
+                    }
+                }
             },
 
             onPanResponderTerminate: () => {},
@@ -153,34 +154,43 @@ export default class MultiSwitch extends Component {
 
     getStatus = () => {
         switch (this.state.selectedPosition) {
-        case 0:
-            return 'Sims';
-        case 1:
-            return 'Devices';
-        case 2:
-            return 'Jobs';
-        }
+            case 0:
+                return this.props.buttonName1;
+            case 1:
+                return this.props.buttonName2;
+            case 2:
+                return this.props.buttonName3;
+            }
     };
 
     getColor = () => {
         switch (this.state.selectedPosition) {
             case 0:
-                return colors.HOMESCREEN.SIMCARD_COLOR;
+                return this.props.buttonColor1;
             case 1:
-                return colors.HOMESCREEN.DEVICECARD_COLOR;
+                return this.props.buttonColor2;
             case 2:
-                return colors.HOMESCREEN.JOBSCARD_COLOR;
+                return this.props.buttonColor3;
             }
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Buttons type="Sims" onPress={this.notStartedSelected} />
-                <Buttons type="Devices" onPress={this.inProgressSelected} />
-                <Buttons type="Jobs" onPress={this.completeSelected} />
+                <Buttons type={this.props.buttonName1}
+                    onPress={this.notStartedSelected}
+                    buttonText={{color: 'gray', fontSize: 13}} 
+                />
+                <Buttons type={this.props.buttonName2}
+                    onPress={this.inProgressSelected}
+                    buttonText={{color: 'gray', fontSize: 13}}
+                />
+                <Buttons type={this.props.buttonName3}
+                    onPress={this.completeSelected}
+                    buttonText={{color: 'gray', fontSize: 13}}
+                />
                 <Animated.View
-                    // {...this._panResponder.panHandlers}
+                    {...this._panResponder.panHandlers}
                     style={[
                         styles.switcher,
                         {
@@ -189,7 +199,9 @@ export default class MultiSwitch extends Component {
                         }
                     ]}
                 >
-                    <Buttons type={this.getStatus()} active={true} />
+                    <Buttons type={this.getStatus()} active={true}
+                        buttonText={{color: '#fff', fontSize: 14, fontWeight: '400'}}
+                    />
                 </Animated.View>
             </View>
         );

@@ -20,7 +20,10 @@ export default class Sim extends React.Component {
         super();
         this.state = {
             isLoading: true,
+            data:[],
+            searchvalue : ''
         };
+        this.list=[];
         this.modalRef = React.createRef();
     }
     async componentWillMount() {
@@ -34,6 +37,8 @@ export default class Sim extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        this.setState({data:SimData});
+        this.list=SimData;
     }
 
     handleBackPress = () => {
@@ -43,6 +48,15 @@ export default class Sim extends React.Component {
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+    searchFunction(text){
+        const newdata = this.list.filter(function(item){
+            const itemdata=item.MSIDN.toUpperCase();
+            const textdata =text.toUpperCase();
+            return itemdata.indexOf(textdata)>-1;
+
+        })
+        this.setState({data:newdata,searchvalue:text})
     }
 
     render() {
@@ -54,9 +68,11 @@ export default class Sim extends React.Component {
                     <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
                     <View style={styles.viewStyle}>
-                    <SearchBar></SearchBar>
+                    <SearchBar onChangeText={(text)=>this.searchFunction(text)}>
+
+                    </SearchBar>
                         <FlatList
-                            data={SimData}
+                            data={this.state.data}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                                 <TouchableWithoutFeedback
