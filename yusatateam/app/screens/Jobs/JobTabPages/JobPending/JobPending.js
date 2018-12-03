@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, TouchableOpacity } from 'react-native';
+import { View, FlatList, TouchableOpacity} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Text, Button, Card, Footer, FooterTab, CheckBox } from 'native-base';
 import styles from './styles';
@@ -44,58 +44,6 @@ export default class JobPending extends React.Component {
     }
 
     SearchFilterFunction(text) {
-        // if(this.state.value.has('jobNumber') && this.state.value.has('scheduleDate') && this.state.value.has('jobType'))
-        // {
-        //     const newData = this.arrayholder.filter(function (item) {
-        //         var itemData = item.jobNumber.toUpperCase()+item.scheduleDate.toUpperCase()+item.jobType.toUpperCase()
-        //         const textData = text.toUpperCase()
-        //         return itemData.indexOf(textData) > -1
-        //     })
-        //     this.setState({
-        //         data: newData,
-        //         text: text
-        //     },
-        //     )
-        // }
-        // if(this.state.value.has('scheduleDate') && this.state.value.has('jobNumber') )
-        // {
-        //     const newData = this.arrayholder.filter(function (item) {
-        //         var itemData = item.scheduleDate.toUpperCase() + item.jobNumber.toUpperCase()
-        //         const textData = text.toUpperCase()
-        //         return itemData.indexOf(textData) > -1
-        //     })
-        //     this.setState({
-        //         data: newData,
-        //         text: text
-        //     },
-        //     )
-        // }
-        // if(this.state.value.has('jobType') && this.state.value.has('jobNumber'))
-        // {
-        //     const newData = this.arrayholder.filter(function (item) {
-        //         var itemData = item.jobType.toUpperCase() + item.jobNumber.toUpperCase()
-        //         const textData = text.toUpperCase()
-        //         return itemData.indexOf(textData) > -1
-        //     })
-        //     this.setState({
-        //         data: newData,
-        //         text: text
-        //     },
-        //     )
-        // }
-        // if(this.state.value.has('jobType') && this.state.value.has('scheduleDate'))
-        // {
-        //     const newData = this.arrayholder.filter(function (item) {
-        //         var itemData = item.jobType.toUpperCase()+item.scheduleDate.toUpperCase()
-        //         const textData = text.toUpperCase()
-        //         return itemData.indexOf(textData) > -1
-        //     })
-        //     this.setState({
-        //         data: newData,
-        //         text: text
-        //     },
-        //     )
-        // }
         if (this.state.value.has('jobNumber')) {
             const newData = this.arrayholder.filter(function (item) {
                 var itemData = item.jobNumber.toUpperCase()
@@ -134,7 +82,6 @@ export default class JobPending extends React.Component {
         }
     }
     render() {
-
         return (
             <View style={styles.container}>
                 <View style={styles.searchView}>
