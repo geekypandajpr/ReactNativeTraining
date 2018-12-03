@@ -53,8 +53,8 @@ export default EStyleSheet.create({
     },
     button_view: { 
         flex:1,
-        marginLeft: 2,
-        marginRight: 2,
+        //marginLeft: 2,
+        //marginRight: 2,
         height: 100
     },
 

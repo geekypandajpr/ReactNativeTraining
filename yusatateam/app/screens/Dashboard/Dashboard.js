@@ -147,72 +147,72 @@ export default class Dashboard extends React.Component {
 
                         <View style={styles.middle_view}>
                             <View style={styles.icon_view}>
-                                <View style={styles.button_view}>
+                                <View style={[styles.button_view,{marginRight:1}]}>
                                     <SquareButton
                                         name='devices'
                                         type='MaterialIcons'
                                         text='Device'
                                         iconColor={colors.HOMESCREEN.DEVICECARD_COLOR}
-                                        textColor='#000'
+                                        textColor='gray'
                                         onPress={() => navigate('Device')}
                                         colors={['#b7ffb5', '#84e184', '#51ae56']}
                                     />
                                 </View>
-                                <View style={styles.button_view}>
+                                <View style={[styles.button_view,{marginRight:1}]}>
                                     <SquareButton
                                         name='sim'
                                         type='MaterialCommunityIcons'
                                         text='Sim'
                                         iconColor={colors.HOMESCREEN.SIMCARD_COLOR}
-                                        textColor='#000'
+                                        textColor='gray'
                                         onPress={() => navigate('Sim')}
                                         colors={['#ffb994', '#f98866', '#c2593b']}
                                     />
                                 </View>
                             </View>
                             <View style={styles.icon_view}>
-                                <View style={styles.button_view}>
+                                <View style={[styles.button_view,{marginRight:1, marginLeft:1}]}>
                                     <SquareButton
                                         name='calendar'
                                         type='Foundation'
                                         iconColor={colors.HOMESCREEN.SCHEDULECARD_COLOR}
-                                        textColor='#000'
+                                        textColor='gray'
                                         text='Schedule'
                                         onPress={() => navigate('Schedule')}
                                         colors={['#fff289', '#f2c059', '#bc9029']}
                                     />
                                 </View>
-                                <View style={styles.button_view}>
+                                <View style={[styles.button_view,{marginRight:1, marginLeft:1}]}>
                                     <SquareButton
                                         name='schedule'
                                         type='MaterialIcons'
                                         text='Jobs'
                                         iconColor={colors.HOMESCREEN.JOBSCARD_COLOR}
-                                        textColor='#000'
+                                        textColor='gray'
                                         onPress={() => navigate('Jobs')}
                                         colors={['#8ffcde', '#5bc8ac', '#1f977d']}
                                     />
                                 </View>
                             </View>
                             <View style={styles.icon_view}>
-                                <View style={styles.button_view}>
+                                <View style={[styles.button_view,{marginLeft:1}]}>
                                     <SquareButton
                                         name='group'
                                         type='MaterialIcons'
                                         text='Association'
                                         iconColor={colors.HOMESCREEN.ASSOCIATIONCARD_COLOR}
-                                        textColor='#000'
+                                        textColor='gray'
                                         onPress={() => navigate('VehicleList')}
                                         colors={['#6ddbea', '#31a9b8', '#007a88']}
                                     />
                                 </View>
-                                <View style={styles.button_view}>
+                                <View style={[styles.button_view,{marginLeft:1}]}>
                                     <SquareButton
                                         name='worker'
                                         type='MaterialCommunityIcons'
                                         text='Technician'
                                         iconColor='#6789F8'
-                                        textColor='#000'
+                                        textColor='gray'
                                         onPress={() => navigate('Technicians')}
                                         colors={['#9eb9ff', '#6789f8', '#265dc4']}
                                     />
