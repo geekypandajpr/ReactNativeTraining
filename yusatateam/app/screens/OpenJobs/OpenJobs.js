@@ -118,6 +118,7 @@ export default class OpenJobs extends React.Component {
         this.jobDetailsRef = React.createRef();
         this.onSearchTextChanged = this.onSearchTextChanged.bind(this);
         this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
+        this.onCheckboxPressed = this.onCheckboxPressed.bind(this);
     }
 
     componentDidMount() {
@@ -187,7 +188,7 @@ export default class OpenJobs extends React.Component {
                         renderItem={({ item, index }) =>
                             <JobsComponent key={index} jobDatas={item}
                                 checked={false}
-                                onCheckboxPress={()=>this.onCheckboxPressed(item.jobNumber)}
+                                onCheckboxPress={this.onCheckboxPressed(item.jobNumber)}
                                 viewDetails={()=> {this.jobDetailsRef.current.setModalVisible(true, {})}}
                             />
                         }
