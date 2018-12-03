@@ -186,7 +186,7 @@ export default class OpenJobs extends React.Component {
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
                             <JobsComponent key={index} jobDatas={item}
-                                checked={this.state.map.get(item.jobNumber)}
+                                checked={false}
                                 onCheckboxPress={()=>this.onCheckboxPressed(item.jobNumber)}
                                 viewDetails={()=> {this.jobDetailsRef.current.setModalVisible(true, {})}}
                             />
