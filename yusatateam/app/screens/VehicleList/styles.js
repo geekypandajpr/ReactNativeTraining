@@ -1,44 +1,33 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+
 export default EStyleSheet.create({
-    container:
-    {
+    container: {
         flex: 1,
         backgroundColor: 'white',
     },
     Cust_name: {
-        
         color: '#000',
-        fontWeight: '500'
+        fontWeight: '400',
+        fontSize: '1rem'
     },
-    Secondrow:
-    {
+    Secondrow: {
+        flex:1,
         flexDirection: 'row',
         alignItems: 'center'
     },
-    mobile_no:
-    {
-        justifyContent: "flex-start",
-        flexDirection: 'row',
-        alignItems: 'center'
+    text: {
+        color: 'rgba(0,0,0,0.5)',
+        fontSize: '0.8rem'
     },
-    View_more:
-    {
-        marginRight: 10,
-        color: '#808080'
-    },
-    location:
-    {
+    Next_page: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        flexDirection: 'row',
-    },
-
-    Next_page:
-    {
-        flex: 1,
+        width: '50%',
         justifyContent: "flex-end",
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+    },
+    view_more_text: {
+        color: 'rgba(0,0,0,0.5)',
+        fontSize: '0.8rem'
     }
 })

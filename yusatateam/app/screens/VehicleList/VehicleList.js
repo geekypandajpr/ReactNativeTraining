@@ -1,26 +1,19 @@
 import React from 'react';
-import {
-    FlatList,
-    BackHandler,
-    TouchableWithoutFeedback,
-    TouchableOpacity
-} from 'react-native';
-import { View, Text, List, ListItem, CheckBox, Body, Right } from 'native-base';
-import { Ionicons, AntDesign } from '@expo/vector-icons';
-import styles from './styles';
+import { FlatList, BackHandler, TouchableOpacity } from 'react-native';
+import { View, Text, List, ListItem, Body, Right } from 'native-base';
 import { AppLoading } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
+
+import styles from './styles';
 import { Toolbar } from '../../components';
-import { VehicleDetails } from './VehicleDetails/VehicleDetails';
 import vehicleData from '../../assets/JSONData/vehicleData';
 
 export default class VehicleList extends React.Component {
     constructor() {
         super();
-        this.state = {
-            isLoading: true,
-        };
-
+        this.state = { isLoading: true };
     }
+    
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -57,31 +50,33 @@ export default class VehicleList extends React.Component {
                         data={vehicleData}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <List >
-                                <ListItem style={{ height: 90 }}>
+                            <List>
+                                <ListItem style={{ height: 100 }}>
                                     <Body >
-                                        <View>
-                                            <View >
-                                                <Text style={styles.Cust_name} >{item.Name}</Text>
+                                        <View style={{flex:1, flexDirection: 'column'}}>
+                                            <View style={{flex:1}}>
+                                                <Text style={[styles.Cust_name,{ fontFamily: 'Roboto'}]} >{item.Name}</Text>
                                             </View>
 
                                             <View style={styles.Secondrow}>
-                                                <Ionicons name='ios-call' size={27} color='#5cb85c' />
-                                                <Text style={{ margin: 10,color: '#808080' }}>{item.MobileNo}</Text>
+                                                <Ionicons name='ios-call' size={20} color='#5cb85c' style={{marginRight: 5}}/>
+                                                <Text style={[styles.text, { fontFamily: 'Roboto'}]}>{item.MobileNo}</Text>
                                             </View>
                                            
-                                            <View style={styles.Secondrow}></View>
-                                                <View style={styles.location}>
-                                                    <Text style={{color: '#808080'}}>Kumbha marg,pratap nagar</Text>
-                                                </View>
-                                                <View style={styles.Next_page}>
-                                                    <TouchableOpacity style={styles.Next_page} activeOpacity={0.2} onPress={() => navigate('VehicleDetails')}>
-                                                        <Text style={styles.View_more}>view more</Text>
-                                                        <Ionicons name='ios-arrow-forward' size={27} color='#808080' />
-                                                    </TouchableOpacity>
-                                                </View>
+                                            <View style={styles.Secondrow}>
+                                                <Text style={[styles.text, { fontFamily: 'Roboto'}]}>84/122 sector 8, pratap nagar jaipur Rajasthan</Text>
                                             </View>
-                                         </Body>
+                                        </View>
+                                    </Body>
+
+                                    <Right>
+                                        <TouchableOpacity style={styles.Next_page} activeOpacity={0.2}
+                                            onPress={() => navigate('VehicleDetails')}>
+                                            {/* <Text style={styles.view_more_text}>view more</Text> */}
+                                            <Ionicons name='ios-arrow-forward' size={27} color='gray' />
+                                        </TouchableOpacity>
+                                    </Right>
+
                                 </ListItem>
                             </List>
                         } />
