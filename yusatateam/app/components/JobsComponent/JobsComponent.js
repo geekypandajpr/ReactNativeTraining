@@ -26,9 +26,9 @@ export default class JobsComponent extends React.Component {
             <List style={styles.list}>
                 <ListItem icon style={styles.listitem}>
 
-                    <CheckBox checked={this.state.checkbox}
+                    <CheckBox checked={this.props.checked}
                         color={colors.HEADER_COLOR}
-                        onPress={() => {this.setState({ checkbox: !this.state.checkbox })}}
+                        onPress={this.props.onCheckboxPress}
                     />
 
                     <Body style={styles.body}>

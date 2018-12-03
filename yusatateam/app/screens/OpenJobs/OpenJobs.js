@@ -11,6 +11,8 @@ export default class OpenJobs extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isButtonDisable: true,
+            map: new Map(),
             isLoading: true,
             searchValue: '',
             datas: [
@@ -160,6 +162,9 @@ export default class OpenJobs extends React.Component {
         this.onSearchTextChanged('');
     }
 
+    onCheckboxPressed(jobNumber) {
+    }
+
     render() {
         const { goBack } = this.props.navigation;
         return(
@@ -181,17 +186,21 @@ export default class OpenJobs extends React.Component {
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
                             <JobsComponent key={index} jobDatas={item}
+                                checked={this.state.map.get(item.jobNumber)}
+                                onCheckboxPress={()=>this.onCheckboxPressed(item.jobNumber)}
                                 viewDetails={()=> {this.jobDetailsRef.current.setModalVisible(true, {})}}
                             />
                         }
                     />
-                    <Footer>
-                        <FooterTab>
-                            <Button style={styles.button}>
-                                <Text style={styles.buttonText}>Assign Jobs</Text>
-                            </Button>
-                        </FooterTab>
-                    </Footer>
+                    { this.state.isButtonDisable ? null :
+                        <Footer>
+                            <FooterTab>
+                                <Button style={styles.button}>
+                                    <Text style={styles.buttonText}>Assign Jobs</Text>
+                                </Button>
+                            </FooterTab>
+                        </Footer>
+                    }
                 </View>
                 <JobDetails ref={this.jobDetailsRef} />
             </View>
