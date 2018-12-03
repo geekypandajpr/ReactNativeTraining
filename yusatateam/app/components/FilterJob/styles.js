@@ -3,11 +3,12 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
     container:
     {
-        flex: 8,
+        flex: 7.8,
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
         backgroundColor: '#00000095',
         flexDirection: 'column',
+        paddingRight :7
     },
     sub_container: {
         justifyContent: 'flex-start',

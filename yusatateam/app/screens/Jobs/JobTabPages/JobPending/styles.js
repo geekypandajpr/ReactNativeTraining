@@ -8,9 +8,12 @@ export default EStyleSheet.create({
     searchView : {
         flexDirection :'row',
         height: 50,
-        backgroundColor : '#efefef',
+        backgroundColor : 'white',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginLeft :6,
+        marginRight :6,
+
     },
     filterIcon : {
         flex : 1,
@@ -19,7 +22,10 @@ export default EStyleSheet.create({
         height: 40,
         backgroundColor: '#0073b7'
         ,borderRadius: 2,
-        marginRight:2
+        marginRight:2,
+        borderRadius : 0.2,
+        borderColor : 'black',
+        borderWidth : 0.5
     },
     viewList: {
         flex: 1,
