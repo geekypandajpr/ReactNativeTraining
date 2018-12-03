@@ -6,33 +6,39 @@ export default EStyleSheet.create({
         backgroundColor: 'white',
     },
     Cust_name: {
-        fontSize: '1rem',
+        
         color: '#000',
         fontWeight: '500'
     },
-    middle_View:
+    Secondrow:
     {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    mobile_no:
+    {
+        justifyContent: "flex-start",
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     View_more:
     {
         marginRight: 10,
         color: '#808080'
     },
-    lower_view:
+    location:
     {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    second_view: {
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
         flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center'
     },
 
-
+    Next_page:
+    {
+        flex: 1,
+        justifyContent: "flex-end",
+        flexDirection: 'row',
+        alignItems: 'center'
+    }
 })

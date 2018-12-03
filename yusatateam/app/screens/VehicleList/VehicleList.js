@@ -19,7 +19,7 @@ export default class VehicleList extends React.Component {
         this.state = {
             isLoading: true,
         };
-        
+
     }
     async componentWillMount() {
         await Expo.Font.loadAsync({
@@ -58,26 +58,30 @@ export default class VehicleList extends React.Component {
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
                             <List >
-                                <ListItem style={{ height: 80 }}>
+                                <ListItem style={{ height: 90 }}>
                                     <Body >
                                         <View>
                                             <View >
                                                 <Text style={styles.Cust_name} >{item.Name}</Text>
                                             </View>
 
-                                            <View style={styles.middle_View}>
-                                                <TouchableOpacity style={styles.middle_View} activeOpacity={0.2} onPress={() => navigate('VehicleDetails')}>
-                                                    <Text style={styles.View_more}>view more</Text>
-                                                    <Ionicons name='ios-arrow-forward' size={27} color='#808080' />
-                                                </TouchableOpacity>
-                                            </View>
-
-                                            <View style={styles.lower_view}>
+                                            <View style={styles.Secondrow}>
                                                 <Ionicons name='ios-call' size={27} color='#5cb85c' />
-                                                <Text style={{ margin: 10 }}>{item.MobileNo}</Text>
+                                                <Text style={{ margin: 10,color: '#808080' }}>{item.MobileNo}</Text>
                                             </View>
-                                        </View>
-                                    </Body>
+                                           
+                                            <View style={styles.Secondrow}></View>
+                                                <View style={styles.location}>
+                                                    <Text style={{color: '#808080'}}>Kumbha marg,pratap nagar</Text>
+                                                </View>
+                                                <View style={styles.Next_page}>
+                                                    <TouchableOpacity style={styles.Next_page} activeOpacity={0.2} onPress={() => navigate('VehicleDetails')}>
+                                                        <Text style={styles.View_more}>view more</Text>
+                                                        <Ionicons name='ios-arrow-forward' size={27} color='#808080' />
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </View>
+                                         </Body>
                                 </ListItem>
                             </List>
                         } />

@@ -55,16 +55,22 @@ export default class VehicleDetails extends React.Component {
 
                                     <View style={styles.Padding_view}>
 
+                                    <View style={{flexDirection:'row',alignItems:'center'}}>
+
                                         <View style={styles.View_row}>
                                             <View style={styles.flex_one}>
                                                 <Text style={styles.Vehicle_no}>Vehicle No</Text>
                                             </View>
-                                            <View style={{ flex: 3, flexDirection: 'row' }}>
-
-                                                <Text style={styles.Vehicle_num}>JP456789</Text>
+                                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                                                 <Text style={styles.Vehicle_num}>JP456789</Text>
                                             </View>
                                         </View>
-
+                                        <View style={{flex: 1,flexDirection: 'row',alignItems: 'center',justifyContent:'flex-end'}}>
+                                                <View style={styles.jobTypeView}>
+                                                    <Text style={styles.jobTypeText}>Complete</Text>
+                                                </View>
+                                        </View>
+                                    </View>
                                         <View style={styles.View_row}>
                                             <View style={styles.flex_one}>
 
@@ -74,7 +80,7 @@ export default class VehicleDetails extends React.Component {
                                                     </View>
                                                     <View style={styles.Sim_no}>
                                                         <Text >:</Text>
-                                                        <Text style={{ marginLeft: 6 }}>2</Text>
+                                                        <Text style={{ marginLeft: 10 }}>2</Text>
                                                     </View>
                                                 </View>
 
@@ -84,17 +90,23 @@ export default class VehicleDetails extends React.Component {
                                                     </View>
                                                     <View style={styles.Sim_no}>
                                                         <Text >:</Text>
-                                                        <Text style={{ marginLeft: 6 }}>3</Text>
+                                                        <Text style={{ marginLeft: 10 }}>3</Text>
+                                                    </View>
+                                                </View>
+
+                                                 <View style={styles.View_row}>
+                                                    <View style={styles.flex_one}>
+                                                        <Text>Date</Text>
+                                                    </View>
+                                                    <View style={styles.Sim_no}>
+                                                        <Text >:</Text>
+                                                        <Text style={{ marginLeft: 10 }}>21/04/1995</Text>
                                                     </View>
                                                 </View>
                                             </View>
-                                            <View style={styles.status_View}>
-                                                <View style={styles.jobTypeView}>
-                                                    <Text style={styles.jobTypeText}>Complete</Text>
-                                                </View>
-                                            </View>
+                                           
                                         </View>
-                                        <View style={styles.View_row}>
+                                        {/* <View style={styles.View_row}>
                                             <View style={styles.flex_one}>
                                                 <Text>Date</Text>
                                             </View>
@@ -102,7 +114,7 @@ export default class VehicleDetails extends React.Component {
                                                 <Text >:</Text>
                                                 <Text style={{ marginLeft: 6 }}>24/04/2015</Text>
                                             </View>
-                                        </View>
+                                        </View> */}
                                     </View>
                                 </Card>
                             }></FlatList>

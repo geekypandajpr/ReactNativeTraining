@@ -45,7 +45,7 @@ export default EStyleSheet.create({
     },
     Sim_no:
     {
-        flex: 2,
+        flex: 3,
         flexDirection: 'row',
         alignItems: 'center'
     },
