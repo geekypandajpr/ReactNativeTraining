@@ -1,14 +1,16 @@
 import React from 'react';
 import { View, Modal } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import moment from 'moment';
 
 import { MonthSelectorCalendar } from '../../../components';
 
 export default class Year extends React.Component {
     constructor() {
         super();
+        moment.locale('en');
         this.state = {
-            month:'112018',
+            month: moment(new Date()).format('MMYYYY'),
             modalVisible: false,
         }
         this.selectMonth = this.selectMonth.bind(this);
