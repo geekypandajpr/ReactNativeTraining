@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-    View,
-    ScrollView,
-    BackHandler
-} from 'react-native';
+import { View, ScrollView, BackHandler } from 'react-native';
 import { Text } from 'native-base';
-import { Entypo, Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 import { StackedBar, Toolbar } from '../../../components';
@@ -55,7 +50,8 @@ const data = [
     },
 ];
 //colors : [ '#03B9A2', '#747C7F', '#37464B' ],
-const colors = [ '#F98866', '#84e184', '#5BC8AC' ];
+// const colors = [ '#F98866', '#84e184', '#5BC8AC' ];
+const colors = ['#9491F8', '#8BB6F3', '#8AD3F3']
 const keys  = [ 'Completed', 'Pending', 'Scheduled' ];
 
 export default class TechDetails extends React.Component {
@@ -90,40 +86,17 @@ export default class TechDetails extends React.Component {
                 />
 
                 <ScrollView>
-
                     <View style={styles.first_view}>
-
                         <View style={styles.view}>
                             <View style={styles.date_view}>
                                 <Text style={styles.date}>01 NOV 2018 - 07 NOV 2018</Text>
                             </View>
-                            <View style={{flexDirection : 'row', padding: 2}}>
-                                <View style={styles.left_view}>
-                                    <View style={[styles.square, { backgroundColor: colors[0]}]}></View>
-                                    <Text style={styles.key_text}>Completed jobs : </Text>
-                                    <Text style={styles.value_text}>152</Text>
-                                </View>
-                                <View style={styles.right_view}>
-                                    <View style={[styles.square, { backgroundColor: colors[1]}]}></View>
-                                    <Text style={styles.key_text}>Pending jobs : </Text>
-                                    <Text style={styles.value_text}>152</Text>
-                                </View>
-                            </View>
-                            <View style={{flexDirection : 'row', padding: 2}}>
-                                <View style={styles.left_view}>
-                                    <View style={[styles.square, { backgroundColor: colors[2]}]}></View>
-                                    <Text style={styles.key_text}>Scheduled jobs : </Text>
-                                    <Text style={styles.value_text}>152</Text>
-                                </View>
-                            </View>
                         </View>
-
                         <StackedBar
                             data={data}
                             colors={colors}
                             keys={keys}
                         />
-                        
                     </View>
                 </ScrollView>
 

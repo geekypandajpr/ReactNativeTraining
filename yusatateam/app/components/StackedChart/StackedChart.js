@@ -13,7 +13,7 @@ export default class StackedBar extends React.Component{
     }
 
     render(){
-        const { data, colors,keys } = this.props;
+        const { data, colors, keys } = this.props;
         const value = [25,21,22,18,4,8,0,-1]
         return(
             <View style={{ marginTop: 20,flex:1 }}>
@@ -47,16 +47,14 @@ export default class StackedBar extends React.Component{
                     // numberOfTicks = {8}
                     scale={scale.scaleBand}
                 />
-                {/* <View style={{ flex:0.5,marginTop:10 }}>
-                    <View style={{flex:1,flexDirection:'row', justifyContent:'center'}}>
-                        {this.state.keys.map((item, index) => 
-                            <View key={index} style={{flex:1,justifyContent:'center',alignItems:'flex-start', flexDirection: 'row'}}>
-                                <View style={[styles.Square,{backgroundColor:this.state.colors[index]}]}></View>
-                                <Text style={styles.text}>{item}</Text>
-                            </View>
-                        )}
-                    </View>
-                </View> */}
+                <View style={styles.details_view}>
+                    {keys.map((item, index) => 
+                        <View key={index} style={styles.details_view}>
+                            <View style={[styles.Square,{backgroundColor: colors[index]}]}></View>
+                            <Text style={styles.text}>{item}</Text>
+                        </View>
+                    )}
+                </View>
             </View>
         );
     }
