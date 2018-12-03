@@ -11,7 +11,7 @@ export default EStyleSheet.create({
         fontSize: '1rem'
     },
     Secondrow: {
-        flex:1,
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center'
     },

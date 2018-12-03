@@ -38,22 +38,33 @@ export default EStyleSheet.create({
         fontWeight: '500'
     },
     Vehicle_num: {
-        fontSize: '0.9rem',
+        fontSize: '1rem',
         color: '#000',
         fontWeight: '500',
-        marginLeft: 6
+    },
+    text: {
+        fontSize: '0.9rem',
+        color: '#000',
+        fontWeight: '300',
+    },
+    text1: {
+        fontSize: '0.8rem',
+        fontWeight: '300',
+        marginLeft: 10,
+        color: 'rgba(0,0,0,0.5)',
     },
     Sim_no:
     {
-        flex: 3,
+        flex: 2,
         flexDirection: 'row',
         alignItems: 'center'
     },
     status_View:
     {
         flex: 1,
-        alignItems: 'flex-end',
-        justifyContent: 'center'
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
     },
     jobTypeView: {
         borderRadius: 10,
@@ -64,10 +75,10 @@ export default EStyleSheet.create({
         height: 23,
         justifyContent: 'center',
         alignItems: 'center',
-
     },
     jobTypeText: {
         color: '#1f667e',
         fontSize: '0.8rem'
     },
+
 })

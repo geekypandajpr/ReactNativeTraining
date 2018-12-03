@@ -3,7 +3,6 @@ import { FlatList, BackHandler, TouchableOpacity } from 'react-native';
 import { View, Text, List, ListItem, Body, Right } from 'native-base';
 import { AppLoading } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
-
 import styles from './styles';
 import { Toolbar } from '../../components';
 import vehicleData from '../../assets/JSONData/vehicleData';

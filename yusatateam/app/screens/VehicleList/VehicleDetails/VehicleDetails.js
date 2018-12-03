@@ -1,11 +1,11 @@
 import React from 'react';
-import { ScrollView, FlatList, BackHandler } from 'react-native';
+import {  FlatList, BackHandler } from 'react-native';
 import { View, Text, Card, Button } from 'native-base';
 import { AppLoading } from 'expo';
 import { Toolbar } from '../../../components/Toolbar/Toolbar'
 import styles from './styles';
-import { Ionicons, FontAwesome, Entypo } from '@expo/vector-icons';
-import DeviceData from '../../../assets/JSONData/DeviceData'
+import VehicleDetail from '../../../assets/JSONData/VehicleDetail';
+
 export default class VehicleDetails extends React.Component {
     constructor(props) {
         super(props);
@@ -36,7 +36,6 @@ export default class VehicleDetails extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
@@ -48,73 +47,76 @@ export default class VehicleDetails extends React.Component {
 
                     <View style={styles.inner_container}>
                         <FlatList
-                            data={DeviceData}
+                            data={VehicleDetail}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                                 <Card style={styles.card_style}>
 
                                     <View style={styles.Padding_view}>
 
-                                    <View style={{flexDirection:'row',alignItems:'center'}}>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
 
-                                        <View style={styles.View_row}>
-                                            <View style={styles.flex_one}>
+                                            <View style={styles.View_row}>
+                                                {/* <View style={styles.flex_one}>
                                                 <Text style={styles.Vehicle_no}>Vehicle No</Text>
-                                            </View>
-                                            <View style={{ flex: 1, flexDirection: 'row' }}>
-                                                 <Text style={styles.Vehicle_num}>JP456789</Text>
-                                            </View>
-                                        </View>
-                                        <View style={{flex: 1,flexDirection: 'row',alignItems: 'center',justifyContent:'flex-end'}}>
-                                                <View style={styles.jobTypeView}>
-                                                    <Text style={styles.jobTypeText}>Complete</Text>
+                                            </View> */}
+                                                <View style={{ flex: 1, flexDirection: 'row' }}>
+                                                    <Text style={styles.Vehicle_num}>{item.vehicleno}</Text>
                                                 </View>
+                                            </View>
+
+                                            <View style={styles.status_View}>
+                                                <View style={styles.jobTypeView}>
+                                                    <Text style={styles.jobTypeText}>{item.status}</Text>
+                                                </View>
+                                            </View>
+
                                         </View>
-                                    </View>
                                         <View style={styles.View_row}>
                                             <View style={styles.flex_one}>
 
                                                 <View style={styles.View_row}>
                                                     <View style={styles.flex_one}>
-                                                        <Text>Sim</Text>
+                                                        <Text style={styles.text}>Sim</Text>
                                                     </View>
                                                     <View style={styles.Sim_no}>
                                                         <Text >:</Text>
-                                                        <Text style={{ marginLeft: 10 }}>2</Text>
+                                                        <Text style={styles.text1}>{item.Sim}</Text>
                                                     </View>
                                                 </View>
 
                                                 <View style={styles.View_row}>
                                                     <View style={styles.flex_one}>
-                                                        <Text>Device</Text>
+                                                        <Text style={styles.text}>Device</Text>
                                                     </View>
                                                     <View style={styles.Sim_no}>
                                                         <Text >:</Text>
-                                                        <Text style={{ marginLeft: 10 }}>3</Text>
+                                                        <Text style={styles.text1}>{item.Device}</Text>
                                                     </View>
                                                 </View>
-
-                                                 <View style={styles.View_row}>
-                                                    <View style={styles.flex_one}>
-                                                        <Text>Date</Text>
+                                                {item.status === "Activate" ?
+                                                    <View style={styles.View_row}>
+                                                        <View style={styles.flex_one}>
+                                                            <Text style={styles.text}>Actived On</Text>
+                                                        </View>
+                                                        <View style={styles.Sim_no}>
+                                                            <Text >:</Text>
+                                                            <Text style={styles.text1}>{item.ActivatedDate}</Text>
+                                                        </View>
                                                     </View>
-                                                    <View style={styles.Sim_no}>
-                                                        <Text >:</Text>
-                                                        <Text style={{ marginLeft: 10 }}>21/04/1995</Text>
+                                                    :
+                                                    <View style={styles.View_row}>
+                                                        <View style={styles.flex_one}>
+                                                            <Text style={styles.text}>Deactived On</Text>
+                                                        </View>
+                                                        <View style={styles.Sim_no}>
+                                                            <Text >:</Text>
+                                                            <Text style={styles.text1}>{item.LastActivated}</Text>
+                                                        </View>
                                                     </View>
-                                                </View>
+                                                }
                                             </View>
-                                           
                                         </View>
-                                        {/* <View style={styles.View_row}>
-                                            <View style={styles.flex_one}>
-                                                <Text>Date</Text>
-                                            </View>
-                                            <View style={{ flex: 5, flexDirection: 'row' }}>
-                                                <Text >:</Text>
-                                                <Text style={{ marginLeft: 6 }}>24/04/2015</Text>
-                                            </View>
-                                        </View> */}
                                     </View>
                                 </Card>
                             }></FlatList>
