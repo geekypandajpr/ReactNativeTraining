@@ -9,9 +9,7 @@ export default class SquareButton extends React.Component {
 
     constructor() {
         super();
-        this.state = {
-            isLoading: true
-        };
+        this.state = { isLoading: true };
     }
 
     async componentWillMount() {

@@ -104,7 +104,7 @@ export default class Dashboard extends React.Component {
                 <View style={styles.container}>
                     <Toolbar title='Dashboard'
                         leftIcon='home'
-                        setting='md-person' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
+                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
 
                     <View style={styles.container1}>
 
