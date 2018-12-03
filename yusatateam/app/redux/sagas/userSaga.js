@@ -11,7 +11,7 @@ export function* login(action) {
         Toast.show({
             text: "Wrong password!"
         })
-        // yield put(NavigationActions.navigate({ routeName: 'Dashboard' }));
+        yield put(NavigationActions.navigate({ routeName: 'Dashboard' }));
     } catch (error) {
     }
 }
