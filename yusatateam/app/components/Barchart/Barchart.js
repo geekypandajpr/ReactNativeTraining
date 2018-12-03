@@ -98,7 +98,7 @@ export default class Barchart extends React.Component {
                         showEvenNumberXaxisLabel={false}
                         showOddNumberXaxisLabel={false}
                         backgroundColor = '#fff'
-                        // highlightColor={"gray"}
+                        labelColor="rgba(0,0,0,0.5)"
                         customValueRenderer={(index, point) => {
                             return (
                                 <Text style={{ textAlign: 'center',color: 'gray' }}>{point.x}</Text>

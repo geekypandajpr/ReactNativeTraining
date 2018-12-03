@@ -26,11 +26,11 @@ export default class Dashboard extends React.Component {
             pieColor: ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'],
             pieSeries: [400, 200, 100, 100],
             piedata: [
-                { value: 400, label: 'Total Sims', color: '#FD6260' },
-                { value: 200, label: 'Installed', color: '#B19DFF' },
-                { value: 100, label: 'Activated', color: '#02B8AB' },
-                { value: 100, label: 'Deactivated', color: '#F3C814' }
-            ]
+                { value: 50, label: 'Total Sims', color: '#FD6260' },
+                { value: 40, label: 'Installed', color: '#B19DFF' },
+                { value: 25, label: 'Activated', color: '#02B8AB' },
+                { value: 25, label: 'Deactivated', color: '#F3C814' }
+            ],
         }
         this.onChangePieChart = this.onChangePieChart.bind(this);
         this.onBarchartChange = this.onBarchartChange.bind(this);

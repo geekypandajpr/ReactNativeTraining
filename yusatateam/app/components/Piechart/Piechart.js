@@ -3,6 +3,7 @@ import { View, Dimensions } from 'react-native';
 import { Text } from 'native-base';
 import PieChart from 'react-native-pie-chart';
 import { AppLoading } from 'expo';
+import PureChart from 'react-native-pure-chart';
 
 import styles from './styles';
 
@@ -43,11 +44,12 @@ export default class Piechart extends Component {
 
                 <View style={styles.first_view}>
                     <View style={{flex: 1, alignItems:'center'}}>
-                        <PieChart
+                        {/* <PieChart
                             chart_wh={ Dimensions.get('window').height*0.24}
                             series={this.props.pieSeries}
                             sliceColor={this.props.pieColors}
-                        />
+                        /> */}
+                        <PureChart data={this.props.piedata} type='pie' size={Dimensions.get('window').height*0.24} />
                     </View>
                 </View>
                 
