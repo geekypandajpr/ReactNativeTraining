@@ -10,7 +10,8 @@ export default EStyleSheet.create({
     },
     first_view: {
         flex: 1,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        height: HEIGHT/2
     },
     date_view: {
         justifyContent: 'center',
@@ -26,6 +27,7 @@ export default EStyleSheet.create({
     view: {
         margin: 8,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        // backgroundColor: 'red'
     }
 })

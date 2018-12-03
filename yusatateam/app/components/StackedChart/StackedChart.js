@@ -5,6 +5,7 @@ import * as scale from 'd3-scale'
 import { StackedBarChart, XAxis, YAxis } from 'react-native-svg-charts';
 
 import styles from './styles';
+const HEIGHT = Dimensions.get('window').height;
 
 export default class StackedBar extends React.Component{
     constructor(props){
@@ -16,8 +17,8 @@ export default class StackedBar extends React.Component{
         const { data, colors, keys } = this.props;
         const value = [25,21,22,18,4,8,0,-1]
         return(
-            <View style={{ marginTop: 20,flex:1 }}>
-                <View style={{ height: 200, flexDirection: 'row',flex:4 }}>
+            <View style={{ flex:1 }}>
+                <View style={{ height: '100%', flexDirection: 'row',flex:4 }}>
                     <YAxis
                         style={{ width:30 }}
                         data={value}
@@ -49,7 +50,7 @@ export default class StackedBar extends React.Component{
                 />
                 <View style={styles.details_view}>
                     {keys.map((item, index) => 
-                        <View key={index} style={styles.details_view}>
+                        <View key={index} style={styles.details}>
                             <View style={[styles.Square,{backgroundColor: colors[index]}]}></View>
                             <Text style={styles.text}>{item}</Text>
                         </View>

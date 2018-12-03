@@ -23,7 +23,14 @@ export default EStyleSheet.create({
     details_view: {
         flexDirection:'row',
         justifyContent:'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        // backgroundColor: 'red',
+        marginBottom: 10
     },
+    details: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 
 })

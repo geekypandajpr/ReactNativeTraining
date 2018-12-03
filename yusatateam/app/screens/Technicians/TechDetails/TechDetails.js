@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, ScrollView, BackHandler } from 'react-native';
 import { Text } from 'native-base';
+import moment from 'moment';
 
 import styles from './styles';
 import { StackedBar, Toolbar } from '../../../components';
+import Year from './Year';
 
 const data = [
     {   
@@ -57,9 +59,13 @@ const keys  = [ 'Completed', 'Pending', 'Scheduled' ];
 export default class TechDetails extends React.Component {
     constructor(props) {
         super(props);
+        moment.locale('en');
         this.state = {
             isLoading: true,
+            selectedMonth: moment(new Date()).format('MMM')
         }
+        this.modalRef = React.createRef();
+        this.openCalendar = this.openCalendar.bind(this);
     };
 
     componentDidMount() {
@@ -75,31 +81,43 @@ export default class TechDetails extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
+    onMonthSelect(date) {
+        this.setState({selectedMonth: moment(date).format('MMM')})
+    }
+
+    openCalendar() {
+        this.modalRef.current.setModalVisible(true);
+    }
+
     render() {
-        const { navigate } = this.props.navigation;
+        const week=['1','2','3','4','5','6']
         const { goBack } = this.props.navigation;
+
         return (
             <View style={styles.container}>
 
                 <Toolbar title='Details' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                    setting='ios-search' settingType='Ionicons'
+                    setting='calendar' settingType='FontAwesome' onSettingsPress={this.openCalendar}
                 />
 
                 <ScrollView>
-                    <View style={styles.first_view}>
-                        <View style={styles.view}>
-                            <View style={styles.date_view}>
-                                <Text style={styles.date}>01 NOV 2018 - 07 NOV 2018</Text>
+                    {week.map((item, index) => 
+                        <View style={styles.first_view} key={index}>
+                            <View style={styles.view}>
+                                <View style={styles.date_view}>
+                                    <Text style={styles.date}>01 NOV 2018 - 07 NOV 2018</Text>
+                                </View>
                             </View>
+                            <StackedBar
+                                data={data}
+                                colors={colors}
+                                keys={keys}
+                            />
                         </View>
-                        <StackedBar
-                            data={data}
-                            colors={colors}
-                            keys={keys}
-                        />
-                    </View>
+                     )}
                 </ScrollView>
 
+                <Year ref={this.modalRef} selectedDate={(date) => this.onMonthSelect(date)}/>
             </View >
         );
     }
