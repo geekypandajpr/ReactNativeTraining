@@ -41,7 +41,7 @@ export default class OpenJobs extends React.Component {
                     location: '84/122 sector 8 pratap nagar, jaipur',
                 },
                 {
-                    jobNumber: 'JOBS-05NOV2018',
+                    jobNumber: 'JOBS-09NOV2018',
                     jobType: 'Uninstall',
                     companyName: 'Yusata Infotech Private Limited',
                     vehicleNumber: 'JP01-4522',
@@ -49,7 +49,7 @@ export default class OpenJobs extends React.Component {
                     location: '84/122 sector 8 pratap nagar, jaipur',
                 },
                 {
-                    jobNumber: 'JOBS-05NOV2018',
+                    jobNumber: 'JOBS-01NOV2018',
                     jobType: 'Install',
                     companyName: 'Yusata Infotech Private Limited',
                     vehicleNumber: 'JP01-4522',
@@ -57,7 +57,7 @@ export default class OpenJobs extends React.Component {
                     location: '84/122 sector 8 pratap nagar, jaipur',
                 },
                 {
-                    jobNumber: 'JOBS-05NOV2018',
+                    jobNumber: 'JOBS-02NOV2018',
                     jobType: 'Replace',
                     companyName: 'Yusata Infotech Private Limited',
                     vehicleNumber: 'JP01-4522',
@@ -65,7 +65,7 @@ export default class OpenJobs extends React.Component {
                     location: '84/122 sector 8 pratap nagar, jaipur',
                 },
                 {
-                    jobNumber: 'JOBS-05NOV2018',
+                    jobNumber: 'JOBS-03NOV2018',
                     jobType: 'Repair',
                     companyName: 'Yusata Infotech Private Limited',
                     vehicleNumber: 'JP01-4522',
@@ -73,7 +73,7 @@ export default class OpenJobs extends React.Component {
                     location: '84/122 sector 8 pratap nagar, jaipur',
                 },
                 {
-                    jobNumber: 'JOBS-05NOV2018',
+                    jobNumber: 'JOBS-04NOV2018',
                     jobType: 'Uninstall',
                     companyName: 'Yusata Infotech Private Limited',
                     vehicleNumber: 'JP01-4522',
@@ -81,7 +81,7 @@ export default class OpenJobs extends React.Component {
                     location: '84/122 sector 8 pratap nagar, jaipur',
                 },
                 {
-                    jobNumber: 'JOBS-05NOV2018',
+                    jobNumber: 'JOBS-05OCT2018',
                     jobType: 'Install',
                     companyName: 'Yusata Infotech Private Limited',
                     vehicleNumber: 'JP01-4522',
@@ -89,7 +89,7 @@ export default class OpenJobs extends React.Component {
                     location: '84/122 sector 8 pratap nagar, jaipur',
                 },
                 {
-                    jobNumber: 'JOBS-05NOV2018',
+                    jobNumber: 'JOBS-05MAY2018',
                     jobType: 'Replace',
                     companyName: 'Yusata Infotech Private Limited',
                     vehicleNumber: 'JP01-4522',
@@ -97,7 +97,7 @@ export default class OpenJobs extends React.Component {
                     location: '84/122 sector 8 pratap nagar, jaipur',
                 },
                 {
-                    jobNumber: 'JOBS-05NOV2018',
+                    jobNumber: 'JOBS-05JUNE2018',
                     jobType: 'Repair',
                     companyName: 'Yusata Infotech Private Limited',
                     vehicleNumber: 'JP01-4522',
@@ -105,7 +105,7 @@ export default class OpenJobs extends React.Component {
                     location: '84/122 sector 8 pratap nagar, jaipur',
                 },
                 {
-                    jobNumber: 'JOBS-05NOV2018',
+                    jobNumber: 'JOBS-05JULY2018',
                     jobType: 'Uninstall',
                     companyName: 'Yusata Infotech Private Limited',
                     vehicleNumber: 'JP01-4522',
@@ -164,6 +164,15 @@ export default class OpenJobs extends React.Component {
     }
 
     onCheckboxPressed(jobNumber) {
+        const map = new Map(jobNumber);
+        if(map.has(jobNumber))
+        {
+           map.set(jobNumber,!map.get(jobNumber))
+        }
+        else{
+            map.set(jobNumber);
+        }
+        this.setState({map:map})
     }
 
     render() {
@@ -203,6 +212,7 @@ export default class OpenJobs extends React.Component {
                         </Footer>
                     }
                 </View>
+
                 <JobDetails ref={this.jobDetailsRef} />
             </View>
         )
