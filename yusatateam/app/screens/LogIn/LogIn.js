@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
 import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } from 'react-native';
-import { CheckBox, Button, Text, Toast } from 'native-base';
+import { CheckBox, Button, Text } from 'native-base';
+
 import { InputWithIcon, Statusbar } from '../../components';
 import { userActions } from '../../redux/actions';
 import styles from './Styles';
