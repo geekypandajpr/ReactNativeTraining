@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import { navReducer } from '../../router';
-import loginData from './loginReducer';
+import userReducer from './userReducer';
 
 const rootReducers = combineReducers({
     nav: navReducer,
-    loginData: loginData,
+    loginData: userReducer,
     //We can add more reducers here, separated by comma(,)
 })
 
