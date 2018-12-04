@@ -9,11 +9,11 @@ export default userService = {
     doLogin
 }
 
-//LOGIN API CALL
+/**LOGIN API CALL */
 export function doLogin(data){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             return resolve(loginData);
-        }, 5000)
+        }, 3000)
     });
 }
