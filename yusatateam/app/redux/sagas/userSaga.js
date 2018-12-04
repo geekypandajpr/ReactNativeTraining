@@ -1,9 +1,9 @@
 import { call, put } from 'redux-saga/effects';
 import { NavigationActions } from 'react-navigation';
-import { Toast } from 'native-base';
 
 import userService from '../services/userServices';
 import { USER } from '../common/actionTypes';
+import functions from '../../common/functions';
 
 export function* login(action) {
     try {
@@ -12,10 +12,6 @@ export function* login(action) {
         yield put(NavigationActions.navigate({ routeName: 'Dashboard' }));
     } catch (error) {
         yield put({type: USER.LOGIN_FAILED, error});
-        Toast.show({
-            text: "Wrong password!",
-            buttonText: "Okay",
-            type: "danger"
-        })
+        functions.showToast('Wrong Credentials', 'danger');
     }
 }
