@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
 import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { CheckBox, Button, Text, Toast } from 'native-base';
-
 import { InputWithIcon, Statusbar } from '../../components';
 import { userActions } from '../../redux/actions';
 import styles from './Styles';
@@ -12,8 +11,8 @@ export class LogIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: '',
+            username: 'root',
+            password: 'root',
             remember: true,
             isLoading: true
         }

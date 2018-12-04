@@ -73,7 +73,6 @@ export default class Jobs extends React.Component {
                         }>
                             <JobReschedule />
                         </Tab>
-
                     </Tabs>
                 </View>
         );
