@@ -9,6 +9,7 @@ export function showToast(message, type) {
     Toast.show({
         text: message,
         buttonText: "Okay",
-        type: type
+        type: type,
+        duration: 3000
     })
 }
