@@ -35,9 +35,9 @@ export default class JobCompleted extends React.Component {
     }
     
     SearchFilterFunction(text) {
-        if (this.state.value == 'jobNumber') {
+        if (this.state.value == 'jobType') {
             const newData = this.arrayholder.filter(function (item) {
-                const itemData = item.jobNumber.toUpperCase()
+                const itemData = item.jobType.toUpperCase()
                 const textData = text.toUpperCase()
                 return itemData.indexOf(textData) > -1
             })
@@ -59,9 +59,9 @@ export default class JobCompleted extends React.Component {
             },
             )
         }
-        if (this.state.value == 'jobType') {
+        if (this.state.value == 'jobNumber') {
             const newData = this.arrayholder.filter(function (item) {
-                const itemData = item.jobType.toUpperCase()
+                const itemData = item.jobNumber.toUpperCase()
                 const textData = text.toUpperCase()
                 return itemData.indexOf(textData) > -1
             })
