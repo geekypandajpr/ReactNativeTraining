@@ -1,4 +1,5 @@
 export const USER = {
     LOGIN                : 'LOGIN_REQUEST',
-    FORGET_PASSWORD      : 'FORGET_PASSWORD'
+    LOGIN_SUCCESS        : 'LOGIN_SUCCESS',
+    LOGIN_FAILED         : 'LOGIN_FAILED',
 };

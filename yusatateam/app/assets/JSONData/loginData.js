@@ -1,4 +1,4 @@
-const result= {
+const loginData= {
     firstName: 'Premsagar',
     lastName: 'Choudhary',
     age: '23',
@@ -7,4 +7,4 @@ const result= {
     email: 'premsagar.choudhary@yusata.com',
 }
 
-module.exports = result;
+module.exports = loginData;
