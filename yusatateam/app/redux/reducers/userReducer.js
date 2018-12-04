@@ -6,11 +6,11 @@ const initialState = {
     error: false
 }
 
-export default loginReducer = (state = initialState, action) => {
+export default userReducer = (state = initialState, action) => {
     switch(action.type) {
         case USER.LOGIN :
             return Object.assign({}, state, {
-                isLoading: false
+                isLoading: true
             });
         case USER.LOGIN_SUCCESS :
             return Object.assign({}, state, {

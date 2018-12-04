@@ -10,7 +10,7 @@ export default class Activityindication extends React.Component {
                 <Modal
                     animationType="none"
                     transparent={true}
-                    visible={true}
+                    visible={this.props.visible}
                     onRequestClose={() => { }}>
                     <View style={styles.container}>
                         <View style={[styles.outer_circle, { backgroundColor: '#fff' }]} >

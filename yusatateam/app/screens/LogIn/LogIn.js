@@ -4,7 +4,7 @@ import { AppLoading } from 'expo';
 import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { CheckBox, Button, Text } from 'native-base';
 
-import { InputWithIcon, Statusbar } from '../../components';
+import { InputWithIcon, Statusbar, Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 import styles from './Styles';
 
@@ -53,7 +53,7 @@ export class LogIn extends React.Component {
                 <Statusbar backgroundColor={'transparent'} barStyle="light-content" />
                 <ScrollView style={styles.scrollView} contentContainerStyle={{flex:1}}>
                     <View style={styles.container}>
-
+                        <Activityindication visible={this.props.user.isLoading}/>
                         <View style={styles.imageView}>
                             <Image
                                 style={styles.logo}
@@ -130,7 +130,9 @@ export class LogIn extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {}
+    return {
+        user: state.loginData
+    }
 }
 
 function mapDispatchToProps(dispatch) {
