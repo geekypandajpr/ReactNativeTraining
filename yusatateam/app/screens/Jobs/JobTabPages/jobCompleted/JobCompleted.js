@@ -25,7 +25,7 @@ export default class JobCompleted extends React.Component {
     componentDidMount() {
         this.arrayholder = this.state.data;
     }
-
+    
     selectedValue(data) {
         this.setState({ value: data })
     }
@@ -33,8 +33,7 @@ export default class JobCompleted extends React.Component {
     openFilterPage() {
         this.jobFilter.current.setModalVisible(true, this.state.status);
     }
-
-
+    
     SearchFilterFunction(text) {
         if (this.state.value == 'jobNumber') {
             const newData = this.arrayholder.filter(function (item) {
@@ -173,7 +172,7 @@ export default class JobCompleted extends React.Component {
                         </Card>
                     } >
                 </FlatList>
-                <FilterJob ref={this.jobFilter} getSelected={(data) => this.selectedValue(data)} />
+                    <FilterJob ref={this.jobFilter} getSelected={(data) => this.selectedValue(data)} />
                 <JobDetails ref='modal' />
             </View>
         )
