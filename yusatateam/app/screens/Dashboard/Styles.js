@@ -9,7 +9,7 @@ export default EStyleSheet.create({
     container1: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#e2e2e2'
+        backgroundColor: '#efefef'
     },
     fixed: {
         height: 70,
