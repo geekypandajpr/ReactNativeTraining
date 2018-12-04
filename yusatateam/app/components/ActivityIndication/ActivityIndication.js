@@ -1,21 +1,26 @@
 import React from 'react';
-import { 
-    View,
-    Text,
-    ActivityIndicator
-    } from 'react-native';
+import { View, Modal, ActivityIndicator } from 'react-native';
+
 import styles from './styles';
 
 export default class Activityindication extends React.Component {
     render() {
         return (
-            <View style={styles.container}>
-              
-              <View style={[styles.Outer_circle, { backgroundColor: '#F8F8F8' }]} >
-              <ActivityIndicator size="large" color="#0000ff" />
-            </View>
+            <View>
+                <Modal
+                    animationType="none"
+                    transparent={true}
+                    visible={true}
+                    onRequestClose={() => { }}>
+                    <View style={styles.container}>
+                        <View style={[styles.outer_circle, { backgroundColor: '#fff' }]} >
+                            <ActivityIndicator size="large" color="red" />
+                        </View>
+                    </View>
+                </Modal>
             </View>
         );
     }
 }
-export{ Activityindication}
+
+export{ Activityindication }

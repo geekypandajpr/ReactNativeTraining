@@ -4,21 +4,13 @@ export default EStyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white',
-        //flexDirection: 'row',
+        backgroundColor: 'transparent'
     },
-    Outer_circle:
-    {
-        borderRadius: 20,
-        borderWidth: 1,
-        width: 40,
-        height: 40,
-        borderColor: '#EEEEF0',
+    outer_circle: {
+        borderRadius: 21,
+        width: 42,
+        height: 42,
         justifyContent: 'center',
-        alignItems: 'center',
-        elevation:2
-    },
-   
-
-
+        alignItems: 'center'
+    }
 })
