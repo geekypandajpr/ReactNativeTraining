@@ -165,14 +165,20 @@ export default class OpenJobs extends React.Component {
 
     onCheckboxPressed(jobNumber) {
         const map = new Map(this.state.map);
-        if(map.has(jobNumber))
-        {
+        if(map.has(jobNumber)) {
            map.set(jobNumber,!map.get(jobNumber))
         }
-        else{
+        else {
             map.set(jobNumber,true);
         }
-        this.setState({map:map})
+
+        var flag = false;
+        for(var value of map.values()) {
+            if(value === true) {
+                flag = value
+            }
+        }
+        flag ?  this.setState({map:map, isButtonDisable: false}) : this.setState({map:map, isButtonDisable: true})
     }
 
     render() {
