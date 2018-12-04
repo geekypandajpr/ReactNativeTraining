@@ -10,7 +10,9 @@ export default EStyleSheet.create({
         height: 50,
         backgroundColor : '#efefef',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginLeft :6,
+        marginRight :6,
     },
     filterIcon : {
         flex : 1,
