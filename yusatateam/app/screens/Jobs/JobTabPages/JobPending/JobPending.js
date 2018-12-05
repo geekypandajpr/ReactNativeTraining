@@ -56,28 +56,47 @@ export default class JobPending extends React.Component {
     }
 
     SearchFilterFunction(text) {
+        
         const val = this.state.searchData;
         var len=this.state.searchData.length;
        // console.log(len)
-            const newData = this.arrayholder.filter(function (item) {
-                itemData  = item[val[0]].toUpperCase();
-                for(var i=1;i<len;i++)
-                {
-                    //console.log(val[i])
-                    //console.log(item[val[i]]);
-                    itemData  =itemData.concat(item[val[i]]).toUpperCase();
-                }
-                console.log(itemData)
-                const textData = text.toUpperCase()
-               
-                return itemData.indexOf(textData) > -1
-            })
-            console.log(newData);
-            this.setState({
-                data: newData,
-                text: text
-            },
-            )
+       if(len==0)
+       {
+        const newData = this.arrayholder.filter(function (item) {
+            itemData  = item["jobNumber"].toUpperCase();
+            const textData = text.toUpperCase()
+           
+            return itemData.indexOf(textData) > -1
+        })
+        console.log(newData);
+        this.setState({
+            data: newData,
+            text: text
+        },
+        )
+       }
+       else{
+        const newData = this.arrayholder.filter(function (item) {
+            itemData  = item[val[0]].toUpperCase();
+            for(var i=1;i<len;i++)
+            {
+                //console.log(val[i])
+                //console.log(item[val[i]]);
+                itemData  =itemData.concat(item[val[i]]).toUpperCase();
+            }
+            //console.log(itemData)
+            const textData = text.toUpperCase()
+           
+            return itemData.indexOf(textData) > -1
+        })
+        console.log(newData);
+        this.setState({
+            data: newData,
+            text: text
+        },
+        )
+       }
+           
         
         // if (this.state.value.has('scheduleDate')) {
         //     const newData = this.arrayholder.filter(function (item) {
