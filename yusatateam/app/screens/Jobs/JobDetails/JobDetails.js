@@ -25,7 +25,7 @@ export default class JobDetails extends React.Component {
         this.setState({ isLoading: false });
     };
 
-    setModalVisible(visible, item={}) {
+    setModalVisible(visible, item) {
         this.setState({ modalVisible: visible, item: item });
     }
 
@@ -102,7 +102,9 @@ export default class JobDetails extends React.Component {
                                                     <Text style={styles.colon}>:</Text>
                                                 </View>
                                                 <View style={styles.right_view}>
-                                                    <Text style={styles.value_text}>{item.technician}</Text>
+                                                <Text style={styles.value_text}>
+                                                    { item.servicePerson != null ? item. servicePerson : '-  -  -' }
+                                                    </Text>
                                                 </View>
                                             </View>
                                             <View style={styles.sub_view}>
@@ -116,7 +118,7 @@ export default class JobDetails extends React.Component {
                                                     <View><Entypo name='location-pin' size={24} color='#d9534f' /></View>
                                                     <View style={{ flex: 1 }}>
                                                         <Text style={styles.value_text}>
-                                                            {item.jobLocation}
+                                                            {item.location}
                                                         </Text>
                                                     </View>
                                                 </View>
@@ -130,7 +132,7 @@ export default class JobDetails extends React.Component {
                                                 </View>
                                                 <View style={styles.right_view}>
                                                     <View style={styles.status_view}>
-                                                        <Text style={styles.status_text}>{item.status}</Text>
+                                                        <Text style={styles.status_text}>{item.jobStatus}</Text>
                                                     </View>
                                                 </View>
                                             </View>
@@ -167,7 +169,7 @@ export default class JobDetails extends React.Component {
                                                     <Text style={styles.colon}>:</Text>
                                                 </View>
                                                 <View style={styles.right_view}>
-                                                    <Text style={styles.value_text}>{item.customerName}</Text>
+                                                    <Text style={styles.value_text}>{item.contactPerson}</Text>
                                                 </View>
                                             </View>
                                             <View style={styles.sub_view}>
@@ -179,7 +181,7 @@ export default class JobDetails extends React.Component {
                                                 </View>
                                                 <View style={styles.right_view}>
                                                     <Ionicons name='ios-call' size={24} color='#5cb85c' />
-                                                    <Text style={styles.value_text}>{item.customerContact}</Text>
+                                                    <Text style={styles.value_text}>{item.contactNumber}</Text>
                                                 </View>
                                             </View>
                                         </View>
