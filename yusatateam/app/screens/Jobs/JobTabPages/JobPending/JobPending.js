@@ -65,9 +65,9 @@ export default class JobPending extends React.Component {
                 {
                     //console.log(val[i])
                     //console.log(item[val[i]]);
-                    itemData  =itemData.concat(item[val[i]]);
+                    itemData  =itemData.concat(item[val[i]]).toUpperCase();
                 }
-               // console.log(itemData)
+                console.log(itemData)
                 const textData = text.toUpperCase()
                
                 return itemData.indexOf(textData) > -1
