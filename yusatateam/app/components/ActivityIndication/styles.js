@@ -13,6 +13,7 @@ export default EStyleSheet.create({
         width: 42,
         height: 42,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        elevation: 10
     }
 })
