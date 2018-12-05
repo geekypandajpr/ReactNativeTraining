@@ -1,4 +1,4 @@
-import { USER } from '../common/actionTypes';
+import { SIM } from '../common/actionTypes';
 
 const initialState = {
     isLoading: true,
@@ -8,16 +8,16 @@ const initialState = {
 
 export default simReducer = (state = initialState, action) => {
     switch (action.type) {
-        case USER.SIM_lOGIN:
+        case SIM.SIM_REQUEST:
             return Object.assign({}, state, {
                 isLoading: true
             });
-        case USER.SIM_SUCCESS:
+        case SIM.SIM_SUCCESS:
             return Object.assign({}, state, {
                 data : action.data,
                 isLoading: false
             });
-        case USER.SIM_FAILED:
+        case SIM.SIM_FAILED:
             return Object.assign({}, state, {
                 isLoading: false,
                 error: true
