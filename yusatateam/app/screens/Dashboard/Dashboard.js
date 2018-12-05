@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    ScrollView,
-} from 'react-native';
+import { Alert } from 'react-native';
 import { Text, View } from 'native-base';
 import styles from './Styles';
 import { AppLoading } from 'expo';
@@ -34,7 +32,7 @@ export default class Dashboard extends React.Component {
         }
         this.onChangePieChart = this.onChangePieChart.bind(this);
         this.onBarchartChange = this.onBarchartChange.bind(this);
-      
+
     }
 
     async componentWillMount() {
@@ -73,20 +71,34 @@ export default class Dashboard extends React.Component {
                 { value: 20, label: 'Cancelled', color: '#FF9561' },
             ];
         }
-        this.setState({piedata: data});
+        this.setState({ piedata: data });
     }
 
     onBarchartChange(key) {
-        if(key === 'Custom') {
+        if (key === 'Custom') {
             this.props.navigation.navigate('Calendars');
         }
     }
 
     componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', () => {
-                this.props.navigation.navigate('LogIn');                 
-                return true; 
-        });
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        Alert.alert(
+            'EXit Confirmation',
+            'You Want to the App',
+            [
+                { text: 'No', onPress: () => { this.props.navigation.navigate('Dashboard')}},
+                { text: 'YES', onPress: () => BackHandler.exitApp()},
+            ],
+            { cancelable: false }
+        ) // works best when the goBack is async
+        return true;
     }
 
     render() {
@@ -102,9 +114,9 @@ export default class Dashboard extends React.Component {
                     <View style={styles.container1}>
 
                         <View style={styles.upper_view}>
-                            
+
                             <View style={styles.switch}>
-                                <MultiSwitch onStatusChanged={this.onChangePieChart} 
+                                <MultiSwitch onStatusChanged={this.onChangePieChart}
                                     buttonName1="Sims" buttonColor1='#9491F8'
                                     buttonName2="Devices" buttonColor2='#8BB6F3'
                                     buttonName3="Jobs" buttonColor3='#8AD3F3'
@@ -118,7 +130,7 @@ export default class Dashboard extends React.Component {
                             </View>
 
                         </View>
-                        
+
                         <View style={styles.lower_view}>
                             <View style={styles.summary_switch}>
                                 <SummarySwitch onStatusChanged={this.onBarchartChange}
@@ -135,7 +147,7 @@ export default class Dashboard extends React.Component {
 
                         <View style={styles.middle_view}>
                             <View style={styles.icon_view}>
-                                <View style={[styles.button_view,{marginRight:1}]}>
+                                <View style={[styles.button_view, { marginRight: 1 }]}>
                                     <SquareButton
                                         name='devices'
                                         type='MaterialIcons'
@@ -146,7 +158,7 @@ export default class Dashboard extends React.Component {
                                         colors={['#b7ffb5', '#84e184', '#51ae56']}
                                     />
                                 </View>
-                                <View style={[styles.button_view,{marginRight:1}]}>
+                                <View style={[styles.button_view, { marginRight: 1 }]}>
                                     <SquareButton
                                         name='sim'
                                         type='MaterialCommunityIcons'
@@ -159,7 +171,7 @@ export default class Dashboard extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.icon_view}>
-                                <View style={[styles.button_view,{marginRight:1, marginLeft:1}]}>
+                                <View style={[styles.button_view, { marginRight: 1, marginLeft: 1 }]}>
                                     <SquareButton
                                         name='calendar'
                                         type='Foundation'
@@ -170,7 +182,7 @@ export default class Dashboard extends React.Component {
                                         colors={['#fff289', '#f2c059', '#bc9029']}
                                     />
                                 </View>
-                                <View style={[styles.button_view,{marginRight:1, marginLeft:1}]}>
+                                <View style={[styles.button_view, { marginRight: 1, marginLeft: 1 }]}>
                                     <SquareButton
                                         name='schedule'
                                         type='MaterialIcons'
@@ -183,7 +195,7 @@ export default class Dashboard extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.icon_view}>
-                                <View style={[styles.button_view,{marginLeft:1}]}>
+                                <View style={[styles.button_view, { marginLeft: 1 }]}>
                                     <SquareButton
                                         name='group'
                                         type='MaterialIcons'
@@ -194,7 +206,7 @@ export default class Dashboard extends React.Component {
                                         colors={['#6ddbea', '#31a9b8', '#007a88']}
                                     />
                                 </View>
-                                <View style={[styles.button_view,{marginLeft:1}]}>
+                                <View style={[styles.button_view, { marginLeft: 1 }]}>
                                     <SquareButton
                                         name='worker'
                                         type='MaterialCommunityIcons'
