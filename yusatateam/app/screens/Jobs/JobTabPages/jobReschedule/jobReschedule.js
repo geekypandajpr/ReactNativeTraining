@@ -19,6 +19,7 @@ export default class JobReschedule extends React.Component {
             status: 'ReSchedule',
             value: 'jobNumber',
             map1: new Map(),
+            searchData : [],
 
             //status: 'Reschedule'
         }
@@ -32,10 +33,18 @@ export default class JobReschedule extends React.Component {
     }
 
     selectedValue(data) {
-        this.setState({ value: data })
-    }
-
+        // this.setState({ value: data });
+         for(var key of data.keys())
+         {
+             console.log(key)
+             this.state.searchData.push(key);
+             
+         }
+         console.log(this.state.searchData)
+         //this.setState({searchData});
+     }
     openFilterPage() {
+        this.state.searchData=[];
         this.jobFilter.current.setModalVisible(true, this.state.status);
     }
 
@@ -49,81 +58,49 @@ export default class JobReschedule extends React.Component {
         }
         this.setState({ map1 })
     }
-
     SearchFilterFunction(text) {
+        
+        const val = this.state.searchData;
+        var len=this.state.searchData.length;
+       // console.log(len)
+       if(len==0)
+       {
         const newData = this.arrayholder.filter(function (item) {
-            const itemData = item.jobNumber.toUpperCase()
+            itemData  = item["jobNumber"].toUpperCase();
             const textData = text.toUpperCase()
+           
             return itemData.indexOf(textData) > -1
         })
+        console.log(newData);
         this.setState({
             data: newData,
             text: text
-        }
+        },
         )
-    };
-    SearchFilterFunction(text) {
-        if (this.state.value == 'jobNumber') {
-            const newData = this.arrayholder.filter(function (item) {
-                const itemData = item.jobNumber.toUpperCase()
-                const textData = text.toUpperCase()
-                return itemData.indexOf(textData) > -1
-            })
-            this.setState({
-                data: newData,
-                text: text
-            },
-            )
-        }
-        if (this.state.value == 'scheduleDate') {
-            const newData = this.arrayholder.filter(function (item) {
-                const itemData = item.scheduleDate.toUpperCase()
-                const textData = text.toUpperCase()
-                return itemData.indexOf(textData) > -1
-            })
-            this.setState({
-                data: newData,
-                text: text
-            },
-            )
-        }
-        if (this.state.value == 'jobType') {
-            const newData = this.arrayholder.filter(function (item) {
-                const itemData = item.jobType.toUpperCase()
-                const textData = text.toUpperCase()
-                return itemData.indexOf(textData) > -1
-            })
-            this.setState({
-                data: newData,
-                text: text
-            },
-            )
-        }
-        if (this.state.value == 'completedDate') {
-            const newData = this.arrayholder.filter(function (item) {
-                const itemData = item.completedDate.toUpperCase()
-                const textData = text.toUpperCase()
-                return itemData.indexOf(textData) > -1
-            })
-            this.setState({
-                data: newData,
-                text: text
-            },
-            )
-        }
-        if (this.state.value == 'servicePerson') {
-            const newData = this.arrayholder.filter(function (item) {
-                const itemData = item.servicePerson.toUpperCase()
-                const textData = text.toUpperCase()
-                return itemData.indexOf(textData) > -1
-            })
-            this.setState({
-                data: newData,
-                text: text
-            },
-            )
-        }
+       }
+       else{
+        const newData = this.arrayholder.filter(function (item) {
+            itemData  = item[val[0]].toUpperCase();
+            for(var i=1;i<len;i++)
+            {
+                //console.log(val[i])
+                //console.log(item[val[i]]);
+                itemData  =itemData.concat(item[val[i]]).toUpperCase();
+            }
+            //console.log(itemData)
+            const textData = text.toUpperCase()
+           
+            return itemData.indexOf(textData) > -1
+        })
+        console.log(newData);
+        this.setState({
+            data: newData,
+            text: text
+        },
+        )
+       }
     }
+
 
     render() {
         return (

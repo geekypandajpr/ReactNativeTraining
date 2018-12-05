@@ -96,32 +96,6 @@ export default class JobPending extends React.Component {
         },
         )
        }
-           
-        
-        // if (this.state.value.has('scheduleDate')) {
-        //     const newData = this.arrayholder.filter(function (item) {
-        //         var itemData = item.scheduleDate.toUpperCase()
-        //         const textData = text.toUpperCase()
-        //         return itemData.indexOf(textData) > -1
-        //     })
-        //     this.setState({
-        //         data: newData,
-        //         text: text
-        //     },
-        //     )
-        // }
-        // if (this.state.value.has('jobType')) {
-        //     const newData = this.arrayholder.filter(function (item) {
-        //         var itemData = item.jobType.toUpperCase()
-        //         const textData = text.toUpperCase()
-        //         return itemData.indexOf(textData) > -1
-        //     })
-        //     this.setState({
-        //         data: newData,
-        //         text: text
-        //     },
-        //     )
-        // }
     }
     render() {
         return (
