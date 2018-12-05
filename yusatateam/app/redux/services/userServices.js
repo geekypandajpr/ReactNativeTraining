@@ -1,14 +1,16 @@
 import Api from '../common/api';
 import { USER } from '../common/urls';
 import loginData from '../../assets/JSONData/loginData';
-import SimData from '../../assets/JSONData/SimData'
+import SimData from '../../assets/JSONData/SimData';
+import pendingData from '../../assets/JSONData/JobsData/pendingData'
 
 export const login = data => Api.post(USER.LOGIN, data);
 
 export default userService = {
     login,
     doLogin,
-    simlogin
+    simlogin,
+    jobPendingData,
 }
 
 /**LOGIN API CALL */
@@ -28,3 +30,13 @@ export function simlogin(){
         }, 3000)
     });
 }
+
+/**JOBS API CALL */
+export function jobPendingData(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(pendingData);
+        }, 3000)
+    });
+}
+
