@@ -91,7 +91,7 @@ export default class JobSchedule extends React.Component {
             <View style={styles.container}>
              <View style={styles.searchView}>
                 <View style={{flex :10}}>
-                <SearchBar placeholder={'Search By ' + this.state.value}
+                <SearchBar placeholder={'Search By '}
                     onChangeText={(text) => this.SearchFilterFunction(text)}/>
                     </View>
                         <View style={styles.filterIcon}>
