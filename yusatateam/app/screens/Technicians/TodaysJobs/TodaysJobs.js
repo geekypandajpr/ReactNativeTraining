@@ -11,47 +11,47 @@ import JobDetails from '../../Jobs/JobDetails/JobDetails';
 const data = [
     {
         jobNumber: 'JOBS25DEC2018',
-        jobLocation: '84/122 sector 8 Pratap nagar Jaipur-302033, Rajasthan India',
+        location: '84/122 sector 8 Pratap nagar Jaipur-302033, Rajasthan India',
         jobType: 'Install',
-        status: 'Schedule',
+        jobStatus: 'Schedule',
         scheduleDate: '25-12-2018',
         // completedDate: '26-10-2018',
-        technician: 'Premsagar',
-        customerName: 'Prem',
-        customerContact: '+917008845220'
+        servicePerson: 'Premsagar',
+        contactPerson: 'Prem',
+        contactNumber: '+917008845220'
     },
     {
         jobNumber: 'JOBS15DEC2018',
-        jobLocation: '84/122 sector 8 Pratap nagar Jaipur-302033, Rajasthan India',
+        location: '84/122 sector 8 Pratap nagar Jaipur-302033, Rajasthan India',
         jobType: 'Replace',
-        status: 'Completed',
+        jobStatus: 'Completed',
         scheduleDate: '12-12-2018',
         completedDate: '26-10-2018',
-        technician: 'Premsagar',
-        customerName: 'Shaili Mittal',
-        customerContact: '+917008845220'
+        servicePerson: 'Premsagar',
+        contactPerson: 'Shaili Mittal',
+        contactNumber: '+917008845220'
     },
     {
         jobNumber: 'JOBS28DEC2018',
-        jobLocation: '84/122 sector 8 Pratap nagar Jaipur-302033, Rajasthan India',
+        location: '84/122 sector 8 Pratap nagar Jaipur-302033, Rajasthan India',
         jobType: 'Repair',
-        status: 'Pending',
+        jobStatus: 'Pending',
         scheduleDate: '20-12-2018',
         //completedDate: '26-10-2018',
-        technician: 'Premsagar',
-        customerName: 'Vinayak Sharma',
-        customerContact: '+917008845220'
+        servicePerson: 'Premsagar',
+        contactPerson: 'Vinayak Sharma',
+        contactNumber: '+917008845220'
     },
     {
         jobNumber: 'JOBS28DEC2018',
-        jobLocation: '84/122 sector 8 Pratap nagar Jaipur-302033, Rajasthan India',
+        location: '84/122 sector 8 Pratap nagar Jaipur-302033, Rajasthan India',
         jobType: 'Uninstall',
-        status: 'Onjob',
+        jobStatus: 'Onjob',
         scheduleDate: '20-12-2018',
         //completedDate: '26-10-2018',
-        technician: 'Premsagar',
-        customerName: 'Prem',
-        customerContact: '+917008845220'
+        servicePerson: 'Premsagar',
+        contactPerson: 'Prem',
+        contactNumber: '+917008845220'
     }
 ]
 
@@ -112,8 +112,8 @@ export default class TodaysJobs extends React.Component {
                                     <Text style={styles.jobNumText}>{item.jobNumber}</Text>
                                 </View>
                                 <View style={styles.status}>
-                                    <View style={[styles.statusView,{ backgroundColor: statusColor[item.status]}]}>
-                                        <Text style={styles.statusText}>{item.status}</Text>
+                                    <View style={[styles.statusView,{ backgroundColor: statusColor[item.jobStatus]}]}>
+                                        <Text style={styles.statusText}>{item.jobStatus}</Text>
                                     </View>
                                 </View>
                             </View>
@@ -152,7 +152,7 @@ export default class TodaysJobs extends React.Component {
                                     <Text>:</Text>
                                 </View>
                                 <View style={styles.right_view}>
-                                    <Text style={styles.value_text}>{item.customerName}</Text>
+                                    <Text style={styles.value_text}>{item.contactPerson}</Text>
                                 </View>
                             </View>
 
@@ -173,7 +173,7 @@ export default class TodaysJobs extends React.Component {
                             <View style={styles.sub_view}>
                                 <Entypo name='location-pin' size={20} color='#d9534f'/>
                                 <View style={{flex: 1}}>
-                                    <Text style={styles.value_text}>{item.jobLocation}</Text>
+                                    <Text style={styles.value_text}>{item.location}</Text>
                                 </View>
                             </View>
 

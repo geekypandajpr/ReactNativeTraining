@@ -43,7 +43,7 @@ export default class VehicleList extends React.Component {
                 <View style={styles.container}>
                     <View>
                         <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                            setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
+                            setting='ios-search' settingType='Ionicons' />
                     </View>
                     <FlatList
                         data={vehicleData}

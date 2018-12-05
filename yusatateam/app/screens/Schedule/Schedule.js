@@ -51,8 +51,7 @@ export default class Schedule extends React.Component {
         return (
             <View style={styles.container}>
                 <Toolbar title='Schedule'
-                    leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
-                    setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
+                    leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()} />
                 <Agenda
                     //renderDay={(day, item) => this.renderDay(day, item)}
                     items={this.state.items}

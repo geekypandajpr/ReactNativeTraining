@@ -8,14 +8,16 @@ import {
 } from 'react-native';
 import { Card, Button, Text } from 'native-base';
 import { AppLoading } from 'expo';
+import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from './styles';
-import { Toolbar } from '../../components';
+import { Toolbar,Activityindication } from '../../components';
 import { SimDetails } from './SimDetails';
 import SimData from '../../assets/JSONData/SimData';
+import { userActions } from '../../redux/actions'
 import { SearchBar } from '../../components/SearchBar/SearchBar';
 
-export default class Sim extends React.Component {
+export  class Sim extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -39,6 +41,9 @@ export default class Sim extends React.Component {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.setState({data:SimData});
         this.list=SimData;
+        _Datarender=()=>{
+            }
+        this.props.onFetchData();
     }
 
     handleBackPress = () => {
@@ -65,14 +70,15 @@ export default class Sim extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
+                <Activityindication visible={this.props.user.isLoading}/>
                     <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
                     <View style={styles.viewStyle}>
-                    <SearchBar onChangeText={(text)=>this.searchFunction(text)}>
+                    {/* <SearchBar onChangeText={(text)=>this.searchFunction(text)}>
 
-                    </SearchBar>
+                    </SearchBar> */}
                         <FlatList
-                            data={this.state.data}
+                            data={this.props.user.data}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                                 <TouchableWithoutFeedback
@@ -136,4 +142,15 @@ export default class Sim extends React.Component {
         );
     }
 }
-export { Sim }
+
+function mapStateToProps(state){
+    return{
+        user : state.SimData
+    }
+}
+function mapDispatchToProps(dispatch){
+    return{
+        onFetchData:()=>dispatch(userActions.simRequest())
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Sim)

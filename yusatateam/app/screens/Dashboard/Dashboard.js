@@ -12,7 +12,8 @@ import {
     SummaryCard,
     MultiSwitch,
     SummarySwitch,
-    Barchart
+    Barchart,
+    Activityindication
 } from '../../components';
 import Swiper from 'react-native-swiper';
 import colors from '../../constants/colors';
@@ -95,6 +96,7 @@ export default class Dashboard extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
+                    <Activityindication visible={false}/>
                     <Toolbar title='Dashboard'
                         leftIcon='home'
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
