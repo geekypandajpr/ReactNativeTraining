@@ -8,6 +8,7 @@ import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { SearchBar } from '../../../../components';
 import JobAssign from '../../jobAssign/jobAssign';
 import { FilterJob } from '../../../../components/FilterJob/FilterJob';
+var itemData;
 
 export default class JobPending extends React.Component {
     constructor() {
@@ -17,6 +18,7 @@ export default class JobPending extends React.Component {
             map1: new Map(null),
             value: new Map(),
             status: 'Pending',
+            searchData : [],
         }
         this.arrayholder = [];
         this.jobFilter = React.createRef();
@@ -24,11 +26,21 @@ export default class JobPending extends React.Component {
     };
     componentDidMount() {
         this.arrayholder = this.state.data;
+        
     }
     selectedValue(data) {
-        this.setState({ value: data });
+       // this.setState({ value: data });
+        for(var key of data.keys())
+        {
+            console.log(key)
+            this.state.searchData.push(key);
+            
+        }
+        console.log(this.state.searchData)
+        //this.setState({searchData});
     }
     openFilterPage() {
+        this.state.searchData=[];
         this.jobFilter.current.setModalVisible(true, this.state.status);
     }
 
@@ -44,42 +56,53 @@ export default class JobPending extends React.Component {
     }
 
     SearchFilterFunction(text) {
-        if (this.state.value.has('jobNumber')) {
+        const val = this.state.searchData;
+        var len=this.state.searchData.length;
+       // console.log(len)
             const newData = this.arrayholder.filter(function (item) {
-                var itemData = item.jobNumber.toUpperCase()
+                itemData  = item[val[0]].toUpperCase();
+                for(var i=1;i<len;i++)
+                {
+                    //console.log(val[i])
+                    //console.log(item[val[i]]);
+                    itemData  =itemData.concat(item[val[i]]);
+                }
+               // console.log(itemData)
                 const textData = text.toUpperCase()
+               
                 return itemData.indexOf(textData) > -1
             })
+            console.log(newData);
             this.setState({
                 data: newData,
                 text: text
             },
             )
-        }
-        if (this.state.value.has('scheduleDate')) {
-            const newData = this.arrayholder.filter(function (item) {
-                var itemData = item.scheduleDate.toUpperCase()
-                const textData = text.toUpperCase()
-                return itemData.indexOf(textData) > -1
-            })
-            this.setState({
-                data: newData,
-                text: text
-            },
-            )
-        }
-        if (this.state.value.has('jobType')) {
-            const newData = this.arrayholder.filter(function (item) {
-                var itemData = item.jobType.toUpperCase()
-                const textData = text.toUpperCase()
-                return itemData.indexOf(textData) > -1
-            })
-            this.setState({
-                data: newData,
-                text: text
-            },
-            )
-        }
+        
+        // if (this.state.value.has('scheduleDate')) {
+        //     const newData = this.arrayholder.filter(function (item) {
+        //         var itemData = item.scheduleDate.toUpperCase()
+        //         const textData = text.toUpperCase()
+        //         return itemData.indexOf(textData) > -1
+        //     })
+        //     this.setState({
+        //         data: newData,
+        //         text: text
+        //     },
+        //     )
+        // }
+        // if (this.state.value.has('jobType')) {
+        //     const newData = this.arrayholder.filter(function (item) {
+        //         var itemData = item.jobType.toUpperCase()
+        //         const textData = text.toUpperCase()
+        //         return itemData.indexOf(textData) > -1
+        //     })
+        //     this.setState({
+        //         data: newData,
+        //         text: text
+        //     },
+        //     )
+        // }
     }
     render() {
         return (

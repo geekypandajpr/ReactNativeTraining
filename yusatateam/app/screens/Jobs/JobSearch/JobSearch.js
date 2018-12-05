@@ -12,8 +12,8 @@ import {
 import { List, ListItem, Body, Button ,CheckBox} from 'native-base';
 import styles from './styles';
 import { TouchableWithoutFeedback } from 'react-native';
-import { Toolbar, JobsComponent, SearchBar,JobDetailToolbar } from '../../../components';
-import { Checkbox } from '../../../components';
+import {  SearchBar,JobDetailToolbar } from '../../../components';
+
 
 
 export default class JobSearch extends React.Component {
