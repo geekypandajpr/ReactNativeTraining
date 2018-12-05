@@ -9,9 +9,9 @@ const initialState = {
 export default simReducer = (state = initialState, action) => {
     switch (action.type) {
         case USER.SIM_lOGIN:
-            return Object.assign({}, state,
-                { isLoading: true }
-            );
+            return Object.assign({}, state, {
+                isLoading: true
+            });
         case USER.SIM_SUCCESS:
             return Object.assign({}, state, {
                 data : action.data,
@@ -19,7 +19,6 @@ export default simReducer = (state = initialState, action) => {
             });
         case USER.SIM_FAILED:
             return Object.assign({}, state, {
-                
                 isLoading: false,
                 error: true
             });

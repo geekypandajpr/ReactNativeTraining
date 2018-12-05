@@ -2,24 +2,22 @@ import React from 'react';
 import {
     View,
     FlatList,
-    TouchableHighlight,
     TouchableWithoutFeedback,
     BackHandler
 } from 'react-native';
-import { Card, Button, Text } from 'native-base';
+import { Card, Text } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import styles from './styles';
-import { Toolbar,Activityindication } from '../../components';
-import { SimDetails } from './SimDetails';
-import SimData from '../../assets/JSONData/SimData';
-import { userActions } from '../../redux/actions'
-import { SearchBar } from '../../components/SearchBar/SearchBar';
 
-export  class Sim extends React.Component {
-    constructor() {
-        super();
+import styles from './styles';
+import { Toolbar, Activityindication } from '../../components';
+import { SimDetails } from './SimDetails';
+import { userActions } from '../../redux/actions';
+
+export class Sim extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
             isLoading: true,
             data:[],
@@ -28,6 +26,7 @@ export  class Sim extends React.Component {
         this.list=[];
         this.modalRef = React.createRef();
     }
+
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -39,10 +38,6 @@ export  class Sim extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        this.setState({data:SimData});
-        this.list=SimData;
-        _Datarender=()=>{
-            }
         this.props.onFetchData();
     }
 
@@ -54,6 +49,7 @@ export  class Sim extends React.Component {
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
+
     searchFunction(text){
         const newdata = this.list.filter(function(item){
             const itemdata=item.MSIDN.toUpperCase();
@@ -65,20 +61,16 @@ export  class Sim extends React.Component {
     }
 
     render() {
-        const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                <Activityindication visible={this.props.user.isLoading}/>
+                    <Activityindication visible={this.props.simDatas.isLoading}/>
                     <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
+                        setting='ios-search' settingType='Ionicons'/>
                     <View style={styles.viewStyle}>
-                    {/* <SearchBar onChangeText={(text)=>this.searchFunction(text)}>
-
-                    </SearchBar> */}
                         <FlatList
-                            data={this.props.user.data}
+                            data={this.props.simDatas.data}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                                 <TouchableWithoutFeedback
@@ -145,12 +137,14 @@ export  class Sim extends React.Component {
 
 function mapStateToProps(state){
     return{
-        user : state.SimData
+        simDatas : state.simData
     }
 }
+
 function mapDispatchToProps(dispatch){
     return{
-        onFetchData:()=>dispatch(userActions.simRequest())
+        onFetchData: () => dispatch(userActions.simRequest())
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Sim)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sim);
