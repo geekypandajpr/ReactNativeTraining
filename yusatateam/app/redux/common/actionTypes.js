@@ -1,7 +1,7 @@
 export const USER = {
     LOGIN                : 'LOGIN_REQUEST',
     LOGIN_SUCCESS        : 'LOGIN_SUCCESS',
-    LOGIN_FAILED         : 'LOGIN_FAILED',
+    LOGIN_FAILED         : 'LOGIN_FAILED'
 };
 
 export const SIM = {
@@ -11,7 +11,7 @@ export const SIM = {
 };
 
 export const JOBS = {
-    JOBS_LOGIN  : 'JOBS_LOGIN',
-    JOBS_SUCCESS : 'JOBS_SUCCESS',
-    JOBS_FAILED  :  'JOBS_FAILED'
+    JOBS_LOGIN           : 'JOBS_LOGIN',
+    JOBS_SUCCESS         : 'JOBS_SUCCESS',
+    JOBS_FAILED          :  'JOBS_FAILED'
 }
