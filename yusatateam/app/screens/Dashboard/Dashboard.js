@@ -91,9 +91,9 @@ export default class Dashboard extends React.Component {
     handleBackPress = () => {
         Alert.alert(
             'EXit Confirmation',
-            'You Want to the App',
+            'Do you want to exit ?',
             [
-                { text: 'No', onPress: () => { this.props.navigation.navigate('Dashboard')}},
+                { text: 'No', onPress: () => {}},
                 { text: 'YES', onPress: () => BackHandler.exitApp()},
             ],
             { cancelable: false }
