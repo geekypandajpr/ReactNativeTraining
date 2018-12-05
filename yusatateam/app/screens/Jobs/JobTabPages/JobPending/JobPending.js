@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, FlatList, TouchableOpacity} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Text, Button, Card, Footer, FooterTab, CheckBox } from 'native-base';
 import styles from './styles';
+import { userActions } from '../../../../redux/actions'
 import JobDetails from '../../JobDetails/JobDetails';
 import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { SearchBar } from '../../../../components';
@@ -10,11 +12,11 @@ import JobAssign from '../../jobAssign/jobAssign';
 import { FilterJob } from '../../../../components/FilterJob/FilterJob';
 var itemData;
 
-export default class JobPending extends React.Component {
+export  class JobPending extends React.Component {
     constructor() {
         super();
         this.state = {
-            data: pendingData,
+            data: [],
             map1: new Map(null),
             value: new Map(),
             status: 'Pending',
@@ -25,7 +27,9 @@ export default class JobPending extends React.Component {
         this.openFilterPage = this.openFilterPage.bind(this);
     };
     componentDidMount() {
+        this.setState({data:pendingData});
         this.arrayholder = this.state.data;
+        this.props.onFetchData();
         
     }
     selectedValue(data) {
@@ -113,7 +117,7 @@ export default class JobPending extends React.Component {
                 </View>
                 <FlatList
                     extraData={this.state}
-                    data={this.state.data}
+                    data={this.props.user.data}
                     keyExtractor={(item, index) => item.jobNumber}
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>
@@ -200,4 +204,16 @@ export default class JobPending extends React.Component {
         )
     }
 }
-export { JobPending }
+
+function mapStateToProps(state){
+    return{
+        user : state.pendingData
+    }
+}
+function mapDispatchToProps(dispatch){
+    return{
+        onFetchData:()=>dispatch(userActions.jobRequest())
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(JobPending)
+
