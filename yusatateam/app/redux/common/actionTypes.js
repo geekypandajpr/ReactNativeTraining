@@ -6,3 +6,8 @@ export const USER = {
     SIM_SUCCESS          : 'SIM_SUCCESS',
     SIM_FAILED           : 'SIM_FAILED'
 };
+export const JOBS ={
+    JOBS_LOGIN  : 'JOBS_LOGIN',
+    JOBS_SUCCESS : 'JOBS_SUCCESS',
+    JOBS_FAILED  :  'JOBS_FAILED'
+}
