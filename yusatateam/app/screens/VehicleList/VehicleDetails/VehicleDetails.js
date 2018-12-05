@@ -43,7 +43,7 @@ export default class VehicleDetails extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
                     <Toolbar title='Customer Name' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
+                        setting='ios-search' settingType='Ionicons' />
 
                     <View style={styles.inner_container}>
                         <FlatList
