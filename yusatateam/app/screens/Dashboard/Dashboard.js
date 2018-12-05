@@ -1,20 +1,17 @@
 import React from 'react';
-import { Alert } from 'react-native';
-import { Text, View } from 'native-base';
-import styles from './Styles';
+import { View, Alert, BackHandler } from 'react-native';
 import { AppLoading } from 'expo';
+
 import {
     Toolbar,
     SquareButton,
     Piechart,
-    SummaryCard,
     MultiSwitch,
     SummarySwitch,
     Barchart
 } from '../../components';
-import Swiper from 'react-native-swiper';
 import colors from '../../constants/colors';
-import { BackHandler } from 'react-native'
+import styles from './Styles';
 
 export default class Dashboard extends React.Component {
     constructor() {
@@ -103,7 +100,6 @@ export default class Dashboard extends React.Component {
 
     render() {
         const { navigate } = this.props.navigation;
-        const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
