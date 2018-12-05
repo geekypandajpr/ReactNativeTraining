@@ -20,7 +20,7 @@ export default EStyleSheet.create({
         alignItems : 'center',
         justifyContent : 'center',
         height: 40,
-        backgroundColor: '#0073b7'
+        backgroundColor: 'white'
         ,borderRadius: 2,
         marginRight:2,
         borderRadius : 0.2,

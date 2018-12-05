@@ -7,7 +7,7 @@ export default EStyleSheet.create({
     searchView : {
         flexDirection :'row',
         height: 50,
-        backgroundColor : '#efefef',
+        backgroundColor : 'white',
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft :6,
@@ -18,9 +18,12 @@ export default EStyleSheet.create({
         alignItems : 'center',
         justifyContent : 'center',
         height: 40,
-        backgroundColor: '#0073b7'
+        backgroundColor: 'white'
         ,borderRadius: 2,
-        marginRight:2
+        marginRight:2,
+        borderRadius : 0.2,
+        borderColor : 'black',
+        borderWidth : 0.5
     },
     viewList: {
         flex: 1,

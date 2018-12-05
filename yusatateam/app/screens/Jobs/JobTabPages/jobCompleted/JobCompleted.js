@@ -31,11 +31,11 @@ export default class JobCompleted extends React.Component {
         // this.setState({ value: data });
          for(var key of data.keys())
          {
-             console.log(key)
+            // console.log(key)
              this.state.searchData.push(key);
              
          }
-         console.log(this.state.searchData)
+         //console.log(this.state.searchData)
          //this.setState({searchData});
      }
     openFilterPage() {
@@ -56,7 +56,7 @@ export default class JobCompleted extends React.Component {
            
             return itemData.indexOf(textData) > -1
         })
-        console.log(newData);
+       // console.log(newData);
         this.setState({
             data: newData,
             text: text
@@ -77,7 +77,7 @@ export default class JobCompleted extends React.Component {
            
             return itemData.indexOf(textData) > -1
         })
-        console.log(newData);
+       // console.log(newData);
         this.setState({
             data: newData,
             text: text
@@ -97,7 +97,7 @@ export default class JobCompleted extends React.Component {
                     </View>
                     <View style={styles.filterIcon}>
                         <TouchableOpacity onPress={this.openFilterPage}>
-                            <FontAwesome name="filter" size={25} color="white" />
+                            <FontAwesome name="filter" size={25} color="gray" />
                         </TouchableOpacity>
                     </View>
                 </View>
