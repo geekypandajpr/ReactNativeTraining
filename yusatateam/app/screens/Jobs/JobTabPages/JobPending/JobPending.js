@@ -10,9 +10,8 @@ import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { SearchBar,Activityindication } from '../../../../components';
 import JobAssign from '../../jobAssign/jobAssign';
 import { FilterJob } from '../../../../components/FilterJob/FilterJob';
-var itemData;
 
-export  class JobPending extends React.Component {
+export default class JobPending extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -28,7 +27,7 @@ export  class JobPending extends React.Component {
     };
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        this.props.onFetchData();
+        // this.props.onFetchData();
        //this.arrayholder = this.state.data;
         
     }
@@ -124,7 +123,7 @@ export  class JobPending extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-            <Activityindication visible={this.props.PendingData.isLoading}/>
+            {/* <Activityindication visible={this.props.PendingData.isLoading}/> */}
                 <View style={styles.searchView}>
                     <View style={{ flex: 10 }}>
                         <SearchBar placeholder={'Search By '}
@@ -138,7 +137,7 @@ export  class JobPending extends React.Component {
                 </View>
                 <FlatList
                     extraData={this.state}
-                    data={this.props.PendingData.data}
+                    data={pendingData}
                     keyExtractor={(item, index) => item.jobNumber}
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>
@@ -226,15 +225,16 @@ export  class JobPending extends React.Component {
     }
 }
 
-function mapStateToProps(state){
-    return{
-        PendingData : state.JobData
-    }
-}
-function mapDispatchToProps(dispatch){
-    return{
-        onFetchData:()=>dispatch(userActions.jobRequest())
-    }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(JobPending)
+// function mapStateToProps(state){
+//     return{
+//         PendingData : state.JobData
+//     }
+// }
+// function mapDispatchToProps(dispatch){
+//     return{
+//         onFetchData:()=>dispatch(userActions.jobRequest())
+//     }
+// }
+// export default connect(mapDispatchToProps)(JobPending)
 
+export {JobPending}
