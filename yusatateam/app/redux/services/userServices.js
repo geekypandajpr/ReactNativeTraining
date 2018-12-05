@@ -2,7 +2,7 @@ import Api from '../common/api';
 import { USER } from '../common/urls';
 import loginData from '../../assets/JSONData/loginData';
 import SimData from '../../assets/JSONData/SimData';
-import pendingData from '../../assets/JSONData/JobsData/pendingData'
+import VehicleDetail from '../../assets/JSONData/VehicleDetail'
 
 export const login = data => Api.post(USER.LOGIN, data);
 
@@ -35,7 +35,7 @@ export function simlogin(){
 export function jobPendingData(){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            return resolve(pendingData);
+            return resolve(VehicleDetail);
         }, 3000)
     });
 }

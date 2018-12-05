@@ -2,17 +2,20 @@ import React from 'react';
 import { FlatList, BackHandler, TouchableOpacity } from 'react-native';
 import { View, Text, List, ListItem, Body, Right } from 'native-base';
 import { AppLoading } from 'expo';
+import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './styles';
-import { Toolbar } from '../../components';
+import { Toolbar,Activityindication } from '../../components';
+import { userActions } from '../../redux/actions';
 import vehicleData from '../../assets/JSONData/vehicleData';
 
-export default class VehicleList extends React.Component {
+export  class VehicleList extends React.Component {
     constructor() {
         super();
         this.state = { isLoading: true };
     }
     
+ 
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -24,6 +27,7 @@ export default class VehicleList extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        this.props.onFetchData();
     }
 
     handleBackPress = () => {
@@ -41,12 +45,13 @@ export default class VehicleList extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
+                 <Activityindication visible={this.props.vehicleData.isLoading}/>
                     <View>
                         <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                             setting='ios-search' settingType='Ionicons' />
                     </View>
                     <FlatList
-                        data={vehicleData}
+                        data={this.props.vehicleData.data}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
                             <List>
@@ -83,4 +88,16 @@ export default class VehicleList extends React.Component {
         );
     }
 }
-export { VehicleList }
+function mapStateToProps(state){
+    return{
+        vehicleData : state.simData
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        onFetchData: () => dispatch(userActions.jobRequest())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VehicleList);
