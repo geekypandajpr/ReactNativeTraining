@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, FlatList, TouchableOpacity} from 'react-native';
+import { View, FlatList, TouchableOpacity,BackHandler} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Text, Button, Card, Footer, FooterTab, CheckBox } from 'native-base';
 import styles from './styles';
 import { userActions } from '../../../../redux/actions'
 import JobDetails from '../../JobDetails/JobDetails';
 import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
-import { SearchBar } from '../../../../components';
+import { SearchBar,Activityindication } from '../../../../components';
 import JobAssign from '../../jobAssign/jobAssign';
 import { FilterJob } from '../../../../components/FilterJob/FilterJob';
 var itemData;
@@ -27,11 +27,31 @@ export  class JobPending extends React.Component {
         this.openFilterPage = this.openFilterPage.bind(this);
     };
     componentDidMount() {
-        this.setState({data:pendingData});
-        this.arrayholder = this.state.data;
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.props.onFetchData();
+       //this.arrayholder = this.state.data;
         
     }
+    
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+        })
+        this.setState({ isLoading: false })
+    }
+
+
     selectedValue(data) {
        // this.setState({ value: data });
         for(var key of data.keys())
@@ -70,11 +90,11 @@ export  class JobPending extends React.Component {
             itemData  = item["jobNumber"].toUpperCase();
             const textData = text.toUpperCase()
            
-            return itemData.indexOf(textData) > -1
-        })
+            return itemData.indexOf(textData) > -1         
+        })         
         //console.log(newData);
         this.setState({
-            data: newData,
+            data: newData,         
             text: text
         },
         )
@@ -97,13 +117,14 @@ export  class JobPending extends React.Component {
         this.setState({
             data: newData,
             text: text
-        },
+        }, 
         )
        }
     }
     render() {
         return (
             <View style={styles.container}>
+            <Activityindication visible={this.props.PendingData.isLoading}/>
                 <View style={styles.searchView}>
                     <View style={{ flex: 10 }}>
                         <SearchBar placeholder={'Search By '}
@@ -117,7 +138,7 @@ export  class JobPending extends React.Component {
                 </View>
                 <FlatList
                     extraData={this.state}
-                    data={this.props.user.data}
+                    data={this.props.PendingData.data}
                     keyExtractor={(item, index) => item.jobNumber}
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>
@@ -207,7 +228,7 @@ export  class JobPending extends React.Component {
 
 function mapStateToProps(state){
     return{
-        user : state.pendingData
+        PendingData : state.JobData
     }
 }
 function mapDispatchToProps(dispatch){
