@@ -19,7 +19,7 @@ export default customerReducer = (state = initialState, action) => {
             });
         case CUSTOMER.CUSTOMER_FAILED :
             return Object.assign({}, state, {
-                data: {},
+                data: [],
                 isLoading: false,
                 error: true
             });
