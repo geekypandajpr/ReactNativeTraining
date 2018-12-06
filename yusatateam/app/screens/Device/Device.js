@@ -10,7 +10,7 @@ import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons'
 import styles from './styles';
-import { Toolbar } from '../../components';
+import { Toolbar,Activityindication } from '../../components';
 import DeviceData from '../../assets/JSONData/DeviceData'
 import { DeviceDetails } from './DeviceDeatails';
 import {  SearchBar } from '../../components/SearchBar/SearchBar'
@@ -36,8 +36,7 @@ export  class Device extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        var req = {"orderCode " : "device"}
-        this.props.onFetchData(req);
+        this.props.onFetchData();
     }
 
     handleBackPress = () => {
@@ -63,14 +62,14 @@ export  class Device extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-
+                    <Activityindication visible={this.props.deviceDatas.isLoading}/>
                     <Toolbar title='Device' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
                         {/* <SearchBar onChangeText = {(text)=>this.searchFunction(text)}
                         ></SearchBar> */}
                     <View style={styles.viewStyle}>
                         <FlatList
-                            data={this.state.data}
+                            data={this.props.deviceDatas.data}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                                 <TouchableWithoutFeedback
@@ -146,12 +145,14 @@ export  class Device extends React.Component {
 
 }
 function mapStateToProps(state){
-    DeviceDatas : state.DeviceDatas
+    return{
+        deviceDatas : state.devicedata
+    }
 }
 
 function mapDispatchToProps(dispatch){
     return{ 
-        onFetchData:(req)=>{userActions.deviceRequest(req)}
+        onFetchData:()=>dispatch(userActions.deviceRequest())
       }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Device)

@@ -20,7 +20,8 @@ export default simReducer = (state = initialState, action) => {
         case SIM.SIM_FAILED:
             return Object.assign({}, state, {
                 isLoading: false,
-                error: true
+                error: true,
+                data : [],
             });
         default:
             return state;

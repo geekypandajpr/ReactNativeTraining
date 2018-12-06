@@ -12,10 +12,11 @@ export default userService = {
     doLogin,
     simlogin,
     jobPendingData,
+    devicelogin
 }
 
 /**LOGIN API CALL */
-export function doLogin(data){
+export function doLogin(data) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             return resolve(loginData);
@@ -23,26 +24,26 @@ export function doLogin(data){
     });
 }
 
-/**SIM DEVICE API CALL */
-export function simlogin(req){
-    if(req.orderCode=='sim'){
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                return resolve(SimData);
-            }, 3000)
-        });
-    } else if(req.orderCode=='device'){
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                return resolve(DeviceData);
-            }, 3000)
-        });
-    }
-   
+/**SIM API CALL */
+export function simlogin() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(SimData);
+        }, 3000)
+    });
+}
+
+/**DEVICE API CALL */
+export function devicelogin() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(DeviceData);
+        }, 3000)
+    });
 }
 
 /**JOBS API CALL */
-export function jobPendingData(){
+export function jobPendingData() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             return resolve(VehicleDetail);
