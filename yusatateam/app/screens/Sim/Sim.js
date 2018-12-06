@@ -38,7 +38,8 @@ export class Sim extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        this.props.onFetchData();
+        const req = {"ordercode":"sim"}
+        this.props.onFetchData(req);
     }
 
     handleBackPress = () => {
@@ -143,7 +144,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return{
-        onFetchData: () => dispatch(userActions.simRequest())
+        onFetchData: (req) => dispatch(userActions.simRequest(req))
     }
 }
 

@@ -23,7 +23,7 @@ export function doLogin(data){
 }
 
 /**SIM API CALL */
-export function simlogin(){
+export function simlogin(req){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             return resolve(SimData);

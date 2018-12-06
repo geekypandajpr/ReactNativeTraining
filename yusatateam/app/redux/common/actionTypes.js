@@ -10,6 +10,12 @@ export const SIM = {
     SIM_FAILED           : 'SIM_FAILED'
 };
 
+export const DEVICE = {
+    DEVICE_REQUEST       : 'DEVICE_REQUEST',
+    DEVICE_SUCCESS       : 'DEVICE_SUCCESS',
+    DEVICE_FAILED       : 'DEVICE_FAILED'
+};
+
 export const JOBS = {
     JOBS_LOGIN           : 'JOBS_LOGIN',
     JOBS_SUCCESS         : 'JOBS_SUCCESS',
