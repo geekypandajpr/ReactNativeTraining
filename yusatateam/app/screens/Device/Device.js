@@ -150,8 +150,8 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-    return{ onFetchData:()=>{userActions.deviceRequest(req)}
-      
-    }
+    return{ 
+        onFetchData:(req)=>{userActions.deviceRequest(req)}
+      }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Device)
