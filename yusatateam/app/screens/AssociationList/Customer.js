@@ -4,8 +4,9 @@ import { View, Text, List, ListItem, Body, Right } from 'native-base';
 import { AppLoading } from 'expo';
 // import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
+
 import styles from './styles';
-import { Toolbar,Activityindication } from '../../components';
+import { Toolbar, Activityindication } from '../../components';
 // import { userActions } from '../../redux/actions';
 import vehicleData from '../../assets/JSONData/customerData';
 

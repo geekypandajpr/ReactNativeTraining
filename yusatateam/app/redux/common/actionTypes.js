@@ -20,4 +20,10 @@ export const JOBS = {
     JOBS_LOGIN           : 'JOBS_LOGIN',
     JOBS_SUCCESS         : 'JOBS_SUCCESS',
     JOBS_FAILED          :  'JOBS_FAILED'
+};
+
+export const CUSTOMER = {
+    CUSTOMER_FETCH           : 'CUSTOMER_LOGIN',
+    CUSTOMER_SUCCESS         : 'CUSTOMER_SUCCESS',
+    CUSTOMER_FAILED          : 'CUSTOMER_FAILED'
 }
