@@ -1,10 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
 import { View, FlatList, TouchableOpacity,BackHandler} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Text, Button, Card, Footer, FooterTab, CheckBox } from 'native-base';
 import styles from './styles';
-import { userActions } from '../../../../redux/actions'
+
 import JobDetails from '../../JobDetails/JobDetails';
 import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { SearchBar,Activityindication } from '../../../../components';
@@ -225,16 +225,5 @@ export default class JobPending extends React.Component {
     }
 }
 
-// function mapStateToProps(state){
-//     return{
-//         PendingData : state.JobData
-//     }
-// }
-// function mapDispatchToProps(dispatch){
-//     return{
-//         onFetchData:()=>dispatch(userActions.jobRequest())
-//     }
-// }
-// export default connect(mapDispatchToProps)(JobPending)
 
 export {JobPending}
