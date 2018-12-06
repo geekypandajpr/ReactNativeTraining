@@ -1,35 +1,39 @@
 import React from 'react';
 import { Tab, Tabs, ScrollableTab, TabHeading } from 'native-base';
+import { connect } from 'react-redux';
+import { userActions } from '../../redux/actions'
 import { View, BackHandler, Text } from 'react-native';
 import { AppLoading } from 'expo';
 import styles from './styles'
 import { JobCompleted, JobPending, JobReschedule, JobSchedule } from './JobTabPages';
 import { Toolbar } from '../../components';
 
-export default class Jobs extends React.Component {
+export  class Jobs extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             isLoading: true,
         }
     }
-    async componentWillMount() {
-        await Expo.Font.loadAsync({
-            Roboto: require("native-base/Fonts/Roboto.ttf"),
-            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
-        })
-        this.setState({ isLoading: false })
-    };
     componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', () => {
-            this.props.navigation.navigate('Dashboard');
-            return true;
-        });
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+         this.props.onFetchData();
+       //this.arrayholder = this.state.data;
+        
+    }
+    
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
+        //alert(this.props.PendingData.data)
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
@@ -78,4 +82,16 @@ export default class Jobs extends React.Component {
         );
     }
 }
-export { Jobs }
+
+
+function mapStateToProps(state){
+    return{
+        PendingData : state.JobData
+    }
+}
+function mapDispatchToProps(dispatch){
+    return{
+        onFetchData:()=>dispatch(userActions.jobRequest())
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Jobs)
