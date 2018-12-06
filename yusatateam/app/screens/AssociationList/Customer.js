@@ -2,15 +2,15 @@ import React from 'react';
 import { FlatList, BackHandler, TouchableOpacity } from 'react-native';
 import { View, Text, List, ListItem, Body, Right } from 'native-base';
 import { AppLoading } from 'expo';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 import { Toolbar, Activityindication } from '../../components';
-// import { userActions } from '../../redux/actions';
+import { userActions } from '../../redux/actions';
 import vehicleData from '../../assets/JSONData/customerData';
 
-export default class Customer extends React.Component {
+export class Customer extends React.Component {
     constructor() {
         super();
         this.state = { isLoading: true };
@@ -28,7 +28,7 @@ export default class Customer extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        // this.props.onFetchData();
+        this.props.onFetchData();
     }
 
     handleBackPress = () => {
@@ -46,11 +46,11 @@ export default class Customer extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                 {/* <Activityindication visible={this.props.vehicleData.isLoading}/> */} 
+                    <Activityindication visible={this.props.customers.isLoading}/> 
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='ios-search' settingType='Ionicons' />
                     <FlatList
-                        data={vehicleData}
+                        data={this.props.customers.data}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
                             <List>
@@ -87,18 +87,16 @@ export default class Customer extends React.Component {
         );
     }
 }
-// function mapStateToProps(state){
-//     return{
-//         vehicleData : state.simData
-//     }
-// }
+function mapStateToProps(state){
+    return{
+        customers : state.customersData
+    }
+}
 
-// function mapDispatchToProps(dispatch){
-//     return{
-//         onFetchData: () => dispatch(userActions.jobRequest())
-//     }
-// }
+function mapDispatchToProps(dispatch){
+    return{
+        onFetchData: () => dispatch(userActions.cutomerFetchRequest())
+    }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Customer);
-
-export { Customer }
+export default connect(mapStateToProps, mapDispatchToProps)(Customer);

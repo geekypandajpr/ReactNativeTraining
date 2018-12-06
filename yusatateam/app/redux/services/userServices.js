@@ -3,7 +3,8 @@ import { USER } from '../common/urls';
 import loginData from '../../assets/JSONData/loginData';
 import SimData from '../../assets/JSONData/SimData';
 import VehicleDetail from '../../assets/JSONData/VehicleDetail';
-import DeviceData from '../../assets/JSONData/DeviceData'
+import DeviceData from '../../assets/JSONData/DeviceData';
+import customersData from '../../assets/JSONData/customerData';
 
 export const login = data => Api.post(USER.LOGIN, data);
 
@@ -12,7 +13,8 @@ export default userService = {
     doLogin,
     simlogin,
     jobPendingData,
-    devicelogin
+    devicelogin,
+    customerList
 }
 
 /**LOGIN API CALL */
@@ -38,6 +40,15 @@ export function devicelogin() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             return resolve(DeviceData);
+        }, 3000)
+    });
+}
+
+/**CUSTOMER API CALL */
+export function customerList() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(customersData);
         }, 3000)
     });
 }
