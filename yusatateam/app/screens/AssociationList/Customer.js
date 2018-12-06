@@ -58,16 +58,16 @@ export default class Customer extends React.Component {
                                     <Body >
                                         <View style={{flex:1, flexDirection: 'column'}}>
                                             <View style={{flex:1}}>
-                                                <Text style={[styles.Cust_name,{ fontFamily: 'Roboto'}]} >{item.Name}</Text>
+                                                <Text style={[styles.Cust_name,{ fontFamily: 'Roboto'}]} >{item.name}</Text>
                                             </View>
 
                                             <View style={styles.Secondrow}>
                                                 <Ionicons name='ios-call' size={20} color='#5cb85c' style={{marginRight: 5}}/>
-                                                <Text style={[styles.text, { fontFamily: 'Roboto'}]}>{item.MobileNo}</Text>
+                                                <Text style={[styles.text, { fontFamily: 'Roboto'}]}>{item.contactNumber}</Text>
                                             </View>
                                            
                                             <View style={styles.Secondrow}>
-                                                <Text style={[styles.text, { fontFamily: 'Roboto'}]}>84/122 sector 8, pratap nagar jaipur Rajasthan</Text>
+                                                <Text style={[styles.text, { fontFamily: 'Roboto'}]}>{item.address}</Text>
                                             </View>
                                         </View>
                                     </Body>
