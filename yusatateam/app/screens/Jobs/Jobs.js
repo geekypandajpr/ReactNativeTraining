@@ -3,7 +3,8 @@ import { Tab, Tabs, ScrollableTab,TabHeading } from 'native-base';
 import { View, BackHandler,Text} from 'react-native';
 import { AppLoading } from 'expo';
 import EStylesheet from 'react-native-extended-stylesheet';
-
+import { connect } from 'react-redux';
+import { userActions } from '../../redux/actions';
 import { JobCompleted, JobPending, JobReschedule, JobSchedule } from './JobTabPages';
 import { Toolbar } from '../../components';
 import pendingData from '../../assets/JSONData/JobsData/pendingData';
@@ -13,11 +14,12 @@ import scheduleData from '../../assets/JSONData/JobsData/scheduleData';
 import colors from '../../constants/colors';
 import JobSearch from './JobSearch/JobSearch1';
 
-export default class Jobs extends React.Component {
+export  class Jobs extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             isLoading: true,
+            x : '23',
             item: pendingData,
             map1 : new Map(),
         },
@@ -52,6 +54,7 @@ export default class Jobs extends React.Component {
     }
 
     componentDidMount() {
+        this.props.onFetchData();
         BackHandler.addEventListener('hardwareBackPress', () => {
             this.props.navigation.navigate('Dashboard');
             return true;
@@ -70,6 +73,7 @@ export default class Jobs extends React.Component {
     }
 
     render() {
+       
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
@@ -90,7 +94,7 @@ export default class Jobs extends React.Component {
                             </TabHeading>
                         }>
                         
-                            <JobPending sampleProps={this.state.map1} />
+                            <JobPending PendingDataValue={this.props.PendingData.data} isLoading={this.props.PendingData.isLoading}/>
                         </Tab>
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
@@ -126,7 +130,19 @@ export default class Jobs extends React.Component {
         );
     }
 }
-export { Jobs }
+function mapStateToProps(state){
+    return{
+        PendingData : state.JobData
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        onFetchData: () => dispatch(userActions.jobRequest())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Jobs);
 
 const styles = EStylesheet.create({
     tabheading: {

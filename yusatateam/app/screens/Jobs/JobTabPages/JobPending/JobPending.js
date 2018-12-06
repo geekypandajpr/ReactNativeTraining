@@ -15,7 +15,7 @@ export default class JobPending extends React.Component {
     constructor() {
         super();
         this.state = {
-            data: [],
+            data: pendingData,
             map1: new Map(null),
             value: new Map(),
             status: 'Pending',
@@ -24,14 +24,18 @@ export default class JobPending extends React.Component {
         this.arrayholder = [];
         this.jobFilter = React.createRef();
         this.openFilterPage = this.openFilterPage.bind(this);
+      
     };
     componentDidMount() {
+        
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         // this.props.onFetchData();
-       //this.arrayholder = this.state.data;
+        
+         
+       this.arrayholder = this.state.data;
         
     }
-    
+ 
     handleBackPress = () => {
         this.props.navigation.goBack();
         return true;
@@ -41,14 +45,13 @@ export default class JobPending extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    async componentWillMount() {
-        await Expo.Font.loadAsync({
-            Roboto: require("native-base/Fonts/Roboto.ttf"),
-            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
-        })
-        this.setState({ isLoading: false })
-    }
+    //  componentWillMount() {
+    
+    //     const {PendingDataValue}= this.props;
+    //     this.setState({data : PendingDataValue});
+        
+    //      alert(PendingDataValue);
+    // }
 
 
     selectedValue(data) {
@@ -121,9 +124,12 @@ export default class JobPending extends React.Component {
        }
     }
     render() {
+      // alert(JSON.stringify(PendingDataValue));
+      const {PendingDataValue}= this.props;
+      const {isLoading} = this.props;
         return (
             <View style={styles.container}>
-            {/* <Activityindication visible={this.props.PendingData.isLoading}/> */}
+            <Activityindication visible={isLoading}/>
                 <View style={styles.searchView}>
                     <View style={{ flex: 10 }}>
                         <SearchBar placeholder={'Search By '}
@@ -137,7 +143,7 @@ export default class JobPending extends React.Component {
                 </View>
                 <FlatList
                     extraData={this.state}
-                    data={pendingData}
+                    data={PendingDataValue}
                     keyExtractor={(item, index) => item.jobNumber}
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>
