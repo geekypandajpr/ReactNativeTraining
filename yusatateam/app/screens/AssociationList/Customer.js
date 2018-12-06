@@ -2,14 +2,14 @@ import React from 'react';
 import { FlatList, BackHandler, TouchableOpacity } from 'react-native';
 import { View, Text, List, ListItem, Body, Right } from 'native-base';
 import { AppLoading } from 'expo';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './styles';
 import { Toolbar,Activityindication } from '../../components';
-import { userActions } from '../../redux/actions';
+// import { userActions } from '../../redux/actions';
 import vehicleData from '../../assets/JSONData/customerData';
 
-export  class VehicleList extends React.Component {
+export default class Customer extends React.Component {
     constructor() {
         super();
         this.state = { isLoading: true };
@@ -27,7 +27,7 @@ export  class VehicleList extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        this.props.onFetchData();
+        // this.props.onFetchData();
     }
 
     handleBackPress = () => {
@@ -45,13 +45,11 @@ export  class VehicleList extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                 <Activityindication visible={this.props.vehicleData.isLoading}/>
-                    <View>
-                        <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                            setting='ios-search' settingType='Ionicons' />
-                    </View>
+                 {/* <Activityindication visible={this.props.vehicleData.isLoading}/> */} 
+                    <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                        setting='ios-search' settingType='Ionicons' />
                     <FlatList
-                        data={this.props.vehicleData.data}
+                        data={vehicleData}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
                             <List>
@@ -75,7 +73,7 @@ export  class VehicleList extends React.Component {
 
                                     <Right>
                                         <TouchableOpacity style={styles.Next_page} activeOpacity={0.2}
-                                            onPress={() => navigate('VehicleDetails')}>
+                                            onPress={() => navigate('Association')}>
                                             {/* <Text style={styles.view_more_text}>view more</Text> */}
                                             <Ionicons name='ios-arrow-forward' size={27} color='gray' />
                                         </TouchableOpacity>
@@ -88,16 +86,18 @@ export  class VehicleList extends React.Component {
         );
     }
 }
-function mapStateToProps(state){
-    return{
-        vehicleData : state.simData
-    }
-}
+// function mapStateToProps(state){
+//     return{
+//         vehicleData : state.simData
+//     }
+// }
 
-function mapDispatchToProps(dispatch){
-    return{
-        onFetchData: () => dispatch(userActions.jobRequest())
-    }
-}
+// function mapDispatchToProps(dispatch){
+//     return{
+//         onFetchData: () => dispatch(userActions.jobRequest())
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(VehicleList);
+// export default connect(mapStateToProps, mapDispatchToProps)(Customer);
+
+export { Customer }

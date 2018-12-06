@@ -6,7 +6,7 @@ import { Toolbar } from '../../../components/Toolbar/Toolbar'
 import styles from './styles';
 import VehicleDetail from '../../../assets/JSONData/VehicleDetail';
 
-export default class VehicleDetails extends React.Component {
+export default class Association extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -125,4 +125,4 @@ export default class VehicleDetails extends React.Component {
         );
     }
 }
-export { VehicleDetails }
+export { Association }

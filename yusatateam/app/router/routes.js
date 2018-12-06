@@ -5,7 +5,6 @@ import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import Sim from '../screens/Sim/Sim';
 import Device from '../screens/Device/Device';
 import Schedule from '../screens/Schedule/Schedule';
-import VehicleList from '../screens/VehicleList/VehicleList';
 import Jobs from '../screens/Jobs/Jobs';
 import Settings from '../screens/Settings/Settings';
 import Dashboard from '../screens/Dashboard/Dashboard';
@@ -15,7 +14,8 @@ import OpenJobs from '../screens/OpenJobs/OpenJobs';
 import Calendars from '../screens/Calendars/Calendars';
 import TodaysJobs from '../screens/Technicians/TodaysJobs/TodaysJobs';
 import TechDetails from '../screens/Technicians/TechDetails/TechDetails';
-import VehicleDetails from '../screens/VehicleList/VehicleDetails/VehicleDetails';
+import Customer from '../screens/AssociationList/Customer';
+import Association from '../screens/AssociationList/Association/Association';
 
 // import {
 //     LogIn,
@@ -60,8 +60,15 @@ const RouteConfigs = {
             header: null
         }
     },
-    VehicleList: {
-        screen: VehicleList,
+    Customer: {
+        screen: Customer,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Association:
+    {   
+        screen: Association,
         navigationOptions: {
             header: null
         }
@@ -124,13 +131,6 @@ const RouteConfigs = {
     TechDetails:
     {   
         screen: TechDetails,
-        navigationOptions: {
-            header: null
-        }
-    },
-    VehicleDetails:
-    {   
-        screen: VehicleDetails,
         navigationOptions: {
             header: null
         }

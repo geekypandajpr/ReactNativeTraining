@@ -198,7 +198,7 @@ export default class Dashboard extends React.Component {
                                         text='Association'
                                         iconColor={colors.HOMESCREEN.ASSOCIATIONCARD_COLOR}
                                         textColor='gray'
-                                        onPress={() => navigate('VehicleList')}
+                                        onPress={() => navigate('Customer')}
                                         colors={['#6ddbea', '#31a9b8', '#007a88']}
                                     />
                                 </View>
