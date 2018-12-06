@@ -2,7 +2,7 @@ import Api from '../common/api';
 import { USER } from '../common/urls';
 import loginData from '../../assets/JSONData/loginData';
 import SimData from '../../assets/JSONData/SimData';
-import VehicleDetail from '../../assets/JSONData/VehicleDetail';
+import pendingData from '../../assets/JSONData/JobsData/pendingData';
 import DeviceData from '../../assets/JSONData/DeviceData';
 import customersData from '../../assets/JSONData/customerData';
 
@@ -57,7 +57,7 @@ export function customerList() {
 export function jobPendingData() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            return resolve(VehicleDetail);
+            return resolve(pendingData);
         }, 3000)
     });
 }
