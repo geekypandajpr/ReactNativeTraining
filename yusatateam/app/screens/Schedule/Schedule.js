@@ -4,10 +4,11 @@ import {
     View,
     BackHandler
 } from 'react-native';
+import moment from 'moment';
 import { Agenda } from 'react-native-calendars';
+
 import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
-import moment from 'moment';
 import JobDetails from '../Jobs/JobDetails/JobDetails';
 import colors from '../../constants/colors';
 
@@ -67,6 +68,7 @@ export default class Schedule extends React.Component {
                     rowHasChanged={this.rowHasChanged.bind(this)}
                     markedDates={eventList}
                     hideKnob={false}
+                    displayLoadingIndicator={false}
                     theme={{
                         'stylesheet.calendar.header': {
                             dayHeader: {
@@ -111,7 +113,10 @@ export default class Schedule extends React.Component {
         setTimeout(() => {
             for (let i = -15; i < 85; i++) {
                 const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+                //console.log('TIME-> '+time);
                 const strTime = this.timeToString(time);
+                //const strTime = '2018-12-07';
+                //console.log('HELLO PREM-> '+strTime);
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
                     this.state.items[strTime].push({

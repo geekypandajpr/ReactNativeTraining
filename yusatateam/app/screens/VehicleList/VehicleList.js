@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from './styles';
 import { Toolbar,Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
-import vehicleData from '../../assets/JSONData/vehicleData';
+import vehicleData from '../../assets/JSONData/customerData';
 
 export  class VehicleList extends React.Component {
     constructor() {
