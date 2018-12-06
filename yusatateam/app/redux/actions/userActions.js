@@ -3,7 +3,7 @@ import { USER, JOBS, SIM, DEVICE, CUSTOMER } from '../common/actionTypes';
 export default {
     loginRequest: (loginCredentials) => ({ type: USER.LOGIN, loginCredentials }),
     simRequest: (req) => ({ type: SIM.SIM_REQUEST,req }),
-    deviceRequest: () => ({ type: DEVICE.DEVICE_REQUEST }),
+    deviceRequest: (req) => ({ type: DEVICE.DEVICE_REQUEST,req }),
     jobRequest: () => ({ type: JOBS.JOBS_LOGIN }),
     cutomerFetchRequest: () => ({ type: CUSTOMER.CUSTOMER_FETCH }),
 }
