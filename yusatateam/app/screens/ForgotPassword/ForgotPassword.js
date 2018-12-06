@@ -69,9 +69,10 @@ export default class ForgotPassword extends React.Component {
                     </View>
 
                     <View style={styles.input_view}>
-                        <Item floatingLabel>
-                            <Label style={{color:'gray', fontSize: 15}}>Email</Label>
+                        <Item>
+                            {/* <Label style={{color:'gray', fontSize: 15}}>Email</Label> */}
                             <Input
+                                placeholder='Email'
                                 style={{color:'#000', fontSize: 15}}
                                 value={this.state.email}
                                 keyboardType={'email-address'}
