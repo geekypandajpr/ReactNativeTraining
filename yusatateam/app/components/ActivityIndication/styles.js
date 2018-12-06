@@ -9,9 +9,9 @@ export default EStyleSheet.create({
     },
     outer_circle: {
         marginTop: Dimensions.get('window').height/3,
-        borderRadius: 21,
-        width: 42,
-        height: 42,
+        borderRadius: 20,
+        width: 40,
+        height: 40,
         justifyContent: 'center',
         alignItems: 'center',
         elevation: 10
