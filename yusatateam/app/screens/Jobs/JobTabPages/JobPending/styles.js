@@ -13,7 +13,6 @@ export default EStyleSheet.create({
         alignItems: 'center',
         marginLeft :6,
         marginRight :6,
-
     },
     filterIcon : {
         flex : 1,
@@ -91,7 +90,7 @@ export default EStyleSheet.create({
         backgroundColor: colors.HEADER_COLOR
     },
     footerbuttonText: {
-       color: '#fff',
-       fontSize: '1rem'
+        color: '#fff',
+        fontSize: '1rem'
     } 
 })
