@@ -10,10 +10,10 @@ import {FilterJob} from '../../../../components/FilterJob/FilterJob';
 import {Activityindication} from '../../../../components'
 
 export default class JobSchedule extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            data: scheduleData,
+            data: this.props.ScheduleDataValue == undefined ? null : this.props.ScheduleDataValue,
             status: 'schedule',
             value : 'jobNumber',
             searchData : [],
@@ -88,7 +88,7 @@ export default class JobSchedule extends React.Component {
 
 
     render() {
-        const values = this.props.ScheduleDataValue == undefined ? null : this.props.ScheduleDataValue
+        // const values = this.props.ScheduleDataValue == undefined ? null : this.props.ScheduleDataValue
       const {isLoading} = this.props;
         return (
             <View style={styles.container}>
@@ -105,7 +105,8 @@ export default class JobSchedule extends React.Component {
                         </View>
                     </View>
                 <FlatList
-                    data={values}
+                extraData={this.state}
+                    data={this.state.data}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>

@@ -70,9 +70,9 @@ export function vehicleList(customer) {
 /**JOBS API CALL */
 export function jobPendingData() {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
+       
             return resolve(JobsData);
-        }, 3000)
+        
     });
 }
 

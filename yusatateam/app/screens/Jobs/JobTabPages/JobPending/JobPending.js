@@ -14,7 +14,7 @@ export default class JobPending extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: pendingData,
+            data: this.props.PendingDataValue == undefined ? null : this.props.PendingDataValue,
             map1: new Map(null),
             value: new Map(),
             status: 'Pending',
@@ -25,6 +25,8 @@ export default class JobPending extends React.Component {
         this.openFilterPage = this.openFilterPage.bind(this);
     };
     componentDidMount() {
+        // const values = this.props.PendingDataValue == undefined ? null : this.props.PendingDataValue
+        // this.setState({data : values})
         this.arrayholder = this.state.data;
     }
 
@@ -96,13 +98,13 @@ export default class JobPending extends React.Component {
        }
     }
     render() {
-        const values = this.props.PendingDataValue == undefined ? null : this.props.PendingDataValue
+        
       const {isLoading} = this.props;
-      searchData=values;
+     // searchData=values;
     //    alert(JSON.stringify(values));
         return (
             <View style={styles.container}>
-            <Activityindication visible={isLoading}/>
+            {/* <Activityindication visible={isLoading}/> */}
                 <View style={styles.searchView}>
                     <View style={{ flex: 10 }}>
                         <SearchBar placeholder={'Search By '}
@@ -116,7 +118,7 @@ export default class JobPending extends React.Component {
                 </View>
                 <FlatList
                 extraData={this.state}
-                data={values}
+                data={this.state.data}
                 keyExtractor={(item, index) => item.jobNumber}
                 renderItem={({ item, index }) =>
                     <Card style={styles.viewList}>

@@ -3,7 +3,7 @@ import colors from '../../../../constants/colors';
 export default EStyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
     },
     searchView : {
         flexDirection :'row',
@@ -24,28 +24,28 @@ export default EStyleSheet.create({
         marginRight:2,
         borderRadius : 0.2,
         borderColor : 'black',
-        borderWidth : 0.5
+        borderWidth : 0.5,
     },
     viewList: {
         flex: 1,
         flexDirection : 'row',
         marginLeft :6,
         marginRight :6,
-        padding: 10
+        padding: 10,
     },
     sub_view: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     jobNumText: {
         fontSize: '1rem',
         color: '#000',
-        fontWeight: '500'
+        fontWeight: '500',
     },
     right_sub_view: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     jobTypeView: {
         borderRadius: 10,
@@ -59,7 +59,7 @@ export default EStyleSheet.create({
     },
     jobTypeText: {
         color: '#F98866',
-        fontSize: '0.8rem'
+        fontSize: '0.8rem',
     },
     left_view: {
         flex: 1,
@@ -71,14 +71,14 @@ export default EStyleSheet.create({
     middle_view: {
         flex: 0.2,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     right_view: {
         flex: 1.5,
     },
     text1: {
         fontSize: '0.9rem',
-        color: 'gray'
+        color: 'gray',
     },
     location: {
         flex: 1,
@@ -87,10 +87,10 @@ export default EStyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.HEADER_COLOR
+        backgroundColor: colors.HEADER_COLOR,
     },
     footerbuttonText: {
         color: '#fff',
-        fontSize: '1rem'
+        fontSize: '1rem',
     } 
 })

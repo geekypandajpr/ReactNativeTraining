@@ -10,10 +10,10 @@ import { FilterJob } from '../../../../components/FilterJob/FilterJob';
 import {Activityindication} from '../../../../components'
 
 export default class JobCompleted extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            data: completedData,
+            data:this.props.CompletedDataValue == undefined ? null : this.props.CompletedDataValue,
             selected: 'jobNumber',
             status: 'completed',
             value: 'jobNumber',
@@ -89,7 +89,7 @@ export default class JobCompleted extends React.Component {
 
 
     render() {
-        const values = this.props.CompletedDataValue == undefined ? null : this.props.CompletedDataValue
+        // const values = this.props.CompletedDataValue == undefined ? null : this.props.CompletedDataValue
       const {isLoading} = this.props;
         return (
             <View style={styles.container}>
@@ -106,7 +106,8 @@ export default class JobCompleted extends React.Component {
                     </View>
                 </View>
                 <FlatList
-                    data={values}
+                extraData={this.state}
+                    data={this.state.data}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>

@@ -6,7 +6,7 @@ import EStylesheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 import { userActions } from '../../redux/actions';
 import { JobCompleted, JobPending, JobReschedule, JobSchedule } from './JobTabPages';
-import { Toolbar } from '../../components';
+import { Toolbar,Activityindication } from '../../components';
 import pendingData from '../../assets/JSONData/JobsData/pendingData';
 import completedData from '../../assets/JSONData/JobsData/completedData';
 import reScheduleData from '../../assets/JSONData/JobsData/reScheduleData';
@@ -73,12 +73,12 @@ export  class Jobs extends React.Component {
     }
 
     render() {
-    //    alert(JSON.stringify(this.props.PendingData.data[0]));
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
+                {/* <Activityindication visible={this.props.PendingData.isLoading}/> */}
                     <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />

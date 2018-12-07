@@ -12,10 +12,10 @@ import {Activityindication} from '../../../../components'
 
 
 export default class JobReschedule extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            data: reScheduleData,
+            data: this.props.RescheduleDataValue == undefined ? null : this.props.RescheduleDataValue,
             selected: 'jobNumber',
             status: 'ReSchedule',
             value: 'jobNumber',
@@ -103,7 +103,7 @@ export default class JobReschedule extends React.Component {
 
 
     render() {
-        const values = this.props.RescheduleDataValue == undefined ? null : this.props.RescheduleDataValue
+        // const values = this.props.RescheduleDataValue == undefined ? null : this.props.RescheduleDataValue
         const {isLoading} = this.props;
         
         return (
@@ -122,7 +122,7 @@ export default class JobReschedule extends React.Component {
                 </View>
                 <FlatList
                     extraData={this.state}
-                    data={values}
+                    data={this.state.data}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>

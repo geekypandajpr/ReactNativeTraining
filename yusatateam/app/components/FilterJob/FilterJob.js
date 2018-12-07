@@ -9,8 +9,8 @@ export default class FilterJob extends React.Component {
         this.state = {
             modalVisible: false,
             status: '',
-            value: 'scheduleDate',
-            selected: ['jobNumber', 'scheduleDate', 'jobType', 'servicePerson', 'completedDate'],
+            // value: 'scheduleDate',
+            // selected: ['jobNumber', 'scheduleDate', 'jobType', 'servicePerson', 'completedDate'],
             map1: new Map(),
         }
         this.setModalVisible = this.setModalVisible.bind(this);
