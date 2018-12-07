@@ -4,10 +4,10 @@ import fontsize from './fontsize';
 export default EStyleSheet.create({
     card: {
         backgroundColor: '#FFFFFF',
-        marginLeft: 6,
-        marginRight: 6,
+        marginLeft: 4,
+        marginRight: 4,
         marginBottom: 3,
-        padding: 10
+        padding: 6
     },
     title_text: {
         fontSize: fontsize.big,

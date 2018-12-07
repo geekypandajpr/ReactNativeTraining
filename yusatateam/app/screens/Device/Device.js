@@ -8,13 +8,14 @@ import {
 import { Card, Text } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
-import { FontAwesome } from '@expo/vector-icons'
+import { FontAwesome } from '@expo/vector-icons';
+
 import styles from './styles';
 import { Toolbar,Activityindication } from '../../components';
-import DeviceData from '../../assets/JSONData/DeviceData'
 import { DeviceDetails } from './DeviceDeatails';
 import {  SearchBar } from '../../components/SearchBar/SearchBar'
 import { userActions } from '../../redux/actions';
+import { globalStyles } from '../../styles';
 
 export  class Device extends React.Component {
     constructor() {
@@ -83,14 +84,13 @@ export  class Device extends React.Component {
                                                 <FontAwesome name="mobile-phone" size={56} color="#1f667e" ju
                                                 ></FontAwesome>
                                             </View>
-
                                         </View>
 
                                         <View style={styles.Second_View}>
 
                                             <View style={styles.Margin_Row}>
                                                 <View style={styles.Level_Second}>
-                                                    <Text style={styles.Header_Style}>{item.IMEI}</Text>
+                                                    <Text style={[globalStyles.title_text,{fontFamily: 'Roboto'}]}>{item.IMEI}</Text>
                                                 </View>
 
                                                 <View style={[styles.Status_Button, { backgroundColor: item.color }]} >
@@ -100,31 +100,31 @@ export  class Device extends React.Component {
 
                                             <View style={styles.Level_Row}>
                                                 <View style={styles.Level_Head}>
-                                                    <Text style={styles.Text_Style}>ORDER#</Text>
+                                                    <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>ORDER#</Text>
                                                 </View>
                                                 <View style={{ flex: 0.1 }}>
-                                                    <Text style={styles.Text_Style}> : </Text>
+                                                    <Text style={globalStyles.secondary_text}> : </Text>
                                                 </View>
                                                 <View style={styles.Level_Style}>
-                                                    <Text style={styles.View_Style}>{item.ORDER}</Text>
+                                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.ORDER}</Text>
                                                 </View>
                                             </View>
 
                                             <View style={styles.Level_Row}>
                                                 <View style={styles.Level_Head}>
-                                                    <Text style={styles.Text_Style}>ESN</Text>
+                                                    <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>ESN</Text>
                                                 </View>
                                                 <View style={{ flex: 0.1 }}>
-                                                    <Text style={styles.Text_Style}> : </Text>
+                                                    <Text style={globalStyles.secondary_text}> : </Text>
                                                 </View>
                                                 <View style={styles.Level_Style}>
-                                                    <Text style={styles.View_Style}>{item.ESN}</Text>
+                                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.ESN}</Text>
                                                 </View>
                                             </View>
 
                                             <View style={[styles.Level_Row, { marginBottom: 5 }]}>
                                                 <View style={styles.Level_Second}>
-                                                    <Text style={styles.modal_style}>{item.Model}</Text>
+                                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.Model}</Text>
                                                 </View>
                                                 <View style={styles.jobTypeView}>
                                                     <Text style={styles.jobTypeText}>{item.Manufacturer}</Text>

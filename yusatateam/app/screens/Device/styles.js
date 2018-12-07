@@ -12,12 +12,19 @@ export default EStyleSheet.create({
     mainCard:{
         flex: 1,
         flexDirection: 'row',
-        borderColor: 'white'
+        borderColor: 'white',
+        marginLeft: 4,
+        marginRight: 4,
+        marginBottom: 3,
+        paddingRight: 6,
+        // paddingLeft: 6,
+        paddingTop: 6,
+        paddingBottom: 6
     },
     First_View:{
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     profile_view: {
         justifyContent: 'center',
@@ -41,27 +48,20 @@ export default EStyleSheet.create({
         flex: 1,
         justifyContent: 'center'
     },
-    Header_Style:{
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        fontWeight: '500',
-        color: '#000'
-    },
     Status_Button:{
         borderRadius: 10,
         borderWidth: 0.8,
         borderColor: 'white',
         padding: 2,
-        width: 110,
+        width: 100,
         height: 25,
         justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 10
+        alignItems: 'center'
     },
     Status_Style:{
         fontStyle: 'normal',
-        fontSize: '1rem',
-        fontWeight: 'bold',
+        fontSize: '0.8rem',
+        // fontWeight: 'bold',
         color: 'white',
         justifyContent: 'center',
         alignItems: 'center'
@@ -74,25 +74,9 @@ export default EStyleSheet.create({
         flex:0.7,
         justifyContent: 'center'
     },
-    Text_Style:{
-        fontStyle: 'normal',
-        fontSize: '0.9rem',
-        color: '#000'
-    },
     Level_Style:{
         flex: 2,
         justifyContent: 'center'
-    },
-    View_Style:{
-        fontStyle: 'normal',
-        fontSize: '0.9rem',
-        color: 'gray',
-        marginLeft: 10
-    },
-    modal_style:{
-        fontStyle: 'normal',
-        fontSize: '0.9rem',
-        color: 'gray',
     },
     jobTypeView: {
         borderRadius: 10,
@@ -102,14 +86,10 @@ export default EStyleSheet.create({
         width: 80,
         height: 23,
         justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 10
+        alignItems: 'center'
     },
     jobTypeText: {
         color: '#1f667e',
         fontSize: '0.8rem'
     },
-  
-
-
 })
