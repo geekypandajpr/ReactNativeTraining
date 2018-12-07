@@ -5,7 +5,7 @@ import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 
 import { userActions } from '../../../redux/actions';
-import { Toolbar, Activityindication} from '../../../components'
+import { Toolbar, Activityindication } from '../../../components'
 import styles from './styles';
 
 export class Association extends React.Component {
