@@ -13,7 +13,7 @@ export class Association extends React.Component {
         super(props);
         this.state = {
             isLoading: true,
-            vehiclesDatas: this.props.vehicle
+            vehiclesDatas: null
         }
     }
 
