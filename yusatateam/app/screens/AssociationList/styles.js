@@ -21,7 +21,7 @@ export default EStyleSheet.create({
     },
     Next_page: {
         flex: 1,
-        width: '50%',
+        width: '100%',
         justifyContent: "flex-end",
         flexDirection: 'row',
         alignItems: 'center',

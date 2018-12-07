@@ -1,16 +1,19 @@
 import React from 'react';
 import {  FlatList, BackHandler } from 'react-native';
-import { View, Text, Card, Button } from 'native-base';
+import { View, Text, Card } from 'native-base';
 import { AppLoading } from 'expo';
-import { Toolbar } from '../../../components/Toolbar/Toolbar'
-import styles from './styles';
-import VehicleDetail from '../../../assets/JSONData/VehicleDetail';
+import { connect } from 'react-redux';
 
-export default class Association extends React.Component {
+import { userActions } from '../../../redux/actions';
+import { Toolbar, Activityindication } from '../../../components'
+import styles from './styles';
+
+export class Association extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true
+            isLoading: true,
+            vehiclesDatas: null
         }
     }
 
@@ -23,7 +26,15 @@ export default class Association extends React.Component {
         this.setState({ isLoading: false })
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(this.props.vehicle !== nextProps.vehicle) { this.setState({vehiclesDatas: nextProps.vehicle}) }
+    }
+
     componentDidMount() {
+        const cutomer = {
+            "name": "Premsagar Choudhary"
+        }
+        this.props.onFetchData(cutomer);
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
@@ -37,17 +48,17 @@ export default class Association extends React.Component {
     }
 
     render() {
-        const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
+                    <Activityindication visible={this.state.vehiclesDatas.isLoading}/>
                     <Toolbar title='Customer Name' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='ios-search' settingType='Ionicons' />
 
                     <View style={styles.inner_container}>
                         <FlatList
-                            data={VehicleDetail}
+                            data={this.state.vehiclesDatas.data}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                                 <Card style={styles.card_style}>
@@ -125,4 +136,17 @@ export default class Association extends React.Component {
         );
     }
 }
-export { Association }
+
+function mapStateToProps(state){
+    return{
+        vehicle : state.vehicleData
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        onFetchData: (cutomer) => dispatch(userActions.vehicleFetchRequest(cutomer))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Association);

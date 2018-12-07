@@ -8,14 +8,12 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from './styles';
 import { Toolbar, Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
-import vehicleData from '../../assets/JSONData/customerData';
 
 export class Customer extends React.Component {
     constructor() {
         super();
-        this.state = { isLoading: true };
+        this.state = { isLoading: true, customers: null };
     }
-    
  
     async componentWillMount() {
         await Expo.Font.loadAsync({
@@ -24,6 +22,10 @@ export class Customer extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.props.customers !== nextProps.customers) { this.setState({customers: nextProps.customers}) }
     }
 
     componentDidMount() {
@@ -46,37 +48,38 @@ export class Customer extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Activityindication visible={this.props.customers.isLoading}/> 
+                    <Activityindication visible={this.state.customers.isLoading}/> 
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='ios-search' settingType='Ionicons' />
                     <FlatList
-                        data={this.props.customers.data}
+                        data={this.state.customers.data}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
                             <List>
                                 <ListItem style={{ height: 100 }}>
                                     <Body >
-                                        <View style={{flex:1, flexDirection: 'column'}}>
-                                            <View style={{flex:1}}>
-                                                <Text style={[styles.Cust_name,{ fontFamily: 'Roboto'}]} >{item.name}</Text>
+                                        <View style={{ flex: 1, flexDirection: 'column' }}>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={[styles.Cust_name, { fontFamily: 'Roboto' }]} >{item.name}</Text>
                                             </View>
 
                                             <View style={styles.Secondrow}>
-                                                <Ionicons name='ios-call' size={20} color='#5cb85c' style={{marginRight: 5}}/>
-                                                <Text style={[styles.text, { fontFamily: 'Roboto'}]}>{item.contactNumber}</Text>
+                                                <Ionicons name='ios-call' size={20} color='#5cb85c' style={{ marginRight: 5 }} />
+                                                <Text style={[styles.text, { fontFamily: 'Roboto' }]}>{item.contactNumber}</Text>
                                             </View>
-                                           
+
                                             <View style={styles.Secondrow}>
-                                                <Text style={[styles.text, { fontFamily: 'Roboto'}]}>{item.address}</Text>
+                                                <Text style={[styles.text, { fontFamily: 'Roboto' }]}>{item.address}</Text>
                                             </View>
                                         </View>
                                     </Body>
 
                                     <Right>
-                                        <TouchableOpacity style={styles.Next_page} activeOpacity={0.2}
-                                            onPress={() => navigate('Association')}>
-                                            {/* <Text style={styles.view_more_text}>view more</Text> */}
-                                            <Ionicons name='ios-arrow-forward' size={27} color='gray' />
+                                        <TouchableOpacity onPress={() => navigate('Association')}>
+                                            <View style={styles.Next_page}>
+                                                {/* <Text style={styles.view_more_text}>view more</Text> */}
+                                                <Ionicons name='ios-arrow-forward' size={27} color='gray' />
+                                            </View>
                                         </TouchableOpacity>
                                     </Right>
 
@@ -87,6 +90,7 @@ export class Customer extends React.Component {
         );
     }
 }
+
 function mapStateToProps(state){
     return{
         customers : state.customersData
