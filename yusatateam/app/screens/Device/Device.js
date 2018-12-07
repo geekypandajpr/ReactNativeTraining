@@ -66,7 +66,7 @@ export  class Device extends React.Component {
                 <View style={styles.container}>
                     <Activityindication visible={this.props.deviceDatas.isLoading}/>
                     <Toolbar title='Device' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
+                        setting='ios-search' settingType='Ionicons'/>
                         {/* <SearchBar onChangeText = {(text)=>this.searchFunction(text)}
                         ></SearchBar> */}
                     <View style={styles.viewStyle}>
@@ -78,7 +78,7 @@ export  class Device extends React.Component {
                                     onPress={() => {
                                         this.modalRef.current.setModalVisible(true)
                                     }}>
-                                    <Card style={styles.mainCard}>
+                                    <Card style={[styles.mainCard, globalStyles.card]}>
 
                                         <View style={styles.First_View}>
                                             <View style={styles.profile_view}>

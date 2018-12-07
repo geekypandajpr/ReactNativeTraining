@@ -78,7 +78,7 @@ export class Sim extends React.Component {
                                     onPress={() => {
                                         this.modalRef.current.setModalVisible(true)
                                     }}>
-                                    <Card style={styles.mainCard}>
+                                    <Card style={[styles.mainCard, globalStyles.card]}>
                                         <View style={styles.First_View}>
                                             <View style={styles.profile_view}>
                                                 <MaterialCommunityIcons name="sim" size={45} color="#1f667e" />
