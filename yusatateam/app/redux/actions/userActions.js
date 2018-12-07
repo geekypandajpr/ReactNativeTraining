@@ -1,4 +1,4 @@
-import { USER, JOBS, SIM, DEVICE, CUSTOMER } from '../common/actionTypes';
+import { USER, JOBS, SIM, DEVICE, CUSTOMER, VEHICLE } from '../common/actionTypes';
 
 export default {
     loginRequest: (loginCredentials) => ({ type: USER.LOGIN, loginCredentials }),
@@ -6,4 +6,5 @@ export default {
     deviceRequest: () => ({ type: DEVICE.DEVICE_REQUEST }),
     jobRequest: () => ({ type: JOBS.JOBS_LOGIN }),
     cutomerFetchRequest: () => ({ type: CUSTOMER.CUSTOMER_FETCH }),
+    vehicleFetchRequest: (customerName) => ({ type: VEHICLE.VEHICLE_FETCH, customerName })
 }
