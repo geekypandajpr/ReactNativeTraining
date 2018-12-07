@@ -20,7 +20,7 @@ export  class Jobs extends React.Component {
         this.state = {
             isLoading: true,
             x : '23',
-            item: pendingData,
+            item: [],
             map1 : new Map(),
         },
         this.status = ['Pending', 'Schedule', 'Completed', 'ReSchedule'];
@@ -40,7 +40,7 @@ export  class Jobs extends React.Component {
     getStatus(i, ref, from) {
         // console.log(this.status[i]);
         if (this.status[i] == 'Pending') {
-            this.setState({ item: pendingData });
+            this.setState({ item: this.props.PendingData.data });
         }
         if (this.status[i] == 'Schedule') {
             this.setState({ item: scheduleData });
@@ -73,7 +73,7 @@ export  class Jobs extends React.Component {
     }
 
     render() {
-       
+    //    alert(JSON.stringify(this.props.PendingData.data[0]));
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
@@ -94,7 +94,7 @@ export  class Jobs extends React.Component {
                             </TabHeading>
                         }>
                         
-                            <JobPending PendingDataValue={this.props.PendingData.data} isLoading={this.props.PendingData.isLoading}/>
+                            <JobPending PendingDataValue={this.props.PendingData.data[0]} isLoading={this.props.PendingData.isLoading}/>
                         </Tab>
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
@@ -103,7 +103,7 @@ export  class Jobs extends React.Component {
                                 </View>
                             </TabHeading>
                         }>
-                            <JobSchedule />
+                            <JobSchedule ScheduleDataValue={this.props.PendingData.data[2]}/>
                         </Tab>
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
@@ -112,7 +112,7 @@ export  class Jobs extends React.Component {
                                 </View>
                             </TabHeading>
                         }>
-                            <JobCompleted />
+                            <JobCompleted  CompletedDataValue={this.props.PendingData.data[3]}/>
                         </Tab>
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
@@ -121,7 +121,7 @@ export  class Jobs extends React.Component {
                                 </View>
                             </TabHeading>
                         }>
-                            <JobReschedule />
+                            <JobReschedule RescheduleDataValue={this.props.PendingData.data[1]} />
                         </Tab>
 
                     </Tabs>
@@ -159,6 +159,4 @@ const styles = EStylesheet.create({
         color: '#fff',
         fontSize: '1rem'
     },
-    
-
 })

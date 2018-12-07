@@ -7,6 +7,7 @@ import styles from './styles';
 import JobDetails from '../../JobDetails/JobDetails';
 import completedData from '../../../../assets/JSONData/JobsData/completedData';
 import { FilterJob } from '../../../../components/FilterJob/FilterJob';
+import {Activityindication} from '../../../../components'
 
 export default class JobCompleted extends React.Component {
     constructor() {
@@ -88,8 +89,11 @@ export default class JobCompleted extends React.Component {
 
 
     render() {
+        const values = this.props.CompletedDataValue == undefined ? null : this.props.CompletedDataValue
+      const {isLoading} = this.props;
         return (
             <View style={styles.container}>
+            {/* <Activityindication visible={isLoading}/> */}
                 <View style={styles.searchView}>
                     <View style={{ flex: 10 }}>
                         <SearchBar placeholder={'Search By '}
@@ -102,7 +106,7 @@ export default class JobCompleted extends React.Component {
                     </View>
                 </View>
                 <FlatList
-                    data={this.state.data}
+                    data={values}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>

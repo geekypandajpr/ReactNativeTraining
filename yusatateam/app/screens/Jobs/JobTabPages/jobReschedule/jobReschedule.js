@@ -8,6 +8,7 @@ import reScheduleData from '../../../../assets/JSONData/JobsData/reScheduleData'
 import { SearchBar } from '../../../../components';
 import { FilterJob } from '../../../../components/FilterJob/FilterJob';
 import JobAssign from '../../jobAssign/jobAssign';
+import {Activityindication} from '../../../../components'
 
 
 export default class JobReschedule extends React.Component {
@@ -20,7 +21,6 @@ export default class JobReschedule extends React.Component {
             value: 'jobNumber',
             map1: new Map(),
             searchData : [],
-
             //status: 'Reschedule'
         }
         this.arrayholder = [];
@@ -103,8 +103,12 @@ export default class JobReschedule extends React.Component {
 
 
     render() {
+        const values = this.props.RescheduleDataValue == undefined ? null : this.props.RescheduleDataValue
+        const {isLoading} = this.props;
+        
         return (
             <View style={styles.container}>
+              {/* <Activityindication visible={isLoading}/> */}
                 <View style={styles.searchView}>
                     <View style={{ flex: 10 }}>
                         <SearchBar placeholder={'Search By '}
@@ -118,7 +122,7 @@ export default class JobReschedule extends React.Component {
                 </View>
                 <FlatList
                     extraData={this.state}
-                    data={this.state.data}
+                    data={values}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>

@@ -10,10 +10,10 @@ import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { SearchBar,Activityindication } from '../../../../components';
 import JobAssign from '../../jobAssign/jobAssign';
 import { FilterJob } from '../../../../components/FilterJob/FilterJob';
-
+var searchData =[];
 export default class JobPending extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             data: pendingData,
             map1: new Map(null),
@@ -27,31 +27,9 @@ export default class JobPending extends React.Component {
       
     };
     componentDidMount() {
-        
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        // this.props.onFetchData();
-        
-         
-       this.arrayholder = this.state.data;
-        
-    }
- 
-    handleBackPress = () => {
-        this.props.navigation.goBack();
-        return true;
+        this.arrayholder = this.state.data;
     }
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    }
-
-    //  componentWillMount() {
-    
-    //     const {PendingDataValue}= this.props;
-    //     this.setState({data : PendingDataValue});
-        
-    //      alert(PendingDataValue);
-    // }
 
 
     selectedValue(data) {
@@ -82,13 +60,12 @@ export default class JobPending extends React.Component {
     }
 
     SearchFilterFunction(text) {
-        
         const val = this.state.searchData;
         var len=this.state.searchData.length;
        // console.log(len)
        if(len==0)
        {
-        const newData = this.arrayholder.filter(function (item) {
+        const newData = this.state.data.filter(function (item) {
             itemData  = item["jobNumber"].toUpperCase();
             const textData = text.toUpperCase()
            
@@ -124,9 +101,10 @@ export default class JobPending extends React.Component {
        }
     }
     render() {
-      // alert(JSON.stringify(PendingDataValue));
-      const {PendingDataValue}= this.props;
+        const values = this.props.PendingDataValue == undefined ? null : this.props.PendingDataValue
       const {isLoading} = this.props;
+      searchData=values;
+    //    alert(JSON.stringify(values));
         return (
             <View style={styles.container}>
             <Activityindication visible={isLoading}/>
@@ -142,77 +120,77 @@ export default class JobPending extends React.Component {
                     </View>
                 </View>
                 <FlatList
-                    extraData={this.state}
-                    data={PendingDataValue}
-                    keyExtractor={(item, index) => item.jobNumber}
-                    renderItem={({ item, index }) =>
-                        <Card style={styles.viewList}>
-                            <View style={{ flex: 0.3, alignItems: 'flex-start', justifyContent: 'center' }}>
-                                <CheckBox
-                                    checked={this.state.map1.get(item.jobNumber)}
-                                    onPress={() => this.toggleCheckbox(item.jobNumber)}
-                                />
-                            </View>
-                            <View style={{ flex: 2 }}>
-                                <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)}>
+                extraData={this.state}
+                data={values}
+                keyExtractor={(item, index) => item.jobNumber}
+                renderItem={({ item, index }) =>
+                    <Card style={styles.viewList}>
+                        <View style={{ flex: 0.3, alignItems: 'flex-start', justifyContent: 'center' }}>
+                            <CheckBox
+                                checked={this.state.map1.get(item.jobNumber)}
+                                onPress={() => this.toggleCheckbox(item.jobNumber)}
+                            />
+                        </View>
+                        <View style={{ flex: 2 }}>
+                            <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)}>
 
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_sub_view}>
-                                            <Text style={styles.jobNumText}>{item.jobNumber}</Text>
-                                        </View>
-                                        <View style={styles.right_sub_view}>
-                                            <View style={styles.jobTypeView}>
-                                                <Text style={styles.jobTypeText}>{item.jobType}</Text>
-                                            </View>
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_sub_view}>
+                                        <Text style={styles.jobNumText}>{item.jobNumber}</Text>
+                                    </View>
+                                    <View style={styles.right_sub_view}>
+                                        <View style={styles.jobTypeView}>
+                                            <Text style={styles.jobTypeText}>{item.jobType}</Text>
                                         </View>
                                     </View>
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={styles.text}>Schedule date</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <Text style={styles.text1}>{item.scheduleDate}</Text>
-                                        </View>
+                                </View>
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={styles.text}>Schedule date</Text>
                                     </View>
-
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={styles.text}>Customer</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <Text style={styles.text1}>{item.contactPerson}</Text>
-                                        </View>
+                                    <View style={styles.middle_view}>
+                                        <Text>:</Text>
                                     </View>
-
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={styles.text}>Contact No</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <Text style={styles.text1}>{item.contactNumber}</Text>
-                                        </View>
+                                    <View style={styles.right_view}>
+                                        <Text style={styles.text1}>{item.scheduleDate}</Text>
                                     </View>
+                                </View>
 
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.location}>
-                                            <Text style={styles.text1}>{item.location}</Text>
-                                        </View>
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={styles.text}>Customer</Text>
                                     </View>
+                                    <View style={styles.middle_view}>
+                                        <Text>:</Text>
+                                    </View>
+                                    <View style={styles.right_view}>
+                                        <Text style={styles.text1}>{item.contactPerson}</Text>
+                                    </View>
+                                </View>
 
-                                </TouchableOpacity>
-                            </View>
-                        </Card>
-                    } >
-                </FlatList>
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={styles.text}>Contact No</Text>
+                                    </View>
+                                    <View style={styles.middle_view}>
+                                        <Text>:</Text>
+                                    </View>
+                                    <View style={styles.right_view}>
+                                        <Text style={styles.text1}>{item.contactNumber}</Text>
+                                    </View>
+                                </View>
+
+                                <View style={styles.sub_view}>
+                                    <View style={styles.location}>
+                                        <Text style={styles.text1}>{item.location}</Text>
+                                    </View>
+                                </View>
+
+                            </TouchableOpacity>
+                        </View>
+                    </Card>
+                } >
+            </FlatList>  
                 {
                     this.state.map1.size == 0 ? null :
                         <Footer>

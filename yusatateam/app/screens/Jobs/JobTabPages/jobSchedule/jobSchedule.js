@@ -7,6 +7,7 @@ import JobDetails from '../../JobDetails/JobDetails';
 import scheduleData from '../../../../assets/JSONData/JobsData/scheduleData';
 import { SearchBar } from '../../../../components';
 import {FilterJob} from '../../../../components/FilterJob/FilterJob';
+import {Activityindication} from '../../../../components'
 
 export default class JobSchedule extends React.Component {
     constructor() {
@@ -87,8 +88,11 @@ export default class JobSchedule extends React.Component {
 
 
     render() {
+        const values = this.props.ScheduleDataValue == undefined ? null : this.props.ScheduleDataValue
+      const {isLoading} = this.props;
         return (
             <View style={styles.container}>
+            {/* <Activityindication visible={isLoading}/> */}
              <View style={styles.searchView}>
                 <View style={{flex :10}}>
                 <SearchBar placeholder={'Search By '}
@@ -101,7 +105,7 @@ export default class JobSchedule extends React.Component {
                         </View>
                     </View>
                 <FlatList
-                    data={this.state.data}
+                    data={values}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) =>
                         <Card style={styles.viewList}>
