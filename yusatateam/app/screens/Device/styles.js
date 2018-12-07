@@ -11,9 +11,6 @@ export default EStyleSheet.create({
     mainCard:{
         flex: 1,
         flexDirection: 'row',
-        marginLeft: 6,
-        marginRight: 6,
-        marginBottom: 3,
         paddingLeft: 4,
         paddingRight: 8,
         paddingBottom: 8,
