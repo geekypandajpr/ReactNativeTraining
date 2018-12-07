@@ -56,7 +56,7 @@ export function customerList() {
 }
 
 /**VEHICLE LIST API CALL */
-export function vehicleList() {
+export function vehicleList(customer) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             return resolve(vehiclesData);

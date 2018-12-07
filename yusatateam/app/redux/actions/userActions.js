@@ -6,5 +6,5 @@ export default {
     deviceRequest: () => ({ type: DEVICE.DEVICE_REQUEST }),
     jobRequest: () => ({ type: JOBS.JOBS_LOGIN }),
     cutomerFetchRequest: () => ({ type: CUSTOMER.CUSTOMER_FETCH }),
-    vehicleFetchRequest: (customerName) => ({ type: VEHICLE.VEHICLE_FETCH, customerName })
+    vehicleFetchRequest: (customer) => ({ type: VEHICLE.VEHICLE_FETCH, customer })
 }
