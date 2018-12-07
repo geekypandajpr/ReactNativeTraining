@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { userActions } from '../../../redux/actions';
 import { Toolbar, Activityindication } from '../../../components'
 import styles from './styles';
+import { globalStyles } from '../../../styles';
 
 export class Association extends React.Component {
     constructor(props) {
@@ -51,88 +52,83 @@ export class Association extends React.Component {
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
-                <View style={styles.container}>
-                    <Activityindication visible={this.state.vehiclesDatas.isLoading}/>
-                    <Toolbar title='Customer Name' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='ios-search' settingType='Ionicons' />
+            <View style={styles.container}>
+                <Activityindication visible={this.state.vehiclesDatas.isLoading}/>
+                <Toolbar title='Customer Name' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                    setting='ios-search' settingType='Ionicons' />
 
-                    <View style={styles.inner_container}>
-                        <FlatList
-                            data={this.state.vehiclesDatas.data}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item, index }) =>
-                                <Card style={styles.card_style}>
-
-                                    <View style={styles.Padding_view}>
-
-                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-
-                                            <View style={styles.View_row}>
-                                                {/* <View style={styles.flex_one}>
-                                                <Text style={styles.Vehicle_no}>Vehicle No</Text>
-                                            </View> */}
-                                                <View style={{ flex: 1, flexDirection: 'row' }}>
-                                                    <Text style={styles.Vehicle_num}>{item.vehicleno}</Text>
-                                                </View>
-                                            </View>
-
-                                            <View style={styles.status_View}>
-                                                <View style={styles.jobTypeView}>
-                                                    <Text style={styles.jobTypeText}>{item.status}</Text>
-                                                </View>
-                                            </View>
-
-                                        </View>
-                                        <View style={styles.View_row}>
-                                            <View style={styles.flex_one}>
-
-                                                <View style={styles.View_row}>
-                                                    <View style={styles.flex_one}>
-                                                        <Text style={styles.text}>Sim</Text>
-                                                    </View>
-                                                    <View style={styles.Sim_no}>
-                                                        <Text >:</Text>
-                                                        <Text style={styles.text1}>{item.Sim}</Text>
-                                                    </View>
-                                                </View>
-
-                                                <View style={styles.View_row}>
-                                                    <View style={styles.flex_one}>
-                                                        <Text style={styles.text}>Device</Text>
-                                                    </View>
-                                                    <View style={styles.Sim_no}>
-                                                        <Text >:</Text>
-                                                        <Text style={styles.text1}>{item.Device}</Text>
-                                                    </View>
-                                                </View>
-                                                {item.status === "Activate" ?
-                                                    <View style={styles.View_row}>
-                                                        <View style={styles.flex_one}>
-                                                            <Text style={styles.text}>Actived On</Text>
-                                                        </View>
-                                                        <View style={styles.Sim_no}>
-                                                            <Text >:</Text>
-                                                            <Text style={styles.text1}>{item.ActivatedDate}</Text>
-                                                        </View>
-                                                    </View>
-                                                    :
-                                                    <View style={styles.View_row}>
-                                                        <View style={styles.flex_one}>
-                                                            <Text style={styles.text}>Deactived On</Text>
-                                                        </View>
-                                                        <View style={styles.Sim_no}>
-                                                            <Text >:</Text>
-                                                            <Text style={styles.text1}>{item.LastActivated}</Text>
-                                                        </View>
-                                                    </View>
-                                                }
-                                            </View>
+                <View style={styles.inner_container}>
+                    <FlatList
+                        data={this.state.vehiclesDatas.data}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item, index }) =>
+                            <Card style={[globalStyles.card,{padding: 8}]}>
+                            
+                                <View style={styles.View_row}>
+                                    <View style={styles.flex_one}>
+                                        <Text style={[globalStyles.title_text, { fontFamily: 'Roboto' }]}>{item.vehicleno}</Text>
+                                    </View>
+                                    <View style={styles.status_View}>
+                                        <View style={styles.status}>
+                                            <Text style={styles.status_text}>{item.status}</Text>
                                         </View>
                                     </View>
-                                </Card>
-                            }></FlatList>
-                    </View>
+                                </View>
+
+                                <View style={styles.View_row}>
+                                    <View style={styles.flex_one}>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>Sim</Text>
+                                    </View>
+                                    <View style={styles.colon}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>:</Text>
+                                    </View>
+                                    <View style={styles.flex_two}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.Sim}</Text>
+                                    </View>                                       
+                                </View>
+
+                                <View style={styles.View_row}>
+                                    <View style={styles.flex_one}>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>Device</Text>
+                                    </View>
+                                    <View style={styles.colon}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>:</Text>
+                                    </View>
+                                    <View style={styles.flex_two}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.Device}</Text>
+                                    </View>                                       
+                                </View>
+
+                                { item.status === "Activate" ?
+                                    <View style={styles.View_row}>
+                                        <View style={styles.flex_one}>
+                                            <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>Activated on</Text>
+                                        </View>
+                                        <View style={styles.colon}>
+                                            <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>:</Text>
+                                        </View>
+                                        <View style={styles.flex_two}>
+                                            <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.ActivatedDate}</Text>
+                                        </View>                                       
+                                    </View>
+                                :
+                                    <View style={styles.View_row}>
+                                        <View style={styles.flex_one}>
+                                            <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>Deactivated on</Text>
+                                        </View>
+                                        <View style={styles.colon}>
+                                            <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>:</Text>
+                                        </View>
+                                        <View style={styles.flex_two}>
+                                            <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.LastActivated}</Text>
+                                        </View>                                       
+                                    </View>
+                                }
+
+                            </Card>
+                        }/>
                 </View>
+            </View>
         );
     }
 }

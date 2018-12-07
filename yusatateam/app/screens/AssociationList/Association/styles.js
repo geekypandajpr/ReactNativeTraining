@@ -1,63 +1,31 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
-    container:
-    {
+    container: {
         flex: 1,
         backgroundColor: '#fff'
     },
-    inner_container:
-    {
-        padding: 4,
+    inner_container: {
         flex: 1
     },
-    card_style:
-    {
-        flex: 1,
-        borderColor: 'white'
-    },
-    Padding_view:
-    {
-        paddingTop: 4,
-        paddingBottom: 4,
-        paddingLeft: 10,
-        paddingRight: 10
-    },
-    flex_one:
-    {
-        flex: 1
-    },
-    View_row:
-    {
+    flex_one: {
         flex: 1,
         flexDirection: 'row',
+        justifyContent: 'flex-start',
         alignItems: 'center'
     },
-    Vehicle_no: {
-        fontSize: '1rem',
-        color: '#000',
-        fontWeight: '500'
-    },
-    Vehicle_num: {
-        fontSize: '1rem',
-        color: '#000',
-        fontWeight: '500',
-    },
-    text: {
-        fontSize: '0.9rem',
-        color: '#000',
-        fontWeight: '300',
-    },
-    text1: {
-        fontSize: '0.8rem',
-        fontWeight: '300',
-        marginLeft: 10,
-        color: 'rgba(0,0,0,0.5)',
-    },
-    Sim_no:
-    {
+    flex_two: {
         flex: 2,
         flexDirection: 'row',
+        justifyContent: 'flex-start',
         alignItems: 'center'
+    },
+    colon: {
+        flex: 0.2,
+        alignItems: 'center'
+    },
+    View_row: {
+        flex: 1,
+        flexDirection: 'row'
     },
     status_View:
     {
@@ -66,8 +34,8 @@ export default EStyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end'
     },
-    jobTypeView: {
-        borderRadius: 10,
+    status: {
+        borderRadius: 12,
         borderWidth: 0.8,
         borderColor: 'gray',
         padding: 2,
@@ -76,9 +44,8 @@ export default EStyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    jobTypeText: {
+    status_text: {
         color: '#1f667e',
         fontSize: '0.8rem'
     },
-
 })

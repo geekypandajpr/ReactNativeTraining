@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
+import { globalStyles } from '../../styles';
 import { Toolbar, Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 
@@ -60,16 +61,16 @@ export class Customer extends React.Component {
                                     <Body >
                                         <View style={{ flex: 1, flexDirection: 'column' }}>
                                             <View style={{ flex: 1 }}>
-                                                <Text style={[styles.Cust_name, { fontFamily: 'Roboto' }]} >{item.name}</Text>
+                                                <Text style={[globalStyles.title_text, { fontFamily: 'Roboto' }]} >{item.name}</Text>
                                             </View>
 
                                             <View style={styles.Secondrow}>
                                                 <Ionicons name='ios-call' size={20} color='#5cb85c' style={{ marginRight: 5 }} />
-                                                <Text style={[styles.text, { fontFamily: 'Roboto' }]}>{item.contactNumber}</Text>
+                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.contactNumber}</Text>
                                             </View>
 
                                             <View style={styles.Secondrow}>
-                                                <Text style={[styles.text, { fontFamily: 'Roboto' }]}>{item.address}</Text>
+                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.address}</Text>
                                             </View>
                                         </View>
                                     </Body>
@@ -77,8 +78,7 @@ export class Customer extends React.Component {
                                     <Right>
                                         <TouchableOpacity onPress={() => navigate('Association')}>
                                             <View style={styles.Next_page}>
-                                                {/* <Text style={styles.view_more_text}>view more</Text> */}
-                                                <Ionicons name='ios-arrow-forward' size={27} color='gray' />
+                                                <Ionicons name='ios-arrow-forward' size={27} color='rgba(0,0,0,0.3)' />
                                             </View>
                                         </TouchableOpacity>
                                     </Right>
