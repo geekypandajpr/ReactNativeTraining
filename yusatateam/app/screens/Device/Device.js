@@ -13,7 +13,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import styles from './styles';
 import { Toolbar,Activityindication } from '../../components';
 import { DeviceDetails } from './DeviceDeatails';
-import {  SearchBar } from '../../components/SearchBar/SearchBar'
+import {  SearchBar } from '../../components/SearchBar/SearchBar';
 import { userActions } from '../../redux/actions';
 import { globalStyles } from '../../styles';
 
@@ -48,6 +48,7 @@ export  class Device extends React.Component {
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
+
     searchFunction(text){
         const newdata = this.list.filter(function(item){
             const itemdata=item.ESN.toUpperCase();
@@ -94,7 +95,7 @@ export  class Device extends React.Component {
                                                 </View>
 
                                                 <View style={[styles.Status_Button, { backgroundColor: item.color }]} >
-                                                    <Text style={styles.Status_Style}>{item.status}</Text>
+                                                    <Text style={[styles.Status_Style,{fontFamily: 'Roboto'}]}>{item.status}</Text>
                                                 </View>
                                             </View>
 
@@ -102,7 +103,7 @@ export  class Device extends React.Component {
                                                 <View style={styles.Level_Head}>
                                                     <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>ORDER#</Text>
                                                 </View>
-                                                <View style={{ flex: 0.1 }}>
+                                                <View style={{ flex: 0.2 }}>
                                                     <Text style={globalStyles.secondary_text}> : </Text>
                                                 </View>
                                                 <View style={styles.Level_Style}>
@@ -114,7 +115,7 @@ export  class Device extends React.Component {
                                                 <View style={styles.Level_Head}>
                                                     <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>ESN</Text>
                                                 </View>
-                                                <View style={{ flex: 0.1 }}>
+                                                <View style={{ flex: 0.2 }}>
                                                     <Text style={globalStyles.secondary_text}> : </Text>
                                                 </View>
                                                 <View style={styles.Level_Style}>
@@ -127,7 +128,7 @@ export  class Device extends React.Component {
                                                     <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.Model}</Text>
                                                 </View>
                                                 <View style={styles.jobTypeView}>
-                                                    <Text style={styles.jobTypeText}>{item.Manufacturer}</Text>
+                                                    <Text style={[styles.jobTypeText,{fontFamily: 'Roboto'}]}>{item.Manufacturer}</Text>
                                                 </View>
                                             </View>
 
@@ -144,6 +145,7 @@ export  class Device extends React.Component {
     }
 
 }
+
 function mapStateToProps(state){
     return{
         deviceDatas : state.devicedata
@@ -155,4 +157,5 @@ function mapDispatchToProps(dispatch){
         onFetchData:()=>dispatch(userActions.deviceRequest())
       }
 }
+
 export default connect(mapStateToProps,mapDispatchToProps)(Device)

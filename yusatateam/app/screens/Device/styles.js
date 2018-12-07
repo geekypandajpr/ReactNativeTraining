@@ -16,10 +16,7 @@ export default EStyleSheet.create({
         marginLeft: 4,
         marginRight: 4,
         marginBottom: 3,
-        paddingRight: 6,
-        // paddingLeft: 6,
-        paddingTop: 6,
-        paddingBottom: 6
+        padding: 6
     },
     First_View:{
         flex: 1,

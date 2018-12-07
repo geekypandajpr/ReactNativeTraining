@@ -12,7 +12,7 @@ export default EStyleSheet.create({
     title_text: {
         fontSize: fontsize.big,
         color: '#000000',
-        fontWeight: '500'
+        fontWeight: '500',
     },
     primary_text: {
         fontSize: fontsize.medium,
