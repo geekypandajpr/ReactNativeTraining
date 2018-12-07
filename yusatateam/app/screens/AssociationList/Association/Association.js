@@ -12,7 +12,8 @@ export class Association extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true
+            isLoading: true,
+            vehiclesDatas: this.props.vehicle
         }
     }
 
@@ -23,6 +24,10 @@ export class Association extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.props.vehicle !== nextProps.vehicle) { this.setState({vehiclesDatas: nextProps.vehicle}) }
     }
 
     componentDidMount() {
@@ -47,13 +52,13 @@ export class Association extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Activityindication visible={this.props.vehicle.isLoading}/>
+                    <Activityindication visible={this.state.vehiclesDatas.isLoading}/>
                     <Toolbar title='Customer Name' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='ios-search' settingType='Ionicons' />
 
                     <View style={styles.inner_container}>
                         <FlatList
-                            data={this.props.vehicle.data}
+                            data={this.state.vehiclesDatas.data}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                                 <Card style={styles.card_style}>
