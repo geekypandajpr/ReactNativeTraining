@@ -14,6 +14,7 @@ import styles from './styles';
 import { Toolbar, Activityindication } from '../../components';
 import { SimDetails } from './SimDetails';
 import { userActions } from '../../redux/actions';
+import { globalStyles } from '../../styles';
 
 export class Sim extends React.Component {
     constructor(props) {
@@ -87,41 +88,41 @@ export class Sim extends React.Component {
                                         <View style={styles.Second_View}>
                                             <View style={styles.Margin_Row}>
                                                 <View style={styles.Level_Second}>
-                                                    <Text style={styles.Header_Style}>{item.ORDER}</Text>
+                                                    <Text style={[globalStyles.title_text,{fontFamily: 'Roboto'}]}>{item.ORDER}</Text>
                                                 </View>
                                                 <View style={[styles.Status_Button, { backgroundColor: item.color }]} >
-                                                    <Text style={styles.Status_Style}>{item.status}</Text>
+                                                    <Text style={[styles.Status_Style,{fontFamily: 'Roboto'}]}>{item.status}</Text>
                                                 </View>
                                             </View>
                                             
                                             <View style={styles.Level_Row}>
                                                 <View style={styles.Level_Head}>
-                                                    <Text style={styles.Text_Style}>MSIDN</Text>
+                                                    <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>MSIDN</Text>
                                                 </View>
-                                                <View style={{ flex: 0.1 }}>
-                                                    <Text style={styles.Text_Style}> : </Text>
+                                                <View style={{ flex: 0.2 }}>
+                                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}> : </Text>
                                                 </View>
                                                 <View style={styles.Level_Style}>
-                                                    <Text style={styles.View_Style}>{item.MSIDN}</Text>
+                                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.MSIDN}</Text>
                                                 </View>
                                             </View>
                                             <View style={styles.Level_Row}>
                                                 <View style={styles.Level_Head}>
-                                                    <Text style={styles.Text_Style}>ICCID</Text>
+                                                    <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>ICCID</Text>
                                                 </View>
-                                                <View style={{ flex: 0.1 }}>
-                                                    <Text style={styles.Text_Style}> : </Text>
+                                                <View style={{ flex: 0.2 }}>
+                                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}> : </Text>
                                                 </View>
                                                 <View style={styles.Level_Style}>
-                                                    <Text style={styles.View_Style}>{item.ICCID}</Text>
+                                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.ICCID}</Text>
                                                 </View>
                                             </View>
-                                            <View style={[styles.Level_Row, { marginBottom: 5 }]}>
+                                            <View style={styles.Level_Row}>
                                                 <View style={styles.Level_Second}>
-                                                    <Text style={styles.Mobile_Style}>{item.Mobile}</Text>
+                                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.Mobile}</Text>
                                                 </View>
                                                 <View style={styles.jobTypeView}>
-                                                    <Text style={styles.jobTypeText}>{item.Provider}</Text>
+                                                    <Text style={[styles.jobTypeText,{fontFamily: 'Roboto'}]}>{item.Provider}</Text>
                                                 </View>
                                             </View>
                                         </View>

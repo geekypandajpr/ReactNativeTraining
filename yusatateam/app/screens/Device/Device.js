@@ -123,7 +123,7 @@ export  class Device extends React.Component {
                                                 </View>
                                             </View>
 
-                                            <View style={[styles.Level_Row, { marginBottom: 5 }]}>
+                                            <View style={styles.Level_Row}>
                                                 <View style={styles.Level_Second}>
                                                     <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.Model}</Text>
                                                 </View>

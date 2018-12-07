@@ -6,13 +6,19 @@ export default EStyleSheet.create({
         backgroundColor: 'white',
     },
     viewStyle:{
-      padding:4,
         flex: 1,
     },
     mainCard:{
         flex: 1,
         flexDirection: 'row',
-        borderColor: 'white'
+        borderColor: 'white',
+        marginLeft: 6,
+        marginRight: 6,
+        marginBottom: 3,
+        paddingLeft: 4,
+        paddingRight: 8,
+        paddingBottom: 8,
+        paddingTop: 8
     },
     First_View:{
         flex: 1,
@@ -34,34 +40,22 @@ export default EStyleSheet.create({
     },
     Margin_Row:{
         flex: 1,
-        flexDirection: 'row',
-        marginTop: 2
+        flexDirection: 'row'
     },
     Level_Second:{
         flex: 1,
         justifyContent: 'center',
     },
-    Header_Style:{
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        fontWeight: '500',
-        color: '#000'
-    },
     Status_Button:{
-        borderRadius: 10,
-        borderWidth: 0.8,
-        borderColor: 'white',
+        borderRadius: 12,
         padding: 2,
         width: 100,
         height: 25,
         justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 10
+        alignItems: 'center'
     },
     Status_Style:{
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        fontWeight: 'bold',
+        fontSize: '0.8rem',
         color: 'white',
         justifyContent: 'center',
         alignItems: 'center'
@@ -74,44 +68,22 @@ export default EStyleSheet.create({
         flex: 0.6,
         justifyContent: 'center'
     },
-    Text_Style:{
-        fontStyle: 'normal',
-        fontSize: '1rem',
-        color: '#000'
-    },
     Level_Style:{
         flex: 2,
         justifyContent: 'center'
     },
-    View_Style:{
-        fontStyle: 'normal',
-        fontSize: '0.8rem',
-        color: 'gray',
-        marginLeft: 10
-    },
-    Mobile_Style:{
-        fontStyle: 'normal',
-        fontSize: '0.9rem',
-        color: 'gray',
-    },
-
     jobTypeView: {
-        borderRadius: 10,
-        borderWidth: 0.8,
-        borderColor: 'gray',
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: '#DCDCDC',
         padding: 2,
         width: 80,
         height: 23,
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 10
     },
     jobTypeText: {
-        color: '#1f667e',
+        color: '#000',
         fontSize: '0.8rem'
-    },
-    
-   
-
-
+    }
 })
