@@ -13,7 +13,7 @@ export const SIM = {
 export const DEVICE = {
     DEVICE_REQUEST       : 'DEVICE_REQUEST',
     DEVICE_SUCCESS       : 'DEVICE_SUCCESS',
-    DEVICE_FAILED       : 'DEVICE_FAILED'
+    DEVICE_FAILED        : 'DEVICE_FAILED'
 };
 
 export const JOBS = {
@@ -23,7 +23,13 @@ export const JOBS = {
 };
 
 export const CUSTOMER = {
-    CUSTOMER_FETCH           : 'CUSTOMER_LOGIN',
-    CUSTOMER_SUCCESS         : 'CUSTOMER_SUCCESS',
-    CUSTOMER_FAILED          : 'CUSTOMER_FAILED'
+    CUSTOMER_FETCH       : 'CUSTOMER_FETCH',
+    CUSTOMER_SUCCESS     : 'CUSTOMER_SUCCESS',
+    CUSTOMER_FAILED      : 'CUSTOMER_FAILED'
+}
+
+export const VEHICLE = {
+    VEHICLE_FETCH        : 'VEHICLE_FETCH',
+    VEHICLE_SUCCESS      : 'VEHICLE_SUCCESS',
+    VEHICLE_FAILED       : 'VEHICLE_FAILED'
 }
