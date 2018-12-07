@@ -49,7 +49,6 @@ export default class FilterJob extends React.Component {
                     onRequestClose={() => {
                         this.setModalVisible(!this.state.modalVisible);
                     }}>
-                    <View style={{flex : 2}}></View>
                     <View style={styles.container}>
                         <View style={styles.sub_container}>
                             <View style={styles.header_view}>

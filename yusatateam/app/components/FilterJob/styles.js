@@ -6,14 +6,16 @@ export default EStyleSheet.create({
         flex: 7.8,
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
-        backgroundColor: '#00000095',
+        // backgroundColor: '#00000095',
         flexDirection: 'column',
-        paddingRight :7
+        paddingRight :7,
+        marginTop: 150
     },
     sub_container: {
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
-        width: '95%'
+        width: '95%',
+        
     },
     header_view: {
         width: '70%',
@@ -31,9 +33,10 @@ export default EStyleSheet.create({
     },
     View_Container:
     {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#ffffff',
         width: '70%',
         padding : 15,
+        elevation: 10
     },
     button_view: {
         flexDirection: 'row',
