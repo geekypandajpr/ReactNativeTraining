@@ -41,7 +41,7 @@ export default class Toolbar extends React.Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={styles.title}>
+                        <Title style={[styles.title,{fontFamily: 'Roboto'}]}>
                             {this.props.title}
                         </Title>
                     </Body>
