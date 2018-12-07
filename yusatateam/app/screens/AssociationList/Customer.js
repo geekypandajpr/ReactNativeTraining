@@ -87,6 +87,7 @@ export class Customer extends React.Component {
         );
     }
 }
+
 function mapStateToProps(state){
     return{
         customers : state.customersData
