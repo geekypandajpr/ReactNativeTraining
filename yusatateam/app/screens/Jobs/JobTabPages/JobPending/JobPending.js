@@ -10,7 +10,6 @@ import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { SearchBar,Activityindication } from '../../../../components';
 import JobAssign from '../../jobAssign/jobAssign';
 import { FilterJob } from '../../../../components/FilterJob/FilterJob';
-var searchData =[];
 export default class JobPending extends React.Component {
     constructor(props) {
         super(props);
@@ -24,13 +23,10 @@ export default class JobPending extends React.Component {
         this.arrayholder = [];
         this.jobFilter = React.createRef();
         this.openFilterPage = this.openFilterPage.bind(this);
-      
     };
     componentDidMount() {
         this.arrayholder = this.state.data;
     }
-
-
 
     selectedValue(data) {
        // this.setState({ value: data });
@@ -38,7 +34,6 @@ export default class JobPending extends React.Component {
         {
             //console.log(key)
             this.state.searchData.push(key);
-            
         }
        // console.log(this.state.searchData)
         //this.setState({searchData});
