@@ -1,16 +1,9 @@
 import React from 'react';
-import {
-    View,
-    FlatList,
-    BackHandler
-} from 'react-native';
+import { View, FlatList, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
-import { Activityindication } from '../../components/ActivityIndication'
 
 import styles from './styles';
-import { Toolbar, TechnicianList } from '../../components';
-import techDatas from '../../assets/JSONData/TechnicianData';
-import { TechDetails } from './TechDetails/TechDetails';
+import { Toolbar, TechnicianList, Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 
 export  class Technicians extends React.Component {
@@ -43,26 +36,24 @@ export  class Technicians extends React.Component {
         return (
 
             <View style={styles.container}>
-
+                <Activityindication visible={this.props.techData.isLoading}/>
                 <Toolbar title='Technicians' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                     setting='ios-search' settingType='Ionicons'
                 />
-
+                
                 <View style={styles.inner_container}>
-                <Activityindication visible={this.props.techData.isLoading}/>
                     <FlatList
                         data={this.props.techData.data}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <TechnicianList
-                                data={item}
-                                viewTodaysJobs={() => navigate('TodaysJobs')}
-                                viewDetails={() => navigate('TechDetails')}
-                                assignJobs={() => navigate('OpenJobs')}
-                            />
-                        } />
+                        <TechnicianList
+                            data={item}
+                            viewTodaysJobs={() => navigate('TodaysJobs')}
+                            viewDetails={() => navigate('TechDetails')}
+                            assignJobs={() => navigate('OpenJobs')}
+                        />
+                    }/>
                 </View>
-                {/* <TechDetails ref={'modal'} /> */}
             </View>
         );
     }
