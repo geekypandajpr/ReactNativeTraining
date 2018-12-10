@@ -1,10 +1,8 @@
 import React from 'react';
-
 import { View, FlatList, TouchableOpacity,BackHandler} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Text, Button, Card, Footer, FooterTab, CheckBox } from 'native-base';
 import styles from './styles';
-
 import JobDetails from '../../JobDetails/JobDetails';
 import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { SearchBar,Activityindication } from '../../../../components';
@@ -58,7 +56,8 @@ export default class JobPending extends React.Component {
         this.setState({ map1 })
     }
 
-    SearchFilterFunction(text) {
+    SearchFilterFunction(text) 
+    {
         const val = this.state.searchData;
         var len=this.state.searchData.length;
        // console.log(len)
@@ -66,8 +65,7 @@ export default class JobPending extends React.Component {
        {
         const newData = this.state.data.filter(function (item) {
             itemData  = item["jobNumber"].toUpperCase();
-            const textData = text.toUpperCase()
-           
+            const textData = text.toUpperCase()     
             return itemData.indexOf(textData) > -1         
         })         
         //console.log(newData);
@@ -87,8 +85,7 @@ export default class JobPending extends React.Component {
                 itemData  =itemData.concat(item[val[i]]).toUpperCase();
             }
             //console.log(itemData)
-            const textData = text.toUpperCase()
-           
+            const textData = text.toUpperCase()        
             return itemData.indexOf(textData) > -1
         })
         //console.log(newData);
@@ -99,6 +96,7 @@ export default class JobPending extends React.Component {
         )
        }
     }
+    
     render() {
         
       const {isLoading} = this.props;
@@ -124,12 +122,14 @@ export default class JobPending extends React.Component {
                 keyExtractor={(item, index) => item.jobNumber}
                 renderItem={({ item, index }) =>
                     <Card style={[styles.viewList, globalStyles.card]}>
+
                         <View style={{ flex: 0.3, alignItems: 'flex-start', justifyContent: 'center' }}>
                             <CheckBox
                                 checked={this.state.map1.get(item.jobNumber)}
                                 onPress={() => this.toggleCheckbox(item.jobNumber)}
                             />
                         </View>
+
                         <View style={{ flex: 2 }}>
                             <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)}>
 
@@ -143,6 +143,7 @@ export default class JobPending extends React.Component {
                                         </View>
                                     </View>
                                 </View>
+
                                 <View style={styles.sub_view}>
                                     <View style={styles.left_view}>
                                         <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>Schedule date</Text>
