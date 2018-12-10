@@ -9,7 +9,6 @@ import { Card, Text } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
 import styles from './styles';
 import { Toolbar, Activityindication,HeaderWithSearchbar} from '../../components';
 import { SimDetails } from './SimDetails';
@@ -22,12 +21,12 @@ export class Sim extends React.Component {
         this.state = {
             isLoading: true,
             data: null,
-            searchvalue : ''
+            searchValue : ''
         };
         this.list=[];
         this.modalRef = React.createRef();
-        this.onSearchTextChanged = this.onSearchTextChanged.bind(this);
         this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
+        this.SearchFilterFunction = this.SearchFilterFunction.bind(this);
     }
 
     async componentWillMount() {
@@ -46,7 +45,7 @@ export class Sim extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if(this.props.simDatas !== nextProps.simDatas) {
-            this.setState({data: nextProps.simDatas});
+            this.setState({data: nextProps.simDatas.data});
             this.arrayList = nextProps.simDatas.data;
         }
     }
@@ -59,24 +58,21 @@ export class Sim extends React.Component {
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
-
-    onSearchTextChanged(searchValue) {
-        this.setState({ searchValue }, function(){
-            this.doSearch(searchValue);
-        });
-    }
-
-    doSearch(searchValue) {
+    SearchFilterFunction(text) 
+    {
         const newData = this.arrayList.filter(function (item) {
             const itemData = item.ORDER.toUpperCase()
-            const textData = searchValue.toUpperCase()
+            const textData = text.toUpperCase() 
             return itemData.indexOf(textData) > -1
         })
-        this.setState({ datas: newData });
+        this.setState({
+            data: newData,         
+            searchValue: text
+        },
+        )
     }
-
     onSearchClearPressed(){
-        this.onSearchTextChanged('');
+        this.SearchFilterFunction('');
     }
 
     render() {
@@ -84,9 +80,9 @@ export class Sim extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Activityindication visible={this.state.data.isLoading}/>
+                    {/* <Activityindication visible={this.state.data.isLoading}/> */}
                     <HeaderWithSearchbar
-                        onChangeText={(text)=>this.onSearchTextChanged(text)}
+                        onChangeText={(text) => this.SearchFilterFunction(text)}
                         onSearchClear={this.onSearchClearPressed}
                         searchValue={this.state.searchValue}
                         title={'Sims'}
@@ -94,7 +90,7 @@ export class Sim extends React.Component {
                         goBack={() => goBack()}/>
                     <View style={styles.viewStyle}>
                         <FlatList
-                            data={this.state.data.data}
+                            data={this.state.data}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                                 <TouchableWithoutFeedback
