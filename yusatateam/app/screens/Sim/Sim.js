@@ -21,7 +21,7 @@ export class Sim extends React.Component {
         super(props);
         this.state = {
             isLoading: true,
-            data:[],
+            data: null,
             searchvalue : ''
         };
         this.list=[];
@@ -40,9 +40,15 @@ export class Sim extends React.Component {
     }
 
     componentDidMount() {
-        this.arrayList = this.state.data;
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.props.onFetchData();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.props.simDatas !== nextProps.simDatas) {
+            this.setState({data: nextProps.simDatas});
+            this.arrayList = nextProps.simDatas.data;
+        }
     }
 
     handleBackPress = () => {
@@ -54,20 +60,21 @@ export class Sim extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-
     onSearchTextChanged(searchValue) {
         this.setState({ searchValue }, function(){
             this.doSearch(searchValue);
         });
     }
+
     doSearch(searchValue) {
         const newData = this.arrayList.filter(function (item) {
-            const itemData = item.jobNumber.toUpperCase()
+            const itemData = item.ORDER.toUpperCase()
             const textData = searchValue.toUpperCase()
             return itemData.indexOf(textData) > -1
         })
-        this.setState({ datas: newData })
+        this.setState({ datas: newData });
     }
+
     onSearchClearPressed(){
         this.onSearchTextChanged('');
     }
@@ -77,17 +84,17 @@ export class Sim extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Activityindication visible={this.props.simDatas.isLoading}/>
+                    <Activityindication visible={this.state.data.isLoading}/>
                     <HeaderWithSearchbar
-                    onChangeText={(text)=>this.onSearchTextChanged(text)}
-                    onSearchClear={this.onSearchClearPressed}
-                    searchValue={this.state.searchValue}
-                    title={'Sims'}
-                    leftIcon='arrow-left'
-                    goBack={() => goBack()}/>
+                        onChangeText={(text)=>this.onSearchTextChanged(text)}
+                        onSearchClear={this.onSearchClearPressed}
+                        searchValue={this.state.searchValue}
+                        title={'Sims'}
+                        leftIcon='arrow-left'
+                        goBack={() => goBack()}/>
                     <View style={styles.viewStyle}>
                         <FlatList
-                            data={this.props.simDatas.data}
+                            data={this.state.data.data}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                                 <TouchableWithoutFeedback
