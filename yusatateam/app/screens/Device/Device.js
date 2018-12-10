@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
 
 import styles from './styles';
-import { Toolbar,Activityindication } from '../../components';
+import { Toolbar,Activityindication,HeaderWithSearchbar } from '../../components';
 import { DeviceDetails } from './DeviceDeatails';
 import {  SearchBar } from '../../components/SearchBar/SearchBar';
 import { userActions } from '../../redux/actions';
@@ -22,8 +22,12 @@ export  class Device extends React.Component {
         super();
         this.state = {
             isLoading: true,
+            data: null,
+            searchValue : ''
         };
         this.modalRef = React.createRef();
+        this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
+        this.SearchFilterFunction = this.SearchFilterFunction.bind(this);
     }
 
     async componentWillMount() {
@@ -48,14 +52,28 @@ export  class Device extends React.Component {
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
+    componentWillReceiveProps(nextProps) {
+        if(this.props.deviceDatas !== nextProps.deviceDatas) {
+            this.setState({data: nextProps.deviceDatas.data});
+            this.arrayList = nextProps.deviceDatas.data;
+        }
+    }
 
-    searchFunction(text){
-        const newdata = this.list.filter(function(item){
-            const itemdata=item.ESN.toUpperCase();
-            const textdata =text.toUpperCase();
-            return itemdata.indexOf(textdata)>-1;
+    SearchFilterFunction(text) 
+    {
+        const newData = this.arrayList.filter(function (item) {
+            const itemData = item.IMEI.toUpperCase()
+            const textData = text.toUpperCase() 
+            return itemData.indexOf(textData) > -1
         })
-        this.setState({data:newdata,searchValue:text})
+        this.setState({
+            data: newData,         
+            searchValue: text
+        },
+        )
+    }
+    onSearchClearPressed(){
+        this.SearchFilterFunction('');
     }
 
     render() {
@@ -65,13 +83,18 @@ export  class Device extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
                     <Activityindication visible={this.props.deviceDatas.isLoading}/>
-                    <Toolbar title='Device' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='ios-search' settingType='Ionicons'/>
+                    <HeaderWithSearchbar
+                        onChangeText={(text) => this.SearchFilterFunction(text)}
+                        onSearchClear={this.onSearchClearPressed}
+                        searchValue={this.state.searchValue}
+                        title={'Devices'}
+                        leftIcon='arrow-left'
+                        goBack={() => goBack()}/>
                         {/* <SearchBar onChangeText = {(text)=>this.searchFunction(text)}
                         ></SearchBar> */}
                     <View style={styles.viewStyle}>
                         <FlatList
-                            data={this.props.deviceDatas.data}
+                            data={this.state.data}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
                                 <TouchableWithoutFeedback
