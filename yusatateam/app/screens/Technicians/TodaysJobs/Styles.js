@@ -34,8 +34,8 @@ export default EStyleSheet.create({
     jobTypeView: {
         borderRadius: 0,
         borderWidth: 0.8,
-        borderColor: 'gray',
-        padding: 2,
+        borderColor: '#dcdcdc',
+        padding: 1,
         width: 80,
         height: 23,
         justifyContent: 'center',
@@ -62,13 +62,5 @@ export default EStyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center'
-    },
-    key_text: {
-        fontSize: '0.9rem',
-        color: '#000',
-    },
-    value_text: {
-        fontSize: '0.8rem',
-        color: 'gray'
-    },
+    }
 });

@@ -6,6 +6,7 @@ import { Entypo } from '@expo/vector-icons';
 
 import { Toolbar } from '../../../components';
 import styles from './Styles';
+import { globalStyles } from '../../../styles';
 import JobDetails from '../../Jobs/JobDetails/JobDetails';
 
 const data = [
@@ -109,36 +110,36 @@ export default class TodaysJobs extends React.Component {
 
                             <View style={styles.sub_view}>
                                 <View style={styles.left_view}>
-                                    <Text style={styles.jobNumText}>{item.jobNumber}</Text>
+                                    <Text style={[globalStyles.title_text,{fontFamily: 'Roboto'}]}>{item.jobNumber}</Text>
                                 </View>
                                 <View style={styles.status}>
                                     <View style={[styles.statusView,{ backgroundColor: statusColor[item.jobStatus]}]}>
-                                        <Text style={styles.statusText}>{item.jobStatus}</Text>
+                                        <Text style={[styles.statusText,{fontFamily:'Roboto'}]}>{item.jobStatus}</Text>
                                     </View>
                                 </View>
                             </View>
 
                             <View style={styles.sub_view}>
                                 <View style={styles.left_view}>
-                                    <Text style={styles.key_text}>Schedule date</Text>
+                                    <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>Schedule date</Text>
                                 </View>
                                 <View style={styles.middle_view}>
-                                    <Text>:</Text>
+                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>:</Text>
                                 </View>
                                 <View style={styles.right_view}>
-                                    <Text style={styles.value_text}>{item.scheduleDate}</Text>
+                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.scheduleDate}</Text>
                                 </View>
                             </View>
 
                             <View style={styles.sub_view}>
                                 <View style={styles.left_view}>
-                                    <Text style={styles.key_text}>Completed date</Text>
+                                    <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>Completed date</Text>
                                 </View>
                                 <View style={styles.middle_view}>
-                                    <Text>:</Text>
+                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>:</Text>
                                 </View>
                                 <View style={styles.right_view}>
-                                    <Text style={styles.value_text}>
+                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>
                                         {item.completedDate != null ? item.completedDate : '-  -  -'}
                                     </Text>
                                 </View>
@@ -146,26 +147,26 @@ export default class TodaysJobs extends React.Component {
 
                             <View style={styles.sub_view}>
                                 <View style={styles.left_view}>
-                                    <Text style={styles.key_text}>Customer name</Text>
+                                    <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>Customer name</Text>
                                 </View>
                                 <View style={styles.middle_view}>
-                                    <Text>:</Text>
+                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>:</Text>
                                 </View>
                                 <View style={styles.right_view}>
-                                    <Text style={styles.value_text}>{item.contactPerson}</Text>
+                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.contactPerson}</Text>
                                 </View>
                             </View>
 
                             <View style={styles.sub_view}>
                                 <View style={styles.left_view}>
-                                    <Text style={styles.key_text}>Job type</Text>
+                                    <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>Job type</Text>
                                 </View>
                                 <View style={styles.middle_view}>
-                                    <Text>:</Text>
+                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>:</Text>
                                 </View>
                                 <View style={styles.right_view}>
                                     <View style={styles.jobTypeView}>
-                                        <Text style={styles.value_text}>{item.jobType}</Text>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.jobType}</Text>
                                     </View>
                                 </View>
                             </View>
@@ -173,7 +174,7 @@ export default class TodaysJobs extends React.Component {
                             <View style={styles.sub_view}>
                                 <Entypo name='location-pin' size={20} color='#d9534f'/>
                                 <View style={{flex: 1}}>
-                                    <Text style={styles.value_text}>{item.location}</Text>
+                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.location}</Text>
                                 </View>
                             </View>
 
