@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import styles from './styles';
-import { Toolbar, Activityindication } from '../../components';
+import { Toolbar, Activityindication,HeaderWithSearchbar} from '../../components';
 import { SimDetails } from './SimDetails';
 import { userActions } from '../../redux/actions';
 import { globalStyles } from '../../styles';
@@ -26,6 +26,8 @@ export class Sim extends React.Component {
         };
         this.list=[];
         this.modalRef = React.createRef();
+        this.onSearchTextChanged = this.onSearchTextChanged.bind(this);
+        this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
     }
 
     async componentWillMount() {
@@ -38,6 +40,7 @@ export class Sim extends React.Component {
     }
 
     componentDidMount() {
+        this.arrayList = this.state.data;
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.props.onFetchData();
     }
@@ -51,14 +54,22 @@ export class Sim extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    searchFunction(text){
-        const newdata = this.list.filter(function(item){
-            const itemdata=item.MSIDN.toUpperCase();
-            const textdata =text.toUpperCase();
-            return itemdata.indexOf(textdata)>-1;
 
+    onSearchTextChanged(searchValue) {
+        this.setState({ searchValue }, function(){
+            this.doSearch(searchValue);
+        });
+    }
+    doSearch(searchValue) {
+        const newData = this.arrayList.filter(function (item) {
+            const itemData = item.jobNumber.toUpperCase()
+            const textData = searchValue.toUpperCase()
+            return itemData.indexOf(textData) > -1
         })
-        this.setState({data:newdata,searchvalue:text})
+        this.setState({ datas: newData })
+    }
+    onSearchClearPressed(){
+        this.onSearchTextChanged('');
     }
 
     render() {
@@ -67,8 +78,13 @@ export class Sim extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
                     <Activityindication visible={this.props.simDatas.isLoading}/>
-                    <Toolbar title='Sim' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='ios-search' settingType='Ionicons'/>
+                    <HeaderWithSearchbar
+                    onChangeText={(text)=>this.onSearchTextChanged(text)}
+                    onSearchClear={this.onSearchClearPressed}
+                    searchValue={this.state.searchValue}
+                    title={'Sims'}
+                    leftIcon='arrow-left'
+                    goBack={() => goBack()}/>
                     <View style={styles.viewStyle}>
                         <FlatList
                             data={this.props.simDatas.data}
