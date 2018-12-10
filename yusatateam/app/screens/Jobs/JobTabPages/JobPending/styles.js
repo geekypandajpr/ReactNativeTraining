@@ -29,9 +29,9 @@ export default EStyleSheet.create({
     viewList: {
         flex: 1,
         flexDirection : 'row',
-        marginLeft :6,
-        marginRight :6,
-        padding: 10,
+        // marginLeft :6,
+        // marginRight :6,
+        // padding: 10,
     },
     sub_view: {
         flexDirection: 'row',

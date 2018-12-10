@@ -10,6 +10,8 @@ import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { SearchBar,Activityindication } from '../../../../components';
 import JobAssign from '../../jobAssign/jobAssign';
 import { FilterJob } from '../../../../components/FilterJob/FilterJob';
+import {globalStyles} from '../../../../styles'
+
 export default class JobPending extends React.Component {
     constructor(props) {
         super(props);
@@ -121,7 +123,7 @@ export default class JobPending extends React.Component {
                 data={this.state.data}
                 keyExtractor={(item, index) => item.jobNumber}
                 renderItem={({ item, index }) =>
-                    <Card style={styles.viewList}>
+                    <Card style={[styles.viewList, globalStyles.card]}>
                         <View style={{ flex: 0.3, alignItems: 'flex-start', justifyContent: 'center' }}>
                             <CheckBox
                                 checked={this.state.map1.get(item.jobNumber)}
@@ -133,7 +135,7 @@ export default class JobPending extends React.Component {
 
                                 <View style={styles.sub_view}>
                                     <View style={styles.left_sub_view}>
-                                        <Text style={styles.jobNumText}>{item.jobNumber}</Text>
+                                        <Text style={[globalStyles.title_text,{fontFamily: 'Roboto'}]}>{item.jobNumber}</Text>
                                     </View>
                                     <View style={styles.right_sub_view}>
                                         <View style={styles.jobTypeView}>
@@ -143,43 +145,43 @@ export default class JobPending extends React.Component {
                                 </View>
                                 <View style={styles.sub_view}>
                                     <View style={styles.left_view}>
-                                        <Text style={styles.text}>Schedule date</Text>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>Schedule date</Text>
                                     </View>
                                     <View style={styles.middle_view}>
-                                        <Text>:</Text>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>:</Text>
                                     </View>
                                     <View style={styles.right_view}>
-                                        <Text style={styles.text1}>{item.scheduleDate}</Text>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.scheduleDate}</Text>
                                     </View>
                                 </View>
 
                                 <View style={styles.sub_view}>
                                     <View style={styles.left_view}>
-                                        <Text style={styles.text}>Customer</Text>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>Customer</Text>
                                     </View>
                                     <View style={styles.middle_view}>
-                                        <Text>:</Text>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>:</Text>
                                     </View>
                                     <View style={styles.right_view}>
-                                        <Text style={styles.text1}>{item.contactPerson}</Text>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.contactPerson}</Text>
                                     </View>
                                 </View>
 
                                 <View style={styles.sub_view}>
                                     <View style={styles.left_view}>
-                                        <Text style={styles.text}>Contact No</Text>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>Contact No</Text>
                                     </View>
                                     <View style={styles.middle_view}>
-                                        <Text>:</Text>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>:</Text>
                                     </View>
                                     <View style={styles.right_view}>
-                                        <Text style={styles.text1}>{item.contactNumber}</Text>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.contactNumber}</Text>
                                     </View>
                                 </View>
 
                                 <View style={styles.sub_view}>
                                     <View style={styles.location}>
-                                        <Text style={styles.text1}>{item.location}</Text>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.location}</Text>
                                     </View>
                                 </View>
 

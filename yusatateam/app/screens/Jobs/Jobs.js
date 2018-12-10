@@ -14,6 +14,7 @@ import scheduleData from '../../assets/JSONData/JobsData/scheduleData';
 import colors from '../../constants/colors';
 import JobSearch from './JobSearch/JobSearch1';
 
+
 export  class Jobs extends React.Component {
     constructor(props) {
         super(props)
