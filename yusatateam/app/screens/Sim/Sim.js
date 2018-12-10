@@ -80,7 +80,7 @@ export class Sim extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    {/* <Activityindication visible={this.state.data.isLoading}/> */}
+                    <Activityindication visible={this.props.simDatas.isLoading}/>
                     <HeaderWithSearchbar
                         onChangeText={(text) => this.SearchFilterFunction(text)}
                         onSearchClear={this.onSearchClearPressed}

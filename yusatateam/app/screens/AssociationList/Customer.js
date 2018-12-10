@@ -7,13 +7,20 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 import { globalStyles } from '../../styles';
-import { Toolbar, Activityindication } from '../../components';
+import { Toolbar, Activityindication,HeaderWithSearchbar } from '../../components';
 import { userActions } from '../../redux/actions';
 
 export class Customer extends React.Component {
     constructor() {
         super();
-        this.state = { isLoading: true, customers: null };
+        this.state = {
+             isLoading: true, 
+             customers: null,
+            data: null,
+            searchValue : ''
+         }
+         this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
+        this.SearchFilterFunction = this.SearchFilterFunction.bind(this);
     }
  
     async componentWillMount() {
@@ -42,6 +49,28 @@ export class Customer extends React.Component {
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
+    componentWillReceiveProps(nextProps) {
+        if(this.props.customers !== nextProps.customers) {
+            this.setState({data: nextProps.customers.data});
+            this.arrayList = nextProps.customers.data;
+        }
+    }
+    SearchFilterFunction(text) 
+    {
+        const newData = this.arrayList.filter(function (item) {
+            const itemData = item.name.toUpperCase()
+            const textData = text.toUpperCase() 
+            return itemData.indexOf(textData) > -1
+        })
+        this.setState({
+            data: newData,         
+            searchValue: text
+        },
+        )
+    }
+    onSearchClearPressed(){
+        this.SearchFilterFunction('');
+    }
 
     render() {
         const { navigate } = this.props.navigation;
@@ -49,11 +78,16 @@ export class Customer extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Activityindication visible={this.state.customers.isLoading}/> 
-                    <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='ios-search' settingType='Ionicons' />
+                    <Activityindication visible={this.props.customers.isLoading}/> 
+                    <HeaderWithSearchbar
+                        onChangeText={(text) => this.SearchFilterFunction(text)}
+                        onSearchClear={this.onSearchClearPressed}
+                        searchValue={this.state.searchValue}
+                        title={'Association'}
+                        leftIcon='arrow-left'
+                        goBack={() => goBack()}/>
                     <FlatList
-                        data={this.state.customers.data}
+                        data={this.state.data}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
                             <List>
