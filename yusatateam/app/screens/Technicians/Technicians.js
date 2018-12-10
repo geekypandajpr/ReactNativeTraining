@@ -4,13 +4,16 @@ import {
     FlatList,
     BackHandler
 } from 'react-native';
+import { connect } from 'react-redux';
+import { Activityindication } from '../../components/ActivityIndication'
 
 import styles from './styles';
 import { Toolbar, TechnicianList } from '../../components';
 import techDatas from '../../assets/JSONData/TechnicianData';
 import { TechDetails } from './TechDetails/TechDetails';
+import { userActions } from '../../redux/actions';
 
-export default class Technicians extends React.Component {
+export  class Technicians extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -22,6 +25,7 @@ export default class Technicians extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        this.props.onFetchData();
     }
 
     handleBackPress = () => {
@@ -45,8 +49,9 @@ export default class Technicians extends React.Component {
                 />
 
                 <View style={styles.inner_container}>
+                <Activityindication visible={this.props.techData.isLoading}/>
                     <FlatList
-                        data={techDatas}
+                        data={this.props.techData.data}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
                             <TechnicianList
@@ -63,4 +68,18 @@ export default class Technicians extends React.Component {
     }
 
 }
-export { Technicians }
+
+function mapStateToProps(state){
+    return{
+        techData : state.TechnicianData
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        onFetchData: () => dispatch(userActions.technicianRequest())
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Technicians)
+

@@ -9,6 +9,7 @@ import JobsData from '../../assets/JSONData/JobsData/JobsData';
 import DeviceData from '../../assets/JSONData/DeviceData';
 import customersData from '../../assets/JSONData/customerData';
 import vehiclesData from '../../assets/JSONData/VehicleDetail';
+import TechnicianData from '../../assets/JSONData/TechnicianData';
 
 export const login = data => Api.post(USER.LOGIN, data);
 
@@ -19,7 +20,8 @@ export default userService = {
     devicelogin,
     jobPendingData,
     customerList,
-    vehicleList
+    vehicleList,
+    technicianLogin
 }
 
 /**LOGIN API CALL */
@@ -63,6 +65,15 @@ export function vehicleList(customer) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             return resolve(vehiclesData);
+        }, 3000)
+    });
+}
+
+/**TECHNICIAN LIST API CALL */
+export function technicianLogin() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(TechnicianData);
         }, 3000)
     });
 }

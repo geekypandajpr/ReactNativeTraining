@@ -7,6 +7,7 @@ import deviceReducer from './deviceReducer';
 import jobReducer from './jobReducer';
 import customerReducer from './cutomerReducer';
 import vehicleReducer from './vehicleReducer';
+import techReducer from './techReducer';
 
 const rootReducers = combineReducers({
     nav: navReducer,
@@ -15,7 +16,8 @@ const rootReducers = combineReducers({
     JobData  :  jobReducer,
     devicedata : deviceReducer,
     customersData: customerReducer,
-    vehicleData: vehicleReducer
+    vehicleData: vehicleReducer,
+    TechnicianData : techReducer
     //We can add more reducers here, separated by comma(,)
 })
 
