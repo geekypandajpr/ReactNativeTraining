@@ -56,21 +56,22 @@ export default class JobPending extends React.Component {
         this.setState({ map1 })
     }
 
-    SearchFilterFunction(text) 
-    {
+    SearchFilterFunction(text) {
+        
         const val = this.state.searchData;
         var len=this.state.searchData.length;
        // console.log(len)
        if(len==0)
        {
-        const newData = this.state.data.filter(function (item) {
+        const newData = this.arrayholder.filter(function (item) {
             itemData  = item["jobNumber"].toUpperCase();
-            const textData = text.toUpperCase()     
-            return itemData.indexOf(textData) > -1         
-        })         
+            const textData = text.toUpperCase()
+           
+            return itemData.indexOf(textData) > -1
+        })
         //console.log(newData);
         this.setState({
-            data: newData,         
+            data: newData,
             text: text
         },
         )
@@ -85,17 +86,19 @@ export default class JobPending extends React.Component {
                 itemData  =itemData.concat(item[val[i]]).toUpperCase();
             }
             //console.log(itemData)
-            const textData = text.toUpperCase()        
+            const textData = text.toUpperCase()
+           
             return itemData.indexOf(textData) > -1
         })
         //console.log(newData);
         this.setState({
             data: newData,
             text: text
-        }, 
+        },
         )
        }
     }
+
     
     render() {
         
