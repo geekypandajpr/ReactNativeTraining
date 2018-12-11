@@ -171,7 +171,7 @@ export default class JobTabData extends React.Component {
 
 
                                     {
-                                        item.jobStatus == 'completed' || item.jobStatus == 'schedule' ? null :
+                                        item.jobStatus == 'completed'  ? null :
                                             <View style={styles.sub_view}>
                                                 <View style={styles.left_view}>
                                                     <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>Customer</Text>
@@ -184,8 +184,7 @@ export default class JobTabData extends React.Component {
                                                 </View>
                                             </View>
                                     }
-                                    {
-                                        item.jobStatus == 'completed' || item.jobStatus == 'schedule' ? null :
+                                   
                                             <View style={styles.sub_view}>
                                                 <View style={styles.left_view}>
                                                     <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>Contact No</Text>
@@ -197,7 +196,7 @@ export default class JobTabData extends React.Component {
                                                     <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.contactNumber}</Text>
                                                 </View>
                                             </View>
-                                    }
+                                    
 
 
                                     <View style={styles.sub_view}>

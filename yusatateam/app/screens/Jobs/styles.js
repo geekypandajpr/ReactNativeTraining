@@ -5,6 +5,7 @@ export default EStyleSheet.create({
         backgroundColor: colors.HEADER_COLOR
     },
     tab_view: {
+        // width: '100%',
         height: '100%',
         backgroundColor: 'transparent',
         justifyContent: 'center',
