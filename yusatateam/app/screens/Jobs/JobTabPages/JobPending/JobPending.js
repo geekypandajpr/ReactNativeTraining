@@ -8,7 +8,7 @@ import pendingData from '../../../../assets/JSONData/JobsData/pendingData';
 import { SearchBar,Activityindication } from '../../../../components';
 import JobAssign from '../../jobAssign/jobAssign';
 import { FilterJob } from '../../../../components/FilterJob/FilterJob';
-import {globalStyles} from '../../../../styles'
+import {globalStyles} from '../../../../styles';
 
 export default class JobPending extends React.Component {
     constructor(props) {
@@ -57,10 +57,8 @@ export default class JobPending extends React.Component {
     }
 
     SearchFilterFunction(text) {
-        
         const val = this.state.searchData;
         var len=this.state.searchData.length;
-       // console.log(len)
        if(len==0)
        {
         const newData = this.arrayholder.filter(function (item) {
@@ -69,7 +67,6 @@ export default class JobPending extends React.Component {
            
             return itemData.indexOf(textData) > -1
         })
-        //console.log(newData);
         this.setState({
             data: newData,
             text: text
