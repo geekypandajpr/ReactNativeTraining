@@ -10,7 +10,7 @@ import JobAssign from '../../screens/Jobs/jobAssign/jobAssign';
 import { FilterJob } from '../FilterJob/FilterJob';
 import { globalStyles } from '../../styles';
 
-export default class JobTabData extends React.Component {
+export default class GpsDeviceData extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -94,15 +94,15 @@ export default class JobTabData extends React.Component {
             <View style={styles.container}>
                 {/* <Activityindication visible={isLoading}/> */}
                 <View style={styles.searchView}>
-                    <View style={{ flex: 10 }}>
-                        <SearchBar placeholder={'Search By '}
-                            value = { this.state.text}
-                            onChangeText={(text) => this.SearchFilterFunction(text)} />
-                    </View>
                     <View style={styles.filterIcon}>
                         <TouchableOpacity onPress={() => this.openFilterPage(this.state.data[0].jobStatus)}>
                             <FontAwesome name="filter" size={25} color="gray" />
                         </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 10 }}>
+                        <SearchBar placeholder={'Search By '}
+                            value = { this.state.text}
+                            onChangeText={(text) => this.SearchFilterFunction(text)} />
                     </View>
                 </View>
                 <FlatList
@@ -232,4 +232,4 @@ export default class JobTabData extends React.Component {
 }
 
 
-export { JobTabData }
+export { GpsDeviceData }
