@@ -195,7 +195,7 @@ export default class Dashboard extends React.Component {
                                     <SquareButton
                                         name='group'
                                         type='MaterialIcons'
-                                        text='Association'
+                                        text='Customer'
                                         iconColor={colors.HOMESCREEN.ASSOCIATIONCARD_COLOR}
                                         textColor='gray'
                                         onPress={() => navigate('Customer')}
