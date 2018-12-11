@@ -17,6 +17,7 @@ export default class JobTabData extends React.Component {
             data: this.props.JobDataValue == undefined ? null : this.props.JobDataValue,
             map1: new Map(null),
             value: new Map(),
+            text : '',
             status: 'Pending',
             searchData: [],
         }
@@ -29,6 +30,7 @@ export default class JobTabData extends React.Component {
     }
 
     selectedValue(data) {
+
         for (var key of data.keys()) {
             this.state.searchData.push(key);
         }
@@ -86,13 +88,14 @@ export default class JobTabData extends React.Component {
 
     render() {
         const { isLoading } = this.props;
-        //   alert(this.state.data)
+        //   alert(this.state.text)
         return (
             <View style={styles.container}>
                 {/* <Activityindication visible={isLoading}/> */}
                 <View style={styles.searchView}>
                     <View style={{ flex: 10 }}>
                         <SearchBar placeholder={'Search By '}
+                            value = { this.state.text}
                             onChangeText={(text) => this.SearchFilterFunction(text)} />
                     </View>
                     <View style={styles.filterIcon}>
