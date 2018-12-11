@@ -31,9 +31,13 @@ export  class Jobs extends React.Component {
     componentDidMount() {
         this.props.onFetchData();
         BackHandler.addEventListener('hardwareBackPress', () => {
-            this.props.navigation.navigate('Dashboard');
+            this.props.navigation.goBack();
             return true;
         });
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -107,7 +111,6 @@ export  class Jobs extends React.Component {
         );
     }
 }
-
 function mapStateToProps(state){
     return{
         PendingData : state.JobData
