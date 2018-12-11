@@ -16,7 +16,8 @@ import TodaysJobs from '../screens/Technicians/TodaysJobs/TodaysJobs';
 import TechDetails from '../screens/Technicians/TechDetails/TechDetails';
 import Customer from '../screens/AssociationList/Customer';
 import Association from '../screens/AssociationList/Association/Association';
-
+import GPSDevice from '../screens/GPSDevice/GPSDevice';
+import GPSDeviceForm from '../screens/GPSDevice/GPSDeviceForm/GPSDeviceForm';
 // import {
 //     LogIn,
 //     HomeScreen,
@@ -131,6 +132,20 @@ const RouteConfigs = {
     TechDetails:
     {   
         screen: TechDetails,
+        navigationOptions: {
+            header: null
+        }
+    },
+    GPSDevice:
+    {   
+        screen: GPSDevice,
+        navigationOptions: {
+            header: null
+        }
+    },
+    GPSDeviceForm:
+    {   
+        screen: GPSDeviceForm,
         navigationOptions: {
             header: null
         }

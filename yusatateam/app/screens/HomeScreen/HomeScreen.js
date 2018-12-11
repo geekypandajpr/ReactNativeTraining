@@ -84,7 +84,7 @@ export default class HomeScreen extends React.Component {
                 </View>
                 <View style={styles.thirdContainer}>
                     <View style={styles.associationContainer}>
-                        <TouchableOpacity activeOpacity={0.7}  style={styles.container} onPress={() =>navigate('VehicleList')} >
+                        <TouchableOpacity activeOpacity={0.7}  style={styles.container} onPress={() =>navigate('Customer')} >
                             <IconWithText
                                 backgroundColor = {colors.HOMESCREEN.ASSOCIATIONCARD_COLOR}
                                 badgeText="143"
