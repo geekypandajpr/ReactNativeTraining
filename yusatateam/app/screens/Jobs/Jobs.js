@@ -107,7 +107,6 @@ export  class Jobs extends React.Component {
         );
     }
 }
-
 function mapStateToProps(state){
     return{
         PendingData : state.JobData
