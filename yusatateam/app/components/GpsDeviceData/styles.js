@@ -15,12 +15,12 @@ export default EStyleSheet.create({
         marginRight :6,
     },
     filterIcon : {
-        flex : 1,
+        flex : 2,
         alignItems : 'center',
         justifyContent : 'center',
         height: 40,
-        backgroundColor: 'white'
-        ,borderRadius: 2,
+        // backgroundColor: 'white'
+        borderRadius: 2,
         marginRight:2,
         borderRadius : 0.2,
         borderColor : 'black',

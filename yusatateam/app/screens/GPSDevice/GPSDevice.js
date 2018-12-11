@@ -1,21 +1,40 @@
 import React from 'react';
-import { View, BackHandler,Text} from 'react-native';
-import { Tab, Tabs, ScrollableTab,TabHeading } from 'native-base';
+import {
+    View,
+    FlatList,
+    TouchableWithoutFeedback,
+    TouchableOpacity,
+    BackHandler
+} from 'react-native';
+import { Card, Text,Item,Picker} from 'native-base';
 import { AppLoading } from 'expo';
-import styles from './styles';
 import { connect } from 'react-redux';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import styles from './styles';
+import { ToolbarWithDropdown, Activityindication,HeaderWithSearchbar,SearchBar} from '../../components';
 import { userActions } from '../../redux/actions';
-import { Toolbar,Activityindication ,GpsDeviceData,RoundedIcon,Checkbox } from '../../components';
+import { globalStyles } from '../../styles';
 
-export  class GPSDevice extends React.Component {
+export class GPSDevice extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isLoading: true,
             data: null,
-            map1 : new Map(),
-        }
+            searchValue : '',
+            selected2: ''
+        };
+        this.list=[];
+        this.modalRef = React.createRef();
+        this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
+        this.SearchFilterFunction = this.SearchFilterFunction.bind(this);
     }
+
+    onValueChange2(value) {
+        this.setState({
+          selected2: value
+        });
+      }
 
     async componentWillMount() {
         await Expo.Font.loadAsync({
@@ -24,64 +43,152 @@ export  class GPSDevice extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false })
-    };
-
+    }
 
     componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.props.onFetchData();
-        BackHandler.addEventListener('hardwareBackPress', () => {
-            this.props.navigation.navigate('Dashboard');
-            return true;
-        });
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.props.PendingData !== nextProps.PendingData) {
-            this.setState({data: nextProps.PendingData.data});
-            this.arrayList = nextProps.PendingData.data;
+        if(this.props.simDatas !== nextProps.simDatas) {
+            this.setState({data: nextProps.simDatas.data});
+            this.arrayList = nextProps.simDatas.data;
         }
     }
 
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
+    }
 
-    selectedValue(map) {
-        this.setState({map1 : map})
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+    SearchFilterFunction(text) 
+    {
+        const newData = this.arrayList.filter(function (item) {
+            const itemData = item.ORDER.toUpperCase()
+            const textData = text.toUpperCase() 
+            return itemData.indexOf(textData) > -1
+        })
+        this.setState({
+            data: newData,         
+            searchValue: text
+        },
+        )
+    }
+    onSearchClearPressed(){
+        this.SearchFilterFunction('');
+    }
+    AlertBox(){
+        alert('Press Alert Button')
     }
 
     render() {
-        const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                {/* <Activityindication visible={this.props.PendingData.isLoading}/> */}
-                    <Toolbar title='GPS Devices' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
+                    <Activityindication visible={this.props.simDatas.isLoading}/>
+                    <ToolbarWithDropdown title='GPS Devices' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                        setting='filter' settingType='FontAwesome' onSettingsPress={() => this.AlertBox()}
                     />
-                    <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }}
-                        renderTabBar={() => <ScrollableTab />}>
+                        <View style={styles.searchView}>
+                            <View style={styles.filterIcon}>
+                                <Item picker>
+                                <Picker
+                                    mode="dropdown"
+                                    style={{ width: 50 }}
+                                    placeholder="Select Device"
+                                    placeholderStyle={{ color: "#bfc6ea" }}
+                                    placeholderIconColor="#007aff"
+                                    selectedValue={this.state.selected2}
+                                    onValueChange={this.onValueChange2.bind(this)}
+                                >
+                                    <Picker.Item label="All" value="key0" />
+                                    <Picker.Item label="Company Code" value="key1" />
+                                    <Picker.Item label="Company Name" value="key2" />
+                                    <Picker.Item label="provider" value="key3" />
+                                    <Picker.Item label="UDID" value="key4" />
+                                </Picker>
+                                </Item>
+                            </View>
+                        <View style={{ flex: 5 }}>
+                            <SearchBar placeholder={'Search By '}
+                                value = { this.state.text}
+                                onChangeText={(text) => this.SearchFilterFunction(text)} />
+                        </View>
+                </View>
+                    <View style={styles.viewStyle}>
+                        <FlatList
+                            data={this.state.data}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={({ item, index }) =>
+                            <Card style={[styles.viewList, globalStyles.card]}>
+                            <View style={{ flex: 2 }}>
+                                <TouchableOpacity >
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_sub_view}>
+                                            <Text style={[globalStyles.title_text, { fontFamily: 'Roboto' }]}>Yusata Infotech Pvt Ltd</Text>
+                                        </View>
+                                        <View style={styles.right_sub_view}>
+                                            <View style={styles.jobTypeView}>
+                                                <Text style={styles.jobTypeText}>Active</Text>
+                                            </View>
+                                        </View>
+                                    </View>
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>Provider</Text>
+                                        </View>
+                                        <View style={styles.middle_view}>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>:</Text>
+                                        </View>
+                                        <View style={styles.right_view}>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.provider}</Text>
+                                        </View>
+                                    </View>
+                                            <View style={styles.sub_view}>
+                                                <View style={styles.left_view}>
+                                                    <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>Vehicle No#</Text>
+                                                </View>
+                                                <View style={styles.middle_view}>
+                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>:</Text>
+                                                </View>
+                                                <View style={styles.right_view}>
+                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.vehicleNo}</Text>
+                                                </View>
+                                            </View>
+                                    
+                                            <View style={styles.sub_view}>
+                                                <View style={styles.left_view}>
+                                                    <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>UDID</Text>
+                                                </View>
+                                                <View style={styles.middle_view}>
+                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>:</Text>
+                                                </View>
+                                                <View style={styles.right_view}>
+                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.udid}</Text>
+                                                </View>
+                                            </View>
 
-                        <Tab heading={
-                            <TabHeading style={styles.tabheading}>
-                                <View style={styles.tab_view}>
-                                    <Text style={styles.TextView}>Assigned</Text>
-                                </View>
-                            </TabHeading>
-                        }>
-                        
-                            <GpsDeviceData JobDataValue={this.state.data[0]} isLoading={this.props.PendingData.isLoading}/>
-                        </Tab>
-
-                        <Tab heading={
-                            <TabHeading style={styles.tabheading}>
-                                <View style={styles.tab_view}>
-                                    <Text style={styles.TextView}>Not Assigned</Text>
-                                </View>
-                            </TabHeading>
-                        }>
-                            <GpsDeviceData JobDataValue={this.state.data[1]}/>
-                        </Tab>
-
-                    </Tabs>
+                                            <View style={styles.sub_view}>
+                                                <View style={styles.left_view}>
+                                                    <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>Transaction Date</Text>
+                                                </View>
+                                                <View style={styles.middle_view}>
+                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>:</Text>
+                                                </View>
+                                                <View style={styles.right_view}>
+                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.transactionDate}</Text>
+                                                </View>
+                                            </View>
+                                </TouchableOpacity>
+                            </View>
+                        </Card>
+                            }></FlatList>
+                    </View>
                 </View>
         );
     }
@@ -89,13 +196,13 @@ export  class GPSDevice extends React.Component {
 
 function mapStateToProps(state){
     return{
-        PendingData : state.JobData
+        simDatas : state.simData
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
-        onFetchData: () => dispatch(userActions.jobRequest())
+        onFetchData: () => dispatch(userActions.simRequest())
     }
 }
 
