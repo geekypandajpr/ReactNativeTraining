@@ -22,6 +22,7 @@ export { HeaderWithSearchbar } from './HeaderWithSearchbar';
 export { SearchHeader } from './SearchHeader';
 export { JobDetailToolbar } from './JobDetailToolbar';
 export { MonthSelectorCalendar } from './MonthSelectorCalendar';
+export { JobTabData } from './JobTabData';
 
 
 

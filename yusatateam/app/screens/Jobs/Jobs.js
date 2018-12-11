@@ -5,8 +5,7 @@ import { AppLoading } from 'expo';
 import styles from './styles'
 import { connect } from 'react-redux';
 import { userActions } from '../../redux/actions';
-import {JobTabData} from '../../components/JobTabData/JobTabData';
-import { Toolbar,Activityindication } from '../../components';
+import { Toolbar,Activityindication ,JobTabData } from '../../components';
 import colors from '../../constants/colors';
 
 export  class Jobs extends React.Component {
