@@ -56,22 +56,23 @@ export default class ToolbarWithDropdown extends React.Component {
                         </Title>
                     </Body>
                     <Right>
-                    <Item picker>
-                                <Picker
-                                    mode="dropdown"
-                                    style={{ width: 10,color : 'white',backgroundColor : '#0073b7'}}
-                                    placeholder="Select Device"
-                                    // placeholderStyle={{ color: "white" }}
-                                    // placeholderIconColor="white"
-                                    selectedValue={this.state.selected2}
-                                    onValueChange={this.onValueChange2.bind(this)}
-                                >
-                                    <Picker.Item label="All" value="key0" />
-                                    <Picker.Item label="Assigned" value="key1" />
-                                    <Picker.Item label="Not Assigned" value="key2" />
-                                </Picker>
-                                <Icon name='arrow-dropdown-circle'  style={{ color: "white", fontSize: 25 }} />
-                                </Item>
+                        <Item>
+                            <Picker
+                                mode="dropdown"
+                                style={{ backgroundColor : '#fff', height: 35 }}
+                                // placeholder="Select Device"
+                                // itemStyle={{color: 'red'}}
+                                // itemTextStyle={{color:'green'}}
+                                // textStyle={{color: 'pink'}}
+                                // placeholderStyle={{ color: "#fff", backgroundColor: '#fff' }}
+                                // placeholderIconColor="#fff"
+                                selectedValue={this.state.selected2}
+                                onValueChange={this.onValueChange2.bind(this)} >
+                                <Picker.Item label="All" value="All" />
+                                <Picker.Item label="Assigned" value="Assigned" />
+                                <Picker.Item label="Not Assigned" value="Not Assigned" />
+                            </Picker>
+                        </Item>
                     </Right>
                 </Header>
             </View>
