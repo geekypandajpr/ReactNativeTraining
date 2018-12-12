@@ -3,43 +3,49 @@ export default EStyleSheet.create({
 
     flex_one: {
         flex: 1,
-        flexDirection: 'row',
+        //flexDirection: 'row',
         justifyContent: 'flex-start',
-        alignItems: 'center'
+        width: '90%',
+        height: '10%'
     },
-   
+
     colon: {
         flex: 0.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         flexDirection: 'row',
     },
+    flex_picker:{
+        flex: 1,
+        flexDirection: 'row',
+        //justifyContent: 'flex-start',
+        alignItems: 'center',
+        width: '80%'
+    },
     flex_two: {
         flex: 2,
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        //justifyContent: 'flex-start',
         alignItems: 'center',
-        width : '80%'
+        width: '80%'
     },
-    picker_style:{
-        // borderColor:'#000',
-        // borderWidth:1,
+    picker_style: {
         flex: 2,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
     View_row: {
-        flex: 1,
+        
         flexDirection: 'row',
-        marginTop:10
+        marginTop: 0
     },
     button_view: {
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
+        justifyContent: 'flex-start',
+      
+       
         //paddingLeft: 20
     }
-    
+
 })

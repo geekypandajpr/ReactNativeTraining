@@ -1,5 +1,5 @@
 import React from 'react'
-import { Picker,View } from 'react-native';
+import { Picker,View,Dimensions } from 'react-native';
 
 export default class Pickers extends React.Component{
     constructor(props) {
@@ -12,9 +12,8 @@ export default class Pickers extends React.Component{
     render() {
         const dropdown = this.props.dropdown
         return(
-            <View style={{borderColor:'#000',borderWidth:0.5}}>
+            <View style={{borderColor:'#000',borderWidth:0.5,width:'80%',justifyContent:'center',height:30,marginTop:3}}>
                 <Picker 
-                style={{height: 25, width: 216}}
                     selectedValue={this.state.language}
                     onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
                     {dropdown.map((item, index) => 
