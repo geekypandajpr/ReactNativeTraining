@@ -5,6 +5,15 @@ import { Toolbar,Pickers } from '../../../components';
 import styles from './styles';
 import { globalStyles } from '../../../styles'
 
+
+const sims = [
+    {label: 'sim1', value: 'sim1'},
+    {label: 'sim2', value: 'sim2'},
+    {label: 'sim3', value: 'sim3'},
+    {label: 'sim4', value: 'sim4'},
+    {label: 'sim5', value: 'sim5'}
+];
+
 export default class GPSDeviceForm extends React.Component {
     render() {
         return (
@@ -35,20 +44,7 @@ export default class GPSDeviceForm extends React.Component {
                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>:</Text>
                         </View>
                         <View style={styles.flex_two}>
-                            <Pickers
-                            label1 = "Sim"
-                            label2 = "Sim"
-                            label3 = "Sim"
-                            label4 = "Sim"
-                            label5 = "Sim"
-                            value1 = "key0"
-                            value2 = "key1"
-                            value3 = "key2"
-                            value4 = "key3"
-                            value5 = "key4"
-
-                            >
-                                
+                            <Pickers dropdown={sims}>
                             </Pickers>
                         </View>
                     </View>

@@ -11,7 +11,7 @@ import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from './styles';
-import { ToolbarWithDropdown, Activityindication,HeaderWithSearchbar,SearchBar} from '../../components';
+import { ToolbarWithDropdown, Activityindication,HeaderWithSearchbar,SearchBar, GpsDeviceData} from '../../components';
 import { userActions } from '../../redux/actions';
 import { globalStyles } from '../../styles';
 
@@ -19,22 +19,9 @@ export class GPSDevice extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true,
-            data: null,
-            searchValue : '',
-            selected2: ''
-        };
-        this.list=[];
-        this.modalRef = React.createRef();
-        this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
-        this.SearchFilterFunction = this.SearchFilterFunction.bind(this);
+            isLoading: true
+        }
     }
-
-    onValueChange2(value) {
-        this.setState({
-          selected2: value
-        });
-      }
 
     async componentWillMount() {
         await Expo.Font.loadAsync({
@@ -47,14 +34,6 @@ export class GPSDevice extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        this.props.onFetchData();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if(this.props.simDatas !== nextProps.simDatas) {
-            this.setState({data: nextProps.simDatas.data});
-            this.arrayList = nextProps.simDatas.data;
-        }
     }
 
     handleBackPress = () => {
@@ -65,37 +44,17 @@ export class GPSDevice extends React.Component {
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
-    SearchFilterFunction(text) 
-    {
-        const newData = this.arrayList.filter(function (item) {
-            const itemData = item.ORDER.toUpperCase()
-            const textData = text.toUpperCase() 
-            return itemData.indexOf(textData) > -1
-        })
-        this.setState({
-            data: newData,         
-            searchValue: text
-        },
-        )
-    }
-    onSearchClearPressed(){
-        this.SearchFilterFunction('');
-    }
-    AlertBox(){
-        alert('Press Alert Button')
-    }
 
     render() {
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Activityindication visible={this.props.simDatas.isLoading}/>
                     <ToolbarWithDropdown title='GPS Devices' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='filter' settingType='FontAwesome' onSettingsPress={() => this.AlertBox()}
                     />
-                        <View style={styles.searchView}>
-                            <View style={styles.filterIcon}>
+                        {/* <View style={styles.searchView}> */}
+                            {/* <View style={styles.filterIcon}>
                                 <Item picker>
                                 <Picker
                                     mode="dropdown"
@@ -113,82 +72,19 @@ export class GPSDevice extends React.Component {
                                     <Picker.Item label="UDID" value="key4" />
                                 </Picker>
                                 </Item>
-                            </View>
-                        <View style={{ flex: 5 }}>
-                            <SearchBar placeholder={'Search By '}
+                            </View> */}
+                        {/* <View>
+                            <SearchBar placeholder={'Search here'}
                                 value = { this.state.text}
                                 onChangeText={(text) => this.SearchFilterFunction(text)} />
-                        </View>
-                </View>
-                    <View style={styles.viewStyle}>
+                        </View> */}
+                {/* </View> */}
                         <FlatList
-                            data={this.state.data}
+                            data={[{key:1},{key:2},{key:3},{key:4},{key:5},{key:6}]}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) =>
-                            <Card style={[styles.viewList, globalStyles.card]}>
-                            <View style={{ flex: 2 }}>
-                                <TouchableOpacity >
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_sub_view}>
-                                            <Text style={[globalStyles.title_text, { fontFamily: 'Roboto' }]}>Yusata Infotech Pvt Ltd</Text>
-                                        </View>
-                                        <View style={styles.right_sub_view}>
-                                            <View style={styles.jobTypeView}>
-                                                <Text style={styles.jobTypeText}>Active</Text>
-                                            </View>
-                                        </View>
-                                    </View>
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>Provider</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.provider}</Text>
-                                        </View>
-                                    </View>
-                                            <View style={styles.sub_view}>
-                                                <View style={styles.left_view}>
-                                                    <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>Vehicle No#</Text>
-                                                </View>
-                                                <View style={styles.middle_view}>
-                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>:</Text>
-                                                </View>
-                                                <View style={styles.right_view}>
-                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.vehicleNo}</Text>
-                                                </View>
-                                            </View>
-                                    
-                                            <View style={styles.sub_view}>
-                                                <View style={styles.left_view}>
-                                                    <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>UDID</Text>
-                                                </View>
-                                                <View style={styles.middle_view}>
-                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>:</Text>
-                                                </View>
-                                                <View style={styles.right_view}>
-                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.udid}</Text>
-                                                </View>
-                                            </View>
-
-                                            <View style={styles.sub_view}>
-                                                <View style={styles.left_view}>
-                                                    <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>Transaction Date</Text>
-                                                </View>
-                                                <View style={styles.middle_view}>
-                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>:</Text>
-                                                </View>
-                                                <View style={styles.right_view}>
-                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.transactionDate}</Text>
-                                                </View>
-                                            </View>
-                                </TouchableOpacity>
-                            </View>
-                        </Card>
-                            }></FlatList>
-                    </View>
+                                <GpsDeviceData/>
+                        }/>
                 </View>
         );
     }

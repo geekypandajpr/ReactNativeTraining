@@ -45,17 +45,17 @@ export default class ToolbarWithDropdown extends React.Component {
             <View >
                 <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
                 <Header style={styles.header}>
-                    <Left style={{flex :2}}>
+                    <Left>
                         <Button transparent onPress={this.props.onLeftButtonPress}>
                             <Icon name={this.props.leftIcon} type={this.props.leftIconType} style={styles.iconLeft} />
                         </Button>
                     </Left>
-                    <Body style={{flex :6}}>
+                    <Body>
                         <Title style={[styles.title,{fontFamily: 'Roboto'}]}>
                             {this.props.title}
                         </Title>
                     </Body>
-                    <Right style={{flex : 2.5}}>
+                    <Right>
                     <Item picker>
                                 <Picker
                                     mode="dropdown"
