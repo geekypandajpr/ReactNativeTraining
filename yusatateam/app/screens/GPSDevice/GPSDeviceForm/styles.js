@@ -4,7 +4,7 @@ export default EStyleSheet.create({
     flex_one: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center'
     },
    
@@ -20,6 +20,14 @@ export default EStyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         width : '80%'
+    },
+    picker_style:{
+        // borderColor:'#000',
+        // borderWidth:1,
+        flex: 2,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
     },
     View_row: {
         flex: 1,
