@@ -31,7 +31,15 @@ export default EStyleSheet.create({
     },
     View_row: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginTop:10
     },
+    button_view: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+        //paddingLeft: 20
+    }
     
 })
