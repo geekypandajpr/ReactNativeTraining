@@ -2,11 +2,12 @@ import React from 'react';
 import { View, FlatList, KeyboardAvoidingView } from 'react-native';
 import { AppLoading } from 'expo';
 import { FontAwesome } from '@expo/vector-icons';
-import { Toolbar, Float, Pickers } from '../../../components';
+import { Toolbar, Float, Pickers, UnderlineText } from '../../../components';
 import styles from './styles';
 import { globalStyles } from '../../../styles'
-import { Item, Label, Input, Button, Text, Picker, Icon } from 'native-base';
+import { Item, Label, Input, Button, Text, Picker, Icon, Card } from 'native-base';
 import DatePicker from 'react-native-datepicker';
+import { GpsModal } from '../GpsModal/GpsModal';
 
 const company = [
     { label: 'yusata', value: 'sim1' },
@@ -53,9 +54,11 @@ export default class GPSDeviceForm extends React.Component {
         super(props);
         this.state = {
             isLoading: true,
-            datarenewal: ''
+            datarenewal: '',
+            deviceType: '',
         }
-    }
+        this.modalRef = React.createRef();
+    };
 
     async componentWillMount() {
         await Expo.Font.loadAsync({
@@ -69,192 +72,209 @@ export default class GPSDeviceForm extends React.Component {
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
-            <View style={{ backgroundColor: '#efefef', flex: 1 }}>
-                <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()} />
+                <View style={{ backgroundColor: '#fff', flex: 1 }}>
+                    <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
 
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={[{ key: 1 }]}
-                    keyboardShouldPersistTaps="always"
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item, index }) =>
-                        <KeyboardAvoidingView
-                            behavior="padding" >
-                            <View style={{ flexDirection: 'column', flex: 1 }}>
-                                <View style={{ backgroundColor: '#fff', alignItems: 'center' }}>
-                                    <View style={{ alignItems: 'center', width: '92%' }}>
+                    <FlatList
+                        showsVerticalScrollIndicator={false}
+                        data={[{ key: 1 }]}
+                        keyboardShouldPersistTaps="always"
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item, index }) =>
+                            <KeyboardAvoidingView
+                                behavior="padding" >
+                                <View style={{ flexDirection: 'column', flex: 1 }}>
+                                    <View style={{ backgroundColor: '#fff', alignItems: 'center' }}>
+                                        <View style={{ alignItems: 'center', width: '92%' }}>
 
-                                        <View style={{ width: '100%', marginTop: 10 }}>
-                                            <Item floatingLabel>
-                                                <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: '#000' }} />
-                                                <Label style={{ color: 'rgba(0,0,0,0.8)', fontSize: 15 }}>Device</Label>
-                                                <Input
-                                                    style={{ color: '#000', fontSize: 15 }}
-                                                // value={this.props.value}
-                                                // keyboardType={this.props.keyboardType}
-                                                // returnKeyType={this.props.returnKeyType}
-                                                // getRef={this.props.getRef}
-                                                // blurOnSubmit={this.props.blurOnSubmit}
-                                                // onChangeText={this.props.onChangeText}
-                                                // secureTextEntry={this.props.secureTextEntry}
-                                                // onSubmitEditing={this.props.onSubmitEditing}
+                                            <View style={{ width: '100%', marginTop: 10 }}>
+                                                <Item floatingLabel>
+                                                    <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: '#000' }} />
+                                                    <Label style={{ color: 'rgba(0,0,0,0.8)', fontSize: 15 }}>Device</Label>
+                                                    <Input
+                                                        style={{ color: '#000', fontSize: 15 }}
+                                                    // value={this.props.value}
+                                                    // keyboardType={this.props.keyboardType}
+                                                    // returnKeyType={this.props.returnKeyType}
+                                                    // getRef={this.props.getRef}
+                                                    // blurOnSubmit={this.props.blurOnSubmit}
+                                                    // onChangeText={this.props.onChangeText}
+                                                    // secureTextEntry={this.props.secureTextEntry}
+                                                    // onSubmitEditing={this.props.onSubmitEditing}
+                                                    />
+                                                </Item>
+                                            </View>
+                                            <View style={{ width: '100%', marginTop: 10, }}>
+                                                <UnderlineText
+                                                    name="Company"
+                                                    value="Yip Company"
+                                                    iconName='ios-arrow-forward'
+                                                    onpress={() => { this.modalRef.current.setModalVisible(true) }}
                                                 />
-                                            </Item>
-                                        </View>
+                                            </View>
 
-                                        <View style={styles.pickerView}>
+                                            {/* <View style={styles.pickerView}>
                                             <Text style={[styles.pickerLabel, { fontFamily: 'Roboto' }]}>Device Type</Text>
                                             <Pickers dropdown={deviceType} />
-                                        </View>
+                                        </View> */}
 
-                                        <View style={styles.pickerView}>
-                                            <Text style={[styles.pickerLabel, { fontFamily: 'Roboto' }]}>Company Name</Text>
-                                            <Pickers dropdown={company} />
-                                        </View>
+                                            <View style={{ width: '100%', marginTop: 10, }}>
+                                                <UnderlineText
+                                                    name="Vehicle #"
+                                                    value="RJ -14 6145"
+                                                    iconName='ios-arrow-forward'
+                                                    onpress={() => this.modalRef.current.setModalVisible(true)} />
+                                            </View>
 
-                                        <View style={styles.pickerView}>
-                                            <Text style={[styles.pickerLabel, { fontFamily: 'Roboto' }]}>Vehicle#</Text>
-                                            <Pickers dropdown={vehicles} />
-                                        </View>
+                                            <View style={{ width: '100%', marginTop: 10, }}>
+                                                <UnderlineText
+                                                    name="Device Type"
+                                                    value="LMU-800"
+                                                    iconName='ios-arrow-forward'
+                                                    onpress={() => this.modalRef.current.setModalVisible(true)} />
+                                            </View>
 
-                                        <View style={styles.pickerView}>
-                                            <Text style={[styles.pickerLabel, { fontFamily: 'Roboto' }]}>Subscription Keys</Text>
-                                            <Pickers dropdown={subskey} />
+                                            <View style={{ width: '100%', marginTop: 10, }}>
+                                                <UnderlineText
+                                                    name="Subscription Key"
+                                                    value="YST4563872390"
+                                                    iconName='ios-arrow-forward'
+                                                    onpress={() => this.modalRef.current.setModalVisible(true)} />
+                                            </View>
                                         </View>
-
                                     </View>
-                                </View>
 
+                                    <View style={{ backgroundColor: '#fff', marginTop:10,alignItems:'center',marginBottom:10 }}>
+                                        <View style={{  width: '94%' }}>
+                                            <Text style={globalStyles.title_text}> Sim Details</Text>
+                                        </View>
+                                    </View>
 
-                                <View style={{ backgroundColor: '#fff', alignItems: 'center', marginTop: 10 }}>
-                                    <View style={{ alignItems: 'center', width: '92%' }}>
+                                    <View style={{ backgroundColor: '#fff', alignItems: 'center', }}>
+                                        <View style={{ alignItems: 'center', width: '92%' }}>
 
-                                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10 }}>
-                                            <View style={{ flex: 1 }}>
-                                                <View style={{ borderRadius: 0, borderColor: '#dcdcdc', borderBottomWidth: 1, height: 50, justifyContent: 'center' }}>
-                                                    <Picker
-                                                        mode="dropdown"
-                                                        // style={{width: 100}}
-                                                        // selectedValue={this.state.language}
-                                                        onValueChange={(itemValue, itemIndex) => console.log('ISD')}>
-                                                        <Picker.Item label='+91' value='+91' />
-                                                        <Picker.Item label='+91' value='+91' />
-                                                        <Picker.Item label='+91' value='+91' />
-                                                    </Picker>
+                                            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 5 }}>
+                                                <View style={{ flex: 1 }}>
+                                                    <View style={{ borderRadius: 0, borderColor: '#dcdcdc', borderBottomWidth: 1, height: 60, justifyContent: 'center' }}>
+                                                        <UnderlineText
+                                                            name='Country ISD'
+                                                            value='91'
+                                                            iconName='ios-arrow-forward'
+                                                            onpress={() => this.modalRef.current.setModalVisible(true)}
+                                                        >
+                                                        </UnderlineText>
+                                                    </View>
+                                                </View>
+                                                <View style={{ flex: 1.5, marginLeft: 10 }}>
+                                                    <UnderlineText
+                                                        name='Mobile'
+                                                        value='Mobile'
+                                                    // iconName='ios-arrow-forward'
+                                                    // onpress={() => this.modalRef.current.setModalVisible(true)}
+                                                    >
+                                                    </UnderlineText>
                                                 </View>
                                             </View>
-                                            <View style={{ flex: 2.5, marginLeft: 10 }}>
-                                                <Float
-                                                    placeholder='Mobile#'
-                                                    //value={this.state.username}
-                                                    returnKeyType={'next'}
-                                                    keyboardType={'numeric'}
-                                                    blurOnSubmit={false}
-                                                    //onSubmitEditing={() => this._focusNextField('password')}
-                                                    //onChangeText={(username) => this.setState({ username })}
-                                                    inputStyles={{ width: '100%' }}
-                                                />
+                                            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10 }}>
+                                                <View style={{ flex: 1, marginRight: 4 }}>
+                                                    <Float
+                                                        placeholder='Balance'
+                                                        //value={this.state.username}
+                                                        returnKeyType={'next'}
+                                                        keyboardType={'numeric'}
+                                                        blurOnSubmit={false}
+                                                        //onSubmitEditing={() => this._focusNextField('password')}
+                                                        //onChangeText={(username) => this.setState({ username })}
+                                                        inputStyles={{ width: '100%' }}
+                                                    />
+                                                </View>
+                                                <View style={{ flex: 1, marginLeft: 4 }}>
+                                                    <Float
+                                                        placeholder='Data Balance'
+                                                        //value={this.state.username}
+                                                        returnKeyType={'next'}
+                                                        keyboardType={'numeric'}
+                                                        blurOnSubmit={false}
+                                                        //onSubmitEditing={() => this._focusNextField('password')}
+                                                        //onChangeText={(username) => this.setState({ username })}
+                                                        inputStyles={{ width: '100%' }}
+                                                    />
+                                                </View>
                                             </View>
-                                        </View>
-                                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10 }}>
-                                            <View style={{ flex: 1, marginRight: 4 }}>
-                                                <Float
-                                                    placeholder='Balance'
-                                                    //value={this.state.username}
-                                                    returnKeyType={'next'}
-                                                    keyboardType={'numeric'}
-                                                    blurOnSubmit={false}
-                                                    //onSubmitEditing={() => this._focusNextField('password')}
-                                                    //onChangeText={(username) => this.setState({ username })}
-                                                    inputStyles={{ width: '100%' }}
-                                                />
+                                            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginTop: 10 }}>
+                                                <View style={{ flex: 1, marginRight: 4 }}>
+                                                    <Float
+                                                        placeholder='Data plan'
+                                                        //value={this.state.username}
+                                                        returnKeyType={'next'}
+                                                        keyboardType={'numeric'}
+                                                        blurOnSubmit={false}
+                                                        //onSubmitEditing={() => this._focusNextField('password')}
+                                                        //onChangeText={(username) => this.setState({ username })}
+                                                        inputStyles={{ width: '100%' }}
+                                                    />
+                                                </View>
+                                                <View style={{ flex: 1, marginLeft: 4, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', marginBottom: 0 }}>
+                                                    <DatePicker
+                                                        style={{ width: '100%' }}
+                                                        date={this.state.datarenewal}
+                                                        mode="date"
+                                                        placeholder="Data renewal"
+                                                        format="YYYY-MM-DD"
+                                                        //minDate=""
+                                                        maxDate="2018-12-13"
+                                                        confirmBtnText="Confirm"
+                                                        cancelBtnText="Cancel"
+                                                        customStyles={{
+                                                            dateIcon: {
+                                                                position: 'absolute',
+                                                                left: 0,
+                                                                top: 4,
+                                                                marginLeft: 0
+                                                            },
+                                                            dateInput: {
+                                                                marginLeft: 36
+                                                            }
+                                                            // ... You can check the source to find the other keys.
+                                                        }}
+                                                        onDateChange={(date) => { this.setState({ datarenewal: date }) }}
+                                                    />
+                                                </View>
                                             </View>
-                                            <View style={{ flex: 1, marginLeft: 4 }}>
-                                                <Float
-                                                    placeholder='Data Balance'
-                                                    //value={this.state.username}
-                                                    returnKeyType={'next'}
-                                                    keyboardType={'numeric'}
-                                                    blurOnSubmit={false}
-                                                    //onSubmitEditing={() => this._focusNextField('password')}
-                                                    //onChangeText={(username) => this.setState({ username })}
-                                                    inputStyles={{ width: '100%' }}
-                                                />
-                                            </View>
-                                        </View>
-                                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginTop: 10 }}>
-                                            <View style={{ flex: 1, marginRight: 4 }}>
-                                                <Float
-                                                    placeholder='Data plan'
-                                                    //value={this.state.username}
-                                                    returnKeyType={'next'}
-                                                    keyboardType={'numeric'}
-                                                    blurOnSubmit={false}
-                                                    //onSubmitEditing={() => this._focusNextField('password')}
-                                                    //onChangeText={(username) => this.setState({ username })}
-                                                    inputStyles={{ width: '100%' }}
-                                                />
-                                            </View>
-                                            <View style={{ flex: 1, marginLeft: 4, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', marginBottom: 0 }}>
-                                                <DatePicker
-                                                    style={{ width: '100%' }}
-                                                    date={this.state.datarenewal}
-                                                    mode="date"
-                                                    placeholder="Data renewal"
-                                                    format="YYYY-MM-DD"
-                                                    //minDate=""
-                                                    maxDate="2018-12-13"
-                                                    confirmBtnText="Confirm"
-                                                    cancelBtnText="Cancel"
-                                                    customStyles={{
-                                                        dateIcon: {
-                                                            position: 'absolute',
-                                                            left: 0,
-                                                            top: 4,
-                                                            marginLeft: 0
-                                                        },
-                                                        dateInput: {
-                                                            marginLeft: 36
-                                                        }
-                                                        // ... You can check the source to find the other keys.
-                                                    }}
-                                                    onDateChange={(date) => { this.setState({ datarenewal: date }) }}
-                                                />
-                                            </View>
-                                        </View>
 
-                                        <View style={{ width: '100%', marginTop: 10 }}>
-                                            <Float
-                                                placeholder='Carrier'
-                                                //value={this.state.username}
-                                                returnKeyType={'next'}
-                                                keyboardType={'email-address'}
-                                                blurOnSubmit={false}
-                                                //onSubmitEditing={() => this._focusNextField('password')}
-                                                //onChangeText={(username) => this.setState({ username })}
-                                                inputStyles={{ width: '100%' }}
-                                            />
-                                        </View>
-
-                                        <View style={styles.button_view}>
-                                            <View style={{ flex: 1, marginRight: 2 }}>
-                                                <Button block danger>
-                                                    <Text style={{ color: '#fff' }}>Cancel</Text>
-                                                </Button>
+                                            <View style={{ width: '100%', marginTop: 10 }}>
+                                                <Float
+                                                    placeholder='Carrier'
+                                                    //value={this.state.username}
+                                                    returnKeyType={'next'}
+                                                    keyboardType={'email-address'}
+                                                    blurOnSubmit={false}
+                                                    //onSubmitEditing={() => this._focusNextField('password')}
+                                                    //onChangeText={(username) => this.setState({ username })}
+                                                    inputStyles={{ width: '100%' }}
+                                                />
                                             </View>
-                                            <View style={{ flex: 1, marginLeft: 2 }}>
-                                                <Button block >
-                                                    <Text style={{ color: '#fff' }}>Submit</Text>
-                                                </Button>
-                                            </View>
-                                        </View>
 
+                                            <View style={styles.button_view}>
+                                                <View style={{ flex: 1, marginRight: 2 }}>
+                                                    <Button block danger>
+                                                        <Text style={{ color: '#fff' }}>Cancel</Text>
+                                                    </Button>
+                                                </View>
+                                                <View style={{ flex: 1, marginLeft: 2 }}>
+                                                    <Button block >
+                                                        <Text style={{ color: '#fff' }}>Submit</Text>
+                                                    </Button>
+                                                </View>
+                                            </View>
+
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
-                        </KeyboardAvoidingView>
-                    } />
-            </View>
+                            </KeyboardAvoidingView>
+                        } />
+                    <GpsModal ref={this.modalRef} />
+                </View>
         );
     }
 }
