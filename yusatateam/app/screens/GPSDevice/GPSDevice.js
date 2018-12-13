@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-    View,
-    FlatList,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    BackHandler
-} from 'react-native';
-import { Card, Text,Item,Picker} from 'native-base';
+import { View, FlatList, BackHandler, TextInput } from 'react-native';
+import { Picker, Button} from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import styles from './styles';
 import { ToolbarWithDropdown, Activityindication,HeaderWithSearchbar,SearchBar, GpsDeviceData} from '../../components';
 import { userActions } from '../../redux/actions';
@@ -50,41 +44,60 @@ export class GPSDevice extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
+
                     <ToolbarWithDropdown title='GPS Devices' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='filter' settingType='FontAwesome' onSettingsPress={() => this.AlertBox()}
                     />
-                        {/* <View style={styles.searchView}> */}
-                            {/* <View style={styles.filterIcon}>
-                                <Item picker>
+
+                    <View style={styles.top_view}>
+                        <View style={styles.dropdown_view}>
+                            <View style={styles.dropdown}>
                                 <Picker
                                     mode="dropdown"
-                                    style={{ width: 50 }}
+                                    style={{ width: '100%', height: '100%' }}
                                     placeholder="Select Device"
                                     placeholderStyle={{ color: "#bfc6ea" }}
                                     placeholderIconColor="#007aff"
-                                    selectedValue={this.state.selected2}
-                                    onValueChange={this.onValueChange2.bind(this)}
-                                >
+                                    //selectedValue={this.state.selected2}
+                                    // onValueChange={this.onValueChange2.bind(this)}
+                                    >
                                     <Picker.Item label="All" value="key0" />
                                     <Picker.Item label="Company Code" value="key1" />
                                     <Picker.Item label="Company Name" value="key2" />
                                     <Picker.Item label="provider" value="key3" />
                                     <Picker.Item label="UDID" value="key4" />
                                 </Picker>
-                                </Item>
-                            </View> */}
-                        {/* <View>
-                            <SearchBar placeholder={'Search here'}
-                                value = { this.state.text}
-                                onChangeText={(text) => this.SearchFilterFunction(text)} />
-                        </View> */}
-                {/* </View> */}
-                        <FlatList
-                            data={[{key:1},{key:2},{key:3},{key:4},{key:5},{key:6}]}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item, index }) =>
-                                <GpsDeviceData/>
-                        }/>
+                            </View>
+                        </View>
+                        <View style={styles.search_view}>
+                            <View style={styles.search}>
+                                <View style={styles.textinput_view}>
+                                    <TextInput
+                                        style={styles.text_input}
+                                        placeholder='Search here'
+                                        underlineColorAndroid="transparent"
+                                        returnKeyType='search'
+                                        autoFocus={false}
+                                        clearButtonMode="while-editing"
+                                        // onChangeText={this.props.onChangeText}
+                                    />
+                                </View>
+                                <View style={{flex:0.18}}>
+                                    <Button transparent style={{width:'100%', justifyContent:'center', alignItems:'center'}}>
+                                        <Ionicons name="md-search" size={20} color="gray"/>
+                                    </Button>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+
+                    <FlatList
+                        data={[{key:1},{key:2},{key:3},{key:4},{key:5},{key:6}]}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item, index }) =>
+                            <GpsDeviceData/>
+                    }/>
+
                 </View>
         );
     }

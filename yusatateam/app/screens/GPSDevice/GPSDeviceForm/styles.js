@@ -1,51 +1,18 @@
 import EStyleSheet from 'react-native-extended-stylesheet'
 export default EStyleSheet.create({
-
-    flex_one: {
-        flex: 1,
-        //flexDirection: 'row',
-        justifyContent: 'flex-start',
-        width: '90%',
-        height: '10%'
+    pickerLabel: {
+        fontSize: '0.8rem',
+        color: 'gray'
     },
-
-    colon: {
-        flex: 0.2,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        flexDirection: 'row',
-    },
-    flex_picker:{
-        flex: 1,
-        flexDirection: 'row',
-        //justifyContent: 'flex-start',
-        alignItems: 'center',
-        width: '80%'
-    },
-    flex_two: {
-        flex: 2,
-        flexDirection: 'row',
-        //justifyContent: 'flex-start',
-        alignItems: 'center',
-        width: '80%'
-    },
-    picker_style: {
-        flex: 2,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    View_row: {
-        
-        flexDirection: 'row',
-        marginTop: 0
+    pickerView: {
+        marginTop: 10,
+        width: '100%',
+        marginBottom: 10
     },
     button_view: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
-      
-       
-        //paddingLeft: 20
+        marginTop: 15,
+        marginBottom: 10
     }
-
 })
