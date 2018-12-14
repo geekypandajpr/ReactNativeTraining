@@ -61,6 +61,7 @@ export default class GPSDeviceForm extends React.Component {
         }
         this.modalRef = React.createRef();
         this.OnValueSelect = this.OnValueSelect.bind(this);
+        this.conditionalRender = this.conditionalRender.bind(this);
     };
 
     async componentWillMount() {
@@ -72,8 +73,31 @@ export default class GPSDeviceForm extends React.Component {
         this.setState({ isLoading: false });
     }
     OnValueSelect(value) {
-        this.setState({ company: value })
+        // this.setState({ company: value })
+        this.conditionalRender(value)
+    }
 
+    conditionalRender(values){
+        if(value == 'company'){
+            const company = [
+                { label: 'yusata', value: 'sim1' },
+                { label: 'IBM', value: 'sim2' },
+                { label: 'Capgemini', value: 'sim3' },
+                { label: 'TCS', value: 'sim4' },
+                { label: 'Infosys', value: 'sim5' }
+            ]; 
+            this.setState({company:company})
+        }else if(value == 'deviceType'){
+            const vehicle = [
+                    { label: 'device1', value: 'device1' },
+                    { label: 'device2', value: 'device2' },
+                    { label: 'device3', value: 'device3' },
+                    { label: 'device4', value: 'device4' },
+                    { label: 'device5', value: 'device5' }
+                ];
+                this.setState({vehicle:vehicle})
+            }
+            
     }
     render() {
         const { goBack } = this.props.navigation;
@@ -114,7 +138,7 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Company"
-                                                    value={this.state.company}
+                                                    value={this.state.try.company}
                                                     onpress={() => { this.modalRef.current.setModalVisible(true, company) }}
                                                 />
                                             </View>
@@ -127,7 +151,7 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Vehicle #"
-                                                    value={this.state.vehicle}
+                                                    value={this.state.try.vehicle}
                                                     onpress={() => this.modalRef.current.setModalVisible(true, vehicles)} />
                                             </View>
 
