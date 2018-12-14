@@ -45,33 +45,32 @@ export default class ToolbarWithDropdown extends React.Component {
             <View >
                 <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
                 <Header style={styles.header}>
-                    <Left>
+                    <Left style={{flex :2}}>
                         <Button transparent onPress={this.props.onLeftButtonPress}>
                             <Icon name={this.props.leftIcon} type={this.props.leftIconType} style={styles.iconLeft} />
                         </Button>
                     </Left>
-                    <Body>
+                    <Body style={{flex :6}}>
                         <Title style={[styles.title,{fontFamily: 'Roboto'}]}>
                             {this.props.title}
                         </Title>
                     </Body>
-                    <Right>
-                        <Item>
-                            <Picker
-                                mode="dropdown"
-                                style={{ backgroundColor : '#fff', height: 35 }}
-                                // placeholder="Select Device"
-                                // itemStyle={{color: 'red'}}
-                                // itemTextStyle={{color:'green'}}
-                                // textStyle={{color: 'pink'}}
-                                // placeholderStyle={{ color: "#fff", backgroundColor: '#fff' }}
-                                // placeholderIconColor="#fff"
-                                selectedValue={this.state.selected2}
-                                onValueChange={this.onValueChange2.bind(this)} >
-                                <Picker.Item label="All" value="All" />
-                                <Picker.Item label="Assigned" value="Assigned" />
-                                <Picker.Item label="Not Assigned" value="Not Assigned" />
-                            </Picker>
+                    <Right style={{flex : 2.5}}>
+                    <Item picker>
+                        <Picker
+                            mode="dropdown"
+                            style={{ width: 10,color : 'white',backgroundColor : '#0073b7'}}
+                            placeholder="Select Device"
+                            // placeholderStyle={{ color: "white" }}
+                            // placeholderIconColor="white"
+                            selectedValue={this.state.selected2}
+                            onValueChange={this.onValueChange2.bind(this)}
+                        >
+                            <Picker.Item label="All" value="key0" />
+                            <Picker.Item label="Assigned" value="key1" />
+                            <Picker.Item label="Not Assigned" value="key2" />
+                        </Picker>
+                        <Icon name='arrow-dropdown-circle'  style={{ color: "white", fontSize: 25 }} />
                         </Item>
                     </Right>
                 </Header>
@@ -81,3 +80,40 @@ export default class ToolbarWithDropdown extends React.Component {
 }
 
 export { ToolbarWithDropdown }
+
+
+// this.state.isLoading === true ? <AppLoading /> :
+//             <View >
+//                 <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
+//                 <Header style={styles.header}>
+//                     <Left>
+//                         <Button transparent onPress={this.props.onLeftButtonPress}>
+//                             <Icon name={this.props.leftIcon} type={this.props.leftIconType} style={styles.iconLeft} />
+//                         </Button>
+//                     </Left>
+//                     <Body>
+//                         <Title style={[styles.title,{fontFamily: 'Roboto'}]}>
+//                             {this.props.title}
+//                         </Title>
+//                     </Body>
+//                     <Right>
+//                         <Item>
+//                             <Picker
+//                                 mode="dropdown"
+//                                 style={{ backgroundColor : '#fff', height: 35 }}
+//                                 // placeholder="Select Device"
+//                                 // itemStyle={{color: 'red'}}
+//                                 // itemTextStyle={{color:'green'}}
+//                                 // textStyle={{color: 'pink'}}
+//                                 // placeholderStyle={{ color: "#fff", backgroundColor: '#fff' }}
+//                                 // placeholderIconColor="#fff"
+//                                 selectedValue={this.state.selected2}
+//                                 onValueChange={this.onValueChange2.bind(this)} >
+//                                 <Picker.Item label="All" value="All" />
+//                                 <Picker.Item label="Assigned" value="Assigned" />
+//                                 <Picker.Item label="Not Assigned" value="Not Assigned" />
+//                             </Picker>
+//                         </Item>
+//                     </Right>
+//                 </Header>
+//             </View>
