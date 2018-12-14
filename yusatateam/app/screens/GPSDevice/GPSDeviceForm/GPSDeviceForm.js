@@ -55,8 +55,9 @@ export default class GPSDeviceForm extends React.Component {
         this.state = {
             isLoading: true,
             company: 'Select Company',
-            datarenewal: '',
-            deviceType: '',
+            vehicle:'select Vehicle',
+            deviceType: 'Type of Device',
+            subskeys: 'select subscription',
         }
         this.modalRef = React.createRef();
         this.OnValueSelect = this.OnValueSelect.bind(this);
@@ -126,21 +127,21 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Vehicle #"
-                                                    value="RJ -14 6145"
+                                                    value={this.state.vehicle}
                                                     onpress={() => this.modalRef.current.setModalVisible(true, vehicles)} />
                                             </View>
 
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Device Type"
-                                                    value="LMU-800"
+                                                    value={this.state.deviceType}
                                                     onpress={() => this.modalRef.current.setModalVisible(true, deviceType)} />
                                             </View>
 
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Subscription Key"
-                                                    value="YST4563872390"
+                                                    value={this.state.subskeys}
                                                     onpress={() => this.modalRef.current.setModalVisible(true, subskey)} />
                                             </View>
                                         </View>
@@ -266,7 +267,6 @@ export default class GPSDeviceForm extends React.Component {
                                                     </Button>
                                                 </View>
                                             </View>
-
                                         </View>
                                     </View>
                                 </View>
