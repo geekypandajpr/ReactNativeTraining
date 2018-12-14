@@ -4,7 +4,7 @@ import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import DatePicker from 'react-native-datepicker';
 
-import { Toolbar, Float, Pickers, UnderlineText } from '../../../components';
+import { Toolbar, Float,  UnderlineText } from '../../../components';
 import styles from './styles';
 import { globalStyles } from '../../../styles'
 import { GpsModal } from '../GpsModal/GpsModal';

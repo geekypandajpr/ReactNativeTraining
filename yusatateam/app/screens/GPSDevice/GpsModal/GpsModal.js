@@ -34,7 +34,7 @@ export default class GpsModal extends React.Component {
     setModalVisible(visible, data) {
         this.setState({ modalVisible: visible, data: data });
     }
-    
+
     render() {
         return (
             this.state.isLoading === true ? <AppLoading /> :
@@ -83,8 +83,6 @@ export default class GpsModal extends React.Component {
 
                     </Modal>
                 </View >
-
-
         );
     }
 }
