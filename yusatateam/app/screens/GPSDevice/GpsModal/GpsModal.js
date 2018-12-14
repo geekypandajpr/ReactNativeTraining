@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Modal, View, TouchableHighlight, FlatList } from 'react-native';
+import { Text, Modal, View, TouchableHighlight, FlatList, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { Header, Button, Body, Right, Left, List, ListItem } from 'native-base';
 import { AppLoading } from 'expo';
@@ -19,9 +19,10 @@ export default class GpsModal extends React.Component {
         this.state = {
             isLoading: true,
             modalVisible: false,
-            data : []
+            data: []
         }
         this.setModalVisible = this.setModalVisible.bind(this);
+        this.onSelectValue = this.onSelectValue.bind(this);
     }
 
     async componentWillMount() {
@@ -33,8 +34,14 @@ export default class GpsModal extends React.Component {
         this.setState({ isLoading: false });
     };
 
-    setModalVisible(visible,data) {
-        this.setState({ modalVisible: visible,data : data});
+    onSelectValue(item){
+       
+            this.props.selectedValue(item.label);
+           this.setModalVisible(false,[]);
+    }
+
+    setModalVisible(visible, data) {
+        this.setState({ modalVisible: visible, data: data });
     }
     render() {
 
@@ -72,10 +79,12 @@ export default class GpsModal extends React.Component {
                                         keyExtractor={(item, index) => index.toString()}
                                         renderItem={({ item, index }) =>
                                             <List>
-                                                <ListItem>
-                                                    <Text>{item.label}</Text>
-                                                </ListItem>
-                                                
+                                                <TouchableOpacity >
+
+                                                    <ListItem onPress={()=>{this.onSelectValue(item)}}>
+                                                        <Text>{item.label}</Text>
+                                                    </ListItem>
+                                                </TouchableOpacity>
                                             </List>
                                         } />
                                 </View>

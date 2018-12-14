@@ -54,10 +54,12 @@ export default class GPSDeviceForm extends React.Component {
         super(props);
         this.state = {
             isLoading: true,
+            company :'Select Company',
             datarenewal: '',
             deviceType: '',
         }
         this.modalRef = React.createRef();
+        this.OnValueSelect = this.OnValueSelect.bind(this);
     };
 
     async componentWillMount() {
@@ -67,6 +69,10 @@ export default class GPSDeviceForm extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false });
+    }
+    OnValueSelect(value){
+        this.setState({company:value})
+
     }
     render() {
         const { goBack } = this.props.navigation;
@@ -107,7 +113,7 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={{ width: '100%', marginTop: 10, }}>
                                                 <UnderlineText
                                                     name="Company"
-                                                    value="Yip Company"
+                                                    value={this.state.company}
                                                     onpress={() => { this.modalRef.current.setModalVisible(true,company) }}
                                                 />
                                             </View>
@@ -266,7 +272,7 @@ export default class GPSDeviceForm extends React.Component {
                                 </View>
                             </KeyboardAvoidingView>
                         } />
-                    <GpsModal ref={this.modalRef} />
+                    <GpsModal ref={this.modalRef} selectedValue = {(value )=>this.OnValueSelect(value)} />
                 </View>
         );
     }
