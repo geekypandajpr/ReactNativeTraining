@@ -108,7 +108,7 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Company"
                                                     value="Yip Company"
-                                                    onpress={() => { this.modalRef.current.setModalVisible(true) }}
+                                                    onpress={() => { this.modalRef.current.setModalVisible(true,company) }}
                                                 />
                                             </View>
 
@@ -121,21 +121,21 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Vehicle #"
                                                     value="RJ -14 6145"
-                                                    onpress={() => this.modalRef.current.setModalVisible(true)} />
+                                                    onpress={() => this.modalRef.current.setModalVisible(true,vehicles)} />
                                             </View>
 
                                             <View style={{ width: '100%', marginTop: 10, }}>
                                                 <UnderlineText
                                                     name="Device Type"
                                                     value="LMU-800"
-                                                    onpress={() => this.modalRef.current.setModalVisible(true)} />
+                                                    onpress={() => this.modalRef.current.setModalVisible(true,deviceType)} />
                                             </View>
 
                                             <View style={{ width: '100%', marginTop: 10, }}>
                                                 <UnderlineText
                                                     name="Subscription Key"
                                                     value="YST4563872390"
-                                                    onpress={() => this.modalRef.current.setModalVisible(true)} />
+                                                    onpress={() => this.modalRef.current.setModalVisible(true,subskey)} />
                                             </View>
                                         </View>
                                     </View>
@@ -155,7 +155,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         <UnderlineText
                                                             name='Country ISD'
                                                             value='91'
-                                                            onpress={() => this.modalRef.current.setModalVisible(true)}
+                                                            onpress={() => this.modalRef.current.setModalVisible(true,ISD)}
                                                         >
                                                         </UnderlineText>
                                                     </View>

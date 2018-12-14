@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Modal, View, TouchableHighlight } from 'react-native';
+import { Text, Modal, View, TouchableHighlight, FlatList } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { Header, Button, Body, Right, Left, List, ListItem } from 'native-base';
 import { AppLoading } from 'expo';
@@ -19,6 +19,7 @@ export default class GpsModal extends React.Component {
         this.state = {
             isLoading: true,
             modalVisible: false,
+            data : []
         }
         this.setModalVisible = this.setModalVisible.bind(this);
     }
@@ -32,8 +33,8 @@ export default class GpsModal extends React.Component {
         this.setState({ isLoading: false });
     };
 
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
+    setModalVisible(visible,data) {
+        this.setState({ modalVisible: visible,data : data});
     }
     render() {
 
@@ -54,55 +55,29 @@ export default class GpsModal extends React.Component {
                             <View style={styles.subContainer}>
 
                                 <Header style={styles.Header_Style}>
-                                    
                                     <Left>
-                                    <TouchableHighlight  onPress={() => {this.setModalVisible(false)}}>
-                                        <Feather name='arrow-left' size={26} color='#fff'></Feather>
+                                        <TouchableHighlight onPress={() => { this.setModalVisible(false) }}>
+                                            <Feather name='arrow-left' size={26} color='#fff'></Feather>
                                         </TouchableHighlight>
                                     </Left>
-                                    
                                     <Body>
                                         <Text style={styles.Text_style}>Company</Text>
                                     </Body>
                                     <Right></Right>
-                                
-                                
                                 </Header>
 
                                 <View style={{ flex: 1, backgroundColor: '#efefef' }}>
-                                   
+                                    <FlatList
+                                        data={this.state.data}
+                                        keyExtractor={(item, index) => index.toString()}
+                                        renderItem={({ item, index }) =>
                                             <List>
                                                 <ListItem>
-                                                    <Text>Yusata Infotech</Text>
+                                                    <Text>{item.label}</Text>
                                                 </ListItem>
-                                                <ListItem>
-                                                    <Text>Capgemini</Text>
-                                                </ListItem>
-                                                <ListItem>
-                                                    <Text>Infotech</Text>
-                                                </ListItem>
-                                                <ListItem>
-                                                    <Text>IBM</Text>
-                                                </ListItem>
-                                                <ListItem>
-                                                    <Text>Tata</Text>
-                                                </ListItem>
-                                                <ListItem>
-                                                    <Text>Yusata Infotech</Text>
-                                                </ListItem>
-                                                <ListItem>
-                                                    <Text>Capgemini</Text>
-                                                </ListItem>
-                                                <ListItem>
-                                                    <Text>Infotech</Text>
-                                                </ListItem>
-                                                <ListItem>
-                                                    <Text>IBM</Text>
-                                                </ListItem>
-                                                <ListItem>
-                                                    <Text>Tata</Text>
-                                                </ListItem>
+                                                
                                             </List>
+                                        } />
                                 </View>
                             </View>
                         </View>
