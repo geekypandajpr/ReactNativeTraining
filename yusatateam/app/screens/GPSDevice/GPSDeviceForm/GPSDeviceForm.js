@@ -53,7 +53,7 @@ const COMPANY_KEY = 'COMPANY';
 const VEHICLE_KEY = 'VEHICLE';
 const DEVICE_TYPE = 'DEVICE_TYPE';
 const SUBSC_KEY = 'SUBSC_KEY';
-const ISD_KEY = 'ISD';
+const ISD_KEY = 'ISD_kEY';
 
 export default class GPSDeviceForm extends React.Component {
     constructor(props) {
@@ -65,6 +65,7 @@ export default class GPSDeviceForm extends React.Component {
             vehicle:'Select vehicle',
             deviceType: 'Select device type',
             subskey: 'Select subscription key',
+            isd : '+91'
         }
         this.modalRef = React.createRef();
         this.OnValueSelect = this.OnValueSelect.bind(this);
@@ -89,6 +90,8 @@ export default class GPSDeviceForm extends React.Component {
             this.setState({ deviceType: value})
         }else if(this.state.flag == 'SUBSC_KEY'){
             this.setState({ subskey :value})
+        }else if(this.state.flag == 'ISD_KEY' ){
+            this.setState({isd:value})
         }
     }
 
@@ -136,7 +139,7 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Company"
                                                     value={this.state.company}
-                                                    icon = "asterisk"
+                                                    icon = "*"
                                                     onpress={() => this.openPicker(COMPANY_KEY,company)}
                                                 />
                                             </View>
@@ -149,7 +152,7 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Vehicle #"
-                                                    icon = "asterisk"
+                                                    icon = "*"
                                                     value={this.state.vehicle}
                                                     onpress={() => this.openPicker(VEHICLE_KEY,vehicles)} />
                                             </View>
@@ -157,7 +160,7 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Device Type"
-                                                    icon = "asterisk"
+                                                    icon = "*"
                                                     value={this.state.deviceType}
                                                     onpress={() => this.openPicker(DEVICE_TYPE,deviceType)} />
                                             </View>
@@ -185,9 +188,9 @@ export default class GPSDeviceForm extends React.Component {
                                                     <View style={{  height: 60, justifyContent: 'center' }}>
                                                         <UnderlineText
                                                             name='Country ISD'
-                                                            icon = "asterisk"
-                                                            value='91'
-                                                            onpress={() => this.modalRef.current.setModalVisible(true, ISD)}
+                                                            icon = "*"
+                                                            value={this.state.isd}
+                                                            onpress={() => this.openPicker(ISD_KEY, ISD)}
                                                         >
                                                         </UnderlineText>
                                                     </View>
@@ -199,6 +202,8 @@ export default class GPSDeviceForm extends React.Component {
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
+                                                        text = '*'
+                                                       
                                                         //onSubmitEditing={() => this._focusNextField('password')}
                                                         //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
@@ -268,7 +273,7 @@ export default class GPSDeviceForm extends React.Component {
                                                             }
                                                             // ... You can check the source to find the other keys.
                                                         }}
-                                                        onDateChange={(date) => { this.setState({ datarenewal: date }) }}
+                                                        onDateChange={(date) => { this.setState({ datarenewal: date })}}
                                                     />
                                                 </View>
                                             </View>
@@ -280,6 +285,7 @@ export default class GPSDeviceForm extends React.Component {
                                                     returnKeyType={'next'}
                                                     keyboardType={'email-address'}
                                                     blurOnSubmit={false}
+                                                    text ='*'
                                                     //onSubmitEditing={() => this._focusNextField('password')}
                                                     //onChangeText={(username) => this.setState({ username })}
                                                     inputStyles={{ width: '100%' }}
