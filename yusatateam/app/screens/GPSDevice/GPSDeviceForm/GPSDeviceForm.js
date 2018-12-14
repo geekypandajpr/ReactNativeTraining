@@ -49,19 +49,22 @@ const ISD = [
     { label: '+95', value: '+95' }
 ];
 
+const COMPANY_KEY = 'COMPANY';
+
 export default class GPSDeviceForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoading: true,
-            company: 'Select Company',
-            vehicle:'select Vehicle',
-            deviceType: 'Type of Device',
-            subskeys: 'select subscription',
+            flag: '',
+            company: 'Select company',
+            vehicle:'Select vehicle',
+            deviceType: 'Select device type',
+            subskeys: 'Select subscription key',
         }
         this.modalRef = React.createRef();
         this.OnValueSelect = this.OnValueSelect.bind(this);
-        this.conditionalRender = this.conditionalRender.bind(this);
+        this.openPicker = this.openPicker.bind(this);
     };
 
     async componentWillMount() {
@@ -73,32 +76,16 @@ export default class GPSDeviceForm extends React.Component {
         this.setState({ isLoading: false });
     }
     OnValueSelect(value) {
-        // this.setState({ company: value })
-        this.conditionalRender(value)
+        if(this.state.flag === 'COMPANY') {
+            this.setState({ company: value });
+        }
     }
 
-    conditionalRender(values){
-        if(value == 'company'){
-            const company = [
-                { label: 'yusata', value: 'sim1' },
-                { label: 'IBM', value: 'sim2' },
-                { label: 'Capgemini', value: 'sim3' },
-                { label: 'TCS', value: 'sim4' },
-                { label: 'Infosys', value: 'sim5' }
-            ]; 
-            this.setState({company:company})
-        }else if(value == 'deviceType'){
-            const vehicle = [
-                    { label: 'device1', value: 'device1' },
-                    { label: 'device2', value: 'device2' },
-                    { label: 'device3', value: 'device3' },
-                    { label: 'device4', value: 'device4' },
-                    { label: 'device5', value: 'device5' }
-                ];
-                this.setState({vehicle:vehicle})
-            }
-            
+    openPicker(keys) {
+        this.setState({flag: keys});
+        this.modalRef.current.setModalVisible(true, company);
     }
+
     render() {
         const { goBack } = this.props.navigation;
         return (
@@ -138,8 +125,8 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Company"
-                                                    value={this.state.try.company}
-                                                    onpress={() => { this.modalRef.current.setModalVisible(true, company) }}
+                                                    value={this.state.company}
+                                                    onpress={() => this.openPicker(COMPANY_KEY)}
                                                 />
                                             </View>
 
@@ -151,7 +138,7 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Vehicle #"
-                                                    value={this.state.try.vehicle}
+                                                    value={this.state.vehicle}
                                                     onpress={() => this.modalRef.current.setModalVisible(true, vehicles)} />
                                             </View>
 
