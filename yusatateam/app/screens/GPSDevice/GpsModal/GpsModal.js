@@ -56,7 +56,7 @@ export default class GpsModal extends React.Component {
                                 <Header style={styles.Header_Style}>
                                     
                                     <Left>
-                                    <TouchableHighlight  onPress={() => {this.setModalVisible(true)}}>
+                                    <TouchableHighlight  onPress={() => {this.setModalVisible(false)}}>
                                         <Feather name='arrow-left' size={26} color='#fff'></Feather>
                                         </TouchableHighlight>
                                     </Left>
