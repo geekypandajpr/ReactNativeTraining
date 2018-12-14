@@ -136,6 +136,7 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Company"
                                                     value={this.state.company}
+                                                    icon = "asterisk"
                                                     onpress={() => this.openPicker(COMPANY_KEY,company)}
                                                 />
                                             </View>
@@ -148,6 +149,7 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Vehicle #"
+                                                    icon = "asterisk"
                                                     value={this.state.vehicle}
                                                     onpress={() => this.openPicker(VEHICLE_KEY,vehicles)} />
                                             </View>
@@ -155,6 +157,7 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Device Type"
+                                                    icon = "asterisk"
                                                     value={this.state.deviceType}
                                                     onpress={() => this.openPicker(DEVICE_TYPE,deviceType)} />
                                             </View>
@@ -182,18 +185,24 @@ export default class GPSDeviceForm extends React.Component {
                                                     <View style={{  height: 60, justifyContent: 'center' }}>
                                                         <UnderlineText
                                                             name='Country ISD'
+                                                            icon = "asterisk"
                                                             value='91'
                                                             onpress={() => this.modalRef.current.setModalVisible(true, ISD)}
                                                         >
                                                         </UnderlineText>
                                                     </View>
                                                 </View>
-                                                <View style={{ flex: 1.5, marginLeft: 10 }}>
-                                                    <UnderlineText
-                                                        name='Mobile'
-                                                        value='Mobile'
-                                                    >
-                                                    </UnderlineText>
+                                                <View style={{ flex: 1.5, marginLeft: 10,marginTop:12 }}>
+                                                <Float
+                                                        placeholder='Mobile'
+                                                        //value={this.state.username}
+                                                        returnKeyType={'next'}
+                                                        keyboardType={'numeric'}
+                                                        blurOnSubmit={false}
+                                                        //onSubmitEditing={() => this._focusNextField('password')}
+                                                        //onChangeText={(username) => this.setState({ username })}
+                                                        inputStyles={{ width: '100%' }}
+                                                    />
                                                 </View>
                                             </View>
                                             <View style={[styles.Balance_view,{marginTop:10}]}>
@@ -204,6 +213,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
+
                                                         //onSubmitEditing={() => this._focusNextField('password')}
                                                         //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
