@@ -50,6 +50,10 @@ const ISD = [
 ];
 
 const COMPANY_KEY = 'COMPANY';
+const VEHICLE_KEY = 'VEHICLE';
+const DEVICE_TYPE = 'DEVICE_TYPE';
+const SUBSC_KEY = 'SUBSC_KEY';
+const ISD_KEY = 'ISD';
 
 export default class GPSDeviceForm extends React.Component {
     constructor(props) {
@@ -60,7 +64,7 @@ export default class GPSDeviceForm extends React.Component {
             company: 'Select company',
             vehicle:'Select vehicle',
             deviceType: 'Select device type',
-            subskeys: 'Select subscription key',
+            subskey: 'Select subscription key',
         }
         this.modalRef = React.createRef();
         this.OnValueSelect = this.OnValueSelect.bind(this);
@@ -75,17 +79,23 @@ export default class GPSDeviceForm extends React.Component {
         })
         this.setState({ isLoading: false });
     }
+
     OnValueSelect(value) {
         if(this.state.flag === 'COMPANY') {
             this.setState({ company: value });
+        }else if(this.state.flag == 'VEHICLE'){
+            this.setState({ vehicle: value})
+        }else if(this.state.flag == 'DEVICE_TYPE'){
+            this.setState({ deviceType: value})
+        }else if(this.state.flag == 'SUBSC_KEY'){
+            this.setState({ subskey :value})
         }
     }
 
-    openPicker(keys) {
+    openPicker(keys,list) {
         this.setState({flag: keys});
-        this.modalRef.current.setModalVisible(true, company);
+        this.modalRef.current.setModalVisible(true, list);
     }
-
     render() {
         const { goBack } = this.props.navigation;
         return (
@@ -126,7 +136,7 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Company"
                                                     value={this.state.company}
-                                                    onpress={() => this.openPicker(COMPANY_KEY)}
+                                                    onpress={() => this.openPicker(COMPANY_KEY,company)}
                                                 />
                                             </View>
 
@@ -139,21 +149,21 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Vehicle #"
                                                     value={this.state.vehicle}
-                                                    onpress={() => this.modalRef.current.setModalVisible(true, vehicles)} />
+                                                    onpress={() => this.openPicker(VEHICLE_KEY,vehicles)} />
                                             </View>
 
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Device Type"
                                                     value={this.state.deviceType}
-                                                    onpress={() => this.modalRef.current.setModalVisible(true, deviceType)} />
+                                                    onpress={() => this.openPicker(DEVICE_TYPE,deviceType)} />
                                             </View>
 
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Subscription Key"
-                                                    value={this.state.subskeys}
-                                                    onpress={() => this.modalRef.current.setModalVisible(true, subskey)} />
+                                                    value={this.state.subskey}
+                                                    onpress={() => this.openPicker(SUBSC_KEY,subskey)} />
                                             </View>
                                         </View>
                                     </View>
