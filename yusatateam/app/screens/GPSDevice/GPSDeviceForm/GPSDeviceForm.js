@@ -62,10 +62,10 @@ export default class GPSDeviceForm extends React.Component {
             isLoading: true,
             flag: '',
             company: 'Select company',
-            vehicle:'Select vehicle',
+            vehicle: 'Select vehicle',
             deviceType: 'Select device type',
             subskey: 'Select subscription key',
-            isd : '+91'
+            isd: '+91'
         }
         this.modalRef = React.createRef();
         this.OnValueSelect = this.OnValueSelect.bind(this);
@@ -82,21 +82,21 @@ export default class GPSDeviceForm extends React.Component {
     }
 
     OnValueSelect(value) {
-        if(this.state.flag === 'COMPANY') {
+        if (this.state.flag === 'COMPANY') {
             this.setState({ company: value });
-        }else if(this.state.flag == 'VEHICLE'){
-            this.setState({ vehicle: value})
-        }else if(this.state.flag == 'DEVICE_TYPE'){
-            this.setState({ deviceType: value})
-        }else if(this.state.flag == 'SUBSC_KEY'){
-            this.setState({ subskey :value})
-        }else if(this.state.flag == 'ISD_KEY' ){
-            this.setState({isd:value})
+        } else if (this.state.flag == 'VEHICLE') {
+            this.setState({ vehicle: value })
+        } else if (this.state.flag == 'DEVICE_TYPE') {
+            this.setState({ deviceType: value })
+        } else if (this.state.flag == 'SUBSC_KEY') {
+            this.setState({ subskey: value })
+        } else if (this.state.flag == 'ISD_KEY') {
+            this.setState({ isd: value })
         }
     }
 
-    openPicker(keys,list) {
-        this.setState({flag: keys});
+    openPicker(keys, list) {
+        this.setState({ flag: keys });
         this.modalRef.current.setModalVisible(true, list);
     }
     render() {
@@ -139,8 +139,8 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Company"
                                                     value={this.state.company}
-                                                    icon = "*"
-                                                    onpress={() => this.openPicker(COMPANY_KEY,company)}
+                                                    icon="*"
+                                                    onpress={() => this.openPicker(COMPANY_KEY, company)}
                                                 />
                                             </View>
 
@@ -152,24 +152,24 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Vehicle #"
-                                                    icon = "*"
+                                                    icon="*"
                                                     value={this.state.vehicle}
-                                                    onpress={() => this.openPicker(VEHICLE_KEY,vehicles)} />
+                                                    onpress={() => this.openPicker(VEHICLE_KEY, vehicles)} />
                                             </View>
 
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Device Type"
-                                                    icon = "*"
+                                                    icon="*"
                                                     value={this.state.deviceType}
-                                                    onpress={() => this.openPicker(DEVICE_TYPE,deviceType)} />
+                                                    onpress={() => this.openPicker(DEVICE_TYPE, deviceType)} />
                                             </View>
 
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Subscription Key"
                                                     value={this.state.subskey}
-                                                    onpress={() => this.openPicker(SUBSC_KEY,subskey)} />
+                                                    onpress={() => this.openPicker(SUBSC_KEY, subskey)} />
                                             </View>
                                         </View>
                                     </View>
@@ -183,34 +183,34 @@ export default class GPSDeviceForm extends React.Component {
                                     <View style={styles.Sub_View}>
                                         <View style={styles.Width_View}>
 
-                                            <View style={[styles.Balance_view,{marginTop:5}]}>
+                                            <View style={[styles.Balance_view, { marginTop: 5 }]}>
                                                 <View style={{ flex: 1 }}>
-                                                    <View style={{  height: 60, justifyContent: 'center' }}>
+                                                    <View style={{ height: 60, justifyContent: 'center' }}>
                                                         <UnderlineText
                                                             name='Country ISD'
-                                                            icon = "*"
+                                                            icon="*"
                                                             value={this.state.isd}
                                                             onpress={() => this.openPicker(ISD_KEY, ISD)}
                                                         >
                                                         </UnderlineText>
                                                     </View>
                                                 </View>
-                                                <View style={{ flex: 1.5, marginLeft: 10,marginTop:12 }}>
-                                                <Float
+                                                <View style={{ flex: 1.5, marginLeft: 10, marginTop: 12 }}>
+                                                    <Float
                                                         placeholder='Mobile'
                                                         //value={this.state.username}
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
-                                                        text = '*'
-                                                       
+                                                        text='*'
+
                                                         //onSubmitEditing={() => this._focusNextField('password')}
                                                         //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
                                             </View>
-                                            <View style={[styles.Balance_view,{marginTop:10}]}>
+                                            <View style={[styles.Balance_view, { marginTop: 10 }]}>
                                                 <View style={styles.inner_View}>
                                                     <Float
                                                         placeholder='Balance'
@@ -273,7 +273,7 @@ export default class GPSDeviceForm extends React.Component {
                                                             }
                                                             // ... You can check the source to find the other keys.
                                                         }}
-                                                        onDateChange={(date) => { this.setState({ datarenewal: date })}}
+                                                        onDateChange={(date) => { this.setState({ datarenewal: date }) }}
                                                     />
                                                 </View>
                                             </View>
@@ -285,7 +285,7 @@ export default class GPSDeviceForm extends React.Component {
                                                     returnKeyType={'next'}
                                                     keyboardType={'email-address'}
                                                     blurOnSubmit={false}
-                                                    text ='*'
+                                                    text='*'
                                                     //onSubmitEditing={() => this._focusNextField('password')}
                                                     //onChangeText={(username) => this.setState({ username })}
                                                     inputStyles={{ width: '100%' }}

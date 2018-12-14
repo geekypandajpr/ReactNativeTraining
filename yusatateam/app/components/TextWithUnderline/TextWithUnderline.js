@@ -13,13 +13,13 @@ export default class UnderlineText extends React.Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                
-                    <View style={{ width: '100%',flexDirection:'row' }}>
-                        <Text style={{ fontSize: 15, color: 'gray', }}>{this.props.name}</Text>
-                         <Text style={{marginTop:0,color:'red',marginLeft:5,fontSize:15}}>{this.props.icon}</Text>
-                    </View>
-                    {/* <FontAwesome name={ this.props.icon} size={7} color="red" */}
-                
+
+                <View style={{ width: '100%', flexDirection: 'row' }}>
+                    <Text style={{ fontSize: 15, color: 'gray', }}>{this.props.name}</Text>
+                    <Text style={{ marginTop: 0, color: 'red', marginLeft: 5, fontSize: 15 }}>{this.props.icon}</Text>
+                </View>
+                {/* <FontAwesome name={ this.props.icon} size={7} color="red" */}
+
                 <TouchableOpacity onPress={this.props.onpress}>
                     <View style={{ flexDirection: 'row', marginTop: 10 }}>
                         <View style={{ justifyContent: 'flex-start', flex: 1.5 }}>
