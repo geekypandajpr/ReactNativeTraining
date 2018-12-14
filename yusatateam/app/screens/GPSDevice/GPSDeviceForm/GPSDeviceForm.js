@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, FlatList, KeyboardAvoidingView } from 'react-native';
+import { Item, Label, Input, Button, Text, Icon  } from 'native-base';
 import { AppLoading } from 'expo';
-import { FontAwesome } from '@expo/vector-icons';
+import DatePicker from 'react-native-datepicker';
+
 import { Toolbar, Float, Pickers, UnderlineText } from '../../../components';
 import styles from './styles';
 import { globalStyles } from '../../../styles'
-import { Item, Label, Input, Button, Text, Picker, Icon, Card } from 'native-base';
-import DatePicker from 'react-native-datepicker';
 import { GpsModal } from '../GpsModal/GpsModal';
 
 const company = [
@@ -108,7 +108,6 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Company"
                                                     value="Yip Company"
-                                                    iconName='ios-arrow-forward'
                                                     onpress={() => { this.modalRef.current.setModalVisible(true) }}
                                                 />
                                             </View>
@@ -122,7 +121,6 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Vehicle #"
                                                     value="RJ -14 6145"
-                                                    iconName='ios-arrow-forward'
                                                     onpress={() => this.modalRef.current.setModalVisible(true)} />
                                             </View>
 
@@ -130,7 +128,6 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Device Type"
                                                     value="LMU-800"
-                                                    iconName='ios-arrow-forward'
                                                     onpress={() => this.modalRef.current.setModalVisible(true)} />
                                             </View>
 
@@ -138,7 +135,6 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Subscription Key"
                                                     value="YST4563872390"
-                                                    iconName='ios-arrow-forward'
                                                     onpress={() => this.modalRef.current.setModalVisible(true)} />
                                             </View>
                                         </View>
@@ -159,7 +155,6 @@ export default class GPSDeviceForm extends React.Component {
                                                         <UnderlineText
                                                             name='Country ISD'
                                                             value='91'
-                                                            iconName='ios-arrow-forward'
                                                             onpress={() => this.modalRef.current.setModalVisible(true)}
                                                         >
                                                         </UnderlineText>
@@ -169,8 +164,6 @@ export default class GPSDeviceForm extends React.Component {
                                                     <UnderlineText
                                                         name='Mobile'
                                                         value='Mobile'
-                                                    // iconName='ios-arrow-forward'
-                                                    // onpress={() => this.modalRef.current.setModalVisible(true)}
                                                     >
                                                     </UnderlineText>
                                                 </View>

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Modal, TouchableHighlight, View, Alert } from 'react-native';
-import { Toolbar } from '../../../components/Toolbar';
-import colors from '../../../styles/colors';
-import { Text, Header, Button, Body, Right, Left,List,ListItem } from 'native-base';
+import { Text, Modal, View,BackHandler } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import { Header, Button, Body, Right, Left, List, ListItem } from 'native-base';
 import { AppLoading } from 'expo';
-import { globalStyles } from '../../../styles'
+import EStyleSheet from 'react-native-extended-stylesheet';
+
 
 export default class GpsModal extends React.Component {
     constructor(props) {
@@ -24,11 +24,26 @@ export default class GpsModal extends React.Component {
         })
         this.setState({ isLoading: false });
     };
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        this.props.onFetchData();
+    }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
 
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
     }
     render() {
+        const { navigate } = this.props.navigation;
+        const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View>
@@ -42,16 +57,21 @@ export default class GpsModal extends React.Component {
                         onRequestClose={() => {
                             this.setState({ modalVisible: !this.state.modalVisible })
                         }}>
-                        <View style={{ flex: 1, backgroundColor: '#00000090' }}>
+                        <View style={{ flex: 1, backgroundColor: '#00000090', alignItems: 'center', justifyContent: 'center' }}>
                             <View style={{ height: '80%', width: '100%', position: 'absolute', bottom: 0 }}>
-                                <Header style={colors.HEADER_COLOR}>
-                                    <Left></Left>
+
+                                <Header style={styles.Header_Style}>
+                                    <Left>
+                                        <Button transparent onPress={()=>navigate('GPSDeviceForm')}>
+                                            <Feather name = 'arrow-left' size = {26} color = '#fff' ></Feather>
+                                        </Button>
+                                    </Left>
                                     <Body>
-                                        <Text style={globalStyles.title_text}>Company</Text>
+                                        <Text style={{ color: '#fff', fontSize: 18, }}>Company</Text>
                                     </Body>
-                                    <Right>
-                                    </Right>
+                                    <Right></Right>
                                 </Header>
+
                                 <View style={{ flex: 1, backgroundColor: '#efefef' }}>
                                     <List>
                                         <ListItem>
@@ -70,27 +90,20 @@ export default class GpsModal extends React.Component {
                                             <Text>Tata</Text>
                                         </ListItem>
                                         <ListItem>
-                                            <Text>Simon Mignolet</Text>
+                                            <Text>Yusata Infotech</Text>
                                         </ListItem>
                                         <ListItem>
-                                            <Text>Simon Mignolet</Text>
+                                            <Text>Capgemini</Text>
                                         </ListItem>
                                         <ListItem>
-                                            <Text>Simon Mignolet</Text>
+                                            <Text>Infotech</Text>
                                         </ListItem>
                                         <ListItem>
-                                            <Text>Simon Mignolet</Text>
+                                            <Text>IBM</Text>
                                         </ListItem>
                                         <ListItem>
-                                            <Text>Simon Mignolet</Text>
+                                            <Text>Tata</Text>
                                         </ListItem>
-                                        <ListItem>
-                                            <Text>Simon Mignolet</Text>
-                                        </ListItem>
-                                        
-                                        
-
-
                                     </List>
                                 </View>
                             </View>
@@ -104,3 +117,8 @@ export default class GpsModal extends React.Component {
     }
 }
 export { GpsModal }
+
+const styles = EStyleSheet.create({
+    Header_Style: { backgroundColor: '#0073b7' }
+
+})
