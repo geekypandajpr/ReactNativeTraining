@@ -5,14 +5,6 @@ import { Header, Button, Body, Right, Left, List, ListItem } from 'native-base';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-const company = [
-    { label: 'yusata', value: 'sim1' },
-    { label: 'IBM', value: 'sim2' },
-    { label: 'Capgemini', value: 'sim3' },
-    { label: 'TCS', value: 'sim4' },
-    { label: 'Infosys', value: 'sim5' }
-];
-
 export default class GpsModal extends React.Component {
     constructor(props) {
         super(props);
@@ -34,17 +26,16 @@ export default class GpsModal extends React.Component {
         this.setState({ isLoading: false });
     };
 
-    onSelectValue(item){
-       
-            this.props.selectedValue(item.label);
-           this.setModalVisible(false,[]);
+    onSelectValue(item) {
+        this.props.selectedValue(item.label);
+        this.setModalVisible(false, []);
     }
 
     setModalVisible(visible, data) {
         this.setState({ modalVisible: visible, data: data });
     }
+    
     render() {
-
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View>
@@ -80,8 +71,7 @@ export default class GpsModal extends React.Component {
                                         renderItem={({ item, index }) =>
                                             <List>
                                                 <TouchableOpacity >
-
-                                                    <ListItem onPress={()=>{this.onSelectValue(item)}}>
+                                                    <ListItem onPress={() => { this.onSelectValue(item) }}>
                                                         <Text>{item.label}</Text>
                                                     </ListItem>
                                                 </TouchableOpacity>

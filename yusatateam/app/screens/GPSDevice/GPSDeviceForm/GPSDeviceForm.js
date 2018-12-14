@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, FlatList, KeyboardAvoidingView } from 'react-native';
-import { Item, Label, Input, Button, Text, Icon  } from 'native-base';
+import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import DatePicker from 'react-native-datepicker';
 
@@ -54,7 +54,7 @@ export default class GPSDeviceForm extends React.Component {
         super(props);
         this.state = {
             isLoading: true,
-            company :'Select Company',
+            company: 'Select Company',
             datarenewal: '',
             deviceType: '',
         }
@@ -70,8 +70,8 @@ export default class GPSDeviceForm extends React.Component {
         })
         this.setState({ isLoading: false });
     }
-    OnValueSelect(value){
-        this.setState({company:value})
+    OnValueSelect(value) {
+        this.setState({ company: value })
 
     }
     render() {
@@ -90,10 +90,10 @@ export default class GPSDeviceForm extends React.Component {
                             <KeyboardAvoidingView
                                 behavior="padding" >
                                 <View style={{ flexDirection: 'column', flex: 1 }}>
-                                    <View style={{ backgroundColor: '#fff', alignItems: 'center' }}>
-                                        <View style={{ alignItems: 'center', width: '92%' }}>
+                                    <View style={styles.Sub_View}>
+                                        <View style={styles.Width_View}>
 
-                                            <View style={{ width: '100%', marginTop: 10 }}>
+                                            <View style={styles.Small_View}>
                                                 <Item floatingLabel>
                                                     <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: '#000' }} />
                                                     <Label style={{ color: 'rgba(0,0,0,0.8)', fontSize: 15 }}>Device</Label>
@@ -110,11 +110,11 @@ export default class GPSDeviceForm extends React.Component {
                                                     />
                                                 </Item>
                                             </View>
-                                            <View style={{ width: '100%', marginTop: 10, }}>
+                                            <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Company"
                                                     value={this.state.company}
-                                                    onpress={() => { this.modalRef.current.setModalVisible(true,company) }}
+                                                    onpress={() => { this.modalRef.current.setModalVisible(true, company) }}
                                                 />
                                             </View>
 
@@ -123,45 +123,45 @@ export default class GPSDeviceForm extends React.Component {
                                             <Pickers dropdown={deviceType} />
                                         </View> */}
 
-                                            <View style={{ width: '100%', marginTop: 10, }}>
+                                            <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Vehicle #"
                                                     value="RJ -14 6145"
-                                                    onpress={() => this.modalRef.current.setModalVisible(true,vehicles)} />
+                                                    onpress={() => this.modalRef.current.setModalVisible(true, vehicles)} />
                                             </View>
 
-                                            <View style={{ width: '100%', marginTop: 10, }}>
+                                            <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Device Type"
                                                     value="LMU-800"
-                                                    onpress={() => this.modalRef.current.setModalVisible(true,deviceType)} />
+                                                    onpress={() => this.modalRef.current.setModalVisible(true, deviceType)} />
                                             </View>
 
-                                            <View style={{ width: '100%', marginTop: 10, }}>
+                                            <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Subscription Key"
                                                     value="YST4563872390"
-                                                    onpress={() => this.modalRef.current.setModalVisible(true,subskey)} />
+                                                    onpress={() => this.modalRef.current.setModalVisible(true, subskey)} />
                                             </View>
                                         </View>
                                     </View>
 
-                                    <View style={{ backgroundColor: '#fff', marginTop:10,alignItems:'center',marginBottom:10 }}>
-                                        <View style={{  width: '94%' }}>
+                                    <View style={styles.Detail_View}>
+                                        <View style={{ width: '94%' }}>
                                             <Text style={globalStyles.title_text}> Sim Details</Text>
                                         </View>
                                     </View>
 
-                                    <View style={{ backgroundColor: '#fff', alignItems: 'center', }}>
-                                        <View style={{ alignItems: 'center', width: '92%' }}>
+                                    <View style={styles.Sub_View}>
+                                        <View style={styles.Width_View}>
 
-                                            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 5 }}>
+                                            <View style={[styles.Balance_view,{marginTop:5}]}>
                                                 <View style={{ flex: 1 }}>
-                                                    <View style={{ borderRadius: 0, borderColor: '#dcdcdc', borderBottomWidth: 1, height: 60, justifyContent: 'center' }}>
+                                                    <View style={{  height: 60, justifyContent: 'center' }}>
                                                         <UnderlineText
                                                             name='Country ISD'
                                                             value='91'
-                                                            onpress={() => this.modalRef.current.setModalVisible(true,ISD)}
+                                                            onpress={() => this.modalRef.current.setModalVisible(true, ISD)}
                                                         >
                                                         </UnderlineText>
                                                     </View>
@@ -174,8 +174,8 @@ export default class GPSDeviceForm extends React.Component {
                                                     </UnderlineText>
                                                 </View>
                                             </View>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10 }}>
-                                                <View style={{ flex: 1, marginRight: 4 }}>
+                                            <View style={[styles.Balance_view,{marginTop:10}]}>
+                                                <View style={styles.inner_View}>
                                                     <Float
                                                         placeholder='Balance'
                                                         //value={this.state.username}
@@ -187,7 +187,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
-                                                <View style={{ flex: 1, marginLeft: 4 }}>
+                                                <View style={styles.inner_View}>
                                                     <Float
                                                         placeholder='Data Balance'
                                                         //value={this.state.username}
@@ -200,8 +200,8 @@ export default class GPSDeviceForm extends React.Component {
                                                     />
                                                 </View>
                                             </View>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginTop: 10 }}>
-                                                <View style={{ flex: 1, marginRight: 4 }}>
+                                            <View style={styles.row_Divide}>
+                                                <View style={styles.inner_View}>
                                                     <Float
                                                         placeholder='Data plan'
                                                         //value={this.state.username}
@@ -213,7 +213,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
-                                                <View style={{ flex: 1, marginLeft: 4, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', marginBottom: 0 }}>
+                                                <View style={styles.Date_picker}>
                                                     <DatePicker
                                                         style={{ width: '100%' }}
                                                         date={this.state.datarenewal}
@@ -241,7 +241,7 @@ export default class GPSDeviceForm extends React.Component {
                                                 </View>
                                             </View>
 
-                                            <View style={{ width: '100%', marginTop: 10 }}>
+                                            <View style={styles.Small_View}>
                                                 <Float
                                                     placeholder='Carrier'
                                                     //value={this.state.username}
@@ -272,7 +272,7 @@ export default class GPSDeviceForm extends React.Component {
                                 </View>
                             </KeyboardAvoidingView>
                         } />
-                    <GpsModal ref={this.modalRef} selectedValue = {(value )=>this.OnValueSelect(value)} />
+                    <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
                 </View>
         );
     }
