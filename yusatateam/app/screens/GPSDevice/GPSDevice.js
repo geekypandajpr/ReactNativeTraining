@@ -11,8 +11,16 @@ import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
-import { ToolbarWithDropdown, GpsDeviceData } from '../../components';
+import { ToolbarWithDropdown, GpsDeviceData, SearchBar } from '../../components';
 import { userActions } from '../../redux/actions';
+
+const PICKERITEM = [
+    { label: "All", value: "key0" },
+    { label: "Company Code", value: "key1" },
+    { label: "Company Name", value: "key2" },
+    { label: "provider", value: "key3" },
+    { label: "UDID", value: "key4" }
+]
 
 export class GPSDevice extends React.Component {
     constructor(props) {
@@ -100,50 +108,15 @@ export class GPSDevice extends React.Component {
                 <View style={styles.container}>
                     <ToolbarWithDropdown title='GPS Devices' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
 
-                    <View style={styles.top_view}>
-                        <View style={styles.dropdown_view}>
-                            <View style={styles.dropdown}>
-                                <Picker
-                                    mode="dropdown"
-                                    style={{ width: '100%', height: '100%' }}
-                                    placeholder="Select Device"
-                                    placeholderStyle={{ color: "#bfc6ea" }}
-                                    placeholderIconColor="#007aff"
-                                    selectedValue={this.state.selected2}
-                                    onValueChange={this.onValueChange2.bind(this)}
-                                >
-                                    <Picker.Item label="All" value="key0" />
-                                    <Picker.Item label="Company Code" value="key1" />
-                                    <Picker.Item label="Company Name" value="key2" />
-                                    <Picker.Item label="provider" value="key3" />
-                                    <Picker.Item label="UDID" value="key4" />
-                                </Picker>
-                            </View>
-                        </View>
-
-                        <View style={styles.search_view}>
-                            <View style={styles.search}>
-                                <View style={styles.textinput_view}>
-                                    <TextInput
-                                        style={styles.text_input}
-                                        placeholder='Search here'
-                                        underlineColorAndroid="transparent"
-                                        returnKeyType='search'
-                                        autoFocus={false}
-                                        clearButtonMode="while-editing"
-                                    // onChangeText={this.props.onChangeText}
-                                    />
-                                </View>
-
-                                <View style={{ flex: 0.18 }}>
-                                    <Button transparent style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                                        <Ionicons name="md-search" size={20} color="gray" />
-                                    </Button>
-                                </View>
-                            </View>
-                        </View>
-                    </View>
-
+                    <SearchBar
+                        placeholder={'Search here'}
+                        isDropdown={true}
+                        pickerItem={PICKERITEM}
+                        onChangeText={(text) => this.setState({searchValue: text})}
+                        selectedValue={this.state.selected2}
+                        onValueChange={this.onValueChange2.bind(this)}
+                    />
+                    
                     <FlatList
                         data={[{ key: 1 }, { key: 2 }, { key: 3 }, { key: 4 }, { key: 5 }, { key: 6 }]}
                         keyExtractor={(item, index) => index.toString()}
