@@ -115,8 +115,9 @@ export class GPSDevice extends React.Component {
                         onChangeText={(text) => this.setState({searchValue: text})}
                         selectedValue={this.state.selected2}
                         onValueChange={this.onValueChange2.bind(this)}
+                        onSearch={() => console.log('onSearchPressed')}
                     />
-                    
+
                     <FlatList
                         data={[{ key: 1 }, { key: 2 }, { key: 3 }, { key: 4 }, { key: 5 }, { key: 6 }]}
                         keyExtractor={(item, index) => index.toString()}
