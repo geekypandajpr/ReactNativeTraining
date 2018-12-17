@@ -120,6 +120,7 @@ export class GPSDevice extends React.Component {
                             </View>
                         </View>
 
+
                         <View style={styles.search_view}>
                             <View style={styles.search}>
                                 <View style={styles.textinput_view}>
