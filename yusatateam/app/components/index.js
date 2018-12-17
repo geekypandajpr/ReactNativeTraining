@@ -24,8 +24,15 @@ export { JobDetailToolbar } from './JobDetailToolbar';
 export { MonthSelectorCalendar } from './MonthSelectorCalendar';
 export { JobTabData } from './JobTabData';
 export { GpsDeviceData } from './GpsDeviceData';
+<<<<<<< HEAD
 export {ToolbarWithDropdown} from './ToolbarWithDropdown'
 
+=======
+export { ToolbarWithDropdown} from './ToolbarWithDropdown';
+export { Pickers } from './Picker';
+export { Float } from './Floating';
+export { UnderlineText } from './TextWithUnderline'
+>>>>>>> 5b479d6388b35119ea25adc66502c99156c5edd2
 
 
 
