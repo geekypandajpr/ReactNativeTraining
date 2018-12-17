@@ -5,39 +5,7 @@ export default EStyleSheet.create({
     container: {
         flex: 1,
     },
-<<<<<<< HEAD
-    searchView : {
-        flexDirection :'row',
-        height: 50,
-        backgroundColor : 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft :6,
-        marginRight :6,
-    },
-    filterIcon : {
-        flex : 2,
-        alignItems : 'center',
-        justifyContent : 'center',
-        height: 40,
-        // backgroundColor: 'white'
-        borderRadius: 2,
-        marginRight:2,
-        borderRadius : 0.2,
-        borderColor : 'black',
-        borderWidth : 0.5,
-    },
-    viewList: {
-        flex: 1,
-        flexDirection : 'row',
-        // marginLeft :6,
-        // marginRight :6,
-        // padding: 10,
-    },
-    sub_view: {
-=======
     view: {
->>>>>>> 5b479d6388b35119ea25adc66502c99156c5edd2
         flexDirection: 'row',
     },
     title_view: {

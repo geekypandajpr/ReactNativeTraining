@@ -13,87 +13,6 @@ export default EStyleSheet.create({
         alignItems: 'center',
         marginLeft :6,
         marginRight :6,
-<<<<<<< HEAD
-    },
-    filterIcon : {
-        flex : 2,
-        alignItems : 'center',
-        justifyContent : 'center',
-        height: 40,
-        borderRadius: 2,
-        marginRight:2,
-        borderRadius : 0.2,
-        borderColor : 'black',
-        borderWidth : 0.5,
-    },
-    viewList: {
-        flex: 1,
-        flexDirection : 'row',
-        // marginLeft :6,
-        // marginRight :6,
-        // padding: 10,
-    },
-    sub_view: {
-        flexDirection: 'row',
-    },
-    jobNumText: {
-        fontSize: '1rem',
-        color: '#000',
-        fontWeight: '500',
-    },
-    right_sub_view: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    jobTypeView: {
-        borderRadius: 10,
-        borderWidth: 0.8,
-        borderColor: 'gray',
-        padding: 2,
-        width: 80,
-        height: 23,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    jobTypeText: {
-        color: '#F98866',
-        fontSize: '0.8rem',
-    },
-    left_view: {
-        flex: 1,
-    },
-    text: {
-        fontSize: '0.9rem',
-        color: '#000',
-    },
-    middle_view: {
-        flex: 0.2,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    right_view: {
-        flex: 1.5,
-    },
-    text1: {
-        fontSize: '0.9rem',
-        color: 'gray',
-    },
-    location: {
-        flex: 1,
-    },   
-    footerbutton: {
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.HEADER_COLOR,
-    },
-    footerbuttonText: {
-        color: '#fff',
-        fontSize: '1rem',
-    } 
-=======
     },
     top_view: {
         height: 50,
@@ -144,5 +63,4 @@ export default EStyleSheet.create({
         height: '100%',
         padding: 10
     },
->>>>>>> 5b479d6388b35119ea25adc66502c99156c5edd2
 })
