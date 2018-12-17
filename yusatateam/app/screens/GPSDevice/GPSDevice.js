@@ -109,8 +109,8 @@ export class GPSDevice extends React.Component {
                                     placeholder="Select Device"
                                     placeholderStyle={{ color: "#bfc6ea" }}
                                     placeholderIconColor="#007aff"
-                                //selectedValue={this.state.selected2}
-                                // onValueChange={this.onValueChange2.bind(this)}
+                                    selectedValue={this.state.selected2}
+                                    onValueChange={this.onValueChange2.bind(this)}
                                 >
                                     <Picker.Item label="All" value="key0" />
                                     <Picker.Item label="Company Code" value="key1" />
@@ -120,7 +120,6 @@ export class GPSDevice extends React.Component {
                                 </Picker>
                             </View>
                         </View>
-
 
                         <View style={styles.search_view}>
                             <View style={styles.search}>
@@ -135,6 +134,7 @@ export class GPSDevice extends React.Component {
                                     // onChangeText={this.props.onChangeText}
                                     />
                                 </View>
+
                                 <View style={{ flex: 0.18 }}>
                                     <Button transparent style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
                                         <Ionicons name="md-search" size={20} color="gray" />
