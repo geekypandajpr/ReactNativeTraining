@@ -153,7 +153,7 @@ const RouteConfigs = {
 }
 
 const StackNavigatorConfig = {
-    initialRouteName: 'GPSDevice',
+    initialRouteName: 'LogIn',
     headerMode: 'float'
 }
 
