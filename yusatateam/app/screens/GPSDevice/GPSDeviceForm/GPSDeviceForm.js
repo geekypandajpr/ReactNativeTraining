@@ -99,6 +99,7 @@ export default class GPSDeviceForm extends React.Component {
         this.setState({ flag: keys });
         this.modalRef.current.setModalVisible(true, list);
     }
+
     render() {
         const { goBack } = this.props.navigation;
         return (
@@ -139,7 +140,7 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Company"
                                                     value={this.state.company}
-                                                    icon="*"
+                                                    isMandatory={true}
                                                     onpress={() => this.openPicker(COMPANY_KEY, company)}
                                                 />
                                             </View>
@@ -152,7 +153,7 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Vehicle #"
-                                                    icon="*"
+                                                    isMandatory={true}
                                                     value={this.state.vehicle}
                                                     onpress={() => this.openPicker(VEHICLE_KEY, vehicles)} />
                                             </View>
@@ -160,7 +161,7 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Device Type"
-                                                    icon="*"
+                                                    isMandatory={true}
                                                     value={this.state.deviceType}
                                                     onpress={() => this.openPicker(DEVICE_TYPE, deviceType)} />
                                             </View>
@@ -169,6 +170,7 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Subscription Key"
                                                     value={this.state.subskey}
+                                                    isMandatory={false}
                                                     onpress={() => this.openPicker(SUBSC_KEY, subskey)} />
                                             </View>
                                         </View>
@@ -188,7 +190,7 @@ export default class GPSDeviceForm extends React.Component {
                                                     <View style={{ height: 60, justifyContent: 'center' }}>
                                                         <UnderlineText
                                                             name='Country ISD'
-                                                            icon="*"
+                                                            isMandatory={true}
                                                             value={this.state.isd}
                                                             onpress={() => this.openPicker(ISD_KEY, ISD)}
                                                         >
@@ -202,7 +204,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
-                                                        text='*'
+                                                        isMandatory={true}
 
                                                         //onSubmitEditing={() => this._focusNextField('password')}
                                                         //onChangeText={(username) => this.setState({ username })}
@@ -218,7 +220,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
-
+                                                        isMandatory ={false}
                                                         //onSubmitEditing={() => this._focusNextField('password')}
                                                         //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
@@ -231,6 +233,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
+                                                        isMandatory ={false}
                                                         //onSubmitEditing={() => this._focusNextField('password')}
                                                         //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
@@ -245,6 +248,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
+                                                        isMandatory ={false}
                                                         //onSubmitEditing={() => this._focusNextField('password')}
                                                         //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
@@ -285,7 +289,7 @@ export default class GPSDeviceForm extends React.Component {
                                                     returnKeyType={'next'}
                                                     keyboardType={'email-address'}
                                                     blurOnSubmit={false}
-                                                    text='*'
+                                                    isMandatory ={true}
                                                     //onSubmitEditing={() => this._focusNextField('password')}
                                                     //onChangeText={(username) => this.setState({ username })}
                                                     inputStyles={{ width: '100%' }}

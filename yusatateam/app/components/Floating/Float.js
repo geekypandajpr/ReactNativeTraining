@@ -10,7 +10,9 @@ export default class Float extends React.Component {
                 <Item floatingLabel>
                     {/* <Icon name={this.props.name} type={this.props.iconType} style={{color:this.props.iconColor}} /> */}
                     <Label style={{color:'rgba(0,0,0,0.6)', fontSize: 15,}}>{this.props.placeholder}
-                    <Text style={{marginTop:0,color:'red',fontSize:15,marginLeft:3}}>{this.props.text}</Text>
+                    {this.props.isMandatory ?
+                    <Text style={{marginTop:0,color:'red',fontSize:15,marginLeft:3}}>*</Text>
+                    : null }
                    </Label>
                    {/* <FontAwesome name ={this.props.iconName} size= {7} color="red"/> */}
                     <Input
