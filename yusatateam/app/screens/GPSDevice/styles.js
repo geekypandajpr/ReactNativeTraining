@@ -18,7 +18,7 @@ export default EStyleSheet.create({
         height: 50,
         marginLeft: 6,
         marginRight: 6,
-        marginBottom: 2,
+        marginBottom: 0,
         // backgroundColor: 'red',
         flexDirection: 'row'
     },

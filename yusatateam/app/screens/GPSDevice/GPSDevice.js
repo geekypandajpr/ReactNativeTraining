@@ -2,19 +2,17 @@ import React from 'react';
 import {
     View,
     FlatList,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
     BackHandler,
     TextInput
 } from 'react-native';
-import { Card, Text,Item,Picker, Button } from 'native-base';
+import { Picker, Button } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+
 import styles from './styles';
-import { ToolbarWithDropdown, Activityindication,HeaderWithSearchbar,SearchBar, GpsDeviceData} from '../../components';
+import { ToolbarWithDropdown, GpsDeviceData } from '../../components';
 import { userActions } from '../../redux/actions';
-import { globalStyles } from '../../styles';
 
 export class GPSDevice extends React.Component {
     constructor(props) {
@@ -22,10 +20,10 @@ export class GPSDevice extends React.Component {
         this.state = {
             isLoading: true,
             data: null,
-            searchValue : '',
+            searchValue: '',
             selected2: ''
         };
-        this.list=[];
+        this.list = [];
         this.modalRef = React.createRef();
         this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
         this.SearchFilterFunction = this.SearchFilterFunction.bind(this);
@@ -33,9 +31,9 @@ export class GPSDevice extends React.Component {
 
     onValueChange2(value) {
         this.setState({
-          selected2: value
+            selected2: value
         });
-      }
+    }
 
     async componentWillMount() {
         await Expo.Font.loadAsync({
@@ -52,8 +50,8 @@ export class GPSDevice extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.props.simDatas !== nextProps.simDatas) {
-            this.setState({data: nextProps.simDatas.data});
+        if (this.props.simDatas !== nextProps.simDatas) {
+            this.setState({ data: nextProps.simDatas.data });
             this.arrayList = nextProps.simDatas.data;
         }
     }
@@ -66,23 +64,22 @@ export class GPSDevice extends React.Component {
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
-    SearchFilterFunction(text) 
-    {
+    SearchFilterFunction(text) {
         const newData = this.arrayList.filter(function (item) {
             const itemData = item.ORDER.toUpperCase()
-            const textData = text.toUpperCase() 
+            const textData = text.toUpperCase()
             return itemData.indexOf(textData) > -1
         })
         this.setState({
-            data: newData,         
+            data: newData,
             searchValue: text
         },
         )
     }
-    onSearchClearPressed(){
+    onSearchClearPressed() {
         this.SearchFilterFunction('');
     }
-    AlertBox(){
+    AlertBox() {
         alert('Press Alert Button')
     }
 
@@ -101,7 +98,7 @@ export class GPSDevice extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
                     <ToolbarWithDropdown title='GPS Devices' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
-                    
+
                     <View style={styles.top_view}>
                         <View style={styles.dropdown_view}>
                             <View style={styles.dropdown}>
@@ -111,9 +108,9 @@ export class GPSDevice extends React.Component {
                                     placeholder="Select Device"
                                     placeholderStyle={{ color: "#bfc6ea" }}
                                     placeholderIconColor="#007aff"
-                                    //selectedValue={this.state.selected2}
-                                    // onValueChange={this.onValueChange2.bind(this)}
-                                    >
+                                //selectedValue={this.state.selected2}
+                                // onValueChange={this.onValueChange2.bind(this)}
+                                >
                                     <Picker.Item label="All" value="key0" />
                                     <Picker.Item label="Company Code" value="key1" />
                                     <Picker.Item label="Company Name" value="key2" />
@@ -133,12 +130,12 @@ export class GPSDevice extends React.Component {
                                         returnKeyType='search'
                                         autoFocus={false}
                                         clearButtonMode="while-editing"
-                                        // onChangeText={this.props.onChangeText}
+                                    // onChangeText={this.props.onChangeText}
                                     />
                                 </View>
-                                <View style={{flex:0.18}}>
-                                    <Button transparent style={{width:'100%', justifyContent:'center', alignItems:'center'}}>
-                                        <Ionicons name="md-search" size={20} color="gray"/>
+                                <View style={{ flex: 0.18 }}>
+                                    <Button transparent style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+                                        <Ionicons name="md-search" size={20} color="gray" />
                                     </Button>
                                 </View>
                             </View>
@@ -146,24 +143,24 @@ export class GPSDevice extends React.Component {
                     </View>
 
                     <FlatList
-                        data={[{key:1},{key:2},{key:3},{key:4},{key:5},{key:6}]}
+                        data={[{ key: 1 }, { key: 2 }, { key: 3 }, { key: 4 }, { key: 5 }, { key: 6 }]}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <GpsDeviceData/>
-                    }/>
+                            <GpsDeviceData />
+                        } />
                 </View>
         );
     }
 }
 
-function mapStateToProps(state){
-    return{
-        simDatas : state.simData
+function mapStateToProps(state) {
+    return {
+        simDatas: state.simData
     }
 }
 
-function mapDispatchToProps(dispatch){
-    return{
+function mapDispatchToProps(dispatch) {
+    return {
         onFetchData: () => dispatch(userActions.simRequest())
     }
 }
