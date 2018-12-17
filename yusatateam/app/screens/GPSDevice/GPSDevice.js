@@ -93,6 +93,7 @@ export class GPSDevice extends React.Component {
     }
 
     render() {
+        const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
@@ -147,7 +148,7 @@ export class GPSDevice extends React.Component {
                         data={[{ key: 1 }, { key: 2 }, { key: 3 }, { key: 4 }, { key: 5 }, { key: 6 }]}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <GpsDeviceData />
+                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm')}/>
                         } />
                 </View>
         );
