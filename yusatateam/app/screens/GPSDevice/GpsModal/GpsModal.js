@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Modal, View, TouchableHighlight, FlatList, TouchableOpacity } from 'react-native';
-import { Feather,Entypo } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 import { Header, Body, Right, Left, List, ListItem } from 'native-base';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -55,15 +55,15 @@ export default class GpsModal extends React.Component {
                             <View style={styles.subContainer}>
 
                                 <Header style={styles.Header_Style}>
-                                    <Left>
-                                        <TouchableHighlight onPress={() => { this.setModalVisible(false) }}>
+                                    
+                                    <Body>
+                                    <Text style={styles.Text_style}>{this.state.title}</Text> 
+                                    </Body>
+                                    <Right>
+                                    <TouchableHighlight onPress={() => { this.setModalVisible(false) }}>
                                             <Entypo name='cross' size={28} color='#fff'></Entypo>
                                         </TouchableHighlight>
-                                    </Left>
-                                    <Body>
-                                        <Text style={styles.Text_style}>{this.state.title}</Text>
-                                    </Body>
-                                    <Right></Right>
+                                    </Right>
                                 </Header>
 
                                 <View style={{ flex: 1, backgroundColor: '#efefef' }}>
@@ -107,8 +107,9 @@ const styles = EStyleSheet.create({
         backgroundColor: '#0073b7'
     },
     Text_style: {
+        fontSize: '1.2rem',
         color: '#fff',
-        fontSize: 18,
+        fontWeight: '500',
     }
 
 })
