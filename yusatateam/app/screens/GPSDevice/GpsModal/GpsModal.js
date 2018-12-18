@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, Modal, View, TouchableHighlight, FlatList, TouchableOpacity } from 'react-native';
-import { Feather } from '@expo/vector-icons';
-import { Header, Button, Body, Right, Left, List, ListItem } from 'native-base';
+import { Feather,Entypo } from '@expo/vector-icons';
+import { Header, Body, Right, Left, List, ListItem } from 'native-base';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -11,7 +11,9 @@ export default class GpsModal extends React.Component {
         this.state = {
             isLoading: true,
             modalVisible: false,
-            data: []
+            data: [],
+            title : '',
+            map: new Map(),
         }
         this.setModalVisible = this.setModalVisible.bind(this);
         this.onSelectValue = this.onSelectValue.bind(this);
@@ -28,11 +30,11 @@ export default class GpsModal extends React.Component {
 
     onSelectValue(item) {
         this.props.selectedValue(item.label);
-        this.setModalVisible(false, []);
+        this.setModalVisible(false, [],' ');
     }
 
-    setModalVisible(visible, data = []) {
-        this.setState({ modalVisible: visible, data: data });
+    setModalVisible(visible, data = [],title) {
+        this.setState({ modalVisible: visible, data: data, title:title });
     }
 
     render() {
@@ -55,11 +57,11 @@ export default class GpsModal extends React.Component {
                                 <Header style={styles.Header_Style}>
                                     <Left>
                                         <TouchableHighlight onPress={() => { this.setModalVisible(false) }}>
-                                            <Feather name='arrow-left' size={26} color='#fff'></Feather>
+                                            <Entypo name='cross' size={28} color='#fff'></Entypo>
                                         </TouchableHighlight>
                                     </Left>
                                     <Body>
-                                        <Text style={styles.Text_style}>Company</Text>
+                                        <Text style={styles.Text_style}>{this.state.title}</Text>
                                     </Body>
                                     <Right></Right>
                                 </Header>

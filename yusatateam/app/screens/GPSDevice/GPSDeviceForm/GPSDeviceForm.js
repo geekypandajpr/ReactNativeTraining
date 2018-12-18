@@ -4,7 +4,7 @@ import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import DatePicker from 'react-native-datepicker';
 
-import { Toolbar, Float,  UnderlineText } from '../../../components';
+import { Toolbar, Float, UnderlineText } from '../../../components';
 import styles from './styles';
 import { globalStyles } from '../../../styles'
 import { GpsModal } from '../GpsModal/GpsModal';
@@ -49,6 +49,14 @@ const ISD = [
     { label: '+95', value: '+95' }
 ];
 
+const title = [
+    'Company',
+    'Vehicles',
+    'DeviceType',
+    'Subskey',
+    'ISD'
+]
+
 const COMPANY_KEY = 'COMPANY';
 const VEHICLE_KEY = 'VEHICLE';
 const DEVICE_TYPE = 'DEVICE_TYPE';
@@ -61,7 +69,7 @@ export default class GPSDeviceForm extends React.Component {
         this.state = {
             isLoading: true,
             flag: '',
-            map : new Map(),
+            map: new Map(),
         }
 
         this.modalRef = React.createRef();
@@ -78,15 +86,15 @@ export default class GPSDeviceForm extends React.Component {
         this.setState({ isLoading: false });
     }
 
-    componentDidMount (){
+    componentDidMount() {
         const newMap = new Map(this.state.map);
-            newMap.set(COMPANY_KEY,"Select Company");
-            newMap.set(VEHICLE_KEY,"Select Vehicle");
-            newMap.set(DEVICE_TYPE,"Select device type");
-            newMap.set(SUBSC_KEY,"select SubsKey");
-            newMap.set(ISD_KEY ,'+91')
-            this.setState({map:newMap})
-        }
+        newMap.set(COMPANY_KEY, "Select Company");
+        newMap.set(VEHICLE_KEY, "Select Vehicle");
+        newMap.set(DEVICE_TYPE, "Select device type");
+        newMap.set(SUBSC_KEY, "select SubsKey");
+        newMap.set(ISD_KEY, '+91')
+        this.setState({ map: newMap })
+    }
 
     OnValueSelect(value) {
         // if (this.state.flag === 'COMPANY') {
@@ -101,16 +109,16 @@ export default class GPSDeviceForm extends React.Component {
         //     this.setState({ isd: value })
         // }
         // this.setState((state) => {
-            const newMap = new Map(this.state.map);
-            newMap.set(this.state.flag,value);
-            this.setState({map:newMap})
+        const newMap = new Map(this.state.map);
+        newMap.set(this.state.flag, value);
+        this.setState({ map: newMap })
         //     return {newMap};
         // })
     }
 
-    openPicker(keys, list) {
+    openPicker(keys,list,title) {
         this.setState({ flag: keys });
-        this.modalRef.current.setModalVisible(true, list);
+        this.modalRef.current.setModalVisible(true,list,title);
     }
 
     render() {
@@ -154,7 +162,7 @@ export default class GPSDeviceForm extends React.Component {
                                                     name="Company"
                                                     value={this.state.map.get(COMPANY_KEY)}
                                                     isMandatory={true}
-                                                    onpress={() => this.openPicker(COMPANY_KEY, company)}
+                                                    onpress={() => this.openPicker(COMPANY_KEY, company,title[0])}
                                                 />
                                             </View>
 
@@ -168,7 +176,7 @@ export default class GPSDeviceForm extends React.Component {
                                                     name="Vehicle #"
                                                     value={this.state.map.get(VEHICLE_KEY)}
                                                     isMandatory={true}
-                                                    onpress={() => this.openPicker(VEHICLE_KEY, vehicles)} />
+                                                    onpress={() => this.openPicker(VEHICLE_KEY, vehicles,title[1])} />
                                             </View>
 
                                             <View style={styles.Small_View}>
@@ -176,7 +184,7 @@ export default class GPSDeviceForm extends React.Component {
                                                     name="Device Type"
                                                     isMandatory={true}
                                                     value={this.state.map.get(DEVICE_TYPE)}
-                                                    onpress={() => this.openPicker(DEVICE_TYPE, deviceType)} />
+                                                    onpress={() => this.openPicker(DEVICE_TYPE, deviceType,title[2])} />
                                             </View>
 
                                             <View style={styles.Small_View}>
@@ -184,7 +192,7 @@ export default class GPSDeviceForm extends React.Component {
                                                     name="Subscription Key"
                                                     value={this.state.map.get(SUBSC_KEY)}
                                                     isMandatory={false}
-                                                    onpress={() => this.openPicker(SUBSC_KEY, subskey)} />
+                                                    onpress={() => this.openPicker(SUBSC_KEY, subskey,title[3])} />
                                             </View>
                                         </View>
                                     </View>
@@ -205,7 +213,7 @@ export default class GPSDeviceForm extends React.Component {
                                                             name='Country ISD'
                                                             isMandatory={true}
                                                             value={this.state.map.get(ISD_KEY)}
-                                                            onpress={() => this.openPicker(ISD_KEY, ISD)}
+                                                            onpress={() => this.openPicker(ISD_KEY, ISD,title[4])}
                                                         >
                                                         </UnderlineText>
                                                     </View>
@@ -232,7 +240,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
-                                                        isMandatory ={false}
+                                                        isMandatory={false}
                                                         //onSubmitEditing={() => this._focusNextField('password')}
                                                         //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
@@ -245,7 +253,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
-                                                        isMandatory ={false}
+                                                        isMandatory={false}
                                                         //onSubmitEditing={() => this._focusNextField('password')}
                                                         //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
@@ -260,7 +268,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
-                                                        isMandatory ={false}
+                                                        isMandatory={false}
                                                         //onSubmitEditing={() => this._focusNextField('password')}
                                                         //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
@@ -301,7 +309,7 @@ export default class GPSDeviceForm extends React.Component {
                                                     returnKeyType={'next'}
                                                     keyboardType={'email-address'}
                                                     blurOnSubmit={false}
-                                                    isMandatory ={true}
+                                                    isMandatory={true}
                                                     //onSubmitEditing={() => this._focusNextField('password')}
                                                     //onChangeText={(username) => this.setState({ username })}
                                                     inputStyles={{ width: '100%' }}
