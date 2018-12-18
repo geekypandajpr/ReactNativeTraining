@@ -1,5 +1,4 @@
-const jobsData= [
-    
+const jobsData= [   
 [
             {
                 'jobNumber': 'JOBS201NOV2018',

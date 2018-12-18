@@ -12,12 +12,22 @@ import {
 } from '../../components';
 import colors from '../../constants/colors';
 import styles from './Styles';
+import { GpsModal } from '../GPSDevice/GpsModal/GpsModal';
 
+const COMPANY_KEY = 'COMPANY';
+const company = [
+    { label: 'yusata', value: 'sim1' },
+    { label: 'IBM', value: 'sim2' },
+    { label: 'Capgemini', value: 'sim3' },
+    { label: 'TCS', value: 'sim4' },
+    { label: 'Infosys', value: 'sim5' }
+];
 export default class Dashboard extends React.Component {
     constructor() {
         super();
         this.state = {
             isLoading: true,
+            company : '',
             pieColor: ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'],
             pieSeries: [400, 200, 100, 100],
             piedata: [
@@ -29,7 +39,16 @@ export default class Dashboard extends React.Component {
         }
         this.onChangePieChart = this.onChangePieChart.bind(this);
         this.onBarchartChange = this.onBarchartChange.bind(this);
+        this.OnValueSelect = this.OnValueSelect.bind(this);
+        this.modalRef = React.createRef();
+        this.openPicker = this.openPicker.bind(this);
 
+    }
+
+    OnValueSelect(value) {
+        if (this.state.flag === 'COMPANY') {
+            this.setState({ company: value });
+        } 
     }
 
     async componentWillMount() {
@@ -97,15 +116,20 @@ export default class Dashboard extends React.Component {
         ) // works best when the goBack is async
         return true;
     }
-
+    openPicker(keys, list) {
+        this.setState({ flag: keys });
+        this.modalRef.current.setModalVisible(true, list,"Company");
+    }
     render() {
         const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Toolbar title='Dashboard'
+                    <Toolbar title={
+                        this.state.company == '' ? "DashBoard" : this.state.company
+                    }
                         leftIcon='home'
-                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')} />
+                        setting='filter' settingType='FontAwesome' onSettingsPress={() => this.openPicker(COMPANY_KEY, company)} />
 
                     <View style={styles.container1}>
 
@@ -217,6 +241,7 @@ export default class Dashboard extends React.Component {
                         </View>
 
                     </View>
+                    <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
                 </View>
         );
     }

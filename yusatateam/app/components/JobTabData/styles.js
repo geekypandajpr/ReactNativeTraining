@@ -11,7 +11,7 @@ export default EStyleSheet.create({
         backgroundColor : 'white',
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft :6,
+        marginLeft :2,
         marginRight :6,
     },
     filterIcon : {

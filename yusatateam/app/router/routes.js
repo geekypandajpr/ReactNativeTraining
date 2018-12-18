@@ -18,6 +18,7 @@ import Customer from '../screens/AssociationList/Customer';
 import Association from '../screens/AssociationList/Association/Association';
 import GPSDevice from '../screens/GPSDevice/GPSDevice';
 import GPSDeviceForm from '../screens/GPSDevice/GPSDeviceForm/GPSDeviceForm';
+import SalesDashboard from '../screens/SalesDashboard/SalesDashboard'
 // import {
 //     LogIn,
 //     HomeScreen,
@@ -149,11 +150,18 @@ const RouteConfigs = {
         navigationOptions: {
             header: null
         }
+    },
+    SalesDashboard:
+    {   
+        screen: SalesDashboard,
+        navigationOptions: {
+            header: null
+        }
     }
 }
 
 const StackNavigatorConfig = {
-    initialRouteName: 'LogIn',
+    initialRouteName: 'Dashboard',
     headerMode: 'float'
 }
 

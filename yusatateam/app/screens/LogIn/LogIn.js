@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
 import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { CheckBox, Button, Text } from 'native-base';
-
 import { InputWithIcon, Statusbar, Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 import styles from './Styles';
@@ -111,7 +110,6 @@ export class LogIn extends React.Component {
                                     <Text style={styles.forgot_text}> Forgot password ? </Text>
                                 </TouchableWithoutFeedback>                                   
                             </View>
-                            
                         </View>
 
                         <View style={styles.button_view}>

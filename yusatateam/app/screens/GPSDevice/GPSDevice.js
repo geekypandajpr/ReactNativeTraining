@@ -9,7 +9,6 @@ import { Picker, Button } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
-
 import styles from './styles';
 import { ToolbarWithDropdown, GpsDeviceData, SearchBar } from '../../components';
 import { userActions } from '../../redux/actions';
