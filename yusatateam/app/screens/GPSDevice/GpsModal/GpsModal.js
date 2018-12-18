@@ -31,7 +31,7 @@ export default class GpsModal extends React.Component {
         this.setModalVisible(false, []);
     }
 
-    setModalVisible(visible, data) {
+    setModalVisible(visible, data = []) {
         this.setState({ modalVisible: visible, data: data });
     }
 
@@ -80,7 +80,6 @@ export default class GpsModal extends React.Component {
                                 </View>
                             </View>
                         </View>
-
                     </Modal>
                 </View >
         );

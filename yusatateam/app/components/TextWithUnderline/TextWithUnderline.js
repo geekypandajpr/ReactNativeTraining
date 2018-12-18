@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
-
+import { Ionicons} from '@expo/vector-icons';
 
 export default class UnderlineText extends React.Component {
     constructor(props) {

@@ -61,12 +61,9 @@ export default class GPSDeviceForm extends React.Component {
         this.state = {
             isLoading: true,
             flag: '',
-            company: 'Select company',
-            vehicle: 'Select vehicle',
-            deviceType: 'Select device type',
-            subskey: 'Select subscription key',
-            isd: '+91'
+            map : new Map(),
         }
+
         this.modalRef = React.createRef();
         this.OnValueSelect = this.OnValueSelect.bind(this);
         this.openPicker = this.openPicker.bind(this);
@@ -81,18 +78,34 @@ export default class GPSDeviceForm extends React.Component {
         this.setState({ isLoading: false });
     }
 
-    OnValueSelect(value) {
-        if (this.state.flag === 'COMPANY') {
-            this.setState({ company: value });
-        } else if (this.state.flag == 'VEHICLE') {
-            this.setState({ vehicle: value })
-        } else if (this.state.flag == 'DEVICE_TYPE') {
-            this.setState({ deviceType: value })
-        } else if (this.state.flag == 'SUBSC_KEY') {
-            this.setState({ subskey: value })
-        } else if (this.state.flag == 'ISD_KEY') {
-            this.setState({ isd: value })
+    componentDidMount (){
+        const newMap = new Map(this.state.map);
+            newMap.set(COMPANY_KEY,"Select Company");
+            newMap.set(VEHICLE_KEY,"Select Vehicle");
+            newMap.set(DEVICE_TYPE,"Select device type");
+            newMap.set(SUBSC_KEY,"select SubsKey");
+            newMap.set(ISD_KEY ,'+91')
+            this.setState({map:newMap})
         }
+
+    OnValueSelect(value) {
+        // if (this.state.flag === 'COMPANY') {
+        //     this.setState({ company: value });
+        // } else if (this.state.flag == 'VEHICLE') {
+        //     this.setState({ vehicle: value })
+        // } else if (this.state.flag == 'DEVICE_TYPE') {
+        //     this.setState({ deviceType: value })
+        // } else if (this.state.flag == 'SUBSC_KEY') {
+        //     this.setState({ subskey: value })
+        // } else if (this.state.flag == 'ISD_KEY') {
+        //     this.setState({ isd: value })
+        // }
+        // this.setState((state) => {
+            const newMap = new Map(this.state.map);
+            newMap.set(this.state.flag,value);
+            this.setState({map:newMap})
+        //     return {newMap};
+        // })
     }
 
     openPicker(keys, list) {
@@ -139,7 +152,7 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Company"
-                                                    value={this.state.company}
+                                                    value={this.state.map.get(COMPANY_KEY)}
                                                     isMandatory={true}
                                                     onpress={() => this.openPicker(COMPANY_KEY, company)}
                                                 />
@@ -153,8 +166,8 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Vehicle #"
+                                                    value={this.state.map.get(VEHICLE_KEY)}
                                                     isMandatory={true}
-                                                    value={this.state.vehicle}
                                                     onpress={() => this.openPicker(VEHICLE_KEY, vehicles)} />
                                             </View>
 
@@ -162,14 +175,14 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Device Type"
                                                     isMandatory={true}
-                                                    value={this.state.deviceType}
+                                                    value={this.state.map.get(DEVICE_TYPE)}
                                                     onpress={() => this.openPicker(DEVICE_TYPE, deviceType)} />
                                             </View>
 
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Subscription Key"
-                                                    value={this.state.subskey}
+                                                    value={this.state.map.get(SUBSC_KEY)}
                                                     isMandatory={false}
                                                     onpress={() => this.openPicker(SUBSC_KEY, subskey)} />
                                             </View>
@@ -191,7 +204,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         <UnderlineText
                                                             name='Country ISD'
                                                             isMandatory={true}
-                                                            value={this.state.isd}
+                                                            value={this.state.map.get(ISD_KEY)}
                                                             onpress={() => this.openPicker(ISD_KEY, ISD)}
                                                         >
                                                         </UnderlineText>
@@ -205,7 +218,6 @@ export default class GPSDeviceForm extends React.Component {
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
                                                         isMandatory={true}
-
                                                         //onSubmitEditing={() => this._focusNextField('password')}
                                                         //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
