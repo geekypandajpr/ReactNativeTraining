@@ -12,7 +12,7 @@ export default class GpsModal extends React.Component {
             isLoading: true,
             modalVisible: false,
             data: [],
-            title : '',
+            title: '',
             map: new Map(),
         }
         this.setModalVisible = this.setModalVisible.bind(this);
@@ -30,11 +30,11 @@ export default class GpsModal extends React.Component {
 
     onSelectValue(item) {
         this.props.selectedValue(item.label);
-        this.setModalVisible(false, [],' ');
+        this.setModalVisible(false, [], ' ');
     }
 
-    setModalVisible(visible, data = [],title) {
-        this.setState({ modalVisible: visible, data: data, title:title });
+    setModalVisible(visible, data = [], title) {
+        this.setState({ modalVisible: visible, data: data, title: title });
     }
 
     render() {
@@ -55,12 +55,12 @@ export default class GpsModal extends React.Component {
                             <View style={styles.subContainer}>
 
                                 <Header style={styles.Header_Style}>
-                                    
+
                                     <Body>
-                                    <Text style={styles.Text_style}>{this.state.title}</Text> 
+                                        <Text style={styles.Text_style}>{this.state.title}</Text>
                                     </Body>
                                     <Right>
-                                    <TouchableHighlight onPress={() => { this.setModalVisible(false) }}>
+                                        <TouchableHighlight onPress={() => { this.setModalVisible(false) }}>
                                             <Entypo name='cross' size={28} color='#fff'></Entypo>
                                         </TouchableHighlight>
                                     </Right>
