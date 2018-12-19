@@ -2,20 +2,16 @@ import React from 'react';
 import { View, FlatList, KeyboardAvoidingView } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
+import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker';
 
-import { Toolbar, Float, UnderlineText } from '../../../components';
+import { Toolbar, Float, UnderlineText,Activityindication } from '../../../components';
 import styles from './styles';
 import { globalStyles } from '../../../styles'
 import { GpsModal } from '../GpsModal/GpsModal';
+import { userActions} from '../../../redux/actions';
 
-const company = [
-    { label: 'yusata', value: 'sim1' },
-    { label: 'IBM', value: 'sim2' },
-    { label: 'Capgemini', value: 'sim3' },
-    { label: 'TCS', value: 'sim4' },
-    { label: 'Infosys', value: 'sim5' }
-];
+
 
 const deviceType = [
     { label: 'device1', value: 'device1' },
@@ -63,7 +59,7 @@ const DEVICE_TYPE = 'DEVICE_TYPE';
 const SUBSC_KEY = 'SUBSC_KEY';
 const ISD_KEY = 'ISD_kEY';
 
-export default class GPSDeviceForm extends React.Component {
+export  class GPSDeviceForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -87,6 +83,7 @@ export default class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
+        this.props.onFetchData();
         const newMap = new Map(this.state.map);
         newMap.set(COMPANY_KEY, "Select Company");
         newMap.set(VEHICLE_KEY, "Select Vehicle");
@@ -106,7 +103,7 @@ export default class GPSDeviceForm extends React.Component {
 
     openPicker(keys,list,title) {
         this.setState({ flag: keys });
-        this.modalRef.current.setModalVisible(true,list,title);
+        this.modalRef.current.setModalVisible(true,title,list);
     }
 
     render() {
@@ -115,33 +112,26 @@ export default class GPSDeviceForm extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ backgroundColor: '#fff', flex: 1 }}>
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
-
+                    <Activityindication visible={this.props.CompanyDatas.isLoading}/>
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={[{ key: 1 }]}
                         keyboardShouldPersistTaps="always"
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
+                       
                             <KeyboardAvoidingView
                                 behavior="padding" >
                                 <View style={{ flexDirection: 'column', flex: 1 }}>
                                     <View style={styles.Sub_View}>
                                         <View style={styles.Width_View}>
-
+                                       
                                             <View style={styles.Small_View}>
                                                 <Item floatingLabel>
                                                     <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: '#000' }} />
                                                     <Label style={{ color: 'rgba(0,0,0,0.8)', fontSize: 15 }}>Device</Label>
                                                     <Input
                                                         style={{ color: '#000', fontSize: 15 }}
-                                                    // value={this.props.value}
-                                                    // keyboardType={this.props.keyboardType}
-                                                    // returnKeyType={this.props.returnKeyType}
-                                                    // getRef={this.props.getRef}
-                                                    // blurOnSubmit={this.props.blurOnSubmit}
-                                                    // onChangeText={this.props.onChangeText}
-                                                    // secureTextEntry={this.props.secureTextEntry}
-                                                    // onSubmitEditing={this.props.onSubmitEditing}
                                                     />
                                                 </Item>
                                             </View>
@@ -150,8 +140,9 @@ export default class GPSDeviceForm extends React.Component {
                                                     name="Company"
                                                     value={this.state.map.get(COMPANY_KEY)}
                                                     isMandatory={true}
-                                                    onpress={() => this.openPicker(COMPANY_KEY,company,title[0])}
-                                                />
+                                                    onpress={() => this.openPicker(COMPANY_KEY,this.props.CompanyDatas.data,title[0])}
+                                                 />
+                                                 
                                             </View>
 
                                             {/* <View style={styles.pickerView}>
@@ -224,26 +215,20 @@ export default class GPSDeviceForm extends React.Component {
                                                 <View style={styles.inner_View}>
                                                     <Float
                                                         placeholder='Balance'
-                                                        //value={this.state.username}
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
                                                         isMandatory={false}
-                                                        //onSubmitEditing={() => this._focusNextField('password')}
-                                                        //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
                                                 <View style={styles.inner_View}>
                                                     <Float
                                                         placeholder='Data Balance'
-                                                        //value={this.state.username}
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
                                                         isMandatory={false}
-                                                        //onSubmitEditing={() => this._focusNextField('password')}
-                                                        //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
@@ -252,13 +237,10 @@ export default class GPSDeviceForm extends React.Component {
                                                 <View style={styles.inner_View}>
                                                     <Float
                                                         placeholder='Data plan'
-                                                        //value={this.state.username}
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
                                                         isMandatory={false}
-                                                        //onSubmitEditing={() => this._focusNextField('password')}
-                                                        //onChangeText={(username) => this.setState({ username })}
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
@@ -293,13 +275,10 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <Float
                                                     placeholder='Carrier'
-                                                    //value={this.state.username}
                                                     returnKeyType={'next'}
                                                     keyboardType={'email-address'}
                                                     blurOnSubmit={false}
                                                     isMandatory={true}
-                                                    //onSubmitEditing={() => this._focusNextField('password')}
-                                                    //onChangeText={(username) => this.setState({ username })}
                                                     inputStyles={{ width: '100%' }}
                                                 />
                                             </View>
@@ -327,4 +306,16 @@ export default class GPSDeviceForm extends React.Component {
     }
 }
 
-export { GPSDeviceForm }
+function mapStateToProps(state){
+    return{
+        CompanyDatas : state.CompanyData
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        onFetchData : () => dispatch(userActions.gpsdeviceRequest())
+       
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps) ( GPSDeviceForm )

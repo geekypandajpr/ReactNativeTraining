@@ -30,10 +30,10 @@ export default class GpsModal extends React.Component {
 
     onSelectValue(item) {
         this.props.selectedValue(item.label);
-        this.setModalVisible(false, [], ' ');
+        this.setModalVisible(false, '' ,[]);
     }
 
-    setModalVisible(visible, data = [], title) {
+    setModalVisible(visible,  title,data = []) {
         this.setState({ modalVisible: visible, data: data, title: title });
     }
 

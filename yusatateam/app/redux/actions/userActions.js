@@ -1,4 +1,4 @@
-import { USER, JOBS, SIM, DEVICE, CUSTOMER, VEHICLE, TECHNICIAN } from '../common/actionTypes';
+import { USER, JOBS, SIM, DEVICE, CUSTOMER, VEHICLE, TECHNICIAN,GPSDEVICE } from '../common/actionTypes';
 
 export default {
     loginRequest: (loginCredentials) => ({ type: USER.LOGIN, loginCredentials }),
@@ -7,5 +7,7 @@ export default {
     jobRequest: () => ({ type: JOBS.JOBS_LOGIN }),
     cutomerFetchRequest: () => ({ type: CUSTOMER.CUSTOMER_FETCH }),
     vehicleFetchRequest: (customer) => ({ type: VEHICLE.VEHICLE_FETCH, customer }),
-    technicianRequest: () => ({ type: TECHNICIAN.TECHNICIAN_REQUEST })
+    technicianRequest: () => ({ type: TECHNICIAN.TECHNICIAN_REQUEST }),
+    gpsdeviceRequest: () => ({type: GPSDEVICE.GPSDEVICE_REQUEST})
+
 }

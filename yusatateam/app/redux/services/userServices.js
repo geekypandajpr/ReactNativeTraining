@@ -10,6 +10,7 @@ import DeviceData from '../../assets/JSONData/DeviceData';
 import customersData from '../../assets/JSONData/customerData';
 import vehiclesData from '../../assets/JSONData/VehicleDetail';
 import TechnicianData from '../../assets/JSONData/TechnicianData';
+import CompanyData from '../../assets/JSONData/GpsDevice/CompanyData';
 
 export const login = data => Api.post(USER.LOGIN, data);
 
@@ -21,7 +22,8 @@ export default userService = {
     jobPendingData,
     customerList,
     vehicleList,
-    technicianLogin
+    technicianLogin,
+    gpslogin
 }
 
 /**LOGIN API CALL */
@@ -81,9 +83,17 @@ export function technicianLogin() {
 /**JOBS API CALL */
 export function jobPendingData() {
     return new Promise((resolve, reject) => {
-       
+        setTimeout(() => {
             return resolve(JobsData);
-        
+        }, 3000)
+    });
+}
+/**GPSDEVICE LIST API CALL */
+export function gpslogin() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(CompanyData);
+        }, 3000)
     });
 }
 
