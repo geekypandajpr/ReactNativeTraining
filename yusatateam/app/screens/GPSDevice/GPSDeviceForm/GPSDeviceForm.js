@@ -99,21 +99,9 @@ export default class GPSDeviceForm extends React.Component {
     OnValueSelect(value) {
         // if (this.state.flag === 'COMPANY') {
         //     this.setState({ company: value });
-        // } else if (this.state.flag == 'VEHICLE') {
-        //     this.setState({ vehicle: value })
-        // } else if (this.state.flag == 'DEVICE_TYPE') {
-        //     this.setState({ deviceType: value })
-        // } else if (this.state.flag == 'SUBSC_KEY') {
-        //     this.setState({ subskey: value })
-        // } else if (this.state.flag == 'ISD_KEY') {
-        //     this.setState({ isd: value })
-        // }
-        // this.setState((state) => {
         const newMap = new Map(this.state.map);
         newMap.set(this.state.flag, value);
         this.setState({ map: newMap })
-        //     return {newMap};
-        // })
     }
 
     openPicker(keys,list,title) {
@@ -162,7 +150,7 @@ export default class GPSDeviceForm extends React.Component {
                                                     name="Company"
                                                     value={this.state.map.get(COMPANY_KEY)}
                                                     isMandatory={true}
-                                                    onpress={() => this.openPicker(COMPANY_KEY, company,title[0])}
+                                                    onpress={() => this.openPicker(COMPANY_KEY,company,title[0])}
                                                 />
                                             </View>
 
