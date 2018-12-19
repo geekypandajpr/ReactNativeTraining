@@ -16,7 +16,7 @@ import { GpsModal } from '../GPSDevice/GpsModal/GpsModal';
 
 const COMPANY_KEY = 'COMPANY';
 const company = [
-    { label: 'yusata', value: 'sim1' },
+    { label: 'Yusata', value: 'sim1' },
     { label: 'IBM', value: 'sim2' },
     { label: 'Capgemini', value: 'sim3' },
     { label: 'TCS', value: 'sim4' },
@@ -126,7 +126,7 @@ export default class Dashboard extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
                     <Toolbar title={
-                        this.state.company == '' ? "DashBoard" : this.state.company
+                        this.state.company == '' ? "DashBoard" : this.state.company +" DashBoard"
                     }
                         leftIcon='home'
                         setting='filter' settingType='FontAwesome' onSettingsPress={() => this.openPicker(COMPANY_KEY, company)} />

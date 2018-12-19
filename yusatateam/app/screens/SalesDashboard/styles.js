@@ -1,18 +1,30 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
+    mainContainer: {
+        flex: 1,
+        backgroundColor: 'white',
+    },
+    summary_view: {
+        flex: 1,
+        // backgroundColor: 'green'
+    },
+    lower_view: {
+        backgroundColor: '#fff',
+        flex: 1.5,
+        width: '100%',
+        
+    },
     container:{
         width: "100%",
         height: "100%",
     },
+    textInputAlt: {
+        color: 'red',
+    },
     iconView: {
         color: 'white',
 
-    },
-    pie_chart: {
-        //backgroundColor: 'red',
-        flex: 1,
-        margin : 10
     },
     mainContainer: {
         flex: 1,
