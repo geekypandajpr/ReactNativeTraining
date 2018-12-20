@@ -1,4 +1,4 @@
 export const USER = {
-    LOGIN: '/loginmobile',
+    LOGIN: '/login',
     FORGET_PASSWORD : '/forgetpassword',
 };

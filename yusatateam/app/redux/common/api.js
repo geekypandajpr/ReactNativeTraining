@@ -2,7 +2,7 @@
 
 export default class Api {
     static getBaseUrl() {
-        return 'http://v2.ylogapp.com/YLogAdminAPI';
+        return 'http://app.ylogapp.com:9393/YLogAPI/';
     }
     
     static get(url) {
