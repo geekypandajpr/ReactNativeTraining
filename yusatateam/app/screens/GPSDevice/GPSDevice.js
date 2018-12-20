@@ -3,12 +3,10 @@ import {
     View,
     FlatList,
     BackHandler,
-    TextInput
 } from 'react-native';
-import { Picker, Button } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
-import { Ionicons } from '@expo/vector-icons';
+
 import styles from './styles';
 import { ToolbarWithDropdown, GpsDeviceData, SearchBar } from '../../components';
 import { userActions } from '../../redux/actions';
@@ -73,7 +71,7 @@ export class GPSDevice extends React.Component {
     }
     SearchFilterFunction(text) {
         const newData = this.arrayList.filter(function (item) {
-            const itemData = item.ORDER.toUpperCase()
+            const itemData = item.ESN.toUpperCase()
             const textData = text.toUpperCase()
             return itemData.indexOf(textData) > -1
         })
@@ -109,7 +107,7 @@ export class GPSDevice extends React.Component {
 
                     <SearchBar
                         placeholder={'Search here'}
-                        isDropdown={true}
+                        isDropdown={false}
                         pickerItem={PICKERITEM}
                         onChangeText={(text) => this.setState({searchValue: text})}
                         selectedValue={this.state.selected2}

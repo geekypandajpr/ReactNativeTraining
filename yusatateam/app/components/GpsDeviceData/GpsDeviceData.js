@@ -55,13 +55,13 @@ export default class GpsDeviceData extends React.Component {
 
                         <View style={styles.view}>
                             <View style={styles.first_view}>
-                                <Text style={[ globalStyles.primary_text, { fontFamily: 'Roboto' } ]}>Vehicle number</Text>
+                                <Text style={[ globalStyles.primary_text, { fontFamily: 'Roboto' } ]}>ESN</Text>
                             </View>
                             <View style={styles.middle_view}>
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
                             </View>
                             <View style={styles.last_view}>
-                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>Vehicle123</Text>
+                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>SBIMD123</Text>
                             </View>
                         </View>
 
