@@ -1,5 +1,5 @@
 export const USER = {
-    LOGIN: '/login',
+    LOGIN: 'login',
     COUNTRYISD : 'utility/list/CountryIsd',
     FORGET_PASSWORD : '/forgetpassword',
 };

@@ -83,7 +83,7 @@ export  class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
-        this.props.onFetchData();
+        // this.props.onFetchData();
         // alert(JSON.stringify(this.props.onFetchData()));
         const newMap = new Map(this.state.map);
         newMap.set(COMPANY_KEY, "Select Company");
@@ -314,7 +314,6 @@ function mapStateToProps(state){
         // CompanyDatas : state.CompanyData.data1,
         // DeviceDatas  : state.CompanyData.data2,
         CountryIsdList : state.CompanyData
-
     }
 }
 

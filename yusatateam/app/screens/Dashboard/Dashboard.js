@@ -93,7 +93,7 @@ export  class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        this.props.onFetchData();
+        // this.props.onFetchData();
         // alert(JSON.stringify(this.props.onFetchData()));
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
@@ -128,7 +128,7 @@ export  class Dashboard extends React.Component {
                     }
                         leftIcon='home'
                         setting='filter' settingType='FontAwesome' onSettingsPress={() => this.openPicker(COMPANY_KEY, this.props.CompanyDatas)} />
-                         <Activityindication visible={this.props.loading.isLoading}/>
+                         {/* <Activityindication visible={this.props.loading.isLoading}/> */}
                     <View style={styles.container1}>
 
                         <View style={styles.upper_view}>
@@ -255,7 +255,6 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return{
         onFetchData : () => dispatch(userActions.gpsdeviceRequest())
-       
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps) ( Dashboard )
