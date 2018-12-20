@@ -14,7 +14,7 @@ export default class Activityindication extends React.Component {
                     onRequestClose={() => { }}>
                     <View style={styles.container}>
                         <View style={[styles.outer_circle, { backgroundColor: '#fff' }]} >
-                            <ActivityIndicator size="large" color="#000" />
+                            <ActivityIndicator size="small" color="#000" />
                         </View>
                     </View>
                 </Modal>
