@@ -18,13 +18,6 @@ import styles from './Styles';
 import { GpsModal } from '../GPSDevice/GpsModal/GpsModal';
 
 const COMPANY_KEY = 'COMPANY';
-const company = [
-    { label: 'Yusata', value: 'sim1' },
-    { label: 'IBM', value: 'sim2' },
-    { label: 'Capgemini', value: 'sim3' },
-    { label: 'TCS', value: 'sim4' },
-    { label: 'Infosys', value: 'sim5' }
-];
 export  class Dashboard extends React.Component {
     constructor() {
         super();
