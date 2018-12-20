@@ -161,7 +161,7 @@ const RouteConfigs = {
 }
 
 const StackNavigatorConfig = {
-    initialRouteName: 'Dashboard',
+    initialRouteName: 'LogIn',
     headerMode: 'float'
 }
 

@@ -108,8 +108,7 @@ export  class GPSDeviceForm extends React.Component {
     }
 
     render() {
-        //alert(JSON.stringify(this.props.CompanyDatas));
-        console.log(this.props.CompanyDatas);
+        alert(JSON.stringify(this.props.CountryIsdList));
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
@@ -313,7 +312,8 @@ function mapStateToProps(state){
     return{
         loading : state.CompanyData,
         CompanyDatas : state.CompanyData.data1,
-        DeviceDatas  : state.CompanyData.data2
+        DeviceDatas  : state.CompanyData.data2,
+        CountryIsdList : state.CompanyData.data3
 
     }
 }

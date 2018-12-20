@@ -14,6 +14,7 @@ import CompanyData from '../../assets/JSONData/GpsDevice/CompanyData';
 import DeviceValue from '../../assets/JSONData/GpsDevice/DeviceData'
 
 export const login = data => Api.post(USER.LOGIN, data);
+export const gpsDeviceCountryIsd = () => Api.get(USER.COUNTRYISD)
 
 export default userService = {
     login,
@@ -25,7 +26,8 @@ export default userService = {
     customerList,
     vehicleList,
     technicianLogin,
-    gpslogin
+    gpslogin,
+    gpsDeviceCountryIsd
 }
 
 /**LOGIN API CALL */
