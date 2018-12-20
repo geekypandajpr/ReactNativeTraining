@@ -29,6 +29,11 @@ export default class JobTabData extends React.Component {
         this.arrayholder = this.state.data;
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(this.props.JobDataValue !== nextProps.JobDataValue) {
+            this.setState({data: nextProps.JobDataValue});
+        }
+    }
     selectedValue(data) {
 
         for (var key of data.keys()) {

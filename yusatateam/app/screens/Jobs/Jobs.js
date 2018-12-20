@@ -58,7 +58,7 @@ export  class Jobs extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
-                {/* <Activityindication visible={this.props.PendingData.isLoading}/> */}
+                <Activityindication visible={this.props.PendingData.isLoading}/>
                     <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
