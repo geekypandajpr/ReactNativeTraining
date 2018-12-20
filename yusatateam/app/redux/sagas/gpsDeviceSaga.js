@@ -5,7 +5,7 @@ import userServices from '../services/userServices'
 export function* gpsDeviceCountryIsd(action){
         try {
             const data = yield call(userServices.gpsDeviceCountryIsd);
-            alert(JSON.stringify(data))
+            // alert(JSON.stringify(data))
             yield put({type: GPSDEVICECOUNTRYISD.GPSDEVICECOUNTRYISD_SUCCESS,data});
         } catch(error) {
             yield put({type: GPSDEVICE.GPSDEVICE_FAILED,error})

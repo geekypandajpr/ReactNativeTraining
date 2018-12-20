@@ -6,7 +6,7 @@ export default class Api {
     }
     
     static get(url) {
-        return this.call(url, null, 'GET');
+        return this.getCall(url, 'GET');
     }
 
     static post(url, params) {
@@ -16,6 +16,7 @@ export default class Api {
     static async call(route, params, methodType) {
         const url = this.getBaseUrl() + route;
         let header = {
+            Accept: 'application/json',
             'Content-Type': 'application/json'
         };
         return fetch(url, {
@@ -28,7 +29,27 @@ export default class Api {
             return res.results
         })
         .catch((error) => {
-            console.log('Error in getting list');
+            return error;
+        })
+    }
+
+    static async getCall(route, methodType) {
+        const url = this.getBaseUrl() + route;
+        let header = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        };
+        return fetch(url, {
+            method: methodType,
+            headers: header
+        })
+        .then((response) => response.status)
+        .then((res) => {
+            alert(res);
+            return res;
+        })
+        .catch((error) => {
+            alert(error);
             return error;
         })
     }

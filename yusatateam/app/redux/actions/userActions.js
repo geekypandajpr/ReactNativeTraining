@@ -9,6 +9,6 @@ export default {
     vehicleFetchRequest: (customer) => ({ type: VEHICLE.VEHICLE_FETCH, customer }),
     technicianRequest: () => ({ type: TECHNICIAN.TECHNICIAN_REQUEST }),
     gpsdeviceRequest: () => ({type: GPSDEVICE.GPSDEVICE_REQUEST}),
-    gpsdeviceRequestr: () =>({TYPE : GPSDEVICECOUNTRYISD.GPSDEVICECOUNTRYISD_REQUEST})
+    gpsdeviceRequestr: () => ({ type : GPSDEVICECOUNTRYISD.GPSDEVICECOUNTRYISD_REQUEST })
 
 }

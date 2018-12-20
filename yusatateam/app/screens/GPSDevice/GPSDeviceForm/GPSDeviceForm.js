@@ -83,7 +83,7 @@ export  class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
-        // this.props.onFetchData();
+        this.props.onFetchData();
         // alert(JSON.stringify(this.props.onFetchData()));
         const newMap = new Map(this.state.map);
         newMap.set(COMPANY_KEY, "Select Company");
@@ -108,7 +108,6 @@ export  class GPSDeviceForm extends React.Component {
     }
 
     render() {
-        alert(JSON.stringify(this.props.CountryIsdList));
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
