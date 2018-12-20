@@ -8,8 +8,11 @@ import {
     Piechart,
     MultiSwitch,
     SummarySwitch,
-    Barchart
+    Barchart,
+    Activityindication
 } from '../../components';
+import { connect } from 'react-redux';
+import { userActions} from '../../redux/actions';
 import colors from '../../constants/colors';
 import styles from './Styles';
 import { GpsModal } from '../GPSDevice/GpsModal/GpsModal';
@@ -22,7 +25,7 @@ const company = [
     { label: 'TCS', value: 'sim4' },
     { label: 'Infosys', value: 'sim5' }
 ];
-export default class Dashboard extends React.Component {
+export  class Dashboard extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -97,6 +100,8 @@ export default class Dashboard extends React.Component {
     }
 
     componentDidMount() {
+        this.props.onFetchData();
+        // alert(JSON.stringify(this.props.onFetchData()));
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
@@ -118,7 +123,7 @@ export default class Dashboard extends React.Component {
     }
     openPicker(keys, list) {
         this.setState({ flag: keys });
-        this.modalRef.current.setModalVisible(true, list,"Company");
+        this.modalRef.current.setModalVisible(true,"Company",list);
     }
     render() {
         const { navigate } = this.props.navigation;
@@ -129,8 +134,8 @@ export default class Dashboard extends React.Component {
                         this.state.company == '' ? "DashBoard" : this.state.company +" DashBoard"
                     }
                         leftIcon='home'
-                        setting='filter' settingType='FontAwesome' onSettingsPress={() => this.openPicker(COMPANY_KEY, company)} />
-
+                        setting='filter' settingType='FontAwesome' onSettingsPress={() => this.openPicker(COMPANY_KEY, this.props.CompanyDatas)} />
+                         <Activityindication visible={this.props.loading.isLoading}/>
                     <View style={styles.container1}>
 
                         <View style={styles.upper_view}>
@@ -246,5 +251,18 @@ export default class Dashboard extends React.Component {
         );
     }
 }
+function mapStateToProps(state){
+    return{
+        loading : state.CompanyData,
+        CompanyDatas : state.CompanyData.data1
 
-export { Dashboard }
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        onFetchData : () => dispatch(userActions.gpsdeviceRequest())
+       
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps) ( Dashboard )
