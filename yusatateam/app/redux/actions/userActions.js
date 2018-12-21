@@ -8,6 +8,7 @@ export default {
     cutomerFetchRequest: () => ({ type: CUSTOMER.CUSTOMER_FETCH }),
     vehicleFetchRequest: (customer) => ({ type: VEHICLE.VEHICLE_FETCH, customer }),
     technicianRequest: () => ({ type: TECHNICIAN.TECHNICIAN_REQUEST }),
-    gpsdeviceRequest: () => ({type: GPSDEVICE.GPSDEVICE_REQUEST})
+    gpsdeviceRequest: () => ({type: GPSDEVICE.GPSDEVICE_REQUEST}),
+    gpsdeviceDataRequest: () => ({type: GPSDEVICELISTDATA.GPSDEVICELISTDATA_REQUEST}),
 
 }

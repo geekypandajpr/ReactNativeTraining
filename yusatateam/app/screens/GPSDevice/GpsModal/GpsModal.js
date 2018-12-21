@@ -4,7 +4,7 @@ import { Entypo } from '@expo/vector-icons';
 import { Header, Body, Right, Left, List, ListItem } from 'native-base';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
+const companyList = [];
 export default class GpsModal extends React.Component {
     constructor(props) {
         super(props);
@@ -34,10 +34,16 @@ export default class GpsModal extends React.Component {
     }
 
     setModalVisible(visible,  title,data = []) {
-        this.setState({ modalVisible: visible, data: data, title: title });
+        for(var j=0;j<data.length;j++)
+        {
+            var values = data[j].companyName;
+            companyList.push(values)
+        }
+        this.setState({ modalVisible: visible, data: companyList, title: title });
     }
 
     render() {
+        
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View>
@@ -73,8 +79,8 @@ export default class GpsModal extends React.Component {
                                         renderItem={({ item, index }) =>
                                             <List>
                                                 <TouchableOpacity >
-                                                    <ListItem onPress={() => { this.onSelectValue(item) }}>
-                                                        <Text>{item.label}</Text>
+                                                    <ListItem>
+                                                        <Text>{item}</Text>
                                                     </ListItem>
                                                 </TouchableOpacity>
                                             </List>

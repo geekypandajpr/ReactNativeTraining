@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
-
+import GpsDeviceDatas from  '../../assets/JSONData/GpsDeviceDatas';
 import styles from './styles';
 import { ToolbarWithDropdown, GpsDeviceData, SearchBar } from '../../components';
 import { userActions } from '../../redux/actions';
@@ -24,11 +24,12 @@ export class GPSDevice extends React.Component {
         super(props);
         this.state = {
             isLoading: true,
-            data: null,
+            data: GpsDeviceDatas,
             searchValue: '',
             selected2: ''
         };
         this.list = [];
+        this.arrayholder = [];
         this.modalRef = React.createRef();
         this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
         this.SearchFilterFunction = this.SearchFilterFunction.bind(this);
@@ -38,6 +39,9 @@ export class GPSDevice extends React.Component {
         this.setState({
             selected2: value
         });
+    }
+    componentDidMount() {
+        this.arrayholder = this.state.data;
     }
 
     async componentWillMount() {
@@ -51,7 +55,7 @@ export class GPSDevice extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        this.props.onFetchData();
+        // this.props.onFetchData();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -71,7 +75,7 @@ export class GPSDevice extends React.Component {
     }
     SearchFilterFunction(text) {
         const newData = this.arrayList.filter(function (item) {
-            const itemData = item.ESN.toUpperCase()
+            const itemData = item.esn.toUpperCase()
             const textData = text.toUpperCase()
             return itemData.indexOf(textData) > -1
         })
@@ -116,10 +120,10 @@ export class GPSDevice extends React.Component {
                     />
 
                     <FlatList
-                        data={[{ key: 1 }, { key: 2 }, { key: 3 }, { key: 4 }, { key: 5 }, { key: 6 }]}
+                        data={this.state.data}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm')}/>
+                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm')} list={item}/>
                         } />
                 </View>
         );

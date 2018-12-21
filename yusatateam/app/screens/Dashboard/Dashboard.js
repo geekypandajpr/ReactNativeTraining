@@ -18,10 +18,12 @@ import styles from './Styles';
 import { GpsModal } from '../GPSDevice/GpsModal/GpsModal';
 
 const COMPANY_KEY = 'COMPANY';
+const companyArray = [];
 export  class Dashboard extends React.Component {
     constructor() {
         super();
         this.state = {
+            // items : this.props.params,
             isLoading: true,
             company : '',
             pieColor: ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'],
@@ -93,6 +95,18 @@ export  class Dashboard extends React.Component {
     }
 
     componentDidMount() {
+        const {params} = this.props.navigation.state
+        // alert(JSON.stringify(params.data.regionDetails))
+        var regionDetails=params.data.regionDetails;
+             for(var i=0;i<regionDetails.length;i++)
+                {
+                    for(var j=0;j<regionDetails[i].companyDetails.length;j++)
+                    {
+                        var data = regionDetails[i].companyDetails[j];
+                        companyArray.push(data)
+                    }
+                }
+               
         this.props.onFetchData();
         // alert(JSON.stringify(this.props.onFetchData()));
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -127,7 +141,7 @@ export  class Dashboard extends React.Component {
                         this.state.company == '' ? "DashBoard" : this.state.company +" DashBoard"
                     }
                         leftIcon='home'
-                        setting='filter' settingType='FontAwesome' onSettingsPress={() => this.openPicker(COMPANY_KEY, this.props.CompanyDatas)} />
+                        setting='filter' settingType='FontAwesome' onSettingsPress={() => this.openPicker(COMPANY_KEY, companyArray)} />
                          <Activityindication visible={this.props.loading.isLoading}/>
                     <View style={styles.container1}>
 

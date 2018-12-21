@@ -36,7 +36,7 @@ export default gpsDeviceReducer = (state = initialState, action) => {
                 error: true,
                 data2 : [],
             });
-            case GPSDEVICECOUNTRYISD.GPSDEVICECOUNTRYISD_SUCCESS:
+        case GPSDEVICECOUNTRYISD.GPSDEVICECOUNTRYISD_SUCCESS:
             return Object.assign({}, state, {
                 data3 : action.data3,
                 isLoading: false

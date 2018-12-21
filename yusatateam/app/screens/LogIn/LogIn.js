@@ -7,14 +7,17 @@ import { InputWithIcon, Statusbar, Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 import styles from './Styles';
 
+
+const companyArray = [];
 export class LogIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: 'admin@readingtonfarms.com',
+            username: 'sourabh.rajawat12@yusata.com',
             password: 'Admin@123',
             remember: true,
-            isLoading: true
+            isLoading: true,
+            len :  [],
         }
         this._doLogin = this._doLogin.bind(this);
     }
@@ -28,15 +31,33 @@ export class LogIn extends React.Component {
         this.setState({ isLoading: false });
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(this.props.user !== nextProps.user) {
+                this.setState({len: nextProps.user.data.regionDetails});
+                
+             
+        }
+    }
+
+
     _focusNextField(id) { this[id]._root.focus(); }
 
     _doLogin() {
         var loginCredentials = {
             "password": "Admin@123",
-            "userName": "admin@readingtonfarms.com"
+            "userName": "sourabh.rajawat12@yusata.com"
         }
         this.props.onFetchData(loginCredentials);
-        //this.props.navigation.navigate('Dashboard');
+        // this.props.navigation.navigate('Dashboard',{item : this.props.user.data.regionDetails });
+        
+                // for(var i=0;i<regionDetails.length;i++)
+                // {
+                //     for(var j=0;j<companyDetails.length;j++)
+                //     {
+                //         var data = regionDetails[i].companyDetails[j];
+                //         companyArray.push(data)
+                //     }
+                // }
     }
 
     _checkRequiredFields() {
@@ -44,7 +65,21 @@ export class LogIn extends React.Component {
         return true;
     }
 
+
+
     render() {
+        // alert(JSON.stringify(this.props.user.data.regionDetails));
+        // var regionDetails=this.props.user.data.regionDetails;
+        
+        //      for(var i=0;i<regionDetails.length == undefined ? 0 : regionDetails.length ;i++)
+        //         {
+        //             for(var j=0;j<companyDetails.length;j++)
+        //             {
+        //                 var data = regionDetails[i].companyDetails[j];
+        //                 companyArray.push(data)
+        //             }
+        //         }
+        //         alert(JSON.stringify(companyArray))
         const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
