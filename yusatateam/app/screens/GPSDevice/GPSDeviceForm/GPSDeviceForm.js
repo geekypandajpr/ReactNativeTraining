@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, KeyboardAvoidingView } from 'react-native';
+import { View, FlatList, KeyboardAvoidingView,TouchableHighlight } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
@@ -10,6 +10,7 @@ import styles from './styles';
 import { globalStyles } from '../../../styles'
 import { GpsModal } from '../GpsModal/GpsModal';
 import { userActions} from '../../../redux/actions';
+import {VehicleModal} from '../VehicleModal/VehicleModal';
 
 
 
@@ -69,6 +70,7 @@ export  class GPSDeviceForm extends React.Component {
         }
 
         this.modalRef = React.createRef();
+        this.modalReference = React.createRef();
         this.OnValueSelect = this.OnValueSelect.bind(this);
         this.openPicker = this.openPicker.bind(this);
     };
@@ -160,6 +162,12 @@ export  class GPSDeviceForm extends React.Component {
                                             </View>
 
                                             <View style={styles.Small_View}>
+                                            <TouchableHighlight onPress={() => {this.modalReference.current.setModalVisible(true)}}>
+                                                <Text>Add vehicle</Text>
+                                                </TouchableHighlight> 
+                                            </View>
+
+                                            <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Device Type"
                                                     isMandatory={true}
@@ -167,13 +175,15 @@ export  class GPSDeviceForm extends React.Component {
                                                     onpress={() => this.openPicker(DEVICE_TYPE,vehicles,title[2])} />
                                             </View>
 
-                                            <View style={styles.Small_View}>
+                                             
+
+                                            {/* <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Subscription Key"
                                                     value={this.state.map.get(SUBSC_KEY)}
                                                     isMandatory={false}
                                                     onpress={() => this.openPicker(SUBSC_KEY, subskey,title[3])} />
-                                            </View>
+                                            </View> */}
                                         </View>
                                     </View>
 
@@ -302,6 +312,7 @@ export  class GPSDeviceForm extends React.Component {
                             </KeyboardAvoidingView>
                         } />
                     <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
+                    <VehicleModal ref = {this.modalReference}/>
                 </View>
         );
     }
