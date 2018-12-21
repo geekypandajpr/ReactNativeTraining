@@ -108,13 +108,12 @@ export  class GPSDeviceForm extends React.Component {
     }
 
     render() {
-        alert(JSON.stringify(this.props.CountryIsdList));
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ backgroundColor: '#fff', flex: 1 }}>
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
-                    <Activityindication visible={this.props.loading.isLoading}/>
+                    {/* <Activityindication visible={this.props.CountryIsdList.isLoading}/> */}
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={[{ key: 1 }]}
@@ -142,7 +141,7 @@ export  class GPSDeviceForm extends React.Component {
                                                     name="Company"
                                                     value={this.state.map.get(COMPANY_KEY)}
                                                     isMandatory={true}
-                                                    onpress={() => this.openPicker(COMPANY_KEY,this.props.CompanyDatas,title[0])}
+                                                    onpress={() => this.openPicker(COMPANY_KEY,vehicles,title[0])}
                                                  />
                                                  
                                             </View>
@@ -165,7 +164,7 @@ export  class GPSDeviceForm extends React.Component {
                                                     name="Device Type"
                                                     isMandatory={true}
                                                     value={this.state.map.get(DEVICE_TYPE)}
-                                                    onpress={() => this.openPicker(DEVICE_TYPE, this.props.DeviceDatas,title[2])} />
+                                                    onpress={() => this.openPicker(DEVICE_TYPE,vehicles,title[2])} />
                                             </View>
 
                                             <View style={styles.Small_View}>
@@ -194,7 +193,7 @@ export  class GPSDeviceForm extends React.Component {
                                                             name='Country ISD'
                                                             isMandatory={true}
                                                             value={this.state.map.get(ISD_KEY)}
-                                                            onpress={() => this.openPicker(ISD_KEY, ISD,title[4])}
+                                                            onpress={() => this.openPicker(ISD_KEY,this.props.CountryIsdList.data,title[4])}
                                                         >
                                                         </UnderlineText>
                                                     </View>
@@ -310,17 +309,16 @@ export  class GPSDeviceForm extends React.Component {
 
 function mapStateToProps(state){
     return{
-        loading : state.CompanyData,
-        CompanyDatas : state.CompanyData.data1,
-        DeviceDatas  : state.CompanyData.data2,
-        CountryIsdList : state.CompanyData.data3
-
+        //loading : state.CompanyData,
+        // CompanyDatas : state.CompanyData.data1,
+        // DeviceDatas  : state.CompanyData.data2,
+        CountryIsdList : state.CompanyData
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
-        onFetchData : () => dispatch(userActions.gpsdeviceRequest())
+        onFetchData : () => dispatch(userActions.gpsdeviceRequestr())
        
     }
 }
