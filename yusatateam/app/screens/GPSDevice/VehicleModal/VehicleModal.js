@@ -1,8 +1,9 @@
 import React from 'react';
-import { Modal, View, KeyboardAvoidingView, FlatList } from 'react-native';
-import styles from './styles';
-import { Item, Input, Icon, Text, Button } from 'native-base';
-import { Float } from '../../../components/Floating/Float'
+import { Modal, View, KeyboardAvoidingView, FlatList, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+// import styles from './styles';
+import { Item, Input, Icon, Text, Button, Header, Body } from 'native-base';
+import { Float } from '../../../components/Floating/Float';
+
 export default class VehicleModal extends React.Component {
     constructor(props) {
         super(props);
@@ -26,91 +27,147 @@ export default class VehicleModal extends React.Component {
     render() {
         return (
             this.state.isLoading === true ? <AppLoading /> :
-               
-                    
-                        <Modal
-                            animationType="fade"
-                            transparent={true}
-                            visible={this.state.modalVisible}
-                            onRequestClose={() => {
-                                this.setModalVisible(!this.state.modalVisible);
-                            }}>
-                            <View style={styles.container}>
-                                <View style={styles.sub_container}>
-                                    <View style={styles.header_view}>
-                                        <View style={styles.service_num}>
-                                            <Text style={styles.header_text}>ADD VEHICLE</Text>
-                                        </View>
-                                    </View>
-                                    <KeyboardAvoidingView behavior="height" >
-                                    <View style={styles.View_Container}>
-                                        <View >
-                                            <Float
-                                                placeholder='Vehicle Number'
-                                                //value={this.state.username}
-                                                returnKeyType={'next'}
-                                                keyboardType={'numeric'}
-                                                blurOnSubmit={false}
-                                                isMandatory={false}
-                                                //onSubmitEditing={() => this._focusNextField('password')}
-                                                //onChangeText={(username) => this.setState({ username })}
-                                                inputStyles={{ width: '100%' }}
-                                            />
-                                        </View>
-                                        <View  >
-                                            <Float
-                                                placeholder='Odometer'
-                                                //value={this.state.username}
-                                                returnKeyType={'next'}
-                                                keyboardType={'numeric'}
-                                                blurOnSubmit={false}
-                                                isMandatory={false}
-                                                //onSubmitEditing={() => this._focusNextField('password')}
-                                                //onChangeText={(username) => this.setState({ username })}
-                                                inputStyles={{ width: '100%' }}
-                                            />
-                                        </View>
-                                        <View  >
-                                            <Float
-                                                placeholder='vin#'
-                                                //value={this.state.username}
-                                                returnKeyType={'next'}
-                                                keyboardType={'numeric'}
-                                                blurOnSubmit={false}
-                                                isMandatory={false}
-                                                //onSubmitEditing={() => this._focusNextField('password')}
-                                                //onChangeText={(username) => this.setState({ username })}
-                                                inputStyles={{ width: '100%' }}
-                                            />
-                                        </View>
 
+                <KeyboardAvoidingView
+                    behavior="height">
+                    <Modal
+                        ref={"myModal"}
+                        animationType="slide"
+                        transparent={true}
+                        visible={this.state.modalVisible}
+                        onRequestClose={() => {
+                            this.setState({ modalVisible: !this.state.modalVisible });
+                        }}
+                        onDismiss={() => {
+                            this.setState({ modalVisible: !this.state.modalVisible });
+                        }}>
 
-                                        <View style={styles.button_view}>
-                                            <View style={{ flex: 1, margin: 5 }}>
-                                                <Button block danger
-                                                    onPress={() => {
-                                                        this.setModalVisible(!this.state.modalVisible);
-                                                    }}>
-                                                    <Text>Cancel</Text>
-                                                </Button>
+                        <View style={styles.container}>
+                            <View style={styles.modalView}>
+                                <Header style={styles.header}>
+                                    <Body><Text>Header</Text></Body>
+                                </Header>
+                                
+                                <FlatList
+                                    style={{ backgroundColor: '#fff' }}
+                                    ref={"flatList"}
+                                    extraData={this.state}
+                                    data={[{key: '1'}]}
+                                    keyExtractor={this._keyExtractor} 
+                                    renderItem={({ item, index }) =>
+                                        <View style={{width: 250}}>
+                                            <View style={{width: '100%'}}>
+                                                <Float
+                                                    placeholder='Vehicle Number'
+                                                    //value={this.state.username}
+                                                    returnKeyType={'next'}
+                                                    keyboardType={'numeric'}
+                                                    blurOnSubmit={false}
+                                                    isMandatory={false}
+                                                    //onSubmitEditing={() => this._focusNextField('password')}
+                                                    //onChangeText={(username) => this.setState({ username })}
+                                                    inputStyles={{ width: '100%' }}
+                                                />
                                             </View>
-                                            <View style={{ flex: 1, margin: 5 }}>
-                                                <Button block >
-                                                    <Text>Submit</Text>
-                                                </Button>
+                                            <View  style={{width: '100%',}}>
+                                                <Float
+                                                    placeholder='Vehicle Number'
+                                                    //value={this.state.username}
+                                                    returnKeyType={'next'}
+                                                    keyboardType={'numeric'}
+                                                    blurOnSubmit={false}
+                                                    isMandatory={false}
+                                                    //onSubmitEditing={() => this._focusNextField('password')}
+                                                    //onChangeText={(username) => this.setState({ username })}
+                                                    inputStyles={{ width: '100%' }}
+                                                />
+                                            </View>
+                                            <View  style={{width: '100%',}}>
+                                                <Float
+                                                    placeholder='Vehicle Number'
+                                                    //value={this.state.username}
+                                                    returnKeyType={'next'}
+                                                    keyboardType={'numeric'}
+                                                    blurOnSubmit={false}
+                                                    isMandatory={false}
+                                                    //onSubmitEditing={() => this._focusNextField('password')}
+                                                    //onChangeText={(username) => this.setState({ username })}
+                                                    inputStyles={{ width: '100%' }}
+                                                />
+                                            </View>
+                                            <View  style={{width: '100%',}}>
+                                                <Float
+                                                    placeholder='Vehicle Number'
+                                                    //value={this.state.username}
+                                                    returnKeyType={'next'}
+                                                    keyboardType={'numeric'}
+                                                    blurOnSubmit={false}
+                                                    isMandatory={false}
+                                                    //onSubmitEditing={() => this._focusNextField('password')}
+                                                    //onChangeText={(username) => this.setState({ username })}
+                                                    inputStyles={{ width: '100%' }}
+                                                />
                                             </View>
                                         </View>
+                                    } />
+                                <TouchableOpacity>
+                                    <View style={styles.button}>
+                                        <Text style={{
+                                            color: '#FFFFFF',
+                                            fontSize: 14,
+                                            fontStyle: 'normal',
+                                            fontWeight: 'bold'
+                                        }}>SUBMIT</Text>
                                     </View>
-                                    </KeyboardAvoidingView>
-                                </View>
+                                </TouchableOpacity>
                             </View>
-                        </Modal>
-                    
-            
-                    );
-                }
-            }
+                        </View>
+                    </Modal>
+                </KeyboardAvoidingView>   
+        )           
+    }
+}
+
+
+const styles=StyleSheet.create({
+    container:{
+        flex:1,
+        justifyContent:'space-around',
+        alignItems:'center',
+        backgroundColor:'#00000080',
+        flexDirection:'column',
+    },
+    modalView:{
+        backgroundColor: '#FFFFFF',
+        //height:Dimensions.get('window').height*0.8,
+        width: '80%',
+        //borderRadius: 10,
+        //display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        //flexDirection:'row',
+        //opacity:1
+    },
+    header:{
+        backgroundColor:'#1F618D',
+        width:"100%",
+    },
+    textInput:{
+        textAlign:'center',
+        borderWidth:1,
+        borderColor: '#000',
+        borderRadius:7,
+    },
+    button:{
+        backgroundColor:'#1F618D',
+        width:Dimensions.get('window').width*0.8,
+        height:50,
+        //height:Dimensions.get('window').height-580,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+
+})
             
             
 export {VehicleModal}
-

@@ -21,17 +21,19 @@ export default class DashboardFilter extends React.Component {
         super(props);
         this.state = {
             modalVisible: false,
+            data: [],
             selected1: '',
             selected2: '',
             flag: '',
             map: new Map(),
         },
-            this.modalRef = React.createRef();
+        this.modalRef = React.createRef();
         this.OnValueSelect = this.OnValueSelect.bind(this);
         this.openPicker = this.openPicker.bind(this);
     }
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
+
+    setModalVisible(visible, data) {
+        this.setState({ modalVisible: visible, data: data});
     }
 
     onModalClose() {
@@ -50,22 +52,14 @@ export default class DashboardFilter extends React.Component {
         this.setState({ flag: keys });
         this.modalRef.current.setModalVisible(true, title, list);
     }
-    componentDidMount() {
 
+    componentDidMount() {
         const newMap = new Map(this.state.map);
         newMap.set(REGION_KEY, "Select Region");
         newMap.set(COMPANY_KEY, "Select Company");
-
-
         this.setState({ map: newMap })
     }
-    setModalVisible(visible, title, data = []) {
-        for (var j = 0; j < data.length; j++) {
-            var values = data[j].companyName;
-            companyList.push(values)
-        }
-        this.setState({ modalVisible: visible, data: companyList, title: title });
-    }
+
     render() {
         return (
             <View>

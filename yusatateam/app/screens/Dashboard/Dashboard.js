@@ -15,15 +15,14 @@ import { connect } from 'react-redux';
 import { userActions} from '../../redux/actions';
 import colors from '../../constants/colors';
 import styles from './Styles';
-import {DashboardFilter} from './DashBoardFilter/DashboardFilter';
+import { DashboardFilter } from './DashBoardFilter/DashboardFilter';
 
-const companyArray = [];
-const COMPANY_KEY = 'COMPANY';
 export  class Dashboard extends React.Component {
     constructor() {
         super();
         this.state = {
             isLoading: true,
+            loginResponse: {},
             company : '',
             pieColor: ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'],
             pieSeries: [400, 200, 100, 100],
@@ -39,7 +38,6 @@ export  class Dashboard extends React.Component {
         this.OnValueSelect = this.OnValueSelect.bind(this);
         this.modalRef = React.createRef();
         this.openPicker = this.openPicker.bind(this);
-
     }
 
     OnValueSelect(value) {
@@ -95,19 +93,9 @@ export  class Dashboard extends React.Component {
 
     componentDidMount() {
         const { params } = this.props.navigation.state;
-        var regionDetails=params.data.regionDetails;
-        
-            //  for(var i=0;i<regionDetails.length;i++)
-            //     {
-            //         for(var j=0;j<regionDetails[i].companyDetails.length;j++)
-            //         {
-            //             var data = regionDetails[i].companyDetails[j];
-            //             companyArray.push(data)
-            //         }
-            //     }
-               
-        this.props.onFetchData();
-        // alert(JSON.stringify(this.props.onFetchData()));
+        this.setState({loginResponse: params.data});
+        //alert(JSON.stringify(params.data.regionDetails))
+        //this.props.onFetchData();
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
@@ -127,21 +115,22 @@ export  class Dashboard extends React.Component {
         ) // works best when the goBack is async
         return true;
     }
-    openPicker(keys, list) {
-        //this.setState({ flag: keys });
-        this.modalRef.current.setModalVisible(true,"Company",list);
+
+    openPicker() {
+        this.modalRef.current.setModalVisible(true, this.state.loginResponse);
     }
+
     render() {
         const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Toolbar title={
-                        this.state.company == '' ? "DashBoard" : this.state.company +" DashBoard"
-                    }
+                    <Toolbar title={ this.state.company == '' ? "DashBoard" : this.state.company +" DashBoard" }
                         leftIcon='home'
-                        setting='filter' settingType='FontAwesome' onSettingsPress={() => this.openPicker(COMPANY_KEY, companyArray)} />
+                        setting='filter' settingType='FontAwesome'
+                        onSettingsPress={this.openPicker} />
                          {/* <Activityindication visible={this.props.loading.isLoading}/> */}
+
                     <View style={styles.container1}>
 
                         <View style={styles.upper_view}>
@@ -257,18 +246,17 @@ export  class Dashboard extends React.Component {
         );
     }
 }
+
 function mapStateToProps(state){
     return{
         loading : state.CompanyData,
         CompanyDatas : state.CompanyData.data1
-
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
         onFetchData : () => dispatch(userActions.gpsdeviceRequest())
-       
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps) ( Dashboard )
