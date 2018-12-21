@@ -16,6 +16,7 @@ import { userActions} from '../../redux/actions';
 import colors from '../../constants/colors';
 import styles from './Styles';
 import { GpsModal } from '../GPSDevice/GpsModal/GpsModal';
+import {DashboardFilter} from '../../components/DashBoardFilter/DashboardFilter'
 
 const COMPANY_KEY = 'COMPANY';
 export  class Dashboard extends React.Component {
@@ -115,8 +116,10 @@ export  class Dashboard extends React.Component {
         return true;
     }
     openPicker(keys, list) {
-        this.setState({ flag: keys });
-        this.modalRef.current.setModalVisible(true,"Company",list);
+
+        this.modalRef.current.setModalVisible(true)
+        // this.setState({ flag: keys });
+        // this.modalRef.current.setModalVisible(true,"Company",list);
     }
     render() {
         const { navigate } = this.props.navigation;
@@ -239,7 +242,7 @@ export  class Dashboard extends React.Component {
                         </View>
 
                     </View>
-                    <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
+                    <DashboardFilter ref={this.modalRef} />
                 </View>
         );
     }
