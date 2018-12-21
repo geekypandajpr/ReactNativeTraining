@@ -41,6 +41,7 @@ export default EStyleSheet.create({
         borderRadius: 4,
         borderWidth: 0.5,
         borderColor: '#d6d7da',
-        margin : 10
+       marginTop : 10,
+       marginBottom : 10
     }
 })

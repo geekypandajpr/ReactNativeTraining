@@ -111,7 +111,7 @@ export default class DashboardFilter extends React.Component {
                                         </View>
                                         <View style={{flex :1,flexDirection : 'row'}}>
                                         <View style={{flex :5}}></View> 
-                                            <Right  style={{flex :4,margin : 10}}>
+                                            <Right  style={{flex :4}}>
                                             <Button full info style={{borderRadius: 4,width : 150}}><Text> Update </Text></Button>
                                             </Right>
                                         </View>
