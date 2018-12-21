@@ -54,7 +54,7 @@ export default class DashboardFilter extends React.Component {
                             
                         <Header style={styles.Header_Style}>
                         <Body>
-                            <Text style={styles.Text_style}>Filter</Text>
+                            <Text style={styles.Text_style}> DashBoard Filter</Text>
                         </Body>
                         <Right>
                             <TouchableHighlight onPress={() => { this.setModalVisible(false) }}>
@@ -92,11 +92,26 @@ export default class DashboardFilter extends React.Component {
                                                     <Picker.Item label="Debit Card" value="key2" />
                                                     <Picker.Item label="Credit Card" value="key3" />
                                                     <Picker.Item label="Net Banking" value="key4" />
+                                                    <Picker.Item label="Wallet" value="key0" />
+                                                    <Picker.Item label="ATM Card" value="key1" />
+                                                    <Picker.Item label="Debit Card" value="key2" />
+                                                    <Picker.Item label="Credit Card" value="key3" />
+                                                    <Picker.Item label="Net Banking" value="key4" />
+                                                    <Picker.Item label="Wallet" value="key0" />
+                                                    <Picker.Item label="ATM Card" value="key1" />
+                                                    <Picker.Item label="Debit Card" value="key2" />
+                                                    <Picker.Item label="Credit Card" value="key3" />
+                                                    <Picker.Item label="Net Banking" value="key4" />
+                                                    <Picker.Item label="Wallet" value="key0" />
+                                                    <Picker.Item label="ATM Card" value="key1" />
+                                                    <Picker.Item label="Debit Card" value="key2" />
+                                                    <Picker.Item label="Credit Card" value="key3" />
+                                                    <Picker.Item label="Net Banking" value="key4" />
                                             </Picker>
                                         </View>
                                         <View style={{flex :1,flexDirection : 'row'}}>
                                         <View style={{flex :5}}></View> 
-                                            <Right  style={{flex :4}}>
+                                            <Right  style={{flex :4,margin : 10}}>
                                             <Button full info style={{borderRadius: 4,width : 150}}><Text> Update </Text></Button>
                                             </Right>
                                         </View>
