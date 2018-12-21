@@ -22,7 +22,7 @@ export default class GpsDeviceData extends React.Component {
     }
 
     render() {
-        const { onPress, list } = this.props;
+        const { onPress } = this.props;
         const statusColor = {'Active': '#5cb85c', 'Inactive': '#d9534f'} 
         return (
             this.state.isLoading === true ? <AppLoading /> :
@@ -32,11 +32,11 @@ export default class GpsDeviceData extends React.Component {
 
                         <View style={styles.view}>
                             <View style={styles.title_view}>
-                                <Text style={[ globalStyles.title_text, { fontFamily: 'Roboto' } ]}>{list.company}</Text>
+                                <Text style={[ globalStyles.title_text, { fontFamily: 'Roboto' } ]}>Yusata Infotech Pvt. Ltd.</Text>
                             </View>
                             <View style={styles.status_view}>
                                 <View style={styles.status}>
-                                    <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto', color: statusColor['Active'] } ]}>{list.status}</Text>
+                                    <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto', color: statusColor['Active'] } ]}>Active</Text>
                                 </View>
                             </View>
                         </View>
@@ -49,7 +49,7 @@ export default class GpsDeviceData extends React.Component {
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
                             </View>
                             <View style={styles.last_view}>
-                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{list.provider}</Text>
+                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>Atlanta</Text>
                             </View>
                         </View>
 
@@ -61,7 +61,7 @@ export default class GpsDeviceData extends React.Component {
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
                             </View>
                             <View style={styles.last_view}>
-                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{list.esn}</Text>
+                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>SBIMD123</Text>
                             </View>
                         </View>
 
@@ -73,7 +73,7 @@ export default class GpsDeviceData extends React.Component {
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
                             </View>
                             <View style={styles.last_view}>
-                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{list.udid}</Text>
+                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>udid1254</Text>
                             </View>
                         </View>
 
@@ -85,7 +85,7 @@ export default class GpsDeviceData extends React.Component {
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
                             </View>
                             <View style={styles.last_view}>
-                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{list.transaction_data}</Text>
+                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>12-12-2018</Text>
                             </View>
                         </View>
 

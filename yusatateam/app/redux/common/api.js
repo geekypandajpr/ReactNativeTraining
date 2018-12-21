@@ -17,7 +17,7 @@ export default class Api {
         const url = this.getBaseUrl() + route;
         let header = {
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+        'Content-Type': 'application/json'
         };
         return fetch(url, {
             method: methodType,
@@ -41,7 +41,8 @@ export default class Api {
         };
         return fetch(url, {
             method: methodType,
-            headers: header
+            headers: header,
+            'Cookie': 'csrftoken=abcdefghijklmnop' 
         })
         .then((response) => response.status)
         .then((res) => {
