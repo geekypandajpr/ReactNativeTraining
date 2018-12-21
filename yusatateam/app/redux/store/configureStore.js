@@ -13,7 +13,7 @@ export default function configureStore() {
     const sagaMiddleware = createSagaMiddleware();
     middlewares.push(sagaMiddleware);
     middlewares.push(middleware);
-    middlewares.push(logger);
+    //middlewares.push(logger);
 
     enhancers.push(applyMiddleware(...middlewares));
 
