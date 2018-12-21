@@ -25,8 +25,6 @@ export default EStyleSheet.create({
         backgroundColor: '#ffffff',
         width: '100%',
         height: '35%',
-        padding : 15,
-        elevation: 10
     },
     Header_Style:
     {
@@ -43,5 +41,20 @@ export default EStyleSheet.create({
         borderColor: '#d6d7da',
        marginTop : 10,
        marginBottom : 10
+    },
+    Small_View: {
+        height : "35%",
+        width: '100%',
+        paddingTop: 15,
+        paddingLeft: 15,
+        paddingRight: 15,
+        backgroundColor: '#FFFFFF',
+        
+    },
+    View_Container : {
+        height : "35%",
+        width: '100%',
+        alignItems: 'center',
     }
+
 })
