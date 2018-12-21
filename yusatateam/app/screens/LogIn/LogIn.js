@@ -11,7 +11,7 @@ export class LogIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: 'admin@readingtonfarms.com',
+            username: 'sourabh.rajawat12@yusata.com',
             password: 'Admin@123',
             remember: true,
             isLoading: true
@@ -33,10 +33,9 @@ export class LogIn extends React.Component {
     _doLogin() {
         var loginCredentials = {
             "password": "Admin@123",
-            "userName": "admin@readingtonfarms.com"
+            "userName": "sourabh.rajawat12@yusata.com"
         }
         this.props.onFetchData(loginCredentials);
-        //this.props.navigation.navigate('Dashboard');
     }
 
     _checkRequiredFields() {

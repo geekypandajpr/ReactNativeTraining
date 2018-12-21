@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Alert, BackHandler } from 'react-native';
 import { AppLoading } from 'expo';
-
 import {
     Toolbar,
     SquareButton,
@@ -12,11 +11,12 @@ import {
     Activityindication
 } from '../../components';
 import { connect } from 'react-redux';
+
 import { userActions} from '../../redux/actions';
 import colors from '../../constants/colors';
 import styles from './Styles';
-import { GpsModal } from '../GPSDevice/GpsModal/GpsModal';
-import {DashboardFilter} from '../../components/DashBoardFilter/DashboardFilter'
+import {DashboardFilter} from './DashBoardFilter/DashboardFilter';
+
 const companyArray = [];
 const COMPANY_KEY = 'COMPANY';
 export  class Dashboard extends React.Component {
@@ -94,8 +94,7 @@ export  class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        const {params} = this.props.navigation.state
-        alert(JSON.stringify(params.data.regionDetails))
+        const { params } = this.props.navigation.state;
         var regionDetails=params.data.regionDetails;
         
             //  for(var i=0;i<regionDetails.length;i++)
