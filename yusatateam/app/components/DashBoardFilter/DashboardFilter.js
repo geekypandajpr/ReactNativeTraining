@@ -14,8 +14,10 @@ import colors from '../../styles/colors'
 import { Entypo } from '@expo/vector-icons'
 import company from '../../assets/JSONData/GpsDevice/CompanyData';
 import {GpsModal} from '../../screens/GPSDevice/GpsModal/GpsModal'
+
+const companyList = [];
 const COMPANY_KEY = 'COMPANY';
-const VEHICLE_KEY = 'VEHICLE';
+const REGION_KEY = 'REGION';
 export default class DashboardFilter extends React.Component {
     constructor(props) {
         super(props);
@@ -53,11 +55,19 @@ export default class DashboardFilter extends React.Component {
     componentDidMount() {
 
         const newMap = new Map(this.state.map);
-        newMap.set(VEHICLE_KEY, "Select Region");
+        newMap.set(REGION_KEY, "Select Region");
         newMap.set(COMPANY_KEY, "Select Company");
 
 
         this.setState({ map: newMap })
+    }
+    setModalVisible(visible,  title,data = []) {
+        for(var j=0;j<data.length;j++)
+        {
+            var values = data[j].companyName;
+            companyList.push(values)
+        }
+        this.setState({ modalVisible: visible, data: companyList, title: title });
     }
     render() {
         return (
@@ -86,9 +96,9 @@ export default class DashboardFilter extends React.Component {
                         <View style={styles.Small_View}>
                             <UnderlineText
                                 name="Region"
-                                value={this.state.map.get(VEHICLE_KEY)}
+                                value={this.state.map.get(REGION_KEY)}
                                 isMandatory={true}
-                            onpress={() => this.openPicker(COMPANY_KEY,company,"Region")}
+                                onpress={() => this.openPicker(REGION_KEY,company,"Region")}
                             />
                         </View>
                         <View style={styles.Small_View}>

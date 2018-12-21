@@ -17,7 +17,7 @@ import colors from '../../constants/colors';
 import styles from './Styles';
 import { GpsModal } from '../GPSDevice/GpsModal/GpsModal';
 import {DashboardFilter} from '../../components/DashBoardFilter/DashboardFilter'
-
+const companyArray = [];
 const COMPANY_KEY = 'COMPANY';
 export  class Dashboard extends React.Component {
     constructor() {
@@ -94,7 +94,20 @@ export  class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        // this.props.onFetchData();
+        const {params} = this.props.navigation.state
+        alert(JSON.stringify(params.data.regionDetails))
+        var regionDetails=params.data.regionDetails;
+        
+            //  for(var i=0;i<regionDetails.length;i++)
+            //     {
+            //         for(var j=0;j<regionDetails[i].companyDetails.length;j++)
+            //         {
+            //             var data = regionDetails[i].companyDetails[j];
+            //             companyArray.push(data)
+            //         }
+            //     }
+               
+        this.props.onFetchData();
         // alert(JSON.stringify(this.props.onFetchData()));
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
@@ -116,10 +129,8 @@ export  class Dashboard extends React.Component {
         return true;
     }
     openPicker(keys, list) {
-
-        this.modalRef.current.setModalVisible(true)
-        // this.setState({ flag: keys });
-        // this.modalRef.current.setModalVisible(true,"Company",list);
+        //this.setState({ flag: keys });
+        this.modalRef.current.setModalVisible(true,"Company",list);
     }
     render() {
         const { navigate } = this.props.navigation;
@@ -130,7 +141,7 @@ export  class Dashboard extends React.Component {
                         this.state.company == '' ? "DashBoard" : this.state.company +" DashBoard"
                     }
                         leftIcon='home'
-                        setting='filter' settingType='FontAwesome' onSettingsPress={() => this.openPicker(COMPANY_KEY, this.props.CompanyDatas)} />
+                        setting='filter' settingType='FontAwesome' onSettingsPress={() => this.openPicker(COMPANY_KEY, companyArray)} />
                          {/* <Activityindication visible={this.props.loading.isLoading}/> */}
                     <View style={styles.container1}>
 
@@ -258,6 +269,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return{
         onFetchData : () => dispatch(userActions.gpsdeviceRequest())
+       
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps) ( Dashboard )
