@@ -35,7 +35,6 @@ export default EStyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-
     },
     Date_picker: {
         flex: 1,

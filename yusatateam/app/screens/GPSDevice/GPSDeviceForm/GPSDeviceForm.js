@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, FlatList, KeyboardAvoidingView,TouchableHighlight } from 'react-native';
+import { View, FlatList, KeyboardAvoidingView, TouchableHighlight } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker';
 
-import { Toolbar, Float, UnderlineText,Activityindication } from '../../../components';
+import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
 import styles from './styles';
 import { globalStyles } from '../../../styles'
 import { GpsModal } from '../GpsModal/GpsModal';
-import { userActions} from '../../../redux/actions';
-import {VehicleModal} from '../VehicleModal/VehicleModal';
+import { userActions } from '../../../redux/actions';
+import { VehicleModal } from '../VehicleModal/VehicleModal';
 
 
 
@@ -60,7 +60,7 @@ const DEVICE_TYPE = 'DEVICE_TYPE';
 const SUBSC_KEY = 'SUBSC_KEY';
 const ISD_KEY = 'ISD_kEY';
 
-export  class GPSDeviceForm extends React.Component {
+export class GPSDeviceForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -104,9 +104,9 @@ export  class GPSDeviceForm extends React.Component {
         this.setState({ map: newMap })
     }
 
-    openPicker(keys,list,title) {
+    openPicker(keys, list, title) {
         this.setState({ flag: keys });
-        this.modalRef.current.setModalVisible(true,title,list);
+        this.modalRef.current.setModalVisible(true, title, list);
     }
 
     render() {
@@ -122,13 +122,13 @@ export  class GPSDeviceForm extends React.Component {
                         keyboardShouldPersistTaps="always"
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                       
+
                             <KeyboardAvoidingView
                                 behavior="padding" >
                                 <View style={{ flexDirection: 'column', flex: 1 }}>
                                     <View style={styles.Sub_View}>
                                         <View style={styles.Width_View}>
-                                       
+
                                             <View style={styles.Small_View}>
                                                 <Item floatingLabel>
                                                     <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: '#000' }} />
@@ -143,28 +143,33 @@ export  class GPSDeviceForm extends React.Component {
                                                     name="Company"
                                                     value={this.state.map.get(COMPANY_KEY)}
                                                     isMandatory={true}
-                                                    onpress={() => this.openPicker(COMPANY_KEY,vehicles,title[0])}
-                                                 />
-                                                 
+                                                    onpress={() => this.openPicker(COMPANY_KEY, vehicles, title[0])}
+                                                />
+
                                             </View>
 
                                             {/* <View style={styles.pickerView}>
                                             <Text style={[styles.pickerLabel, { fontFamily: 'Roboto' }]}>Device Type</Text>
                                             <Pickers dropdown={deviceType} />
                                         </View> */}
-
-                                            <View style={styles.Small_View}>
-                                                <UnderlineText
-                                                    name="Vehicle #"
-                                                    value={this.state.map.get(VEHICLE_KEY)}
-                                                    isMandatory={true}
-                                                    onpress={() => this.openPicker(VEHICLE_KEY, vehicles,title[1])} />
-                                            </View>
-
-                                            <View style={styles.Small_View}>
-                                            <TouchableHighlight onPress={() => {this.modalReference.current.setModalVisible(true)}}>
-                                                <Text>Add vehicle</Text>
-                                                </TouchableHighlight> 
+                                            <View style={[styles.Balance_view, { marginTop: 5 }]}>
+                                                <View style={{ flex: 1.3 }}>
+                                                    <View style={{ height: 70, justifyContent: 'center' }}>
+                                                        <UnderlineText
+                                                            name="Vehicle #"
+                                                            value={this.state.map.get(VEHICLE_KEY)}
+                                                            isMandatory={true}
+                                                            onpress={() => this.openPicker(VEHICLE_KEY, vehicles, title[1])}
+                                                        >
+                                                        </UnderlineText>
+                                                    </View>
+                                                </View>
+                                                <View style={{ flex: 1, marginLeft:60, marginTop: 20 }}>
+                                                    <Button bordered dark style={{height:40,borderColor:'gray'}}
+                                                     onPress={() => { this.modalReference.current.setModalVisible(true) }}>
+                                                        <Text style={{color: 'rgb(56,64,64)'}}>Add Vehicle</Text>
+                                                    </Button>
+                                                </View>
                                             </View>
 
                                             <View style={styles.Small_View}>
@@ -172,10 +177,10 @@ export  class GPSDeviceForm extends React.Component {
                                                     name="Device Type"
                                                     isMandatory={true}
                                                     value={this.state.map.get(DEVICE_TYPE)}
-                                                    onpress={() => this.openPicker(DEVICE_TYPE,vehicles,title[2])} />
+                                                    onpress={() => this.openPicker(DEVICE_TYPE, vehicles, title[2])} />
                                             </View>
 
-                                             
+
 
                                             {/* <View style={styles.Small_View}>
                                                 <UnderlineText
@@ -203,7 +208,7 @@ export  class GPSDeviceForm extends React.Component {
                                                             name='Country ISD'
                                                             isMandatory={true}
                                                             value={this.state.map.get(ISD_KEY)}
-                                                            onpress={() => this.openPicker(ISD_KEY,this.props.CountryIsdList.data,title[4])}
+                                                            onpress={() => this.openPicker(ISD_KEY, this.props.CountryIsdList.data, title[4])}
                                                         >
                                                         </UnderlineText>
                                                     </View>
@@ -312,25 +317,25 @@ export  class GPSDeviceForm extends React.Component {
                             </KeyboardAvoidingView>
                         } />
                     <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
-                    <VehicleModal ref = {this.modalReference}/>
+                    <VehicleModal ref={this.modalReference} />
                 </View>
         );
     }
 }
 
-function mapStateToProps(state){
-    return{
+function mapStateToProps(state) {
+    return {
         //loading : state.CompanyData,
         // CompanyDatas : state.CompanyData.data1,
         // DeviceDatas  : state.CompanyData.data2,
-        CountryIsdList : state.CompanyData
+        CountryIsdList: state.CompanyData
     }
 }
 
-function mapDispatchToProps(dispatch){
-    return{
-        onFetchData : () => dispatch(userActions.gpsdeviceRequestr())
-       
+function mapDispatchToProps(dispatch) {
+    return {
+        onFetchData: () => dispatch(userActions.gpsdeviceRequestr())
+
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps) ( GPSDeviceForm )
+export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)
