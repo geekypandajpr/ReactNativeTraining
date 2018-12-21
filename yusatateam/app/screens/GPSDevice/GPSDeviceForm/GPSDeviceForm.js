@@ -141,6 +141,7 @@ export class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Company"
+                                                    upperView ={true}
                                                     value={this.state.map.get(COMPANY_KEY)}
                                                     isMandatory={true}
                                                     onpress={() => this.openPicker(COMPANY_KEY, vehicles, title[0])}
@@ -153,21 +154,22 @@ export class GPSDeviceForm extends React.Component {
                                             <Pickers dropdown={deviceType} />
                                         </View> */}
                                             <View style={[styles.Balance_view, { marginTop: 5 }]}>
-                                                <View style={{ flex: 1.3 }}>
+                                                <View style={{ flex: 1 }}>
                                                     <View style={{ height: 70, justifyContent: 'center' }}>
                                                         <UnderlineText
                                                             name="Vehicle #"
                                                             value={this.state.map.get(VEHICLE_KEY)}
                                                             isMandatory={true}
+                                                            upperView ={true}
                                                             onpress={() => this.openPicker(VEHICLE_KEY, vehicles, title[1])}
                                                         >
                                                         </UnderlineText>
                                                     </View>
                                                 </View>
-                                                <View style={{ flex: 1, marginLeft:60, marginTop: 20 }}>
+                                                <View style={{ flex: 1, marginLeft:10, marginTop: 18 }}>
                                                     <Button bordered dark style={{height:40,borderColor:'gray'}}
                                                      onPress={() => { this.modalReference.current.setModalVisible(true) }}>
-                                                        <Text style={{color: 'rgb(56,64,64)'}}>Add Vehicle</Text>
+                                                        <Text style={{color: 'rgb(56,64,64)'}}> Create Vehicle</Text>
                                                     </Button>
                                                 </View>
                                             </View>
@@ -176,6 +178,7 @@ export class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Device Type"
                                                     isMandatory={true}
+                                                    upperView ={true}
                                                     value={this.state.map.get(DEVICE_TYPE)}
                                                     onpress={() => this.openPicker(DEVICE_TYPE, vehicles, title[2])} />
                                             </View>
@@ -207,6 +210,7 @@ export class GPSDeviceForm extends React.Component {
                                                         <UnderlineText
                                                             name='Country ISD'
                                                             isMandatory={true}
+                                                            upperView ={true}
                                                             value={this.state.map.get(ISD_KEY)}
                                                             onpress={() => this.openPicker(ISD_KEY, this.props.CountryIsdList.data, title[4])}
                                                         >

@@ -1,20 +1,25 @@
 import React from 'react';
 import { Modal, View, KeyboardAvoidingView, FlatList, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 // import styles from './styles';
-import { Item, Input, Icon, Text, Button, Header, Body } from 'native-base';
-import { Float } from '../../../components/Floating/Float';
+import { Text, Picker, Form } from 'native-base';
+import { Float, UnderlineText } from '../../../components';
 
 export default class VehicleModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             modalVisible: false,
+            selected: "Vehicle type"
         }
     }
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
     }
-
+    onValueChange(value) {
+        this.setState({
+            selected: value
+        });
+    }
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -22,6 +27,11 @@ export default class VehicleModal extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false });
+    }
+    setPicker(value) {
+        this.setState({
+            selected: value
+        })
     }
 
     render() {
@@ -44,19 +54,20 @@ export default class VehicleModal extends React.Component {
 
                         <View style={styles.container}>
                             <View style={styles.modalView}>
-                                <Header style={styles.header}>
-                                    <Body><Text>Header</Text></Body>
-                                </Header>
-                                
+                                <View style={styles.header_view}>
+                                    <View style={styles.service_num}>
+                                        <Text style={styles.header_text}>Create Vehicle</Text>
+                                    </View>
+                                </View>
                                 <FlatList
                                     style={{ backgroundColor: '#fff' }}
                                     ref={"flatList"}
                                     extraData={this.state}
-                                    data={[{key: '1'}]}
-                                    keyExtractor={this._keyExtractor} 
+                                    data={[{ key: '1' }]}
+                                    keyExtractor={this._keyExtractor}
                                     renderItem={({ item, index }) =>
-                                        <View style={{width: 250}}>
-                                            <View style={{width: '100%'}}>
+                                        <View style={{ width: 350 }}>
+                                            <View style={{ width: '100%' }}>
                                                 <Float
                                                     placeholder='Vehicle Number'
                                                     //value={this.state.username}
@@ -69,9 +80,9 @@ export default class VehicleModal extends React.Component {
                                                     inputStyles={{ width: '100%' }}
                                                 />
                                             </View>
-                                            <View  style={{width: '100%',}}>
+                                            <View style={{ width: '100%', }}>
                                                 <Float
-                                                    placeholder='Vehicle Number'
+                                                    placeholder='Odometer'
                                                     //value={this.state.username}
                                                     returnKeyType={'next'}
                                                     keyboardType={'numeric'}
@@ -82,9 +93,9 @@ export default class VehicleModal extends React.Component {
                                                     inputStyles={{ width: '100%' }}
                                                 />
                                             </View>
-                                            <View  style={{width: '100%',}}>
+                                            <View style={{ width: '100%', }}>
                                                 <Float
-                                                    placeholder='Vehicle Number'
+                                                    placeholder='Vin#'
                                                     //value={this.state.username}
                                                     returnKeyType={'next'}
                                                     keyboardType={'numeric'}
@@ -95,52 +106,90 @@ export default class VehicleModal extends React.Component {
                                                     inputStyles={{ width: '100%' }}
                                                 />
                                             </View>
-                                            <View  style={{width: '100%',}}>
-                                                <Float
-                                                    placeholder='Vehicle Number'
-                                                    //value={this.state.username}
-                                                    returnKeyType={'next'}
-                                                    keyboardType={'numeric'}
-                                                    blurOnSubmit={false}
-                                                    isMandatory={false}
-                                                    //onSubmitEditing={() => this._focusNextField('password')}
-                                                    //onChangeText={(username) => this.setState({ username })}
-                                                    inputStyles={{ width: '100%' }}
-                                                />
+                                            <View style={{ width: '100%', marginTop: 10 }}>
+                                                <Form>
+                                                    <Picker
+                                                        note
+                                                        mode="dropdown"
+                                                        style={{ width: 120 }}
+                                                        selectedValue={this.state.selected}
+                                                        onValueChange={this.onValueChange.bind(this)}
+                                                    >
+                                                        <Picker.Item label="Wallet" value="key0" />
+                                                        <Picker.Item label="ATM Card" value="key1" />
+                                                        <Picker.Item label="Debit Card" value="key2" />
+                                                        <Picker.Item label="Credit Card" value="key3" />
+                                                        <Picker.Item label="Net Banking" value="key4" />
+                                                    </Picker>
+                                                </Form>
                                             </View>
+
+                                            <View style={{ width: '100%', marginTop: 10 }}>
+                                                <Form>
+                                                    <Picker
+                                                        note
+                                                        mode="dropdown"
+                                                        style={{ width: 120 }}
+                                                        selectedValue={this.state.selected}
+                                                        onValueChange={this.onValueChange.bind(this)}
+                                                    >
+                                                        <Picker.Item label="Wallet" value="key0" />
+                                                        <Picker.Item label="ATM Card" value="key1" />
+                                                        <Picker.Item label="Debit Card" value="key2" />
+                                                        <Picker.Item label="Credit Card" value="key3" />
+                                                        <Picker.Item label="Net Banking" value="key4" />
+                                                    </Picker>
+                                                </Form>
+                                            </View>
+
                                         </View>
                                     } />
-                                <TouchableOpacity>
-                                    <View style={styles.button}>
-                                        <Text style={{
-                                            color: '#FFFFFF',
-                                            fontSize: 14,
-                                            fontStyle: 'normal',
-                                            fontWeight: 'bold'
-                                        }}>SUBMIT</Text>
-                                    </View>
-                                </TouchableOpacity>
+                                <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 10 }}>
+
+                                    <TouchableOpacity onPress={() => { this.setModalVisible(!this.state.modalVisible); }}>
+                                        <View style={styles.button}>
+                                            <Text style={{
+                                                color: '#FFFFFF',
+                                                fontSize: 14,
+                                                fontStyle: 'normal',
+                                                fontWeight: 'bold'
+                                            }}>CANCEL</Text>
+                                        </View>
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity onPress={() => { this.setModalVisible(!this.state.modalVisible); }}>
+                                        <View style={[styles.button, { marginLeft: 20 }]}>
+                                            <Text style={{
+                                                color: '#FFFFFF',
+                                                fontSize: 14,
+                                                fontStyle: 'normal',
+                                                fontWeight: 'bold'
+                                            }}>SUBMIT</Text>
+                                        </View>
+                                    </TouchableOpacity>
+
+                                </View>
                             </View>
                         </View>
                     </Modal>
-                </KeyboardAvoidingView>   
-        )           
+                </KeyboardAvoidingView>
+        )
     }
 }
 
 
-const styles=StyleSheet.create({
-    container:{
-        flex:1,
-        justifyContent:'space-around',
-        alignItems:'center',
-        backgroundColor:'#00000080',
-        flexDirection:'column',
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: '#00000080',
+        flexDirection: 'column',
     },
-    modalView:{
+    modalView: {
         backgroundColor: '#FFFFFF',
         //height:Dimensions.get('window').height*0.8,
-        width: '80%',
+        width: '95%',
         //borderRadius: 10,
         //display: 'flex',
         alignItems: 'center',
@@ -148,26 +197,37 @@ const styles=StyleSheet.create({
         //flexDirection:'row',
         //opacity:1
     },
-    header:{
-        backgroundColor:'#1F618D',
-        width:"100%",
-    },
-    textInput:{
-        textAlign:'center',
-        borderWidth:1,
+
+    textInput: {
+        textAlign: 'center',
+        borderWidth: 1,
         borderColor: '#000',
-        borderRadius:7,
+        borderRadius: 7,
     },
-    button:{
-        backgroundColor:'#1F618D',
-        width:Dimensions.get('window').width*0.8,
-        height:50,
+    button: {
+        backgroundColor: '#1F618D',
+        width: Dimensions.get('window').width * 0.4,
+        height: 40,
         //height:Dimensions.get('window').height-580,
-        alignItems:'center',
-        justifyContent:'center'
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    header_view: {
+        width: '100%',
+        height: 50,
+        backgroundColor: '#EEEEF0',
+        justifyContent: 'center',
+        elevation: 5,
+        flexDirection: 'row'
+    },
+    header_text: {
+
+        color: '#000',
+        fontSize: 18,
+        fontWeight: 'bold',
+        margin: 15
     },
 
 })
-            
-            
-export {VehicleModal}
+
+export { VehicleModal }
