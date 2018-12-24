@@ -52,7 +52,7 @@ export default class DashboardFilter extends React.Component {
             const len1 = companyArray.length;
             const company = [];
             for(var j = 0; j < len1; j++) {
-                const companyObj = Object.assign({ "label": companyArray[j].companyName }, companyArray[j] );
+                const companyObj = Object.assign({ "value": companyArray[j].companyName }, companyArray[j] );
                 company.push(companyObj);
                 if(this.state.data.defaultCompanyCode === companyArray[j].companyCode) {
                     defaultCompany = companyArray[j].companyName
