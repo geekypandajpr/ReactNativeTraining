@@ -14,10 +14,9 @@ export default EStyleSheet.create({
         width : '95%'
     },
     header_text: {
-
-        color: 'white',
-        fontSize: '1.1rem',
-        fontWeight: 'bold',
+        color: '#000',
+        fontSize: '1rem',
+        fontWeight: '400',
        
     },
     View_Container:
@@ -28,11 +27,13 @@ export default EStyleSheet.create({
     },
     Header_Style:
     {
-        backgroundColor: '#0073b7'
+        backgroundColor: '#fff',
+        borderBottomColor: '#dcdcdc',
+        borderBottomWidth: 1
     },
     Text_style: {
-        fontSize: '1.2rem',
-        color: '#fff',
+        fontSize: '1.3rem',
+        color: '#000',
         fontWeight: '500',
     },
     pickerView : {
