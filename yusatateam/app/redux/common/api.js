@@ -15,15 +15,15 @@ export default class Api {
     static post(route, params) {
         return this.call(route, params, 'POST');
     }
-    
+
     static call(route, params, verb) {
-        const url = `${Api.host}${route}`
+        const url = `${Api.host}${route}`;
         let options = Object.assign({ method: verb }, { credentials: 'same-origin' }, params ? { body: JSON.stringify(params) } : null);
-        options.headers = Api.headers()
+        options.headers = Api.headers();
         return fetch(url, options)
         .then((response) => response.json())
         .then((responseJson) => {
-            return responseJson
+            return responseJson;
         }).catch(function(error) {
             alert(error.message);
             throw error;
