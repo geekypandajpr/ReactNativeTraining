@@ -1,8 +1,10 @@
 import React from 'react';
 import { Modal, View, KeyboardAvoidingView, FlatList, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
-// import styles from './styles';
-import { Text, Picker, Form,Container, Header, Content, } from 'native-base';
-import { Float, UnderlineText } from '../../../components';
+import { Text, Picker, Form } from 'native-base';
+import { Float } from '../../../components';
+
+var department = ["Department", "Department1", "Department2", "Department4", "Department5"]
+var VehicleType = ["Vehicle Type","Type1","Type2","Type3","Type4","Type5"]
 
 export default class VehicleModal extends React.Component {
     constructor(props) {
@@ -107,23 +109,19 @@ export default class VehicleModal extends React.Component {
                                                 />
                                             </View>
                                             <View style={{ width: '100%', marginTop: 10 }}>
-                                           
                                                 <Form>
                                                     <Picker
-                                                    note
-                                                    mode="dropdown"
-                                                    style={{ width: '100%',color:'rgba(0,0,0,0.6)' }}
-                                                    selectedValue={this.state.selected}
-                                                    onValueChange={this.onValueChange.bind(this)}
+                                                        note
+                                                        mode="dropdown"
+                                                        style={{ width: '100%', color: 'rgba(0,0,0,0.6)' }}
+                                                        selectedValue={this.state.selected}
+                                                        onValueChange={this.onValueChange.bind(this)}
                                                     >
-                                                    <Picker.Item label="Department" value="key0" />
-                                                    <Picker.Item label="ATM Card" value="key1" />
-                                                    <Picker.Item label="Debit Card" value="key2" />
-                                                    <Picker.Item label="Credit Card" value="key3" />
-                                                    <Picker.Item label="Net Banking" value="key4" />
+                                                        {department.map((item, index) => 
+                                                             <Picker.Item label={item} value={item} key={index} />
+                                                        )}
                                                     </Picker>
                                                 </Form>
-                                              
                                             </View>
 
                                             <View style={{ width: '100%', marginTop: 10 }}>
@@ -131,19 +129,17 @@ export default class VehicleModal extends React.Component {
                                                     <Picker
                                                         note
                                                         mode="dropdown"
-                                                        style={{ width: '100%',color:'rgba(0,0,0,0.6)' }}
+                                                        style={{ width: '100%', color: 'rgba(0,0,0,0.6)' }}
                                                         selectedValue={this.state.selected}
                                                         onValueChange={this.onValueChange.bind(this)}
                                                     >
-                                                        <Picker.Item label="Vehicle Type" value="key0" />
-                                                        <Picker.Item label="ATM Card" value="key1" />
-                                                        <Picker.Item label="Debit Card" value="key2" />
-                                                        <Picker.Item label="Credit Card" value="key3" />
-                                                        <Picker.Item label="Net Banking" value="key4" />
+                                                         {VehicleType.map((item, index) => 
+                                                             <Picker.Item label={item} value={item} key={index} />
+                                                        )}
                                                     </Picker>
                                                 </Form>
                                             </View>
-
+                                            
                                         </View>
                                     } />
                                 <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 10 }}>
