@@ -93,8 +93,8 @@ export  class Dashboard extends React.Component {
 
     componentDidMount() {
         const { params } = this.props.navigation.state;
-        this.setState({loginResponse: params.data});
-        //alert(JSON.stringify(params.data.regionDetails))
+        this.setState({loginResponse: params.data.results});
+        //alert(JSON.stringify(params.data.results.regionDetails))
         //this.props.onFetchData();
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
