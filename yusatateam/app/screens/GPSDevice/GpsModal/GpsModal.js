@@ -5,6 +5,8 @@ import { Header, Body, Right, Left, List, ListItem } from 'native-base';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+
+
 export default class GpsModal extends React.Component {
     constructor(props) {
         super(props);
@@ -29,12 +31,17 @@ export default class GpsModal extends React.Component {
     };
 
     onSelectValue(item) {
-        this.props.selectedValue(item.label);
+        this.props.selectedValue(item);
         this.setModalVisible(false, '' ,[]);
     }
 
-    setModalVisible(visible,  title,data = []) {
-        this.setState({ modalVisible: visible, data: data, title: title });
+    setModalVisible(visible, title, data = []) {
+        const arrayValue = [];
+        for(var i=0;i<data.length;i++)
+        {
+            arrayValue.push(data[i].value)
+        }
+        this.setState({ modalVisible: visible, data: arrayValue,title :title});
     }
 
     render() {
@@ -74,7 +81,7 @@ export default class GpsModal extends React.Component {
                                             <List>
                                                 <TouchableOpacity >
                                                     <ListItem onPress={() => { this.onSelectValue(item) }}>
-                                                        <Text>{item.label}</Text>
+                                                        <Text>{item}</Text>
                                                     </ListItem>
                                                 </TouchableOpacity>
                                             </List>

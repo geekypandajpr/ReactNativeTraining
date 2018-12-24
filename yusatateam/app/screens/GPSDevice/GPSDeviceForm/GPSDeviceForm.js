@@ -66,6 +66,7 @@ export class GPSDeviceForm extends React.Component {
         this.state = {
             isLoading: true,
             flag: '',
+            data :  [],
             map: new Map(),
         }
 
@@ -86,13 +87,14 @@ export class GPSDeviceForm extends React.Component {
 
     componentDidMount() {
         this.props.onFetchData();
-        // alert(JSON.stringify(this.props.onFetchData()));
         const newMap = new Map(this.state.map);
         newMap.set(COMPANY_KEY, "Select Company");
         newMap.set(VEHICLE_KEY, "Select Vehicle");
         newMap.set(DEVICE_TYPE, "Select device type");
         newMap.set(SUBSC_KEY, "select SubsKey");
         newMap.set(ISD_KEY, '+91')
+        // var dataValues = nextProps.CountryIsdList.data.results
+           
         this.setState({ map: newMap })
     }
 
@@ -102,6 +104,13 @@ export class GPSDeviceForm extends React.Component {
         const newMap = new Map(this.state.map);
         newMap.set(this.state.flag, value);
         this.setState({ map: newMap })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.props.CountryIsdList !== nextProps.CountryIsdList) {
+            this.setState({data: nextProps.CountryIsdList.data.results});
+           
+        }
     }
 
     openPicker(keys, list, title) {
@@ -212,7 +221,7 @@ export class GPSDeviceForm extends React.Component {
                                                             isMandatory={true}
                                                             upperView ={true}
                                                             value={this.state.map.get(ISD_KEY)}
-                                                            onpress={() => this.openPicker(ISD_KEY, this.props.CountryIsdList.data, title[4])}
+                                                            onpress={() => this.openPicker(ISD_KEY, this.state.data, title[4])}
                                                         >
                                                         </UnderlineText>
                                                     </View>
