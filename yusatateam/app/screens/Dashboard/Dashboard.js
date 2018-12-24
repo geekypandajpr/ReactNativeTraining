@@ -117,7 +117,7 @@ export  class Dashboard extends React.Component {
     }
 
     openPicker() {
-        this.modalRef.current.setModalVisible(true, this.state.loginResponse.regionDetails);
+        this.modalRef.current.setModalVisible(true, this.state.loginResponse);
     }
 
     render() {

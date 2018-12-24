@@ -17,8 +17,8 @@ export default class DashboardFilter extends React.Component {
             regionArray: [],
             companyArray: [],
             companyMap: new Map(),
-            regionValue: 'Select region',
-            companyValue: 'Select company'
+            regionValue: '',
+            companyValue: ''
         },
         this.modalRef = React.createRef();
         this.onModalClose = this.onModalClose.bind(this);
@@ -30,28 +30,43 @@ export default class DashboardFilter extends React.Component {
     }
 
     setModalVisible(visible, data) {
-        this.setState({ modalVisible: visible, data: data }, function(){ this.updateList() });
+        this.setState({
+            modalVisible: visible,
+            data: data ? data : []
+        }, function(){ this.updateList() });
     }
 
     updateList() {
-        const region = this.state.data;
+        const region = this.state.data.regionDetails;
         const len = region.length;
         const regionArray = [];
         const companyMap = new Map(this.state.companyMap);
+        var defaultRegion = '';
+        var defaultCompany = '';
         for(var i = 0; i < len; i++) {
             const obj = { "label": region[i].regionName, "value": region[i].regionName };
             regionArray.push(obj);
+            if(this.state.data.defaultRegionId === region[i].regionId) { defaultRegion = region[i].regionName }
 
             const companyArray = region[i].companyDetails;
             const len1 = companyArray.length;
             const company = [];
             for(var j = 0; j < len1; j++) {
-                const companyObj = { "label":  companyArray[j].companyId, "value": companyArray[j].companyName};
+                const companyObj = Object.assign({ "label": companyArray[j].companyName }, companyArray[j] );
                 company.push(companyObj);
+                if(this.state.data.defaultCompanyCode === companyArray[j].companyCode) {
+                    defaultCompany = companyArray[j].companyName
+                }
             }
             companyMap.set(region[i].regionName, company);
         }
-        this.setState({ regionArray: regionArray, companyMap: companyMap, companyArray: companyMap.get(regionArray[0].label)});
+        this.setState({
+            regionArray: regionArray,
+            companyMap: companyMap,
+            companyArray: companyMap.get(regionArray[0].label),
+            regionValue: defaultRegion,
+            companyValue: defaultCompany
+        });
     }
 
     openRegionPicker() {
@@ -71,7 +86,7 @@ export default class DashboardFilter extends React.Component {
     onValueChange(value) {
         if(this.state.flag === 0) {
             const company = this.state.companyMap.get(value);
-            this.setState({ regionValue: value, companyArray: company, companyValue: 'Select compnay' });
+            this.setState({ regionValue: value, companyArray: company, companyValue: 'Select company' });
         } else if(this.state.flag === 1) {
             this.setState({ companyValue: value });
         }
