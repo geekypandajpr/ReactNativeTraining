@@ -30,21 +30,21 @@ const vehicles = [
     { label: 'vehicle5', value: 'vehicle5' }
 ];
 
-const subskey = [
-    { label: 'SubsKeys1', value: 'SubsKeys1' },
-    { label: 'SubsKeys2', value: 'SubsKeys2' },
-    { label: 'SubsKeys3', value: 'SubsKeys3' },
-    { label: 'SubsKeys4', value: 'SubsKeys4' },
-    { label: 'SubsKeys5', value: 'SubsKeys5' }
-];
+// const subskey = [
+//     { label: 'SubsKeys1', value: 'SubsKeys1' },
+//     { label: 'SubsKeys2', value: 'SubsKeys2' },
+//     { label: 'SubsKeys3', value: 'SubsKeys3' },
+//     { label: 'SubsKeys4', value: 'SubsKeys4' },
+//     { label: 'SubsKeys5', value: 'SubsKeys5' }
+// ];
 
-const ISD = [
-    { label: '+91', value: '+91' },
-    { label: '+92', value: '+92' },
-    { label: '+93', value: '+93' },
-    { label: '+94', value: '+94' },
-    { label: '+95', value: '+95' }
-];
+// const ISD = [
+//     { label: '+91', value: '+91' },
+//     { label: '+92', value: '+92' },
+//     { label: '+93', value: '+93' },
+//     { label: '+94', value: '+94' },
+//     { label: '+95', value: '+95' }
+// ];
 
 const title = [
     'Company',
@@ -59,7 +59,6 @@ const VEHICLE_KEY = 'VEHICLE';
 const DEVICE_TYPE = 'DEVICE_TYPE';
 const SUBSC_KEY = 'SUBSC_KEY';
 const ISD_KEY = 'ISD_kEY';
-
 export class GPSDeviceForm extends React.Component {
     constructor(props) {
         super(props);
@@ -86,16 +85,19 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
+        const { params } = this.props.navigation.state;
+       // code =params
+        //alert(JSON.stringify(params));
         this.props.onFetchData();
         const newMap = new Map(this.state.map);
         newMap.set(COMPANY_KEY, "Select Company");
         newMap.set(VEHICLE_KEY, "Select Vehicle");
         newMap.set(DEVICE_TYPE, "Select device type");
         newMap.set(SUBSC_KEY, "select SubsKey");
-        newMap.set(ISD_KEY, '+91')
+        newMap.set(ISD_KEY, params.code)
         // var dataValues = nextProps.CountryIsdList.data.results
            
-        this.setState({ map: newMap })
+        this.setState({ map: newMap})
     }
 
     OnValueSelect(value) {

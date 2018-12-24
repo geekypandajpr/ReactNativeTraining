@@ -19,6 +19,7 @@ const PICKERITEM = [
     { label: "UDID", value: "key4" }
 ]
 
+const code = []
 export class GPSDevice extends React.Component {
     constructor(props) {
         super(props);
@@ -50,6 +51,9 @@ export class GPSDevice extends React.Component {
     }
 
     componentDidMount() {
+        const { params } = this.props.navigation.state;
+        code =params
+        //alert(JSON.stringify(params));
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.props.onFetchData();
     }
@@ -119,7 +123,7 @@ export class GPSDevice extends React.Component {
                         data={[{ key: 1 }, { key: 2 }, { key: 3 }, { key: 4 }, { key: 5 }, { key: 6 }]}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm')}/>
+                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm',code)}/>
                         } />
                 </View>
         );

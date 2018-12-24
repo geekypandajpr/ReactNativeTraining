@@ -46,7 +46,7 @@ export default class DashboardFilter extends React.Component {
             const len1 = companyArray.length;
             const company = [];
             for(var j = 0; j < len1; j++) {
-                const companyObj = { "label": companyArray[j].companyName, "value": companyArray[j].companyId };
+                const companyObj = { "label":  companyArray[j].companyId, "value": companyArray[j].companyName};
                 company.push(companyObj);
             }
             companyMap.set(region[i].regionName, company);
