@@ -352,9 +352,7 @@ export class GPSDeviceForm extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        //loading : state.CompanyData,
-        // CompanyDatas : state.CompanyData.data1,
-        Devicetype  : state.CompanyData,
+       
         CountryIsdList: state.CompanyData
     }
 }
