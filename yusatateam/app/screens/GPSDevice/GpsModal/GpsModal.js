@@ -40,14 +40,14 @@ export default class GpsModal extends React.Component {
         const arrayValue = [];
         for(var i=0;i<data.length;i++)
         {
-            if(data[i].code)
-            {
-                arrayValue.push(data[i].code)
-            }
-            else
-            {
+            // if(data[i].code)
+            // {
+            //     arrayValue.push(data[i].code)
+            // }
+            // else
+            // {
                 arrayValue.push(data[i].value)
-            }
+            // }
            
         }
         this.setState({ modalVisible: visible, data: arrayValue,title :title});

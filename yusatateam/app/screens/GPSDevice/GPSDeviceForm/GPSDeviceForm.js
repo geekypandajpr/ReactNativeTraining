@@ -67,6 +67,7 @@ export class GPSDeviceForm extends React.Component {
             flag: '',
             data :  [],
             map: new Map(),
+            mobilenumber : ''
         }
 
         this.modalRef = React.createRef();
@@ -87,24 +88,33 @@ export class GPSDeviceForm extends React.Component {
     componentDidMount() {
         const { params } = this.props.navigation.state;
        // code =params
-        //alert(JSON.stringify(params));
         this.props.onFetchData();
         const newMap = new Map(this.state.map);
         newMap.set(COMPANY_KEY, "Select Company");
         newMap.set(VEHICLE_KEY, "Select Vehicle");
         newMap.set(DEVICE_TYPE, "Select device type");
         newMap.set(SUBSC_KEY, "select SubsKey");
-        newMap.set(ISD_KEY, params.code)
+        newMap.set(ISD_KEY, params[0].code)
         // var dataValues = nextProps.CountryIsdList.data.results
            
-        this.setState({ map: newMap})
+        this.setState({ map: newMap,mobilenumber : params[1].mobilenum})
     }
 
     OnValueSelect(value) {
         // if (this.state.flag === 'COMPANY') {
         //     this.setState({ company: value });
+        var dataValue ='';
+        
         const newMap = new Map(this.state.map);
-        newMap.set(this.state.flag, value);
+        for(var i=0;i<this.state.data.length;i++)
+        {
+            if(this.state.data[i].value==value)
+            {
+                dataValue=this.state.data[i].code
+            }
+        }
+        //alert(JSON.stringify(dataValue))
+        newMap.set(this.state.flag, dataValue);
         this.setState({ map: newMap })
     }
 
@@ -157,9 +167,7 @@ export class GPSDeviceForm extends React.Component {
                                                     isMandatory={true}
                                                     onpress={() => this.openPicker(COMPANY_KEY, vehicles, title[0])}
                                                 />
-
                                             </View>
-
                                             {/* <View style={styles.pickerView}>
                                             <Text style={[styles.pickerLabel, { fontFamily: 'Roboto' }]}>Device Type</Text>
                                             <Pickers dropdown={deviceType} />
@@ -231,13 +239,13 @@ export class GPSDeviceForm extends React.Component {
                                                 <View style={{ flex: 1.5, marginLeft: 10, marginTop: 12 }}>
                                                     <Float
                                                         placeholder='Mobile'
-                                                        //value={this.state.username}
+                                                        value={this.state.mobilenumber}
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
                                                         isMandatory={true}
-                                                        //onSubmitEditing={() => this._focusNextField('password')}
-                                                        //onChangeText={(username) => this.setState({ username })}
+                                                        // onSubmitEditing={() => this._focusNextField('password')}
+                                                        onChangeText={(text) => this.setState({ mobilenumber : text })}
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
