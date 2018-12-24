@@ -143,7 +143,7 @@ export  class Dashboard extends React.Component {
                         leftIcon='home'
                         setting='filter' settingType='FontAwesome'
                         onSettingsPress={this.openPicker} />
-                        <Activityindication visible={this.props.updateSchema.isLoading}/>
+                        {/* <Activityindication visible={this.props.updateSchema.isLoading}/> */}
 
                     <View style={styles.container1}>
 
