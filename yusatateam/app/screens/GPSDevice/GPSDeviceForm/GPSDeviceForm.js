@@ -191,7 +191,7 @@ export class GPSDeviceForm extends React.Component {
                                                     isMandatory={true}
                                                     upperView ={true}
                                                     value={this.state.map.get(DEVICE_TYPE)}
-                                                    onpress={() => this.openPicker(DEVICE_TYPE, vehicles, title[2])} />
+                                                    onpress={() => this.openPicker(DEVICE_TYPE, this.state.data1, title[2])} />
                                             </View>
 
 
@@ -342,7 +342,7 @@ function mapStateToProps(state) {
     return {
         //loading : state.CompanyData,
         // CompanyDatas : state.CompanyData.data1,
-        // DeviceDatas  : state.CompanyData.data2,
+         Devicetype  : state.CompanyData,
         CountryIsdList: state.CompanyData
     }
 }
