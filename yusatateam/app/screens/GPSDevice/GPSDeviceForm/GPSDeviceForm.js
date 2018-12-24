@@ -67,6 +67,8 @@ export class GPSDeviceForm extends React.Component {
             flag: '',
             data :  [],
             map: new Map(),
+            countryISD : [],
+            deviceType: [],
             mobilenumber : ''
         }
 
@@ -120,11 +122,13 @@ export class GPSDeviceForm extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if(this.props.CountryIsdList !== nextProps.CountryIsdList) {
-            this.setState({data: nextProps.CountryIsdList.data.results});
+            this.setState({
+                deviceType: nextProps.CountryIsdList.deviceType.results,
+                countryISD: nextProps.CountryIsdList.countryISD.results,
+            });
            
         }
     }
-
     openPicker(keys, list, title) {
         this.setState({ flag: keys });
         this.modalRef.current.setModalVisible(true, title, list);
@@ -199,7 +203,7 @@ export class GPSDeviceForm extends React.Component {
                                                     isMandatory={true}
                                                     upperView ={true}
                                                     value={this.state.map.get(DEVICE_TYPE)}
-                                                    onpress={() => this.openPicker(DEVICE_TYPE, this.state.data1, title[2])} />
+                                                    onpress={() => this.openPicker(DEVICE_TYPE, this.state.deviceType, title[2])} />
                                             </View>
 
 
@@ -231,7 +235,7 @@ export class GPSDeviceForm extends React.Component {
                                                             isMandatory={true}
                                                             upperView ={true}
                                                             value={this.state.map.get(ISD_KEY)}
-                                                            onpress={() => this.openPicker(ISD_KEY, this.state.data, title[4])}
+                                                            onpress={() => this.openPicker(ISD_KEY, this.state.countryISD, title[4])}
                                                         >
                                                         </UnderlineText>
                                                     </View>
@@ -350,7 +354,7 @@ function mapStateToProps(state) {
     return {
         //loading : state.CompanyData,
         // CompanyDatas : state.CompanyData.data1,
-         Devicetype  : state.CompanyData,
+        Devicetype  : state.CompanyData,
         CountryIsdList: state.CompanyData
     }
 }
