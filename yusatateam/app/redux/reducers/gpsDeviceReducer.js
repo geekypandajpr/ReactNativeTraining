@@ -37,7 +37,7 @@ export default gpsDeviceReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
                 isLoading: false,
                 error: true,
-                data : [],
+                data1 : [],
             });
         default:
             return state;

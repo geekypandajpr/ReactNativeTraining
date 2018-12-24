@@ -349,7 +349,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onFetchData: () => dispatch(userActions.gpsdeviceRequestr())
+        onFetchData: () => dispatch(userActions.gpsdeviceRequest())
 
     }
 }
