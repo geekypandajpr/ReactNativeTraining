@@ -1,14 +1,16 @@
 import {call,put,all} from 'redux-saga/effects';
 import { GPSDEVICE,GPSDEVICEDATA,GPSDEVICECOUNTRYISD } from '../common/actionTypes';
 import userServices from '../services/userServices'
+import functions from '../../common/functions';
 
 export function* gpsDeviceCountryIsd(action){
         try {
             const data = yield call(userServices.gpsDeviceCountryIsd);
-            // alert(JSON.stringify(data))
-            yield put({type: GPSDEVICECOUNTRYISD.GPSDEVICECOUNTRYISD_SUCCESS,data});
+            alert(JSON.stringify(data))
+            //yield put({type: GPSDEVICECOUNTRYISD.GPSDEVICECOUNTRYISD_SUCCESS,data});
         } catch(error) {
             yield put({type: GPSDEVICE.GPSDEVICE_FAILED,error})
+            functions.showToast('Something went wrong', 'danger');
         }
         
     }
