@@ -21,9 +21,11 @@ export default class Api {
         let options = Object.assign({ method: verb }, { credentials: 'same-origin' }, params ? { body: JSON.stringify(params) } : null);
         options.headers = Api.headers();
         return fetch(url, options)
-        .then((response) => response.json())
+        .then((response) => response)
         .then((responseJson) => {
-            return responseJson;
+            if(responseJson.ok) {
+                return responseJson.json()
+            }
         }).catch(function(error) {
             alert(error.message);
             throw error;
