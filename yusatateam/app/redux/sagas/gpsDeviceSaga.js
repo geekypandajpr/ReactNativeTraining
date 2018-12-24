@@ -7,7 +7,7 @@ export function* gpsDeviceCountryIsd(action){
         try {
             //const data = yield call(userServices.gpsDeviceCountryIsd);
             const [data,data1 ]= yield all([call(userServices.gpsDeviceCountryIsd),call(userServices.gpsDeviceType)])
-            //alert(JSON.stringify(data))
+            alert(JSON.stringify(data))
             //yield put({type: GPSDEVICECOUNTRYISD.GPSDEVICECOUNTRYISD_SUCCESS,data});
             yield all([put({type : GPSDEVICECOUNTRYISD.GPSDEVICECOUNTRYISD_SUCCESS,data}),put({type : GPSDEVICETYPE.GPSDEVICETYPE_SUCCESS,data1})])
         } catch(error) {
