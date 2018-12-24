@@ -259,4 +259,5 @@ function mapDispatchToProps(dispatch){
         onFetchData : () => dispatch(userActions.gpsdeviceRequest())
     }
 }
+
 export default connect(mapStateToProps,mapDispatchToProps) ( Dashboard )
