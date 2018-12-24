@@ -108,6 +108,7 @@ export  class Dashboard extends React.Component {
     componentWillReceiveProps(nextProps) {
         if(this.props.updateSchema !== nextProps.updateSchema) {
             this.setState({
+                loading: nextProps.updateSchema.isLoading,
                 updatedSchemaData: nextProps.updateSchema.data.results
             });
         }
@@ -143,7 +144,7 @@ export  class Dashboard extends React.Component {
                         leftIcon='home'
                         setting='filter' settingType='FontAwesome'
                         onSettingsPress={this.openPicker} />
-                        {/* <Activityindication visible={this.props.updateSchema.isLoading}/> */}
+                        <Activityindication visible={this.props.updatedSchema.isLoading}/>
 
                     <View style={styles.container1}>
 
@@ -263,7 +264,6 @@ export  class Dashboard extends React.Component {
 
 function mapStateToProps(state){
     return{
-        loading : state.CompanyData,
         CompanyDatas : state.CompanyData.data1,
         updatedSchema: state.updatedSchema
     }
