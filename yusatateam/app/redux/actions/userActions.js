@@ -6,7 +6,8 @@ import {
     CUSTOMER,
     VEHICLE, 
     TECHNICIAN,
-    GPSDEVICE 
+    GPSDEVICE,
+    UPDATESCHEMA
 } from '../common/actionTypes';
 
 export default {
@@ -17,8 +18,6 @@ export default {
     cutomerFetchRequest: () => ({ type: CUSTOMER.CUSTOMER_FETCH }),
     vehicleFetchRequest: (customer) => ({ type: VEHICLE.VEHICLE_FETCH, customer }),
     technicianRequest: () => ({ type: TECHNICIAN.TECHNICIAN_REQUEST }),
-    gpsdeviceRequest:() =>({ type: GPSDEVICE.GPSDEVICE_REQUEST })
-    // gpsdeviceRequest: () => ({type: GPSDEVICETYPE.GPSDEVICETYPE_REQUEST}),
-    // gpsdeviceRequestr: () => ({ type : GPSDEVICECOUNTRYISD.GPSDEVICECOUNTRYISD_REQUEST })
-
+    gpsdeviceRequest:() =>({ type: GPSDEVICE.GPSDEVICE_REQUEST }),
+    updateSchema: (companyId) => ({ type: UPDATESCHEMA.UPDATESCHEMA_REQUEST, companyId })
 }

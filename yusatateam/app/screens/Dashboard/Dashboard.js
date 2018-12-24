@@ -122,7 +122,7 @@ export  class Dashboard extends React.Component {
 
     onRegionUpdate(companyId) {
         var request = `companyId=${companyId}`;
-        //this.props.updateSchema(request);
+        this.props.updateSchema(companyId);
     }
 
     render() {
