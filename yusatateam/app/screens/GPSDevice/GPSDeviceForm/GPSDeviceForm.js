@@ -140,7 +140,7 @@ export class GPSDeviceForm extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ backgroundColor: '#fff', flex: 1 }}>
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
-                    {/* <Activityindication visible={this.props.CountryIsdList.isLoading}/> */}
+                    <Activityindication visible={this.props.CountryIsdList.isLoading}/>
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={[{ key: 1 }]}
