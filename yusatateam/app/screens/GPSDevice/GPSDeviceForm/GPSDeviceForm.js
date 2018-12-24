@@ -216,7 +216,7 @@ export class GPSDeviceForm extends React.Component {
 
                                     <View style={styles.Detail_View}>
                                         <View style={{ width: '94%' }}>
-                                            <Text style={globalStyles.title_text}> Sim Details</Text>
+                                            <Text style={globalStyles.title_text}> Sim Details </Text>
                                         </View>
                                     </View>
 
