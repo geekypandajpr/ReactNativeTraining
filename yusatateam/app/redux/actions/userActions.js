@@ -1,4 +1,13 @@
-import { USER, JOBS, SIM, DEVICE, CUSTOMER, VEHICLE, TECHNICIAN,GPSDEVICE,GPSDEVICETYPE,GPSDEVICECOUNTRYISD } from '../common/actionTypes';
+import {
+    USER,
+    JOBS,
+    SIM,
+    DEVICE, 
+    CUSTOMER,
+    VEHICLE, 
+    TECHNICIAN,
+    GPSDEVICE 
+} from '../common/actionTypes';
 
 export default {
     loginRequest: (loginCredentials) => ({ type: USER.LOGIN, loginCredentials }),
@@ -8,7 +17,7 @@ export default {
     cutomerFetchRequest: () => ({ type: CUSTOMER.CUSTOMER_FETCH }),
     vehicleFetchRequest: (customer) => ({ type: VEHICLE.VEHICLE_FETCH, customer }),
     technicianRequest: () => ({ type: TECHNICIAN.TECHNICIAN_REQUEST }),
-    gpsdeviceRequest:() =>({type: GPSDEVICETYPE.GPSDEVICETYPE_REQUEST})
+    gpsdeviceRequest:() =>({ type: GPSDEVICE.GPSDEVICE_REQUEST })
     // gpsdeviceRequest: () => ({type: GPSDEVICETYPE.GPSDEVICETYPE_REQUEST}),
     // gpsdeviceRequestr: () => ({ type : GPSDEVICECOUNTRYISD.GPSDEVICECOUNTRYISD_REQUEST })
 

@@ -1,6 +1,6 @@
 import { takeLatest } from 'redux-saga/effects';
 
-import { USER, JOBS, SIM, CUSTOMER, DEVICE, VEHICLE,TECHNICIAN,GPSDEVICE,GPSDEVICECOUNTRYISD } from '../common/actionTypes';
+import { USER, JOBS, SIM, CUSTOMER, DEVICE, VEHICLE,TECHNICIAN, GPSDEVICE, GPSDEVICECOUNTRYISD } from '../common/actionTypes';
 import * as userSaga from './userSaga';
 import * as simSaga from './simSaga';
 import * as deviceSaga from './deviceSaga';
@@ -18,6 +18,5 @@ export default function* rootSaga() {
     yield takeLatest(CUSTOMER.CUSTOMER_FETCH, cutomerSaga.cutomerList),
     yield takeLatest(VEHICLE.VEHICLE_FETCH, vehicleSaga.vehicleList),
     yield takeLatest(TECHNICIAN.TECHNICIAN_REQUEST,technicianSaga.technicianLogin)
-    //yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST,gpsDeviceSaga.gpslogin)
-    yield takeLatest(GPSDEVICECOUNTRYISD.GPSDEVICECOUNTRYISD_REQUEST,gpsDeviceSaga.gpsDeviceCountryIsd)
+    yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd)
 }
