@@ -120,6 +120,11 @@ export  class Dashboard extends React.Component {
         this.modalRef.current.setModalVisible(true, this.state.loginResponse);
     }
 
+    onRegionUpdate(companyId) {
+        var request = `companyId=${companyId}`;
+        //this.props.updateSchema(request);
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -241,7 +246,7 @@ export  class Dashboard extends React.Component {
                         </View>
 
                     </View>
-                    <DashboardFilter ref={this.modalRef} />
+                    <DashboardFilter ref={this.modalRef} onRegionUpdate={(companyId) => this.onRegionUpdate(companyId)}/>
                 </View>
         );
     }
@@ -256,7 +261,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return{
-        onFetchData : () => dispatch(userActions.gpsdeviceRequest())
+        onFetchData : () => dispatch(userActions.gpsdeviceRequest()),
+        updateSchema: (request) => dispatch(userActions.updateSchema(request))
     }
 }
 
