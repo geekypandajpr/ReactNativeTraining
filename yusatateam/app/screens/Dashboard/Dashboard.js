@@ -22,6 +22,8 @@ export  class Dashboard extends React.Component {
         super();
         this.state = {
             isLoading: true,
+            loading: false,
+            updatedSchemaData: [],
             loginResponse: {},
             company : '',
             pieColor: ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'],
@@ -103,6 +105,14 @@ export  class Dashboard extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(this.props.updateSchema !== nextProps.updateSchema) {
+            this.setState({
+                updatedSchemaData: nextProps.updateSchema.data.results
+            });
+        }
+    }
+
     handleBackPress = () => {
         Alert.alert(
             'Exit Confirmation',
@@ -121,7 +131,6 @@ export  class Dashboard extends React.Component {
     }
 
     onRegionUpdate(companyId) {
-        var request = `companyId=${companyId}`;
         this.props.updateSchema(companyId);
     }
 
@@ -134,7 +143,7 @@ export  class Dashboard extends React.Component {
                         leftIcon='home'
                         setting='filter' settingType='FontAwesome'
                         onSettingsPress={this.openPicker} />
-                         {/* <Activityindication visible={this.props.loading.isLoading}/> */}
+                        <Activityindication visible={this.props.updateSchema.isLoading}/>
 
                     <View style={styles.container1}>
 
@@ -255,7 +264,8 @@ export  class Dashboard extends React.Component {
 function mapStateToProps(state){
     return{
         loading : state.CompanyData,
-        CompanyDatas : state.CompanyData.data1
+        CompanyDatas : state.CompanyData.data1,
+        updatedSchema: state.updatedSchema
     }
 }
 
