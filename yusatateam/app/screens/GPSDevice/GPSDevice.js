@@ -27,9 +27,7 @@ export class GPSDevice extends React.Component {
         this.state = {
             isLoading: true,
             data: null,
-            countryISD : [],
-            deviceType: [],
-            searchValue: '',
+            deviceUDID: '',
             listValues : [],
             selected2: '',
             dropdownKey : ''
@@ -87,7 +85,6 @@ export class GPSDevice extends React.Component {
             ]
           }
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        this.props.onFetchData();
         this.props.onListFetchData(filterData);
     }
 
@@ -97,8 +94,6 @@ export class GPSDevice extends React.Component {
             var listData = nextProps.searchList.data.results
             if(listData) {
                 this.setState({
-                    deviceType: nextProps.CountryIsdList.deviceType.results,
-                    countryISD: nextProps.CountryIsdList.countryISD.results,
                     listValues : listData.data
                 });
             }
@@ -115,6 +110,7 @@ export class GPSDevice extends React.Component {
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
+
     SearchFilterFunction(text) {
         const newData = this.arrayList.filter(function (item) {
             const itemData = item.ESN.toUpperCase()
@@ -127,9 +123,11 @@ export class GPSDevice extends React.Component {
         },
         )
     }
+
     onSearchClearPressed() {
         this.SearchFilterFunction('');
     }
+
     AlertBox() {
         alert('Press Alert Button')
     }
@@ -147,6 +145,12 @@ export class GPSDevice extends React.Component {
         this.setState({dropdownKey: value});
     }
 
+    getDeviceInfo() {
+        if(this.state.deviceUDID !== '') {
+            this.props.fetchDeviceInfo(this.state.deviceUDID);
+        }
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
@@ -158,17 +162,19 @@ export class GPSDevice extends React.Component {
                     <SearchBar
                         placeholder={'Search by device UDID'}
                         isDropdown={false}
-                        pickerItem={PICKERITEM}
-                        onChangeText={(text) => this.setState({searchValue: text})}
-                        selectedValue={this.state.selected2}
-                        onSearch={() => console.log('onSearchPressed')}
+                        //pickerItem={PICKERITEM}
+                        onChangeText={(text) => this.setState({deviceUDID: text})}
+                        value={this.state.deviceUDID}
+                        //selectedValue={this.state.selected2}
+                        onSearch={this.getDeviceInfo}
                     />
 
                     <FlatList
                         data={this.state.listValues}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm',[{code :code},{countrylist : this.state.countryISD },{deviceList : this.state.deviceType }])} item={item}/>
+                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm',[{code :code}])}
+                                item={item}/>
                         } />
                 </View>
         );
@@ -188,8 +194,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         onListFetchData : (filterData) => dispatch(userActions.searchCriteria(filterData)),
-        onFetchData: () => dispatch(userActions.gpsdeviceRequest())
-        
+        fetchDeviceInfo : (deviceUDID) => dispatch(userActions.getAssociationDeviceInfo(deviceUDID))
     }
 }
 

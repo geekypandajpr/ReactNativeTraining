@@ -6,7 +6,16 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default class SearchBar extends React.Component {
     render() {
-        const {isDropdown, pickerItem, onChangeText, placeholder, selectedValue, onValueChange, onSearch } = this.props;
+        const {
+            isDropdown,
+            pickerItem,
+            onChangeText,
+            placeholder,
+            selectedValue,
+            onValueChange,
+            onSearch,
+            value
+        } = this.props;
         return (
             <View style={styles.top_view}>
                 {isDropdown ? 
@@ -38,7 +47,9 @@ export default class SearchBar extends React.Component {
                                 underlineColorAndroid="transparent"
                                 returnKeyType='search'
                                 autoFocus={false}
+                                value={value}
                                 clearButtonMode="while-editing"
+                                onSubmitEditing={onSearch}
                                 onChangeText={onChangeText}
                             />
                         </View>
