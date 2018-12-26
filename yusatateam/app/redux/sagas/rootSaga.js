@@ -10,7 +10,8 @@ import {
     TECHNICIAN,
     GPSDEVICE,
     UPDATESCHEMA,
-    SUBMITGPSFORM
+    SUBMITGPSFORM,
+    GPSDEVICESEARCHCRITERIA
 } from '../common/actionTypes';
 
 import * as userSaga from './userSaga';
@@ -20,9 +21,13 @@ import * as jobSaga from'./jobSaga';
 import * as cutomerSaga from './customerSaga';
 import * as vehicleSaga from './vehicleSaga';
 import * as technicianSaga from './technicianSaga';
+
+/**GPS Device */
 import * as gpsDeviceSaga from './GPSDevice/GPSDeviceSaga';
+
 import * as updateSchema from './updateSchemaSaga';
 import * as SubmitFormSaga from './SubmitFormSaga';
+
 
 
 export default function* rootSaga() {
@@ -40,5 +45,7 @@ export default function* rootSaga() {
     /**GPS Device */
     yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd),
     yield takeLatest(GPSDEVICE.DEVICEINFO_REQUEST, gpsDeviceSaga.getDeviceInfo),
-    yield takeLatest(SUBMITGPSFORM.SUBMITGPSFORM_REQUEST,SubmitFormSaga.SubmitFormLogin)
+    yield takeLatest(SUBMITGPSFORM.SUBMITGPSFORM_REQUEST,SubmitFormSaga.SubmitFormLogin),
+    yield takeLatest(GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST,gpsDeviceSaga.searchCriteria)
+
 }

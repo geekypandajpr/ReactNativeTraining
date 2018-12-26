@@ -3,12 +3,13 @@ import {
     View,
     FlatList,
     BackHandler,
+    
 } from 'react-native';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 
 import styles from './styles';
-import { ToolbarWithDropdown, GpsDeviceData, SearchBar } from '../../components';
+import { ToolbarWithDropdown, GpsDeviceData, SearchBar,Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 
 const PICKERITEM = [
@@ -29,7 +30,9 @@ export class GPSDevice extends React.Component {
             countryISD : [],
             deviceType: [],
             searchValue: '',
-            selected2: ''
+            listValues : [],
+            selected2: '',
+            dropdownKey : ''
         };
         this.list = [];
         this.modalRef = React.createRef();
@@ -91,11 +94,14 @@ export class GPSDevice extends React.Component {
     componentWillReceiveProps(nextProps) {  
            
         if(this.props.searchList !== nextProps.searchList) {
-            alert(JSON.stringify(nextProps.searchList)) 
-            this.setState({
-                deviceType: nextProps.CountryIsdList.deviceType.results,
-                countryISD: nextProps.CountryIsdList.countryISD.results,
-            });
+            var listData = nextProps.searchList.data.results
+            if(listData) {
+                this.setState({
+                    deviceType: nextProps.CountryIsdList.deviceType.results,
+                    countryISD: nextProps.CountryIsdList.countryISD.results,
+                    listValues : listData.data
+                });
+            }
            
         }
         
@@ -137,14 +143,19 @@ export class GPSDevice extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
+    dropdownValue = (value) => {
+        this.setState({dropdownKey: value});
+    }
+
     render() {
+        alert(this.state.dropdownKey)
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <ToolbarWithDropdown title='GPS Devices' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
-
+                    <ToolbarWithDropdown title='GPS Devices' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} onSelectvalue={this.dropdownValue} />
+                    <Activityindication visible={this.props.searchList.isLoading}/>
                     <SearchBar
                         placeholder={'Search here'}
                         isDropdown={false}
@@ -156,10 +167,10 @@ export class GPSDevice extends React.Component {
                     />
 
                     <FlatList
-                        data={[{ key: 1 }, { key: 2 }, { key: 3 }, { key: 4 }, { key: 5 }, { key: 6 }]}
+                        data={this.state.listValues}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm',[{code :code},{countrylist : this.state.countryISD },{deviceList : this.state.deviceType }])}/>
+                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm',[{code :code},{countrylist : this.state.countryISD },{deviceList : this.state.deviceType }])} item={item}/>
                         } />
                 </View>
         );

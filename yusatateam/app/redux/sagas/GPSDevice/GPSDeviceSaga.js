@@ -1,6 +1,6 @@
 import { call, put, all } from 'redux-saga/effects';
 
-import { GPSDEVICE } from '../../common/actionTypes';
+import { GPSDEVICE, GPSDEVICESEARCHCRITERIA } from '../../common/actionTypes';
 import userServices from '../../services/userServices'
 import functions from '../../../common/functions';
 
@@ -20,6 +20,17 @@ export function* getDeviceInfo(action) {
         yield put({ type: GPSDEVICE.DEVICEINFO_SUCCESS, deviceInfo });
     } catch(error) {
         yield put({ type: GPSDEVICE.DEVICEINFO_FAILED, error });
+        functions.showToast('Something went wrong', 'danger');
+    }
+}
+
+export function* searchCriteria(action) {
+    try {
+        const data = yield call(userServices.searchCriteria, action.filterData);
+        // alert(JSON.stringify(data.results.data))
+        yield put({type: GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_SUCCESS, data});
+    } catch (error) {
+        yield put({type: GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_FAILED, error});
         functions.showToast('Something went wrong', 'danger');
     }
 }

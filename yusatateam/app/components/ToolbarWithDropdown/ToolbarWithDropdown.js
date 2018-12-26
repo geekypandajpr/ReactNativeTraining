@@ -28,6 +28,7 @@ export default class ToolbarWithDropdown extends React.Component {
         this.setState({
           selected2: value
         });
+        this.props.onSelectvalue(value);
       }
 
     async componentWillMount() {
@@ -66,9 +67,9 @@ export default class ToolbarWithDropdown extends React.Component {
                                     selectedValue={this.state.selected2}
                                     onValueChange={this.onValueChange2.bind(this)}
                                 >
-                                    <Picker.Item label="All" value="key0" />
-                                    <Picker.Item label="Assigned" value="key1" />
-                                    <Picker.Item label="Not Assigned" value="key2" />
+                                    <Picker.Item label="All" value="all" />
+                                    <Picker.Item label="Assigned" value="assigned" />
+                                    <Picker.Item label="Not Assigned" value="unassigned" />
                                 </Picker>
                                 <Icon name='arrow-dropdown-circle'  style={{ color: "white", fontSize: 25 }} />
                                 </Item>

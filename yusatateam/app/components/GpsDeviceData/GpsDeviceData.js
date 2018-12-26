@@ -22,7 +22,7 @@ export default class GpsDeviceData extends React.Component {
     }
 
     render() {
-        const { onPress } = this.props;
+        const { onPress, item} = this.props;
         const statusColor = {'Active': '#5cb85c', 'Inactive': '#d9534f'} 
         return (
             this.state.isLoading === true ? <AppLoading /> :
@@ -32,11 +32,11 @@ export default class GpsDeviceData extends React.Component {
 
                         <View style={styles.view}>
                             <View style={styles.title_view}>
-                                <Text style={[ globalStyles.title_text, { fontFamily: 'Roboto' } ]}>Yusata Infotech Pvt. Ltd.</Text>
+                                <Text style={[ globalStyles.title_text, { fontFamily: 'Roboto' } ]}>{item.companyName}</Text>
                             </View>
                             <View style={styles.status_view}>
                                 <View style={styles.status}>
-                                    <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto', color: statusColor['Active'] } ]}>Active</Text>
+                                    <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto', color: statusColor['Active'] } ]}>{item.formattedStatus}</Text>
                                 </View>
                             </View>
                         </View>
@@ -49,19 +49,19 @@ export default class GpsDeviceData extends React.Component {
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
                             </View>
                             <View style={styles.last_view}>
-                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>Atlanta</Text>
+                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{item.provider}</Text>
                             </View>
                         </View>
 
                         <View style={styles.view}>
                             <View style={styles.first_view}>
-                                <Text style={[ globalStyles.primary_text, { fontFamily: 'Roboto' } ]}>ESN</Text>
+                                <Text style={[ globalStyles.primary_text, { fontFamily: 'Roboto' } ]}>Vehicle No</Text>
                             </View>
                             <View style={styles.middle_view}>
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
                             </View>
                             <View style={styles.last_view}>
-                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>SBIMD123</Text>
+                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{item.vehicleId}</Text>
                             </View>
                         </View>
 
@@ -73,7 +73,7 @@ export default class GpsDeviceData extends React.Component {
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
                             </View>
                             <View style={styles.last_view}>
-                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>udid1254</Text>
+                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{item.gpsDeviceUdid}</Text>
                             </View>
                         </View>
 
@@ -85,7 +85,7 @@ export default class GpsDeviceData extends React.Component {
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
                             </View>
                             <View style={styles.last_view}>
-                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>12-12-2018</Text>
+                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{item.formattedCreatedOn}</Text>
                             </View>
                         </View>
 
