@@ -8,7 +8,8 @@ import {
     TECHNICIAN,
     GPSDEVICE,
     UPDATESCHEMA,
-    SUBMITGPSFORM
+    SUBMITGPSFORM,
+    ASSOCIATIONDEVICEINFO
 } from '../common/actionTypes';
 
 export default {
@@ -21,5 +22,6 @@ export default {
     technicianRequest: () => ({ type: TECHNICIAN.TECHNICIAN_REQUEST }),
     gpsdeviceRequest:() =>({ type: GPSDEVICE.GPSDEVICE_REQUEST }),
     submitgpsFormRequest:() =>({type:SUBMITGPSFORM.SUBMITGPSFORM_REQUEST}),
-    updateSchema: (companyId) => ({ type: UPDATESCHEMA.UPDATESCHEMA_REQUEST, companyId })
+    updateSchema: (companyId) => ({ type: UPDATESCHEMA.UPDATESCHEMA_REQUEST, companyId }),
+    getAssociationDeviceInfo: (deviceUDID) => ({ type: ASSOCIATIONDEVICEINFO.DEVICEINFO_REQUEST, deviceUDID })
 }
