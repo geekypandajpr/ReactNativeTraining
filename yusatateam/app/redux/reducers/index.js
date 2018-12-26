@@ -8,10 +8,10 @@ import jobReducer from './jobReducer';
 import customerReducer from './cutomerReducer';
 import vehicleReducer from './vehicleReducer';
 import techReducer from './techReducer';
-import gpsDeviceReducer from './GPSDevice/GPSDeviceReducer';
 import updateSchemaReducer from './updateSchemaReducer';
 import submitFormReducer from './submitFormReducer';
 import searchCriteriaReducer from './searchCriteriaReducer';
+import { deviceInfoReducer, GPSDeviceReducer } from './GPSDevice';
 
 const rootReducers = combineReducers({
     nav: navReducer,
@@ -22,7 +22,8 @@ const rootReducers = combineReducers({
     customersData: customerReducer,
     vehicleData: vehicleReducer,
     TechnicianData : techReducer,
-    CompanyData : gpsDeviceReducer,
+    CompanyData : GPSDeviceReducer,
+    deviceInfo: deviceInfoReducer,
     updatedSchema: updateSchemaReducer,
     submitFormData : submitFormReducer,
     searchList : searchCriteriaReducer
