@@ -13,18 +13,21 @@ export default EStyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
     },
-    Detail_View:{
-         backgroundColor: '#fff',
-          marginTop: 10,
-           alignItems: 'center',
-            marginBottom: 10
-         },
+    Detail_View: {
+        backgroundColor: '#fff',
+        marginTop: 10,
+        alignItems: 'center',
+        marginBottom: 10
+    },
     Width_View: {
         alignItems: 'center',
         width: '92%'
     },
     Small_View: {
         width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
         marginTop: 10
     },
     inner_View: {
@@ -54,5 +57,9 @@ export default EStyleSheet.create({
         justifyContent: 'flex-start',
         marginTop: 15,
         marginBottom: 10
+    },
+    createVehicle: {
+        color: 'rgb(56,64,64)',
+        fontSize: '0.8rem'
     }
 })

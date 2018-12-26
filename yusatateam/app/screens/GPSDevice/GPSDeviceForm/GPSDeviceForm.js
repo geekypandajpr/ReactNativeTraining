@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, KeyboardAvoidingView } from 'react-native';
+import { View, FlatList, KeyboardAvoidingView, Alert } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
@@ -12,6 +12,22 @@ import { GpsModal } from '../GpsModal/GpsModal';
 import { userActions } from '../../../redux/actions';
 import { VehicleModal } from '../VehicleModal/VehicleModal';
 import functions from '../../../common/functions'
+
+const value = {
+    "associationId": 100,
+    "balance": "25.00",
+    "carrier": "Airtel",
+    "countryID": 91,
+    "dataBalance": "50.00",
+    "dataPlan": "100",
+    "dataValidity": "12/12/2018",
+    "departmentId": 101,
+    "deviceId": 12345,
+    "deviceTypeId": 123,
+    "deviceUdid": "device123",
+    "simno": "7008819309",
+    "vehicleId": 5236
+}
 
 const vehicles = [
     { label: 'vehicle1', value: 'vehicle1' },
@@ -172,6 +188,7 @@ export class GPSDeviceForm extends React.Component {
                                                     />
                                                 </Item>
                                             </View>
+
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Company"
@@ -181,11 +198,8 @@ export class GPSDeviceForm extends React.Component {
                                                     onpress={() => this.openPicker(COMPANY_KEY, vehicles, title[0])}
                                                 />
                                             </View>
-                                            {/* <View style={styles.pickerView}>
-                                            <Text style={[styles.pickerLabel, { fontFamily: 'Roboto' }]}>Device Type</Text>
-                                            <Pickers dropdown={deviceType} />
-                                        </View> */}
-                                            <View style={[styles.Balance_view, { marginTop: 5 }]}>
+                                            
+                                            <View style={styles.Small_View}>
                                                 <View style={{ flex: 1 }}>
                                                     <View style={{ height: 70, justifyContent: 'center' }}>
                                                         <UnderlineText
@@ -198,10 +212,10 @@ export class GPSDeviceForm extends React.Component {
                                                         </UnderlineText>
                                                     </View>
                                                 </View>
-                                                <View style={{ flex: 1, marginLeft: 10, marginTop: 18 }}>
+                                                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
                                                     <Button bordered dark style={{ height: 40, borderColor: 'gray' }}
                                                         onPress={() => { this.modalReference.current.setModalVisible(true) }}>
-                                                        <Text style={{ color: 'rgb(56,64,64)' }}> Create Vehicle</Text>
+                                                        <Text style={styles.createVehicle}> Create Vehicle</Text>
                                                     </Button>
                                                 </View>
                                             </View>
@@ -374,4 +388,3 @@ function mapDispatchToProps(dispatch) {
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)
-

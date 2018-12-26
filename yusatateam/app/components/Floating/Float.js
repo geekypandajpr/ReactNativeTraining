@@ -1,6 +1,7 @@
 import React from 'react';
 import { Item, Input, Label, View, } from 'native-base';
-import { Text } from 'react-native'
+import { Text } from 'react-native';
+import EStyleSheet, { create } from 'react-native-extended-stylesheet';
 
 export default class Float extends React.Component {
     render() {
@@ -8,15 +9,15 @@ export default class Float extends React.Component {
             <View style={{ width: '100%' }}>
                 <Item floatingLabel>
                     {/* <Icon name={this.props.name} type={this.props.iconType} style={{color:this.props.iconColor}} /> */}
-                    <Label style={{ color: 'rgba(0,0,0,0.6)', fontSize: 15, }}>{this.props.placeholder}
+                    <Label style={styles.label}>{this.props.placeholder}
                         {this.props.isMandatory ?
-                            <Text style={{ marginTop: 0, color: 'red', fontSize: 15, marginLeft: 3 }}>*</Text>
+                            <Text style={styles.star}>*</Text>
                             : null}
                     </Label>
 
                     <Input
                         // placeholder={this.props.placeholder}
-                        style={{ color: '#000', fontSize: 15 }}
+                        style={styles.value}
                         value={this.props.value}
                         keyboardType={this.props.keyboardType}
                         returnKeyType={this.props.returnKeyType}
@@ -31,4 +32,22 @@ export default class Float extends React.Component {
         );
     }
 }
+
+const styles = EStyleSheet.create({
+    label: {
+        color: 'rgba(0,0,0,0.6)',
+        fontSize: '0.9rem', 
+    },
+    star: {
+        marginTop: 0,
+        color: 'red',
+        marginLeft: 5,
+        fontSize: '1rem' 
+    },
+    value: {
+        color: '#000',
+        fontSize: '0.9rem'  
+    }
+})
+
 export { Float }
