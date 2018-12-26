@@ -8,7 +8,7 @@ import jobReducer from './jobReducer';
 import customerReducer from './cutomerReducer';
 import vehicleReducer from './vehicleReducer';
 import techReducer from './techReducer';
-import gpsDeviceReducer from './gpsDeviceReducer';
+import gpsDeviceReducer from './GPSDevice/GPSDeviceReducer';
 import updateSchemaReducer from './updateSchemaReducer';
 import submitFormReducer from './submitFormReducer';
 

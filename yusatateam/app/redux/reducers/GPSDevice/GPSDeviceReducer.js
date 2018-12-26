@@ -1,4 +1,4 @@
-import { GPSDEVICE } from '../common/actionTypes';
+import { GPSDEVICE } from '../../common/actionTypes';
 const initialState = {
     isLoading: true,
     countryISD: [],
