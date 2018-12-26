@@ -4,7 +4,7 @@ import { Text, Picker, Form } from 'native-base';
 import { Float } from '../../../components';
 
 var department = ["Department", "Department1", "Department2", "Department4", "Department5"]
-var VehicleType = ["Vehicle Type","Type1","Type2","Type3","Type4","Type5"]
+var VehicleType = ["Vehicle Type", "Type1", "Type2", "Type3", "Type4", "Type5"]
 
 export default class VehicleModal extends React.Component {
     constructor(props) {
@@ -57,9 +57,7 @@ export default class VehicleModal extends React.Component {
                         <View style={styles.container}>
                             <View style={styles.modalView}>
                                 <View style={styles.header_view}>
-                                    <View style={styles.service_num}>
-                                        <Text style={styles.header_text}>Create Vehicle</Text>
-                                    </View>
+                                    <Text style={styles.header_text}>Create Vehicle</Text>
                                 </View>
                                 <FlatList
                                     style={{ backgroundColor: '#fff' }}
@@ -68,7 +66,7 @@ export default class VehicleModal extends React.Component {
                                     data={[{ key: '1' }]}
                                     keyExtractor={this._keyExtractor}
                                     renderItem={({ item, index }) =>
-                                        <View style={{ width: 350 }}>
+                                        <View style={{ width:Dimensions.get('window').width*0.9 }}>
                                             <View style={{ width: '100%' }}>
                                                 <Float
                                                     placeholder='Vehicle Number'
@@ -117,8 +115,8 @@ export default class VehicleModal extends React.Component {
                                                         selectedValue={this.state.selected}
                                                         onValueChange={this.onValueChange.bind(this)}
                                                     >
-                                                        {department.map((item, index) => 
-                                                             <Picker.Item label={item} value={item} key={index} />
+                                                        {department.map((item, index) =>
+                                                            <Picker.Item label={item} value={item} key={index} />
                                                         )}
                                                     </Picker>
                                                 </Form>
@@ -133,13 +131,13 @@ export default class VehicleModal extends React.Component {
                                                         selectedValue={this.state.selected}
                                                         onValueChange={this.onValueChange.bind(this)}
                                                     >
-                                                         {VehicleType.map((item, index) => 
-                                                             <Picker.Item label={item} value={item} key={index} />
+                                                        {VehicleType.map((item, index) =>
+                                                            <Picker.Item label={item} value={item} key={index} />
                                                         )}
                                                     </Picker>
                                                 </Form>
                                             </View>
-                                            
+
                                         </View>
                                     } />
                                 <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 10 }}>
@@ -182,7 +180,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         backgroundColor: '#00000080',
-        flexDirection: 'column',
     },
     modalView: {
         backgroundColor: '#FFFFFF',
