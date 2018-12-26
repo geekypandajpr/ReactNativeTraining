@@ -250,7 +250,31 @@ export class GPSDeviceForm extends React.Component {
                                     <View style={styles.Sub_View}>
                                         <View style={styles.Width_View}>
 
-                                            <View style={[styles.Balance_view, { marginTop: 5 }]}>
+                                            <View style={styles.Small_View}>
+                                                <UnderlineText
+                                                    name='Country ISD'
+                                                    isMandatory={true}
+                                                    upperView={true}
+                                                    value={this.state.map.get(ISD_KEY)}
+                                                    onpress={() => this.openPicker(ISD_KEY, this.state.countryISD, title[4])}
+                                                />
+                                            </View>
+
+                                            <View style={styles.Small_View}>
+                                                <Float
+                                                    placeholder='Mobile'
+                                                    value={this.state.mobilenumber}
+                                                    returnKeyType={'next'}
+                                                    keyboardType={'numeric'}
+                                                    blurOnSubmit={false}
+                                                    isMandatory={true}
+                                                    // onSubmitEditing={() => this._focusNextField('password')}
+                                                    onChangeText={(text) => this.setState({ mobilenumber: text })}
+                                                    inputStyles={{ width: '100%' }}
+                                                />
+                                            </View>
+
+                                            {/* <View style={[styles.Balance_view, { marginTop: 5 }]}>
                                                 <View style={{ flex: 1 }}>
                                                     <View style={{ height: 60, justifyContent: 'center' }}>
                                                         <UnderlineText
@@ -276,7 +300,8 @@ export class GPSDeviceForm extends React.Component {
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
-                                            </View>
+                                            </View> */}
+                                            
                                             <View style={[styles.Balance_view, { marginTop: 10 }]}>
                                                 <View style={styles.inner_View}>
                                                     <Float
