@@ -33,7 +33,10 @@ export default function* rootSaga() {
     yield takeLatest(CUSTOMER.CUSTOMER_FETCH, cutomerSaga.cutomerList),
     yield takeLatest(VEHICLE.VEHICLE_FETCH, vehicleSaga.vehicleList),
     yield takeLatest(TECHNICIAN.TECHNICIAN_REQUEST,technicianSaga.technicianLogin)
-    yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd),
     yield takeLatest(UPDATESCHEMA.UPDATESCHEMA_REQUEST, updateSchema.updateSchema),
+
+    /**GPS Device */
+    yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd),
+    yield takeLatest(GPSDEVICE.DEVICEINFO_REQUEST, gpsDeviceSaga.getDeviceInfo),
     yield takeLatest(SUBMITGPSFORM.SUBMITGPSFORM_REQUEST,SubmitFormSaga.SubmitFormLogin)
 }
