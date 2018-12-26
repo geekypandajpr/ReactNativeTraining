@@ -4,5 +4,6 @@ export const USER = {
     DEVICETYPE                  : 'utility/list/DeviceType',
     UPDATESCHEMA                : 'user/updateSchema',
     FORMSUBMIT                  : 'ap/add',
-    ASSOCIATIONDEVICEINFO       : 'ap/deviceInfo'
+    ASSOCIATIONDEVICEINFO       : 'ap/deviceInfo',
+    GPSDEVICESEARCHCRITERIA     : '/ap/dataTable'
 };
