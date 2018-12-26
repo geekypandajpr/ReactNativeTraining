@@ -9,9 +9,9 @@ import customerReducer from './cutomerReducer';
 import vehicleReducer from './vehicleReducer';
 import techReducer from './techReducer';
 import updateSchemaReducer from './updateSchemaReducer';
-import submitFormReducer from './submitFormReducer';
+//import submitFormReducer from './submitFormReducer';
 import searchCriteriaReducer from './searchCriteriaReducer';
-import { deviceInfoReducer, GPSDeviceReducer } from './GPSDevice';
+import { deviceInfoReducer, GPSDeviceReducer,submitFormReducer } from './GPSDevice';
 
 const rootReducers = combineReducers({
     nav: navReducer,
