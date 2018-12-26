@@ -9,7 +9,6 @@ import {
     GPSDEVICE,
     UPDATESCHEMA,
     SUBMITGPSFORM,
-    ASSOCIATIONDEVICEINFO
 } from '../common/actionTypes';
 
 export default {
@@ -23,5 +22,5 @@ export default {
     gpsdeviceRequest:() =>({ type: GPSDEVICE.GPSDEVICE_REQUEST }),
     submitgpsFormRequest:() =>({type:SUBMITGPSFORM.SUBMITGPSFORM_REQUEST}),
     updateSchema: (companyId) => ({ type: UPDATESCHEMA.UPDATESCHEMA_REQUEST, companyId }),
-    getAssociationDeviceInfo: (deviceUDID) => ({ type: ASSOCIATIONDEVICEINFO.DEVICEINFO_REQUEST, deviceUDID })
+    getAssociationDeviceInfo: (deviceUDID) => ({ type: GPSDEVICE.DEVICEINFO_REQUEST, deviceUDID })
 }
