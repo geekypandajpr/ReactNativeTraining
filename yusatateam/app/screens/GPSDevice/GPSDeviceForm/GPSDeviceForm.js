@@ -13,22 +13,6 @@ import { userActions } from '../../../redux/actions';
 import { VehicleModal } from '../VehicleModal/VehicleModal';
 import functions from '../../../common/functions'
 
-const value = {
-    "associationId": 100,
-    "balance": "25.00",
-    "carrier": "Airtel",
-    "countryID": 91,
-    "dataBalance": "50.00",
-    "dataPlan": "100",
-    "dataValidity": "12/12/2018",
-    "departmentId": 101,
-    "deviceId": 12345,
-    "deviceTypeId": 123,
-    "deviceUdid": "device123",
-    "simno": "7008819309",
-    "vehicleId": 5236
-}
-
 const vehicles = [
     { label: 'vehicle1', value: 'vehicle1' },
     { label: 'vehicle2', value: 'vehicle2' },
