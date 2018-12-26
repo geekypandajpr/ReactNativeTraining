@@ -23,10 +23,10 @@ import * as vehicleSaga from './vehicleSaga';
 import * as technicianSaga from './technicianSaga';
 
 /**GPS Device */
-import * as gpsDeviceSaga from './GPSDevice/GPSDeviceSaga';
+import * as gpsDeviceSaga from './GPSDevice/GPSDeviceSaga/';
 
 import * as updateSchema from './updateSchemaSaga';
-import * as SubmitFormSaga from './SubmitFormSaga';
+
 
 
 
@@ -45,7 +45,7 @@ export default function* rootSaga() {
     /**GPS Device */
     yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd),
     yield takeLatest(GPSDEVICE.DEVICEINFO_REQUEST, gpsDeviceSaga.getDeviceInfo),
-    yield takeLatest(SUBMITGPSFORM.SUBMITGPSFORM_REQUEST,SubmitFormSaga.SubmitFormLogin),
+    yield takeLatest(SUBMITGPSFORM.SUBMITGPSFORM_REQUEST,gpsDeviceSaga.SubmitFormLogin),
     yield takeLatest(GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST,gpsDeviceSaga.searchCriteria)
 
 }

@@ -128,7 +128,7 @@ export class GPSDeviceForm extends React.Component {
     }
 
     onSubmit() {
-        if(this.onValidation()){
+        if (this.onValidation()) {
             const value = {
                 "associationId": 100,
                 "balance": "25.00",
@@ -145,7 +145,7 @@ export class GPSDeviceForm extends React.Component {
                 "vehicleId": 5236
             }
             this.props.onFetchData(value)
-        }else{
+        } else {
             alert("not");
         }
 
@@ -153,9 +153,9 @@ export class GPSDeviceForm extends React.Component {
     onValidation() {
         if (this.state.map.get(ISD_KEY) && this.state.map.get(DEVICE_TYPE) && this.state.map.get(COMPANY_KEY)
             && this.state.map.get(VEHICLE_KEY) && this.state.mobilenumber !== '') {
-           return false;
+            return true;
         }
-        return true;
+        return false;
 
     }
 
@@ -386,7 +386,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         onFetchData: (value) => dispatch(userActions.submitgpsFormRequest(value)),
-        onFetchList : () => dispatch(userActions.gpsdeviceRequest())
+        onFetchList: () => dispatch(userActions.gpsdeviceRequest())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)
