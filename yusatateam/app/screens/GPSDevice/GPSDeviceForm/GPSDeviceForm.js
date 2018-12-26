@@ -59,13 +59,14 @@ const VEHICLE_KEY = 'VEHICLE';
 const DEVICE_TYPE = 'DEVICE_TYPE';
 const SUBSC_KEY = 'SUBSC_KEY';
 const ISD_KEY = 'ISD_kEY';
-export class GPSDeviceForm extends React.Component {
+export default class GPSDeviceForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoading: true,
             flag: '',
             data :  [],
+            code : '',
             map: new Map(),
             countryISD : [],
             deviceType: [],
@@ -88,47 +89,50 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
+        var codeData = '';
         const { params } = this.props.navigation.state;
-       // code =params
-        this.props.onFetchData();
+       var data =params[1].countrylist;
+       for(var i =0 ;i<data.length;i++)
+       {
+            if(data[i].code== params[0].code[0].code)
+            {
+                codeData =data[i].value
+            }
+       }
+        //this.props.onFetchData();
         const newMap = new Map(this.state.map);
         newMap.set(COMPANY_KEY, "Select Company");
         newMap.set(VEHICLE_KEY, "Select Vehicle");
         newMap.set(DEVICE_TYPE, "Select device type");
         newMap.set(SUBSC_KEY, "select SubsKey");
-        newMap.set(ISD_KEY, params[0].code)
-        // var dataValues = nextProps.CountryIsdList.data.results
-           
-        this.setState({ map: newMap,mobilenumber : params[1].mobilenum})
+      
+        newMap.set(ISD_KEY,codeData )
+        // var dataValues = nextProps.CountryIsdList.data.results 
+       //alert(JSON.stringify(params[2].deviceList))
+        this.setState({ map: newMap,mobilenumber :params[0].code[1].mobilenum,countryISD : params[1].countrylist,deviceType : params[2].deviceList })
     }
 
     OnValueSelect(value) {
         // if (this.state.flag === 'COMPANY') {
         //     this.setState({ company: value });
-        var dataValue ='';
-        
+        //alert(JSON.stringify(value))
         const newMap = new Map(this.state.map);
-        for(var i=0;i<this.state.data.length;i++)
-        {
-            if(this.state.data[i].value==value)
-            {
-                dataValue=this.state.data[i].code
-            }
-        }
-        //alert(JSON.stringify(dataValue))
-        newMap.set(this.state.flag, dataValue);
+    
+        
+        newMap.set(this.state.flag, value);
         this.setState({ map: newMap })
     }
 
-    componentWillReceiveProps(nextProps) {
-        if(this.props.CountryIsdList !== nextProps.CountryIsdList) {
-            this.setState({
-                deviceType: nextProps.CountryIsdList.deviceType.results,
-                countryISD: nextProps.CountryIsdList.countryISD.results,
-            });
+    // componentWillReceiveProps(nextProps) {      
+    //     if(this.props.CountryIsdList !== nextProps.CountryIsdList) {
+    //         this.setState({
+    //             deviceType: nextProps.CountryIsdList.deviceType.results,
+    //             // countryISD: nextProps.CountryIsdList.countryISD.results,
+    //         });
            
-        }
-    }
+    //     }
+        
+    // }
     openPicker(keys, list, title) {
         this.setState({ flag: keys });
         this.modalRef.current.setModalVisible(true, title, list);
@@ -350,19 +354,21 @@ export class GPSDeviceForm extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        //loading : state.CompanyData,
-        // CompanyDatas : state.CompanyData.data1,
-        Devicetype  : state.CompanyData,
-        CountryIsdList: state.CompanyData
-    }
-}
+// function mapStateToProps(state) {
+//     return {
+//         //loading : state.CompanyData,
+//         // CompanyDatas : state.CompanyData.data1,
+//         Devicetype  : state.CompanyData,
+//         CountryIsdList: state.CompanyData
+//     }
+// }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        onFetchData: () => dispatch(userActions.gpsdeviceRequest())
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         onFetchData: () => dispatch(userActions.gpsdeviceRequest())
 
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)
+//     }
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)
+
+export { GPSDeviceForm}
