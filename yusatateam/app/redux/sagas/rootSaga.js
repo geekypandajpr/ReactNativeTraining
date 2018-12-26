@@ -33,6 +33,8 @@ export default function* rootSaga() {
     yield takeLatest(CUSTOMER.CUSTOMER_FETCH, cutomerSaga.cutomerList),
     yield takeLatest(VEHICLE.VEHICLE_FETCH, vehicleSaga.vehicleList),
     yield takeLatest(TECHNICIAN.TECHNICIAN_REQUEST,technicianSaga.technicianLogin)
+
+    /**Region & Company Filter Schema*/
     yield takeLatest(UPDATESCHEMA.UPDATESCHEMA_REQUEST, updateSchema.updateSchema),
 
     /**GPS Device */
