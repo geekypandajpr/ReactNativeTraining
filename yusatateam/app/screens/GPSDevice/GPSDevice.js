@@ -26,6 +26,8 @@ export class GPSDevice extends React.Component {
         this.state = {
             isLoading: true,
             data: null,
+            countryISD : [],
+            deviceType: [],
             searchValue: '',
             selected2: ''
         };
@@ -58,11 +60,15 @@ export class GPSDevice extends React.Component {
         this.props.onFetchData();
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.simDatas !== nextProps.simDatas) {
-            this.setState({ data: nextProps.simDatas.data });
-            this.arrayList = nextProps.simDatas.data;
+    componentWillReceiveProps(nextProps) {      
+        if(this.props.CountryIsdList !== nextProps.CountryIsdList) {
+            this.setState({
+                deviceType: nextProps.CountryIsdList.deviceType.results,
+                countryISD: nextProps.CountryIsdList.countryISD.results,
+            });
+           
         }
+        
     }
 
     handleBackPress = () => {
@@ -123,7 +129,7 @@ export class GPSDevice extends React.Component {
                         data={[{ key: 1 }, { key: 2 }, { key: 3 }, { key: 4 }, { key: 5 }, { key: 6 }]}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm',code)}/>
+                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm',[{code :code},{countrylist : this.state.countryISD },{deviceList : this.state.deviceType }])}/>
                         } />
                 </View>
         );
@@ -132,13 +138,16 @@ export class GPSDevice extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        simDatas: state.simData
+        //loading : state.CompanyData,
+        // CompanyDatas : state.CompanyData.data1,
+        Devicetype  : state.CompanyData,
+        CountryIsdList: state.CompanyData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onFetchData: () => dispatch(userActions.simRequest())
+        onFetchData: () => dispatch(userActions.gpsdeviceRequest())
     }
 }
 
