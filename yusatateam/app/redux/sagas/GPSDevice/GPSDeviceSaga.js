@@ -1,8 +1,8 @@
 import { call, put, all } from 'redux-saga/effects';
 
 import { GPSDEVICE } from '../../common/actionTypes';
-import userServices from '../services/userServices'
-import functions from '../../common/functions';
+import userServices from '../../services/userServices'
+import functions from '../../../common/functions';
 
 export function* gpsDeviceCountryIsd(action){
     try {
@@ -13,7 +13,6 @@ export function* gpsDeviceCountryIsd(action){
         functions.showToast('Something went wrong', 'danger');
     }
 }
-
 
 export function* getDeviceInfo(action) {
     try {

@@ -20,7 +20,7 @@ import * as jobSaga from'./jobSaga';
 import * as cutomerSaga from './customerSaga';
 import * as vehicleSaga from './vehicleSaga';
 import * as technicianSaga from './technicianSaga';
-import * as gpsDeviceSaga from './gpsDeviceSaga';
+import * as gpsDeviceSaga from './GPSDevice/GPSDeviceSaga';
 import * as updateSchema from './updateSchemaSaga';
 import * as SubmitFormSaga from './SubmitFormSaga';
 
