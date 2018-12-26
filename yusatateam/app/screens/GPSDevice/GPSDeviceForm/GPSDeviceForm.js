@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, KeyboardAvoidingView, TouchableHighlight } from 'react-native';
+import { View, FlatList, KeyboardAvoidingView, Alert } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
@@ -30,22 +30,6 @@ const vehicles = [
     { label: 'vehicle5', value: 'vehicle5' }
 ];
 
-// const subskey = [
-//     { label: 'SubsKeys1', value: 'SubsKeys1' },
-//     { label: 'SubsKeys2', value: 'SubsKeys2' },
-//     { label: 'SubsKeys3', value: 'SubsKeys3' },
-//     { label: 'SubsKeys4', value: 'SubsKeys4' },
-//     { label: 'SubsKeys5', value: 'SubsKeys5' }
-// ];
-
-// const ISD = [
-//     { label: '+91', value: '+91' },
-//     { label: '+92', value: '+92' },
-//     { label: '+93', value: '+93' },
-//     { label: '+94', value: '+94' },
-//     { label: '+95', value: '+95' }
-// ];
-
 const title = [
     'Company',
     'Vehicles',
@@ -59,24 +43,26 @@ const VEHICLE_KEY = 'VEHICLE';
 const DEVICE_TYPE = 'DEVICE_TYPE';
 const SUBSC_KEY = 'SUBSC_KEY';
 const ISD_KEY = 'ISD_kEY';
-export default class GPSDeviceForm extends React.Component {
+export class GPSDeviceForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoading: true,
             flag: '',
-            data :  [],
-            code : '',
+            data: [],
+            code: '',
+            gpsdata:'',
             map: new Map(),
-            countryISD : [],
+            countryISD: [],
             deviceType: [],
-            mobilenumber : ''
+            mobilenumber: ''
         }
 
         this.modalRef = React.createRef();
         this.modalReference = React.createRef();
         this.OnValueSelect = this.OnValueSelect.bind(this);
         this.openPicker = this.openPicker.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     };
 
     async componentWillMount() {
@@ -91,25 +77,23 @@ export default class GPSDeviceForm extends React.Component {
     componentDidMount() {
         var codeData = '';
         const { params } = this.props.navigation.state;
-       var data =params[1].countrylist;
-       for(var i =0 ;i<data.length;i++)
-       {
-            if(data[i].code== params[0].code[0].code)
-            {
-                codeData =data[i].value
+        var data = params[1].countrylist;
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].code == params[0].code[0].code) {
+                codeData = data[i].value
             }
-       }
+        }
         //this.props.onFetchData();
         const newMap = new Map(this.state.map);
         newMap.set(COMPANY_KEY, "Select Company");
         newMap.set(VEHICLE_KEY, "Select Vehicle");
         newMap.set(DEVICE_TYPE, "Select device type");
         newMap.set(SUBSC_KEY, "select SubsKey");
-      
-        newMap.set(ISD_KEY,codeData )
+
+        newMap.set(ISD_KEY, codeData)
         // var dataValues = nextProps.CountryIsdList.data.results 
-       //alert(JSON.stringify(params[2].deviceList))
-        this.setState({ map: newMap,mobilenumber :params[0].code[1].mobilenum,countryISD : params[1].countrylist,deviceType : params[2].deviceList })
+        //alert(JSON.stringify(params[2].deviceList))
+        this.setState({ map: newMap, mobilenumber: params[0].code[1].mobilenum, countryISD: params[1].countrylist, deviceType: params[2].deviceList })
     }
 
     OnValueSelect(value) {
@@ -117,22 +101,28 @@ export default class GPSDeviceForm extends React.Component {
         //     this.setState({ company: value });
         //alert(JSON.stringify(value))
         const newMap = new Map(this.state.map);
-    
-        
+
+
         newMap.set(this.state.flag, value);
         this.setState({ map: newMap })
     }
 
-    // componentWillReceiveProps(nextProps) {      
-    //     if(this.props.CountryIsdList !== nextProps.CountryIsdList) {
-    //         this.setState({
-    //             deviceType: nextProps.CountryIsdList.deviceType.results,
-    //             // countryISD: nextProps.CountryIsdList.countryISD.results,
-    //         });
-           
-    //     }
-        
-    // }
+    onSubmit() {
+        this.onvalidation();
+    }
+    onvalidation() {
+
+    }
+    componentWillReceiveProps(nextProps) {      
+        if(this.props.SubmitGpsdata !== nextProps.SubmitGpsdata) {
+            this.setState({gpsdata: nextProps.SubmitGpsdata.data});
+            // this.setState({
+            //     deviceType: nextProps.CountryIsdList.deviceType.results,
+            //     // countryISD: nextProps.CountryIsdList.countryISD.results,
+            // });
+
+        }
+    }
     openPicker(keys, list, title) {
         this.setState({ flag: keys });
         this.modalRef.current.setModalVisible(true, title, list);
@@ -170,7 +160,7 @@ export default class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Company"
-                                                    upperView ={true}
+                                                    upperView={true}
                                                     value={this.state.map.get(COMPANY_KEY)}
                                                     isMandatory={true}
                                                     onpress={() => this.openPicker(COMPANY_KEY, vehicles, title[0])}
@@ -187,16 +177,16 @@ export default class GPSDeviceForm extends React.Component {
                                                             name="Vehicle #"
                                                             value={this.state.map.get(VEHICLE_KEY)}
                                                             isMandatory={true}
-                                                            upperView ={true}
+                                                            upperView={true}
                                                             onpress={() => this.openPicker(VEHICLE_KEY, vehicles, title[1])}
                                                         >
                                                         </UnderlineText>
                                                     </View>
                                                 </View>
-                                                <View style={{ flex: 1, marginLeft:10, marginTop: 18 }}>
-                                                    <Button bordered dark style={{height:40,borderColor:'gray'}}
-                                                     onPress={() => { this.modalReference.current.setModalVisible(true) }}>
-                                                        <Text style={{color: 'rgb(56,64,64)'}}> Create Vehicle</Text>
+                                                <View style={{ flex: 1, marginLeft: 10, marginTop: 18 }}>
+                                                    <Button bordered dark style={{ height: 40, borderColor: 'gray' }}
+                                                        onPress={() => { this.modalReference.current.setModalVisible(true) }}>
+                                                        <Text style={{ color: 'rgb(56,64,64)' }}> Create Vehicle</Text>
                                                     </Button>
                                                 </View>
                                             </View>
@@ -205,7 +195,7 @@ export default class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Device Type"
                                                     isMandatory={true}
-                                                    upperView ={true}
+                                                    upperView={true}
                                                     value={this.state.map.get(DEVICE_TYPE)}
                                                     onpress={() => this.openPicker(DEVICE_TYPE, this.state.deviceType, title[2])} />
                                             </View>
@@ -237,14 +227,14 @@ export default class GPSDeviceForm extends React.Component {
                                                         <UnderlineText
                                                             name='Country ISD'
                                                             isMandatory={true}
-                                                            upperView ={true}
+                                                            upperView={true}
                                                             value={this.state.map.get(ISD_KEY)}
                                                             onpress={() => this.openPicker(ISD_KEY, this.state.countryISD, title[4])}
                                                         >
                                                         </UnderlineText>
                                                     </View>
                                                 </View>
-                                                <View style={{ flex: 1.5, marginLeft: 10, marginTop: 12 }}>
+                                                <View style={{ flex: 1, marginLeft: 10, marginTop: 12 }}>
                                                     <Float
                                                         placeholder='Mobile'
                                                         value={this.state.mobilenumber}
@@ -253,7 +243,7 @@ export default class GPSDeviceForm extends React.Component {
                                                         blurOnSubmit={false}
                                                         isMandatory={true}
                                                         // onSubmitEditing={() => this._focusNextField('password')}
-                                                        onChangeText={(text) => this.setState({ mobilenumber : text })}
+                                                        onChangeText={(text) => this.setState({ mobilenumber: text })}
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
@@ -337,7 +327,10 @@ export default class GPSDeviceForm extends React.Component {
                                                     </Button>
                                                 </View>
                                                 <View style={{ flex: 1, marginLeft: 2 }}>
-                                                    <Button block >
+                                                    <Button block
+                                                         onPress={() => Alert.alert(
+                                                            this.state.gpsdata
+                                                         )}>
                                                         <Text style={{ color: '#fff' }}>Submit</Text>
                                                     </Button>
                                                 </View>
@@ -354,21 +347,18 @@ export default class GPSDeviceForm extends React.Component {
     }
 }
 
-// function mapStateToProps(state) {
-//     return {
-//         //loading : state.CompanyData,
-//         // CompanyDatas : state.CompanyData.data1,
-//         Devicetype  : state.CompanyData,
-//         CountryIsdList: state.CompanyData
-//     }
-// }
+function mapStateToProps(state) {
+    return {
+        SubmitGpsdata: state.submitFormData,
+        CountryIsdList: state.CompanyData
+    }
+}
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         onFetchData: () => dispatch(userActions.gpsdeviceRequest())
+function mapDispatchToProps(dispatch) {
+    return {
+        onFetchData: (request) => dispatch(userActions.submitgpsFormRequest(request))
 
-//     }
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)
 
-export { GPSDeviceForm}

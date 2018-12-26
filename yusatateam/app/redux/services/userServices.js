@@ -3,9 +3,6 @@ import { USER } from '../common/urls';
 import loginData from '../../assets/JSONData/loginData';
 import SimData from '../../assets/JSONData/SimData';
 import JobsData from '../../assets/JSONData/JobsData/JobsData';
-// import scheduleData from '../../assets/JSONData/JobsData/scheduleData';
-// import completedData from '../../assets/JSONData/JobsData/completedData';
-// import reScheduleData from '../../assets/JSONData/JobsData/reScheduleData';
 import DeviceData from '../../assets/JSONData/DeviceData';
 import customersData from '../../assets/JSONData/customerData';
 import vehiclesData from '../../assets/JSONData/VehicleDetail';
@@ -17,7 +14,7 @@ export const login = data => Api.post(USER.LOGIN, data);
 export const gpsDeviceCountryIsd = () => Api.get(USER.COUNTRYISD)
 export const gpsDeviceType = () => Api.get(USER.DEVICETYPE)
 export const updateSchema = (companyId) => Api.post(USER.UPDATESCHEMA+`?companyId=${companyId}`, null)
-export const submitGpsForm = data => Api.post(USER.FORMSUBMIT,data)
+export const submitGpsForm = (formdata) => Api.post(USER.FORMSUBMIT,formdata)
 export const associationDeviceInfo = (deviceUDID) => Api.get(USER.ASSOCIATIONDEVICEINFO+`?udid=${deviceUDID}`)
 
 export default userService = {
@@ -27,8 +24,6 @@ export default userService = {
     updateSchema,
     submitGpsForm,
     associationDeviceInfo,
-
-    
     doLogin,
     simlogin,
     devicelogin,

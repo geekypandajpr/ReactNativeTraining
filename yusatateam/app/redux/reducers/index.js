@@ -10,6 +10,7 @@ import vehicleReducer from './vehicleReducer';
 import techReducer from './techReducer';
 import gpsDeviceReducer from './gpsDeviceReducer';
 import updateSchemaReducer from './updateSchemaReducer';
+import submitFormReducer from './submitFormReducer';
 
 const rootReducers = combineReducers({
     nav: navReducer,
@@ -21,7 +22,8 @@ const rootReducers = combineReducers({
     vehicleData: vehicleReducer,
     TechnicianData : techReducer,
     CompanyData : gpsDeviceReducer,
-    updatedSchema: updateSchemaReducer
+    updatedSchema: updateSchemaReducer,
+    submitFormData : submitFormReducer
     //We can add more reducers here, separated by comma(,)
 })
 
