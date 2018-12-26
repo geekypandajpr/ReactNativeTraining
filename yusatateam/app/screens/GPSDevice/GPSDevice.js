@@ -89,8 +89,9 @@ export class GPSDevice extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {  
-       // alert(JSON.stringify(this.props.searchList))     
-        if(this.props.CountryIsdList !== nextProps.CountryIsdList) {
+           
+        if(this.props.searchList !== nextProps.searchList) {
+            alert(JSON.stringify(nextProps.searchList)) 
             this.setState({
                 deviceType: nextProps.CountryIsdList.deviceType.results,
                 countryISD: nextProps.CountryIsdList.countryISD.results,
