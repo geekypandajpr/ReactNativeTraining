@@ -11,22 +11,22 @@ import techReducer from './techReducer';
 import updateSchemaReducer from './updateSchemaReducer';
 //import submitFormReducer from './submitFormReducer';
 import searchCriteriaReducer from './searchCriteriaReducer';
-import { deviceInfoReducer, GPSDeviceReducer,submitFormReducer } from './GPSDevice';
+import { deviceInfoReducer, GPSDeviceReducer, submitFormReducer } from './GPSDevice';
 
 const rootReducers = combineReducers({
     nav: navReducer,
-    loginData : userReducer,
-    simData   : simReducer,
-    JobData  :  jobReducer,
-    devicedata : deviceReducer,
+    loginData: userReducer,
+    simData: simReducer,
+    JobData: jobReducer,
+    devicedata: deviceReducer,
     customersData: customerReducer,
     vehicleData: vehicleReducer,
-    TechnicianData : techReducer,
-    gpsDeviceData : GPSDeviceReducer,
+    TechnicianData: techReducer,
+    gpsDeviceData: GPSDeviceReducer,
     deviceInfo: deviceInfoReducer,
     updatedSchema: updateSchemaReducer,
-    submitFormData : submitFormReducer,
-    searchList : searchCriteriaReducer
+    submitFormData: submitFormReducer,
+    searchList: searchCriteriaReducer
     //We can add more reducers here, separated by comma(,)
 })
 
