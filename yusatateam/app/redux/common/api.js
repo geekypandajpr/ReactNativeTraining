@@ -1,3 +1,5 @@
+import functions from '../../common/functions';
+
 export default class Api {
     static host = 'http://app.ylogapp.com:9393/YLogAPI/';
 
@@ -25,6 +27,14 @@ export default class Api {
         .then((responseJson) => {
             if(responseJson.ok) {
                 return responseJson.json();
+            } else {
+                const status = responseJson.status;
+                if(status === 412) {
+                    functions.showToast('Invalid credentials', 'danger');
+                } else if(status === 500) {
+                    functions.showToast('Internal server error', 'danger');
+                }
+                return null;
             }
         }).catch(function(error) {
             alert(error.message);
