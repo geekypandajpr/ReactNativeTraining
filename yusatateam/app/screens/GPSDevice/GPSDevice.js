@@ -148,7 +148,6 @@ export class GPSDevice extends React.Component {
     }
 
     render() {
-        alert(this.state.dropdownKey)
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
@@ -157,12 +156,11 @@ export class GPSDevice extends React.Component {
                     <ToolbarWithDropdown title='GPS Devices' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} onSelectvalue={this.dropdownValue} />
                     <Activityindication visible={this.props.searchList.isLoading}/>
                     <SearchBar
-                        placeholder={'Search here'}
+                        placeholder={'Search by device UDID'}
                         isDropdown={false}
                         pickerItem={PICKERITEM}
                         onChangeText={(text) => this.setState({searchValue: text})}
                         selectedValue={this.state.selected2}
-                        onValueChange={this.onValueChange2.bind(this)}
                         onSearch={() => console.log('onSearchPressed')}
                     />
 
