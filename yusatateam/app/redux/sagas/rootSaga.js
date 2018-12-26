@@ -22,8 +22,8 @@ import * as vehicleSaga from './vehicleSaga';
 import * as technicianSaga from './technicianSaga';
 import * as gpsDeviceSaga from './gpsDeviceSaga';
 import * as updateSchema from './updateSchemaSaga';
-import * as SubmitFormSaga from './SubmitForm';
-import { submitGpsForm } from '../services/userServices';
+import * as SubmitFormSaga from './SubmitFormSaga';
+
 
 export default function* rootSaga() {
     yield takeLatest(USER.LOGIN, userSaga.login),
@@ -34,6 +34,6 @@ export default function* rootSaga() {
     yield takeLatest(VEHICLE.VEHICLE_FETCH, vehicleSaga.vehicleList),
     yield takeLatest(TECHNICIAN.TECHNICIAN_REQUEST,technicianSaga.technicianLogin)
     yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd),
-    yield takeLatest(SUBMITGPSFORM.SUBMITGPSFORM_SUCCESS, submitForm.submitGpsForm)
-    yield takeLatest(UPDATESCHEMA.UPDATESCHEMA_REQUEST, updateSchema.updateSchema)
+    yield takeLatest(UPDATESCHEMA.UPDATESCHEMA_REQUEST, updateSchema.updateSchema),
+    yield takeLatest(SUBMITGPSFORM.SUBMITGPSFORM_REQUEST,SubmitFormSaga.SubmitFormLogin)
 }

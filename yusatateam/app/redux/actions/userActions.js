@@ -20,6 +20,6 @@ export default {
     vehicleFetchRequest: (customer) => ({ type: VEHICLE.VEHICLE_FETCH, customer }),
     technicianRequest: () => ({ type: TECHNICIAN.TECHNICIAN_REQUEST }),
     gpsdeviceRequest:() =>({ type: GPSDEVICE.GPSDEVICE_REQUEST }),
-    gpsFormRequest:() =>({type:SUBMITGPSFORM.SUBMITGPSFORM_REQUEST}),
+    submitgpsFormRequest:() =>({type:SUBMITGPSFORM.SUBMITGPSFORM_REQUEST}),
     updateSchema: (companyId) => ({ type: UPDATESCHEMA.UPDATESCHEMA_REQUEST, companyId })
 }
