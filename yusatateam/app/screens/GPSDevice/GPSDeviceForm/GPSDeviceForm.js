@@ -49,7 +49,7 @@ const COMPANY_KEY = 'COMPANY';
 const VEHICLE_KEY = 'VEHICLE';
 const DEVICE_TYPE = 'DEVICE_TYPE';
 const SUBSC_KEY = 'SUBSC_KEY';
-const ISD_KEY = 'ISD_kEY';
+const ISD_KEY = 'ISD_KEY';
 
 export class GPSDeviceForm extends React.Component {
     constructor(props) {
@@ -85,7 +85,7 @@ export class GPSDeviceForm extends React.Component {
     componentDidMount() {
         // var codeData = '';
         const { params } = this.props.navigation.state;
-        console.log(JSON.stringify(params));
+        console.log(JSON.stringify(params.code));
         // var data = params[1].countrylist;
         // for (var i = 0; i < data.length; i++) {
         //     if (data[i].code == params[0].code[0].code) {
@@ -98,11 +98,10 @@ export class GPSDeviceForm extends React.Component {
         newMap.set(VEHICLE_KEY, "Select Vehicle");
         newMap.set(DEVICE_TYPE, "Select device type");
         newMap.set(SUBSC_KEY, "select SubsKey");
-
-        // newMap.set(ISD_KEY, codeData)
+        newMap.set(ISD_KEY, params.code);
         // // var dataValues = nextProps.CountryIsdList.data.results 
         // //alert(JSON.stringify(params[2].deviceList))
-        // this.setState({ map: newMap, mobilenumber: params[0].code[1].mobilenum, countryISD: params[1].countrylist, deviceType: params[2].deviceList })
+        this.setState({ map: newMap })
     }
 
     OnValueSelect(value) {
