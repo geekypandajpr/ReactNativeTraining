@@ -34,8 +34,9 @@ export class GPSDevice extends React.Component {
         };
         this.list = [];
         this.modalRef = React.createRef();
-        this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
-        this.SearchFilterFunction = this.SearchFilterFunction.bind(this);
+        this.getDeviceInfo = this.getDeviceInfo.bind(this);
+        // this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
+        // this.SearchFilterFunction = this.SearchFilterFunction.bind(this);
     }
 
     onValueChange2(value) {
@@ -111,26 +112,26 @@ export class GPSDevice extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    SearchFilterFunction(text) {
-        const newData = this.arrayList.filter(function (item) {
-            const itemData = item.ESN.toUpperCase()
-            const textData = text.toUpperCase()
-            return itemData.indexOf(textData) > -1
-        })
-        this.setState({
-            data: newData,
-            searchValue: text
-        },
-        )
-    }
+    // SearchFilterFunction(text) {
+    //     const newData = this.arrayList.filter(function (item) {
+    //         const itemData = item.ESN.toUpperCase()
+    //         const textData = text.toUpperCase()
+    //         return itemData.indexOf(textData) > -1
+    //     })
+    //     this.setState({
+    //         data: newData,
+    //         searchValue: text
+    //     },
+    //     )
+    // }
 
-    onSearchClearPressed() {
-        this.SearchFilterFunction('');
-    }
+    // onSearchClearPressed() {
+    //     this.SearchFilterFunction('');
+    // }
 
-    AlertBox() {
-        alert('Press Alert Button')
-    }
+    // AlertBox() {
+    //     alert('Press Alert Button')
+    // }
 
     handleBackPress = () => {
         this.props.navigation.goBack();
@@ -159,6 +160,7 @@ export class GPSDevice extends React.Component {
                 <View style={styles.container}>
                     <ToolbarWithDropdown title='GPS Devices' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} onSelectvalue={this.dropdownValue} />
                     <Activityindication visible={this.props.searchList.isLoading}/>
+                    <Activityindication visible={this.props.deviceInfo.isLoading}/>
                     <SearchBar
                         placeholder={'Search by device UDID'}
                         isDropdown={false}
@@ -183,11 +185,8 @@ export class GPSDevice extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        //loading : state.CompanyData,
-        // CompanyDatas : state.CompanyData.data1,
-        Devicetype  : state.CompanyData,
-        CountryIsdList: state.CompanyData,
-        searchList : state.searchList
+        searchList : state.searchList,
+        deviceInfo : state.deviceInfo 
     }
 }
 
