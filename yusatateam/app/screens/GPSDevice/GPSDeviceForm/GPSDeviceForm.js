@@ -12,16 +12,21 @@ import { GpsModal } from '../GpsModal/GpsModal';
 import { userActions } from '../../../redux/actions';
 import { VehicleModal } from '../VehicleModal/VehicleModal';
 
-
-
-const deviceType = [
-    { label: 'device1', value: 'device1' },
-    { label: 'device2', value: 'device2' },
-    { label: 'device3', value: 'device3' },
-    { label: 'device4', value: 'device4' },
-    { label: 'device5', value: 'device5' }
-];
-
+const value ={
+    "associationId": 100,
+    "balance": "25.00",
+    "carrier": "Airtel",
+    "countryID": 91,
+    "dataBalance": "50.00",
+    "dataPlan": "100",
+    "dataValidity": "12/12/2018",
+    "departmentId": 101,
+    "deviceId": 12345,
+    "deviceTypeId": 123,
+    "deviceUdid": "device123",
+    "simno": "7008819309",
+    "vehicleId": 5236
+  }
 const vehicles = [
     { label: 'vehicle1', value: 'vehicle1' },
     { label: 'vehicle2', value: 'vehicle2' },
@@ -83,7 +88,7 @@ export class GPSDeviceForm extends React.Component {
                 codeData = data[i].value
             }
         }
-        //this.props.onFetchData();
+        this.props.onFetchData();
         const newMap = new Map(this.state.map);
         newMap.set(COMPANY_KEY, "Select Company");
         newMap.set(VEHICLE_KEY, "Select Vehicle");
@@ -356,7 +361,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onFetchData: (request) => dispatch(userActions.submitgpsFormRequest(request))
+        onFetchData: (value) => dispatch(userActions.submitgpsFormRequest(value))
 
     }
 }
