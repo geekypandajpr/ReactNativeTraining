@@ -56,11 +56,40 @@ export class GPSDevice extends React.Component {
         const { params } = this.props.navigation.state;
         code =params
         //alert(JSON.stringify(params));
+        var filterData = {
+            "betweenFilter": {
+              
+              "flag": false,
+              "isDate": false,
+              "isOrCondition": false
+            },
+            "cFilter": {
+              
+              "flag": false
+            },
+            "columnNames": [
+              ""
+            ],
+            "iDisplayLength": -1,
+            "iDisplayStart": 0,
+            "iSortCol_0": 0,
+            "inFilter": {
+             
+              "flag": false
+            },
+            "sEcho": 0,
+            "sSortDir_0": "",
+            "searchColumnNamesWithText": [
+              ""
+            ]
+          }
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.props.onFetchData();
+        this.props.onListFetchData(filterData);
     }
 
-    componentWillReceiveProps(nextProps) {      
+    componentWillReceiveProps(nextProps) {  
+       // alert(JSON.stringify(this.props.searchList))     
         if(this.props.CountryIsdList !== nextProps.CountryIsdList) {
             this.setState({
                 deviceType: nextProps.CountryIsdList.deviceType.results,
@@ -141,13 +170,16 @@ function mapStateToProps(state) {
         //loading : state.CompanyData,
         // CompanyDatas : state.CompanyData.data1,
         Devicetype  : state.CompanyData,
-        CountryIsdList: state.CompanyData
+        CountryIsdList: state.CompanyData,
+        searchList : state.searchList
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+        onListFetchData : (filterData) => dispatch(userActions.searchCriteria(filterData)),
         onFetchData: () => dispatch(userActions.gpsdeviceRequest())
+        
     }
 }
 
