@@ -6,6 +6,7 @@ import { CheckBox, Button, Text } from 'native-base';
 import { InputWithIcon, Statusbar, Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 import styles from './Styles';
+import functions from '../../common/functions';
 
 export class LogIn extends React.Component {
     constructor(props) {
@@ -31,11 +32,15 @@ export class LogIn extends React.Component {
     _focusNextField(id) { this[id]._root.focus(); }
 
     _doLogin() {
-        var loginCredentials = {
-            "password": "Admin@123",
-            "userName": "admin@readingtonfarms.com"
+        if(this._checkRequiredFields()) {
+            var loginCredentials = {
+                "password": this.state.password,
+                "userName": this.state.username
+            }
+            this.props.onFetchData(loginCredentials);
+        } else {
+            functions.showToast('All fields are required', 'danger');
         }
-        this.props.onFetchData(loginCredentials);
     }
 
     _checkRequiredFields() {
