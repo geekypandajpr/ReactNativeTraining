@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, KeyboardAvoidingView, Alert } from 'react-native';
+import { View, FlatList, KeyboardAvoidingView } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';

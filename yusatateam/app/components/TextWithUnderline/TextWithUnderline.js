@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons} from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class UnderlineText extends React.Component {
     constructor(props) {
@@ -12,17 +12,15 @@ export default class UnderlineText extends React.Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                {this.props.upperView ? 
+                {this.props.upperView ?
                     <View style={{ width: '100%', flexDirection: 'row' }}>
                         <Text style={{ fontSize: 15, color: 'gray', }}>{this.props.name}</Text>
-                        { this.props.isMandatory ?
+                        {this.props.isMandatory ?
                             <Text style={{ marginTop: 0, color: 'red', marginLeft: 5, fontSize: 15 }}>*</Text>
-                        : null }
+                            : null}
                     </View>
                     : null
                 }
-
-                {/* <FontAwesome name={ this.props.icon} size={7} color="red" */}
 
                 <TouchableOpacity onPress={this.props.onpress}>
                     <View style={{ flexDirection: 'row', marginTop: 10 }}>
