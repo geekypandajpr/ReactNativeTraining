@@ -8,8 +8,8 @@ export default functions = {
 export function showToast(message, type) {
     Toast.show({
         text: message,
-        buttonText: "Okay",
+        buttonText: "Ok",
         type: type,
-        duration: 3000
+        duration: 5000
     })
 }
