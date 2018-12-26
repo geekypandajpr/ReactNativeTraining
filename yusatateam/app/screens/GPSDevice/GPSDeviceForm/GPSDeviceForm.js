@@ -146,7 +146,7 @@ export class GPSDeviceForm extends React.Component {
             }
             this.props.onFetchData(value)
         } else {
-            alert("not");
+            functions.showToast('All fields are required', 'danger');
         }
 
     }
