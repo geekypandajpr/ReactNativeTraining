@@ -1,6 +1,18 @@
 import { takeLatest } from 'redux-saga/effects';
 
-import { USER, JOBS, SIM, CUSTOMER, DEVICE, VEHICLE,TECHNICIAN, GPSDEVICE, GPSDEVICECOUNTRYISD } from '../common/actionTypes';
+import {
+    USER,
+    JOBS,
+    SIM,
+    CUSTOMER,
+    DEVICE,
+    VEHICLE,
+    TECHNICIAN,
+    GPSDEVICE,
+    UPDATESCHEMA,
+    SUBMITGPSFORM
+} from '../common/actionTypes';
+
 import * as userSaga from './userSaga';
 import * as simSaga from './simSaga';
 import * as deviceSaga from './deviceSaga';
@@ -9,6 +21,9 @@ import * as cutomerSaga from './customerSaga';
 import * as vehicleSaga from './vehicleSaga';
 import * as technicianSaga from './technicianSaga';
 import * as gpsDeviceSaga from './gpsDeviceSaga';
+import * as updateSchema from './updateSchemaSaga';
+import * as SubmitFormSaga from './SubmitForm';
+import { submitGpsForm } from '../services/userServices';
 
 export default function* rootSaga() {
     yield takeLatest(USER.LOGIN, userSaga.login),
@@ -18,5 +33,7 @@ export default function* rootSaga() {
     yield takeLatest(CUSTOMER.CUSTOMER_FETCH, cutomerSaga.cutomerList),
     yield takeLatest(VEHICLE.VEHICLE_FETCH, vehicleSaga.vehicleList),
     yield takeLatest(TECHNICIAN.TECHNICIAN_REQUEST,technicianSaga.technicianLogin)
-    yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd)
+    yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd),
+    yield takeLatest(SUBMITGPSFORM.SUBMITGPSFORM_SUCCESS, submitForm.submitGpsForm)
+    yield takeLatest(UPDATESCHEMA.UPDATESCHEMA_REQUEST, updateSchema.updateSchema)
 }

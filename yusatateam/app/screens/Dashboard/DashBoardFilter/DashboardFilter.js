@@ -5,8 +5,9 @@ import { Text, Button, Header, Body, Right } from 'native-base';
 
 import styles from './styles';
 import { UnderlineText } from '../../../components';
-import { GpsModal } from '../../../screens/GPSDevice/GpsModal/GpsModal'
+import Dropdown from './Dropdown';
 import colors from '../../../constants/colors';
+import functions from '../../../common/functions'
 
 export default class DashboardFilter extends React.Component {
     constructor(props) {
@@ -18,7 +19,8 @@ export default class DashboardFilter extends React.Component {
             companyArray: [],
             companyMap: new Map(),
             regionValue: '',
-            companyValue: ''
+            companyValue: '',
+            companyId: ''
         },
         this.modalRef = React.createRef();
         this.onModalClose = this.onModalClose.bind(this);
@@ -26,6 +28,7 @@ export default class DashboardFilter extends React.Component {
         this.updateList = this.updateList.bind(this);
         this.openRegionPicker = this.openRegionPicker.bind(this);
         this.openCompanyPicker = this.openCompanyPicker.bind(this);
+        this.onUpdate = this.onUpdate.bind(this);
         this.state.flag = 0;
     }
 
@@ -43,6 +46,7 @@ export default class DashboardFilter extends React.Component {
         const companyMap = new Map(this.state.companyMap);
         var defaultRegion = '';
         var defaultCompany = '';
+        var companyId = '';
         for(var i = 0; i < len; i++) {
             const obj = { "label": region[i].regionName, "value": region[i].regionName };
             regionArray.push(obj);
@@ -52,10 +56,12 @@ export default class DashboardFilter extends React.Component {
             const len1 = companyArray.length;
             const company = [];
             for(var j = 0; j < len1; j++) {
-                const companyObj = Object.assign({ "value": companyArray[j].companyName }, companyArray[j] );
+                // const companyObj = Object.assign({ "label": companyArray[j].companyName, "value": companyArray[j].companyId }, companyArray[j] );
+                const companyObj = { "label": companyArray[j].companyName, "value": companyArray[j].companyId };
                 company.push(companyObj);
                 if(this.state.data.defaultCompanyCode === companyArray[j].companyCode) {
-                    defaultCompany = companyArray[j].companyName
+                    defaultCompany = companyArray[j].companyName;
+                    companyId = companyArray[j].companyId;
                 }
             }
             companyMap.set(region[i].regionName, company);
@@ -83,12 +89,26 @@ export default class DashboardFilter extends React.Component {
         this.setState({ modalVisible: !this.state.modalVisible });
     }
 
-    onValueChange(value) {
+    onUpdate() {
+        if(this.state.companyId !== '') {
+            this.props.onRegionUpdate(this.state.companyId);
+            this.onModalClose();
+        } else {
+            functions.showToast('Invalid Credentials', 'danger');
+        }
+    }
+
+    onValueChange(data) {
         if(this.state.flag === 0) {
-            const company = this.state.companyMap.get(value);
-            this.setState({ regionValue: value, companyArray: company, companyValue: 'Select company' });
+            const company = this.state.companyMap.get(data.label);
+            this.setState({
+                regionValue: data.label,
+                companyArray: company,
+                companyValue: 'Select company',
+                companyId: ''
+            });
         } else if(this.state.flag === 1) {
-            this.setState({ companyValue: value });
+            this.setState({ companyValue: data.label, companyId: data.value });
         }
     }
 
@@ -133,15 +153,14 @@ export default class DashboardFilter extends React.Component {
                             <View style={{ flex: 1, flexDirection: 'row', backgroundColor: '#FFFFFF' }}>
                                 <View style={{ flex: 5 }}></View>
                                 <Right style={{ flex: 4 }}>
-                                    <Button full onPress={this.onModalClose}
-                                        style={{ width: 150, backgroundColor: colors.HEADER_COLOR }}
-                                    ><Text> Update </Text></Button>
+                                    <Button full onPress={this.onUpdate}
+                                        style={{ width: 150, backgroundColor: colors.HEADER_COLOR }} ><Text> Update </Text></Button>
                                 </Right>
                             </View>
                         </View>
                     </View>
                 </Modal>
-                <GpsModal ref={this.modalRef} selectedValue={(value) => this.onValueChange(value)} />
+                <Dropdown ref={this.modalRef} selectedValue={(value) => this.onValueChange(value)} />
             </View>
         )
     }
