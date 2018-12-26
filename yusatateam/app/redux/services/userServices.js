@@ -18,10 +18,17 @@ export const gpsDeviceCountryIsd = () => Api.get(USER.COUNTRYISD)
 export const gpsDeviceType = () => Api.get(USER.DEVICETYPE)
 export const updateSchema = (companyId) => Api.post(USER.UPDATESCHEMA+`?companyId=${companyId}`, null)
 export const submitGpsForm = data => Api.post(USER.FORMSUBMIT,data)
+export const associationDeviceInfo = (deviceUDID) => Api.get(USER.ASSOCIATIONDEVICEINFO+`?udid=${deviceUDID}`)
 
 export default userService = {
     login,
+    gpsDeviceCountryIsd,
+    gpsDeviceType,
     updateSchema,
+    submitGpsForm,
+    associationDeviceInfo,
+
+    
     doLogin,
     simlogin,
     devicelogin,
@@ -31,9 +38,6 @@ export default userService = {
     vehicleList,
     technicianLogin,
     gpslogin,
-    gpsDeviceCountryIsd,
-    gpsDeviceType,
-    submitGpsForm
 }
 
 /**LOGIN API CALL */
