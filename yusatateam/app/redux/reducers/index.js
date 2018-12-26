@@ -22,7 +22,7 @@ const rootReducers = combineReducers({
     customersData: customerReducer,
     vehicleData: vehicleReducer,
     TechnicianData : techReducer,
-    CompanyData : GPSDeviceReducer,
+    gpsDeviceData : GPSDeviceReducer,
     deviceInfo: deviceInfoReducer,
     updatedSchema: updateSchemaReducer,
     submitFormData : submitFormReducer,

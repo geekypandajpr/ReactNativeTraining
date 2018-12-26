@@ -84,14 +84,15 @@ export class GPSDeviceForm extends React.Component {
 
     componentDidMount() {
         // var codeData = '';
-        // const { params } = this.props.navigation.state;
+        const { params } = this.props.navigation.state;
+        console.log(JSON.stringify(params));
         // var data = params[1].countrylist;
         // for (var i = 0; i < data.length; i++) {
         //     if (data[i].code == params[0].code[0].code) {
         //         codeData = data[i].value
         //     }
         // }
-        this.props.onFetchData();
+        this.props.onFetchList();
         const newMap = new Map(this.state.map);
         newMap.set(COMPANY_KEY, "Select Company");
         newMap.set(VEHICLE_KEY, "Select Vehicle");
@@ -114,15 +115,14 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.SubmitGpsdata !== nextProps.SubmitGpsdata) {
+        if (this.props.gpsDeviceData !== nextProps.gpsDeviceData) {
             this.setState({
-                gpsdata: nextProps.SubmitGpsdata.data,
-                deviceType: nextProps.CountryIsdList.deviceType.results,
-                countryISD: nextProps.CountryIsdList.countryISD.results,
+                deviceType: nextProps.gpsDeviceData.deviceType.results,
+                countryISD: nextProps.gpsDeviceData.countryISD.results,
             });
-
         }
     }
+
     openPicker(keys, list, title) {
         this.setState({ flag: keys });
         this.modalRef.current.setModalVisible(true, title, list);
@@ -166,7 +166,7 @@ export class GPSDeviceForm extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ backgroundColor: '#fff', flex: 1 }}>
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
-                    <Activityindication visible={this.props.SubmitGpsdata.isLoading} />
+                    <Activityindication visible={this.props.gpsDeviceData.isLoading} />
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={[{ key: 1 }]}
@@ -380,14 +380,14 @@ export class GPSDeviceForm extends React.Component {
 function mapStateToProps(state) {
     return {
         SubmitGpsdata: state.submitFormData,
-        CountryIsdList: state.CompanyData
+        gpsDeviceData: state.gpsDeviceData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onFetchData: (value) => dispatch(userActions.submitgpsFormRequest(value))
-
+        onFetchData: (value) => dispatch(userActions.submitgpsFormRequest(value)),
+        onFetchList : () => dispatch(userActions.gpsdeviceRequest())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)

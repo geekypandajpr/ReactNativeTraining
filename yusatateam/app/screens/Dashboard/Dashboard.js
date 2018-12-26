@@ -189,7 +189,7 @@ export  class Dashboard extends React.Component {
                                         text='Device'
                                         iconColor={colors.HOMESCREEN.DEVICECARD_COLOR}
                                         textColor='gray'
-                                        onPress={() => navigate('GPSDevice',[{code : this.state.loginResponse.countryIsdCode},{mobilenum : this.state.loginResponse.mobileNumber }])}
+                                        onPress={() => navigate('GPSDevice', {"code" : this.state.loginResponse.countryIsdCode, "mobilenum" : this.state.loginResponse.mobileNumber })}
                                         colors={['#b7ffb5', '#84e184', '#51ae56']}
                                     />
                                 </View>
@@ -264,7 +264,6 @@ export  class Dashboard extends React.Component {
 
 function mapStateToProps(state){
     return{
-        CompanyDatas : state.CompanyData.data1,
         updatedSchema: state.updatedSchema
     }
 }
