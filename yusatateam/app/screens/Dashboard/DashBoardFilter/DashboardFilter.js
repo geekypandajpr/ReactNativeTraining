@@ -22,7 +22,7 @@ export default class DashboardFilter extends React.Component {
             companyValue: '',
             companyId: ''
         },
-        this.modalRef = React.createRef();
+            this.modalRef = React.createRef();
         this.onModalClose = this.onModalClose.bind(this);
         this.onValueChange = this.onValueChange.bind(this);
         this.updateList = this.updateList.bind(this);
@@ -36,7 +36,7 @@ export default class DashboardFilter extends React.Component {
         this.setState({
             modalVisible: visible,
             data: data ? data : []
-        }, function(){ this.updateList() });
+        }, function () { this.updateList() });
     }
 
     updateList() {
@@ -47,19 +47,19 @@ export default class DashboardFilter extends React.Component {
         var defaultRegion = '';
         var defaultCompany = '';
         var companyId = '';
-        for(var i = 0; i < len; i++) {
+        for (var i = 0; i < len; i++) {
             const obj = { "label": region[i].regionName, "value": region[i].regionName };
             regionArray.push(obj);
-            if(this.state.data.defaultRegionId === region[i].regionId) { defaultRegion = region[i].regionName }
+            if (this.state.data.defaultRegionId === region[i].regionId) { defaultRegion = region[i].regionName }
 
             const companyArray = region[i].companyDetails;
             const len1 = companyArray.length;
             const company = [];
-            for(var j = 0; j < len1; j++) {
+            for (var j = 0; j < len1; j++) {
                 // const companyObj = Object.assign({ "label": companyArray[j].companyName, "value": companyArray[j].companyId }, companyArray[j] );
                 const companyObj = { "label": companyArray[j].companyName, "value": companyArray[j].companyId };
                 company.push(companyObj);
-                if(this.state.data.defaultCompanyCode === companyArray[j].companyCode) {
+                if (this.state.data.defaultCompanyCode === companyArray[j].companyCode) {
                     defaultCompany = companyArray[j].companyName;
                     companyId = companyArray[j].companyId;
                 }
@@ -90,7 +90,7 @@ export default class DashboardFilter extends React.Component {
     }
 
     onUpdate() {
-        if(this.state.companyId !== '') {
+        if (this.state.companyId !== '') {
             this.props.onRegionUpdate(this.state.companyId);
             this.onModalClose();
         } else {
@@ -99,7 +99,7 @@ export default class DashboardFilter extends React.Component {
     }
 
     onValueChange(data) {
-        if(this.state.flag === 0) {
+        if (this.state.flag === 0) {
             const company = this.state.companyMap.get(data.label);
             this.setState({
                 regionValue: data.label,
@@ -107,7 +107,7 @@ export default class DashboardFilter extends React.Component {
                 companyValue: 'Select company',
                 companyId: ''
             });
-        } else if(this.state.flag === 1) {
+        } else if (this.state.flag === 1) {
             this.setState({ companyValue: data.label, companyId: data.value });
         }
     }
@@ -119,7 +119,7 @@ export default class DashboardFilter extends React.Component {
                     animationType="slide"
                     transparent={true}
                     visible={this.state.modalVisible}
-                    onRequestClose={ this.onModalClose }>
+                    onRequestClose={this.onModalClose}>
                     <View style={styles.container}>
                         <View style={{ width: '100%' }}>
                             <Header style={styles.Header_Style}>

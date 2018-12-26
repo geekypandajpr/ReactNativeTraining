@@ -11,8 +11,9 @@ import { globalStyles } from '../../../styles'
 import { GpsModal } from '../GpsModal/GpsModal';
 import { userActions } from '../../../redux/actions';
 import { VehicleModal } from '../VehicleModal/VehicleModal';
+import functions from '../../../common/functions'
 
-const value ={
+const value = {
     "associationId": 100,
     "balance": "25.00",
     "carrier": "Airtel",
@@ -26,7 +27,8 @@ const value ={
     "deviceUdid": "device123",
     "simno": "7008819309",
     "vehicleId": 5236
-  }
+}
+
 const vehicles = [
     { label: 'vehicle1', value: 'vehicle1' },
     { label: 'vehicle2', value: 'vehicle2' },
@@ -48,6 +50,7 @@ const VEHICLE_KEY = 'VEHICLE';
 const DEVICE_TYPE = 'DEVICE_TYPE';
 const SUBSC_KEY = 'SUBSC_KEY';
 const ISD_KEY = 'ISD_kEY';
+
 export class GPSDeviceForm extends React.Component {
     constructor(props) {
         super(props);
@@ -56,7 +59,7 @@ export class GPSDeviceForm extends React.Component {
             flag: '',
             data: [],
             code: '',
-            gpsdata:'',
+            gpsdata: '',
             map: new Map(),
             countryISD: [],
             deviceType: [],
@@ -80,14 +83,14 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
-        var codeData = '';
-        const { params } = this.props.navigation.state;
-        var data = params[1].countrylist;
-        for (var i = 0; i < data.length; i++) {
-            if (data[i].code == params[0].code[0].code) {
-                codeData = data[i].value
-            }
-        }
+        // var codeData = '';
+        // const { params } = this.props.navigation.state;
+        // var data = params[1].countrylist;
+        // for (var i = 0; i < data.length; i++) {
+        //     if (data[i].code == params[0].code[0].code) {
+        //         codeData = data[i].value
+        //     }
+        // }
         this.props.onFetchData();
         const newMap = new Map(this.state.map);
         newMap.set(COMPANY_KEY, "Select Company");
@@ -95,10 +98,10 @@ export class GPSDeviceForm extends React.Component {
         newMap.set(DEVICE_TYPE, "Select device type");
         newMap.set(SUBSC_KEY, "select SubsKey");
 
-        newMap.set(ISD_KEY, codeData)
-        // var dataValues = nextProps.CountryIsdList.data.results 
-        //alert(JSON.stringify(params[2].deviceList))
-        this.setState({ map: newMap, mobilenumber: params[0].code[1].mobilenum, countryISD: params[1].countrylist, deviceType: params[2].deviceList })
+        // newMap.set(ISD_KEY, codeData)
+        // // var dataValues = nextProps.CountryIsdList.data.results 
+        // //alert(JSON.stringify(params[2].deviceList))
+        // this.setState({ map: newMap, mobilenumber: params[0].code[1].mobilenum, countryISD: params[1].countrylist, deviceType: params[2].deviceList })
     }
 
     OnValueSelect(value) {
@@ -106,25 +109,17 @@ export class GPSDeviceForm extends React.Component {
         //     this.setState({ company: value });
         //alert(JSON.stringify(value))
         const newMap = new Map(this.state.map);
-
-
         newMap.set(this.state.flag, value);
         this.setState({ map: newMap })
     }
 
-    onSubmit() {
-        this.onvalidation();
-    }
-    onvalidation() {
-
-    }
-    componentWillReceiveProps(nextProps) {      
-        if(this.props.SubmitGpsdata !== nextProps.SubmitGpsdata) {
-            this.setState({gpsdata: nextProps.SubmitGpsdata.data});
-            // this.setState({
-            //     deviceType: nextProps.CountryIsdList.deviceType.results,
-            //     // countryISD: nextProps.CountryIsdList.countryISD.results,
-            // });
+    componentWillReceiveProps(nextProps) {
+        if (this.props.SubmitGpsdata !== nextProps.SubmitGpsdata) {
+            this.setState({
+                gpsdata: nextProps.SubmitGpsdata.data,
+                deviceType: nextProps.CountryIsdList.deviceType.results,
+                countryISD: nextProps.CountryIsdList.countryISD.results,
+            });
 
         }
     }
@@ -133,13 +128,45 @@ export class GPSDeviceForm extends React.Component {
         this.modalRef.current.setModalVisible(true, title, list);
     }
 
+    onSubmit() {
+        if(this.onValidation()){
+            const value = {
+                "associationId": 100,
+                "balance": "25.00",
+                "carrier": "Airtel",
+                "countryID": 91,
+                "dataBalance": "50.00",
+                "dataPlan": "100",
+                "dataValidity": "12/12/2018",
+                "departmentId": 101,
+                "deviceId": 12345,
+                "deviceTypeId": 123,
+                "deviceUdid": "device123",
+                "simno": "7008819309",
+                "vehicleId": 5236
+            }
+            this.props.onFetchData(value)
+        }else{
+            alert("not");
+        }
+
+    }
+    onValidation() {
+        if (this.state.map.get(ISD_KEY) && this.state.map.get(DEVICE_TYPE) && this.state.map.get(COMPANY_KEY)
+            && this.state.map.get(VEHICLE_KEY) && this.state.mobilenumber !== '') {
+           return false;
+        }
+        return true;
+
+    }
+
     render() {
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ backgroundColor: '#fff', flex: 1 }}>
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
-                    {/* <Activityindication visible={this.props.CountryIsdList.isLoading}/> */}
+                    <Activityindication visible={this.props.SubmitGpsdata.isLoading} />
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={[{ key: 1 }]}
@@ -333,9 +360,7 @@ export class GPSDeviceForm extends React.Component {
                                                 </View>
                                                 <View style={{ flex: 1, marginLeft: 2 }}>
                                                     <Button block
-                                                         onPress={() => Alert.alert(
-                                                            this.state.gpsdata
-                                                         )}>
+                                                        onPress={this.onSubmit}>
                                                         <Text style={{ color: '#fff' }}>Submit</Text>
                                                     </Button>
                                                 </View>
