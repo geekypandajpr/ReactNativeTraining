@@ -102,7 +102,7 @@ export class GPSDevice extends React.Component {
 
     componentDidMount() {
         const { params } = this.props.navigation.state;
-        code = params
+        alert(JSON.stringify(params))
         var filterData = {
             "betweenFilter": {    
                 "flag": false,
