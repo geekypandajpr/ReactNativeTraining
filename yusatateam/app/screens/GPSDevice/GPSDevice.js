@@ -7,7 +7,8 @@ import {
 } from 'react-native';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
-import { Card, Text } from 'native-base';
+import { Card, Text, Button } from 'native-base';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { globalStyles } from '../../styles';
 import styles from './styles';
@@ -30,12 +31,13 @@ export class GPSDevice extends React.Component {
             isLoading: true,
             data: null,
             deviceUDID: '',
+            isGetDeviceUDID: false,
             listValues : [],
             selected2: '',
             dropdownKey : '',
             pageCount : 10,
             loading: false,
-            countryList : []
+            countryList : [],
         };
         this.list = [];
         this.modalRef = React.createRef();
@@ -135,7 +137,7 @@ export class GPSDevice extends React.Component {
             if(listData) {
                 this.setState({
                     listValues : listData.data,
-                     countryList : nextProps.searchList.countryISD.results
+                    countryList : nextProps.searchList.countryISD.results
                 });
             }
         }
@@ -147,9 +149,6 @@ export class GPSDevice extends React.Component {
         return true;
     }
 
-
-
-
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
@@ -160,6 +159,7 @@ export class GPSDevice extends React.Component {
 
     getDeviceInfo() {
         if(this.state.deviceUDID !== '') {
+            this.setState({isGetDeviceUDID: true});
             this.props.fetchDeviceInfo(this.state.deviceUDID);
         }
     }
@@ -182,27 +182,29 @@ export class GPSDevice extends React.Component {
                         //selectedValue={this.state.selected2}
                         onSearch={this.getDeviceInfo}
                     />
-
-                    
-                <FlatList
-                // initialNumToRender={10}
-                  data={this.state.listValues}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item, index }) =>
-                  <GpsDeviceData onPress={() => navigate('GPSDeviceForm',[code,this.state.countryList])}
-                    item={item}/>   
+                    {this.state.isGetDeviceUDID ?
+                        <DeviceInfo onClose={() => this.setState({ isGetDeviceUDID: false })}/>
+                        :
+                        <FlatList
+                        // initialNumToRender={10}
+                        data={this.state.listValues}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item, index }) =>
+                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm',[code,this.state.countryList])}
+                                item={item}/>   
+                                }
+                                onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+                                onEndReached = {(distanceFromEnd) => {
+                                    if(!this.onEndReachedCalledDuringMomentum)
+                                    {
+                                        this.loadMoreMessages()
+                                        this.onEndReachedCalledDuringMomentum = true;
+                                    }
+                                }
+                            }
+                            onEndReachedThreshold={0.5}
+                        />
                     }
-                    onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
-                    onEndReached = {(distanceFromEnd) => {
-                        if(!this.onEndReachedCalledDuringMomentum)
-                        {
-                            this.loadMoreMessages()
-                            this.onEndReachedCalledDuringMomentum = true;
-                        }
-                    }
-                }
-                    onEndReachedThreshold={0.5}
-              />
                 </View>
         );
     }
@@ -224,24 +226,25 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(GPSDevice);
 
-
 class DeviceInfo extends React.Component {
     render() {
-        const {deviceInfo} = null;
+        // const {deviceInfo} = null;
         // const { deviceInfo } = this.props.deviceInfo.results ? this.props.deviceInfo.results.deviceInfo : null;
         return (
             <View style={{flex: 1}}>
-                <Card style={[globalStyles.card, {padding: 10}]}>
+                <Card style={[globalStyles.card]}>
 
                     <View style={{flexDirection: 'row'}}>
-                        <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                        <View style={{flex: 4, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
                             <Text style={[globalStyles.primary_text,{fontWeight: '500'}]}>Company name</Text>
                         </View>
                         <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
                             <Text style={globalStyles.secondary_text}>:</Text>
                         </View>
-                        <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-                            {/* <Text style={globalStyles.secondary_text}>{deviceInfo.companyName}</Text> */}
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
+                            <Button transparent onPress={this.props.onClose}>
+                                <MaterialIcons name='close' size={20} color='#d9534f' />
+                            </Button>
                         </View>
                     </View>
 
