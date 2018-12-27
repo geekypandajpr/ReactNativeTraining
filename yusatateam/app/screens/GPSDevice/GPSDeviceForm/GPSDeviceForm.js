@@ -84,8 +84,8 @@ export class GPSDeviceForm extends React.Component {
 
     componentDidMount() {
         // var codeData = '';
-        const { params } = this.props.navigation.state;
-        console.log(JSON.stringify(params.code));
+        // const { params } = this.props.navigation.state;
+        // console.log(JSON.stringify(params.code));
         // var data = params[1].countrylist;
         // for (var i = 0; i < data.length; i++) {
         //     if (data[i].code == params[0].code[0].code) {
@@ -98,7 +98,7 @@ export class GPSDeviceForm extends React.Component {
         newMap.set(VEHICLE_KEY, "Select Vehicle");
         newMap.set(DEVICE_TYPE, "Select device type");
         newMap.set(SUBSC_KEY, "select SubsKey");
-        newMap.set(ISD_KEY, params.code);
+        newMap.set(ISD_KEY, "Select ISD");
         // // var dataValues = nextProps.CountryIsdList.data.results 
         // //alert(JSON.stringify(params[2].deviceList))
         this.setState({ map: newMap })

@@ -7,7 +7,6 @@ import {
     VEHICLE, 
     TECHNICIAN,
     GPSDEVICE,
-    UPDATESCHEMA,
     SUBMITGPSFORM,
     GPSDEVICESEARCHCRITERIA
 } from '../common/actionTypes';
@@ -21,7 +20,7 @@ export default {
     vehicleFetchRequest: (customer) => ({ type: VEHICLE.VEHICLE_FETCH, customer }),
     technicianRequest: () => ({ type: TECHNICIAN.TECHNICIAN_REQUEST }),
     gpsdeviceRequest:() =>({ type: GPSDEVICE.GPSDEVICE_REQUEST }),
-    updateSchema: (companyId) => ({ type: UPDATESCHEMA.UPDATESCHEMA_REQUEST, companyId }),
+    updateSchema: (companyId) => ({ type: USER.UPDATESCHEMA_REQUEST, companyId }),
     getAssociationDeviceInfo: (deviceUDID) => ({ type: GPSDEVICE.DEVICEINFO_REQUEST, deviceUDID }),
     submitgpsFormRequest: (formdata) => ({ type: SUBMITGPSFORM.SUBMITGPSFORM_REQUEST, formdata }),
     searchCriteria : (filterData) => ( { type : GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST , filterData}),

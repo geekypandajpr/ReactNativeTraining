@@ -8,8 +8,6 @@ import jobReducer from './jobReducer';
 import customerReducer from './cutomerReducer';
 import vehicleReducer from './vehicleReducer';
 import techReducer from './techReducer';
-import updateSchemaReducer from './updateSchemaReducer';
-//import submitFormReducer from './submitFormReducer';
 import searchCriteriaReducer from './searchCriteriaReducer';
 import { deviceInfoReducer, GPSDeviceReducer, submitFormReducer } from './GPSDevice';
 
@@ -24,7 +22,6 @@ const rootReducers = combineReducers({
     TechnicianData: techReducer,
     gpsDeviceData: GPSDeviceReducer,
     deviceInfo: deviceInfoReducer,
-    updatedSchema: updateSchemaReducer,
     submitFormData: submitFormReducer,
     searchList: searchCriteriaReducer
     //We can add more reducers here, separated by comma(,)

@@ -12,6 +12,10 @@ export default userReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
                 isLoading: true
             });
+        case USER.UPDATESCHEMA_REQUEST :
+            return Object.assign({}, state, {
+                isLoading: true
+            });
         case USER.LOGIN_SUCCESS :
             return Object.assign({}, state, {
                 data: action.data,

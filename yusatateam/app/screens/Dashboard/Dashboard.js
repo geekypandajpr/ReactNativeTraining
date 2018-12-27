@@ -186,7 +186,7 @@ export  class Dashboard extends React.Component {
                                         text='Device'
                                         iconColor={colors.HOMESCREEN.DEVICECARD_COLOR}
                                         textColor='gray'
-                                        onPress={() => navigate('GPSDevice', {"code" : this.state.loginResponse.countryIsdCode, "mobilenum" : this.state.loginResponse.mobileNumber })}
+                                        onPress={() => navigate('GPSDevice')}
                                         colors={['#b7ffb5', '#84e184', '#51ae56']}
                                     />
                                 </View>
@@ -253,7 +253,9 @@ export  class Dashboard extends React.Component {
                         </View>
 
                     </View>
-                    <DashboardFilter ref={this.modalRef} onRegionUpdate={(companyId) => this.onRegionUpdate(companyId)}/>
+                    <DashboardFilter ref={this.modalRef}
+                        onRegionUpdate={(companyId) => this.onRegionUpdate(companyId)}
+                    />
                 </View>
         );
     }

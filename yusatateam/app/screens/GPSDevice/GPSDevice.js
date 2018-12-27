@@ -55,9 +55,6 @@ export class GPSDevice extends React.Component {
     }
 
     componentDidMount() {
-        const { params } = this.props.navigation.state;
-        code = params
-        //alert(JSON.stringify(params));
         var filterData = {
             "betweenFilter": {
               
@@ -90,7 +87,6 @@ export class GPSDevice extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {  
-           
         if(this.props.searchList !== nextProps.searchList) {
             var listData = nextProps.searchList.data.results
             if(listData) {
@@ -98,9 +94,7 @@ export class GPSDevice extends React.Component {
                     listValues : listData.data
                 });
             }
-           
         }
-        
     }
 
     handleBackPress = () => {
@@ -175,7 +169,7 @@ export class GPSDevice extends React.Component {
                         data={this.state.listValues}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm', code)}
+                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm')}
                                 item={item}/>
                         } />
                 </View>

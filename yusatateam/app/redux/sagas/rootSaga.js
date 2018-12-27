@@ -18,7 +18,7 @@ import {
 import * as userSaga from './userSaga';
 
 /**GPS Device import*/
-import * as gpsDeviceSaga from './GPSDevice/GPSDeviceSaga/';
+import * as gpsDeviceSaga from './GPSDevice/GPSDeviceSaga';
 
 import * as simSaga from './simSaga';
 import * as deviceSaga from './deviceSaga';
@@ -32,7 +32,7 @@ export default function* rootSaga() {
     yield takeLatest(USER.LOGIN, userSaga.login),
 
     /**Region & Company Filter Schema*/
-    yield takeLatest(UPDATESCHEMA.UPDATESCHEMA_REQUEST, userSaga.updateSchema),
+    yield takeLatest(USER.UPDATESCHEMA_REQUEST, userSaga.updateSchema),
 
     /**GPS Device */
     yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd),
