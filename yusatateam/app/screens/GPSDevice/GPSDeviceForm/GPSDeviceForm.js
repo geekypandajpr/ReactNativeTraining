@@ -62,6 +62,7 @@ export class GPSDeviceForm extends React.Component {
             gpsdata: '',
             map: new Map(),
             countryISD: [],
+            companyList :[],
             deviceType: [],
             mobilenumber: ''
         }
@@ -115,9 +116,21 @@ export class GPSDeviceForm extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.gpsDeviceData !== nextProps.gpsDeviceData) {
+            
+            var data=this.props.loginResponse.data.results.regionDetails;
+            const companyArray=[];
+            for(var i=0;i<data.length;i++)
+            {
+                for(var j=0;j<data[i].companyDetails.length;j++)
+                {
+                    const companyObj = { "label": data[i].companyDetails[j].companyId, "value": data[i].companyDetails[j].companyName };
+                    companyArray.push(companyObj)
+                }
+            }
             this.setState({
                 deviceType: nextProps.gpsDeviceData.deviceType.results,
                 countryISD: nextProps.gpsDeviceData.countryISD.results,
+                companyList : companyArray
             });
         }
     }
@@ -195,7 +208,7 @@ export class GPSDeviceForm extends React.Component {
                                                     upperView={true}
                                                     value={this.state.map.get(COMPANY_KEY)}
                                                     isMandatory={true}
-                                                    onpress={() => this.openPicker(COMPANY_KEY, vehicles, title[0])}
+                                                    onpress={() => this.openPicker(COMPANY_KEY, this.state.companyList, title[0])}
                                                 />
                                             </View>
                                             
@@ -402,7 +415,8 @@ export class GPSDeviceForm extends React.Component {
 function mapStateToProps(state) {
     return {
         SubmitGpsdata: state.submitFormData,
-        gpsDeviceData: state.gpsDeviceData
+        gpsDeviceData: state.gpsDeviceData,
+        loginResponse: state.loginData
     }
 }
 
