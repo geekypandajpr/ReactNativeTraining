@@ -204,7 +204,7 @@ export class GPSDevice extends React.Component {
                         data={this.state.listValues}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm',[code,this.state.countryList])}
+                            <GpsDeviceData
                                 item={item}/>   
                                 }
                                 onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
