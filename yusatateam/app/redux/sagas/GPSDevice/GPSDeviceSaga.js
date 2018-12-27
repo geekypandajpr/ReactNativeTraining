@@ -17,7 +17,6 @@ export function* gpsDeviceCountryIsd(action){
 export function* getDeviceInfo(action) {
     try {
         const deviceInfo = yield call(userServices.associationDeviceInfo, action.deviceUDID)
-        alert(JSON.stringify(deviceInfo));
         if (deviceInfo) {
             yield put({ type: GPSDEVICE.DEVICEINFO_SUCCESS, deviceInfo });
         } else {

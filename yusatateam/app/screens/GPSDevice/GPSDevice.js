@@ -3,11 +3,11 @@ import {
     View,
     FlatList,
     BackHandler,
-    
+    TouchableOpacity
 } from 'react-native';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
-import { Card, Text, Button } from 'native-base';
+import { Card, Text } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { globalStyles } from '../../styles';
@@ -183,7 +183,10 @@ export class GPSDevice extends React.Component {
                         onSearch={this.getDeviceInfo}
                     />
                     {this.state.isGetDeviceUDID ?
-                        <DeviceInfo onClose={() => this.setState({ isGetDeviceUDID: false })}/>
+                        <DeviceInfo onClose={() => this.setState({ isGetDeviceUDID: false, deviceUDID: '' })}
+                            deviceUDID={this.state.deviceUDID}
+                            deviceInfoData = {this.props.deviceInfo}
+                        />
                         :
                         <FlatList
                         // initialNumToRender={10}
@@ -228,23 +231,32 @@ export default connect(mapStateToProps, mapDispatchToProps)(GPSDevice);
 
 class DeviceInfo extends React.Component {
     render() {
-        // const {deviceInfo} = null;
-        // const { deviceInfo } = this.props.deviceInfo.results ? this.props.deviceInfo.results.deviceInfo : null;
+        const datas = this.props.deviceInfoData.deviceInfo
+        const deviceInfo = datas.results ? datas.results.deviceInfo : datas ;
         return (
             <View style={{flex: 1}}>
                 <Card style={[globalStyles.card]}>
 
                     <View style={{flexDirection: 'row'}}>
                         <View style={{flex: 4, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-                            <Text style={[globalStyles.primary_text,{fontWeight: '500'}]}>Company name</Text>
+                            <Text style={[globalStyles.primary_text,{fontWeight: '500'}]}>{this.props.deviceUDID}</Text>
+                        </View>
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
+                            <TouchableOpacity onPress={this.props.onClose}>
+                                <MaterialIcons name='close' size={24} color='#d9534f' />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.primary_text}>Company name</Text>
                         </View>
                         <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
                             <Text style={globalStyles.secondary_text}>:</Text>
                         </View>
-                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
-                            <Button transparent onPress={this.props.onClose}>
-                                <MaterialIcons name='close' size={20} color='#d9534f' />
-                            </Button>
+                        <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.secondary_text}>UDID:- {deviceInfo.companyName}</Text>
                         </View>
                     </View>
 
@@ -256,7 +268,7 @@ class DeviceInfo extends React.Component {
                             <Text style={globalStyles.secondary_text}>:</Text>
                         </View>
                         <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-                            {/* <Text style={globalStyles.secondary_text}>{deviceInfo.driverName}</Text> */}
+                            <Text style={globalStyles.secondary_text}>{deviceInfo.driverName}</Text>
                         </View>
                     </View>
 
@@ -268,7 +280,7 @@ class DeviceInfo extends React.Component {
                             <Text style={globalStyles.secondary_text}>:</Text>
                         </View>
                         <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-                            {/* <Text style={globalStyles.secondary_text}>{deviceInfo.vehicleNumber}</Text> */}
+                            <Text style={globalStyles.secondary_text}>{deviceInfo.vehicleNumber}</Text>
                         </View>
                     </View>
 
@@ -280,7 +292,7 @@ class DeviceInfo extends React.Component {
                             <Text style={globalStyles.secondary_text}>:</Text>
                         </View>
                         <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-                            {/* <Text style={globalStyles.secondary_text}>{deviceInfo.deviceModel}</Text> */}
+                            <Text style={globalStyles.secondary_text}>{deviceInfo.deviceModel}</Text>
                         </View>
                     </View>
 
@@ -292,7 +304,7 @@ class DeviceInfo extends React.Component {
                             <Text style={globalStyles.secondary_text}>:</Text>
                         </View>
                         <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-                            {/* <Text style={globalStyles.secondary_text}>{deviceInfo.deviceModelName}</Text> */}
+                            <Text style={globalStyles.secondary_text}>{deviceInfo.deviceModelName}</Text>
                         </View>
                     </View>
 
@@ -304,7 +316,7 @@ class DeviceInfo extends React.Component {
                             <Text style={globalStyles.secondary_text}>:</Text>
                         </View>
                         <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-                            {/* <Text style={globalStyles.secondary_text}>{deviceInfo.departmentName}</Text> */}
+                            <Text style={globalStyles.secondary_text}>{deviceInfo.departmentName}</Text>
                         </View>
                     </View>
 

@@ -2,7 +2,7 @@ import { GPSDEVICE } from '../../common/actionTypes';
 
 const initialState = {
     isLoading: false,
-    deviceInfo: [],
+    deviceInfo: {},
     error: false
 }
 
