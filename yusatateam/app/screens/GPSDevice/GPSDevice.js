@@ -239,7 +239,7 @@ class DeviceInfo extends React.Component {
 
                     <View style={{flexDirection: 'row'}}>
                         <View style={{flex: 4, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-                            <Text style={[globalStyles.primary_text,{fontWeight: '500'}]}>{this.props.deviceUDID}</Text>
+                            <Text style={[globalStyles.primary_text,{fontWeight: '500'}]}>UDID: {this.props.deviceUDID}</Text>
                         </View>
                         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
                             <TouchableOpacity onPress={this.props.onClose}>
@@ -256,7 +256,7 @@ class DeviceInfo extends React.Component {
                             <Text style={globalStyles.secondary_text}>:</Text>
                         </View>
                         <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-                            <Text style={globalStyles.secondary_text}>UDID:- {deviceInfo.companyName}</Text>
+                            <Text style={globalStyles.secondary_text}>{deviceInfo.companyName}</Text>
                         </View>
                     </View>
 
