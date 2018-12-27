@@ -232,7 +232,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(GPSDevice);
 class DeviceInfo extends React.Component {
     render() {
         const datas = this.props.deviceInfoData.deviceInfo
-        const deviceInfo = datas.results ? datas.results.deviceInfo : {} ;
+        const deviceInfo = datas.results ? datas.results.deviceInfo : datas ;
         return (
             <View style={{flex: 1}}>
                 <Card style={[globalStyles.card]}>
