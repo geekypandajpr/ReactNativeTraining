@@ -34,6 +34,7 @@ export class GPSDevice extends React.Component {
             deviceUDID: '',
             deviceInfoData: {},
             isGetDeviceUDID: false,
+            isSearching: false,
             listValues : [],
             selected2: '',
             dropdownKey : '',
@@ -134,7 +135,7 @@ export class GPSDevice extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.deviceInfo.isFetched) {
+        if(nextProps.deviceInfo.isFetched && this.state.isSearching) {
             this.setState({deviceInfoData : nextProps.deviceInfo.deviceInfo, isGetDeviceUDID: true})
         }      
 
@@ -165,6 +166,7 @@ export class GPSDevice extends React.Component {
 
     getDeviceInfo() {
         if(this.state.deviceUDID !== '') {
+            this.setState({ isSearching: true });
             this.props.fetchDeviceInfo(this.state.deviceUDID);
         }
     }
@@ -194,7 +196,7 @@ export class GPSDevice extends React.Component {
                         onSearch={this.getDeviceInfo}
                     />
                     {this.state.isGetDeviceUDID ?
-                        <DeviceInfo onClose={() => this.setState({ isGetDeviceUDID: false, deviceUDID: '' })}
+                        <DeviceInfo onClose={() => this.setState({ isGetDeviceUDID: false, isSearching: false, deviceUDID: '' })}
                             deviceUDID={this.state.deviceUDID}
                             deviceInfoData = {this.state.deviceInfoData}
                         />
