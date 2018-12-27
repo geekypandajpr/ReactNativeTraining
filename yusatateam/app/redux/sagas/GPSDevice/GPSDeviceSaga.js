@@ -4,11 +4,11 @@ import { GPSDEVICE, GPSDEVICESEARCHCRITERIA, SUBMITGPSFORM } from '../../common/
 import userServices from '../../services/userServices'
 import functions from '../../../common/functions';
 
-export function* gpsDeviceCountryIsd(action) {
+export function* gpsDeviceCountryIsd(action){
     try {
-        const [countryISD, deviceType] = yield all([call(userServices.gpsDeviceCountryIsd), call(userServices.gpsDeviceType)])
-        yield put({ type: GPSDEVICE.GPSDEVICE_SUCCESS, datas: { countryISD, deviceType } });
-    } catch (error) {
+        const [ countryISD, deviceType,vehicleList ] = yield all([call(userServices.gpsDeviceCountryIsd),call(userServices.gpsDeviceType),call(userServices.gpsvehicleList)])
+        yield put({ type: GPSDEVICE.GPSDEVICE_SUCCESS, datas: { countryISD, deviceType,vehicleList }});
+    } catch(error) {
         yield put({ type: GPSDEVICE.GPSDEVICE_FAILED, error })
         functions.showToast('Something went wrong', 'danger');
     }
