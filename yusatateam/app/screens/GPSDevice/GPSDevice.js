@@ -30,7 +30,10 @@ export class GPSDevice extends React.Component {
             deviceUDID: '',
             listValues : [],
             selected2: '',
-            dropdownKey : ''
+            dropdownKey : '',
+            pageCount : 10,
+            loading: false,
+            countryList : {}
         };
         this.list = [];
         this.modalRef = React.createRef();
@@ -45,6 +48,45 @@ export class GPSDevice extends React.Component {
         });
     }
 
+    loadMoreMessages () {
+        this.setState({ loading: true })
+        this.currentView()
+        this.setState({ loading: false})
+    }
+
+
+    currentView() {
+        //alert("Hello");
+        var count = this.state.pageCount;
+        //alert(count)
+        var filterData = {
+            "betweenFilter": {    
+                "flag": false,
+                "isDate": false,
+                "isOrCondition": false
+            },
+            "cFilter": {
+                "flag": false
+            },
+            "columnNames": [
+                ""
+            ],
+            "iDisplayLength": 10+count,
+            "iDisplayStart": 0,
+            "iSortCol_0": 0,
+            "inFilter": {
+                "flag": false
+            },
+            "sEcho": 0,
+            "sSortDir_0": "",
+            "searchColumnNamesWithText": [
+                ""
+            ]
+            }
+            this.props.onListFetchData(filterData);
+            this.setState({pageCount : this.state.pageCount+10})
+       }
+
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -55,46 +97,55 @@ export class GPSDevice extends React.Component {
     }
 
     componentDidMount() {
+        const { params } = this.props.navigation.state;
+        code = params
+        //alert(JSON.stringify(params));
         var filterData = {
-            "betweenFilter": {
-              
-              "flag": false,
-              "isDate": false,
-              "isOrCondition": false
+            "betweenFilter": {    
+                "flag": false,
+                "isDate": false,
+                "isOrCondition": false
             },
             "cFilter": {
-              
-              "flag": false
+                "flag": false
             },
             "columnNames": [
-              ""
+                ""
             ],
-            "iDisplayLength": -1,
+            "iDisplayLength": 10,
             "iDisplayStart": 0,
             "iSortCol_0": 0,
             "inFilter": {
-             
-              "flag": false
+                "flag": false
             },
             "sEcho": 0,
             "sSortDir_0": "",
             "searchColumnNamesWithText": [
-              ""
+                ""
             ]
-          }
+            }
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.props.onListFetchData(filterData);
     }
 
-    componentWillReceiveProps(nextProps) {  
+    componentWillReceiveProps(nextProps) {       
         if(this.props.searchList !== nextProps.searchList) {
+            //  alert(JSON.stringify(nextProps.gpsDeviceData))
             var listData = nextProps.searchList.data.results
+            // var countryCode = nextProps.gpsDeviceData.countryISD
             if(listData) {
                 this.setState({
-                    listValues : listData.data
+                    listValues : listData.data,
+                    // countryList : countryCode
                 });
             }
         }
+        
+    }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
     }
 
     handleBackPress = () => {
@@ -165,13 +216,26 @@ export class GPSDevice extends React.Component {
                         onSearch={this.getDeviceInfo}
                     />
 
-                    <FlatList
-                        data={this.state.listValues}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item, index }) =>
-                            <GpsDeviceData onPress={() => navigate('GPSDeviceForm')}
-                                item={item}/>
-                        } />
+                    
+                <FlatList
+                // initialNumToRender={10}
+                  data={this.state.listValues}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={({ item, index }) =>
+                  <GpsDeviceData onPress={() => navigate('GPSDeviceForm',code)}
+                    item={item}/>   
+                    }
+                    onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+                    onEndReached = {(distanceFromEnd) => {
+                        if(!this.onEndReachedCalledDuringMomentum)
+                        {
+                            this.loadMoreMessages()
+                            this.onEndReachedCalledDuringMomentum = true;
+                        }
+                    }
+                }
+                    onEndReachedThreshold={0.5}
+              />
                 </View>
         );
     }
