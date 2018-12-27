@@ -95,8 +95,7 @@ export  class Dashboard extends React.Component {
 
     componentDidMount() {
         /**Login Response */
-        const { params } = this.props.navigation.state;
-        this.setState({loginResponse: params.data.results});
+        this.setState({loginResponse: this.props.loginResponse.data.results});
 
         /**Back Handler */
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -107,11 +106,8 @@ export  class Dashboard extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.props.updateSchema !== nextProps.updateSchema) {
-            this.setState({
-                loading: nextProps.updateSchema.isLoading,
-                loginResponse: nextProps.updateSchema.data.results
-            });
+        if(this.props.loginResponse !== nextProps.loginResponse) {
+            this.setState({ loginResponse: nextProps.loginResponse.data.results })
         }
     }
 
@@ -145,7 +141,7 @@ export  class Dashboard extends React.Component {
                         leftIcon='home'
                         setting='filter' settingType='FontAwesome'
                         onSettingsPress={this.openPicker} />
-                        <Activityindication visible={this.props.updatedSchema.isLoading}/>
+                        <Activityindication visible={this.props.loginResponse.isLoading}/>
 
                     <View style={styles.container1}>
 
@@ -265,14 +261,13 @@ export  class Dashboard extends React.Component {
 
 function mapStateToProps(state){
     return{
-        updatedSchema: state.updatedSchema
+        loginResponse: state.loginData
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
-        onFetchData : () => dispatch(userActions.gpsdeviceRequest()),
-        updateSchema: (request) => dispatch(userActions.updateSchema(request))
+        updateSchema: (companyId) => dispatch(userActions.updateSchema(companyId))
     }
 }
 

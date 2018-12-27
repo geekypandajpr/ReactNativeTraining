@@ -22,7 +22,7 @@ export default class DashboardFilter extends React.Component {
             companyValue: '',
             companyId: ''
         },
-            this.modalRef = React.createRef();
+        this.modalRef = React.createRef();
         this.onModalClose = this.onModalClose.bind(this);
         this.onValueChange = this.onValueChange.bind(this);
         this.updateList = this.updateList.bind(this);
