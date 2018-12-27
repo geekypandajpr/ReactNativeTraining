@@ -12,7 +12,7 @@ export class LogIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: 'sourabh.rajawat12@yusata.com',
+            username: 'admin@readingtonfarms.com',
             password: 'Admin@123',
             remember: true,
             isLoading: true

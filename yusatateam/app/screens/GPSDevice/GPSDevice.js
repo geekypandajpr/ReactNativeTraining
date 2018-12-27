@@ -130,7 +130,7 @@ export class GPSDevice extends React.Component {
 
     componentWillReceiveProps(nextProps) {       
         if(this.props.searchList !== nextProps.searchList) {
-            //  alert(JSON.stringify(nextProps.gpsDeviceData))
+            // alert(JSON.stringify(nextProps.searchList))
             var listData = nextProps.searchList.data.results
             // var countryCode = nextProps.gpsDeviceData.countryISD
             if(listData) {
@@ -148,40 +148,8 @@ export class GPSDevice extends React.Component {
         return true;
     }
 
-    handleBackPress = () => {
-        this.props.navigation.goBack();
-        return true;
-    }
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    }
 
-    // SearchFilterFunction(text) {
-    //     const newData = this.arrayList.filter(function (item) {
-    //         const itemData = item.ESN.toUpperCase()
-    //         const textData = text.toUpperCase()
-    //         return itemData.indexOf(textData) > -1
-    //     })
-    //     this.setState({
-    //         data: newData,
-    //         searchValue: text
-    //     },
-    //     )
-    // }
-
-    // onSearchClearPressed() {
-    //     this.SearchFilterFunction('');
-    // }
-
-    // AlertBox() {
-    //     alert('Press Alert Button')
-    // }
-
-    handleBackPress = () => {
-        this.props.navigation.goBack();
-        return true;
-    }
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
@@ -204,7 +172,7 @@ export class GPSDevice extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
                     <ToolbarWithDropdown title='GPS Devices' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} onSelectvalue={this.dropdownValue} />
-                    <Activityindication visible={this.props.searchList.isLoading}/>
+                    <Activityindication position="flex-end" visible={this.props.searchList.isLoading}/>
                     <Activityindication visible={this.props.deviceInfo.isLoading}/>
                     <SearchBar
                         placeholder={'Search by device UDID'}
