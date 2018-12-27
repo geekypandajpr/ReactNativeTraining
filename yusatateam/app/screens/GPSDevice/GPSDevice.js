@@ -33,7 +33,7 @@ export class GPSDevice extends React.Component {
             dropdownKey : '',
             pageCount : 10,
             loading: false,
-            countryList : {}
+            countryList : []
         };
         this.list = [];
         this.modalRef = React.createRef();
@@ -99,7 +99,6 @@ export class GPSDevice extends React.Component {
     componentDidMount() {
         const { params } = this.props.navigation.state;
         code = params
-        //alert(JSON.stringify(params));
         var filterData = {
             "betweenFilter": {    
                 "flag": false,
@@ -130,13 +129,11 @@ export class GPSDevice extends React.Component {
 
     componentWillReceiveProps(nextProps) {       
         if(this.props.searchList !== nextProps.searchList) {
-            // alert(JSON.stringify(nextProps.searchList))
             var listData = nextProps.searchList.data.results
-            // var countryCode = nextProps.gpsDeviceData.countryISD
             if(listData) {
                 this.setState({
                     listValues : listData.data,
-                    // countryList : countryCode
+                     countryList : nextProps.searchList.countryISD.results
                 });
             }
         }
@@ -190,7 +187,7 @@ export class GPSDevice extends React.Component {
                   data={this.state.listValues}
                   keyExtractor={(item, index) => index.toString()}
                   renderItem={({ item, index }) =>
-                  <GpsDeviceData onPress={() => navigate('GPSDeviceForm',code)}
+                  <GpsDeviceData onPress={() => navigate('GPSDeviceForm',[code,this.state.countryList])}
                     item={item}/>   
                     }
                     onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}

@@ -83,9 +83,9 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
-        // var codeData = '';
-        // const { params } = this.props.navigation.state;
-        // console.log(JSON.stringify(params.code));
+        var codeData = '';
+        const { params } = this.props.navigation.state;
+        alert(JSON.stringify(params));
         // var data = params[1].countrylist;
         // for (var i = 0; i < data.length; i++) {
         //     if (data[i].code == params[0].code[0].code) {
