@@ -31,6 +31,7 @@ export class GPSDevice extends React.Component {
             isLoading: true,
             data: null,
             deviceUDID: '',
+            deviceInfoData: {},
             isGetDeviceUDID: false,
             listValues : [],
             selected2: '',
@@ -102,7 +103,7 @@ export class GPSDevice extends React.Component {
 
     componentDidMount() {
         const { params } = this.props.navigation.state;
-        alert(JSON.stringify(params))
+        // alert(JSON.stringify(params))
         var filterData = {
             "betweenFilter": {    
                 "flag": false,
@@ -131,7 +132,11 @@ export class GPSDevice extends React.Component {
         this.props.onListFetchData(filterData);
     }
 
-    componentWillReceiveProps(nextProps) {       
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.deviceInfo.isFetched) {
+            this.setState({deviceInfoData : nextProps.deviceInfo.deviceInfo, isGetDeviceUDID: true})
+        }      
+        
         if(this.props.searchList !== nextProps.searchList) {
             var listData = nextProps.searchList.data.results
             if(listData) {
@@ -159,7 +164,6 @@ export class GPSDevice extends React.Component {
 
     getDeviceInfo() {
         if(this.state.deviceUDID !== '') {
-            this.setState({isGetDeviceUDID: true});
             this.props.fetchDeviceInfo(this.state.deviceUDID);
         }
     }
@@ -185,7 +189,7 @@ export class GPSDevice extends React.Component {
                     {this.state.isGetDeviceUDID ?
                         <DeviceInfo onClose={() => this.setState({ isGetDeviceUDID: false, deviceUDID: '' })}
                             deviceUDID={this.state.deviceUDID}
-                            deviceInfoData = {this.props.deviceInfo}
+                            deviceInfoData = {this.state.deviceInfoData}
                         />
                         :
                         <FlatList
@@ -231,7 +235,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(GPSDevice);
 
 class DeviceInfo extends React.Component {
     render() {
-        const datas = this.props.deviceInfoData.deviceInfo
+        const datas = this.props.deviceInfoData
         const deviceInfo = datas.results ? datas.results.deviceInfo : datas ;
         return (
             <View style={{flex: 1}}>
