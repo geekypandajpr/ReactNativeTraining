@@ -34,7 +34,7 @@ export default EStyleSheet.create({
     Text_style: {
         fontSize: '1.3rem',
         color: '#000',
-        fontWeight: '500',
+        fontWeight: '400',
     },
     pickerView : {
         borderRadius: 4,

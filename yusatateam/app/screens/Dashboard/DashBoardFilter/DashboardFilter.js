@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Modal } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { Text, Button, Header, Body, Right } from 'native-base';
 
 import styles from './styles';
@@ -41,38 +41,41 @@ export default class DashboardFilter extends React.Component {
 
     updateList() {
         const region = this.state.data.regionDetails;
-        const len = region.length;
-        const regionArray = [];
-        const companyMap = new Map(this.state.companyMap);
-        var defaultRegion = '';
-        var defaultCompany = '';
-        var companyId = '';
-        for (var i = 0; i < len; i++) {
-            const obj = { "label": region[i].regionName, "value": region[i].regionName };
-            regionArray.push(obj);
-            if (this.state.data.defaultRegionId === region[i].regionId) { defaultRegion = region[i].regionName }
+        if(region) {
+            const len = region.length;
+            const regionArray = [];
+            const companyMap = new Map(this.state.companyMap);
+            var defaultRegion = '';
+            var defaultCompany = '';
+            var companyId = '';
+            for (var i = 0; i < len; i++) {
+                const obj = { "label": region[i].regionName, "value": region[i].regionName };
+                regionArray.push(obj);
+                if (this.state.data.defaultRegionId === region[i].regionId) { defaultRegion = region[i].regionName }
 
-            const companyArray = region[i].companyDetails;
-            const len1 = companyArray.length;
-            const company = [];
-            for (var j = 0; j < len1; j++) {
-                // const companyObj = Object.assign({ "label": companyArray[j].companyName, "value": companyArray[j].companyId }, companyArray[j] );
-                const companyObj = { "label": companyArray[j].companyName, "value": companyArray[j].companyId };
-                company.push(companyObj);
-                if (this.state.data.defaultCompanyCode === companyArray[j].companyCode) {
-                    defaultCompany = companyArray[j].companyName;
-                    companyId = companyArray[j].companyId;
+                const companyArray = region[i].companyDetails;
+                const len1 = companyArray.length;
+                const company = [];
+                for (var j = 0; j < len1; j++) {
+                    // const companyObj = Object.assign({ "label": companyArray[j].companyName, "value": companyArray[j].companyId }, companyArray[j] );
+                    const companyObj = { "label": companyArray[j].companyName, "value": companyArray[j].companyId };
+                    company.push(companyObj);
+                    if (this.state.data.defaultCompanyCode === companyArray[j].companyCode) {
+                        defaultCompany = companyArray[j].companyName;
+                        companyId = companyArray[j].companyId;
+                    }
                 }
+                companyMap.set(region[i].regionName, company);
             }
-            companyMap.set(region[i].regionName, company);
+            this.setState({
+                regionArray: regionArray,
+                companyMap: companyMap,
+                companyArray: companyMap.get(regionArray[0].label),
+                regionValue: defaultRegion,
+                companyValue: defaultCompany,
+                companyId: companyId
+            });
         }
-        this.setState({
-            regionArray: regionArray,
-            companyMap: companyMap,
-            companyArray: companyMap.get(regionArray[0].label),
-            regionValue: defaultRegion,
-            companyValue: defaultCompany
-        });
     }
 
     openRegionPicker() {
@@ -128,7 +131,7 @@ export default class DashboardFilter extends React.Component {
                                 </Body>
                                 <Right>
                                     <Button transparent onPress={this.onModalClose}>
-                                        <Entypo name='cross' size={30} color='#000'></Entypo>
+                                        <MaterialIcons name='close' size={30} color='#d9534f' />
                                     </Button>
                                 </Right>
                             </Header>

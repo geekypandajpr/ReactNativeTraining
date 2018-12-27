@@ -94,10 +94,11 @@ export  class Dashboard extends React.Component {
     }
 
     componentDidMount() {
+        /**Login Response */
         const { params } = this.props.navigation.state;
         this.setState({loginResponse: params.data.results});
-        //alert(JSON.stringify(params.data.results.regionDetails))
-        //this.props.onFetchData();
+
+        /**Back Handler */
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
@@ -109,7 +110,7 @@ export  class Dashboard extends React.Component {
         if(this.props.updateSchema !== nextProps.updateSchema) {
             this.setState({
                 loading: nextProps.updateSchema.isLoading,
-                updatedSchemaData: nextProps.updateSchema.data.results
+                loginResponse: nextProps.updateSchema.data.results
             });
         }
     }
