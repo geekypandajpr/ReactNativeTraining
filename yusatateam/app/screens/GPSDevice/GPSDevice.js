@@ -174,12 +174,15 @@ export class GPSDevice extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Toolbar title={this.state.loginResponse.companyName}
-                        leftIcon='GPS Devices'
+                
+                    <Toolbar title='GPS Devices'
+                        leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='add-circle-outline' settingType='MaterialIcons'
                         onSettingsPress={() => navigate('GPSDeviceForm',[code,this.state.countryList])} />
+
                     <Activityindication position="flex-end" visible={this.props.searchList.isLoading}/>
                     <Activityindication visible={this.props.deviceInfo.isLoading}/>
+
                     <SearchBar
                         placeholder={'Search by device UDID'}
                         isDropdown={false}
