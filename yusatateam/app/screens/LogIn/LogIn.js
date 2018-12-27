@@ -12,6 +12,7 @@ export class LogIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            //username: 'admin@readingtonfarms.com',
             username: 'sourabh.rajawat12@yusata.com',
             password: 'Admin@123',
             remember: true,
