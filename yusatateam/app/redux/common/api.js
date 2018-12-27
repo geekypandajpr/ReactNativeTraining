@@ -33,6 +33,10 @@ export default class Api {
                     functions.showToast('Invalid credentials', 'danger');
                 } else if(status === 500) {
                     functions.showToast('Internal server error', 'danger');
+                } else if(status === 400) {
+                    functions.showToast('Invalid request', 'danger');
+                } else if(status === 401) {
+                    functions.showToast('Unauthorized', 'danger');
                 }
                 return null;
             }
