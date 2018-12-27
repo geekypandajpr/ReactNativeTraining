@@ -30,8 +30,8 @@ export function* getDeviceInfo(action) {
 
 export function* searchCriteria(action) {
     try {
-        const list = yield call(userServices.searchCriteria);
-        // alert(JSON.stringify(data.results.data))
+        const list = yield call(userServices.searchCriteria, action.filterData);
+        // alert(JSON.stringify(list.results))
         if(list) {
             yield put({ type: GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_SUCCESS, list });
         } else {

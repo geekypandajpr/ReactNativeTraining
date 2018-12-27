@@ -16,14 +16,6 @@ import styles from './styles';
 import { Toolbar, GpsDeviceData, SearchBar,Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 
-const PICKERITEM = [
-    { label: "All", value: "key0" },
-    { label: "Company Code", value: "key1" },
-    { label: "Company Name", value: "key2" },
-    { label: "provider", value: "key3" },
-    { label: "UDID", value: "key4" }
-]
-
 const code = []
 export class GPSDevice extends React.Component {
     constructor(props) {
@@ -45,8 +37,6 @@ export class GPSDevice extends React.Component {
         this.list = [];
         this.modalRef = React.createRef();
         this.getDeviceInfo = this.getDeviceInfo.bind(this);
-        // this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
-        // this.SearchFilterFunction = this.SearchFilterFunction.bind(this);
     }
 
     onValueChange2(value) {
@@ -104,8 +94,6 @@ export class GPSDevice extends React.Component {
     }
 
     componentDidMount() {
-        const { params } = this.props.navigation.state;
-        // alert(JSON.stringify(params))
         var filterData = {
             "betweenFilter": {    
                 "flag": false,
@@ -143,8 +131,7 @@ export class GPSDevice extends React.Component {
             var listData = nextProps.searchList.data.results
             if(listData) {
                 this.setState({
-                    listValues : listData.data,
-                    countryList : nextProps.searchList.countryISD.results
+                    listValues : listData.data
                 });
             }
         }
