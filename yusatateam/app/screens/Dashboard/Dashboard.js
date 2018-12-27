@@ -137,7 +137,7 @@ export  class Dashboard extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Toolbar title={ this.state.company == '' ? "DashBoard" : this.state.company +" DashBoard" }
+                    <Toolbar title={this.state.loginResponse.companyName}
                         leftIcon='home'
                         setting='filter' settingType='FontAwesome'
                         onSettingsPress={this.openPicker} />

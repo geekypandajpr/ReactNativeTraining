@@ -7,7 +7,9 @@ import {
 } from 'react-native';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
+import { Card, Text } from 'native-base';
 
+import { globalStyles } from '../../styles';
 import styles from './styles';
 import { ToolbarWithDropdown, GpsDeviceData, SearchBar,Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
@@ -221,3 +223,90 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GPSDevice);
+
+
+class DeviceInfo extends React.Component {
+    render() {
+        const {deviceInfo} = null;
+        // const { deviceInfo } = this.props.deviceInfo.results ? this.props.deviceInfo.results.deviceInfo : null;
+        return (
+            <View style={{flex: 1}}>
+                <Card style={[globalStyles.card, {padding: 10}]}>
+
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={[globalStyles.primary_text,{fontWeight: '500'}]}>Company name</Text>
+                        </View>
+                        <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.secondary_text}>:</Text>
+                        </View>
+                        <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            {/* <Text style={globalStyles.secondary_text}>{deviceInfo.companyName}</Text> */}
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.primary_text}>Driver name</Text>
+                        </View>
+                        <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.secondary_text}>:</Text>
+                        </View>
+                        <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            {/* <Text style={globalStyles.secondary_text}>{deviceInfo.driverName}</Text> */}
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.primary_text}>Vehicle #</Text>
+                        </View>
+                        <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.secondary_text}>:</Text>
+                        </View>
+                        <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            {/* <Text style={globalStyles.secondary_text}>{deviceInfo.vehicleNumber}</Text> */}
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.primary_text}>Device model</Text>
+                        </View>
+                        <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.secondary_text}>:</Text>
+                        </View>
+                        <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            {/* <Text style={globalStyles.secondary_text}>{deviceInfo.deviceModel}</Text> */}
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.primary_text}>Device model name</Text>
+                        </View>
+                        <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.secondary_text}>:</Text>
+                        </View>
+                        <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            {/* <Text style={globalStyles.secondary_text}>{deviceInfo.deviceModelName}</Text> */}
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.primary_text}>Department name</Text>
+                        </View>
+                        <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <Text style={globalStyles.secondary_text}>:</Text>
+                        </View>
+                        <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            {/* <Text style={globalStyles.secondary_text}>{deviceInfo.departmentName}</Text> */}
+                        </View>
+                    </View>
+
+                </Card>
+            </View>
+        )
+    }
+}
