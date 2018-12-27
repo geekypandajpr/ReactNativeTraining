@@ -12,7 +12,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { globalStyles } from '../../styles';
 import styles from './styles';
-import { ToolbarWithDropdown, GpsDeviceData, SearchBar,Activityindication } from '../../components';
+import { Toolbar, GpsDeviceData, SearchBar,Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 
 const PICKERITEM = [
@@ -136,7 +136,7 @@ export class GPSDevice extends React.Component {
         if(nextProps.deviceInfo.isFetched) {
             this.setState({deviceInfoData : nextProps.deviceInfo.deviceInfo, isGetDeviceUDID: true})
         }      
-        
+
         if(this.props.searchList !== nextProps.searchList) {
             var listData = nextProps.searchList.data.results
             if(listData) {
@@ -174,7 +174,10 @@ export class GPSDevice extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <ToolbarWithDropdown title='GPS Devices' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} onSelectvalue={this.dropdownValue} />
+                    <Toolbar title={this.state.loginResponse.companyName}
+                        leftIcon='GPS Devices'
+                        setting='add-circle-outline' settingType='MaterialIcons'
+                        onSettingsPress={() => navigate('GPSDeviceForm',[code,this.state.countryList])} />
                     <Activityindication position="flex-end" visible={this.props.searchList.isLoading}/>
                     <Activityindication visible={this.props.deviceInfo.isLoading}/>
                     <SearchBar
