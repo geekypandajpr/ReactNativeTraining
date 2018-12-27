@@ -5,5 +5,6 @@ export const USER = {
     UPDATESCHEMA                : 'user/updateSchema',
     FORMSUBMIT                  : 'ap/add',
     ASSOCIATIONDEVICEINFO       : 'ap/deviceInfo',
-    GPSDEVICESEARCHCRITERIA     : '/ap/dataTable'
+    GPSDEVICESEARCHCRITERIA     : '/ap/dataTable',
+    VEHICLELIST                 : 'utility/list/FreeVehicles'
 };
