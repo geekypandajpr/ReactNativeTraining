@@ -3,7 +3,8 @@ import {
     View,
     FlatList,
     BackHandler,
-    TouchableOpacity
+    TouchableOpacity,
+    ActivityIndicator
 } from 'react-native';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
@@ -174,13 +175,13 @@ export class GPSDevice extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                
+
                     <Toolbar title='GPS Devices'
                         leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='add-circle-outline' settingType='MaterialIcons'
                         onSettingsPress={() => navigate('GPSDeviceForm',[code,this.state.countryList])} />
 
-                    <Activityindication position="flex-end" visible={this.props.searchList.isLoading}/>
+                    {/* <Activityindication position="flex-end" visible={this.props.searchList.isLoading}/> */}
                     <Activityindication visible={this.props.deviceInfo.isLoading}/>
 
                     <SearchBar
@@ -217,6 +218,11 @@ export class GPSDevice extends React.Component {
                             }
                             onEndReachedThreshold={0.5}
                         />
+                        
+                    }
+                    {this.props.searchList.isLoading ? 
+                        <ActivityIndicator size="large" color="#0000ff"  animating={this.props.searchList.isLoading}/>
+                        : null
                     }
                 </View>
         );
