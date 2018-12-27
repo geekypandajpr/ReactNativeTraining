@@ -30,9 +30,13 @@ export function* getDeviceInfo(action) {
 
 export function* searchCriteria(action) {
     try {
-        const [countryISD,list] = yield all([call(userServices.gpsDeviceCountryIsd),call(userServices.searchCriteria, action.filterData)])
+        const list = yield call(userServices.searchCriteria);
         // alert(JSON.stringify(data.results.data))
-        yield put({ type: GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_SUCCESS, data : { countryISD,list} });
+        if(list) {
+            yield put({ type: GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_SUCCESS, list });
+        } else {
+            yield put({ type: GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_FAILED, error });
+        }
     } catch (error) {
         yield put({ type: GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
