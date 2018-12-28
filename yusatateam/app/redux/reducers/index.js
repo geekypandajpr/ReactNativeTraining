@@ -9,7 +9,12 @@ import customerReducer from './cutomerReducer';
 import techReducer from './techReducer';
 import searchCriteriaReducer from './searchCriteriaReducer';
 import VehicleTypeReducer from './VehicleTypeReducer';
-import { deviceInfoReducer, GPSDeviceReducer, submitFormReducer } from './GPSDevice';
+import {
+    deviceInfoReducer,
+    GPSDeviceReducer,
+    submitFormReducer,
+    checkDeviceAssociationReducer
+} from './GPSDevice';
 
 const rootReducers = combineReducers({
     nav: navReducer,
@@ -24,6 +29,7 @@ const rootReducers = combineReducers({
     submitFormData: submitFormReducer,
     searchList: searchCriteriaReducer,
     vehicletypeData: VehicleTypeReducer,
+    checkGPSDeviceData: checkDeviceAssociationReducer
     //We can add more reducers here, separated by comma(,)
 })
 
