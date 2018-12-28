@@ -64,9 +64,9 @@ export class GPSDeviceForm extends React.Component {
             gpsdata: '',
             map: new Map(),
             countryISD: [],
-            companyList :[],
+            companyList: [],
             deviceType: [],
-            vehicleList : [],
+            vehicleList: [],
             mobilenumber: ''
         }
 
@@ -75,6 +75,7 @@ export class GPSDeviceForm extends React.Component {
         this.OnValueSelect = this.OnValueSelect.bind(this);
         this.openPicker = this.openPicker.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onPressCreateVehicle = this.onPressCreateVehicle.bind(this);
     };
 
     async componentWillMount() {
@@ -87,7 +88,7 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
-     
+
         this.props.onFetchList();
     }
 
@@ -101,60 +102,56 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const companyArray=[];
+        const companyArray = [];
         if (this.props.gpsDeviceData !== nextProps.gpsDeviceData) {
-            
-            
-            var CountryIsdcode=this.props.loginResponse.data.results.countryIsdCode;
-            var companyName=this.props.loginResponse.data.results.companyName;
-            
+
+
+            var CountryIsdcode = this.props.loginResponse.data.results.countryIsdCode;
+            var companyName = this.props.loginResponse.data.results.companyName;
+
             var codeData;
             const newMap = new Map(this.state.map);
             newMap.set(VEHICLE_KEY, "Select Vehicle");
             newMap.set(DEVICE_TYPE, "Select device type");
             newMap.set(SUBSC_KEY, "select SubsKey");
             newMap.set(COMPANY_KEY, companyName);
-          
-            if(nextProps.gpsDeviceData.countryISD.results != undefined)
-            {
+
+            if (nextProps.gpsDeviceData.countryISD.results != undefined) {
                 var countryIsdData = nextProps.gpsDeviceData.countryISD.results;
-                
+
                 for (var i = 0; i < countryIsdData.length; i++) {
                     if (countryIsdData[i].code == CountryIsdcode) {
                         codeData = countryIsdData[i].value
                     }
                 }
-                
-                newMap.set(ISD_KEY,codeData);
-                
+
+                newMap.set(ISD_KEY, codeData);
+
             }
             this.setState({
                 deviceType: nextProps.gpsDeviceData.deviceType.results,
                 countryISD: nextProps.gpsDeviceData.countryISD.results,
-                vehicleList : nextProps.gpsDeviceData.vehicleList.results,
-                map : newMap
+                vehicleList: nextProps.gpsDeviceData.vehicleList.results,
+                map: newMap
             });
         }
-        if(this.props.loginResponse)
-        {
-            var RegionData=this.props.loginResponse.data.results.regionDetails;
-            if(RegionData)
-            {
-                for(var i=0;i<RegionData.length;i++)
-            {
-                for(var j=0;j<RegionData[i].companyDetails.length;j++)
-                {
-                    const companyObj = { "label": RegionData[i].companyDetails[j].companyId, "value": RegionData[i].companyDetails[j].companyName };
-                    companyArray.push(companyObj)
+        if (this.props.loginResponse) {
+            var RegionData = this.props.loginResponse.data.results.regionDetails;
+            if (RegionData) {
+                for (var i = 0; i < RegionData.length; i++) {
+                    for (var j = 0; j < RegionData[i].companyDetails.length; j++) {
+                        const companyObj = { "label": RegionData[i].companyDetails[j].companyId, "value": RegionData[i].companyDetails[j].companyName };
+                        companyArray.push(companyObj)
+                    }
                 }
-            }
-            this.setState({   
-                companyList : companyArray,
-            });
-    
+                this.setState({
+                    companyList: companyArray,
+                });
             }
         }
-       
+        if (this.props.vehicleTypeDatas !== nextProps.vehicleTypeDatas) {
+            this.modalReference.current.setModalVisible(true, nextProps.vehicleTypeDatas);
+        }
     }
 
     openPicker(keys, list, title) {
@@ -192,6 +189,10 @@ export class GPSDeviceForm extends React.Component {
         }
         return false;
 
+    }
+
+    onPressCreateVehicle() {
+        this.props.onCreateVehicleType();
     }
 
     render() {
@@ -233,7 +234,7 @@ export class GPSDeviceForm extends React.Component {
                                                     onpress={() => this.openPicker(COMPANY_KEY, this.state.companyList, title[0])}
                                                 />
                                             </View>
-                                            
+
                                             <View style={styles.Small_View}>
                                                 <View style={{ flex: 1 }}>
                                                     <View style={{ height: 70, justifyContent: 'center' }}>
@@ -242,14 +243,14 @@ export class GPSDeviceForm extends React.Component {
                                                             value={this.state.map.get(VEHICLE_KEY)}
                                                             isMandatory={true}
                                                             upperView={true}
-                                                            onpress={() => this.openPicker(VEHICLE_KEY,  this.state.vehicleList, title[1])}
+                                                            onpress={() => this.openPicker(VEHICLE_KEY, this.state.vehicleList, title[1])}
                                                         >
                                                         </UnderlineText>
                                                     </View>
                                                 </View>
                                                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
                                                     <Button bordered dark style={{ height: 40, borderColor: 'gray' }}
-                                                        onPress={() => { this.modalReference.current.setModalVisible(true) }}>
+                                                        onPress={this.onPressCreateVehicle}>
                                                         <Text style={styles.createVehicle}> Create Vehicle</Text>
                                                     </Button>
                                                 </View>
@@ -306,7 +307,7 @@ export class GPSDeviceForm extends React.Component {
                                                     inputStyles={{ width: '100%' }}
                                                 />
                                             </View>
-                                            
+
                                             <View style={[styles.Balance_view, { marginTop: 10 }]}>
                                                 <View style={styles.inner_View}>
                                                     <Float
@@ -408,14 +409,16 @@ function mapStateToProps(state) {
     return {
         SubmitGpsdata: state.submitFormData,
         gpsDeviceData: state.gpsDeviceData,
-        loginResponse: state.loginData
+        loginResponse: state.loginData,
+        vehicleTypeDatas: state.vehicletypeData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         onFetchData: (value) => dispatch(userActions.submitgpsFormRequest(value)),
-        onFetchList: () => dispatch(userActions.gpsdeviceRequest())
+        onFetchList: () => dispatch(userActions.gpsdeviceRequest()),
+        onCreateVehicleType: () => dispatch(userActions.CreatevehicletyepRequest())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)
