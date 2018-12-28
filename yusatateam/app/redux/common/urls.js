@@ -8,5 +8,6 @@ export const USER = {
     GPSDEVICESEARCHCRITERIA     : '/ap/dataTable',
     VEHICLELIST                 : 'utility/list/FreeVehicles',
     ADDGPSVEHICLE               : '/vehicle/add',
-    CREATEVEHICLETYPE           : 'utility/list/VehicleType'
+    CREATEVEHICLETYPE           : 'utility/list/VehicleType',
+    CHECKDEVICEASSOCIATION      : 'ap/checkdeviceassociation',
 };

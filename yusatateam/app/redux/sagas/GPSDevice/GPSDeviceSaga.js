@@ -52,3 +52,19 @@ export function* SubmitFormLogin(action) {
         functions.showToast('something Went wrong', 'danger')
     }
 }
+
+/**Check GPS Device Association */
+export function* checkGPSDeviceAssocition(action) {
+    try {
+        const data = yield call(userServices.checkGPSDeviceAssociation, action.deviceUDID);
+        if(data) {
+            yield put({ type: GPSDEVICE.CHECK_DEVICE_ASSOCIATION_SUCCESS, data });
+            functions.showToast('Device is not engaged', 'success');
+        } else {
+            yield put({ type: GPSDEVICE.CHECK_DEVICE_ASSOCIATION_FAILED });
+        }
+    } catch(error) {
+        yield put({ type: GPSDEVICE.CHECK_DEVICE_ASSOCIATION_FAILED, error });
+        functions.showToast('something Went wrong', 'danger');
+    }
+}
