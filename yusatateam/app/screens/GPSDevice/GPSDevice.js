@@ -48,7 +48,6 @@ export class GPSDevice extends React.Component {
     loadMoreMessages () {
         this.setState({ loading: true })
         this.currentView()
-        this.setState({ loading: false})
     }
 
 
@@ -169,8 +168,11 @@ export class GPSDevice extends React.Component {
                         leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='add-circle-outline' settingType='MaterialIcons'
                         onSettingsPress={() => navigate('GPSDeviceForm',[code,this.state.countryList])} />
-
-                    {/* <Activityindication position="flex-end" visible={this.props.searchList.isLoading}/> */}
+                    {
+                        this.state.loading ? null : 
+                        <Activityindication  visible={this.props.searchList.isLoading}/>
+                    }
+                    
                     <Activityindication visible={this.props.deviceInfo.isLoading}/>
 
                     <SearchBar
@@ -209,10 +211,12 @@ export class GPSDevice extends React.Component {
                         />
                         
                     }
-                    {this.props.searchList.isLoading ? 
-                        <ActivityIndicator size="large" color="#0000ff"  animating={this.props.searchList.isLoading}/>
+                    <View style={{backgroundColor : "gray"}}>
+                    {this.props.searchList.isLoading && this.state.loading ? 
+                        <ActivityIndicator size="large" color="#ffff"  animating={this.props.searchList.isLoading}/>
                         : null
                     }
+                    </View>
                 </View>
         );
     }
