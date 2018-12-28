@@ -19,7 +19,7 @@ export const associationDeviceInfo = (deviceUDID) => Api.get(USER.ASSOCIATIONDEV
 export const searchCriteria = (filterData) => Api.post(USER.GPSDEVICESEARCHCRITERIA, filterData)
 export const createVehicletype = () => Api.get(USER.CREATEVEHICLETYPE);
 export const checkGPSDeviceAssociation = (deviceUDID) => Api.get(USER.CHECKDEVICEASSOCIATION + `?udid=${deviceUDID}`);
-
+export const addgpsVehicle =(AddData)=>Api.get(USER.ADDGPSVEHICLE,AddData)
 export default userService = {
     login,
     gpsDeviceCountryIsd,
@@ -38,7 +38,8 @@ export default userService = {
     gpslogin,
     searchCriteria,
     createVehicletype,
-    checkGPSDeviceAssociation
+    checkGPSDeviceAssociation,
+    addgpsVehicle
 }
 
 /**LOGIN API CALL */

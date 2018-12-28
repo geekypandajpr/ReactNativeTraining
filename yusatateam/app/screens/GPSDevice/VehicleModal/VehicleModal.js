@@ -14,7 +14,7 @@ export default class VehicleModal extends React.Component {
             departmentId: ''
         }
         this.closeModal = this.closeModal.bind(this);
-        this.onSubmitVehicleDetail = this.onSubmitVehicleDetail.bind(this);
+        this.OnSubmitVehicle = this.OnSubmitVehicle.bind(this);
     }
 
     setModalVisible(visible, list, departmentId) {
@@ -35,7 +35,15 @@ export default class VehicleModal extends React.Component {
         this.setState({ isLoading: false });
     }
 
-    onSubmitVehicleDetail(item){
+    OnSubmitVehicle(){
+        const item ={
+            "departmentId": "2296001",
+            "odometerReading": "1",
+            "vehicleTypeId": "640679",
+            "vehicleVin": "1HGBH41JXMN109186",
+            "vehicleNumber": "5678"
+          }
+
         this.props.onsubmitVehicleDetails(item);
         this.setState({modalVisible: false})  
     }
@@ -159,7 +167,7 @@ export default class VehicleModal extends React.Component {
                                         </View>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity onPress={()=>{this.onSubmitVehicleDetail(item)}}>
+                                    <TouchableOpacity onPress={()=>{this.OnSubmitVehicle()}}>
                                         <View style={[styles.button, { marginLeft: 20 }]}>
                                             <Text style={{
                                                 color: '#FFFFFF',

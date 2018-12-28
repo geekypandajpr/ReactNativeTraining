@@ -76,6 +76,7 @@ export class GPSDeviceForm extends React.Component {
         this.openPicker = this.openPicker.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onPressCreateVehicle = this.onPressCreateVehicle.bind(this);
+        this.onSubmitVehicleDetails = this.onSubmitVehicleDetails.bind(this);
     };
 
     async componentWillMount() {
@@ -157,7 +158,7 @@ export class GPSDeviceForm extends React.Component {
         }
         if (this.props.Addvehicles !== nextProps.Addvehicles) {
             this.setState({
-                createVehicle:nextProps.Addvehicles.data.results
+                createVehicle: nextProps.Addvehicles.data.results
             })
         }
 
@@ -203,15 +204,9 @@ export class GPSDeviceForm extends React.Component {
     onPressCreateVehicle() {
         this.props.onCreateVehicleType();
     }
-    onsubmitVehicleDetails(){
-        const value ={
-            "departmentId": "2296001",
-            "odometerReading": "1",
-            "vehicleTypeId": "640679",
-            "vehicleVin": "1HGBH41JXMN109186",
-            "vehicleNumber": "5678"
-          }
-        this.props.Addvehicles(value);
+
+    onSubmitVehicleDetails( value) {
+        this.props.onAddgpsVehicle(value);
     }
 
     render() {
@@ -419,7 +414,7 @@ export class GPSDeviceForm extends React.Component {
                             </KeyboardAvoidingView>
                         } />
                     <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
-                    <VehicleModal ref={this.modalReference} onsubmitVehicleDetails={(detail)=>this.onsubmitVehicleDetails(detail)} />
+                    <VehicleModal ref={this.modalReference} onsubmitVehicleDetails={(detail) => this.onSubmitVehicleDetails(detail)} />
                 </View>
         );
     }
