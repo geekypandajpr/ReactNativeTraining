@@ -29,24 +29,23 @@ export default class Api {
             if(responseJson.ok) {
                 return responseJson.json();
             } else {
-                const status = responseJson.status;
-                if(status === 412) {
-                    const res = responseJson.json();
-                    if(res) {
-                        if(res.results) {
-                            functions.showToast(res.results.msg, 'danger');
-                        }
-                    }
-                } else if(status === 500) {
+                if(responseJson.status === 412) {
+                    functions.showToast('Invalid credentials', 'danger');
+                    return null;
+                } else if(responseJson.status === 500) {
                     functions.showToast('Internal server error', 'danger');
-                } else if(status === 401) {
+                    return null;
+                } else if(responseJson.status === 401) {
                     functions.showToast('Session time out', 'danger');
+                    return null;
+                } else {
+                    throw new Error(`{"message":"${status}"}`);
                 }
-                return null;
             }
         }).catch(function(error) {
-            alert(error.message);
-            throw error;
+            throw new Error(error);
+            //alert(error.message);
+            // throw error.message;
         })
     }
 }

@@ -13,7 +13,7 @@ export function* login(action) {
             yield put({type: USER.LOGIN_SUCCESS, data});
             yield put(NavigationActions.navigate({ routeName: 'Dashboard' }));
         } else {
-            yield put({type: USER.LOGIN_FAILED, error});
+            yield put({type: USER.LOGIN_FAILED});
         }
     } catch (error) {
         yield put({type: USER.LOGIN_FAILED, error});
@@ -29,7 +29,7 @@ export function* updateSchema(action) {
             functions.showToast('Filtered applied successfully', 'success');
             yield put({type: USER.LOGIN_SUCCESS, data});
         } else {
-            yield put({type: USER.LOGIN_FAILED, error});
+            yield put({type: USER.LOGIN_FAILED});
         }
         
     } catch (error) {
