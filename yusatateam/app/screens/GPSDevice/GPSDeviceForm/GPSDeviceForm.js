@@ -64,6 +64,7 @@ export class GPSDeviceForm extends React.Component {
             countryISD: [],
             companyList :[],
             deviceType: [],
+            vehicleList : [],
             mobilenumber: ''
         }
 
@@ -135,6 +136,7 @@ export class GPSDeviceForm extends React.Component {
             this.setState({
                 deviceType: nextProps.gpsDeviceData.deviceType.results,
                 countryISD: nextProps.gpsDeviceData.countryISD.results,
+                vehicleList : nextProps.gpsDeviceData.vehicleList.results,
                 companyList : companyArray
             });
         }
@@ -225,7 +227,7 @@ export class GPSDeviceForm extends React.Component {
                                                             value={this.state.map.get(VEHICLE_KEY)}
                                                             isMandatory={true}
                                                             upperView={true}
-                                                            onpress={() => this.openPicker(VEHICLE_KEY, vehicles, title[1])}
+                                                            onpress={() => this.openPicker(VEHICLE_KEY,  this.state.vehicleList, title[1])}
                                                         >
                                                         </UnderlineText>
                                                     </View>
