@@ -98,7 +98,7 @@ export class GPSDeviceForm extends React.Component {
         // }
         this.props.onFetchList();
         const newMap = new Map(this.state.map);
-        newMap.set(COMPANY_KEY, "Select Company");
+        
         newMap.set(VEHICLE_KEY, "Select Vehicle");
         newMap.set(DEVICE_TYPE, "Select device type");
         newMap.set(SUBSC_KEY, "select SubsKey");
@@ -120,18 +120,20 @@ export class GPSDeviceForm extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (this.props.gpsDeviceData !== nextProps.gpsDeviceData) {
             
-            var data=this.props.loginResponse.data.results.regionDetails;
-            var code=this.props.loginResponse.data.results.countryIsdCode;
+            var RegionData=this.props.loginResponse.data.results.regionDetails;
+            var CountryIsdcode=this.props.loginResponse.data.results.countryIsdCode;
+            var companyName=this.props.loginResponse.data.results.companyName;
             const companyArray=[];
             var codeData;
             const newMap = new Map(this.state.map);
-            if(data)
+            newMap.set(COMPANY_KEY, companyName);
+            if(RegionData)
             {
-                for(var i=0;i<data.length;i++)
+                for(var i=0;i<RegionData.length;i++)
             {
-                for(var j=0;j<data[i].companyDetails.length;j++)
+                for(var j=0;j<RegionData[i].companyDetails.length;j++)
                 {
-                    const companyObj = { "label": data[i].companyDetails[j].companyId, "value": data[i].companyDetails[j].companyName };
+                    const companyObj = { "label": RegionData[i].companyDetails[j].companyId, "value": RegionData[i].companyDetails[j].companyName };
                     companyArray.push(companyObj)
                 }
             }
@@ -139,11 +141,11 @@ export class GPSDeviceForm extends React.Component {
             }
             if(nextProps.gpsDeviceData.countryISD.results != undefined)
             {
-                var data = nextProps.gpsDeviceData.countryISD.results;
+                var countryIsdData = nextProps.gpsDeviceData.countryISD.results;
                 
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].code == code) {
-                        codeData = data[i].value
+                for (var i = 0; i < countryIsdData.length; i++) {
+                    if (countryIsdData[i].code == CountryIsdcode) {
+                        codeData = countryIsdData[i].value
                     }
                 }
                 
