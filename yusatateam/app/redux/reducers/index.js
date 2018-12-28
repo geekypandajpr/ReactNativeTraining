@@ -6,7 +6,6 @@ import simReducer from './simReducer';
 import deviceReducer from './deviceReducer';
 import jobReducer from './jobReducer';
 import customerReducer from './cutomerReducer';
-import vehicleReducer from './vehicleReducer';
 import techReducer from './techReducer';
 import searchCriteriaReducer from './searchCriteriaReducer';
 import { deviceInfoReducer, GPSDeviceReducer, submitFormReducer } from './GPSDevice';
@@ -18,7 +17,6 @@ const rootReducers = combineReducers({
     JobData: jobReducer,
     devicedata: deviceReducer,
     customersData: customerReducer,
-    vehicleData: vehicleReducer,
     TechnicianData: techReducer,
     gpsDeviceData: GPSDeviceReducer,
     deviceInfo: deviceInfoReducer,

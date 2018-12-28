@@ -33,7 +33,6 @@ export default userService = {
     jobPendingData,
     deviceValue,
     customerList,
-    vehicleList,
     technicianLogin,
     gpslogin,
     searchCriteria
