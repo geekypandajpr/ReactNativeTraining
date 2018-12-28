@@ -10,13 +10,11 @@ import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import { Card, Text } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
-
 import { globalStyles } from '../../styles';
 import styles from './styles';
 import { Toolbar, GpsDeviceData, SearchBar,Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 
-const code = []
 export class GPSDevice extends React.Component {
     constructor(props) {
         super(props);
