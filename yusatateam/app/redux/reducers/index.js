@@ -9,7 +9,7 @@ import customerReducer from './cutomerReducer';
 import techReducer from './techReducer';
 import searchCriteriaReducer from './searchCriteriaReducer';
 import  VehicleTypeReducer from './VehicleTypeReducer';
-import { deviceInfoReducer, GPSDeviceReducer, submitFormReducer } from './GPSDevice';
+import { deviceInfoReducer, GPSDeviceReducer, submitFormReducer,vehicleListReducer } from './GPSDevice';
 
 const rootReducers = combineReducers({
     nav: navReducer,

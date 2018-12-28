@@ -38,8 +38,8 @@ export default function* rootSaga() {
     yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd),
     yield takeLatest(GPSDEVICE.DEVICEINFO_REQUEST, gpsDeviceSaga.getDeviceInfo),
     yield takeLatest(SUBMITGPSFORM.SUBMITGPSFORM_REQUEST,gpsDeviceSaga.SubmitFormLogin),
-    yield takeLatest(GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST,gpsDeviceSaga.searchCriteria)
-    yield takeLatest(CREATEVEHICLETYPE.CREATEVEHICLE_REQUEST,createVehicleType.CreateVehicleTypeLogin)
+    yield takeLatest(GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST,gpsDeviceSaga.searchCriteria),
+    yield takeLatest(CREATEVEHICLETYPE.CREATEVEHICLETYPE_REQUEST,createVehicleType.CreateVehicleTypeLogin),
 
     yield takeLatest(SIM.SIM_REQUEST, simSaga.simlogin),
     yield takeLatest(DEVICE.DEVICE_REQUEST, deviceSaga.loginDevice)
