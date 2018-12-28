@@ -10,7 +10,8 @@ import {
     GPSDEVICE,
     UPDATESCHEMA,
     SUBMITGPSFORM,
-    GPSDEVICESEARCHCRITERIA
+    GPSDEVICESEARCHCRITERIA,
+    CREATEVEHICLETYPE
 } from '../common/actionTypes';
 
 /**Login Saga import */
@@ -24,6 +25,7 @@ import * as deviceSaga from './deviceSaga';
 import * as jobSaga from'./jobSaga';
 import * as cutomerSaga from './customerSaga';
 import * as technicianSaga from './technicianSaga';
+import * as createVehicleType from './createVehicleType'
 
 export default function* rootSaga() {
     /**Login */
@@ -37,6 +39,7 @@ export default function* rootSaga() {
     yield takeLatest(GPSDEVICE.DEVICEINFO_REQUEST, gpsDeviceSaga.getDeviceInfo),
     yield takeLatest(SUBMITGPSFORM.SUBMITGPSFORM_REQUEST,gpsDeviceSaga.SubmitFormLogin),
     yield takeLatest(GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST,gpsDeviceSaga.searchCriteria)
+    yield takeLatest(CREATEVEHICLETYPE.CREATEVEHICLE_REQUEST,createVehicleType.CreateVehicleTypeLogin)
 
     yield takeLatest(SIM.SIM_REQUEST, simSaga.simlogin),
     yield takeLatest(DEVICE.DEVICE_REQUEST, deviceSaga.loginDevice)
