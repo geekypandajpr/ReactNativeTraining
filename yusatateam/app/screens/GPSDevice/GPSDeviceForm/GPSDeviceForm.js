@@ -87,25 +87,8 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
-        var codeData = '';
-        const { params } = this.props.navigation.state;
-       // alert(JSON.stringify(params));
-        // var data = params[1].countrylist;
-        // for (var i = 0; i < data.length; i++) {
-        //     if (data[i].code == params[0].code[0].code) {
-        //         codeData = data[i].value
-        //     }
-        // }
+     
         this.props.onFetchList();
-        const newMap = new Map(this.state.map);
-        
-        newMap.set(VEHICLE_KEY, "Select Vehicle");
-        newMap.set(DEVICE_TYPE, "Select device type");
-        newMap.set(SUBSC_KEY, "select SubsKey");
-        
-        // // var dataValues = nextProps.CountryIsdList.data.results 
-        // //alert(JSON.stringify(params[2].deviceList))
-        this.setState({ map: newMap })
     }
 
     OnValueSelect(value) {
@@ -126,6 +109,9 @@ export class GPSDeviceForm extends React.Component {
             const companyArray=[];
             var codeData;
             const newMap = new Map(this.state.map);
+            newMap.set(VEHICLE_KEY, "Select Vehicle");
+            newMap.set(DEVICE_TYPE, "Select device type");
+            newMap.set(SUBSC_KEY, "select SubsKey");
             newMap.set(COMPANY_KEY, companyName);
             if(RegionData)
             {
