@@ -11,12 +11,14 @@ export default class VehicleModal extends React.Component {
         super(props);
         this.state = {
             modalVisible: false,
-            selected: "Vehicle type"
+            selected: "Vehicle type",
+            list:[]
         }
     }
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
+    setModalVisible(visible,list) {
+        this.setState({ modalVisible: visible,list:list });
     }
+    
     onValueChange(value) {
         this.setState({
             selected: value
@@ -30,10 +32,10 @@ export default class VehicleModal extends React.Component {
         })
         this.setState({ isLoading: false });
     }
-    setPicker(value) {
+    onValueChanges(value) {
         this.setState({
             selected: value
-        })
+        });
     }
 
     render() {
@@ -113,9 +115,9 @@ export default class VehicleModal extends React.Component {
                                                         mode="dropdown"
                                                         style={{ width: '100%', color: 'rgba(0,0,0,0.6)' }}
                                                         selectedValue={this.state.selected}
-                                                        onValueChange={this.onValueChange.bind(this)}
+                                                        onValueChange={this.onValueChanges.bind(this)}
                                                     >
-                                                        {department.map((item, index) =>
+                                                        {VehicleType.map((item, index) =>
                                                             <Picker.Item label={item} value={item} key={index} />
                                                         )}
                                                     </Picker>
