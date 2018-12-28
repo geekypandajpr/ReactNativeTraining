@@ -31,13 +31,16 @@ export default class Api {
             } else {
                 const status = responseJson.status;
                 if(status === 412) {
-                    functions.showToast('Invalid credentials', 'danger');
+                    const res = responseJson.json();
+                    if(res) {
+                        if(res.results) {
+                            functions.showToast(res.results.msg, 'danger');
+                        }
+                    }
                 } else if(status === 500) {
                     functions.showToast('Internal server error', 'danger');
-                } else if(status === 400) {
-                    functions.showToast('Invalid request', 'danger');
                 } else if(status === 401) {
-                    functions.showToast('Unauthorized', 'danger');
+                    functions.showToast('Session time out', 'danger');
                 }
                 return null;
             }
