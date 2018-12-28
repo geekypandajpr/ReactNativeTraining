@@ -3,27 +3,28 @@ import { Modal, View, KeyboardAvoidingView, FlatList, StyleSheet, Dimensions, To
 import { Text, Picker, Form } from 'native-base';
 import { Float } from '../../../components';
 
-var department = ["Department", "Department1", "Department2", "Department4", "Department5"]
-var VehicleType = ["Vehicle Type", "Type1", "Type2", "Type3", "Type4", "Type5"]
-
 export default class VehicleModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             modalVisible: false,
             selected: "Vehicle type",
-            list:[]
+            list: [],
+            vehicleTypeId: '',
+            departmentId: ''
         }
+        this.closeModal = this.closeModal.bind(this);
     }
-    setModalVisible(visible,list) {
-        this.setState({ modalVisible: visible,list:list });
+
+    setModalVisible(visible, list, departmentId) {
+        if(list.results) {
+            this.setState({ modalVisible: visible, list: list.results, departmentId: departmentId });
+        } else {
+            this.setState({ modalVisible: visible, departmentId: departmentId });
+        }
+        
     }
-    
-    onValueChange(value) {
-        this.setState({
-            selected: value
-        });
-    }
+
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -32,11 +33,9 @@ export default class VehicleModal extends React.Component {
         })
         this.setState({ isLoading: false });
     }
-    onValueChanges(value) {
-        this.setState({
-            selected: value
-        });
-    }
+    
+
+    closeModal() { this.setState({modalVisible: false}) }
 
     render() {
         return (
@@ -114,17 +113,17 @@ export default class VehicleModal extends React.Component {
                                                         note
                                                         mode="dropdown"
                                                         style={{ width: '100%', color: 'rgba(0,0,0,0.6)' }}
-                                                        selectedValue={this.state.selected}
-                                                        onValueChange={this.onValueChanges.bind(this)}
+                                                        selectedValue={this.state.vehicleTypeId}
+                                                        onValueChange={(value) => this.setState({vehicleTypeId: value})}
                                                     >
-                                                        {VehicleType.map((item, index) =>
-                                                            <Picker.Item label={item} value={item} key={index} />
+                                                        {this.state.list.map((item, index) =>
+                                                            <Picker.Item label={item.value} value={item.key} key={index} />
                                                         )}
                                                     </Picker>
                                                 </Form>
                                             </View>
 
-                                            <View style={{ width: '100%', marginTop: 10 }}>
+                                            {/* <View style={{ width: '100%', marginTop: 10 }}>
                                                 <Form>
                                                     <Picker
                                                         note
@@ -138,13 +137,13 @@ export default class VehicleModal extends React.Component {
                                                         )}
                                                     </Picker>
                                                 </Form>
-                                            </View>
+                                            </View> */}
 
                                         </View>
                                     } />
                                 <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 10 }}>
 
-                                    <TouchableOpacity onPress={() => { this.setModalVisible(!this.state.modalVisible); }}>
+                                    <TouchableOpacity onPress={this.closeModal}>
                                         <View style={styles.button}>
                                             <Text style={{
                                                 color: '#FFFFFF',
@@ -155,7 +154,7 @@ export default class VehicleModal extends React.Component {
                                         </View>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity onPress={() => { this.setModalVisible(!this.state.modalVisible); }}>
+                                    <TouchableOpacity onPress={() => {}}>
                                         <View style={[styles.button, { marginLeft: 20 }]}>
                                             <Text style={{
                                                 color: '#FFFFFF',

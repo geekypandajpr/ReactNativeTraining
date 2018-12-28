@@ -150,7 +150,10 @@ export class GPSDeviceForm extends React.Component {
             }
         }
         if (this.props.vehicleTypeDatas !== nextProps.vehicleTypeDatas) {
-            this.modalReference.current.setModalVisible(true, nextProps.vehicleTypeDatas);
+            if(nextProps.vehicleTypeDatas.isFetched) {
+                const departmentId  = this.props.loginResponse.data.results.departmentId;
+                this.modalReference.current.setModalVisible(true, nextProps.vehicleTypeDatas.data, departmentId);
+            }
         }
     }
 
@@ -202,6 +205,7 @@ export class GPSDeviceForm extends React.Component {
                 <View style={{ backgroundColor: '#fff', flex: 1 }}>
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
                     <Activityindication visible={this.props.gpsDeviceData.isLoading} />
+                    <Activityindication visible={this.props.vehicleTypeDatas.isLoading} />
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={[{ key: 1 }]}
