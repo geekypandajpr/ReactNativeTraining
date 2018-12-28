@@ -67,7 +67,7 @@ export class GPSDevice extends React.Component {
             "columnNames": [
                 ""
             ],
-            "iDisplayLength": 10+count,
+            "iDisplayLength": count,
             "iDisplayStart": 0,
             "iSortCol_0": 0,
             "inFilter": {
@@ -93,34 +93,35 @@ export class GPSDevice extends React.Component {
     }
 
     componentDidMount() {
-        var filterData = {
-            "betweenFilter": {    
-                "flag": false,
-                "isDate": false,
-                "isOrCondition": false
-            },
-            "cFilter": {
-                "flag": false
-            },
-            "columnNames": [
-                ""
-            ],
-            "iDisplayLength": 10,
-            "iDisplayStart": 0,
-            "iSortCol_0": 0,
-            "inFilter": {
-                "flag": false
-            },
-            "sEcho": 0,
-            "sSortDir_0": "",
-            "searchColumnNamesWithText": [
-                ""
-            ]
-            }
+        // var filterData = {
+        //     "betweenFilter": {    
+        //         "flag": false,
+        //         "isDate": false,
+        //         "isOrCondition": false
+        //     },
+        //     "cFilter": {
+        //         "flag": false
+        //     },
+        //     "columnNames": [
+        //         ""
+        //     ],
+        //     "iDisplayLength": 10,
+        //     "iDisplayStart": 0,
+        //     "iSortCol_0": 0,
+        //     "inFilter": {
+        //         "flag": false
+        //     },
+        //     "sEcho": 0,
+        //     "sSortDir_0": "",
+        //     "searchColumnNamesWithText": [
+        //         ""
+        //     ]
+        //     }
+        
+        // this.props.onListFetchData(filterData);
+        this.currentView()
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        this.props.onListFetchData(filterData);
     }
-
     componentWillReceiveProps(nextProps) {
         if(nextProps.deviceInfo.isFetched && this.state.isSearching) {
             this.setState({deviceInfoData : nextProps.deviceInfo.deviceInfo, isGetDeviceUDID: true})
@@ -167,7 +168,7 @@ export class GPSDevice extends React.Component {
                     <Toolbar title='GPS Devices'
                         leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='add-circle-outline' settingType='MaterialIcons'
-                        onSettingsPress={() => navigate('GPSDeviceForm',[code,this.state.countryList])} />
+                        onSettingsPress={() => navigate('GPSDeviceForm')} />
                     {
                         this.state.loading ? null : 
                         <Activityindication  visible={this.props.searchList.isLoading}/>
@@ -184,7 +185,7 @@ export class GPSDevice extends React.Component {
                         //selectedValue={this.state.selected2}
                         onSearch={this.getDeviceInfo}
                     />
-                    {this.state.isGetDeviceUDID ?
+                    {   this.state.isGetDeviceUDID ?
                         <DeviceInfo onClose={() => this.setState({ isGetDeviceUDID: false, isSearching: false, deviceUDID: '' })}
                             deviceUDID={this.state.deviceUDID}
                             deviceInfoData = {this.state.deviceInfoData}
@@ -212,7 +213,7 @@ export class GPSDevice extends React.Component {
                         
                     }
                     <View style={{backgroundColor : "gray"}}>
-                    {this.props.searchList.isLoading && this.state.loading ? 
+                    {   this.props.searchList.isLoading && this.state.loading ? 
                         <ActivityIndicator size="large" color="#ffff"  animating={this.props.searchList.isLoading}/>
                         : null
                     }

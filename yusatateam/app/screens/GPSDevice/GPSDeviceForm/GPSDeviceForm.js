@@ -101,30 +101,20 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        const companyArray=[];
         if (this.props.gpsDeviceData !== nextProps.gpsDeviceData) {
             
             var RegionData=this.props.loginResponse.data.results.regionDetails;
             var CountryIsdcode=this.props.loginResponse.data.results.countryIsdCode;
             var companyName=this.props.loginResponse.data.results.companyName;
-            const companyArray=[];
+            
             var codeData;
             const newMap = new Map(this.state.map);
             newMap.set(VEHICLE_KEY, "Select Vehicle");
             newMap.set(DEVICE_TYPE, "Select device type");
             newMap.set(SUBSC_KEY, "select SubsKey");
             newMap.set(COMPANY_KEY, companyName);
-            if(RegionData)
-            {
-                for(var i=0;i<RegionData.length;i++)
-            {
-                for(var j=0;j<RegionData[i].companyDetails.length;j++)
-                {
-                    const companyObj = { "label": RegionData[i].companyDetails[j].companyId, "value": RegionData[i].companyDetails[j].companyName };
-                    companyArray.push(companyObj)
-                }
-            }
-
-            }
+          
             if(nextProps.gpsDeviceData.countryISD.results != undefined)
             {
                 var countryIsdData = nextProps.gpsDeviceData.countryISD.results;
@@ -142,10 +132,28 @@ export class GPSDeviceForm extends React.Component {
                 deviceType: nextProps.gpsDeviceData.deviceType.results,
                 countryISD: nextProps.gpsDeviceData.countryISD.results,
                 vehicleList : nextProps.gpsDeviceData.vehicleList.results,
-                companyList : companyArray,
                 map : newMap
             });
         }
+        if(this.props.loginResponse)
+        {
+            if(RegionData)
+            {
+                for(var i=0;i<RegionData.length;i++)
+            {
+                for(var j=0;j<RegionData[i].companyDetails.length;j++)
+                {
+                    const companyObj = { "label": RegionData[i].companyDetails[j].companyId, "value": RegionData[i].companyDetails[j].companyName };
+                    companyArray.push(companyObj)
+                }
+            }
+            this.setState({   
+                companyList : companyArray,
+            });
+    
+            }
+        }
+       
     }
 
     openPicker(keys, list, title) {
