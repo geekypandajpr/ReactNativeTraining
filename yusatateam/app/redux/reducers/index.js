@@ -9,6 +9,7 @@ import customerReducer from './cutomerReducer';
 import techReducer from './techReducer';
 import searchCriteriaReducer from './searchCriteriaReducer';
 import VehicleTypeReducer from './VehicleTypeReducer';
+import AddgpsvehicleReducer from './AddgpsvehicleReducer'
 import {
     deviceInfoReducer,
     GPSDeviceReducer,
@@ -29,6 +30,7 @@ const rootReducers = combineReducers({
     submitFormData: submitFormReducer,
     searchList: searchCriteriaReducer,
     vehicletypeData: VehicleTypeReducer,
+    addgpsVehicleData:AddgpsvehicleReducer,
     checkGPSDeviceData: checkDeviceAssociationReducer
     //We can add more reducers here, separated by comma(,)
 })
