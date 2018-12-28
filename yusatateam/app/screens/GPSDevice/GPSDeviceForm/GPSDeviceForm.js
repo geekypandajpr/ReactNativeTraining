@@ -102,7 +102,7 @@ export class GPSDeviceForm extends React.Component {
         newMap.set(VEHICLE_KEY, "Select Vehicle");
         newMap.set(DEVICE_TYPE, "Select device type");
         newMap.set(SUBSC_KEY, "select SubsKey");
-        newMap.set(ISD_KEY, "Select ISD");
+        
         // // var dataValues = nextProps.CountryIsdList.data.results 
         // //alert(JSON.stringify(params[2].deviceList))
         this.setState({ map: newMap })
@@ -121,7 +121,10 @@ export class GPSDeviceForm extends React.Component {
         if (this.props.gpsDeviceData !== nextProps.gpsDeviceData) {
             
             var data=this.props.loginResponse.data.results.regionDetails;
+            var code=this.props.loginResponse.data.results.countryIsdCode;
             const companyArray=[];
+            var codeData;
+            const newMap = new Map(this.state.map);
             if(data)
             {
                 for(var i=0;i<data.length;i++)
@@ -134,12 +137,25 @@ export class GPSDeviceForm extends React.Component {
             }
 
             }
-            
+            if(nextProps.gpsDeviceData.countryISD.results != undefined)
+            {
+                var data = nextProps.gpsDeviceData.countryISD.results;
+                
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].code == code) {
+                        codeData = data[i].value
+                    }
+                }
+                
+                newMap.set(ISD_KEY,codeData);
+                
+            }
             this.setState({
                 deviceType: nextProps.gpsDeviceData.deviceType.results,
                 countryISD: nextProps.gpsDeviceData.countryISD.results,
                 vehicleList : nextProps.gpsDeviceData.vehicleList.results,
-                companyList : companyArray
+                companyList : companyArray,
+                map : newMap
             });
         }
     }
