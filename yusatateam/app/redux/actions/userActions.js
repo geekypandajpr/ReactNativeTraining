@@ -8,6 +8,7 @@ import {
     GPSDEVICE,
     SUBMITGPSFORM,
     CREATEVEHICLETYPE,
+    ADDGPSVEHICLE,
     GPSDEVICESEARCHCRITERIA
 } from '../common/actionTypes';
 
@@ -30,5 +31,6 @@ export default {
     submitgpsFormRequest: (formdata) => ({ type: SUBMITGPSFORM.SUBMITGPSFORM_REQUEST, formdata }),
     CreatevehicletyepRequest: () => ({ type: CREATEVEHICLETYPE.CREATEVEHICLETYPE_REQUEST }),
     searchCriteria: (filterData) => ({ type: GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST, filterData }),
-    checkGPSDeviceAssociation: (deviceUDID) => ({ type: GPSDEVICE.CHECK_DEVICE_ASSOCIATION_REQUEST, deviceUDID })
+    checkGPSDeviceAssociation: (deviceUDID) => ({ type: GPSDEVICE.CHECK_DEVICE_ASSOCIATION_REQUEST, deviceUDID }),
+    addgpsVehicleRequest: (AddData) => ({ type: ADDGPSVEHICLE.ADDGPSVEHICLE_REQUEST, AddData })
 }
