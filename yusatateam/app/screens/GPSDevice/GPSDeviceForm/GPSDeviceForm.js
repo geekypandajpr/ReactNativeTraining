@@ -104,7 +104,7 @@ export class GPSDeviceForm extends React.Component {
         const companyArray=[];
         if (this.props.gpsDeviceData !== nextProps.gpsDeviceData) {
             
-            var RegionData=this.props.loginResponse.data.results.regionDetails;
+            
             var CountryIsdcode=this.props.loginResponse.data.results.countryIsdCode;
             var companyName=this.props.loginResponse.data.results.companyName;
             
@@ -137,6 +137,7 @@ export class GPSDeviceForm extends React.Component {
         }
         if(this.props.loginResponse)
         {
+            var RegionData=this.props.loginResponse.data.results.regionDetails;
             if(RegionData)
             {
                 for(var i=0;i<RegionData.length;i++)
