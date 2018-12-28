@@ -1,4 +1,4 @@
-import { call, put, all } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 
 import {CREATEVEHICLETYPE } from '../common/actionTypes';
 import userServices from '../services/userServices'
