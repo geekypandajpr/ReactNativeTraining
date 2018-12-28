@@ -4,6 +4,7 @@ import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker';
+import moment from 'moment';
 
 import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
 import styles from './styles';
@@ -54,6 +55,7 @@ const ISD_KEY = 'ISD_KEY';
 export class GPSDeviceForm extends React.Component {
     constructor(props) {
         super(props);
+        moment.locale('en');
         this.state = {
             isLoading: true,
             flag: '',
@@ -249,8 +251,6 @@ export class GPSDeviceForm extends React.Component {
                                                     onpress={() => this.openPicker(DEVICE_TYPE, this.state.deviceType, title[2])} />
                                             </View>
 
-
-
                                             {/* <View style={styles.Small_View}>
                                                 <UnderlineText
                                                     name="Subscription Key"
@@ -293,34 +293,6 @@ export class GPSDeviceForm extends React.Component {
                                                     inputStyles={{ width: '100%' }}
                                                 />
                                             </View>
-
-                                            {/* <View style={[styles.Balance_view, { marginTop: 5 }]}>
-                                                <View style={{ flex: 1 }}>
-                                                    <View style={{ height: 60, justifyContent: 'center' }}>
-                                                        <UnderlineText
-                                                            name='Country ISD'
-                                                            isMandatory={true}
-                                                            upperView={true}
-                                                            value={this.state.map.get(ISD_KEY)}
-                                                            onpress={() => this.openPicker(ISD_KEY, this.state.countryISD, title[4])}
-                                                        >
-                                                        </UnderlineText>
-                                                    </View>
-                                                </View>
-                                                <View style={{ flex: 1, marginLeft: 10, marginTop: 12 }}>
-                                                    <Float
-                                                        placeholder='Mobile'
-                                                        value={this.state.mobilenumber}
-                                                        returnKeyType={'next'}
-                                                        keyboardType={'numeric'}
-                                                        blurOnSubmit={false}
-                                                        isMandatory={true}
-                                                        // onSubmitEditing={() => this._focusNextField('password')}
-                                                        onChangeText={(text) => this.setState({ mobilenumber: text })}
-                                                        inputStyles={{ width: '100%' }}
-                                                    />
-                                                </View>
-                                            </View> */}
                                             
                                             <View style={[styles.Balance_view, { marginTop: 10 }]}>
                                                 <View style={styles.inner_View}>
@@ -361,9 +333,9 @@ export class GPSDeviceForm extends React.Component {
                                                         date={this.state.datarenewal}
                                                         mode="date"
                                                         placeholder="Data renewal"
-                                                        format="YYYY-MM-DD"
+                                                        format="DD/MM/YYYY"
                                                         //minDate=""
-                                                        maxDate="2018-12-13"
+                                                        //maxDate=""
                                                         confirmBtnText="Confirm"
                                                         cancelBtnText="Cancel"
                                                         customStyles={{
