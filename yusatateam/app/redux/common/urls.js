@@ -6,5 +6,7 @@ export const USER = {
     FORMSUBMIT                  : 'ap/add',
     ASSOCIATIONDEVICEINFO       : 'ap/deviceInfo',
     GPSDEVICESEARCHCRITERIA     : '/ap/dataTable',
-    VEHICLELIST                 : 'utility/list/FreeVehicles'
+    VEHICLELIST                 : 'utility/list/FreeVehicles',
+    CREATEVEHICLE               : '/vehicle/add',
+    CREATEVEHICLETYPE           : 'utility/list/VehicleType'
 };
