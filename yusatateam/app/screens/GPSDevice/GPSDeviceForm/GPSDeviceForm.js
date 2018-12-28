@@ -150,11 +150,17 @@ export class GPSDeviceForm extends React.Component {
             }
         }
         if (this.props.vehicleTypeDatas !== nextProps.vehicleTypeDatas) {
-            if(nextProps.vehicleTypeDatas.isFetched) {
-                const departmentId  = this.props.loginResponse.data.results.departmentId;
+            if (nextProps.vehicleTypeDatas.isFetched) {
+                const departmentId = this.props.loginResponse.data.results.departmentId;
                 this.modalReference.current.setModalVisible(true, nextProps.vehicleTypeDatas.data, departmentId);
             }
         }
+        if (this.props.Addvehicles !== nextProps.Addvehicles) {
+            this.setState({
+                createVehicle:nextProps.Addvehicles.data.results
+            })
+        }
+
     }
 
     openPicker(keys, list, title) {
@@ -196,6 +202,16 @@ export class GPSDeviceForm extends React.Component {
 
     onPressCreateVehicle() {
         this.props.onCreateVehicleType();
+    }
+    onsubmitVehicleDetails(){
+        const value ={
+            "departmentId": "2296001",
+            "odometerReading": "1",
+            "vehicleTypeId": "640679",
+            "vehicleVin": "1HGBH41JXMN109186",
+            "vehicleNumber": "5678"
+          }
+        this.props.Addvehicles(value);
     }
 
     render() {
@@ -403,7 +419,7 @@ export class GPSDeviceForm extends React.Component {
                             </KeyboardAvoidingView>
                         } />
                     <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
-                    <VehicleModal ref={this.modalReference} />
+                    <VehicleModal ref={this.modalReference} onsubmitVehicleDetails={(detail)=>this.onsubmitVehicleDetails(detail)} />
                 </View>
         );
     }
@@ -414,7 +430,8 @@ function mapStateToProps(state) {
         SubmitGpsdata: state.submitFormData,
         gpsDeviceData: state.gpsDeviceData,
         loginResponse: state.loginData,
-        vehicleTypeDatas: state.vehicletypeData
+        vehicleTypeDatas: state.vehicletypeData,
+        Addvehicles: state.addgpsVehicleData
     }
 }
 
@@ -422,7 +439,8 @@ function mapDispatchToProps(dispatch) {
     return {
         onFetchData: (value) => dispatch(userActions.submitgpsFormRequest(value)),
         onFetchList: () => dispatch(userActions.gpsdeviceRequest()),
-        onCreateVehicleType: () => dispatch(userActions.CreatevehicletyepRequest())
+        onCreateVehicleType: () => dispatch(userActions.CreatevehicletyepRequest()),
+        onAddgpsVehicle: (value) => dispatch(userActions.addgpsVehicleRequest(value))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)

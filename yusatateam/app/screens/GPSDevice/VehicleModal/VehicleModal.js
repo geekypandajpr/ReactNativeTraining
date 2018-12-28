@@ -14,6 +14,7 @@ export default class VehicleModal extends React.Component {
             departmentId: ''
         }
         this.closeModal = this.closeModal.bind(this);
+        this.onSubmitVehicleDetail = this.onSubmitVehicleDetail.bind(this);
     }
 
     setModalVisible(visible, list, departmentId) {
@@ -33,7 +34,11 @@ export default class VehicleModal extends React.Component {
         })
         this.setState({ isLoading: false });
     }
-    
+
+    onSubmitVehicleDetail(item){
+        this.props.onsubmitVehicleDetails(item);
+        this.setState({modalVisible: false})  
+    }
 
     closeModal() { this.setState({modalVisible: false}) }
 
@@ -154,7 +159,7 @@ export default class VehicleModal extends React.Component {
                                         </View>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity onPress={() => {}}>
+                                    <TouchableOpacity onPress={()=>{this.onSubmitVehicleDetail(item)}}>
                                         <View style={[styles.button, { marginLeft: 20 }]}>
                                             <Text style={{
                                                 color: '#FFFFFF',
