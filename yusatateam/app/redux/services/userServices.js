@@ -5,7 +5,6 @@ import SimData from '../../assets/JSONData/SimData';
 import JobsData from '../../assets/JSONData/JobsData/JobsData';
 import DeviceData from '../../assets/JSONData/DeviceData';
 import customersData from '../../assets/JSONData/customerData';
-import vehiclesData from '../../assets/JSONData/VehicleDetail';
 import TechnicianData from '../../assets/JSONData/TechnicianData';
 import CompanyData from '../../assets/JSONData/GpsDevice/CompanyData';
 import DeviceValue from '../../assets/JSONData/GpsDevice/DeviceData'
@@ -70,15 +69,6 @@ export function customerList() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             return resolve(customersData);
-        }, 3000)
-    });
-}
-
-/**VEHICLE LIST API CALL */
-export function vehicleList(customer) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            return resolve(vehiclesData);
         }, 3000)
     });
 }
