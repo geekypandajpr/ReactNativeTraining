@@ -14,30 +14,6 @@ import { userActions } from '../../../redux/actions';
 import { VehicleModal } from '../VehicleModal/VehicleModal';
 import functions from '../../../common/functions'
 
-const value = {
-    "associationId": 100,
-    "balance": "25.00",
-    "carrier": "Airtel",
-    "countryID": 91,
-    "dataBalance": "50.00",
-    "dataPlan": "100",
-    "dataValidity": "12/12/2018",
-    "departmentId": 101,
-    "deviceId": 12345,
-    "deviceTypeId": 123,
-    "deviceUdid": "device123",
-    "simno": "7008819309",
-    "vehicleId": 5236
-}
-
-const vehicles = [
-    { label: 'vehicle1', value: 'vehicle1' },
-    { label: 'vehicle2', value: 'vehicle2' },
-    { label: 'vehicle3', value: 'vehicle3' },
-    { label: 'vehicle4', value: 'vehicle4' },
-    { label: 'vehicle5', value: 'vehicle5' }
-];
-
 const title = [
     'Company',
     'Vehicles',
@@ -47,10 +23,13 @@ const title = [
 ]
 
 const COMPANY_KEY = 'COMPANY';
+const COMPANY_KEY_VALUE = 'Select Company';
 const VEHICLE_KEY = 'VEHICLE';
+const VEHICLE_KEY_VALUE = 'Select vehicle';
 const DEVICE_TYPE = 'DEVICE_TYPE';
-const SUBSC_KEY = 'SUBSC_KEY';
+const DEVICE_TYPE_VALUE = 'Select device type';
 const ISD_KEY = 'ISD_KEY';
+const ISD_KEY_VALUE = 'Select ISD';
 
 export class GPSDeviceForm extends React.Component {
     constructor(props) {
@@ -60,21 +39,27 @@ export class GPSDeviceForm extends React.Component {
             isLoading: true,
             flag: '',
             data: [],
-            code: '',
             gpsdata: '',
             map: new Map(),
+            idMap: new Map(),
             countryISD: [],
             companyList: [],
             deviceType: [],
             vehicleList: [],
-            mobilenumber: ''
+            deviceUDID: '',
+            mobileNumber: '',
+            balance: '',
+            dataBalance: '',
+            dataPlan: '',
+            dataRenewal: '',
+            carrier: ''
         }
 
         this.modalRef = React.createRef();
         this.modalReference = React.createRef();
         this.OnValueSelect = this.OnValueSelect.bind(this);
         this.openPicker = this.openPicker.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onAddGPSDevice = this.onAddGPSDevice.bind(this);
         this.onPressCreateVehicle = this.onPressCreateVehicle.bind(this);
         this.onSubmitVehicleDetails = this.onSubmitVehicleDetails.bind(this);
     };
@@ -89,73 +74,102 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
-
         this.props.onFetchList();
     }
 
-    OnValueSelect(value) {
-        // if (this.state.flag === 'COMPANY') {
-        //     this.setState({ company: value });
-        //alert(JSON.stringify(value))
+    OnValueSelect(item) {
         const newMap = new Map(this.state.map);
-        newMap.set(this.state.flag, value);
-        this.setState({ map: newMap })
+        newMap.set(this.state.flag, item.label);
+
+        const newIdMap = new Map(this.state.idMap);
+        newIdMap.set(this.state.flag, item.value);
+
+        this.setState({ map: newMap, idMap: newIdMap });
     }
 
     componentWillReceiveProps(nextProps) {
-        const companyArray = [];
         if (this.props.gpsDeviceData !== nextProps.gpsDeviceData) {
-
-
             var CountryIsdcode = this.props.loginResponse.data.results.countryIsdCode;
             var companyName = this.props.loginResponse.data.results.companyName;
 
-            var codeData;
             const newMap = new Map(this.state.map);
-            newMap.set(VEHICLE_KEY, "Select Vehicle");
-            newMap.set(DEVICE_TYPE, "Select device type");
-            newMap.set(SUBSC_KEY, "select SubsKey");
+            newMap.set(VEHICLE_KEY, VEHICLE_KEY_VALUE);
+            newMap.set(DEVICE_TYPE, DEVICE_TYPE_VALUE);
+            newMap.set(COMPANY_KEY, COMPANY_KEY_VALUE);
+            newMap.set(ISD_KEY, ISD_KEY_VALUE);
             newMap.set(COMPANY_KEY, companyName);
 
-            if (nextProps.gpsDeviceData.countryISD.results != undefined) {
-                var countryIsdData = nextProps.gpsDeviceData.countryISD.results;
+            const newIdMap = new Map(this.state.idMap);
+            newIdMap.set(VEHICLE_KEY, undefined);
+            newIdMap.set(DEVICE_TYPE, undefined);
+            newIdMap.set(ISD_KEY, undefined);
+            newIdMap.set(COMPANY_KEY, undefined);
 
-                for (var i = 0; i < countryIsdData.length; i++) {
-                    if (countryIsdData[i].code == CountryIsdcode) {
-                        codeData = countryIsdData[i].value
-                    }
+            /**Device Type */
+            const deviceTypeArray = [];
+            if(nextProps.gpsDeviceData.deviceType.results) {
+                const deviceType = nextProps.gpsDeviceData.deviceType.results;
+                for(var i = 0; i < deviceType.length; i++ ) {
+                    var obj = { "label": deviceType[i].value, "value": deviceType[i].key };
+                    deviceTypeArray.push(obj);
                 }
-
-                newMap.set(ISD_KEY, codeData);
-
             }
+
+            /**Vehicle List */
+            const vehicleArray = [];
+            if(nextProps.gpsDeviceData.vehicleList.results) {
+                const vehicle = nextProps.gpsDeviceData.vehicleList.results;
+                for(var i = 0; i < vehicle.length; i++ ) {
+                    var obj = { "label": vehicle[i].value, "value": vehicle[i].key };
+                    vehicleArray.push(obj);
+                }
+            }
+
+            /**Country ISD */
+            const countryISD = [];
+            if (nextProps.gpsDeviceData.countryISD.results) {
+                var ISD = '';
+                var Isd_key = undefined;
+                var countryIsdData = nextProps.gpsDeviceData.countryISD.results;
+                for (var i = 0; i < countryIsdData.length; i++) {
+                    var obj = { "label": countryIsdData[i].value, "value": countryIsdData[i].key };
+                    countryISD.push(obj);
+                    if (countryIsdData[i].code == CountryIsdcode) { ISD = countryIsdData[i].value, Isd_key = countryIsdData[i].key }
+                }
+                newMap.set(ISD_KEY, ISD);
+                newIdMap.set(ISD_KEY, Isd_key);
+            }
+
             this.setState({
-                deviceType: nextProps.gpsDeviceData.deviceType.results,
-                countryISD: nextProps.gpsDeviceData.countryISD.results,
-                vehicleList: nextProps.gpsDeviceData.vehicleList.results,
-                map: newMap
+                deviceType: deviceTypeArray,
+                countryISD: countryISD,
+                vehicleList: vehicleArray,
+                map: newMap,
+                idMap: newIdMap
             });
         }
+
         if (this.props.loginResponse) {
+            const companyArray = [];
             var RegionData = this.props.loginResponse.data.results.regionDetails;
             if (RegionData) {
                 for (var i = 0; i < RegionData.length; i++) {
                     for (var j = 0; j < RegionData[i].companyDetails.length; j++) {
-                        const companyObj = { "label": RegionData[i].companyDetails[j].companyId, "value": RegionData[i].companyDetails[j].companyName };
+                        const companyObj = { "label": RegionData[i].companyDetails[j].companyName, "value": RegionData[i].companyDetails[j].companyId };
                         companyArray.push(companyObj)
                     }
                 }
-                this.setState({
-                    companyList: companyArray,
-                });
+                this.setState({ companyList: companyArray });
             }
         }
+
         if (this.props.vehicleTypeDatas !== nextProps.vehicleTypeDatas) {
             if (nextProps.vehicleTypeDatas.isFetched) {
                 const departmentId = this.props.loginResponse.data.results.departmentId;
                 this.modalReference.current.setModalVisible(true, nextProps.vehicleTypeDatas.data, departmentId);
             }
         }
+
         if (this.props.Addvehicles !== nextProps.Addvehicles) {
             this.setState({
                 createVehicle: nextProps.Addvehicles.data.results
@@ -169,36 +183,38 @@ export class GPSDeviceForm extends React.Component {
         this.modalRef.current.setModalVisible(true, title, list);
     }
 
-    onSubmit() {
-        if (this.onValidation()) {
-            const value = {
-                "associationId": 100,
-                "balance": "25.00",
-                "carrier": "Airtel",
-                "countryID": 91,
-                "dataBalance": "50.00",
-                "dataPlan": "100",
-                "dataValidity": "12/12/2018",
-                "departmentId": 101,
-                "deviceId": 12345,
-                "deviceTypeId": 123,
-                "deviceUdid": "device123",
-                "simno": "7008819309",
-                "vehicleId": 5236
+    onAddGPSDevice() {
+        if (this.checkRequiredFields()) {
+            const item = {
+                "balance": this.state.balance,
+                "carrier": this.state.carrier,
+                "countryID": this.state.idMap.get(ISD_KEY),
+                "dataBalance": this.state.dataBalance,
+                "dataPlan": this.state.dataPlan,
+                "dataValidity": this.state.dataRenewal,
+                "departmentId": this.props.loginResponse.departmentId,
+                // "deviceId": 0,
+                "deviceTypeId": this.state.idMap.get(DEVICE_TYPE),
+                "deviceUdid": this.state.deviceUDID,
+                "simno": this.state.mobileNumber,
+                "vehicleId": this.state.idMap.get(VEHICLE_KEY)
             }
-            this.props.onFetchData(value)
+            //alert(JSON.stringify(item));
+            this.props.addGPSDevice(item);
         } else {
-            functions.showToast('All fields are required', 'danger');
+            functions.showToast('Please fill all required fields', 'danger');
         }
 
     }
-    onValidation() {
-        if (this.state.map.get(ISD_KEY) && this.state.map.get(DEVICE_TYPE) && this.state.map.get(COMPANY_KEY)
-            && this.state.map.get(VEHICLE_KEY) && this.state.mobilenumber !== '') {
-            return true;
+
+    checkRequiredFields() {
+        if(this.state.deviceUDID && this.state.idMap.get(VEHICLE_KEY)
+            && this.state.idMap.get(DEVICE_TYPE) && this.state.idMap.get(ISD_KEY) && this.state.mobileNumber !== ''
+            && this.state.balance !== '' && this.state.dataBalance !== '' && this.state.dataPlan !== '' &&
+            this.state.carrier !== '' && this.state.dataRenewal !== '') {
+                return true
         }
         return false;
-
     }
 
     onPressCreateVehicle() {
@@ -217,6 +233,8 @@ export class GPSDeviceForm extends React.Component {
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
                     <Activityindication visible={this.props.gpsDeviceData.isLoading} />
                     <Activityindication visible={this.props.vehicleTypeDatas.isLoading} />
+                    <Activityindication visible={this.props.addGPSDeviceResp.isLoading} />
+                    
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={[{ key: 1 }]}
@@ -236,6 +254,12 @@ export class GPSDeviceForm extends React.Component {
                                                     <Label style={{ color: 'rgba(0,0,0,0.8)', fontSize: 15 }}>Device</Label>
                                                     <Input
                                                         style={{ color: '#000', fontSize: 15 }}
+                                                        value={this.state.deviceUDID}
+                                                        keyboardType={'email-address'}
+                                                        returnKeyType='next'
+                                                        // getRef={this.props.getRef}
+                                                        // blurOnSubmit={this.props.blurOnSubmit}
+                                                        onChangeText={(text) => this.setState({ deviceUDID: text })}
                                                     />
                                                 </Item>
                                             </View>
@@ -280,13 +304,6 @@ export class GPSDeviceForm extends React.Component {
                                                     onpress={() => this.openPicker(DEVICE_TYPE, this.state.deviceType, title[2])} />
                                             </View>
 
-                                            {/* <View style={styles.Small_View}>
-                                                <UnderlineText
-                                                    name="Subscription Key"
-                                                    value={this.state.map.get(SUBSC_KEY)}
-                                                    isMandatory={false}
-                                                    onpress={() => this.openPicker(SUBSC_KEY, subskey,title[3])} />
-                                            </View> */}
                                         </View>
                                     </View>
 
@@ -312,13 +329,13 @@ export class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <Float
                                                     placeholder='Mobile'
-                                                    value={this.state.mobilenumber}
+                                                    value={this.state.mobileNumber}
                                                     returnKeyType={'next'}
                                                     keyboardType={'numeric'}
                                                     blurOnSubmit={false}
                                                     isMandatory={true}
                                                     // onSubmitEditing={() => this._focusNextField('password')}
-                                                    onChangeText={(text) => this.setState({ mobilenumber: text })}
+                                                    onChangeText={(text) => this.setState({ mobileNumber: text })}
                                                     inputStyles={{ width: '100%' }}
                                                 />
                                             </View>
@@ -327,20 +344,24 @@ export class GPSDeviceForm extends React.Component {
                                                 <View style={styles.inner_View}>
                                                     <Float
                                                         placeholder='Balance'
+                                                        value={this.state.balance}
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
                                                         isMandatory={false}
+                                                        onChangeText={(text) => this.setState({ balance: text })}
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
                                                 <View style={styles.inner_View}>
                                                     <Float
                                                         placeholder='Data Balance'
+                                                        value={this.state.dataBalance}
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
                                                         isMandatory={false}
+                                                        onChangeText={(text) => this.setState({ dataBalance: text })}
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
@@ -349,17 +370,19 @@ export class GPSDeviceForm extends React.Component {
                                                 <View style={styles.inner_View}>
                                                     <Float
                                                         placeholder='Data plan'
+                                                        value={this.state.dataPlan}
                                                         returnKeyType={'next'}
-                                                        keyboardType={'numeric'}
+                                                        keyboardType={'email-address'}
                                                         blurOnSubmit={false}
                                                         isMandatory={false}
+                                                        onChangeText={(text) => this.setState({ dataPlan: text })}
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
                                                 <View style={styles.Date_picker}>
                                                     <DatePicker
                                                         style={{ width: '100%' }}
-                                                        date={this.state.datarenewal}
+                                                        date={this.state.dataRenewal}
                                                         mode="date"
                                                         placeholder="Data renewal"
                                                         format="DD/MM/YYYY"
@@ -379,7 +402,7 @@ export class GPSDeviceForm extends React.Component {
                                                             }
                                                             // ... You can check the source to find the other keys.
                                                         }}
-                                                        onDateChange={(date) => { this.setState({ datarenewal: date }) }}
+                                                        onDateChange={(date) => { this.setState({ dataRenewal: date }) }}
                                                     />
                                                 </View>
                                             </View>
@@ -387,10 +410,12 @@ export class GPSDeviceForm extends React.Component {
                                             <View style={styles.Small_View}>
                                                 <Float
                                                     placeholder='Carrier'
+                                                    value={this.state.carrier}
                                                     returnKeyType={'next'}
                                                     keyboardType={'email-address'}
                                                     blurOnSubmit={false}
                                                     isMandatory={true}
+                                                    onChangeText={(text) => this.setState({ carrier: text })}
                                                     inputStyles={{ width: '100%' }}
                                                 />
                                             </View>
@@ -403,7 +428,7 @@ export class GPSDeviceForm extends React.Component {
                                                 </View>
                                                 <View style={{ flex: 1, marginLeft: 2 }}>
                                                     <Button block
-                                                        onPress={this.onSubmit}>
+                                                        onPress={this.onAddGPSDevice}>
                                                         <Text style={{ color: '#fff' }}>Submit</Text>
                                                     </Button>
                                                 </View>
@@ -422,7 +447,7 @@ export class GPSDeviceForm extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        SubmitGpsdata: state.submitFormData,
+        addGPSDeviceResp: state.addGPSDeviceData,
         gpsDeviceData: state.gpsDeviceData,
         loginResponse: state.loginData,
         vehicleTypeDatas: state.vehicletypeData,
@@ -432,7 +457,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onFetchData: (value) => dispatch(userActions.submitgpsFormRequest(value)),
+        addGPSDevice: (gpsdevice) => dispatch(userActions.addGPSDeviceAssociation(gpsdevice)),
         onFetchList: () => dispatch(userActions.gpsdeviceRequest()),
         onCreateVehicleType: () => dispatch(userActions.CreatevehicletyepRequest()),
         onAddgpsVehicle: (value) => dispatch(userActions.addgpsVehicleRequest(value))

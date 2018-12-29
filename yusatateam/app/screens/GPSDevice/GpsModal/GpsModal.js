@@ -36,21 +36,7 @@ export default class GpsModal extends React.Component {
     }
 
     setModalVisible(visible, title, data = []) {
-        //alert(JSON.stringify(data))
-        const arrayValue = [];
-        for(var i=0;i<data.length;i++)
-        {
-            // if(data[i].code)
-            // {
-            //     arrayValue.push(data[i].code)
-            // }
-            // else
-            // {
-                arrayValue.push(data[i].value)
-            // }
-           
-        }
-        this.setState({ modalVisible: visible, data: arrayValue,title :title});
+        this.setState({ modalVisible: visible, data: data, title :title});
     }
 
     render() {
@@ -90,7 +76,7 @@ export default class GpsModal extends React.Component {
                                             <List>
                                                 <TouchableOpacity >
                                                     <ListItem onPress={() => { this.onSelectValue(item) }}>
-                                                        <Text>{item}</Text>
+                                                        <Text>{item.label}</Text>
                                                     </ListItem>
                                                 </TouchableOpacity>
                                             </List>

@@ -8,8 +8,6 @@ import {
     DEVICE,
     TECHNICIAN,
     GPSDEVICE,
-    UPDATESCHEMA,
-    SUBMITGPSFORM,
     GPSDEVICESEARCHCRITERIA,
     CREATEVEHICLETYPE,
     ADDGPSVEHICLE
@@ -39,11 +37,11 @@ export default function* rootSaga() {
     /**GPS Device */
     yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd),
     yield takeLatest(GPSDEVICE.DEVICEINFO_REQUEST, gpsDeviceSaga.getDeviceInfo),
-    yield takeLatest(SUBMITGPSFORM.SUBMITGPSFORM_REQUEST,gpsDeviceSaga.SubmitFormLogin),
+    yield takeLatest(GPSDEVICE.ADD_GPS_DEVICE_REQUEST, gpsDeviceSaga.addGPSDevice),
+    yield takeLatest(GPSDEVICE.CHECK_DEVICE_ASSOCIATION_REQUEST, gpsDeviceSaga.checkGPSDeviceAssocition),
     yield takeLatest(GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST,gpsDeviceSaga.searchCriteria),
     yield takeLatest(CREATEVEHICLETYPE.CREATEVEHICLETYPE_REQUEST,createVehicleType.CreateVehicleTypeLogin),
     yield takeLatest(ADDGPSVEHICLE.ADDGPSVEHICLE_REQUEST,addgpsDeviceSaga.addgpsDeviceLogin),
-    yield takeLatest(GPSDEVICE.CHECK_DEVICE_ASSOCIATION_REQUEST, gpsDeviceSaga.checkGPSDeviceAssocition),
 
     yield takeLatest(SIM.SIM_REQUEST, simSaga.simlogin),
     yield takeLatest(DEVICE.DEVICE_REQUEST, deviceSaga.loginDevice)

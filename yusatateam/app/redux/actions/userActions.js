@@ -6,7 +6,6 @@ import {
     CUSTOMER,
     TECHNICIAN,
     GPSDEVICE,
-    SUBMITGPSFORM,
     CREATEVEHICLETYPE,
     ADDGPSVEHICLE,
     GPSDEVICESEARCHCRITERIA
@@ -28,7 +27,7 @@ export default {
     /**GPS Device Request */
     gpsdeviceRequest: () => ({ type: GPSDEVICE.GPSDEVICE_REQUEST }),
     getAssociationDeviceInfo: (deviceUDID) => ({ type: GPSDEVICE.DEVICEINFO_REQUEST, deviceUDID }),
-    submitgpsFormRequest: (formdata) => ({ type: SUBMITGPSFORM.SUBMITGPSFORM_REQUEST, formdata }),
+    addGPSDeviceAssociation: (gpsdevice) => ({ type: GPSDEVICE.ADD_GPS_DEVICE_REQUEST, gpsdevice }),
     CreatevehicletyepRequest: () => ({ type: CREATEVEHICLETYPE.CREATEVEHICLETYPE_REQUEST }),
     searchCriteria: (filterData) => ({ type: GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST, filterData }),
     checkGPSDeviceAssociation: (deviceUDID) => ({ type: GPSDEVICE.CHECK_DEVICE_ASSOCIATION_REQUEST, deviceUDID }),

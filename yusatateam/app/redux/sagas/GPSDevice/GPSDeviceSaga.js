@@ -4,6 +4,7 @@ import { GPSDEVICE, GPSDEVICESEARCHCRITERIA, SUBMITGPSFORM } from '../../common/
 import userServices from '../../services/userServices'
 import functions from '../../../common/functions';
 
+/**CountryISD, Device Type, Vehicle List */
 export function* gpsDeviceCountryIsd(action){
     try {
         const [ countryISD, deviceType,vehicleList ] = yield all([call(userServices.gpsDeviceCountryIsd),call(userServices.gpsDeviceType),call(userServices.gpsvehicleList)])
@@ -14,6 +15,8 @@ export function* gpsDeviceCountryIsd(action){
     }
 }
 
+
+/**GPS Device Information */
 export function* getDeviceInfo(action) {
     try {
         const deviceInfo = yield call(userServices.associationDeviceInfo, action.deviceUDID)
@@ -28,6 +31,7 @@ export function* getDeviceInfo(action) {
     }
 }
 
+/**GPS Device Association List */
 export function* searchCriteria(action) {
     try {
         const list = yield call(userServices.searchCriteria, action.filterData);
@@ -43,13 +47,20 @@ export function* searchCriteria(action) {
     }
 }
 
-export function* SubmitFormLogin(action) {
+/**Add GPS Device Association */
+export function* addGPSDevice(action) {
     try {
-        const data = yield call(userService.submitGpsForm, action.formdata)
-        yield put({ type: SUBMITGPSFORM.SUBMITGPSFORM_SUCCESS, data })
+        // alert(JSON.stringify(action));
+        const data = yield call(userService.addGPSDevice, action.gpsdevice)
+        if(data) {
+            yield put({ type: GPSDEVICE.ADD_GPS_DEVICE_SUCCESS, data });
+            functions.showToast('GPS Device added successfully', 'success');
+        } else {
+            yield put({ type: GPSDEVICE.ADD_GPS_DEVICE_FAILED });
+        }
     } catch (error) {
-        yield put({ type: SUBMITGPSFORM.SUBMITGPSFORM_FAILED, error })
-        functions.showToast('something Went wrong', 'danger')
+        yield put({ type: GPSDEVICE.ADD_GPS_DEVICE_FAILED, error });
+        functions.showToast('something Went wrong', 'danger');
     }
 }
 
