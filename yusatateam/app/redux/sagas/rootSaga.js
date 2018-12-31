@@ -17,7 +17,7 @@ import * as userSaga from './userSaga';
 /**GPS Device import*/
 import * as gpsDeviceSaga from './GPSDevice/GPSDeviceSaga';
 
-import * as simSaga from './simSaga';
+import * as simSaga from './SIMSAGA/simSaga';
 import * as deviceSaga from './deviceSaga';
 import * as jobSaga from './jobSaga';
 import * as cutomerSaga from './customerSaga';
@@ -40,10 +40,13 @@ export default function* rootSaga() {
         yield takeLatest(GPSDEVICE.CREATEVEHICLE_REQUEST, gpsDeviceSaga.createVehicle),
         yield takeLatest(GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST, gpsDeviceSaga.searchCriteria),
 
-
+        /**Sim Info */
         yield takeLatest(SIM.SIM_REQUEST, simSaga.simlogin),
+
+
+
         yield takeLatest(DEVICE.DEVICE_REQUEST, deviceSaga.loginDevice)
-    yield takeLatest(JOBS.JOBS_LOGIN, jobSaga.jobPendingData),
+        yield takeLatest(JOBS.JOBS_LOGIN, jobSaga.jobPendingData),
         yield takeLatest(CUSTOMER.CUSTOMER_FETCH, cutomerSaga.cutomerList),
         yield takeLatest(TECHNICIAN.TECHNICIAN_REQUEST, technicianSaga.technicianLogin)
 
