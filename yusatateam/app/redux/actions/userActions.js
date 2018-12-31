@@ -10,7 +10,7 @@ import {
 } from '../common/actionTypes';
 
 export default {
-    simRequest: () => ({ type: SIM.SIM_REQUEST }),
+    
     deviceRequest: () => ({ type: DEVICE.DEVICE_REQUEST }),
     jobRequest: () => ({ type: JOBS.JOBS_LOGIN }),
     cutomerFetchRequest: () => ({ type: CUSTOMER.CUSTOMER_FETCH }),
@@ -29,5 +29,8 @@ export default {
     createVehicleType: () => ({ type: GPSDEVICE.CREATE_VEHICLETYPE_REQUEST }),
     searchCriteria: (filterData) => ({ type: GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST, filterData }),
     checkGPSDeviceAssociation: (deviceUDID) => ({ type: GPSDEVICE.CHECK_DEVICE_ASSOCIATION_REQUEST, deviceUDID }),
-    createVehicle: (AddData) => ({ type: GPSDEVICE.CREATEVEHICLE_REQUEST, AddData })
+    createVehicle: (AddData) => ({ type: GPSDEVICE.CREATEVEHICLE_REQUEST, AddData }),
+
+    /** */
+    simRequest: () => ({ type: SIM.SIM_REQUEST }),
 }

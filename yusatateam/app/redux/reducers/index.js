@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import { navReducer } from '../../router';
 import userReducer from './userReducer';
-import simReducer from './simReducer';
+import simReducer from './SIMREDUCER/simReducer';
 import deviceReducer from './deviceReducer';
 import jobReducer from './jobReducer';
 import customerReducer from './cutomerReducer';
@@ -33,8 +33,10 @@ const rootReducers = combineReducers({
     checkGPSDeviceData: checkDeviceAssociationReducer,
     createVehicleData: createVehicleReducer,
 
-    /**Others */
+    /**Sim Info */
     simData: simReducer,
+
+    /**Others */
     JobData: jobReducer,
     devicedata: deviceReducer,
     customersData: customerReducer,

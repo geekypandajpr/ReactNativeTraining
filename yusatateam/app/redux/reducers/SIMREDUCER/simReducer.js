@@ -1,4 +1,4 @@
-import { SIM } from '../common/actionTypes';
+import { SIM } from '../../common/actionTypes';
 
 const initialState = {
     isLoading: true,

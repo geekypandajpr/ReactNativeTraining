@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
-import userService from '../services/userServices';
-import { SIM } from '../common/actionTypes';
+import userService from '../../services/userServices';
+import { SIM } from '../../common/actionTypes';
 
 export function* simlogin(action) {
     try {
