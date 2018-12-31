@@ -10,6 +10,7 @@ export default class ChangePassword extends React.Component {
         super(props);
         this.state = {
             modalVisible: false,
+            text : ''
         }
     }
     setModalVisible(visible) {
@@ -34,9 +35,12 @@ export default class ChangePassword extends React.Component {
                         </View>
                         <View style={styles.View_Container}>
                             <View>
-                                <Item success>
-                                    <Input placeholder='Old Password' />
-                                    <Icon name='checkmark-circle' />
+                                <Item >
+                                    <Input placeholder='Old Password' 
+                                    onChangeText={(text) => this.setState({text})}
+                                    value={this.state.text}/>
+                                    <Icon name=
+                                    { this.state.text=="Admin" ? 'checkmark-circle': 'close-circle'}/>
                                 </Item>
                             </View>
                             <View>
