@@ -107,9 +107,9 @@ export class GPSDeviceForm extends React.Component {
 
             /**Device Type */
             const deviceTypeArray = [];
-            if(nextProps.gpsDeviceData.deviceType.results) {
+            if (nextProps.gpsDeviceData.deviceType.results) {
                 const deviceType = nextProps.gpsDeviceData.deviceType.results;
-                for(var i = 0; i < deviceType.length; i++ ) {
+                for (var i = 0; i < deviceType.length; i++) {
                     var obj = { "label": deviceType[i].value, "value": deviceType[i].key };
                     deviceTypeArray.push(obj);
                 }
@@ -117,9 +117,9 @@ export class GPSDeviceForm extends React.Component {
 
             /**Vehicle List */
             const vehicleArray = [];
-            if(nextProps.gpsDeviceData.vehicleList.results) {
+            if (nextProps.gpsDeviceData.vehicleList.results) {
                 const vehicle = nextProps.gpsDeviceData.vehicleList.results;
-                for(var i = 0; i < vehicle.length; i++ ) {
+                for (var i = 0; i < vehicle.length; i++) {
                     var obj = { "label": vehicle[i].value, "value": vehicle[i].key };
                     vehicleArray.push(obj);
                 }
@@ -175,7 +175,6 @@ export class GPSDeviceForm extends React.Component {
                 createVehicle: nextProps.Addvehicles.data.results
             })
         }
-
     }
 
     openPicker(keys, list, title) {
@@ -208,11 +207,11 @@ export class GPSDeviceForm extends React.Component {
     }
 
     checkRequiredFields() {
-        if(this.state.deviceUDID && this.state.idMap.get(VEHICLE_KEY)
+        if (this.state.deviceUDID && this.state.idMap.get(VEHICLE_KEY)
             && this.state.idMap.get(DEVICE_TYPE) && this.state.idMap.get(ISD_KEY) && this.state.mobileNumber !== ''
             && this.state.balance !== '' && this.state.dataBalance !== '' && this.state.dataPlan !== '' &&
             this.state.carrier !== '' && this.state.dataRenewal !== '') {
-                return true
+            return true
         }
         return false;
     }
@@ -221,7 +220,7 @@ export class GPSDeviceForm extends React.Component {
         this.props.onCreateVehicleType();
     }
 
-    onSubmitVehicleDetails( value) {
+    onSubmitVehicleDetails(value) {
         this.props.onAddgpsVehicle(value);
     }
 
@@ -234,7 +233,7 @@ export class GPSDeviceForm extends React.Component {
                     <Activityindication visible={this.props.gpsDeviceData.isLoading} />
                     <Activityindication visible={this.props.vehicleTypeDatas.isLoading} />
                     <Activityindication visible={this.props.addGPSDeviceResp.isLoading} />
-                    
+
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={[{ key: 1 }]}
@@ -450,7 +449,7 @@ function mapStateToProps(state) {
         addGPSDeviceResp: state.addGPSDeviceData,
         gpsDeviceData: state.gpsDeviceData,
         loginResponse: state.loginData,
-        vehicleTypeDatas: state.vehicletypeData,
+        vehicleTypeDatas: state.createVehicleTypeData,
         Addvehicles: state.addgpsVehicleData
     }
 }
@@ -459,7 +458,7 @@ function mapDispatchToProps(dispatch) {
     return {
         addGPSDevice: (gpsdevice) => dispatch(userActions.addGPSDeviceAssociation(gpsdevice)),
         onFetchList: () => dispatch(userActions.gpsdeviceRequest()),
-        onCreateVehicleType: () => dispatch(userActions.CreatevehicletyepRequest()),
+        onCreateVehicleType: () => dispatch(userActions.createVehicleType()),
         onAddgpsVehicle: (value) => dispatch(userActions.addgpsVehicleRequest(value))
     }
 }

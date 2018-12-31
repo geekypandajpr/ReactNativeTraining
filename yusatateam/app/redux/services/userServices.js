@@ -17,7 +17,7 @@ export const updateSchema = (companyId) => Api.post(USER.UPDATESCHEMA + `?compan
 export const addGPSDevice = (gpsdevice) => Api.post(USER.FORMSUBMIT, gpsdevice);
 export const associationDeviceInfo = (deviceUDID) => Api.get(USER.ASSOCIATIONDEVICEINFO + `?udid=${deviceUDID}`);
 export const searchCriteria = (filterData) => Api.post(USER.GPSDEVICESEARCHCRITERIA, filterData);
-export const createVehicletype = () => Api.get(USER.CREATEVEHICLETYPE);
+export const createVehicleType = () => Api.get(USER.CREATEVEHICLETYPE);
 export const checkGPSDeviceAssociation = (deviceUDID) => Api.get(USER.CHECKDEVICEASSOCIATION + `?udid=${deviceUDID}`);
 export const addgpsVehicle = (AddData) => Api.post(USER.ADDGPSVEHICLE, AddData);
 
@@ -34,10 +34,10 @@ export default userService = {
     gpsvehicleList,
     addGPSDevice,
     searchCriteria,
-    createVehicletype,
     checkGPSDeviceAssociation,
     addgpsVehicle,
     associationDeviceInfo,
+    createVehicleType,
 
     doLogin,
     simlogin,
@@ -47,7 +47,7 @@ export default userService = {
     customerList,
     technicianLogin,
     gpslogin,
-    
+
 }
 
 /**LOGIN API CALL */

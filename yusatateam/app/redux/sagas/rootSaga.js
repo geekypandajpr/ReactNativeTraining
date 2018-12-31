@@ -9,7 +9,6 @@ import {
     TECHNICIAN,
     GPSDEVICE,
     GPSDEVICESEARCHCRITERIA,
-    CREATEVEHICLETYPE,
     ADDGPSVEHICLE
 } from '../common/actionTypes';
 
@@ -21,32 +20,31 @@ import * as gpsDeviceSaga from './GPSDevice/GPSDeviceSaga';
 
 import * as simSaga from './simSaga';
 import * as deviceSaga from './deviceSaga';
-import * as jobSaga from'./jobSaga';
+import * as jobSaga from './jobSaga';
 import * as cutomerSaga from './customerSaga';
 import * as technicianSaga from './technicianSaga';
-import * as createVehicleType from './createVehicleType';
 import * as addgpsDeviceSaga from './addgpsDeviceSaga';
 
 export default function* rootSaga() {
     /**Login */
     yield takeLatest(USER.LOGIN, userSaga.login),
 
-    /**Region & Company Filter Schema*/
-    yield takeLatest(USER.UPDATESCHEMA_REQUEST, userSaga.updateSchema),
+        /**Region & Company Filter Schema*/
+        yield takeLatest(USER.UPDATESCHEMA_REQUEST, userSaga.updateSchema),
 
-    /**GPS Device */
-    yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd),
-    yield takeLatest(GPSDEVICE.DEVICEINFO_REQUEST, gpsDeviceSaga.getDeviceInfo),
-    yield takeLatest(GPSDEVICE.ADD_GPS_DEVICE_REQUEST, gpsDeviceSaga.addGPSDevice),
-    yield takeLatest(GPSDEVICE.CHECK_DEVICE_ASSOCIATION_REQUEST, gpsDeviceSaga.checkGPSDeviceAssocition),
-    yield takeLatest(GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST,gpsDeviceSaga.searchCriteria),
-    yield takeLatest(CREATEVEHICLETYPE.CREATEVEHICLETYPE_REQUEST,createVehicleType.CreateVehicleTypeLogin),
-    yield takeLatest(ADDGPSVEHICLE.ADDGPSVEHICLE_REQUEST,addgpsDeviceSaga.addgpsDeviceLogin),
+        /**GPS Device */
+        yield takeLatest(GPSDEVICE.GPSDEVICE_REQUEST, gpsDeviceSaga.gpsDeviceCountryIsd),
+        yield takeLatest(GPSDEVICE.DEVICEINFO_REQUEST, gpsDeviceSaga.getDeviceInfo),
+        yield takeLatest(GPSDEVICE.ADD_GPS_DEVICE_REQUEST, gpsDeviceSaga.addGPSDevice),
+        yield takeLatest(GPSDEVICE.CHECK_DEVICE_ASSOCIATION_REQUEST, gpsDeviceSaga.checkGPSDeviceAssocition),
+        yield takeLatest(GPSDEVICE.CREATE_VEHICLETYPE_REQUEST, gpsDeviceSaga.createVehicleType),
+        yield takeLatest(GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST, gpsDeviceSaga.searchCriteria),
+        yield takeLatest(ADDGPSVEHICLE.ADDGPSVEHICLE_REQUEST, addgpsDeviceSaga.addgpsDeviceLogin),
 
-    yield takeLatest(SIM.SIM_REQUEST, simSaga.simlogin),
-    yield takeLatest(DEVICE.DEVICE_REQUEST, deviceSaga.loginDevice)
+        yield takeLatest(SIM.SIM_REQUEST, simSaga.simlogin),
+        yield takeLatest(DEVICE.DEVICE_REQUEST, deviceSaga.loginDevice)
     yield takeLatest(JOBS.JOBS_LOGIN, jobSaga.jobPendingData),
-    yield takeLatest(CUSTOMER.CUSTOMER_FETCH, cutomerSaga.cutomerList),
-    yield takeLatest(TECHNICIAN.TECHNICIAN_REQUEST,technicianSaga.technicianLogin)
+        yield takeLatest(CUSTOMER.CUSTOMER_FETCH, cutomerSaga.cutomerList),
+        yield takeLatest(TECHNICIAN.TECHNICIAN_REQUEST, technicianSaga.technicianLogin)
 
 }

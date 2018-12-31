@@ -8,12 +8,12 @@ import jobReducer from './jobReducer';
 import customerReducer from './cutomerReducer';
 import techReducer from './techReducer';
 import searchCriteriaReducer from './searchCriteriaReducer';
-import VehicleTypeReducer from './VehicleTypeReducer';
 import AddgpsvehicleReducer from './AddgpsvehicleReducer'
 import {
     deviceInfoReducer,
     GPSDeviceReducer,
     addGPSDeviceReducer,
+    createVehicleTypeReducer,
     checkDeviceAssociationReducer
 } from './GPSDevice';
 
@@ -29,8 +29,8 @@ const rootReducers = combineReducers({
     deviceInfo: deviceInfoReducer,
     addGPSDeviceData: addGPSDeviceReducer,
     searchList: searchCriteriaReducer,
-    vehicletypeData: VehicleTypeReducer,
     addgpsVehicleData: AddgpsvehicleReducer,
+    createVehicleTypeData: createVehicleTypeReducer,
     checkGPSDeviceData: checkDeviceAssociationReducer,
 
     /**Others */
@@ -39,7 +39,7 @@ const rootReducers = combineReducers({
     devicedata: deviceReducer,
     customersData: customerReducer,
     TechnicianData: techReducer,
-    
+
     //We can add more reducers here, separated by comma(,)
 })
 
