@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     View,
-    Dimensions
 } from 'react-native';
 import { Text, Icon } from 'native-base';
 import styles from './styles';
