@@ -9,7 +9,6 @@ import {
     TECHNICIAN,
     GPSDEVICE,
     GPSDEVICESEARCHCRITERIA,
-    ADDGPSVEHICLE
 } from '../common/actionTypes';
 
 /**Login Saga import */
@@ -23,7 +22,7 @@ import * as deviceSaga from './deviceSaga';
 import * as jobSaga from './jobSaga';
 import * as cutomerSaga from './customerSaga';
 import * as technicianSaga from './technicianSaga';
-import * as addgpsDeviceSaga from './addgpsDeviceSaga';
+
 
 export default function* rootSaga() {
     /**Login */
@@ -38,8 +37,9 @@ export default function* rootSaga() {
         yield takeLatest(GPSDEVICE.ADD_GPS_DEVICE_REQUEST, gpsDeviceSaga.addGPSDevice),
         yield takeLatest(GPSDEVICE.CHECK_DEVICE_ASSOCIATION_REQUEST, gpsDeviceSaga.checkGPSDeviceAssocition),
         yield takeLatest(GPSDEVICE.CREATE_VEHICLETYPE_REQUEST, gpsDeviceSaga.createVehicleType),
+        yield takeLatest(GPSDEVICE.CREATEVEHICLE_REQUEST, gpsDeviceSaga.createVehicle),
         yield takeLatest(GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST, gpsDeviceSaga.searchCriteria),
-        yield takeLatest(ADDGPSVEHICLE.ADDGPSVEHICLE_REQUEST, addgpsDeviceSaga.addgpsDeviceLogin),
+
 
         yield takeLatest(SIM.SIM_REQUEST, simSaga.simlogin),
         yield takeLatest(DEVICE.DEVICE_REQUEST, deviceSaga.loginDevice)

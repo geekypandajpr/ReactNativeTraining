@@ -221,7 +221,7 @@ export class GPSDeviceForm extends React.Component {
     }
 
     onSubmitVehicleDetails(value) {
-        this.props.onAddgpsVehicle(value);
+        this.props.oncreateVehicle(value);
     }
 
     render() {
@@ -450,7 +450,7 @@ function mapStateToProps(state) {
         gpsDeviceData: state.gpsDeviceData,
         loginResponse: state.loginData,
         vehicleTypeDatas: state.createVehicleTypeData,
-        Addvehicles: state.addgpsVehicleData
+        Addvehicles: state.createVehicleData
     }
 }
 
@@ -459,7 +459,7 @@ function mapDispatchToProps(dispatch) {
         addGPSDevice: (gpsdevice) => dispatch(userActions.addGPSDeviceAssociation(gpsdevice)),
         onFetchList: () => dispatch(userActions.gpsdeviceRequest()),
         onCreateVehicleType: () => dispatch(userActions.createVehicleType()),
-        onAddgpsVehicle: (value) => dispatch(userActions.addgpsVehicleRequest(value))
+        oncreateVehicle: (value) => dispatch(userActions.createVehicle(value))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)

@@ -19,7 +19,7 @@ export const associationDeviceInfo = (deviceUDID) => Api.get(USER.ASSOCIATIONDEV
 export const searchCriteria = (filterData) => Api.post(USER.GPSDEVICESEARCHCRITERIA, filterData);
 export const createVehicleType = () => Api.get(USER.CREATEVEHICLETYPE);
 export const checkGPSDeviceAssociation = (deviceUDID) => Api.get(USER.CHECKDEVICEASSOCIATION + `?udid=${deviceUDID}`);
-export const addgpsVehicle = (AddData) => Api.post(USER.ADDGPSVEHICLE, AddData);
+export const createVehicle = (AddData) => Api.post(USER.CREATEVEHICLE, AddData);
 
 export default userService = {
     /**Login Service */
@@ -35,9 +35,9 @@ export default userService = {
     addGPSDevice,
     searchCriteria,
     checkGPSDeviceAssociation,
-    addgpsVehicle,
     associationDeviceInfo,
     createVehicleType,
+    createVehicle,
 
     doLogin,
     simlogin,

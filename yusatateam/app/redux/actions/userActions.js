@@ -6,7 +6,6 @@ import {
     CUSTOMER,
     TECHNICIAN,
     GPSDEVICE,
-    ADDGPSVEHICLE,
     GPSDEVICESEARCHCRITERIA
 } from '../common/actionTypes';
 
@@ -30,5 +29,5 @@ export default {
     createVehicleType: () => ({ type: GPSDEVICE.CREATE_VEHICLETYPE_REQUEST }),
     searchCriteria: (filterData) => ({ type: GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST, filterData }),
     checkGPSDeviceAssociation: (deviceUDID) => ({ type: GPSDEVICE.CHECK_DEVICE_ASSOCIATION_REQUEST, deviceUDID }),
-    addgpsVehicleRequest: (AddData) => ({ type: ADDGPSVEHICLE.ADDGPSVEHICLE_REQUEST, AddData })
+    createVehicle: (AddData) => ({ type: GPSDEVICE.CREATEVEHICLE_REQUEST, AddData })
 }

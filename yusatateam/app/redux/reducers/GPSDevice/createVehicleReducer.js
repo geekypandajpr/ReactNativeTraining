@@ -1,4 +1,4 @@
-import {ADDGPSVEHICLE} from '../common/actionTypes'
+import { GPSDEVICE } from '../../common/actionTypes'
 
 const initialState = {
     isLoading: true,
@@ -8,20 +8,20 @@ const initialState = {
 
 export default AddgpsvehicleReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADDGPSVEHICLE.ADDGPSVEHICLE_REQUEST:
+        case GPSDEVICE.CREATEVEHICLE_REQUEST:
             return Object.assign({}, state, {
                 isLoading: true
             });
-        case ADDGPSVEHICLE.ADDGPSVEHICLE_SUCCESS:
+        case GPSDEVICE.CREATE_VEHICLETYPE_SUCCESS:
             return Object.assign({}, state, {
-                data : action.data,
+                data: action.data,
                 isLoading: false
             });
-        case ADDGPSVEHICLE.ADDGPSVEHICLE_FAILED:
+        case GPSDEVICE.CREATEVEHICLE_FAILED:
             return Object.assign({}, state, {
                 isLoading: false,
                 error: true,
-                data : [],
+                data: [],
             });
         default:
             return state;

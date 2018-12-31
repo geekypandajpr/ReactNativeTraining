@@ -90,3 +90,17 @@ export function* createVehicleType(action) {
         functions.showToast('something Went wrong', 'danger')
     }
 }
+
+export function* createVehicle(action) {
+    try {
+        const data = yield call(userServices.createVehicle, action.AddData);
+        if (data) {
+            yield put({ type: GPSDEVICE.CREATEVEHICLE_SUCCESS, data });
+            functions.showToast('Vehicle created successfully', 'danger');
+        }
+    } catch (error) {
+        yield put({ type: GPSDEVICE.CREATE_VEHICLETYPE_FAILED, error });
+        functions.showToast('something Went wrong', 'danger');
+    }
+
+}
