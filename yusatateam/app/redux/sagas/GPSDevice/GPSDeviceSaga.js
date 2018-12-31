@@ -96,7 +96,7 @@ export function* createVehicle(action) {
         const data = yield call(userServices.createVehicle, action.AddData);
         if (data) {
             yield put({ type: GPSDEVICE.CREATEVEHICLE_SUCCESS, data });
-            functions.showToast('Vehicle created successfully', 'danger');
+            functions.showToast('Vehicle created successfully', 'success');
         }
     } catch (error) {
         yield put({ type: GPSDEVICE.CREATE_VEHICLETYPE_FAILED, error });
