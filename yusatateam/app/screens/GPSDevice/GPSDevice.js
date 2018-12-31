@@ -50,9 +50,7 @@ export class GPSDevice extends React.Component {
 
 
     currentView() {
-        //alert("Hello");
         var count = this.state.pageCount;
-        //alert(count)
         var filterData = {
             "betweenFilter": {    
                 "flag": false,
@@ -91,32 +89,6 @@ export class GPSDevice extends React.Component {
     }
 
     componentDidMount() {
-        // var filterData = {
-        //     "betweenFilter": {    
-        //         "flag": false,
-        //         "isDate": false,
-        //         "isOrCondition": false
-        //     },
-        //     "cFilter": {
-        //         "flag": false
-        //     },
-        //     "columnNames": [
-        //         ""
-        //     ],
-        //     "iDisplayLength": 10,
-        //     "iDisplayStart": 0,
-        //     "iSortCol_0": 0,
-        //     "inFilter": {
-        //         "flag": false
-        //     },
-        //     "sEcho": 0,
-        //     "sSortDir_0": "",
-        //     "searchColumnNamesWithText": [
-        //         ""
-        //     ]
-        //     }
-        
-        // this.props.onListFetchData(filterData);
         this.currentView()
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
@@ -177,10 +149,8 @@ export class GPSDevice extends React.Component {
                     <SearchBar
                         placeholder={'Search by device UDID'}
                         isDropdown={false}
-                        //pickerItem={PICKERITEM}
                         onChangeText={(text) => this.setState({deviceUDID: text})}
                         value={this.state.deviceUDID}
-                        //selectedValue={this.state.selected2}
                         onSearch={this.getDeviceInfo}
                     />
                     {   this.state.isGetDeviceUDID ?
@@ -210,9 +180,9 @@ export class GPSDevice extends React.Component {
                         />
                         
                     }
-                    <View style={{backgroundColor : "gray"}}>
+                    <View style={{backgroundColor : "#ffff"}}>
                     {   this.props.searchList.isLoading && this.state.loading ? 
-                        <ActivityIndicator size="large" color="#ffff"  animating={this.props.searchList.isLoading}/>
+                        <ActivityIndicator size="large" color="black"  animating={this.props.searchList.isLoading}/>
                         : null
                     }
                     </View>
