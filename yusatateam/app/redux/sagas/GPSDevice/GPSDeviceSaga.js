@@ -1,6 +1,6 @@
 import { call, put, all } from 'redux-saga/effects';
 
-import { GPSDEVICE, GPSDEVICESEARCHCRITERIA, SUBMITGPSFORM } from '../../common/actionTypes';
+import { GPSDEVICE, GPSDEVICESEARCHCRITERIA } from '../../common/actionTypes';
 import userServices from '../../services/userServices'
 import functions from '../../../common/functions';
 
@@ -8,13 +8,14 @@ import functions from '../../../common/functions';
 export function* gpsDeviceCountryIsd(action) {
     try {
         const [countryISD, deviceType, vehicleList] = yield all([call(userServices.gpsDeviceCountryIsd), call(userServices.gpsDeviceType), call(userServices.gpsvehicleList)])
-        yield put({ type: GPSDEVICE.GPSDEVICE_SUCCESS, datas: { countryISD, deviceType, vehicleList } });
+        yield put({ type: GPSDEVICE.GPSDEVICE_SUCCESS, datas: { countryISD, deviceType } });
+        yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_SUCCESS, vehicleList });
     } catch (error) {
         yield put({ type: GPSDEVICE.GPSDEVICE_FAILED, error })
+        yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_FAILED })
         functions.showToast('Something went wrong', 'danger');
     }
 }
-
 
 /**GPS Device Information */
 export function* getDeviceInfo(action) {
@@ -96,10 +97,13 @@ export function* createVehicle(action) {
         const data = yield call(userServices.createVehicle, action.AddData);
         if (data) {
             yield put({ type: GPSDEVICE.CREATEVEHICLE_SUCCESS, data });
+            // const vehicleData = yield call(userServices.gpsvehicleList)
+            // yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_SUCCESS, vehicleData })
             functions.showToast('Vehicle created successfully', 'success');
         }
     } catch (error) {
         yield put({ type: GPSDEVICE.CREATE_VEHICLETYPE_FAILED, error });
+        //yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_FAILED, error })
         functions.showToast('something Went wrong', 'danger');
     }
 

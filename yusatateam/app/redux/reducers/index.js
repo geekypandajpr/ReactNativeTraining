@@ -14,7 +14,8 @@ import {
     addGPSDeviceReducer,
     createVehicleTypeReducer,
     createVehicleReducer,
-    checkDeviceAssociationReducer
+    checkDeviceAssociationReducer,
+    vehicleListReducer
 } from './GPSDevice';
 
 const rootReducers = combineReducers({
@@ -32,6 +33,7 @@ const rootReducers = combineReducers({
     createVehicleTypeData: createVehicleTypeReducer,
     checkGPSDeviceData: checkDeviceAssociationReducer,
     createVehicleData: createVehicleReducer,
+    vehicleListData : vehicleListReducer,
 
     /**Sim Info */
     simData: simReducer,
