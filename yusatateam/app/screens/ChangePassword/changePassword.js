@@ -12,11 +12,33 @@ export default class ChangePassword extends React.Component {
             modalVisible: false,
             text : '',
             newPassword : '',
-            verifyPassword : ''
+            verifyPassword : '',
+            oldPass : '',
+            verifyPass : '',
+            buttonPress : true
+
         }
     }
     setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
+        this.setState({ modalVisible: visible,buttonPress : false});
+    }
+    submitPress()
+    {
+        this.setState({buttonPress : true})
+        // if(this.state.text=="Admin")
+        // {
+        //     this.setState({oldPass : true})
+        // }
+        // else{
+        //     this.setState({oldPass : false})
+        // }
+        // if(this.state.newPassword=="Vinayak")
+        // {
+        //     this.setState({verifyPass : true})
+        // }
+        // else{
+        //     this.setState({verifyPass : false})
+        // }
     }
     render() {
         return (
@@ -42,9 +64,9 @@ export default class ChangePassword extends React.Component {
                                     onChangeText={(text) => this.setState({text})}
                                     value={this.state.text}/>
                                     {
-                                        this.state.text == '' ? null :
+                                        this.state.buttonPress  && this.state.text != ''? 
                                         <Icon style= { this.state.text=="Admin" ? {fontSize: 24, color: 'green'}: {fontSize: 26, color: 'red'}}  name=
-                                        { this.state.text=="Admin" ? 'checkmark-circle': 'close-circle'} />
+                                        { this.state.text=="Admin" ? 'checkmark-circle': 'close-circle'} /> : null
                                     }
                                     
                                 </Item>
@@ -63,9 +85,10 @@ export default class ChangePassword extends React.Component {
                                     onChangeText={(text) => this.setState({verifyPassword :text})}
                                     value={this.state.verifyPassword} />
                                     {
-                                        this.state.verifyPassword == '' ? null :
+                                        this.state.buttonPress && this.state.verifyPassword != '' ? 
                                         <Icon style= { this.state.verifyPassword==this.state.newPassword ? {fontSize: 24, color: 'green'}: {fontSize: 26, color: 'red'}}  name=
                                     { this.state.verifyPassword==this.state.newPassword ? 'checkmark-circle': 'close-circle'} />
+                                     : null
                                     }
                                     
                                 </Item>
@@ -80,7 +103,7 @@ export default class ChangePassword extends React.Component {
                                     </Button>
                                 </View>
                                 <View style={{ flex: 1, margin : 5  }}>
-                                    <Button block >
+                                    <Button block   onPress={() => this.submitPress()}>
                                         <Text>Submit</Text>
                                     </Button>
                                 </View>
