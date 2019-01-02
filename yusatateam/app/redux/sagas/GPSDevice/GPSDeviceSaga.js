@@ -97,14 +97,13 @@ export function* createVehicle(action) {
         const data = yield call(userServices.createVehicle, action.AddData);
         if (data) {
             yield put({ type: GPSDEVICE.CREATEVEHICLE_SUCCESS, data });
-            // const vehicleData = yield call(userServices.gpsvehicleList)
-            // yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_SUCCESS, vehicleData })
+            const vehicleList = yield call(userServices.gpsvehicleList)
+            yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_SUCCESS, vehicleList })
             functions.showToast('Vehicle created successfully', 'success');
         }
     } catch (error) {
         yield put({ type: GPSDEVICE.CREATE_VEHICLETYPE_FAILED, error });
-        //yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_FAILED, error })
+        yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_FAILED, error })
         functions.showToast('something Went wrong', 'danger');
     }
-
 }
