@@ -10,6 +10,6 @@ export function showToast(message, type) {
         text: message,
         buttonText: "Ok",
         type: type,
-        duration: 5000
+        duration: 3000
     })
 }
