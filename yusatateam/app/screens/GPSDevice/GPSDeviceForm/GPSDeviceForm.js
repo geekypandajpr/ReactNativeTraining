@@ -134,6 +134,7 @@ export class GPSDeviceForm extends React.Component {
             });
         }
 
+        /**Vehicle List */
         if (this.props.vehicleListDatas !== nextProps.vehicleListDatas) {
             const vehicleArray = [];
             if (nextProps.vehicleListDatas.vehicleList.results) {
@@ -261,7 +262,7 @@ export class GPSDeviceForm extends React.Component {
                                                         onChangeText={(text) => this.setState({ deviceUDID: text })}
                                                     />
                                                     <Icon name='check' type='Feather' style={{ fontSize: 24, color: 'green' }} />
-                                                    
+
                                                 </Item>
                                             </View>
 
@@ -306,7 +307,7 @@ export class GPSDeviceForm extends React.Component {
                                         </View>
                                     </View>
 
-                                    <View style={[styles.Detail_View,{marginTop: 20}]}>
+                                    <View style={[styles.Detail_View, { marginTop: 20 }]}>
                                         <View style={{ width: '94%' }}>
                                             <Text style={styles.simdetails}> Sim Details </Text>
                                         </View>
@@ -315,7 +316,7 @@ export class GPSDeviceForm extends React.Component {
                                     <View style={styles.Sub_View}>
                                         <View style={styles.Width_View}>
 
-                                            <View style={[styles.Small_View,{marginTop: 5}]}>
+                                            <View style={[styles.Small_View, { marginTop: 5 }]}>
                                                 <UnderlineText
                                                     name='Country ISD'
                                                     isMandatory={true}
@@ -426,7 +427,7 @@ export class GPSDeviceForm extends React.Component {
                                                     </Button>
                                                 </View>
                                                 <View style={{ flex: 1, marginLeft: 2 }}>
-                                                    <Button block style={{backgroundColor: colors.HEADER_COLOR}}
+                                                    <Button block style={{ backgroundColor: colors.HEADER_COLOR }}
                                                         onPress={this.onAddGPSDevice}>
                                                         <Text style={{ color: '#fff' }}>Submit</Text>
                                                     </Button>

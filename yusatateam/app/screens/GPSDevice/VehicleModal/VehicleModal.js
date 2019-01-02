@@ -69,7 +69,7 @@ export default class VehicleModal extends React.Component {
 
     OncheckRequiredFields() {
         if (this.state.vehicleNumber !== '' && this.state.vin !== '' &&
-            this.state.Odometer !== '' && this.state.vehicleTypeId !== '') {
+            this.state.Odometer !== '' ) {
             return true;
         }
         return false;
