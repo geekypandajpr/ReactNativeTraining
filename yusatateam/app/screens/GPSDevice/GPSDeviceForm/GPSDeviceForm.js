@@ -182,6 +182,7 @@ export class GPSDeviceForm extends React.Component {
 
     onAddGPSDevice() {
         if (this.checkRequiredFields()) {
+            console.log(this.props.loginResponse.data.results.departmentId);
             const item = {
                 "balance": this.state.balance,
                 "carrier": this.state.carrier,
@@ -189,15 +190,15 @@ export class GPSDeviceForm extends React.Component {
                 "dataBalance": this.state.dataBalance,
                 "dataPlan": this.state.dataPlan,
                 "dataValidity": this.state.dataRenewal,
-                "departmentId": this.props.loginResponse.departmentId,
+                "departmentId": this.props.loginResponse.data.results.departmentId,
                 // "deviceId": 0,
-                "deviceTypeId": this.state.dropdowns.get(DEVICE_TYPE)[1],
+                "deviceTypeId": this.state.dropdowns.get(DEVICETYPE_KEY)[1],
                 "deviceUdid": this.state.deviceUDID,
                 "simno": this.state.mobileNumber,
                 "vehicleId": this.state.dropdowns.get(VEHICLE_KEY)[1]
             }
-            //alert(JSON.stringify(item));
-            this.props.addGPSDevice(item);
+            alert(JSON.stringify(item));
+            //this.props.addGPSDevice(item);
         } else {
             functions.showToast('Please fill all required fields', 'danger');
         }
@@ -205,8 +206,8 @@ export class GPSDeviceForm extends React.Component {
     }
 
     checkRequiredFields() {
-        if (this.state.deviceUDID && this.state.dropdowns.get(VEHICLE_KEY)[1]
-            && this.state.dropdowns.get(DEVICE_TYPE)[1] && this.state.dropdowns.get(ISD_KEY)[1] && this.state.mobileNumber !== ''
+        if (this.state.deviceUDID && this.state.dropdowns.get(VEHICLE_KEY)[1] && this.state.dropdowns.get(DEVICETYPE_KEY)[1]
+            && this.state.dropdowns.get(ISD_KEY)[1] && this.state.mobileNumber !== ''
             && this.state.balance !== '' && this.state.dataBalance !== '' && this.state.dataPlan !== '' &&
             this.state.carrier !== '' && this.state.dataRenewal !== '') {
             return true
