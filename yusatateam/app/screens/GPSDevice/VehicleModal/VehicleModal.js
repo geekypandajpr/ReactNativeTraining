@@ -11,19 +11,22 @@ export default class VehicleModal extends React.Component {
             selected: "Vehicle type",
             list: [],
             vehicleTypeId: '',
-            departmentId: ''
+            departmentId: '',
+            vehicleNumber: '',
+            Odometer: '',
+            vin: '',
         }
         this.closeModal = this.closeModal.bind(this);
         this.OnSubmitVehicle = this.OnSubmitVehicle.bind(this);
     }
 
     setModalVisible(visible, list, departmentId) {
-        if(list.results) {
+        if (list.results) {
             this.setState({ modalVisible: visible, list: list.results, departmentId: departmentId });
         } else {
             this.setState({ modalVisible: visible, departmentId: departmentId });
         }
-        
+
     }
 
     async componentWillMount() {
@@ -35,20 +38,34 @@ export default class VehicleModal extends React.Component {
         this.setState({ isLoading: false });
     }
 
-    OnSubmitVehicle(){
-        const item ={
-            "departmentId": "2296001",
-            "odometerReading": "1",
-            "vehicleTypeId": "640679",
-            "vehicleVin": "1HGBH41JXMN109111",
-            "vehicleNumber": "1122"
-          }
+    OnSubmitVehicle() {
 
-        this.props.onsubmitVehicleDetails(item);
-        this.setState({modalVisible: false})  
+        if (this.OncheckRequiredFields()) {
+            const item = {
+                "departmentId": "2296001",
+                "odometerReading": "1",
+                "vehicleTypeId": "640679",
+                "vehicleVin": "1HGBH41JXMN109111",
+                "vehicleNumber": "1122"
+            }
+
+            this.props.onsubmitVehicleDetails(item);
+            this.setState({ modalVisible: false })
+        } else {
+            functions.showToast('Please fill all required fields', 'danger');
+        }
+
     }
 
-    closeModal() { this.setState({modalVisible: false}) }
+    OncheckRequiredFields() {
+        if (this.state.list !== '' && this.state.vehicleNumber !== '' && this.state.vin !== '' &&
+            this.state.Odometer !== '') {
+            return true;
+        }
+        return false;
+    }
+
+    closeModal() { this.setState({ modalVisible: false }) }
 
     render() {
         return (
@@ -80,43 +97,43 @@ export default class VehicleModal extends React.Component {
                                     data={[{ key: '1' }]}
                                     keyExtractor={this._keyExtractor}
                                     renderItem={({ item, index }) =>
-                                        <View style={{ width:Dimensions.get('window').width*0.9 }}>
+                                        <View style={{ width: Dimensions.get('window').width * 0.9 }}>
                                             <View style={{ width: '100%' }}>
                                                 <Float
                                                     placeholder='Vehicle Number'
-                                                    //value={this.state.username}
+                                                    value={this.state.vehicleNumber}
                                                     returnKeyType={'next'}
                                                     keyboardType={'numeric'}
                                                     blurOnSubmit={false}
                                                     isMandatory={false}
                                                     //onSubmitEditing={() => this._focusNextField('password')}
-                                                    //onChangeText={(username) => this.setState({ username })}
+                                                    onChangeText={(text) => this.setState({ vehicleNumber: text })}
                                                     inputStyles={{ width: '100%' }}
                                                 />
                                             </View>
                                             <View style={{ width: '100%', }}>
                                                 <Float
                                                     placeholder='Odometer'
-                                                    //value={this.state.username}
+                                                    value={this.state.Odometer}
                                                     returnKeyType={'next'}
                                                     keyboardType={'numeric'}
                                                     blurOnSubmit={false}
                                                     isMandatory={false}
                                                     //onSubmitEditing={() => this._focusNextField('password')}
-                                                    //onChangeText={(username) => this.setState({ username })}
+                                                    onChangeText={(text) => this.setState({ Odometer: text })}
                                                     inputStyles={{ width: '100%' }}
                                                 />
                                             </View>
                                             <View style={{ width: '100%', }}>
                                                 <Float
                                                     placeholder='Vin#'
-                                                    //value={this.state.username}
+                                                    value={this.state.vin}
                                                     returnKeyType={'next'}
                                                     keyboardType={'numeric'}
                                                     blurOnSubmit={false}
                                                     isMandatory={false}
                                                     //onSubmitEditing={() => this._focusNextField('password')}
-                                                    //onChangeText={(username) => this.setState({ username })}
+                                                    onChangeText={(text) => this.setState({ vin: text })}
                                                     inputStyles={{ width: '100%' }}
                                                 />
                                             </View>
@@ -127,7 +144,7 @@ export default class VehicleModal extends React.Component {
                                                         mode="dropdown"
                                                         style={{ width: '100%', color: 'rgba(0,0,0,0.6)' }}
                                                         selectedValue={this.state.vehicleTypeId}
-                                                        onValueChange={(value) => this.setState({vehicleTypeId: value})}
+                                                        onValueChange={(value) => this.setState({ vehicleTypeId: value })}
                                                     >
                                                         {this.state.list.map((item, index) =>
                                                             <Picker.Item label={item.value} value={item.key} key={index} />
@@ -167,7 +184,7 @@ export default class VehicleModal extends React.Component {
                                         </View>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity onPress={()=>{this.OnSubmitVehicle()}}>
+                                    <TouchableOpacity onPress={() => { this.OnSubmitVehicle() }}>
                                         <View style={[styles.button, { marginLeft: 20 }]}>
                                             <Text style={{
                                                 color: '#FFFFFF',
