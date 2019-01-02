@@ -10,7 +10,9 @@ export default class ChangePassword extends React.Component {
         super(props);
         this.state = {
             modalVisible: false,
-            text : ''
+            text : '',
+            newPassword : '',
+            verifyPassword : ''
         }
     }
     setModalVisible(visible) {
@@ -39,20 +41,33 @@ export default class ChangePassword extends React.Component {
                                     <Input placeholder='Old Password' 
                                     onChangeText={(text) => this.setState({text})}
                                     value={this.state.text}/>
-                                    <Icon name=
-                                    { this.state.text=="Admin" ? 'checkmark-circle': 'close-circle'}/>
+                                    {
+                                        this.state.text == '' ? null :
+                                        <Icon style= { this.state.text=="Admin" ? {fontSize: 24, color: 'green'}: {fontSize: 26, color: 'red'}}  name=
+                                        { this.state.text=="Admin" ? 'checkmark-circle': 'close-circle'} />
+                                    }
+                                    
                                 </Item>
                             </View>
                             <View>
-                                <Item success>
-                                    <Input placeholder='New Password' />
-                                    <Icon name='checkmark-circle' />
+                                <Item >
+                                    <Input placeholder='New Password' 
+                                    onChangeText={(text) => this.setState({newPassword :text})}
+                                    value={this.state.newPassword}/>
+                                    <Icon />
                                 </Item>
                             </View>
                             <View>
-                                <Item success>
-                                    <Input placeholder='Verify Password' />
-                                    <Icon name='checkmark-circle' />
+                                <Item>
+                                    <Input placeholder='Verify Password'
+                                    onChangeText={(text) => this.setState({verifyPassword :text})}
+                                    value={this.state.verifyPassword} />
+                                    {
+                                        this.state.verifyPassword == '' ? null :
+                                        <Icon style= { this.state.verifyPassword==this.state.newPassword ? {fontSize: 24, color: 'green'}: {fontSize: 26, color: 'red'}}  name=
+                                    { this.state.verifyPassword==this.state.newPassword ? 'checkmark-circle': 'close-circle'} />
+                                    }
+                                    
                                 </Item>
                             </View>
                             <View style={styles.button_view}>
