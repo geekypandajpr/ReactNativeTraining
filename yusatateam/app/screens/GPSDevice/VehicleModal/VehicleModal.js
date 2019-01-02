@@ -7,7 +7,6 @@ import {
     StyleSheet,
     Dimensions,
     TouchableOpacity,
-    keyboardshouldpersisttaps
 } from 'react-native';
 import { Text, Picker, Form } from 'native-base';
 import { Float } from '../../../components';
@@ -31,11 +30,16 @@ export default class VehicleModal extends React.Component {
 
     setModalVisible(visible, list, departmentId) {
         if (list.results) {
-            this.setState({ modalVisible: visible, list: list.results, departmentId: departmentId });
+            this.setState({
+                modalVisible: visible, list: list.results, departmentId: departmentId,
+                vehicleNumber: '', Odometer: '', vin: '', vehicleTypeId: ''
+            })
         } else {
-            this.setState({ modalVisible: visible, departmentId: departmentId });
+            this.setState({
+                modalVisible: visible, departmentId: departmentId,
+                vehicleNumber: '', Odometer: '', vin: '', vehicleTypeId: ''
+            });
         }
-
     }
 
     async componentWillMount() {
@@ -44,11 +48,9 @@ export default class VehicleModal extends React.Component {
             Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
-        this.setState({ isLoading: false });
+        this.setState({ isLoading: false })
     }
-
     OnSubmitVehicle() {
-
         if (this.OncheckRequiredFields()) {
             const item = {
                 "vehicleNumber": this.state.vehicleNumber,
@@ -63,7 +65,6 @@ export default class VehicleModal extends React.Component {
         } else {
             functions.showToast('Please fill all required fields', 'danger');
         }
-
     }
 
     OncheckRequiredFields() {
