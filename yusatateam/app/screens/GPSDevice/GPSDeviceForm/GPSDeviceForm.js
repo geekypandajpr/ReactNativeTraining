@@ -13,6 +13,7 @@ import { GpsModal } from '../GpsModal/GpsModal';
 import { userActions } from '../../../redux/actions';
 import { VehicleModal } from '../VehicleModal/VehicleModal';
 import functions from '../../../common/functions'
+import colors from '../../../constants/colors';
 
 const title = [
     'Company',
@@ -422,7 +423,7 @@ export class GPSDeviceForm extends React.Component {
                                                     </Button>
                                                 </View>
                                                 <View style={{ flex: 1, marginLeft: 2 }}>
-                                                    <Button block style={{backgroundColor: '#0073b7'}}
+                                                    <Button block style={{backgroundColor: colors.HEADER_COLOR}}
                                                         onPress={this.onAddGPSDevice}>
                                                         <Text style={{ color: '#fff' }}>Submit</Text>
                                                     </Button>
