@@ -24,10 +24,13 @@ const title = [
 
 const COMPANY_KEY = 'COMPANY';
 const COMPANY_KEY_VALUE = 'Select Company';
+
 const VEHICLE_KEY = 'VEHICLE';
 const VEHICLE_KEY_VALUE = 'Select vehicle';
-const DEVICE_TYPE = 'DEVICE_TYPE';
-const DEVICE_TYPE_VALUE = 'Select device type';
+
+const DEVICETYPE_KEY = 'DEVICE_TYPE';
+const DEVICETYPE_KEY_VALUE = 'Select device type';
+
 const ISD_KEY = 'ISD_KEY';
 const ISD_KEY_VALUE = 'Select ISD';
 
@@ -37,11 +40,9 @@ export class GPSDeviceForm extends React.Component {
         moment.locale('en');
         this.state = {
             isLoading: true,
-            flag: '',
             data: [],
             gpsdata: '',
-            map: new Map(),
-            idMap: new Map(),
+            dropdowns: new Map(),
             countryISD: [],
             companyList: [],
             deviceType: [],
@@ -54,7 +55,7 @@ export class GPSDeviceForm extends React.Component {
             dataRenewal: '',
             carrier: ''
         }
-
+        this.flag = '';
         this.modalRef = React.createRef();
         this.modalReference = React.createRef();
         this.OnValueSelect = this.OnValueSelect.bind(this);
@@ -73,37 +74,34 @@ export class GPSDeviceForm extends React.Component {
         this.setState({ isLoading: false });
     }
 
-    componentDidMount() {
+    componentDidMount() {        
         this.props.onFetchList();
     }
 
     OnValueSelect(item) {
-        const newMap = new Map(this.state.map);
-        newMap.set(this.state.flag, item.label);
-
-        const newIdMap = new Map(this.state.idMap);
-        newIdMap.set(this.state.flag, item.value);
-
-        this.setState({ map: newMap, idMap: newIdMap });
+        /**Set selected dropdown value */
+        const dropdowns = new Map(this.state.dropdowns);
+        dropdowns.set(this.flag, [item.label, item.value]);
+        this.setState({ dropdowns: dropdowns });
+        this.setState({ dropdowns: dropdowns});
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.gpsDeviceData !== nextProps.gpsDeviceData) {
-            var CountryIsdcode = this.props.loginResponse.data.results.countryIsdCode;
-            var companyName = this.props.loginResponse.data.results.companyName;
+            /**Country ISD */
+            var defaultISD = this.props.loginResponse.data.results.countryIsdCode;
 
-            const newMap = new Map(this.state.map);
-            newMap.set(VEHICLE_KEY, VEHICLE_KEY_VALUE);
-            newMap.set(DEVICE_TYPE, DEVICE_TYPE_VALUE);
-            newMap.set(COMPANY_KEY, COMPANY_KEY_VALUE);
-            newMap.set(ISD_KEY, ISD_KEY_VALUE);
-            newMap.set(COMPANY_KEY, companyName);
+            /**Compnay Name and Company Id */
+            const companyName = this.props.loginResponse.data.results.companyName;
+            const companyId = this.props.loginResponse.data.results.companyId;
 
-            const newIdMap = new Map(this.state.idMap);
-            newIdMap.set(VEHICLE_KEY, undefined);
-            newIdMap.set(DEVICE_TYPE, undefined);
-            newIdMap.set(ISD_KEY, undefined);
-            newIdMap.set(COMPANY_KEY, undefined);
+            /**Set default Company Name and Id */
+            const dropdowns = new Map(this.state.dropdowns);
+            dropdowns.set(COMPANY_KEY, [COMPANY_KEY_VALUE, null]); /**Companies Dropdown */
+            dropdowns.set(VEHICLE_KEY, [VEHICLE_KEY_VALUE, null]); /**Vehicles Dropdown */
+            dropdowns.set(DEVICETYPE_KEY, [DEVICETYPE_KEY_VALUE, null]); /**Device Type Dropdown */
+            dropdowns.set(ISD_KEY, [ISD_KEY_VALUE, null]); /**Country ISD Dropdown */
+            dropdowns.set(COMPANY_KEY, [companyName, companyId]);
 
             /**Device Type */
             const deviceTypeArray = [];
@@ -128,30 +126,29 @@ export class GPSDeviceForm extends React.Component {
             /**Country ISD */
             const countryISD = [];
             if (nextProps.gpsDeviceData.countryISD.results) {
-                var ISD = '';
-                var Isd_key = undefined;
-                var countryIsdData = nextProps.gpsDeviceData.countryISD.results;
+                const countryIsdData = nextProps.gpsDeviceData.countryISD.results;
                 for (var i = 0; i < countryIsdData.length; i++) {
                     var obj = { "label": countryIsdData[i].value, "value": countryIsdData[i].key };
                     countryISD.push(obj);
-                    if (countryIsdData[i].code == CountryIsdcode) { ISD = countryIsdData[i].value, Isd_key = countryIsdData[i].key }
+                    //Set default country ISD to Map Array
+                    if (countryIsdData[i].code == defaultISD) {
+                        dropdowns.set(ISD_KEY, [countryIsdData[i].value, countryIsdData[i].key]);
+                    }
                 }
-                newMap.set(ISD_KEY, ISD);
-                newIdMap.set(ISD_KEY, Isd_key);
             }
 
             this.setState({
                 deviceType: deviceTypeArray,
                 countryISD: countryISD,
                 vehicleList: vehicleArray,
-                map: newMap,
-                idMap: newIdMap
+                dropdowns: dropdowns
             });
         }
 
+        /**Company Array */
         if (this.props.loginResponse) {
             const companyArray = [];
-            var RegionData = this.props.loginResponse.data.results.regionDetails;
+            const RegionData = this.props.loginResponse.data.results.regionDetails;
             if (RegionData) {
                 for (var i = 0; i < RegionData.length; i++) {
                     for (var j = 0; j < RegionData[i].companyDetails.length; j++) {
@@ -163,6 +160,7 @@ export class GPSDeviceForm extends React.Component {
             }
         }
 
+        /**Get all Vehicles Type and opens Create Vehicle modal */
         if (this.props.vehicleTypeDatas !== nextProps.vehicleTypeDatas) {
             if (nextProps.vehicleTypeDatas.isFetched) {
                 const departmentId = this.props.loginResponse.data.results.departmentId;
@@ -178,7 +176,7 @@ export class GPSDeviceForm extends React.Component {
     }
 
     openPicker(keys, list, title) {
-        this.setState({ flag: keys });
+        this.flag = keys;
         this.modalRef.current.setModalVisible(true, title, list);
     }
 
@@ -187,16 +185,16 @@ export class GPSDeviceForm extends React.Component {
             const item = {
                 "balance": this.state.balance,
                 "carrier": this.state.carrier,
-                "countryID": this.state.idMap.get(ISD_KEY),
+                "countryID": this.state.dropdowns.get(ISD_KEY)[1],
                 "dataBalance": this.state.dataBalance,
                 "dataPlan": this.state.dataPlan,
                 "dataValidity": this.state.dataRenewal,
                 "departmentId": this.props.loginResponse.departmentId,
                 // "deviceId": 0,
-                "deviceTypeId": this.state.idMap.get(DEVICE_TYPE),
+                "deviceTypeId": this.state.dropdowns.get(DEVICE_TYPE)[1],
                 "deviceUdid": this.state.deviceUDID,
                 "simno": this.state.mobileNumber,
-                "vehicleId": this.state.idMap.get(VEHICLE_KEY)
+                "vehicleId": this.state.dropdowns.get(VEHICLE_KEY)[1]
             }
             //alert(JSON.stringify(item));
             this.props.addGPSDevice(item);
@@ -207,8 +205,8 @@ export class GPSDeviceForm extends React.Component {
     }
 
     checkRequiredFields() {
-        if (this.state.deviceUDID && this.state.idMap.get(VEHICLE_KEY)
-            && this.state.idMap.get(DEVICE_TYPE) && this.state.idMap.get(ISD_KEY) && this.state.mobileNumber !== ''
+        if (this.state.deviceUDID && this.state.dropdowns.get(VEHICLE_KEY)[1]
+            && this.state.dropdowns.get(DEVICE_TYPE)[1] && this.state.dropdowns.get(ISD_KEY)[1] && this.state.mobileNumber !== ''
             && this.state.balance !== '' && this.state.dataBalance !== '' && this.state.dataPlan !== '' &&
             this.state.carrier !== '' && this.state.dataRenewal !== '') {
             return true
@@ -267,7 +265,7 @@ export class GPSDeviceForm extends React.Component {
                                                 <UnderlineText
                                                     name="Company"
                                                     upperView={true}
-                                                    value={this.state.map.get(COMPANY_KEY)}
+                                                    value={this.state.dropdowns.get(COMPANY_KEY)[0]}
                                                     isMandatory={true}
                                                     onpress={() => this.openPicker(COMPANY_KEY, this.state.companyList, title[0])}
                                                 />
@@ -278,7 +276,7 @@ export class GPSDeviceForm extends React.Component {
                                                     <View style={{ height: 70, justifyContent: 'center' }}>
                                                         <UnderlineText
                                                             name="Vehicle #"
-                                                            value={this.state.map.get(VEHICLE_KEY)}
+                                                            value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
                                                             isMandatory={true}
                                                             upperView={true}
                                                             onpress={() => this.openPicker(VEHICLE_KEY, this.state.vehicleList, title[1])}
@@ -299,8 +297,8 @@ export class GPSDeviceForm extends React.Component {
                                                     name="Device Type"
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    value={this.state.map.get(DEVICE_TYPE)}
-                                                    onpress={() => this.openPicker(DEVICE_TYPE, this.state.deviceType, title[2])} />
+                                                    value={this.state.dropdowns.get(DEVICETYPE_KEY)[0]}
+                                                    onpress={() => this.openPicker(DEVICETYPE_KEY, this.state.deviceType, title[2])} />
                                             </View>
 
                                         </View>
@@ -320,7 +318,7 @@ export class GPSDeviceForm extends React.Component {
                                                     name='Country ISD'
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    value={this.state.map.get(ISD_KEY)}
+                                                    value={this.state.dropdowns.get(ISD_KEY)[0]}
                                                     onpress={() => this.openPicker(ISD_KEY, this.state.countryISD, title[4])}
                                                 />
                                             </View>
