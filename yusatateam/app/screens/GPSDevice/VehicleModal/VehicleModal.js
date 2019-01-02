@@ -42,11 +42,11 @@ export default class VehicleModal extends React.Component {
 
         if (this.OncheckRequiredFields()) {
             const item = {
+                "vehicleNumber": this.state.vehicleNumber,
+                "odometerReading": this.state.Odometer,
+                "vehicleVin": this.state.vin,
                 "departmentId": "2296001",
-                "odometerReading": "1",
                 "vehicleTypeId": "640679",
-                "vehicleVin": "1HGBH41JXMN109111",
-                "vehicleNumber": "1122"
             }
 
             this.props.onsubmitVehicleDetails(item);
@@ -58,8 +58,8 @@ export default class VehicleModal extends React.Component {
     }
 
     OncheckRequiredFields() {
-        if (this.state.list !== '' && this.state.vehicleNumber !== '' && this.state.vin !== '' &&
-            this.state.Odometer !== '') {
+        if (this.state.vehicleNumber !== '' && this.state.vin !== '' &&
+            this.state.Odometer !== '' && this.state.vehicleTypeId !== '') {
             return true;
         }
         return false;
@@ -98,7 +98,7 @@ export default class VehicleModal extends React.Component {
                                     keyExtractor={this._keyExtractor}
                                     renderItem={({ item, index }) =>
                                         <View style={{ width: Dimensions.get('window').width * 0.9 }}>
-                                            <View style={{ width: '100%' }}>
+                                            <View style={{ width: '100%', marginTop: 5 }}>
                                                 <Float
                                                     placeholder='Vehicle Number'
                                                     value={this.state.vehicleNumber}
@@ -129,7 +129,7 @@ export default class VehicleModal extends React.Component {
                                                     placeholder='Vin#'
                                                     value={this.state.vin}
                                                     returnKeyType={'next'}
-                                                    keyboardType={'numeric'}
+                                                    keyboardType={'email-address'}
                                                     blurOnSubmit={false}
                                                     isMandatory={false}
                                                     //onSubmitEditing={() => this._focusNextField('password')}
