@@ -61,7 +61,7 @@ export default class ChangePassword extends React.Component {
                             <View>
                                 <Item >
                                     <Input placeholder='Old Password' 
-                                    onChangeText={(text) => this.setState({text})}
+                                    onChangeText={(text) => this.setState({text : text.trim()})}
                                     value={this.state.text}/>
                                     {
                                         this.state.buttonPress  && this.state.text != ''? 
@@ -74,7 +74,7 @@ export default class ChangePassword extends React.Component {
                             <View>
                                 <Item >
                                     <Input placeholder='New Password' 
-                                    onChangeText={(text) => this.setState({newPassword :text})}
+                                    onChangeText={(text) => this.setState({newPassword :text.trim()})}
                                     value={this.state.newPassword}/>
                                     <Icon />
                                 </Item>
@@ -82,7 +82,7 @@ export default class ChangePassword extends React.Component {
                             <View>
                                 <Item>
                                     <Input placeholder='Verify Password'
-                                    onChangeText={(text) => this.setState({verifyPassword :text})}
+                                    onChangeText={(text) => this.setState({verifyPassword :text.trim()})}
                                     value={this.state.verifyPassword} />
                                     {
                                         this.state.buttonPress && this.state.verifyPassword != '' ? 
