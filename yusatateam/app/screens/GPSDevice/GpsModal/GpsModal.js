@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, Modal, View, TouchableHighlight, FlatList, TouchableOpacity } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
-import { Header, Body, Right, Left, List, ListItem } from 'native-base';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Header, Body, Right, List, ListItem } from 'native-base';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -57,13 +57,12 @@ export default class GpsModal extends React.Component {
                             <View style={styles.subContainer}>
 
                                 <Header style={styles.Header_Style}>
-
                                     <Body>
                                         <Text style={styles.Text_style}>{this.state.title}</Text>
                                     </Body>
                                     <Right>
                                         <TouchableHighlight onPress={() => { this.setModalVisible(false) }}>
-                                            <Entypo name='cross' size={28} color='#fff'></Entypo>
+                                            <MaterialIcons name='close' size={28} color='#fff' />
                                         </TouchableHighlight>
                                     </Right>
                                 </Header>
