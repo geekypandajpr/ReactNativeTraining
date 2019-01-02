@@ -24,18 +24,22 @@ export default class Api {
         let options = Object.assign({ method: verb }, { credentials: 'same-origin' }, params ? { body: JSON.stringify(params) } : null);
         options.headers = Api.headers();
         return fetch(url, options)
-        .then((response) => response)
+        .then((response) => {
+            var statusCode = response.status;
+            var data = response.json();
+            return Promise.all([statusCode, data]);
+        })
         .then((responseJson) => {
-            if(responseJson.ok) {
-                return responseJson.json();
+            if(responseJson[0] === 200) {
+                return responseJson[1];
             } else {
-                if(responseJson.status === 412) {
-                    functions.showToast('Invalid credentials', 'danger');
+                if(responseJson[0] === 412) { 
+                    functions.showToast(responseJson[1].results.msg, 'danger');
                     return null;
-                } else if(responseJson.status === 500) {
-                    functions.showToast('Internal server error', 'danger');
+                } else if(responseJson[0] === 500) {
+                    functions.showToast(responseJson[1].results, 'danger');
                     return null;
-                } else if(responseJson.status === 401) {
+                } else if(responseJson[0] === 401) {
                     functions.showToast('Session time out', 'danger');
                     return null;
                 } else {
@@ -44,8 +48,6 @@ export default class Api {
             }
         }).catch(function(error) {
             throw new Error(error);
-            //alert(error.message);
-            // throw error.message;
         })
     }
 }
