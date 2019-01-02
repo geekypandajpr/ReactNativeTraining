@@ -113,16 +113,6 @@ export class GPSDeviceForm extends React.Component {
                 }
             }
 
-            /**Vehicle List */
-            const vehicleArray = [];
-            if (nextProps.gpsDeviceData.vehicleList.results) {
-                const vehicle = nextProps.gpsDeviceData.vehicleList.results;
-                for (var i = 0; i < vehicle.length; i++) {
-                    var obj = { "label": vehicle[i].value, "value": vehicle[i].key };
-                    vehicleArray.push(obj);
-                }
-            }
-
             /**Country ISD */
             const countryISD = [];
             if (nextProps.gpsDeviceData.countryISD.results) {
@@ -140,8 +130,21 @@ export class GPSDeviceForm extends React.Component {
             this.setState({
                 deviceType: deviceTypeArray,
                 countryISD: countryISD,
-                vehicleList: vehicleArray,
                 dropdowns: dropdowns
+            });
+        }
+
+        if (this.props.vehicleListDatas !== nextProps.vehicleListDatas) {
+            const vehicleArray = [];
+            if (nextProps.vehicleListDatas.vehicleList.results) {
+                const vehicle = nextProps.vehicleListDatas.vehicleList.results;
+                for (var i = 0; i < vehicle.length; i++) {
+                    var obj = { "label": vehicle[i].value, "value": vehicle[i].key };
+                    vehicleArray.push(obj);
+                }
+            }
+            this.setState({
+                vehicleList: vehicleArray,
             });
         }
 
@@ -453,7 +456,8 @@ function mapStateToProps(state) {
         gpsDeviceData: state.gpsDeviceData,
         loginResponse: state.loginData,
         vehicleTypeDatas: state.createVehicleTypeData,
-        Addvehicles: state.createVehicleData
+        Addvehicles: state.createVehicleData,
+        vehicleListDatas: state.vehicleListData,
     }
 }
 
