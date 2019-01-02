@@ -1,5 +1,14 @@
 import React from 'react';
-import { Modal, View, KeyboardAvoidingView, FlatList, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import {
+    Modal,
+    View,
+    KeyboardAvoidingView,
+    FlatList,
+    StyleSheet,
+    Dimensions,
+    TouchableOpacity,
+    keyboardshouldpersisttaps
+} from 'react-native';
 import { Text, Picker, Form } from 'native-base';
 import { Float } from '../../../components';
 
@@ -91,6 +100,7 @@ export default class VehicleModal extends React.Component {
                                     <Text style={styles.header_text}>Create Vehicle</Text>
                                 </View>
                                 <FlatList
+                                    keyboardShouldPersistTaps='always'
                                     style={{ backgroundColor: '#fff' }}
                                     ref={"flatList"}
                                     extraData={this.state}
