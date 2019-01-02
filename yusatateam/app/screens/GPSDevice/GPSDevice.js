@@ -128,6 +128,10 @@ export class GPSDevice extends React.Component {
         }
     }
 
+    updateList() {
+        console.log('Update List');
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
@@ -138,7 +142,7 @@ export class GPSDevice extends React.Component {
                     <Toolbar title='GPS Devices'
                         leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='add-circle-outline' settingType='MaterialIcons'
-                        onSettingsPress={() => navigate('GPSDeviceForm')} />
+                        onSettingsPress={() => navigate('GPSDeviceForm', { onGoBack: () => this.updateList() })} />
                     {
                         this.state.loading ? null : 
                         <Activityindication  visible={this.props.searchList.isLoading}/>
