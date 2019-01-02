@@ -20,7 +20,7 @@ export default class ChangePassword extends React.Component {
         }
     }
     setModalVisible(visible) {
-        this.setState({ modalVisible: visible,buttonPress : false});
+        this.setState({ modalVisible: visible,buttonPress : false,text : '',newPassword : '', verifyPassword : ''});
     }
     submitPress()
     {
