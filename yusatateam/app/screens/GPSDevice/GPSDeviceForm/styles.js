@@ -61,5 +61,23 @@ export default EStyleSheet.create({
     createVehicle: {
         color: 'rgb(56,64,64)',
         fontSize: '0.8rem'
+    },
+    star: {
+        marginTop: 0,
+        color: 'red',
+        marginLeft: 5,
+        fontSize: '1rem' 
+    },
+    simdetails: {
+        fontSize: '1.1rem',
+        color: '#000',
+        fontWeight: '500'
+    },
+    createVehicleView: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        marginBottom: 0
     }
 })

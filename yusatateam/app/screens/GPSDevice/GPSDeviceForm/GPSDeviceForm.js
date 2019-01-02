@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, KeyboardAvoidingView, Alert } from 'react-native';
+import { View, FlatList, KeyboardAvoidingView } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
@@ -74,7 +74,7 @@ export class GPSDeviceForm extends React.Component {
         this.setState({ isLoading: false });
     }
 
-    componentDidMount() {        
+    componentDidMount() {
         this.props.onFetchList();
     }
 
@@ -83,7 +83,6 @@ export class GPSDeviceForm extends React.Component {
         const dropdowns = new Map(this.state.dropdowns);
         dropdowns.set(this.flag, [item.label, item.value]);
         this.setState({ dropdowns: dropdowns });
-        this.setState({ dropdowns: dropdowns});
     }
 
     componentWillReceiveProps(nextProps) {
@@ -182,7 +181,6 @@ export class GPSDeviceForm extends React.Component {
 
     onAddGPSDevice() {
         if (this.checkRequiredFields()) {
-            console.log(this.props.loginResponse.data.results.departmentId);
             const item = {
                 "balance": this.state.balance,
                 "carrier": this.state.carrier,
@@ -248,17 +246,18 @@ export class GPSDeviceForm extends React.Component {
 
                                             <View style={styles.Small_View}>
                                                 <Item floatingLabel>
-                                                    <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: '#000' }} />
-                                                    <Label style={{ color: 'rgba(0,0,0,0.8)', fontSize: 15 }}>Device</Label>
+                                                    {/* <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: 'gray' }} /> */}
+                                                    <Label style={{ color: 'rgba(0,0,0,0.6)', fontSize: 15 }}>Device UDID/ESN<Text style={styles.star}>*</Text></Label>
                                                     <Input
                                                         style={{ color: '#000', fontSize: 15 }}
                                                         value={this.state.deviceUDID}
                                                         keyboardType={'email-address'}
                                                         returnKeyType='next'
-                                                        // getRef={this.props.getRef}
-                                                        // blurOnSubmit={this.props.blurOnSubmit}
+                                                        onBlur={() => console.log('Hello Prem')}
                                                         onChangeText={(text) => this.setState({ deviceUDID: text })}
                                                     />
+                                                    <Icon name='check' type='Feather' style={{ fontSize: 24, color: 'green' }} />
+                                                    
                                                 </Item>
                                             </View>
 
@@ -274,18 +273,15 @@ export class GPSDeviceForm extends React.Component {
 
                                             <View style={styles.Small_View}>
                                                 <View style={{ flex: 1 }}>
-                                                    <View style={{ height: 70, justifyContent: 'center' }}>
-                                                        <UnderlineText
-                                                            name="Vehicle #"
-                                                            value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
-                                                            isMandatory={true}
-                                                            upperView={true}
-                                                            onpress={() => this.openPicker(VEHICLE_KEY, this.state.vehicleList, title[1])}
-                                                        >
-                                                        </UnderlineText>
-                                                    </View>
+                                                    <UnderlineText
+                                                        name="Vehicle #"
+                                                        value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
+                                                        isMandatory={true}
+                                                        upperView={true}
+                                                        onpress={() => this.openPicker(VEHICLE_KEY, this.state.vehicleList, title[1])}
+                                                    />
                                                 </View>
-                                                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
+                                                <View style={styles.createVehicleView}>
                                                     <Button bordered dark style={{ height: 40, borderColor: 'gray' }}
                                                         onPress={this.onPressCreateVehicle}>
                                                         <Text style={styles.createVehicle}> Create Vehicle</Text>
@@ -299,22 +295,23 @@ export class GPSDeviceForm extends React.Component {
                                                     isMandatory={true}
                                                     upperView={true}
                                                     value={this.state.dropdowns.get(DEVICETYPE_KEY)[0]}
-                                                    onpress={() => this.openPicker(DEVICETYPE_KEY, this.state.deviceType, title[2])} />
+                                                    onpress={() => this.openPicker(DEVICETYPE_KEY, this.state.deviceType, title[2])}
+                                                />
                                             </View>
 
                                         </View>
                                     </View>
 
-                                    <View style={styles.Detail_View}>
+                                    <View style={[styles.Detail_View,{marginTop: 20}]}>
                                         <View style={{ width: '94%' }}>
-                                            <Text style={globalStyles.title_text}> Sim Details </Text>
+                                            <Text style={styles.simdetails}> Sim Details </Text>
                                         </View>
                                     </View>
 
                                     <View style={styles.Sub_View}>
                                         <View style={styles.Width_View}>
 
-                                            <View style={styles.Small_View}>
+                                            <View style={[styles.Small_View,{marginTop: 5}]}>
                                                 <UnderlineText
                                                     name='Country ISD'
                                                     isMandatory={true}
@@ -420,12 +417,12 @@ export class GPSDeviceForm extends React.Component {
 
                                             <View style={styles.button_view}>
                                                 <View style={{ flex: 1, marginRight: 2 }}>
-                                                    <Button block danger>
+                                                    <Button block danger onPress={this.onCancel}>
                                                         <Text style={{ color: '#fff' }}>Cancel</Text>
                                                     </Button>
                                                 </View>
                                                 <View style={{ flex: 1, marginLeft: 2 }}>
-                                                    <Button block
+                                                    <Button block style={{backgroundColor: '#0073b7'}}
                                                         onPress={this.onAddGPSDevice}>
                                                         <Text style={{ color: '#fff' }}>Submit</Text>
                                                     </Button>
@@ -436,10 +433,16 @@ export class GPSDeviceForm extends React.Component {
                                 </View>
                             </KeyboardAvoidingView>
                         } />
+
                     <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
                     <VehicleModal ref={this.modalReference} onsubmitVehicleDetails={(detail) => this.onSubmitVehicleDetails(detail)} />
                 </View>
         );
+    }
+
+    onCancel = () => {
+        this.props.navigation.state.params.onGoBack();
+        this.props.navigation.goBack();
     }
 }
 
