@@ -28,7 +28,7 @@ export class GPSDevice extends React.Component {
             listValues : [],
             selected2: '',
             dropdownKey : '',
-            pageCount : 10,
+            pageCount : 0,
             loading: false,
             countryList : [],
         };
@@ -52,7 +52,7 @@ export class GPSDevice extends React.Component {
     currentView() {
         var count = this.state.pageCount;
         var filterData = {
-            "betweenFilter": {    
+            "betweenFilter": {
                 "flag": false,
                 "isDate": false,
                 "isOrCondition": false
@@ -74,10 +74,10 @@ export class GPSDevice extends React.Component {
             "searchColumnNamesWithText": [
                 ""
             ]
-            }
-            this.props.onListFetchData(filterData);
-            this.setState({pageCount : this.state.pageCount+10})
-       }
+        }
+        this.props.onListFetchData(filterData);
+        this.setState({pageCount : this.state.pageCount+10})
+    }
 
     async componentWillMount() {
         await Expo.Font.loadAsync({

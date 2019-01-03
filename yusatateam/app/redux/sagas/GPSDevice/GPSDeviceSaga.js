@@ -61,7 +61,7 @@ export function* addGPSDevice(action) {
         }
     } catch (error) {
         yield put({ type: GPSDEVICE.ADD_GPS_DEVICE_FAILED, error });
-        functions.showToast('something Went wrong', 'danger');
+        functions.showToast('Something went wrong', 'danger');
     }
 }
 

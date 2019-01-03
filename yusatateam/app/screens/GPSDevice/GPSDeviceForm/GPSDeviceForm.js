@@ -199,8 +199,8 @@ export class GPSDeviceForm extends React.Component {
                 "simno": this.state.mobileNumber,
                 "vehicleId": this.state.dropdowns.get(VEHICLE_KEY)[1]
             }
-            alert(JSON.stringify(item));
-            //this.props.addGPSDevice(item);
+            // alert(JSON.stringify(item));
+            this.props.addGPSDevice(item);
         } else {
             functions.showToast('Please fill all required fields', 'danger');
         }
