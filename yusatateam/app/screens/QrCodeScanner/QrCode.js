@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Linking, Dimensions, LayoutAnimation, Text, View, StatusBar, TouchableOpacity } from 'react-native';
+import { Alert, Linking, Dimensions, LayoutAnimation, Text, View, StatusBar, TouchableOpacity,Image} from 'react-native';
 import { BarCodeScanner, Permissions } from 'expo';
 import { Toolbar, SearchBar } from '../../components';
 import styles from './styles';
@@ -49,6 +49,8 @@ export  class QrCode extends Component {
 
     render() {
         const { goBack } = this.props.navigation;
+        const { width } = Dimensions.get('window')
+        const qrSize = width * 0.7;
         return (
             <View style={styles.container}>
                 <Toolbar title='Device Report'
@@ -78,11 +80,25 @@ export  class QrCode extends Component {
                                 :
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                     <BarCodeScanner
+                                       
                                         onBarCodeRead={this._handleBarCodeRead}
-                                        style={styles.barCode} /></View>
+                                        style={styles.barCode}>
+                                        <View style={{justifyContent:'center',alignItems:'center'}}>
+                                        <Image
+                                        style={{  marginTop:"40%",
+                                        // marginRight: 40,
+                                        // marginLeft: 40,
+                                        width: qrSize,
+                                        height: qrSize,}}
+                                        source={require('../../assets/images/trans.png')}
+                                      />
+                                        </View>
+                                       
+                                        </BarCodeScanner>
+                                        </View>
                         }
 
-                        {/* {this._maybeRenderUrl()} */}
+                        {this._maybeRenderUrl()}
 
                         {/* <StatusBar hidden /> */}
                     </View>
@@ -92,50 +108,50 @@ export  class QrCode extends Component {
     }
 
 
-//     _handlePressUrl = () => {
-//         Alert.alert(
-//             'Open this URL?',
-//             this.state.lastScannedUrl,
-//             [
-//                 {
-//                     text: 'Yes',
-//                     onPress: () => Linking.openURL(this.state.lastScannedUrl),
-//                 },
-//                 { text: 'No', onPress: () => { } },
-//             ],
-//             { cancellable: false }
-//         );
-//     };
+    _handlePressUrl = () => {
+        Alert.alert(
+            'Open this URL?',
+            this.state.lastScannedUrl,
+            [
+                {
+                    text: 'Yes',
+                    onPress: () => Linking.openURL(this.state.lastScannedUrl),
+                },
+                { text: 'No', onPress: () => { } },
+            ],
+            { cancellable: false }
+        );
+    };
 
-//     _handlePressCancel = () => {
-//         this.setState({ bottomBar: false });
-//     };
+    _handlePressCancel = () => {
+        this.setState({ bottomBar: false });
+    };
 
-//     _maybeRenderUrl = () => {
-//         if (!this.state.lastScannedUrl) {
-//             return;
-//         }
+    _maybeRenderUrl = () => {
+        if (!this.state.lastScannedUrl) {
+            return;
+        }
 
-//         return (
-//             <View>
-//                 {this.state.bottomBar ? <View style={styles.bottomBar}>
-//                     <TouchableOpacity style={styles.url} onPress={this._handlePressUrl}>
-//                         <Text numberOfLines={1} style={styles.urlText}>
-//                             {this.state.lastScannedUrl}
-//                         </Text>
-//                     </TouchableOpacity>
-//                     <TouchableOpacity
-//                         style={styles.cancelButton}
-//                         onPress={this._handlePressCancel}>
-//                         <Text style={styles.cancelButtonText}>
-//                             Ok
-//             </Text>
-//                     </TouchableOpacity>
-//                 </View> : null}
+        return (
+            <View>
+                {this.state.bottomBar ? <View style={styles.bottomBar}>
+                    <TouchableOpacity style={styles.url} onPress={this._handlePressUrl}>
+                        <Text numberOfLines={1} style={styles.urlText}>
+                            {this.state.lastScannedUrl}
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.cancelButton}
+                        onPress={this._handlePressCancel}>
+                        <Text style={styles.cancelButtonText}>
+                            Ok
+            </Text>
+                    </TouchableOpacity>
+                </View> : null}
 
-//             </View>
-//         );
-//     };
+            </View>
+        );
+    };
 }
 
 function mapStateToProps(state) {
