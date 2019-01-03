@@ -214,7 +214,7 @@ export class GPSDeviceForm extends React.Component {
             this.state.carrier !== '' && this.state.dataRenewal !== '') {
             return true
         }
-        return false;
+        return true;
     }
 
     onPressCreateVehicle() {
