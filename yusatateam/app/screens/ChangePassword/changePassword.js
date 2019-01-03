@@ -2,9 +2,11 @@ import React from 'react';
 import {
     View,
     Modal,
+    Keyboard
 } from 'react-native';
 import styles from './styles';
-import { Item, Input, Icon, Text, Button } from 'native-base';
+import { Item, Input, Icon, Text, Button,Label } from 'native-base';
+import functions from '../../common/functions'
 export default class ChangePassword extends React.Component {
     constructor(props) {
         super(props);
@@ -16,7 +18,6 @@ export default class ChangePassword extends React.Component {
             oldPass : '',
             verifyPass : '',
             buttonPress : true
-
         }
     }
     setModalVisible(visible) {
@@ -24,21 +25,8 @@ export default class ChangePassword extends React.Component {
     }
     submitPress()
     {
+
         this.setState({buttonPress : true})
-        // if(this.state.text=="Admin")
-        // {
-        //     this.setState({oldPass : true})
-        // }
-        // else{
-        //     this.setState({oldPass : false})
-        // }
-        // if(this.state.newPassword=="Vinayak")
-        // {
-        //     this.setState({verifyPass : true})
-        // }
-        // else{
-        //     this.setState({verifyPass : false})
-        // }
     }
     render() {
         return (
@@ -59,8 +47,9 @@ export default class ChangePassword extends React.Component {
                         </View>
                         <View style={styles.View_Container}>
                             <View>
-                                <Item >
-                                    <Input placeholder='Old Password' 
+                            <Item floatingLabel>
+                                <Label>Old Password</Label>
+                                    <Input 
                                     onChangeText={(text) => this.setState({text : text.trim()})}
                                     value={this.state.text}/>
                                     {
@@ -72,23 +61,30 @@ export default class ChangePassword extends React.Component {
                                 </Item>
                             </View>
                             <View>
-                                <Item >
-                                    <Input placeholder='New Password' 
+                            <Item floatingLabel>
+                                <Label>New Password</Label>
+                                    <Input  
                                     onChangeText={(text) => this.setState({newPassword :text.trim()})}
                                     value={this.state.newPassword}/>
-                                    <Icon />
+                                    {
+                                        this.state.buttonPress && this.state.newPassword != ''  ? 
+                                        <Icon style= { this.state.newPassword.length > 5 ? {fontSize: 24, color: 'green'}: {fontSize: 26, color: 'red'}}  name=
+                                        { this.state.newPassword.length > 5 ? 'checkmark-circle': 'close-circle'} />
+                                        : null
+                                    }
                                 </Item>
                             </View>
                             <View>
-                                <Item>
-                                    <Input placeholder='Verify Password'
+                            <Item floatingLabel>
+                                <Label>Verify Password</Label>
+                                    <Input 
                                     onChangeText={(text) => this.setState({verifyPassword :text.trim()})}
                                     value={this.state.verifyPassword} />
                                     {
                                         this.state.buttonPress && this.state.verifyPassword != '' ? 
                                         <Icon style= { this.state.verifyPassword==this.state.newPassword ? {fontSize: 24, color: 'green'}: {fontSize: 26, color: 'red'}}  name=
-                                    { this.state.verifyPassword==this.state.newPassword ? 'checkmark-circle': 'close-circle'} />
-                                     : null
+                                        {this.state.verifyPassword==this.state.newPassword ? 'checkmark-circle': 'close-circle'} />
+                                        : null
                                     }
                                     
                                 </Item>
@@ -96,7 +92,7 @@ export default class ChangePassword extends React.Component {
                             <View style={styles.button_view}>
                                 <View style={{ flex: 1, margin : 5 }}>
                                     <Button block danger
-                                     onPress={() => {
+                                    onPress={() => {
                                         this.setModalVisible(!this.state.modalVisible);
                                     }}>
                                         <Text>Cancel</Text>
