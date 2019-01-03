@@ -83,17 +83,16 @@ export  class QrCode extends Component {
                                        
                                         onBarCodeRead={this._handleBarCodeRead}
                                         style={styles.barCode}>
-                                        <View style={{justifyContent:'center',alignItems:'center'}}>
-                                        <Image
-                                        style={{  marginTop:"40%",
-                                        // marginRight: 40,
-                                        // marginLeft: 40,
-                                        width: qrSize,
-                                        height: qrSize,}}
-                                        source={require('../../assets/images/trans.png')}
-                                      />
-                                        </View>
-                                       
+                                            <View style={{justifyContent:'center',alignItems:'center'}}>
+                                            <Image
+                                            style={{  marginTop:"40%",
+                                            // marginRight: 40,
+                                            // marginLeft: 40,
+                                            width: qrSize,
+                                            height: qrSize,}}
+                                            source={require('../../assets/images/trans.png')}
+                                          />
+                                            </View> 
                                         </BarCodeScanner>
                                         </View>
                         }
