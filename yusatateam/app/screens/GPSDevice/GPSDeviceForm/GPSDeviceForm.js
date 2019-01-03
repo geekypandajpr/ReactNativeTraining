@@ -262,7 +262,7 @@ export class GPSDeviceForm extends React.Component {
                                                         onBlur={() => console.log('Hello Prem')}
                                                         onChangeText={(text) => this.setState({ deviceUDID: text })}
                                                     />
-                                                    <Icon name='check' type='Feather' style={{ fontSize: 24, color: 'green' }} />
+                                                    {/* <Icon name='check' type='Feather' style={{ fontSize: 24, color: 'green' }} /> */}
 
                                                 </Item>
                                             </View>
