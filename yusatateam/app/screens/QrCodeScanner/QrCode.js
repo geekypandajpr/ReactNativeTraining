@@ -82,7 +82,7 @@ export  class QrCode extends Component {
                                         style={styles.barCode} /></View>
                         }
 
-                        {this._maybeRenderUrl()}
+                        {/* {this._maybeRenderUrl()} */}
 
                         {/* <StatusBar hidden /> */}
                     </View>
@@ -91,50 +91,51 @@ export  class QrCode extends Component {
         );
     }
 
-    _handlePressUrl = () => {
-        Alert.alert(
-            'Open this URL?',
-            this.state.lastScannedUrl,
-            [
-                {
-                    text: 'Yes',
-                    onPress: () => Linking.openURL(this.state.lastScannedUrl),
-                },
-                { text: 'No', onPress: () => { } },
-            ],
-            { cancellable: false }
-        );
-    };
 
-    _handlePressCancel = () => {
-        this.setState({ bottomBar: false });
-    };
+//     _handlePressUrl = () => {
+//         Alert.alert(
+//             'Open this URL?',
+//             this.state.lastScannedUrl,
+//             [
+//                 {
+//                     text: 'Yes',
+//                     onPress: () => Linking.openURL(this.state.lastScannedUrl),
+//                 },
+//                 { text: 'No', onPress: () => { } },
+//             ],
+//             { cancellable: false }
+//         );
+//     };
 
-    _maybeRenderUrl = () => {
-        if (!this.state.lastScannedUrl) {
-            return;
-        }
+//     _handlePressCancel = () => {
+//         this.setState({ bottomBar: false });
+//     };
 
-        return (
-            <View>
-                {this.state.bottomBar ? <View style={styles.bottomBar}>
-                    <TouchableOpacity style={styles.url} onPress={this._handlePressUrl}>
-                        <Text numberOfLines={1} style={styles.urlText}>
-                            {this.state.lastScannedUrl}
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.cancelButton}
-                        onPress={this._handlePressCancel}>
-                        <Text style={styles.cancelButtonText}>
-                            Ok
-            </Text>
-                    </TouchableOpacity>
-                </View> : null}
+//     _maybeRenderUrl = () => {
+//         if (!this.state.lastScannedUrl) {
+//             return;
+//         }
 
-            </View>
-        );
-    };
+//         return (
+//             <View>
+//                 {this.state.bottomBar ? <View style={styles.bottomBar}>
+//                     <TouchableOpacity style={styles.url} onPress={this._handlePressUrl}>
+//                         <Text numberOfLines={1} style={styles.urlText}>
+//                             {this.state.lastScannedUrl}
+//                         </Text>
+//                     </TouchableOpacity>
+//                     <TouchableOpacity
+//                         style={styles.cancelButton}
+//                         onPress={this._handlePressCancel}>
+//                         <Text style={styles.cancelButtonText}>
+//                             Ok
+//             </Text>
+//                     </TouchableOpacity>
+//                 </View> : null}
+
+//             </View>
+//         );
+//     };
 }
 
 function mapStateToProps(state) {
