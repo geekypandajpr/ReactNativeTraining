@@ -83,9 +83,11 @@ export  class QrCode extends Component {
                                        
                                         onBarCodeRead={this._handleBarCodeRead}
                                         style={styles.barCode}>
+                                            
                                             <View style={{justifyContent:'center',alignItems:'center'}}>
+                                            <Text style={{color : 'lightskyblue',marginTop :"20%",fontSize:26}}>Scan BarCode or any QR</Text>
                                             <Image
-                                            style={{  marginTop:"40%",
+                                            style={{  marginTop:"20%",
                                             // marginRight: 40,
                                             // marginLeft: 40,
                                             width: qrSize,
