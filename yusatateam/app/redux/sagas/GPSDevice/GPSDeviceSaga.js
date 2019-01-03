@@ -92,6 +92,7 @@ export function* createVehicleType(action) {
     }
 }
 
+/** CreateVehicle*/
 export function* createVehicle(action) {
     try {
         const data = yield call(userServices.createVehicle, action.AddData);

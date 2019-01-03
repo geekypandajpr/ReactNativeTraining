@@ -55,7 +55,7 @@ export class GPSDeviceForm extends React.Component {
             dataPlan: '',
             dataRenewal: '',
             carrier: '',
-            createVehicle:[],
+            createVehicle: [],
         }
         this.flag = '';
         this.modalRef = React.createRef();
@@ -174,7 +174,7 @@ export class GPSDeviceForm extends React.Component {
         }
 
         if (this.props.Addvehicles !== nextProps.Addvehicles) {
-            this.setState({createVehicle: nextProps.Addvehicles.data})
+            this.setState({ createVehicle: nextProps.Addvehicles.data })
         }
     }
 
@@ -235,8 +235,7 @@ export class GPSDeviceForm extends React.Component {
                     <Activityindication visible={this.props.vehicleTypeDatas.isLoading} />
                     <Activityindication visible={this.props.addGPSDeviceResp.isLoading} />
                     <Activityindication visible={this.props.vehicleListDatas.isLoading} />
-                    {/* <Activityindication visible={this.props.Addvehicles.isLoading}/> */}
-                    
+                    <Activityindication visible={this.props.Addvehicles.isLoading} />
 
                     <FlatList
                         showsVerticalScrollIndicator={false}
@@ -461,6 +460,7 @@ function mapStateToProps(state) {
         vehicleTypeDatas: state.createVehicleTypeData,
         Addvehicles: state.createVehicleData,
         vehicleListDatas: state.vehicleListData,
+        
     }
 }
 
