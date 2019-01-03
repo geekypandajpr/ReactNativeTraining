@@ -28,7 +28,7 @@ export class GPSDevice extends React.Component {
             listValues : [],
             selected2: '',
             dropdownKey : '',
-            pageCount : 0,
+            pageCount : 10,
             loading: false,
             countryList : [],
         };
