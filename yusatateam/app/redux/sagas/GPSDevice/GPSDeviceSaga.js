@@ -102,7 +102,7 @@ export function* createVehicle(action) {
             functions.showToast('Vehicle created successfully', 'success');
         }
     } catch (error) {
-        yield put({ type: GPSDEVICE.CREATE_VEHICLETYPE_FAILED, error });
+        yield put({ type: GPSDEVICE.CREATEVEHICLE_FAILED, error });
         yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_FAILED, error })
         functions.showToast('something Went wrong', 'danger');
     }

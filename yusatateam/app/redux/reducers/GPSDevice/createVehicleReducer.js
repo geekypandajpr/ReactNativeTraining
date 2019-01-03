@@ -6,13 +6,13 @@ const initialState = {
     error: false
 }
 
-export default AddgpsvehicleReducer = (state = initialState, action) => {
+export default createVehicleReducer = (state = initialState, action) => {
     switch (action.type) {
         case GPSDEVICE.CREATEVEHICLE_REQUEST:
             return Object.assign({}, state, {
                 isLoading: true
             });
-        case GPSDEVICE.CREATE_VEHICLETYPE_SUCCESS:
+        case GPSDEVICE.CREATEVEHICLE_SUCCESS:
             return Object.assign({}, state, {
                 data: action.data,
                 isLoading: false
