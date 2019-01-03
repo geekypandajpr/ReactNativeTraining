@@ -29,11 +29,9 @@ export default class QrCode extends Component {
       this.setState({ lastScannedUrl: result.data,bottomBar : true});
     }
   };
-  getDeviceInfo() {
-    if(this.state.deviceUDID !== '') {
-        this.setState({ isSearching: true });
-        //this.props.fetchDeviceInfo(this.state.lastScannedUrl);
-    }
+
+  getDeviceInfo(value) {
+    alert("You have search "+value);
 }
 
   render() {
@@ -48,7 +46,7 @@ export default class QrCode extends Component {
         isDropdown={false}
         onChangeText={(text) => this.setState({lastScannedUrl: text})}
         value={this.state.lastScannedUrl}
-        onSearch={this.getDeviceInfo}
+        onSearch={() => this.getDeviceInfo(this.state.lastScannedUrl)}
                     />
       </View>
         <View style={{flex :9}}>

@@ -18,7 +18,8 @@ import Customer from '../screens/AssociationList/Customer';
 import Association from '../screens/AssociationList/Association/Association';
 import GPSDevice from '../screens/GPSDevice/GPSDevice';
 import GPSDeviceForm from '../screens/GPSDevice/GPSDeviceForm/GPSDeviceForm';
-import SalesDashboard from '../screens/SalesDashboard/SalesDashboard'
+import SalesDashboard from '../screens/SalesDashboard/SalesDashboard';
+import QrCode from '../screens/QrCodeScanner/QrCode';
 // import {
 //     LogIn,
 //     HomeScreen,
@@ -154,6 +155,13 @@ const RouteConfigs = {
     SalesDashboard:
     {   
         screen: SalesDashboard,
+        navigationOptions: {
+            header: null
+        }
+    },
+    QrCode:
+    {   
+        screen: QrCode,
         navigationOptions: {
             header: null
         }
