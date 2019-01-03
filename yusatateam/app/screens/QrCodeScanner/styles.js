@@ -13,6 +13,7 @@ export default EStyleSheet.create({
         left: 0,
         right: 0,
         height : 80,
+        
         backgroundColor: 'rgba(0,0,0,0.5)',
         padding: 15,
         flexDirection: 'row',

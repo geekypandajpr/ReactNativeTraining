@@ -20,7 +20,7 @@ export  class QrCode extends Component {
     componentDidMount() {
         this._requestCameraPermission();
     }
-
+ 
     _requestCameraPermission = async () => {
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
         this.setState({

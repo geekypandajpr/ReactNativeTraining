@@ -74,7 +74,7 @@ export class Sim extends React.Component {
     onSearchClearPressed(){
         this.SearchFilterFunction('');
     }
-
+  
     render() {
         const { goBack } = this.props.navigation;
         return (

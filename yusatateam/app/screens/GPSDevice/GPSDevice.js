@@ -207,7 +207,7 @@ function mapDispatchToProps(dispatch) {
         onListFetchData : (filterData) => dispatch(userActions.searchCriteria(filterData)),
         fetchDeviceInfo : (deviceUDID) => dispatch(userActions.getAssociationDeviceInfo(deviceUDID))
     }
-}
+}  
 
 export default connect(mapStateToProps, mapDispatchToProps)(GPSDevice);
 
