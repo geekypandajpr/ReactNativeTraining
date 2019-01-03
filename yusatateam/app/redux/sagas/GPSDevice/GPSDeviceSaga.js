@@ -1,4 +1,5 @@
 import { call, put, all } from 'redux-saga/effects';
+import { NavigationActions } from 'react-navigation';
 
 import { GPSDEVICE, GPSDEVICESEARCHCRITERIA } from '../../common/actionTypes';
 import userServices from '../../services/userServices'
@@ -55,6 +56,7 @@ export function* addGPSDevice(action) {
         const data = yield call(userService.addGPSDevice, action.gpsdevice)
         if (data) {
             yield put({ type: GPSDEVICE.ADD_GPS_DEVICE_SUCCESS, data });
+            yield put( NavigationActions.back({ key: 'GPSDevice'}));
             functions.showToast('GPS Device added successfully', 'success');
         } else {
             yield put({ type: GPSDEVICE.ADD_GPS_DEVICE_FAILED });

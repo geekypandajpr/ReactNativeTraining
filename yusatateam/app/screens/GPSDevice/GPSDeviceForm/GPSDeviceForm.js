@@ -447,7 +447,7 @@ export class GPSDeviceForm extends React.Component {
     }
 
     onCancel = () => {
-        this.props.navigation.state.params.onGoBack();
+        // this.props.navigation.state.params.onGoBack();
         this.props.navigation.goBack();
     }
 }
