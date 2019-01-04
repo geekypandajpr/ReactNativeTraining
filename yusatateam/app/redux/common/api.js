@@ -1,8 +1,8 @@
 import functions from '../../common/functions';
 
 export default class Api {
-    // static host = 'http://app.ylogapp.com:9393/YLogAPI/';
-    static host = 'http://app.ylogapp.com:9393/YLogAPIMobile/';
+    static host = 'http://app.ylogapp.com:9393/YLogAPI/';
+    // static host = 'http://app.ylogapp.com:9393/YLogAPIMobile/';
 
     static headers() {
         return {

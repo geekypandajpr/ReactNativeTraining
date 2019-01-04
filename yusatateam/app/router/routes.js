@@ -20,6 +20,7 @@ import GPSDevice from '../screens/GPSDevice/GPSDevice';
 import GPSDeviceForm from '../screens/GPSDevice/GPSDeviceForm/GPSDeviceForm';
 import SalesDashboard from '../screens/SalesDashboard/SalesDashboard';
 import QrCode from '../screens/QrCodeScanner/QrCode';
+import CreateVehicle from '../screens/GPSDevice/GPSDeviceForm/CreateVehicle';
 // import {
 //     LogIn,
 //     HomeScreen,
@@ -162,6 +163,14 @@ const RouteConfigs = {
     QrCode:
     {   
         screen: QrCode,
+        navigationOptions: {
+            header: null
+        }
+    },
+    
+    CreateVehicle:
+    {   
+        screen: CreateVehicle,
         navigationOptions: {
             header: null
         }
