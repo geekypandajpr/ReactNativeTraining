@@ -52,15 +52,11 @@ export function* searchCriteria(action) {
 /**Add GPS Device Association */
 export function* addGPSDevice(action) {
     try {
-        alert(JSON.stringify(action));
         const data = yield call(userService.addGPSDevice, action.gpsdevice)
-            // yield put({ type: GPSDEVICE.ADD_GPS_DEVICE_SUCCESS, data });
-            // yield put( NavigationActions.back({ key: 'GPSDevice' }));
-            // functions.showToast('GPS Device added successfully', 'success');
         if (data) {
             yield put({ type: GPSDEVICE.ADD_GPS_DEVICE_SUCCESS, data });
-            // yield put( NavigationActions.back({ key: 'GPSDevice' }));
             functions.showToast('GPS Device added successfully', 'success');
+            yield put(NavigationActions.navigate({ routeName: 'GPSDevice' }));
         } else {
             yield put({ type: GPSDEVICE.ADD_GPS_DEVICE_FAILED });
         }

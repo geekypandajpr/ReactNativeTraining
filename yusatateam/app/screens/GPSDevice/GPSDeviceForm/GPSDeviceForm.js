@@ -259,7 +259,7 @@ export class GPSDeviceForm extends React.Component {
                                                         value={this.state.deviceUDID}
                                                         keyboardType={'email-address'}
                                                         returnKeyType='next'
-                                                        onBlur={() => console.log('Hello Prem')}
+                                                        // onBlur={() => console.log('Hello Prem')}
                                                         onChangeText={(text) => this.setState({ deviceUDID: text })}
                                                     />
                                                     {/* <Icon name='check' type='Feather' style={{ fontSize: 24, color: 'green' }} /> */}
