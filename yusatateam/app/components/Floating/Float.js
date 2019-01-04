@@ -1,23 +1,41 @@
 import React from 'react';
 import { Item, Input, Label, View, } from 'native-base';
 import { Text } from 'react-native';
-import EStyleSheet, { create } from 'react-native-extended-stylesheet';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { AppLoading } from 'expo';
 
 export default class Float extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isLoading: true,
+        }
+    }
+
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+        })
+        this.setState({ isLoading: false });
+    }
+
     render() {
         return (
+            this.state.isLoading === true ? <AppLoading /> :
             <View style={{ width: '100%' }}>
                 <Item floatingLabel>
                     {/* <Icon name={this.props.name} type={this.props.iconType} style={{color:this.props.iconColor}} /> */}
-                    <Label style={styles.label}>{this.props.placeholder}
+                    <Label style={[styles.label,{fontFamily: 'Roboto'}]}>{this.props.placeholder}
                         {this.props.isMandatory ?
-                            <Text style={styles.star}>*</Text>
+                            <Text style={[styles.star,{fontFamily: 'Roboto'}]}>*</Text>
                             : null}
                     </Label>
 
                     <Input
                         // placeholder={this.props.placeholder}
-                        style={styles.value}
+                        style={[styles.value, {fontFamily: 'Roboto'}]}
                         value={this.props.value}
                         keyboardType={this.props.keyboardType}
                         returnKeyType={this.props.returnKeyType}

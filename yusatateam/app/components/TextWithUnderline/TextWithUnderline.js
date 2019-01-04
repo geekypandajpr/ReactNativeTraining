@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { AppLoading } from 'expo';
 
 export default class UnderlineText extends React.Component {
     constructor(props) {
@@ -10,14 +11,25 @@ export default class UnderlineText extends React.Component {
             isLoading: true,
         }
     }
+
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+        })
+        this.setState({ isLoading: false });
+    }
+
     render() {
         return (
+            this.state.isLoading === true ? <AppLoading /> :
             <View style={{ flex: 1 }}>
                 {this.props.upperView ?
                     <View style={{ width: '100%', flexDirection: 'row' }}>
-                        <Text style={styles.label}>{this.props.name}</Text>
+                        <Text style={[styles.label,{fontFamily: 'Roboto'}]}>{this.props.name}</Text>
                         {this.props.isMandatory ?
-                            <Text style={styles.star}>*</Text>
+                            <Text style={[styles.star,{fontFamily: 'Roboto'}]}>*</Text>
                             : null}
                     </View>
                     : null
@@ -26,7 +38,7 @@ export default class UnderlineText extends React.Component {
                 <TouchableOpacity onPress={this.props.onpress}>
                     <View style={{ flexDirection: 'row', marginTop: 8 }}>
                         <View style={{ justifyContent: 'flex-start', flex: 1.5 }}>
-                            <Text style={styles.value}>{this.props.value}</Text>
+                            <Text style={[styles.value, {fontFamily: 'Roboto'}]}>{this.props.value}</Text>
                         </View>
 
                         <View style={{ justifyContent: 'flex-end', flex: 0.1 }}>
