@@ -147,7 +147,7 @@ export default class CreateVehicle extends React.Component {
 
                     </View>
 
-                    <View style={{flex : 2}}>
+                    <View style={{flex : 2,margin: "5%"}}>
                         <Button full info>
                             <Text>Submit</Text>
                         </Button>
