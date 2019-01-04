@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image,ScrollView} from 'react-native';
 import { Item, Input, Icon, Card, Button, Text } from 'native-base';
 import { ImagePicker, Permissions } from 'expo';
 import styles from './styles';
@@ -77,6 +77,7 @@ export default class CreateVehicle extends React.Component {
             <View style={{ flex: 1 }}>
                 <Toolbar title='Create Vehicle'
                     leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
+                    <ScrollView>
                 <Card style={{ flex: 1 }}>
                     <View style={{ flex: 5 }}>
                         <Item style={[styles.InputItem]}>
@@ -153,6 +154,7 @@ export default class CreateVehicle extends React.Component {
                     </View>
 
                 </Card>
+                </ScrollView>
                 {/* <View style={{ flex: 0.1 }}></View> */}
                 <BarCodeModal ref={this.modalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
             </View>
