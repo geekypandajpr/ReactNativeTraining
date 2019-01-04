@@ -48,6 +48,8 @@ export class GPSDeviceForm extends React.Component {
             companyList: [],
             deviceType: [],
             vehicleList: [],
+            isDeviceUdidChecking: false,
+            isDeviceUdidValid: false,
             deviceUDID: '',
             mobileNumber: '',
             balance: '',
@@ -279,6 +281,7 @@ export class GPSDeviceForm extends React.Component {
                                         <View style={styles.Width_View}>
 
                                             <View style={styles.Small_View}>
+                                                <View style={{flex:4}}>
                                                 <Item floatingLabel>
                                                     {/* <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: 'gray' }} /> */}
                                                     <Label style={{ color: 'rgba(0,0,0,0.6)', fontSize: 15 }}>Device UDID/ESN<Text style={styles.star}>*</Text></Label>
@@ -287,17 +290,24 @@ export class GPSDeviceForm extends React.Component {
                                                         value={this.state.deviceUDID}
                                                         keyboardType={'email-address'}
                                                         returnKeyType='next'
-                                                        // onBlur={() => console.log('Hello Prem')}
                                                         onChangeText={(text) => this.setState({ deviceUDID: text })}
                                                     />
-                                                    
-                                                    <Icon name='ios-arrow-round-forward' onPress={this.checkDeviceAssociation}
+                                                    {this.props.checkGPSDeviceAssocData.isValid && this.state.isDeviceUdidValid ?
+                                                        <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 20, color: 'green' }} />
+                                                        :
+                                                        <Icon name='ios-close-circle-outline' style={{ fontSize: 20, color: 'red' }}/>
+                                                    }
+                                                    {/* <Icon name='ios-arrow-round-forward' onPress={this.checkDeviceAssociation}
                                                         style={{ fontSize: 30, color: 'rgba(0,0,0,0.5)' }}
-                                                    />
-                                                    {/* <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 24, color: 'green' }} /> */}
-                                                    {/* <Icon name='ios-close-circle-outline' style={{ fontSize: 24, color: 'red' }}/> */}
-                                                    {/* <Icon name='check' type='Feather' style={{ fontSize: 24, color: 'green' }} /> */}
+                                                    /> */}
                                                 </Item>
+                                                </View>
+                                                <View style={styles.checkButtonView}>
+                                                    <Button bordered dark style={{ height: 30, borderColor: 'gray' }} 
+                                                        onPress={this.checkDeviceAssociation}>
+                                                        <Text uppercase={false} style={styles.createVehicle}>Check</Text>
+                                                    </Button>
+                                                </View>
                                             </View>
 
                                             <View style={styles.Small_View}>
@@ -311,7 +321,7 @@ export class GPSDeviceForm extends React.Component {
                                             </View>
 
                                             <View style={styles.Small_View}>
-                                                <View style={{ flex: 1 }}>
+                                                <View style={{ flex: 1.6 }}>
                                                     <UnderlineText
                                                         name="Vehicle #"
                                                         value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
@@ -321,9 +331,9 @@ export class GPSDeviceForm extends React.Component {
                                                     />
                                                 </View>
                                                 <View style={styles.createVehicleView}>
-                                                    <Button bordered dark style={{ height: 40, borderColor: 'gray' }}
+                                                    <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
                                                         onPress={this.onPressCreateVehicle}>
-                                                        <Text style={styles.createVehicle}> Create Vehicle</Text>
+                                                        <Text uppercase={false} style={styles.createVehicle}> Create Vehicle</Text>
                                                     </Button>
                                                 </View>
                                             </View>
@@ -382,7 +392,7 @@ export class GPSDeviceForm extends React.Component {
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
-                                                        isMandatory={false}
+                                                        isMandatory={true}
                                                         onChangeText={(text) => this.setState({ balance: text })}
                                                         inputStyles={{ width: '100%' }}
                                                     />
@@ -394,7 +404,7 @@ export class GPSDeviceForm extends React.Component {
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
-                                                        isMandatory={false}
+                                                        isMandatory={true}
                                                         onChangeText={(text) => this.setState({ dataBalance: text })}
                                                         inputStyles={{ width: '100%' }}
                                                     />
@@ -408,7 +418,7 @@ export class GPSDeviceForm extends React.Component {
                                                         returnKeyType={'next'}
                                                         keyboardType={'email-address'}
                                                         blurOnSubmit={false}
-                                                        isMandatory={false}
+                                                        isMandatory={true}
                                                         onChangeText={(text) => this.setState({ dataPlan: text })}
                                                         inputStyles={{ width: '100%' }}
                                                     />

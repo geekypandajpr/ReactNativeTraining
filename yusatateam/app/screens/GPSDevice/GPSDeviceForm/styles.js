@@ -27,7 +27,7 @@ export default EStyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         marginTop: 10
     },
     inner_View: {
@@ -80,8 +80,15 @@ export default EStyleSheet.create({
         alignItems: 'flex-end',
         marginBottom: 0
     },
+    checkButtonView: {
+        flex: 1.2,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end'
+    },
 
 
+    /**Styles for create vehicle */
     container: {
         flex: 1,
         // backgroundColor: '#00000090',
