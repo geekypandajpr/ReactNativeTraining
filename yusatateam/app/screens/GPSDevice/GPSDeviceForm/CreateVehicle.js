@@ -113,7 +113,7 @@ export default class CreateVehicle extends React.Component {
                         </Item>
                     </View>
 
-                    <View style={{ flex: 3, flexDirection: 'row', marginTop: "10%" }}>
+                    <View style={{ flex: 3, flexDirection: 'row' }}>
 
                         <View style={{ flex: 0.4, alignItems: 'center', justifyContent: 'center', marginTop: '1%' }}>
                             <View style={{ height: 100, width: 100, borderColor: '#000', borderWidth: 1, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
