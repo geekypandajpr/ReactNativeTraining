@@ -79,5 +79,34 @@ export default EStyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'flex-end',
         marginBottom: 0
+    },
+
+
+    container: {
+        flex: 1,
+        // backgroundColor: '#00000090',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    subContainer: {
+        height: '80%',
+        width: '100%',
+        position: 'absolute',
+        bottom: 0
+    },
+    Header_Style:
+    {
+        backgroundColor: '#0073b7'
+    },
+    Text_style: {
+        fontSize: '1.2rem',
+        color: '#fff',
+        fontWeight: '500',
+    },
+
+    InputItem : {
+        marginBottom : 10,
+        marginLeft :5,
+        marginRight :5
     }
 })
