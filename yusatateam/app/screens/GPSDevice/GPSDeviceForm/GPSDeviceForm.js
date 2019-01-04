@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, KeyboardAvoidingView } from 'react-native';
+import { View, FlatList, KeyboardAvoidingView, BackHandler } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
@@ -8,12 +8,10 @@ import moment from 'moment';
 
 import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
 import styles from './styles';
-import { globalStyles } from '../../../styles'
 import { GpsModal } from '../GpsModal/GpsModal';
 import { userActions } from '../../../redux/actions';
 import { VehicleModal } from '../VehicleModal/VehicleModal';
-import functions from '../../../common/functions'
-import colors from '../../../constants/colors';
+import functions from '../../../common/functions';
 
 const title = [
     'Company',
@@ -80,7 +78,17 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
         this.props.onFetchList();
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
     }
 
     /**Function to get selected picker value and set value to thier respective field
