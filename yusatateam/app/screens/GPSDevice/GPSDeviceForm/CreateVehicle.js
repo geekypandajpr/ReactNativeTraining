@@ -19,6 +19,7 @@ export default class CreateVehicle extends React.Component {
             vim: null,
             sim: null,
             barValueGet: new Map(),
+            imagename:''
         };
         this.modalReference = React.createRef();
         this.BarCodePage = this.BarCodePage.bind(this);
@@ -52,20 +53,29 @@ export default class CreateVehicle extends React.Component {
             allowsEditing: true,
             aspect: [4, 3],
         })
+        const str = result.uri;
+        var strArray = str.split("/");
+
         if (!result.cancelled) {
             this.setState({
-                image: result.uri
+                image: result.uri,
+                imagename: strArray[strArray.length - 1]
             })
         }
     }
+
     _takephoto = async () => {
         let pickResult = await ImagePicker.launchCameraAsync({
             allowsEditing: true,
             aspect: [4, 3],
         });
+        const str = result.uri;
+        var strArray = str.split("/");
 
         if (!pickResult.cancelled) {
-            this.setState({ image: pickResult.uri });
+            this.setState({ image: pickResult.uri ,
+            imagename: strArray[strArray.length - 1]
+            })
         }
     }
 
@@ -142,7 +152,7 @@ export default class CreateVehicle extends React.Component {
                         </View>
 
                         <View style={{ alignItems: 'center', justifyContent: 'center', flex: 0.3 }}>
-                            <Text>xyz.png</Text>
+                            <Text>{this.state.imagename}</Text>
                         </View>
 
                     </View>
