@@ -87,7 +87,7 @@ export default class DoAssociation extends React.Component {
                             </Header>
 
                             <View style={styles.inner_container}>
-                                <ScrollView>
+                                <ScrollView showsVerticalScrollIndicator={false}>
                                     <View style={styles.first_view}>
 
                                         <View style={styles.sub_view}>
