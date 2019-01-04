@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { AppLoading } from 'expo';
 
@@ -42,11 +42,11 @@ export default class UnderlineText extends React.Component {
                         </View>
 
                         <View style={{ justifyContent: 'flex-end', flex: 0.1 }}>
-                            <Ionicons name='ios-arrow-forward' size={20} color='gray' />
+                            <SimpleLineIcons name='arrow-right' size={15} color='gray' />
                         </View>
                     </View>
                 </TouchableOpacity>
-                <View style={{ borderBottomColor: '#dcdcdc', borderBottomWidth: 1, marginTop: 7, }} />
+                <View style={{ borderBottomColor: '#dcdcdc', borderBottomWidth: 1, marginTop: 5, }} />
             </View>
         );
     }
@@ -57,7 +57,7 @@ export { UnderlineText }
 const styles = EStyleSheet.create({
     label: {
         fontSize: '1rem',
-        color: 'rgba(0,0,0,0.6)'
+        color: 'gray'
     },
     star: {
         marginTop: 0,

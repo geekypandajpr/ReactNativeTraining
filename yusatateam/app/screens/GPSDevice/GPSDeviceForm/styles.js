@@ -64,7 +64,7 @@ export default EStyleSheet.create({
         fontSize: '0.8rem'
     },
     label: {
-        color: 'rgba(0,0,0,0.6)',
+        color: 'gray',
         fontSize: '0.9rem', 
     },
     star: {

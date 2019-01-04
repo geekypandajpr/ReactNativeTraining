@@ -321,7 +321,7 @@ export class GPSDeviceForm extends React.Component {
                                         </View>
 
                                         <View style={styles.Small_View}>
-                                            <View style={{ flex: 1.5 }}>
+                                            <View style={{ flex: 1.4 }}>
                                                 <UnderlineText
                                                     name="Vehicle #"
                                                     value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
@@ -353,7 +353,7 @@ export class GPSDeviceForm extends React.Component {
 
                                 <View style={[styles.Detail_View, { marginTop: 20 }]}>
                                     <View style={{ width: '94%' }}>
-                                        <Text style={[styles.simdetails,{fontFamily: 'Roboto'}]}> Sim Details </Text>
+                                        <Text style={[styles.simdetails,{fontFamily: 'Roboto'}]}>Sim Details</Text>
                                     </View>
                                 </View>
 
@@ -465,13 +465,14 @@ export class GPSDeviceForm extends React.Component {
                                         </View>
 
                                         <View style={styles.button_view}>
-                                            <View style={{ flex: 1, marginRight: 2 }}>
-                                                <Button block danger onPress={this.onCancel}>
+                                            <View style={{ flex: 1, marginRight: 1 }}>
+                                                <Button block style={{ backgroundColor: '#d9534f' }}
+                                                    onPress={this.onCancel}>
                                                     <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Cancel</Text>
                                                 </Button>
                                             </View>
-                                            <View style={{ flex: 1, marginLeft: 2 }}>
-                                                <Button block style={{ backgroundColor: colors.HEADER_COLOR }}
+                                            <View style={{ flex: 1, marginLeft: 1 }}>
+                                                <Button block style={{ backgroundColor: '#5cb85c' }}
                                                     onPress={this.onAddGPSDevice}>
                                                     <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
                                                 </Button>
