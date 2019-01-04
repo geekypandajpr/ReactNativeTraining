@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image,ScrollView} from 'react-native';
+import { View, Image, ScrollView } from 'react-native';
 import { Item, Input, Icon, Card, Button, Text } from 'native-base';
 import { ImagePicker, Permissions } from 'expo';
 import styles from './styles';
@@ -8,7 +8,7 @@ import { BarCodeModal } from './BarCodeModal';
 import { userActions } from '../../../redux/actions';
 import { connect } from 'react-redux';
 
-export  class CreateVehicle extends React.Component {
+export class CreateVehicle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +21,7 @@ export  class CreateVehicle extends React.Component {
             vim: null,
             sim: null,
             barValueGet: new Map(),
-            imagename:''
+            imagename: ''
         };
         this.modalReference = React.createRef();
         this.BarCodePage = this.BarCodePage.bind(this);
@@ -71,25 +71,24 @@ export  class CreateVehicle extends React.Component {
             allowsEditing: true,
             aspect: [4, 3],
         });
-        const str = result.uri;
+        const str = pickResult.uri;
         var strArray = str.split("/");
 
         if (!pickResult.cancelled) {
-            this.setState({ image: pickResult.uri ,
-            imagename: strArray[strArray.length - 1]
+            this.setState({
+                image: pickResult.uri,
+                imagename: strArray[strArray.length - 1]
             })
         }
     }
 
-    componentWillReceiveProps(nextProps)
-    {
+    componentWillReceiveProps(nextProps) {
         if (this.props.Addvehicles !== nextProps.Addvehicles) {
             this.setState({ createVehicle: nextProps.Addvehicles.data })
         }
     }
 
-    submitRequest()
-    {
+    submitRequest() {
         alert("hello");
         // const item = {
         //     "vehicleNumber": "678945",
@@ -109,84 +108,84 @@ export  class CreateVehicle extends React.Component {
             <View style={{ flex: 1 }}>
                 <Toolbar title='Create Vehicle'
                     leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
-                    <ScrollView>
-                <Card style={{ flex: 1 }}>
-                    <View style={{ flex: 5 }}>
-                        <Item style={[styles.InputItem]}>
-                            <Input placeholder='Vehicle number' />
-                            {/* <Icon name='barcode' /> */}
-                        </Item>
-                        <Item style={styles.InputItem}>
-                            <Input placeholder='Odometer Reading' />
-                            {/* <Icon name='barcode' /> */}
-                        </Item>
-                        <Item style={styles.InputItem}>
-                            <Input placeholder='Device Id'
-                                value={this.state.deviceId} />
-                            <Icon name='barcode' onPress={() => this.BarCodePage("Device")} />
-                        </Item>
-                        <Item style={styles.InputItem}>
-                            <Input placeholder='Department Id' />
-                            {/* <Icon name='barcode' /> */}
-                        </Item>
-                        <Item style={styles.InputItem}>
-                            <Input placeholder='VehicleType Id' />
-                            {/* <Icon name='barcode' /> */}
-                        </Item>
-                        <Item style={styles.InputItem}>
-                            <Input placeholder='Sim number'
-                                value={this.state.sim} />
-                            <Icon name='barcode' onPress={() => this.BarCodePage("SIM")} />
-                        </Item>
-                        <Item style={styles.InputItem}>
-                            <Input placeholder='VIN'
-                                value={this.state.vim} />
-                            <Icon name='barcode' onPress={() => this.BarCodePage("VIN")} />
-                        </Item>
-                    </View>
-
-                    <View style={{ flex: 3, flexDirection: 'row' }}>
-
-                        <View style={{ flex: 0.4, alignItems: 'center', justifyContent: 'center', marginTop: '1%' }}>
-                            <View style={{ height: 100, width: 100, borderColor: '#000', borderWidth: 1, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
-
-                                <Image source={{ uri: image }} resizeMode='cover'
-                                    style={{ alignItems: 'center', justifyContent: 'center', height: 100, width: 100, borderRadius: 50 }} />
-                            </View>
+                <ScrollView>
+                    <Card style={{ flex: 1 }}>
+                        <View style={{ flex: 5 }}>
+                            <Item style={[styles.InputItem]}>
+                                <Input placeholder='Vehicle number' />
+                                {/* <Icon name='barcode' /> */}
+                            </Item>
+                            <Item style={styles.InputItem}>
+                                <Input placeholder='Odometer Reading' />
+                                {/* <Icon name='barcode' /> */}
+                            </Item>
+                            <Item style={styles.InputItem}>
+                                <Input placeholder='Device Id'
+                                    value={this.state.deviceId} />
+                                <Icon name='barcode' onPress={() => this.BarCodePage("Device")} />
+                            </Item>
+                            <Item style={styles.InputItem}>
+                                <Input placeholder='Department Id' />
+                                {/* <Icon name='barcode' /> */}
+                            </Item>
+                            <Item style={styles.InputItem}>
+                                <Input placeholder='VehicleType Id' />
+                                {/* <Icon name='barcode' /> */}
+                            </Item>
+                            <Item style={styles.InputItem}>
+                                <Input placeholder='Sim number'
+                                    value={this.state.sim} />
+                                <Icon name='barcode' onPress={() => this.BarCodePage("SIM")} />
+                            </Item>
+                            <Item style={styles.InputItem}>
+                                <Input placeholder='VIN'
+                                    value={this.state.vim} />
+                                <Icon name='barcode' onPress={() => this.BarCodePage("VIN")} />
+                            </Item>
                         </View>
 
-                        <View style={{ flex: 0.6, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '1%' }}>
-                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
-                                    onPress={this._takephoto}>
-                                    <Text style={styles.createVehicle}>Capture Image</Text>
-                                </Button>
+                        <View style={{ flex: 3, flexDirection: 'row' }}>
+
+                            <View style={{ flex: 0.4, alignItems: 'center', justifyContent: 'center', marginTop: '1%' }}>
+                                <View style={{ height: 100, width: 100, borderColor: '#000', borderWidth: 1, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
+
+                                    <Image source={{ uri: image }} resizeMode='cover'
+                                        style={{ alignItems: 'center', justifyContent: 'center', height: 100, width: 100, borderRadius: 50 }} />
+                                </View>
                             </View>
-                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                <Text>OR</Text>
+
+                            <View style={{ flex: 0.6, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '1%' }}>
+                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                    <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
+                                        onPress={this._takephoto}>
+                                        <Text style={styles.createVehicle}>Capture Image</Text>
+                                    </Button>
+                                </View>
+                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                    <Text>OR</Text>
+                                </View>
+                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                    <Button bordered dark style={{ height: 35, borderColor: 'gray', }}
+                                        onPress={this._pickImage}>
+                                        <Text style={styles.createVehicle}>Upload Image</Text>
+                                    </Button>
+                                </View>
                             </View>
-                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                <Button bordered dark style={{ height: 35, borderColor: 'gray', }}
-                                    onPress={this._pickImage}>
-                                    <Text style={styles.createVehicle}>Upload Image</Text>
-                                </Button>
+
+                            <View style={{ alignItems: 'center', justifyContent: 'center', flex: 0.3 }}>
+                                <Text>{this.state.imagename}</Text>
                             </View>
+
                         </View>
 
-                        <View style={{ alignItems: 'center', justifyContent: 'center', flex: 0.3 }}>
-                            <Text>{this.state.imagename}</Text>
+                        <View style={{ flex: 2, margin: "5%" }}>
+                            <Button full info
+                                onpress={this.submitRequest}>
+                                <Text>Submit</Text>
+                            </Button>
                         </View>
 
-                    </View>
-
-                    <View style={{flex : 2,margin: "5%"}}>
-                        <Button full info
-                            onpress={this.submitRequest}>
-                            <Text>Submit</Text>
-                        </Button>
-                    </View>
-
-                </Card>
+                    </Card>
                 </ScrollView>
                 {/* <View style={{ flex: 0.1 }}></View> */}
                 <BarCodeModal ref={this.modalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
