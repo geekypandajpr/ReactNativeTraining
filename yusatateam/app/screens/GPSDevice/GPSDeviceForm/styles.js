@@ -121,7 +121,7 @@ export default EStyleSheet.create({
     },
 
     InputItem : {
-        marginBottom : 10,
+        // marginBottom : 10,
         marginLeft :5,
         marginRight :5
     }
