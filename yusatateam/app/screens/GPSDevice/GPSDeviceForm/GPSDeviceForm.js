@@ -304,7 +304,7 @@ export class GPSDeviceForm extends React.Component {
                                                     value={this.state.deviceUDID}
                                                     keyboardType={'email-address'}
                                                     returnKeyType='next'
-                                                    onChangeText={(text) => this.setState({ deviceUDID: text })}
+                                                    onChangeText={(text) => this.setState({ deviceUDID: text, isDeviceChecked: false, isDeviceUdidValid: false })}
                                                 />
                                                 {this.state.isDeviceUdidValid ?
                                                     <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 20, color: 'green' }} />
