@@ -1,14 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import {
-    Button,
-    Header,
-    Left,
-    Body,
-    Right,
-    Icon,
-    Title
-} from 'native-base';
+import { View, Text } from 'react-native';
+import { Button, Header, Left, Body, Right, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import styles from './Styles';
 import { Statusbar } from '../../components';
@@ -41,9 +33,9 @@ export default class Toolbar extends React.Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={[styles.title,{fontFamily: 'Roboto'}]}>
+                        <Text style={[styles.title,{fontFamily: 'Roboto'}]}>
                             {this.props.title}
-                        </Title>
+                        </Text>
                     </Body>
                     <Right>
                         <Button transparent onPress={this.props.onCalenderPress}>

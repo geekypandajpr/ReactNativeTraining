@@ -48,7 +48,7 @@ export class GPSDeviceForm extends React.Component {
             companyList: [],
             deviceType: [],
             vehicleList: [],
-            isDeviceUdidChecking: false,
+            isDeviceChecked: false,
             isDeviceUdidValid: false,
             deviceUDID: '',
             mobileNumber: '',
@@ -180,6 +180,12 @@ export class GPSDeviceForm extends React.Component {
             }
         }
 
+        /**Based on Device UDID/ESN validation, update "isDeviceUdidValid" state variable*/
+        if(this.props.checkGPSDeviceAssocData !== nextProps.checkGPSDeviceAssocData) {
+            if(this.state.isDeviceChecked)
+                this.setState({ isDeviceUdidValid: nextProps.checkGPSDeviceAssocData.isValid});
+        }
+
         if (this.props.Addvehicles !== nextProps.Addvehicles) {
             this.setState({ createVehicle: nextProps.Addvehicles.data })
         }
@@ -196,9 +202,6 @@ export class GPSDeviceForm extends React.Component {
     }
 
     /**Function to association GPS Device with Vehicle
-     * @param deviceUdid - Device UDID/ESN
-     * @param countryID - Country ISD code
-     * @param deviceTypeId - GPS Devie Type Id
      */
     onAddGPSDevice() {
         if (this.checkRequiredFields()) {
@@ -226,13 +229,20 @@ export class GPSDeviceForm extends React.Component {
 
     /**Function to validate mandatory fields for Add GPS Device API*/
     checkRequiredFields() {
-        if (this.state.deviceUDID && this.state.dropdowns.get(VEHICLE_KEY)[1] && this.state.dropdowns.get(DEVICETYPE_KEY)[1]
-            && this.state.dropdowns.get(ISD_KEY)[1] && this.state.mobileNumber !== ''
-            && this.state.balance !== '' && this.state.dataBalance !== '' && this.state.dataPlan !== '' &&
-            this.state.carrier !== '' && this.state.dataRenewal !== '') {
+        if (this.state.isDeviceUdidValid
+            && this.state.deviceUDID !==''
+            && this.state.dropdowns.get(VEHICLE_KEY)[1]
+            && this.state.dropdowns.get(DEVICETYPE_KEY)[1]
+            && this.state.dropdowns.get(ISD_KEY)[1]
+            && this.state.mobileNumber !== ''
+            && this.state.balance !== ''
+            && this.state.dataBalance !== ''
+            && this.state.dataPlan !== ''
+            && this.state.carrier !== ''
+            && this.state.dataRenewal !== '') {
             return true
         }
-        return true;
+        return false;
     }
 
     onPressCreateVehicle() {
@@ -250,6 +260,7 @@ export class GPSDeviceForm extends React.Component {
         if(this.state.deviceUDID === '') {
             functions.showToast('Please fill device UDID', 'warning');
         } else {
+            this.setState({ isDeviceChecked: true });
             this.props.checkDeviceAssociation(this.state.deviceUDID);
         }
     }
@@ -295,7 +306,7 @@ export class GPSDeviceForm extends React.Component {
                                                     returnKeyType='next'
                                                     onChangeText={(text) => this.setState({ deviceUDID: text })}
                                                 />
-                                                {this.props.checkGPSDeviceAssocData.isValid && this.state.isDeviceUdidValid ?
+                                                {this.state.isDeviceUdidValid ?
                                                     <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 20, color: 'green' }} />
                                                     :
                                                     <Icon name='ios-close-circle-outline' style={{ fontSize: 20, color: 'red' }}/>
