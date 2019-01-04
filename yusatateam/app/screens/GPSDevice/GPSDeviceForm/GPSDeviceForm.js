@@ -65,6 +65,7 @@ export class GPSDeviceForm extends React.Component {
         this.onAddGPSDevice = this.onAddGPSDevice.bind(this);
         this.onPressCreateVehicle = this.onPressCreateVehicle.bind(this);
         this.onSubmitVehicleDetails = this.onSubmitVehicleDetails.bind(this);
+        this.checkDeviceAssociation = this.checkDeviceAssociation.bind(this);
     };
 
     async componentWillMount() {
@@ -202,7 +203,7 @@ export class GPSDeviceForm extends React.Component {
             // alert(JSON.stringify(item));
             this.props.addGPSDevice(item);
         } else {
-            functions.showToast('Please fill all required fields', 'danger');
+            functions.showToast('Please fill all required fields', 'warning');
         }
 
     }
@@ -225,6 +226,17 @@ export class GPSDeviceForm extends React.Component {
         this.props.oncreateVehicle(value);
     }
 
+    /**This function will check that whether GPS device is associated with any vehicle or not
+     * @param DeviceUDID
+     */
+    checkDeviceAssociation() {
+        if(this.state.deviceUDID === '') {
+            functions.showToast('Please fill device UDID', 'warning');
+        } else {
+            this.props.checkDeviceAssociation(this.state.deviceUDID);
+        }
+    }
+
     render() {
         const { goBack } = this.props.navigation;
         return (
@@ -236,6 +248,7 @@ export class GPSDeviceForm extends React.Component {
                     <Activityindication visible={this.props.addGPSDeviceResp.isLoading} />
                     <Activityindication visible={this.props.vehicleListDatas.isLoading} />
                     <Activityindication visible={this.props.Addvehicles.isLoading} />
+                    <Activityindication visible={this.props.checkGPSDeviceAssocData.isLoading} />
 
                     <FlatList
                         showsVerticalScrollIndicator={false}
@@ -262,8 +275,13 @@ export class GPSDeviceForm extends React.Component {
                                                         // onBlur={() => console.log('Hello Prem')}
                                                         onChangeText={(text) => this.setState({ deviceUDID: text })}
                                                     />
+                                                    
+                                                    <Icon name='ios-arrow-round-forward' onPress={this.checkDeviceAssociation}
+                                                        style={{ fontSize: 30, color: 'rgba(0,0,0,0.5)' }}
+                                                    />
+                                                    {/* <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 24, color: 'green' }} /> */}
+                                                    {/* <Icon name='ios-close-circle-outline' style={{ fontSize: 24, color: 'red' }}/> */}
                                                     {/* <Icon name='check' type='Feather' style={{ fontSize: 24, color: 'green' }} /> */}
-
                                                 </Item>
                                             </View>
 
@@ -460,7 +478,7 @@ function mapStateToProps(state) {
         vehicleTypeDatas: state.createVehicleTypeData,
         Addvehicles: state.createVehicleData,
         vehicleListDatas: state.vehicleListData,
-        
+        checkGPSDeviceAssocData: state.checkGPSDeviceAssocData
     }
 }
 
@@ -469,7 +487,8 @@ function mapDispatchToProps(dispatch) {
         addGPSDevice: (gpsdevice) => dispatch(userActions.addGPSDeviceAssociation(gpsdevice)),
         onFetchList: () => dispatch(userActions.gpsdeviceRequest()),
         onCreateVehicleType: () => dispatch(userActions.createVehicleType()),
-        oncreateVehicle: (value) => dispatch(userActions.createVehicle(value))
+        oncreateVehicle: (value) => dispatch(userActions.createVehicle(value)),
+        checkDeviceAssociation: (deviceUDID) => dispatch(userActions.checkGPSDeviceAssociation(deviceUDID))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)

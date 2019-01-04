@@ -31,7 +31,7 @@ const rootReducers = combineReducers({
     addGPSDeviceData: addGPSDeviceReducer,
     searchList: searchCriteriaReducer,
     createVehicleTypeData: createVehicleTypeReducer,
-    checkGPSDeviceData: checkDeviceAssociationReducer,
+    checkGPSDeviceAssocData: checkDeviceAssociationReducer,
     createVehicleData: createVehicleReducer,
     vehicleListData : vehicleListReducer,
 
