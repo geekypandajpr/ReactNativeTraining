@@ -5,8 +5,10 @@ import { ImagePicker, Permissions } from 'expo';
 import styles from './styles';
 import { Toolbar } from '../../../components';
 import { BarCodeModal } from './BarCodeModal';
+import { userActions } from '../../../redux/actions';
+import { connect } from 'react-redux';
 
-export default class CreateVehicle extends React.Component {
+export  class CreateVehicle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -77,6 +79,26 @@ export default class CreateVehicle extends React.Component {
             imagename: strArray[strArray.length - 1]
             })
         }
+    }
+
+    componentWillReceiveProps(nextProps)
+    {
+        if (this.props.Addvehicles !== nextProps.Addvehicles) {
+            this.setState({ createVehicle: nextProps.Addvehicles.data })
+        }
+    }
+
+    submitRequest()
+    {
+        alert("hello");
+        // const item = {
+        //     "vehicleNumber": "678945",
+        //     "odometerReading": "1",
+        //     "vehicleVin": "23456",
+        //     "departmentId": "56789",
+        //     "vehicleTypeId": "Bus",
+        // }
+        // this.props.oncreateVehicle(item);
     }
 
     render() {
@@ -158,7 +180,8 @@ export default class CreateVehicle extends React.Component {
                     </View>
 
                     <View style={{flex : 2,margin: "5%"}}>
-                        <Button full info>
+                        <Button full info
+                            onpress={this.submitRequest}>
                             <Text>Submit</Text>
                         </Button>
                     </View>
@@ -172,6 +195,16 @@ export default class CreateVehicle extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        Addvehicles: state.createVehicleData,
+    }
+}
 
-export { CreateVehicle }
+function mapDispatchToProps(dispatch) {
+    return {
+        oncreateVehicle: (value) => dispatch(userActions.createVehicle(value)),
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CreateVehicle)
 
