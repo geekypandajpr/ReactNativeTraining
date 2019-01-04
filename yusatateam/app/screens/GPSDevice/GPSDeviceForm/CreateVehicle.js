@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import { Item, Input, Icon, Card, Button, Text } from 'native-base';
-import { ImagePicker,Permissions } from 'expo';
+import { ImagePicker, Permissions } from 'expo';
 import styles from './styles';
 import { Toolbar } from '../../../components';
 import { BarCodeModal } from './BarCodeModal';
@@ -114,8 +114,9 @@ export default class CreateVehicle extends React.Component {
 
                     <View style={{ flex: 2, flexDirection: 'row', marginTop: "10%" }}>
 
-                        <View style={{ flex: 0.3, alignItems: 'center', justifyContent: 'center', marginTop: '1%' }}>
-                            <View style={{ height: 90, width: 90, borderColor: '#000', borderWidth: 1, borderRadius: 45, alignItems: 'center', justifyContent: 'center' }}>
+                        <View style={{ flex: 0.4, alignItems: 'center', justifyContent: 'center', marginTop: '1%' }}>
+                            <View style={{ height: 100, width: 100, borderColor: '#000', borderWidth: 1, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
+
                                 <Image source={{ uri: image }} resizeMode='cover'
                                     style={{ alignItems: 'center', justifyContent: 'center', height: 100, width: 100, borderRadius: 50 }} />
                             </View>
