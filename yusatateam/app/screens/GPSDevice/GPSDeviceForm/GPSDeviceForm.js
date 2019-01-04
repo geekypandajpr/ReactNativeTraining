@@ -81,6 +81,10 @@ export class GPSDeviceForm extends React.Component {
         this.props.onFetchList();
     }
 
+    /**Function to get selected picker value and set value to thier respective field
+     * @param item - contains selected value in the form of object.
+     * Object: { "label": "anyvalue", "value": "anyvalue" }
+    */
     OnValueSelect(item) {
         /**Set selected dropdown value */
         const dropdowns = new Map(this.state.dropdowns);
@@ -179,11 +183,21 @@ export class GPSDeviceForm extends React.Component {
         }
     }
 
+    /**This function opens the picker
+     * @param list - array of data to be rendered
+     * @param true - value to set modal visible
+     * @param keys - variable to identify which picker is currently opened
+     */
     openPicker(keys, list, title) {
         this.flag = keys;
         this.modalRef.current.setModalVisible(true, title, list);
     }
 
+    /**Function to association GPS Device with Vehicle
+     * @param deviceUdid - Device UDID/ESN
+     * @param countryID - Country ISD code
+     * @param deviceTypeId - GPS Devie Type Id
+     */
     onAddGPSDevice() {
         if (this.checkRequiredFields()) {
             const item = {
@@ -208,6 +222,7 @@ export class GPSDeviceForm extends React.Component {
 
     }
 
+    /**Function to validate mandatory fields for Add GPS Device API*/
     checkRequiredFields() {
         if (this.state.deviceUDID && this.state.dropdowns.get(VEHICLE_KEY)[1] && this.state.dropdowns.get(DEVICETYPE_KEY)[1]
             && this.state.dropdowns.get(ISD_KEY)[1] && this.state.mobileNumber !== ''
