@@ -56,8 +56,8 @@ export default class VehicleModal extends React.Component {
                 "vehicleNumber": this.state.vehicleNumber,
                 "odometerReading": this.state.Odometer,
                 "vehicleVin": this.state.vin,
-                "departmentId": "2296001",
-                "vehicleTypeId": "640679",
+                "departmentId": this.state.departmentId,
+                "vehicleTypeId": this.state.vehicleTypeId,
             }
 
             this.props.onsubmitVehicleDetails(item);
