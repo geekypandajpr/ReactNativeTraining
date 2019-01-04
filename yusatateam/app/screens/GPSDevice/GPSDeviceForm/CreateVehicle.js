@@ -4,6 +4,7 @@ import { Item, Input, Icon, Card, Button, Text} from 'native-base';
 import { ImagePicker } from 'expo';
 import styles from './styles';
 import { Toolbar } from '../../../components';
+import {BarCodeModal} from './BarCodeModal';
 
 export default class CreateVehicle extends React.Component {
     constructor(props) {
@@ -11,9 +12,34 @@ export default class CreateVehicle extends React.Component {
         this.state = {
             data: null,
             searchValue: '',
-            image: null
+            image: null,
+            deviceId : null,
+            vim : null,
+            sim :null,
+            barValueGet : new Map(),
         };
+        this.modalReference = React.createRef();
+        this.BarCodePage = this.BarCodePage.bind(this);
     }
+
+    barCodeValue(value) {
+        
+        if(value.get("Device"))
+        {
+             this.setState({deviceId : value.get("Device") })
+        }
+        if(value.get("VIN"))
+        {
+             this.setState({vim : value.get("VIN") })
+        }
+        if(value.get("SIM"))
+        {
+             this.setState({sim : value.get("SIM") })
+        }
+     }
+     BarCodePage(data) {
+         this.modalReference.current.setModalVisible(true,data);
+     }
 
     _pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -46,9 +72,10 @@ export default class CreateVehicle extends React.Component {
                             {/* <Icon name='barcode' /> */}
                         </Item>
                         <Item style={styles.InputItem}>
-                            <Input placeholder='Device Id' />
-                            <Icon name='barcode' />
-                        </Item>
+                                <Input placeholder='Device Id'
+                                value={this.state.deviceId}/>
+                                <Icon name='barcode'  onPress={() => this.BarCodePage("Device")}/>
+                            </Item>
                         <Item style={styles.InputItem}>
                             <Input placeholder='Department Id' />
                             {/* <Icon name='barcode' /> */}
@@ -58,13 +85,15 @@ export default class CreateVehicle extends React.Component {
                             {/* <Icon name='barcode' /> */}
                         </Item>
                         <Item style={styles.InputItem}>
-                            <Input placeholder='Sim number' />
-                            <Icon name='barcode' />
-                        </Item>
-                        <Item style={styles.InputItem}>
-                            <Input placeholder='VIN' />
-                            <Icon name='barcode' />
-                        </Item>
+                                <Input placeholder='Sim number'
+                                value={this.state.sim}/>
+                                <Icon name='barcode' onPress={() => this.BarCodePage("SIM")} />
+                            </Item>
+                            <Item style={styles.InputItem}>
+                                <Input placeholder='VIN'
+                                value={this.state.vim}/>
+                                <Icon name='barcode' onPress={() => this.BarCodePage("VIN")} />
+                            </Item>
                     </View>
 
                     <View style={{ flex: 2, flexDirection: 'row', marginTop: "10%" }}>
@@ -108,7 +137,7 @@ export default class CreateVehicle extends React.Component {
 
                 </Card>
                 <View style={{ flex: 0.1 }}></View>
-
+                <BarCodeModal ref={this.modalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
             </View>
         );
     }
