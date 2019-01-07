@@ -7,6 +7,7 @@ import { Toolbar, Float, UnderlineText } from '../../../components';
 import { BarCodeModal } from './BarCodeModal';
 import { userActions } from '../../../redux/actions';
 import { connect } from 'react-redux';
+import {GpsModal} from '../GpsModal/GpsModal';
 
 export class CreateVehicle extends React.Component {
     constructor(props) {
@@ -19,14 +20,18 @@ export class CreateVehicle extends React.Component {
             hasCameraPermission: null,
             cameraperm: null,
             deviceId: null,
-            vin: null,
+            vim: null,
             sim: null,
             barValueGet: new Map(),
             imagename: '',
-            Base:''
+            Base: '',
+            list: [],
+            title:'Vehicle Type'
         };
         this.modalReference = React.createRef();
         this.BarCodePage = this.BarCodePage.bind(this);
+        this.openList = this.openList.bind(this);
+        this.modalRef = React.createRef();
     }
 
     async componentWillMount() {
@@ -39,6 +44,11 @@ export class CreateVehicle extends React.Component {
     }
 
     async componentDidMount() {
+        this.allowPermission();
+        this.props.oncreateVehicleType();
+    }
+
+    allowPermission=async()=>{
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
         this.setState({ cameraperm: status === 'granted' });
         const { cstatus } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -51,7 +61,7 @@ export class CreateVehicle extends React.Component {
             this.setState({ deviceId: value.get("Device") })
         }
         if (value.get("VIN")) {
-            this.setState({ vin: value.get("VIN") })
+            this.setState({ vim: value.get("VIN") })
         }
         if (value.get("SIM")) {
             this.setState({ sim: value.get("SIM") })
@@ -65,7 +75,7 @@ export class CreateVehicle extends React.Component {
         let result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
             //aspect: [4, 3],
-            base64:true,
+            base64: true,
         })
         const str = result.uri;
         var strArray = str.split("/");
@@ -74,7 +84,7 @@ export class CreateVehicle extends React.Component {
             this.setState({
                 image: result.uri,
                 imagename: strArray[strArray.length - 1],
-                Base:result.base64
+                Base: result.base64
             })
         }
     }
@@ -82,8 +92,8 @@ export class CreateVehicle extends React.Component {
     _takephoto = async () => {
         let pickResult = await ImagePicker.launchCameraAsync({
             allowsEditing: true,
-            base64:true,
-            exif:true
+            base64: true,
+            exif: true
         });
         const str = pickResult.uri;
         var strArray = str.split("/");
@@ -92,7 +102,7 @@ export class CreateVehicle extends React.Component {
             this.setState({
                 image: pickResult.uri,
                 imagename: strArray[strArray.length - 1],
-                Base:pickResult.base64,
+                Base: pickResult.base64,
             })
         }
     }
@@ -101,6 +111,27 @@ export class CreateVehicle extends React.Component {
         if (this.props.Addvehicles !== nextProps.Addvehicles) {
             this.setState({ createVehicle: nextProps.Addvehicles.data })
         }
+        if (this.props.VehicleTypeData !== nextProps.VehicleTypeData) {
+            this.setState({ list: nextProps.VehicleTypeData.data })
+        }
+
+        if (this.props.VehicleTypeData !== nextProps.VehicleTypeData) {
+            const vehicleArray = [];
+            if (nextProps.VehicleTypeData.results) {
+                const vehicletype = nextProps.VehicleTypeData.results;
+                for (var i = 0; i < vehicletype.length; i++) {
+                    var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
+                    vehicleArray.push(obj);
+                }
+            }
+            this.setState({
+                list: vehicleArray,
+            });
+        }
+    }
+
+    openList() {
+        this.modalRef.current.setModalVisible(true,title,list)
     }
 
     submitRequest() {
@@ -121,123 +152,123 @@ export class CreateVehicle extends React.Component {
         const uri = "https://facebook.github.io/react-native/docs/assets/favicon.png";
         return (
             this.state.isLoading === true ? <AppLoading /> :
-            <View style={{ flex: 1 }}>
-                <Toolbar title='Create Vehicle'
-                    leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
-                <ScrollView>
-                    <View style={{backgroundColor: '#fff', alignItems: 'center'}}>
-                        <View style={{width: '92%', marginTop: 10}}>
-                            <Float
-                                placeholder='Vehicle #'
-                                // value={this.state.balance}
-                                returnKeyType={'next'}
-                                keyboardType={'numeric'}
-                                blurOnSubmit={false}
-                                isMandatory={true}
-                                // onChangeText={(text) => this.setState({ balance: text })}
-                                inputStyles={{ width: '100%' }}
-                            />
-                        </View>
+                <View style={{ flex: 1 }}>
+                    <Toolbar title='Create Vehicle'
+                        leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
+                    <ScrollView>
+                        <View style={{ backgroundColor: '#fff', alignItems: 'center' }}>
+                            <View style={{ width: '92%', marginTop: 10 }}>
+                                <Float
+                                    placeholder='Vehicle #'
+                                    // value={this.state.balance}
+                                    returnKeyType={'next'}
+                                    keyboardType={'numeric'}
+                                    blurOnSubmit={false}
+                                    isMandatory={true}
+                                    // onChangeText={(text) => this.setState({ balance: text })}
+                                    inputStyles={{ width: '100%' }}
+                                />
+                            </View>
 
-                        <View style={{width: '92%', marginTop: 10}}>
-                            <Float
-                                placeholder='Odometer Reading'
-                                // value={this.state.balance}
-                                returnKeyType={'next'}
-                                keyboardType={'numeric'}
-                                blurOnSubmit={false}
-                                isMandatory={true}
-                                // onChangeText={(text) => this.setState({ balance: text })}
-                                inputStyles={{ width: '100%' }}
-                            />
-                        </View>
+                            <View style={{ width: '92%', marginTop: 10 }}>
+                                <Float
+                                    placeholder='Odometer Reading'
+                                    // value={this.state.balance}
+                                    returnKeyType={'next'}
+                                    keyboardType={'numeric'}
+                                    blurOnSubmit={false}
+                                    isMandatory={true}
+                                    // onChangeText={(text) => this.setState({ balance: text })}
+                                    inputStyles={{ width: '100%' }}
+                                />
+                            </View>
 
-                        <View style={{width: '92%', marginTop: 10}}>
-                            <Float
-                                rightIcon={'md-barcode'}
-                                rightIconType='Ionicons'
-                                rightIconPress={()=>this.BarCodePage("Device")}
-                                placeholder='Device Id'
-                                value={this.state.deviceId}
-                                returnKeyType={'next'}
-                                keyboardType={'numeric'}
-                                blurOnSubmit={false}
-                                isMandatory={false}
-                                onChangeText={(text) => this.setState({ deviceId: text })}
-                                inputStyles={{ width: '100%' }}
-                            />
-                        </View>
+                            <View style={{ width: '92%', marginTop: 10 }}>
+                                <Float
+                                    rightIcon={'md-barcode'}
+                                    rightIconType='Ionicons'
+                                    rightIconPress={() => this.BarCodePage("Device")}
+                                    placeholder='Device Id'
+                                    // value={this.state.balance}
+                                    returnKeyType={'next'}
+                                    keyboardType={'numeric'}
+                                    blurOnSubmit={false}
+                                    isMandatory={false}
+                                    // onChangeText={(text) => this.setState({ balance: text })}
+                                    inputStyles={{ width: '100%' }}
+                                />
+                            </View>
 
-                        <View style={{width: '92%', marginTop: 10}}>
-                            <Float
-                                rightIcon={'md-barcode'}
-                                rightIconType='Ionicons'
-                                rightIconPress={()=>this.BarCodePage("SIM")}
-                                placeholder='Sim #'
-                                value={this.state.sim}
-                                returnKeyType={'next'}
-                                keyboardType={'numeric'}
-                                blurOnSubmit={false}
-                                isMandatory={false}
-                                onChangeText={(text) => this.setState({ sim: text })}
-                                inputStyles={{ width: '100%' }}
-                            />
-                        </View>
+                            <View style={{ width: '92%', marginTop: 10 }}>
+                                <Float
+                                    rightIcon={'md-barcode'}
+                                    rightIconType='Ionicons'
+                                    rightIconPress={() => this.BarCodePage("SIM")}
+                                    placeholder='Sim #'
+                                    // value={this.state.balance}
+                                    returnKeyType={'next'}
+                                    keyboardType={'numeric'}
+                                    blurOnSubmit={false}
+                                    isMandatory={false}
+                                    // onChangeText={(text) => this.setState({ balance: text })}
+                                    inputStyles={{ width: '100%' }}
+                                />
+                            </View>
 
-                        <View style={{width: '92%', marginTop: 10}}>
-                            <Float
-                                rightIcon={'md-barcode'}
-                                rightIconType='Ionicons'
-                                rightIconPress={()=>this.BarCodePage("VIN")}
-                                placeholder='VIN'
-                                value={this.state.vin}
-                                returnKeyType={'next'}
-                                keyboardType={'numeric'}
-                                blurOnSubmit={false}
-                                isMandatory={true}
-                                onChangeText={(text) => this.setState({ vin: text })}
-                                inputStyles={{ width: '100%' }}
-                            />
-                        </View>
+                            <View style={{ width: '92%', marginTop: 10 }}>
+                                <Float
+                                    rightIcon={'md-barcode'}
+                                    rightIconType='Ionicons'
+                                    rightIconPress={() => this.BarCodePage("VIN")}
+                                    placeholder='VIN'
+                                    // value={this.state.balance}
+                                    returnKeyType={'next'}
+                                    keyboardType={'numeric'}
+                                    blurOnSubmit={false}
+                                    isMandatory={true}
+                                    // onChangeText={(text) => this.setState({ balance: text })}
+                                    inputStyles={{ width: '100%' }}
+                                />
+                            </View>
 
-                        <View style={{width: '92%', marginTop: 15}}>
-                            <UnderlineText
-                                name='Vehicle Type'
-                                isMandatory={true}
-                                upperView={true}
-                                // value={this.state.dropdowns.get(ISD_KEY)[0]}
-                                // onpress={() => this.openPicker(ISD_KEY, this.state.countryISD, title[4])}
-                            />
-                        </View>
+                            <View style={{ width: '92%', marginTop: 15 }}>
+                                <UnderlineText
+                                    name='Vehicle Type'
+                                    isMandatory={true}
+                                    upperView={true}
+                                    value={this.state.list}
+                                    onpress={()=>{this.openList(true,this.state.title,list)}}
+                                />
+                            </View>
 
-                        <View style={{width: '92%', flexDirection: 'row', marginTop: 20, marginBottom: 20, alignItems:'center'}}>
-                            <View style={{ flex: 1.5, alignItems: 'center', justifyContent: 'center'}}>
-                                <View style={{ height: 100, width: 100, borderColor: 'gray', borderWidth: 0.8, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
-                                    <Image source={{ uri: image }} resizeMode='cover'
-                                        style={{ alignItems: 'center', justifyContent: 'center', height: 100, width: 100, borderRadius: 50, borderColor: '#efefef' }}
-                                    />
+                            <View style={{ width: '92%', flexDirection: 'row', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>
+                                <View style={{ flex: 1.5, alignItems: 'center', justifyContent: 'center' }}>
+                                    <View style={{ height: 100, width: 100, borderColor: 'gray', borderWidth: 0.8, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
+                                        <Image source={{ uri: image }} resizeMode='cover'
+                                            style={{ alignItems: 'center', justifyContent: 'center', height: 100, width: 100, borderRadius: 50, borderColor: '#efefef' }}
+                                        />
+                                    </View>
+                                </View>
+                                <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
+                                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                        <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
+                                            onPress={this._takephoto}>
+                                            <Text uppercase={false} style={[styles.createVehicle, { fontFamily: 'Roboto' }]}>Capture Image</Text>
+                                        </Button>
+                                    </View>
+                                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                        <Text style={[styles.createVehicle, { fontFamily: 'Roboto' }]}>OR</Text>
+                                    </View>
+                                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                        <Button bordered dark style={{ height: 35, borderColor: 'gray', }}
+                                            onPress={this._pickImage}>
+                                            <Text uppercase={false} style={[styles.createVehicle, { fontFamily: 'Roboto' }]}>Upload Image</Text>
+                                        </Button>
+                                    </View>
                                 </View>
                             </View>
-                            <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center'}}>
-                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                    <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
-                                        onPress={this._takephoto}>
-                                        <Text uppercase={false} style={[styles.createVehicle,{fontFamily:'Roboto'}]}>Capture Image</Text>
-                                    </Button>
-                                </View>
-                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                    <Text style={[styles.createVehicle,{fontFamily:'Roboto'}]}>OR</Text>
-                                </View>
-                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                    <Button bordered dark style={{ height: 35, borderColor: 'gray', }}
-                                        onPress={this._pickImage}>
-                                        <Text uppercase={false} style={[styles.createVehicle,{fontFamily:'Roboto'}]}>Upload Image</Text>
-                                    </Button>
-                                </View>
-                            </View>
-                        </View>
 
-                        {/* <View style={{width: '93%', flexDirection: 'row', marginBottom: 10}}>
+                            {/* <View style={{width: '93%', flexDirection: 'row', marginBottom: 10}}>
                             <View style={{ flex: 1, marginRight: 1 }}>
                                 <Button block style={{ backgroundColor: '#d9534f' }} >
                                     <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Cancel</Text>
@@ -249,18 +280,19 @@ export class CreateVehicle extends React.Component {
                                 </Button>
                             </View>
                         </View> */}
-                    </View>
-                    
-                </ScrollView>
-                <BarCodeModal ref={this.modalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
-                <Footer>
-                    <FooterTab style={{backgroundColor: '#3498DB'}}>
-                        <Button transparent>
-                            <Text style={{ color: '#fff', fontFamily: 'Roboto', fontSize: 15 }}>Submit</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
-            </View>
+                        </View>
+
+                    </ScrollView>
+                    <BarCodeModal ref={this.modalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
+                    <Footer>
+                        <FooterTab style={{ backgroundColor: '#5cb85c' }}>
+                            <Button transparent>
+                                <Text style={{ color: '#fff', fontFamily: 'Roboto', fontSize: 15 }}>Submit</Text>
+                            </Button>
+                        </FooterTab>
+                    </Footer>
+                    <GpsModal ref={this.modalRef}/>
+                </View>
         );
     }
 }
@@ -268,12 +300,14 @@ export class CreateVehicle extends React.Component {
 function mapStateToProps(state) {
     return {
         Addvehicles: state.createVehicleData,
+        VehicleTypeData: state.createVehicleTypeData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         oncreateVehicle: (value) => dispatch(userActions.createVehicle(value)),
+        oncreateVehicleType: () => dispatch(userActions.createVehicleType())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateVehicle)
