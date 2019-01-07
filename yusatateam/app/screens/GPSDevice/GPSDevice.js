@@ -141,8 +141,8 @@ export class GPSDevice extends React.Component {
 
                     <Toolbar title='GPS Devices'
                         leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='add-circle-outline' settingType='MaterialIcons'
-                        onSettingsPress={() => navigate('GPSDeviceForm', { onGoBack: () => this.updateList() })} />
+                        setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('GPSDeviceForm', { onGoBack: () => this.updateList() })} 
+                        Calender='repo-clone' calenderType='Octicons' onCalenderPress={() => navigate('QrCode')}/>
                     {
                         this.state.loading ? null : 
                         <Activityindication  visible={this.props.searchList.isLoading}/>
