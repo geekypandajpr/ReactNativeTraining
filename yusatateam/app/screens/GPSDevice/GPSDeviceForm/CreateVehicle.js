@@ -19,7 +19,7 @@ export class CreateVehicle extends React.Component {
             hasCameraPermission: null,
             cameraperm: null,
             deviceId: null,
-            vim: null,
+            vin: null,
             sim: null,
             barValueGet: new Map(),
             imagename: '',
@@ -51,7 +51,7 @@ export class CreateVehicle extends React.Component {
             this.setState({ deviceId: value.get("Device") })
         }
         if (value.get("VIN")) {
-            this.setState({ vim: value.get("VIN") })
+            this.setState({ vin: value.get("VIN") })
         }
         if (value.get("SIM")) {
             this.setState({ sim: value.get("SIM") })
@@ -158,12 +158,12 @@ export class CreateVehicle extends React.Component {
                                 rightIconType='Ionicons'
                                 rightIconPress={()=>this.BarCodePage("Device")}
                                 placeholder='Device Id'
-                                // value={this.state.balance}
+                                value={this.state.deviceId}
                                 returnKeyType={'next'}
                                 keyboardType={'numeric'}
                                 blurOnSubmit={false}
                                 isMandatory={false}
-                                // onChangeText={(text) => this.setState({ balance: text })}
+                                onChangeText={(text) => this.setState({ deviceId: text })}
                                 inputStyles={{ width: '100%' }}
                             />
                         </View>
@@ -174,12 +174,12 @@ export class CreateVehicle extends React.Component {
                                 rightIconType='Ionicons'
                                 rightIconPress={()=>this.BarCodePage("SIM")}
                                 placeholder='Sim #'
-                                // value={this.state.balance}
+                                value={this.state.sim}
                                 returnKeyType={'next'}
                                 keyboardType={'numeric'}
                                 blurOnSubmit={false}
                                 isMandatory={false}
-                                // onChangeText={(text) => this.setState({ balance: text })}
+                                onChangeText={(text) => this.setState({ sim: text })}
                                 inputStyles={{ width: '100%' }}
                             />
                         </View>
@@ -190,12 +190,12 @@ export class CreateVehicle extends React.Component {
                                 rightIconType='Ionicons'
                                 rightIconPress={()=>this.BarCodePage("VIN")}
                                 placeholder='VIN'
-                                // value={this.state.balance}
+                                value={this.state.vin}
                                 returnKeyType={'next'}
                                 keyboardType={'numeric'}
                                 blurOnSubmit={false}
                                 isMandatory={true}
-                                // onChangeText={(text) => this.setState({ balance: text })}
+                                onChangeText={(text) => this.setState({ vin: text })}
                                 inputStyles={{ width: '100%' }}
                             />
                         </View>
@@ -254,7 +254,7 @@ export class CreateVehicle extends React.Component {
                 </ScrollView>
                 <BarCodeModal ref={this.modalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
                 <Footer>
-                    <FooterTab style={{backgroundColor: '#5cb85c'}}>
+                    <FooterTab style={{backgroundColor: '#3498DB'}}>
                         <Button transparent>
                             <Text style={{ color: '#fff', fontFamily: 'Roboto', fontSize: 15 }}>Submit</Text>
                         </Button>
