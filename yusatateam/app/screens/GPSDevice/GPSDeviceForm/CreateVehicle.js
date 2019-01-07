@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Image, ScrollView } from 'react-native';
 import { Item, Input, Icon, Card, Button, Text } from 'native-base';
-import { ImagePicker, Permissions } from 'expo';
+import { ImagePicker, Permissions, AppLoading } from 'expo';
 import styles from './styles';
-import { Toolbar } from '../../../components';
+import { Toolbar, Float, UnderlineText } from '../../../components';
 import { BarCodeModal } from './BarCodeModal';
 import { userActions } from '../../../redux/actions';
 import { connect } from 'react-redux';
@@ -12,6 +12,7 @@ export class CreateVehicle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoading: true,
             data: null,
             searchValue: '',
             image: null,
@@ -26,6 +27,15 @@ export class CreateVehicle extends React.Component {
         };
         this.modalReference = React.createRef();
         this.BarCodePage = this.BarCodePage.bind(this);
+    }
+
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+        })
+        this.setState({ isLoading: false });
     }
 
     async componentDidMount() {
@@ -110,89 +120,138 @@ export class CreateVehicle extends React.Component {
         const { goBack } = this.props.navigation;
         const uri = "https://facebook.github.io/react-native/docs/assets/favicon.png";
         return (
+            this.state.isLoading === true ? <AppLoading /> :
             <View style={{ flex: 1 }}>
                 <Toolbar title='Create Vehicle'
                     leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
                 <ScrollView>
-                    <Card style={{ flex: 1 }}>
-                        <View style={{ flex: 5 }}>
-                            <Item style={[styles.InputItem]}>
-                                <Input placeholder='Vehicle number' />
-                                {/* <Icon name='barcode' /> */}
-                            </Item>
-                            <Item style={styles.InputItem}>
-                                <Input placeholder='Odometer Reading' />
-                                {/* <Icon name='barcode' /> */}
-                            </Item>
-                            <Item style={styles.InputItem}>
-                                <Input placeholder='Device Id'
-                                    value={this.state.deviceId} />
-                                <Icon name='barcode' onPress={() => this.BarCodePage("Device")} />
-                            </Item>
-                            <Item style={styles.InputItem}>
-                                <Input placeholder='Department Id' />
-                                {/* <Icon name='barcode' /> */}
-                            </Item>
-                            <Item style={styles.InputItem}>
-                                <Input placeholder='VehicleType Id' />
-                                {/* <Icon name='barcode' /> */}
-                            </Item>
-                            <Item style={styles.InputItem}>
-                                <Input placeholder='Sim number'
-                                    value={this.state.sim} />
-                                <Icon name='barcode' onPress={() => this.BarCodePage("SIM")} />
-                            </Item>
-                            <Item style={styles.InputItem}>
-                                <Input placeholder='VIN'
-                                    value={this.state.vim} />
-                                <Icon name='barcode' onPress={() => this.BarCodePage("VIN")} />
-                            </Item>
+                    <View style={{backgroundColor: '#fff', alignItems: 'center'}}>
+                        <View style={{width: '92%', marginTop: 10}}>
+                            <Float
+                                placeholder='Vehicle #'
+                                // value={this.state.balance}
+                                returnKeyType={'next'}
+                                keyboardType={'numeric'}
+                                blurOnSubmit={false}
+                                isMandatory={true}
+                                // onChangeText={(text) => this.setState({ balance: text })}
+                                inputStyles={{ width: '100%' }}
+                            />
                         </View>
 
-                        <View style={{ flex: 3, flexDirection: 'row' }}>
+                        <View style={{width: '92%', marginTop: 10}}>
+                            <Float
+                                placeholder='Odometer Reading'
+                                // value={this.state.balance}
+                                returnKeyType={'next'}
+                                keyboardType={'numeric'}
+                                blurOnSubmit={false}
+                                isMandatory={true}
+                                // onChangeText={(text) => this.setState({ balance: text })}
+                                inputStyles={{ width: '100%' }}
+                            />
+                        </View>
 
-                            <View style={{ flex: 0.4, alignItems: 'center', justifyContent: 'center', marginTop: '1%' }}>
-                                <View style={{ height: 100, width: 100, borderColor: '#000', borderWidth: 1, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
+                        <View style={{width: '92%', marginTop: 10}}>
+                            <Float
+                                rightIcon={'md-barcode'}
+                                rightIconType='Ionicons'
+                                rightIconPress={()=>this.BarCodePage("Device")}
+                                placeholder='Device Id'
+                                // value={this.state.balance}
+                                returnKeyType={'next'}
+                                keyboardType={'numeric'}
+                                blurOnSubmit={false}
+                                isMandatory={false}
+                                // onChangeText={(text) => this.setState({ balance: text })}
+                                inputStyles={{ width: '100%' }}
+                            />
+                        </View>
 
+                        <View style={{width: '92%', marginTop: 10}}>
+                            <Float
+                                rightIcon={'md-barcode'}
+                                rightIconType='Ionicons'
+                                rightIconPress={()=>this.BarCodePage("SIM")}
+                                placeholder='Sim #'
+                                // value={this.state.balance}
+                                returnKeyType={'next'}
+                                keyboardType={'numeric'}
+                                blurOnSubmit={false}
+                                isMandatory={false}
+                                // onChangeText={(text) => this.setState({ balance: text })}
+                                inputStyles={{ width: '100%' }}
+                            />
+                        </View>
+
+                        <View style={{width: '92%', marginTop: 10}}>
+                            <Float
+                                rightIcon={'md-barcode'}
+                                rightIconType='Ionicons'
+                                rightIconPress={()=>this.BarCodePage("VIN")}
+                                placeholder='VIN'
+                                // value={this.state.balance}
+                                returnKeyType={'next'}
+                                keyboardType={'numeric'}
+                                blurOnSubmit={false}
+                                isMandatory={true}
+                                // onChangeText={(text) => this.setState({ balance: text })}
+                                inputStyles={{ width: '100%' }}
+                            />
+                        </View>
+
+                        <View style={{width: '92%', marginTop: 15}}>
+                            <UnderlineText
+                                name='Vehicle Type'
+                                isMandatory={true}
+                                upperView={true}
+                                // value={this.state.dropdowns.get(ISD_KEY)[0]}
+                                // onpress={() => this.openPicker(ISD_KEY, this.state.countryISD, title[4])}
+                            />
+                        </View>
+
+                        <View style={{width: '92%', flexDirection: 'row', marginTop: 20, marginBottom: 20, alignItems:'center'}}>
+                            <View style={{ flex: 1.5, alignItems: 'center', justifyContent: 'center'}}>
+                                <View style={{ height: 100, width: 100, borderColor: 'gray', borderWidth: 0.8, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
                                     <Image source={{ uri: image }} resizeMode='cover'
-                                        style={{ alignItems: 'center', justifyContent: 'center', height: 100, width: 100, borderRadius: 50 }} />
+                                        style={{ alignItems: 'center', justifyContent: 'center', height: 100, width: 100, borderRadius: 50, borderColor: '#efefef' }}
+                                    />
                                 </View>
                             </View>
-
-                            <View style={{ flex: 0.6, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '1%' }}>
+                            <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center'}}>
                                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                                     <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
                                         onPress={this._takephoto}>
-                                        <Text style={styles.createVehicle}>Capture Image</Text>
+                                        <Text uppercase={false} style={[styles.createVehicle,{fontFamily:'Roboto'}]}>Capture Image</Text>
                                     </Button>
                                 </View>
                                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                    <Text>OR</Text>
+                                    <Text style={[styles.createVehicle,{fontFamily:'Roboto'}]}>OR</Text>
                                 </View>
                                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                                     <Button bordered dark style={{ height: 35, borderColor: 'gray', }}
                                         onPress={this._pickImage}>
-                                        <Text style={styles.createVehicle}>Upload Image</Text>
+                                        <Text uppercase={false} style={[styles.createVehicle,{fontFamily:'Roboto'}]}>Upload Image</Text>
                                     </Button>
                                 </View>
                             </View>
+                        </View>
 
-                            <View style={{ alignItems: 'center', justifyContent: 'center', flex: 0.3 }}>
-                                <Text>{this.state.imagename}</Text>
+                        <View style={{width: '93%', flexDirection: 'row', marginBottom: 10}}>
+                            <View style={{ flex: 1, marginRight: 1 }}>
+                                <Button block style={{ backgroundColor: '#d9534f' }} >
+                                    <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Cancel</Text>
+                                </Button>
                             </View>
-
+                            <View style={{ flex: 1, marginLeft: 1 }}>
+                                <Button block style={{ backgroundColor: '#5cb85c' }} >
+                                    <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
+                                </Button>
+                            </View>
                         </View>
-
-                        <View style={{ flex: 2, margin: "5%" }}>
-                            <Button full info
-                                onpress={this.submitRequest}>
-                                <Text>Submit</Text>
-                            </Button>
-                        </View>
-
-                    </Card>
+                    </View>
+                    
                 </ScrollView>
-                {/* <View style={{ flex: 0.1 }}></View> */}
                 <BarCodeModal ref={this.modalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
             </View>
         );

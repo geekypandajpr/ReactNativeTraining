@@ -1,5 +1,5 @@
 import React from 'react';
-import { Item, Input, Label, View, } from 'native-base';
+import { Item, Input, Label, View, Icon } from 'native-base';
 import { Text } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { AppLoading } from 'expo';
@@ -45,7 +45,12 @@ export default class Float extends React.Component {
                         secureTextEntry={this.props.secureTextEntry}
                         onSubmitEditing={this.props.onSubmitEditing}
                     />
+                    <Icon name={this.props.rightIcon}
+                        onPress={this.props.rightIconPress}
+                        type={this.props.rightIconType}
+                        style={{fontSize: 24, color:'gray'}} />
                 </Item>
+                
             </View>
         );
     }
