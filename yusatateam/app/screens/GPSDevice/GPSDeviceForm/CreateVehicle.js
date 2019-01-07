@@ -188,6 +188,7 @@ export class CreateVehicle extends React.Component {
 
     render() {
         console.disableYellowBox = true;
+        const { navigate } = this.props.navigation;
         let { image } = this.state;
         const { goBack } = this.props.navigation;
         return (
@@ -197,7 +198,8 @@ export class CreateVehicle extends React.Component {
                     <Activityindication visible={this.props.Addvehicles.isLoading} />
 
                     <Toolbar title='Create Vehicle'
-                        leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
+                        leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} 
+                        setting='md-barcode' settingType='Ionicons' onSettingsPress={() => navigate('QrCode')}/>
 
                     <ScrollView keyboardShouldPersistTaps="always" showsVerticalScrollIndicator={false}>
                         <View style={{ backgroundColor: '#fff', alignItems: 'center' }}>
