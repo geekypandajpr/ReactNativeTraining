@@ -21,7 +21,8 @@ export class CreateVehicle extends React.Component {
             vim: null,
             sim: null,
             barValueGet: new Map(),
-            imagename: ''
+            imagename: '',
+            Base:''
         };
         this.modalReference = React.createRef();
         this.BarCodePage = this.BarCodePage.bind(this);
@@ -53,7 +54,8 @@ export class CreateVehicle extends React.Component {
     _pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
-            aspect: [4, 3],
+            //aspect: [4, 3],
+            base64:true,
         })
         const str = result.uri;
         var strArray = str.split("/");
@@ -61,7 +63,8 @@ export class CreateVehicle extends React.Component {
         if (!result.cancelled) {
             this.setState({
                 image: result.uri,
-                imagename: strArray[strArray.length - 1]
+                imagename: strArray[strArray.length - 1],
+                Base:result.base64
             })
         }
     }
@@ -69,7 +72,8 @@ export class CreateVehicle extends React.Component {
     _takephoto = async () => {
         let pickResult = await ImagePicker.launchCameraAsync({
             allowsEditing: true,
-            aspect: [4, 3],
+            base64:true,
+            exif:true
         });
         const str = pickResult.uri;
         var strArray = str.split("/");
@@ -77,7 +81,8 @@ export class CreateVehicle extends React.Component {
         if (!pickResult.cancelled) {
             this.setState({
                 image: pickResult.uri,
-                imagename: strArray[strArray.length - 1]
+                imagename: strArray[strArray.length - 1],
+                Base:pickResult.base64,
             })
         }
     }
