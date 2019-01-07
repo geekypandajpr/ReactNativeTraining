@@ -6,6 +6,7 @@ import { BarCodeScanner, Permissions } from 'expo';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+const { width } = Dimensions.get('window');
 export default class BarCodeModal extends React.Component {
     constructor(props) {
         super(props);
@@ -60,11 +61,11 @@ export default class BarCodeModal extends React.Component {
         barMap.set(this.state.keyValue,item);
        
         this.props.getBarValue(barMap);
-        this.setModalVisible(false, '' ,[]);
+        this.setState({modalVisible: false});
     }
 
     render() {
-        const { width } = Dimensions.get('window')
+        
         const qrSize = width * 0.7;
         return (
             this.state.isLoading === true ? <AppLoading /> :

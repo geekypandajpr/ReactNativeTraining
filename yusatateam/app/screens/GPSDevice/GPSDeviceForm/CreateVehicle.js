@@ -2,11 +2,12 @@ import React from 'react';
 import { View, Image, ScrollView } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
 import { ImagePicker, Permissions, AppLoading } from 'expo';
+import { connect } from 'react-redux';
+
 import styles from './styles';
-import { Toolbar, Float, UnderlineText } from '../../../components';
+import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
 import { BarCodeModal } from './BarCodeModal';
 import { userActions } from '../../../redux/actions';
-import { connect } from 'react-redux';
 import {GpsModal} from '../GpsModal/GpsModal';
 
 export class CreateVehicle extends React.Component {
@@ -15,22 +16,34 @@ export class CreateVehicle extends React.Component {
         this.state = {
             isLoading: true,
             data: null,
-            searchValue: '',
-            image: null,
+            //Permission
             hasCameraPermission: null,
             cameraperm: null,
+            //DeviceId
             deviceId: null,
-            vim: null,
-            sim: null,
+            //VIN
+            vin: null,
+            //Sim#
+            simNumber: null,
             barValueGet: new Map(),
+            //Image
+            image: null,
             imagename: '',
             Base: '',
-            list: [],
-            title:'Vehicle Type'
+            //vehicle type variable
+            vehicleList: [],
+            vehicleTypeValue: 'Select vehicle',
+            vehicleTypeId: '',
+            //vehicle #
+            vehicleNumber: '',
+            //odometer
+            odometerReading: ''
         };
         this.modalReference = React.createRef();
         this.BarCodePage = this.BarCodePage.bind(this);
         this.openList = this.openList.bind(this);
+        this.onCreateVehicle = this.onCreateVehicle.bind(this);
+        this.checkRequiredFields = this.checkRequiredFields.bind(this);        
         this.modalRef = React.createRef();
     }
 
@@ -61,10 +74,10 @@ export class CreateVehicle extends React.Component {
             this.setState({ deviceId: value.get("Device") })
         }
         if (value.get("VIN")) {
-            this.setState({ vim: value.get("VIN") })
+            this.setState({ vin: value.get("VIN") })
         }
         if (value.get("SIM")) {
-            this.setState({ sim: value.get("SIM") })
+            this.setState({ simNumber: value.get("SIM") })
         }
     }
     BarCodePage(data) {
@@ -111,31 +124,34 @@ export class CreateVehicle extends React.Component {
         if (this.props.Addvehicles !== nextProps.Addvehicles) {
             this.setState({ createVehicle: nextProps.Addvehicles.data })
         }
-        if (this.props.VehicleTypeData !== nextProps.VehicleTypeData) {
-            this.setState({ list: nextProps.VehicleTypeData.data })
-        }
-
+        
+        /**vehicle list */
         if (this.props.VehicleTypeData !== nextProps.VehicleTypeData) {
             const vehicleArray = [];
-            if (nextProps.VehicleTypeData.results) {
-                const vehicletype = nextProps.VehicleTypeData.results;
+            if (nextProps.VehicleTypeData.data.results) {
+                const vehicletype = nextProps.VehicleTypeData.data.results;
                 for (var i = 0; i < vehicletype.length; i++) {
                     var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
                     vehicleArray.push(obj);
                 }
             }
-            this.setState({
-                list: vehicleArray,
-            });
+            this.setState({ vehicleList: vehicleArray })
         }
     }
 
     openList() {
-        this.modalRef.current.setModalVisible(true,title,list)
+        this.modalRef.current.setModalVisible(true, 'Vehicle List', this.state.vehicleList)
     }
 
-    submitRequest() {
-        alert("hello");
+    onVehicleTypeSelect = (item) => {
+        this.setState({ vehicleTypeId: item.value, vehicleTypeValue: item.label });
+    }
+
+    onCreateVehicle() {
+        if(this.checkRequiredFields()) {
+
+        }
+        // alert("hello");
         // const item = {
         //     "vehicleNumber": "678945",
         //     "odometerReading": "1",
@@ -146,26 +162,38 @@ export class CreateVehicle extends React.Component {
         // this.props.oncreateVehicle(item);
     }
 
+    checkRequiredFields() {
+        const { vehicleNumber, odometerReading, vin, vehicleTypeId } = this.state;
+        if(vehicleNumber !== ''
+            && odometerReading !=='' 
+            && vin !== ''
+            && vehicleTypeId !== '' ) {
+            
+        }
+    }
+
     render() {
         let { image } = this.state;
         const { goBack } = this.props.navigation;
-        const uri = "https://facebook.github.io/react-native/docs/assets/favicon.png";
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
+                    <Activityindication visible={this.props.VehicleTypeData.isLoading} />
+
                     <Toolbar title='Create Vehicle'
                         leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
-                    <ScrollView>
+
+                    <ScrollView keyboardShouldPersistTaps="always" showsVerticalScrollIndicator={false}>
                         <View style={{ backgroundColor: '#fff', alignItems: 'center' }}>
                             <View style={{ width: '92%', marginTop: 10 }}>
                                 <Float
                                     placeholder='Vehicle #'
-                                    // value={this.state.balance}
+                                    value={this.state.vehicleNumber}
                                     returnKeyType={'next'}
                                     keyboardType={'numeric'}
                                     blurOnSubmit={false}
                                     isMandatory={true}
-                                    // onChangeText={(text) => this.setState({ balance: text })}
+                                    onChangeText={(text) => this.setState({ vehicleNumber: text })}
                                     inputStyles={{ width: '100%' }}
                                 />
                             </View>
@@ -173,12 +201,12 @@ export class CreateVehicle extends React.Component {
                             <View style={{ width: '92%', marginTop: 10 }}>
                                 <Float
                                     placeholder='Odometer Reading'
-                                    // value={this.state.balance}
+                                    value={this.state.odometerReading}
                                     returnKeyType={'next'}
                                     keyboardType={'numeric'}
                                     blurOnSubmit={false}
                                     isMandatory={true}
-                                    // onChangeText={(text) => this.setState({ balance: text })}
+                                    onChangeText={(text) => this.setState({ odometerReading: text })}
                                     inputStyles={{ width: '100%' }}
                                 />
                             </View>
@@ -189,12 +217,12 @@ export class CreateVehicle extends React.Component {
                                     rightIconType='Ionicons'
                                     rightIconPress={() => this.BarCodePage("Device")}
                                     placeholder='Device Id'
-                                    // value={this.state.balance}
+                                    value={this.state.deviceId}
                                     returnKeyType={'next'}
                                     keyboardType={'numeric'}
                                     blurOnSubmit={false}
                                     isMandatory={false}
-                                    // onChangeText={(text) => this.setState({ balance: text })}
+                                    onChangeText={(text) => this.setState({ deviceId: text })}
                                     inputStyles={{ width: '100%' }}
                                 />
                             </View>
@@ -205,12 +233,12 @@ export class CreateVehicle extends React.Component {
                                     rightIconType='Ionicons'
                                     rightIconPress={() => this.BarCodePage("SIM")}
                                     placeholder='Sim #'
-                                    // value={this.state.balance}
+                                    value={this.state.simNumber}
                                     returnKeyType={'next'}
                                     keyboardType={'numeric'}
                                     blurOnSubmit={false}
                                     isMandatory={false}
-                                    // onChangeText={(text) => this.setState({ balance: text })}
+                                    onChangeText={(text) => this.setState({ simNumber: text })}
                                     inputStyles={{ width: '100%' }}
                                 />
                             </View>
@@ -221,12 +249,12 @@ export class CreateVehicle extends React.Component {
                                     rightIconType='Ionicons'
                                     rightIconPress={() => this.BarCodePage("VIN")}
                                     placeholder='VIN'
-                                    // value={this.state.balance}
+                                    value={this.state.vin}
                                     returnKeyType={'next'}
-                                    keyboardType={'numeric'}
+                                    keyboardType={'email-address'}
                                     blurOnSubmit={false}
                                     isMandatory={true}
-                                    // onChangeText={(text) => this.setState({ balance: text })}
+                                    onChangeText={(text) => this.setState({ vin: text })}
                                     inputStyles={{ width: '100%' }}
                                 />
                             </View>
@@ -236,8 +264,8 @@ export class CreateVehicle extends React.Component {
                                     name='Vehicle Type'
                                     isMandatory={true}
                                     upperView={true}
-                                    value={this.state.list}
-                                    onpress={()=>{this.openList(true,this.state.title,list)}}
+                                    value={this.state.vehicleTypeValue}
+                                    onpress={this.openList}
                                 />
                             </View>
 
@@ -285,13 +313,13 @@ export class CreateVehicle extends React.Component {
                     </ScrollView>
                     <BarCodeModal ref={this.modalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
                     <Footer>
-                        <FooterTab style={{ backgroundColor: '#5cb85c' }}>
-                            <Button transparent>
+                        <FooterTab style={{ backgroundColor: '#0073b7' }}>
+                            <Button transparent onPress={this.onCreateVehicle}>
                                 <Text style={{ color: '#fff', fontFamily: 'Roboto', fontSize: 15 }}>Submit</Text>
                             </Button>
                         </FooterTab>
                     </Footer>
-                    <GpsModal ref={this.modalRef}/>
+                    <GpsModal ref={this.modalRef} selectedValue={(item) => {this.onVehicleTypeSelect(item)}} />
                 </View>
         );
     }
@@ -306,7 +334,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        oncreateVehicle: (value) => dispatch(userActions.createVehicle(value)),
+        createVehicle: (value) => dispatch(userActions.createVehicle(value)),
         oncreateVehicleType: () => dispatch(userActions.createVehicleType())
     }
 }
