@@ -210,7 +210,7 @@ export  class Dashboard extends React.Component {
                                         iconColor={colors.HOMESCREEN.SCHEDULECARD_COLOR}
                                         textColor='gray'
                                         text='Schedule'
-                                        onPress={() => navigate('QrCode')}
+                                        onPress={() => navigate('Schedule')}
                                         colors={['#fff289', '#f2c059', '#bc9029']}
                                     />
                                 </View>
@@ -221,7 +221,7 @@ export  class Dashboard extends React.Component {
                                         text='Jobs'
                                         iconColor={colors.HOMESCREEN.JOBSCARD_COLOR}
                                         textColor='gray'
-                                        onPress={() => navigate('CreateVehicle')}
+                                        onPress={() => navigate('Jobs')}
                                         colors={['#8ffcde', '#5bc8ac', '#1f977d']}
                                     />
                                 </View>
