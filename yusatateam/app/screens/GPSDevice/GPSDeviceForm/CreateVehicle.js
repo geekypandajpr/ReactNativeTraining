@@ -177,6 +177,7 @@ export class CreateVehicle extends React.Component {
     }
 
     render() {
+        console.disableYellowBox = true;
         let { image } = this.state;
         const { goBack } = this.props.navigation;
         return (
