@@ -210,7 +210,7 @@ export  class Dashboard extends React.Component {
                                         iconColor={colors.HOMESCREEN.SCHEDULECARD_COLOR}
                                         textColor='gray'
                                         text='Schedule'
-                                        onPress={() => navigate('Schedule')}
+                                        onPress={() => navigate('QrCode')}
                                         colors={['#fff289', '#f2c059', '#bc9029']}
                                     />
                                 </View>
