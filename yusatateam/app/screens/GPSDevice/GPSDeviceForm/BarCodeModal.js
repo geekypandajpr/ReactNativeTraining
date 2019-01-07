@@ -14,7 +14,7 @@ export default class BarCodeModal extends React.Component {
             isLoading: true,
             modalVisible: false,
             hasCameraPermission: null,
-            lastScannedUrl: null,
+            lastScannedUrl: '',
             keyValue : '',
             barMap : new Map()
 
@@ -114,9 +114,10 @@ export default class BarCodeModal extends React.Component {
                                         </View>
                                     </BarCodeScanner>
                                 </View>
-                                {
-                                    this.state.lastScannedUrl !=null? this.onSelectValue(this.state.lastScannedUrl) : null        
-                                }
+                                {/* {
+                                    this.state.lastScannedUrl ? this.onSelectValue(this.state.lastScannedUrl) : null        
+                                } */}
+                                {this._maybeRenderUrl()}
                             </View>
                         </View>
                     </Modal>
