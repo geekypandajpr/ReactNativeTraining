@@ -199,7 +199,7 @@ export class CreateVehicle extends React.Component {
 
                     <Toolbar title='Create Vehicle'
                         leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} 
-                        setting='md-barcode' settingType='Ionicons' onSettingsPress={() => navigate('QrCode')}/>
+                        />
 
                     <ScrollView keyboardShouldPersistTaps="always" showsVerticalScrollIndicator={false}>
                         <View style={{ backgroundColor: '#fff', alignItems: 'center' }}>
