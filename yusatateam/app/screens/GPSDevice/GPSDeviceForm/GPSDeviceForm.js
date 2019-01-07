@@ -63,8 +63,8 @@ export class GPSDeviceForm extends React.Component {
         this.OnValueSelect = this.OnValueSelect.bind(this);
         this.openPicker = this.openPicker.bind(this);
         this.onAddGPSDevice = this.onAddGPSDevice.bind(this);
-        this.onPressCreateVehicle = this.onPressCreateVehicle.bind(this);
-        this.onSubmitVehicleDetails = this.onSubmitVehicleDetails.bind(this);
+        // this.onPressCreateVehicle = this.onPressCreateVehicle.bind(this);
+        // this.onSubmitVehicleDetails = this.onSubmitVehicleDetails.bind(this);
         this.checkDeviceAssociation = this.checkDeviceAssociation.bind(this);
     };
 
@@ -181,12 +181,12 @@ export class GPSDeviceForm extends React.Component {
         }
 
         /**Get all Vehicles Type and opens Create Vehicle modal */
-        if (this.props.vehicleTypeDatas !== nextProps.vehicleTypeDatas) {
-            if (nextProps.vehicleTypeDatas.isFetched) {
-                const departmentId = this.props.loginResponse.data.results.departmentId;
-                this.modalReference.current.setModalVisible(true, nextProps.vehicleTypeDatas.data, departmentId);
-            }
-        }
+        // if (this.props.vehicleTypeDatas !== nextProps.vehicleTypeDatas) {
+        //     if (nextProps.vehicleTypeDatas.isFetched) {
+        //         const departmentId = this.props.loginResponse.data.results.departmentId;
+        //         this.modalReference.current.setModalVisible(true, nextProps.vehicleTypeDatas.data, departmentId);
+        //     }
+        // }
 
         /**Based on Device UDID/ESN validation, update "isDeviceUdidValid" state variable*/
         if(this.props.checkGPSDeviceAssocData !== nextProps.checkGPSDeviceAssocData) {
@@ -194,9 +194,9 @@ export class GPSDeviceForm extends React.Component {
                 this.setState({ isDeviceUdidValid: nextProps.checkGPSDeviceAssocData.isValid});
         }
 
-        if (this.props.Addvehicles !== nextProps.Addvehicles) {
-            this.setState({ createVehicle: nextProps.Addvehicles.data })
-        }
+        // if (this.props.Addvehicles !== nextProps.Addvehicles) {
+        //     this.setState({ createVehicle: nextProps.Addvehicles.data })
+        // }
     }
 
     /**This function opens the picker
@@ -253,13 +253,13 @@ export class GPSDeviceForm extends React.Component {
         return false;
     }
 
-    onPressCreateVehicle() {
-        this.props.onCreateVehicleType();
-    }
+    // onPressCreateVehicle() {
+    //     this.props.onCreateVehicleType();
+    // }
 
-    onSubmitVehicleDetails(value) {
-        this.props.oncreateVehicle(value);
-    }
+    // onSubmitVehicleDetails(value) {
+    //     this.props.oncreateVehicle(value);
+    // }
 
     /**This function will check that whether GPS device is associated with any vehicle or not
      * @param DeviceUDID
@@ -275,16 +275,17 @@ export class GPSDeviceForm extends React.Component {
 
     render() {
         const { goBack } = this.props.navigation;
+        const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ backgroundColor: '#fff', flex: 1 }}>
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
 
                     <Activityindication visible={this.props.gpsDeviceData.isLoading} />
-                    <Activityindication visible={this.props.vehicleTypeDatas.isLoading} />
+                    {/* <Activityindication visible={this.props.vehicleTypeDatas.isLoading} /> */}
                     <Activityindication visible={this.props.addGPSDeviceResp.isLoading} />
                     <Activityindication visible={this.props.vehicleListDatas.isLoading} />
-                    <Activityindication visible={this.props.Addvehicles.isLoading} />
+                    {/* <Activityindication visible={this.props.Addvehicles.isLoading} /> */}
                     <Activityindication visible={this.props.checkGPSDeviceAssocData.isLoading} />
 
                     <FlatList
@@ -351,7 +352,7 @@ export class GPSDeviceForm extends React.Component {
                                             </View>
                                             <View style={styles.createVehicleView}>
                                                 <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
-                                                    onPress={this.onPressCreateVehicle}>
+                                                    onPress={()=> navigate('CreateVehicle')}>
                                                     <Text uppercase={false} style={[styles.createVehicle,{fontFamily:'Roboto'}]}>Create Vehicle</Text>
                                                 </Button>
                                             </View>
@@ -504,9 +505,9 @@ export class GPSDeviceForm extends React.Component {
                     } />
 
                     <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
-                    <VehicleModal ref={this.modalReference}
+                    {/* <VehicleModal ref={this.modalReference}
                         onsubmitVehicleDetails={(detail) => this.onSubmitVehicleDetails(detail)}
-                    />
+                    /> */}
                 </View>
         );
     }
@@ -522,8 +523,8 @@ function mapStateToProps(state) {
         addGPSDeviceResp: state.addGPSDeviceData,
         gpsDeviceData: state.gpsDeviceData,
         loginResponse: state.loginData,
-        vehicleTypeDatas: state.createVehicleTypeData,
-        Addvehicles: state.createVehicleData,
+        // vehicleTypeDatas: state.createVehicleTypeData,
+        // Addvehicles: state.createVehicleData,
         vehicleListDatas: state.vehicleListData,
         checkGPSDeviceAssocData: state.checkGPSDeviceAssocData
     }
@@ -533,8 +534,8 @@ function mapDispatchToProps(dispatch) {
     return {
         addGPSDevice: (gpsdevice) => dispatch(userActions.addGPSDeviceAssociation(gpsdevice)),
         onFetchList: () => dispatch(userActions.gpsdeviceRequest()),
-        onCreateVehicleType: () => dispatch(userActions.createVehicleType()),
-        oncreateVehicle: (value) => dispatch(userActions.createVehicle(value)),
+        // onCreateVehicleType: () => dispatch(userActions.createVehicleType()),
+        // oncreateVehicle: (value) => dispatch(userActions.createVehicle(value)),
         checkDeviceAssociation: (deviceUDID) => dispatch(userActions.checkGPSDeviceAssociation(deviceUDID))
     }
 }

@@ -9,6 +9,7 @@ import { Toolbar, Float, UnderlineText, Activityindication } from '../../../comp
 import { BarCodeModal } from './BarCodeModal';
 import { userActions } from '../../../redux/actions';
 import {GpsModal} from '../GpsModal/GpsModal';
+import { showToast } from '../../../common/functions';
 
 export class CreateVehicle extends React.Component {
     constructor(props) {
@@ -20,7 +21,7 @@ export class CreateVehicle extends React.Component {
             hasCameraPermission: null,
             cameraperm: null,
             //DeviceId
-            deviceId: null,
+            deviceId: '',
             //VIN
             vin: null,
             //Sim#
@@ -29,7 +30,7 @@ export class CreateVehicle extends React.Component {
             //Image
             image: null,
             imagename: '',
-            Base: '',
+            Base: null,
             //vehicle type variable
             vehicleList: [],
             vehicleTypeValue: 'Select vehicle',
@@ -120,11 +121,7 @@ export class CreateVehicle extends React.Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.Addvehicles !== nextProps.Addvehicles) {
-            this.setState({ createVehicle: nextProps.Addvehicles.data })
-        }
-        
+    componentWillReceiveProps(nextProps) { 
         /**vehicle list */
         if (this.props.VehicleTypeData !== nextProps.VehicleTypeData) {
             const vehicleArray = [];
@@ -148,18 +145,24 @@ export class CreateVehicle extends React.Component {
     }
 
     onCreateVehicle() {
+        const departmentId = this.props.loginResponse.data.results.departmentId;
         if(this.checkRequiredFields()) {
-
+            const item = {
+                "vehicleNumber": this.state.vehicleNumber,
+                "odometerReading": this.state.odometerReading,
+                "vehicleVin": this.state.vin,
+                "departmentId": departmentId,
+                "vehicleTypeId": this.state.vehicleTypeId,
+            }
+            if(this.state.deviceId !== '')
+                item["gpsDeviceUdid"] = this.state.deviceId;
+            if(this.state.image)
+                item["image"] = this.state.Base;
+            // alert(JSON.stringify(item));
+            this.props.createVehicle(item);
+        } else {
+            showToast('Please fill required fields', 'warning');
         }
-        // alert("hello");
-        // const item = {
-        //     "vehicleNumber": "678945",
-        //     "odometerReading": "1",
-        //     "vehicleVin": "23456",
-        //     "departmentId": "56789",
-        //     "vehicleTypeId": "Bus",
-        // }
-        // this.props.oncreateVehicle(item);
     }
 
     checkRequiredFields() {
@@ -168,8 +171,9 @@ export class CreateVehicle extends React.Component {
             && odometerReading !=='' 
             && vin !== ''
             && vehicleTypeId !== '' ) {
-            
+            return true;
         }
+        return false;
     }
 
     render() {
@@ -179,6 +183,7 @@ export class CreateVehicle extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
                     <Activityindication visible={this.props.VehicleTypeData.isLoading} />
+                    <Activityindication visible={this.props.Addvehicles.isLoading} />
 
                     <Toolbar title='Create Vehicle'
                         leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
@@ -328,7 +333,8 @@ export class CreateVehicle extends React.Component {
 function mapStateToProps(state) {
     return {
         Addvehicles: state.createVehicleData,
-        VehicleTypeData: state.createVehicleTypeData
+        VehicleTypeData: state.createVehicleTypeData,
+        loginResponse: state.loginData
     }
 }
 

@@ -1,7 +1,7 @@
 import { GPSDEVICE } from '../../common/actionTypes';
 
 const initialState = {
-    isLoading: true,
+    isLoading: false,
     vehicleList : [],
     error: false
 }
