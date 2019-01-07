@@ -53,6 +53,7 @@ export default class BarCodeModal extends React.Component {
         this.setState({ modalVisible: visible,title : "BarCode Scanner",keyValue :data,lastScannedUrl : null});
         
     }
+
     onSelectValue(item) {
       
         const barMap = new Map(this.state.barMap);
@@ -112,7 +113,9 @@ export default class BarCodeModal extends React.Component {
                                         </View>
                                     </BarCodeScanner>
                                 </View>
-                                {this._maybeRenderUrl()}
+                                {
+                                    this.state.lastScannedUrl !=null? this.onSelectValue(this.state.lastScannedUrl) : null        
+                                }
                             </View>
                         </View>
                     </Modal>
@@ -187,7 +190,7 @@ const styles = EStyleSheet.create({
     Text_style: {
         fontSize: '1.2rem',
         color: '#fff',
-        fontWeight: '500',
+        // fontWeight: '500',
     },
     barCode : {
         height : "100%",
