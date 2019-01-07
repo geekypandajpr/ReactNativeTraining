@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, ScrollView } from 'react-native';
-import { Item, Input, Icon, Card, Button, Text } from 'native-base';
+import { Footer, FooterTab, Button, Text } from 'native-base';
 import { ImagePicker, Permissions, AppLoading } from 'expo';
 import styles from './styles';
 import { Toolbar, Float, UnderlineText } from '../../../components';
@@ -237,7 +237,7 @@ export class CreateVehicle extends React.Component {
                             </View>
                         </View>
 
-                        <View style={{width: '93%', flexDirection: 'row', marginBottom: 10}}>
+                        {/* <View style={{width: '93%', flexDirection: 'row', marginBottom: 10}}>
                             <View style={{ flex: 1, marginRight: 1 }}>
                                 <Button block style={{ backgroundColor: '#d9534f' }} >
                                     <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Cancel</Text>
@@ -248,11 +248,18 @@ export class CreateVehicle extends React.Component {
                                     <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
                                 </Button>
                             </View>
-                        </View>
+                        </View> */}
                     </View>
                     
                 </ScrollView>
                 <BarCodeModal ref={this.modalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
+                <Footer>
+                    <FooterTab style={{backgroundColor: '#5cb85c'}}>
+                        <Button transparent>
+                            <Text style={{ color: '#fff', fontFamily: 'Roboto', fontSize: 15 }}>Submit</Text>
+                        </Button>
+                    </FooterTab>
+                </Footer>
             </View>
         );
     }
