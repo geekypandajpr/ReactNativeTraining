@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, ScrollView } from 'react-native';
+import { View, Image, ScrollView, BackHandler } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
 import { ImagePicker, Permissions, AppLoading } from 'expo';
 import { connect } from 'react-redux';
@@ -58,8 +58,18 @@ export class CreateVehicle extends React.Component {
     }
 
     async componentDidMount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
         this.allowPermission();
         this.props.oncreateVehicleType();
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
     }
 
     allowPermission=async()=>{
