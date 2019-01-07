@@ -301,6 +301,10 @@ export class CreateVehicle extends React.Component {
                                 </View>
                             </View>
 
+                            <View style={{ width: '92%', marginTop: 5 }}>
+                               <Text>{this.state.imagename}</Text>
+                            </View>
+
                             {/* <View style={{width: '93%', flexDirection: 'row', marginBottom: 10}}>
                             <View style={{ flex: 1, marginRight: 1 }}>
                                 <Button block style={{ backgroundColor: '#d9534f' }} >
