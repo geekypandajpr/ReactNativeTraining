@@ -40,7 +40,7 @@ export class LogIn extends React.Component {
             }
             this.props.onFetchData(loginCredentials);
         } else {
-            functions.showToast('All fields are required', 'danger');
+            functions.showToast('All fields are required', 'warning');
         }
     }
 
@@ -116,12 +116,12 @@ export class LogIn extends React.Component {
                                         })}
                                     />
                                     <View style={styles.remember_me}>
-                                        <Text style={styles.remember_me_text}>Remember me</Text>
+                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Remember me</Text>
                                     </View>
                                 </View>
                                 <View style={styles.forgot_view}>
                                     <TouchableWithoutFeedback onPress={() => navigate('ForgotPassword')}>
-                                        <Text style={styles.forgot_text}> Forgot password ? </Text>
+                                        <Text style={[styles.forgot_text,{fontFamily: 'Roboto'}]}> Forgot password ? </Text>
                                     </TouchableWithoutFeedback>                                   
                                 </View>
                             </View>
@@ -130,31 +130,31 @@ export class LogIn extends React.Component {
                                 <Button
                                     style={styles.button}
                                     onPress={this._doLogin} >
-                                    <Text style={styles.button_text}>  LOGIN </Text>
+                                    <Text style={[styles.button_text,{fontFamily: 'Roboto'}]}>  LOGIN </Text>
                                 </Button>
                             </View>
 
                             <View style={[styles.input_view,{flexDirection:'row'}]}>
                                 <View style={{flex: 1, justifyContent: "flex-end", alignItems: 'center', flexDirection: 'row'}}>
-                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto'}]}>About Us</Text>
+                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto',color:'gray'}]}>About Us</Text>
                                 </View>
                                 <View style={{flex: 0.2, justifyContent: "center", alignItems: 'center', flexDirection: 'row'}}>
-                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto'}]}>|</Text>
+                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto',color:'gray'}]}>|</Text>
                                 </View>
                                 <View style={{flex: 1, justifyContent: "flex-start", alignItems: 'center', flexDirection: 'row'}}>
-                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto'}]}>Help</Text>
+                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto',color:'gray'}]}>Help</Text>
                                 </View>
                             </View>
 
                             <View style={styles.input_view}>
                                 <View style={{flex: 1, justifyContent: "center", alignItems: 'center', flexDirection: 'row'}}>
-                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto'}]}>Yusata Infotech Pvt. Ltd.</Text>
+                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto',color:'gray'}]}>Yusata Infotech Pvt. Ltd.</Text>
                                 </View>
                             </View>
 
                             <View style={styles.input_view}>
                                 <View style={{flex: 1, justifyContent: "center", alignItems: 'center', flexDirection: 'row'}}>
-                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto'}]}>Version#: 1.0</Text>
+                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto',color:'gray'}]}>Version#: 1.0</Text>
                                 </View>
                             </View>
 
