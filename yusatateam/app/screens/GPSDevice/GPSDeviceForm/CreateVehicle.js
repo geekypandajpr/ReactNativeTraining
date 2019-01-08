@@ -57,6 +57,7 @@ export class CreateVehicle extends React.Component {
     async componentDidMount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
         this.props.oncreateVehicleType();
+        this.setState({deviceId:this.props.navigation.state.params.deviceid});
     }
 
     componentWillUnmount() {

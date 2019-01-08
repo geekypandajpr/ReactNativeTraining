@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, KeyboardAvoidingView, ScrollView,FlatList, BackHandler } from 'react-native';
+import { View, KeyboardAvoidingView, ScrollView, FlatList, BackHandler } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker';
 import moment from 'moment';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
 
 import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
@@ -298,10 +298,10 @@ export class GPSDeviceForm extends React.Component {
                         keyboardShouldPersistTaps="always"
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) =>
-                        
+
                             <KeyboardAvoidingView behavior='padding'>
-                            {/* <View style={{flex:1}}> */}
-                            {/* <ScrollView> */}
+                                {/* <View style={{flex:1}}> */}
+                                {/* <ScrollView> */}
                                 <View style={{ flexDirection: 'column', flex: 1 }}>
                                     <View style={styles.Sub_View}>
                                         <View style={styles.Width_View}>
@@ -320,8 +320,10 @@ export class GPSDeviceForm extends React.Component {
                                                             returnKeyType='next'
                                                             onBlur={this.checkDeviceAssociation}
                                                             onChangeText={(text) => this.setState({ deviceUDID: text, isDeviceChecked: false, isDeviceUdidValid: false })}
+                                                            onChangeText={(text) => this.setState({ deviceUDID: text, isDeviceChecked: false, isDeviceUdidValid: false })}
+
                                                         />
-                                                        
+
                                                         {this.state.isDeviceUdidValid ?
                                                             <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 20, color: 'green' }} />
                                                             :
@@ -359,7 +361,7 @@ export class GPSDeviceForm extends React.Component {
                                                 </View>
                                                 <View style={styles.createVehicleView}>
                                                     <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
-                                                        onPress={() => navigate('CreateVehicle')}>
+                                                        onPress={() => navigate('CreateVehicle', { deviceid: this.state.deviceUDID })}>
                                                         <Text uppercase={false} style={[styles.createVehicle, { fontFamily: 'Roboto' }]}>Create Vehicle</Text>
                                                     </Button>
                                                 </View>
@@ -463,10 +465,10 @@ export class GPSDeviceForm extends React.Component {
                                                     />
                                                 </View>
                                             </View>
-                                            <View style={[styles.Small_View,{flexDirection:'column',justifyContent:'flex-start',alignItems:'flex-start'}]}>
-                                          
-                                                <Text style={[styles.createVehicle,{marginBottom:5}]}>Data renewal</Text>
-                                            
+                                            <View style={[styles.Small_View, { flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }]}>
+
+                                                <Text style={[styles.createVehicle, { marginBottom: 5 }]}>Data renewal</Text>
+
                                                 <View style={styles.Date_picker}>
                                                     <DatePicker
                                                         style={{ width: '100%' }}
@@ -513,9 +515,9 @@ export class GPSDeviceForm extends React.Component {
                                     </View>
                                 </View>
                                 {/* </View> */}
-                                </KeyboardAvoidingView>
-                        }/>
-                        
+                            </KeyboardAvoidingView>
+                        } />
+
 
                     <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
                     {/* <VehicleModal ref={this.modalReference}
