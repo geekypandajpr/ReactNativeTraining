@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, KeyboardAvoidingView, ScrollView, FlatList, BackHandler } from 'react-native';
+import { View, KeyboardAvoidingView, ScrollView, FlatList, BackHandler, Platform } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
@@ -65,8 +65,6 @@ export class GPSDeviceForm extends React.Component {
         this.OnValueSelect = this.OnValueSelect.bind(this);
         this.openPicker = this.openPicker.bind(this);
         this.onAddGPSDevice = this.onAddGPSDevice.bind(this);
-        // this.onPressCreateVehicle = this.onPressCreateVehicle.bind(this);
-        // this.onSubmitVehicleDetails = this.onSubmitVehicleDetails.bind(this);
         this.checkDeviceAssociation = this.checkDeviceAssociation.bind(this);
     };
 
@@ -182,23 +180,11 @@ export class GPSDeviceForm extends React.Component {
             }
         }
 
-        /**Get all Vehicles Type and opens Create Vehicle modal */
-        // if (this.props.vehicleTypeDatas !== nextProps.vehicleTypeDatas) {
-        //     if (nextProps.vehicleTypeDatas.isFetched) {
-        //         const departmentId = this.props.loginResponse.data.results.departmentId;
-        //         this.modalReference.current.setModalVisible(true, nextProps.vehicleTypeDatas.data, departmentId);
-        //     }
-        // }
-
         /**Based on Device UDID/ESN validation, update "isDeviceUdidValid" state variable*/
         if (this.props.checkGPSDeviceAssocData !== nextProps.checkGPSDeviceAssocData) {
             if (this.state.isDeviceChecked)
                 this.setState({ isDeviceUdidValid: nextProps.checkGPSDeviceAssocData.isValid });
         }
-
-        // if (this.props.Addvehicles !== nextProps.Addvehicles) {
-        //     this.setState({ createVehicle: nextProps.Addvehicles.data })
-        // }
     }
 
     /**This function opens the picker
@@ -255,14 +241,6 @@ export class GPSDeviceForm extends React.Component {
         return false;
     }
 
-    // onPressCreateVehicle() {
-    //     this.props.onCreateVehicleType();
-    // }
-
-    // onSubmitVehicleDetails(value) {
-    //     this.props.oncreateVehicle(value);
-    // }
-
     /**This function will check that whether GPS device is associated with any vehicle or not
      * @param DeviceUDID
      */
@@ -273,7 +251,7 @@ export class GPSDeviceForm extends React.Component {
             this.setState({ isDeviceChecked: true });
             this.props.checkDeviceAssociation(this.state.deviceUDID);
         }
-    }
+    }  
 
     render() {
         const { goBack } = this.props.navigation;
@@ -284,59 +262,49 @@ export class GPSDeviceForm extends React.Component {
                     <Toolbar title='Association' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
 
                     <Activityindication visible={this.props.gpsDeviceData.isLoading} />
-                    {/* <Activityindication visible={this.props.vehicleTypeDatas.isLoading} /> */}
                     <Activityindication visible={this.props.addGPSDeviceResp.isLoading} />
                     <Activityindication visible={this.props.vehicleListDatas.isLoading} />
-                    {/* <Activityindication visible={this.props.Addvehicles.isLoading} /> */}
                     <Activityindication visible={this.props.checkGPSDeviceAssocData.isLoading} />
 
-                    <FlatList
-                        //keyboardDismissMode='interactive'
-
+                    {/* <FlatList
                         showsVerticalScrollIndicator={false}
                         data={[{ key: 1 }]}
                         keyboardShouldPersistTaps="always"
                         keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item, index }) =>
+                        renderItem={({ item, index }) => */}
 
-                            <KeyboardAvoidingView behavior='padding'>
-                                {/* <View style={{flex:1}}> */}
-                                {/* <ScrollView> */}
+                            <KeyboardAwareScrollView enableOnAndroid={true}
+                                enableAutomaticScroll={(Platform.OS === 'ios')}
+                                keyboardShouldPersistTaps='always'>
+                                <View style={{flex:1}}>
+                                {/* <ScrollView keyboardShouldPersistTaps="always"> */}
                                 <View style={{ flexDirection: 'column', flex: 1 }}>
                                     <View style={styles.Sub_View}>
                                         <View style={styles.Width_View}>
 
                                             <View style={styles.Small_View}>
-                                                <View style={{ flex: 4 }}>
-                                                    <Item floatingLabel>
-                                                        {/* <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: 'gray' }} /> */}
-                                                        <Label style={[styles.label, { fontFamily: 'Roboto' }]}>
-                                                            Device UDID/ESN<Text style={styles.star}>*</Text>
-                                                        </Label>
-                                                        <Input
-                                                            style={[styles.value, { fontFamily: 'Roboto' }]}
-                                                            value={this.state.deviceUDID}
-                                                            keyboardType={'email-address'}
-                                                            returnKeyType='next'
-                                                            onBlur={this.checkDeviceAssociation}
-                                                            onChangeText={(text) => this.setState({ deviceUDID: text, isDeviceChecked: false, isDeviceUdidValid: false })}
-                                                            onChangeText={(text) => this.setState({ deviceUDID: text, isDeviceChecked: false, isDeviceUdidValid: false })}
+                                                <Item floatingLabel>
+                                                    {/* <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: 'gray' }} /> */}
+                                                    <Label style={[styles.label, { fontFamily: 'Roboto' }]}>
+                                                        Device UDID/ESN<Text style={styles.star}>*</Text>
+                                                    </Label>
+                                                    <Input
+                                                        style={[styles.value, { fontFamily: 'Roboto' }]}
+                                                        value={this.state.deviceUDID}
+                                                        keyboardType={'email-address'}
+                                                        returnKeyType='next'
+                                                        onBlur={this.checkDeviceAssociation}
+                                                        onChangeText={(text) => this.setState({ deviceUDID: text, isDeviceChecked: false, isDeviceUdidValid: false })}
+                                                        onChangeText={(text) => this.setState({ deviceUDID: text, isDeviceChecked: false, isDeviceUdidValid: false })}
 
-                                                        />
+                                                    />
 
-                                                        {this.state.isDeviceUdidValid ?
-                                                            <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 20, color: 'green' }} />
-                                                            :
-                                                            <Icon name='ios-close-circle-outline' style={{ fontSize: 20, color: 'red' }} />
-                                                        }
-                                                    </Item>
-                                                </View>
-                                                {/* <View style={styles.checkButtonView}>
-                                                    <Button bordered dark style={{ height: 30, borderColor: 'gray' }}
-                                                        onPress={this.checkDeviceAssociation}>
-                                                        <Text uppercase={false} style={[styles.createVehicle, { fontFamily: 'Roboto' }]}>Check</Text>
-                                                    </Button>
-                                                </View> */}
+                                                    {this.state.isDeviceUdidValid ?
+                                                        <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 20, color: 'green' }} />
+                                                        :
+                                                        <Icon name='ios-close-circle-outline' style={{ fontSize: 20, color: 'red' }} />
+                                                    }
+                                                </Item>
                                             </View>
 
                                             <View style={styles.Small_View}>
@@ -462,6 +430,7 @@ export class GPSDeviceForm extends React.Component {
                                                         isMandatory={true}
                                                         onChangeText={(text) => this.setState({ carrier: text })}
                                                         inputStyles={{ width: '100%' }}
+                                                        getRef={(input) => { this.carrier = input; }}
                                                     />
                                                 </View>
                                             </View>
@@ -514,15 +483,13 @@ export class GPSDeviceForm extends React.Component {
                                         </View>
                                     </View>
                                 </View>
-                                {/* </View> */}
-                            </KeyboardAvoidingView>
-                        } />
+                                {/* </ScrollView> */}
+                                </View>
+                            </KeyboardAwareScrollView>
+                        {/* } /> */}
 
 
-                    <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
-                    {/* <VehicleModal ref={this.modalReference}
-                        onsubmitVehicleDetails={(detail) => this.onSubmitVehicleDetails(detail)}
-                    /> */}
+                    <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} /> 
                 </View>
         );
     }
@@ -538,8 +505,6 @@ function mapStateToProps(state) {
         addGPSDeviceResp: state.addGPSDeviceData,
         gpsDeviceData: state.gpsDeviceData,
         loginResponse: state.loginData,
-        // vehicleTypeDatas: state.createVehicleTypeData,
-        // Addvehicles: state.createVehicleData,
         vehicleListDatas: state.vehicleListData,
         checkGPSDeviceAssocData: state.checkGPSDeviceAssocData
     }
@@ -549,9 +514,8 @@ function mapDispatchToProps(dispatch) {
     return {
         addGPSDevice: (gpsdevice) => dispatch(userActions.addGPSDeviceAssociation(gpsdevice)),
         onFetchList: () => dispatch(userActions.gpsdeviceRequest()),
-        // onCreateVehicleType: () => dispatch(userActions.createVehicleType()),
-        // oncreateVehicle: (value) => dispatch(userActions.createVehicle(value)),
         checkDeviceAssociation: (deviceUDID) => dispatch(userActions.checkGPSDeviceAssociation(deviceUDID))
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(GPSDeviceForm)
