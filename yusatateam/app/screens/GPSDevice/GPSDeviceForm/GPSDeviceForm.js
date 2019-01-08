@@ -251,7 +251,9 @@ export class GPSDeviceForm extends React.Component {
             this.setState({ isDeviceChecked: true });
             this.props.checkDeviceAssociation(this.state.deviceUDID);
         }
-    }  
+    }
+
+    _focusNextField(id) { this[id]._root.focus(); }
 
     render() {
         const { goBack } = this.props.navigation;
@@ -291,12 +293,13 @@ export class GPSDeviceForm extends React.Component {
                                                     <Input
                                                         style={[styles.value, { fontFamily: 'Roboto' }]}
                                                         value={this.state.deviceUDID}
-                                                        keyboardType={'email-address'}
-                                                        returnKeyType='next'
+                                                        onChangeText={(text) => this.setState({ deviceUDID: text, isDeviceChecked: false, isDeviceUdidValid: false })}
                                                         onBlur={this.checkDeviceAssociation}
-                                                        onChangeText={(text) => this.setState({ deviceUDID: text, isDeviceChecked: false, isDeviceUdidValid: false })}
-                                                        onChangeText={(text) => this.setState({ deviceUDID: text, isDeviceChecked: false, isDeviceUdidValid: false })}
-
+                                                        keyboardType={'email-address'}
+                                                        returnKeyType={'next'}
+                                                        blurOnSubmit={false}
+                                                        getRef={(input) => { this.deviceudid = input; }}
+                                                        onSubmitEditing={() => this._focusNextField('mobile')}
                                                     />
 
                                                     {this.state.isDeviceUdidValid ?
@@ -371,13 +374,14 @@ export class GPSDeviceForm extends React.Component {
                                                 <Float
                                                     placeholder='Mobile'
                                                     value={this.state.mobileNumber}
+                                                    isMandatory={true}
+                                                    onChangeText={(text) => this.setState({ mobileNumber: text })}
+                                                    inputStyles={{ width: '100%' }}
                                                     returnKeyType={'next'}
                                                     keyboardType={'numeric'}
                                                     blurOnSubmit={false}
-                                                    isMandatory={true}
-                                                    // onSubmitEditing={() => this._focusNextField('password')}
-                                                    onChangeText={(text) => this.setState({ mobileNumber: text })}
-                                                    inputStyles={{ width: '100%' }}
+                                                    getRef={(input) => { this.mobile = input; }}
+                                                    onSubmitEditing={() => this._focusNextField('balance')}
                                                 />
                                             </View>
 
@@ -386,24 +390,28 @@ export class GPSDeviceForm extends React.Component {
                                                     <Float
                                                         placeholder='Balance'
                                                         value={this.state.balance}
-                                                        returnKeyType={'next'}
-                                                        keyboardType={'numeric'}
-                                                        blurOnSubmit={false}
                                                         isMandatory={true}
                                                         onChangeText={(text) => this.setState({ balance: text })}
                                                         inputStyles={{ width: '100%' }}
+                                                        returnKeyType={'next'}
+                                                        keyboardType={'numeric'}
+                                                        blurOnSubmit={false}
+                                                        getRef={(input) => { this.balance = input; }}
+                                                        onSubmitEditing={() => this._focusNextField('databalance')}
                                                     />
                                                 </View>
                                                 <View style={styles.inner_View}>
                                                     <Float
                                                         placeholder='Data Balance'
                                                         value={this.state.dataBalance}
-                                                        returnKeyType={'next'}
-                                                        keyboardType={'numeric'}
-                                                        blurOnSubmit={false}
                                                         isMandatory={true}
                                                         onChangeText={(text) => this.setState({ dataBalance: text })}
                                                         inputStyles={{ width: '100%' }}
+                                                        returnKeyType={'next'}
+                                                        keyboardType={'numeric'}
+                                                        blurOnSubmit={false}
+                                                        getRef={(input) => { this.databalance = input; }}
+                                                        onSubmitEditing={() => this._focusNextField('dataplan')}
                                                     />
                                                 </View>
                                             </View>
@@ -412,25 +420,28 @@ export class GPSDeviceForm extends React.Component {
                                                     <Float
                                                         placeholder='Data plan'
                                                         value={this.state.dataPlan}
-                                                        returnKeyType={'next'}
-                                                        keyboardType={'email-address'}
-                                                        blurOnSubmit={false}
                                                         isMandatory={true}
                                                         onChangeText={(text) => this.setState({ dataPlan: text })}
                                                         inputStyles={{ width: '100%' }}
+                                                        returnKeyType={'next'}
+                                                        keyboardType={'email-address'}
+                                                        blurOnSubmit={false}
+                                                        getRef={(input) => { this.dataplan = input; }}
+                                                        onSubmitEditing={() => this._focusNextField('carrier')}
                                                     />
                                                 </View>
                                                 <View style={styles.inner_View}>
                                                     <Float
                                                         placeholder='Carrier'
                                                         value={this.state.carrier}
-                                                        returnKeyType={'next'}
-                                                        keyboardType={'email-address'}
-                                                        blurOnSubmit={false}
                                                         isMandatory={true}
                                                         onChangeText={(text) => this.setState({ carrier: text })}
                                                         inputStyles={{ width: '100%' }}
+                                                        returnKeyType={'go'}
+                                                        keyboardType={'email-address'}
+                                                        blurOnSubmit={false}
                                                         getRef={(input) => { this.carrier = input; }}
+                                                        onSubmitEditing={this.onAddGPSDevice}
                                                     />
                                                 </View>
                                             </View>
