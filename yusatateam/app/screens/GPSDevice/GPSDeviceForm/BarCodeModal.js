@@ -38,6 +38,7 @@ export default class BarCodeModal extends React.Component {
         if (result.data !== this.state.lastScannedUrl) {
             LayoutAnimation.spring();
             this.setState({ lastScannedUrl: result.data, bottomBar: true });
+            this.onSelectValue(result.data)
         }
     };
 
@@ -117,7 +118,7 @@ export default class BarCodeModal extends React.Component {
                                 {/* {
                                     this.state.lastScannedUrl ? this.onSelectValue(this.state.lastScannedUrl) : null        
                                 } */}
-                                {this._maybeRenderUrl()}
+                                {/* {this._maybeRenderUrl()} */}
                             </View>
                         </View>
                     </Modal>

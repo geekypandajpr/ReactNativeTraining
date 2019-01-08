@@ -99,7 +99,7 @@ export  class QrCode extends Component {
                                         </View>
                         }
 
-                        {this._maybeRenderUrl()}
+                        {/* {this._maybeRenderUrl()} */}
 
                         {/* <StatusBar hidden /> */}
                     </View>
