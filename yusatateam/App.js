@@ -1,6 +1,6 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
+import { Permissions } from 'expo';
 import Index from './app/index';
 
 EStyleSheet.build({
@@ -12,9 +12,27 @@ EStyleSheet.build({
 });
 
 export default class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            hasCameraPermission: null,
+            cameraperm: null,
+        };
+    }
+    async componentDidMount() {
+        this.allowPermission();
+    }
+
+    allowPermission = async () => {
+        const { status } = await Permissions.askAsync(Permissions.CAMERA);
+        this.setState({ cameraperm: status === 'granted' });
+        const { cstatus } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        this.setState({ hasCameraPermission: cstatus === 'granted' });
+    }
+
     render() {
         return (
-            <Index/>
+            <Index />
         );
     }
 }
