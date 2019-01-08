@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, ScrollView, BackHandler } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
-import { ImagePicker, Permissions, AppLoading } from 'expo';
+import { ImagePicker, AppLoading } from 'expo';
 import { connect } from 'react-redux';
 
 import styles from './styles';
@@ -17,9 +17,6 @@ export class CreateVehicle extends React.Component {
         this.state = {
             isLoading: true,
             data: null,
-            //Permission
-            hasCameraPermission: null,
-            cameraperm: null,
             //DeviceId
             deviceId: '',
             //VIN
@@ -59,7 +56,6 @@ export class CreateVehicle extends React.Component {
 
     async componentDidMount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-        this.allowPermission();
         this.props.oncreateVehicleType();
     }
 
@@ -70,13 +66,6 @@ export class CreateVehicle extends React.Component {
     handleBackPress = () => {
         this.props.navigation.goBack();
         return true;
-    }
-
-    allowPermission=async()=>{
-        const { status } = await Permissions.askAsync(Permissions.CAMERA);
-        this.setState({ cameraperm: status === 'granted' });
-        const { cstatus } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-        this.setState({ hasCameraPermission: cstatus === 'granted' });
     }
 
     barCodeValue(value) {
