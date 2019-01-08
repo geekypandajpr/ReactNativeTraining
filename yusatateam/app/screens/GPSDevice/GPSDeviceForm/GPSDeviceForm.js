@@ -1,18 +1,15 @@
 import React from 'react';
-import { View, KeyboardAvoidingView, ScrollView, FlatList, BackHandler, Platform } from 'react-native';
+import { View, ScrollView, BackHandler, Keyboard } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker';
 import moment from 'moment';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
 
 import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
 import styles from './styles';
 import { GpsModal } from '../GpsModal/GpsModal';
 import { userActions } from '../../../redux/actions';
-import { VehicleModal } from '../VehicleModal/VehicleModal';
 import functions from '../../../common/functions';
 
 const title = [
@@ -78,12 +75,25 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardDidHide.bind(this));
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.props.onFetchList();
     }
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+        this.keyboardDidHideListener.remove()
+    }
+
+    /**This method calls when keyboard disappear */
+    keyboardDidHide(e) { this.refs.scrollView.scrollTo({y: 0}); }
+
+    /**Scroll down the screen */
+    scrolldown(ref) {
+        const self = this;
+        this.refs[ref].measure((ox, oy, width, height, px, py) => {
+            self.refs.scrollView.scrollTo({y: oy - 200});
+        });
     }
 
     handleBackPress = () => {
@@ -268,239 +278,232 @@ export class GPSDeviceForm extends React.Component {
                     <Activityindication visible={this.props.vehicleListDatas.isLoading} />
                     <Activityindication visible={this.props.checkGPSDeviceAssocData.isLoading} />
 
-                    {/* <FlatList
-                        showsVerticalScrollIndicator={false}
-                        data={[{ key: 1 }]}
-                        keyboardShouldPersistTaps="always"
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item, index }) => */}
+                    <View style={{ flex: 1 }}>
+                        <ScrollView keyboardShouldPersistTaps="always">
+                            <View style={{ flexDirection: 'column', flex: 1 }}>
+                                <View style={styles.Sub_View}>
+                                    <View style={styles.Width_View}>
 
-                            <KeyboardAwareScrollView enableOnAndroid={true}
-                                enableAutomaticScroll={(Platform.OS === 'ios')}
-                                keyboardShouldPersistTaps='always'>
-                                <View style={{flex:1}}>
-                                {/* <ScrollView keyboardShouldPersistTaps="always"> */}
-                                <View style={{ flexDirection: 'column', flex: 1 }}>
-                                    <View style={styles.Sub_View}>
-                                        <View style={styles.Width_View}>
-
-                                            <View style={styles.Small_View}>
-                                                <Item floatingLabel>
-                                                    {/* <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: 'gray' }} /> */}
-                                                    <Label style={[styles.label, { fontFamily: 'Roboto' }]}>
-                                                        Device UDID/ESN<Text style={styles.star}>*</Text>
-                                                    </Label>
-                                                    <Input
-                                                        style={[styles.value, { fontFamily: 'Roboto' }]}
-                                                        value={this.state.deviceUDID}
-                                                        onChangeText={(text) => this.setState({ deviceUDID: text, isDeviceChecked: false, isDeviceUdidValid: false })}
-                                                        onBlur={this.checkDeviceAssociation}
-                                                        keyboardType={'email-address'}
-                                                        returnKeyType={'next'}
-                                                        blurOnSubmit={false}
-                                                        getRef={(input) => { this.deviceudid = input; }}
-                                                        onSubmitEditing={() => this._focusNextField('mobile')}
-                                                    />
-
-                                                    {this.state.isDeviceUdidValid ?
-                                                        <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 20, color: 'green' }} />
-                                                        :
-                                                        <Icon name='ios-close-circle-outline' style={{ fontSize: 20, color: 'red' }} />
-                                                    }
-                                                </Item>
-                                            </View>
-
-                                            <View style={styles.Small_View}>
-                                                <UnderlineText
-                                                    name="Company"
-                                                    upperView={true}
-                                                    value={this.state.dropdowns.get(COMPANY_KEY)[0]}
-                                                    isMandatory={true}
-                                                    onpress={() => this.openPicker(COMPANY_KEY, this.state.companyList, title[0])}
+                                        <View style={styles.Small_View}>
+                                            <Item floatingLabel>
+                                                {/* <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: 'gray' }} /> */}
+                                                <Label style={[styles.label, { fontFamily: 'Roboto' }]}>
+                                                    Device UDID/ESN<Text style={styles.star}>*</Text>
+                                                </Label>
+                                                <Input
+                                                    style={[styles.value, { fontFamily: 'Roboto' }]}
+                                                    value={this.state.deviceUDID}
+                                                    onChangeText={(text) => this.setState({ deviceUDID: text, isDeviceChecked: false, isDeviceUdidValid: false })}
+                                                    onBlur={this.checkDeviceAssociation}
+                                                    keyboardType={'email-address'}
+                                                    returnKeyType={'next'}
+                                                    blurOnSubmit={false}
+                                                    getRef={(input) => { this.deviceudid = input; }}
+                                                    onSubmitEditing={() => this._focusNextField('mobile')}
                                                 />
-                                            </View>
 
-                                            <View style={styles.Small_View}>
-                                                <View style={{ flex: 1.4 }}>
-                                                    <UnderlineText
-                                                        name="Vehicle #"
-                                                        value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
-                                                        isMandatory={true}
-                                                        upperView={true}
-                                                        onpress={() => this.openPicker(VEHICLE_KEY, this.state.vehicleList, title[1])}
-                                                    />
-                                                </View>
-                                                <View style={styles.createVehicleView}>
-                                                    <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
-                                                        onPress={() => navigate('CreateVehicle', { deviceid: this.state.deviceUDID })}>
-                                                        <Text uppercase={false} style={[styles.createVehicle, { fontFamily: 'Roboto' }]}>Create Vehicle</Text>
-                                                    </Button>
-                                                </View>
-                                            </View>
-
-                                            <View style={styles.Small_View}>
-                                                <UnderlineText
-                                                    name="Device Type"
-                                                    isMandatory={true}
-                                                    upperView={true}
-                                                    value={this.state.dropdowns.get(DEVICETYPE_KEY)[0]}
-                                                    onpress={() => this.openPicker(DEVICETYPE_KEY, this.state.deviceType, title[2])}
-                                                />
-                                            </View>
-
+                                                {this.state.isDeviceUdidValid ?
+                                                    <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 20, color: 'green' }} />
+                                                    :
+                                                    <Icon name='ios-close-circle-outline' style={{ fontSize: 20, color: 'red' }} />
+                                                }
+                                            </Item>
                                         </View>
-                                    </View>
 
-                                    <View style={[styles.Detail_View, { marginTop: 20 }]}>
-                                        <View style={{ width: '94%' }}>
-                                            <Text style={[styles.simdetails, { fontFamily: 'Roboto' }]}>Sim Details</Text>
+                                        <View style={styles.Small_View}>
+                                            <UnderlineText
+                                                name="Company"
+                                                upperView={true}
+                                                value={this.state.dropdowns.get(COMPANY_KEY)[0]}
+                                                isMandatory={true}
+                                                onpress={() => this.openPicker(COMPANY_KEY, this.state.companyList, title[0])}
+                                            />
                                         </View>
-                                    </View>
 
-                                    <View style={styles.Sub_View}>
-                                        <View style={styles.Width_View}>
-
-                                            <View style={[styles.Small_View, { marginTop: 5 }]}>
+                                        <View style={styles.Small_View}>
+                                            <View style={{ flex: 1.4 }}>
                                                 <UnderlineText
-                                                    name='Country ISD'
+                                                    name="Vehicle #"
+                                                    value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    value={this.state.dropdowns.get(ISD_KEY)[0]}
-                                                    onpress={() => this.openPicker(ISD_KEY, this.state.countryISD, title[4])}
+                                                    onpress={() => this.openPicker(VEHICLE_KEY, this.state.vehicleList, title[1])}
                                                 />
                                             </View>
+                                            <View style={styles.createVehicleView}>
+                                                <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
+                                                    onPress={() => navigate('CreateVehicle', { deviceid: this.state.deviceUDID })}>
+                                                    <Text uppercase={false} style={[styles.createVehicle, { fontFamily: 'Roboto' }]}>Create Vehicle</Text>
+                                                </Button>
+                                            </View>
+                                        </View>
 
-                                            <View style={styles.Small_View}>
+                                        <View style={styles.Small_View}>
+                                            <UnderlineText
+                                                name="Device Type"
+                                                isMandatory={true}
+                                                upperView={true}
+                                                value={this.state.dropdowns.get(DEVICETYPE_KEY)[0]}
+                                                onpress={() => this.openPicker(DEVICETYPE_KEY, this.state.deviceType, title[2])}
+                                            />
+                                        </View>
+
+                                    </View>
+                                </View>
+
+                                <View style={[styles.Detail_View, { marginTop: 20 }]}>
+                                    <View style={{ width: '94%' }}>
+                                        <Text style={[styles.simdetails, { fontFamily: 'Roboto' }]}>Sim Details</Text>
+                                    </View>
+                                </View>
+
+                                <View style={styles.Sub_View}>
+                                    <View style={styles.Width_View}>
+
+                                        <View style={[styles.Small_View, { marginTop: 5 }]}>
+                                            <UnderlineText
+                                                name='Country ISD'
+                                                isMandatory={true}
+                                                upperView={true}
+                                                value={this.state.dropdowns.get(ISD_KEY)[0]}
+                                                onpress={() => this.openPicker(ISD_KEY, this.state.countryISD, title[4])}
+                                            />
+                                        </View>
+
+                                        <View style={styles.Small_View}>
+                                            <Float
+                                                placeholder='Mobile'
+                                                value={this.state.mobileNumber}
+                                                isMandatory={true}
+                                                onChangeText={(text) => this.setState({ mobileNumber: text })}
+                                                inputStyles={{ width: '100%' }}
+                                                returnKeyType={'next'}
+                                                keyboardType={'numeric'}
+                                                blurOnSubmit={false}
+                                                getRef={(input) => { this.mobile = input; }}
+                                                onSubmitEditing={() => this._focusNextField('balance')}
+                                                onFocus={this.scrolldown.bind(this, 'mobile')}
+                                            />
+                                        </View>
+
+                                        <View style={[styles.Balance_view, { marginTop: 10 }]}>
+                                            <View style={styles.inner_View}>
                                                 <Float
-                                                    placeholder='Mobile'
-                                                    value={this.state.mobileNumber}
+                                                    placeholder='Balance'
+                                                    value={this.state.balance}
                                                     isMandatory={true}
-                                                    onChangeText={(text) => this.setState({ mobileNumber: text })}
+                                                    onChangeText={(text) => this.setState({ balance: text })}
                                                     inputStyles={{ width: '100%' }}
                                                     returnKeyType={'next'}
                                                     keyboardType={'numeric'}
                                                     blurOnSubmit={false}
-                                                    getRef={(input) => { this.mobile = input; }}
-                                                    onSubmitEditing={() => this._focusNextField('balance')}
+                                                    getRef={(input) => { this.balance = input; }}
+                                                    onSubmitEditing={() => this._focusNextField('databalance')}
+                                                    onFocus={this.scrolldown.bind(this, 'balance')}
                                                 />
                                             </View>
-
-                                            <View style={[styles.Balance_view, { marginTop: 10 }]}>
-                                                <View style={styles.inner_View}>
-                                                    <Float
-                                                        placeholder='Balance'
-                                                        value={this.state.balance}
-                                                        isMandatory={true}
-                                                        onChangeText={(text) => this.setState({ balance: text })}
-                                                        inputStyles={{ width: '100%' }}
-                                                        returnKeyType={'next'}
-                                                        keyboardType={'numeric'}
-                                                        blurOnSubmit={false}
-                                                        getRef={(input) => { this.balance = input; }}
-                                                        onSubmitEditing={() => this._focusNextField('databalance')}
-                                                    />
-                                                </View>
-                                                <View style={styles.inner_View}>
-                                                    <Float
-                                                        placeholder='Data Balance'
-                                                        value={this.state.dataBalance}
-                                                        isMandatory={true}
-                                                        onChangeText={(text) => this.setState({ dataBalance: text })}
-                                                        inputStyles={{ width: '100%' }}
-                                                        returnKeyType={'next'}
-                                                        keyboardType={'numeric'}
-                                                        blurOnSubmit={false}
-                                                        getRef={(input) => { this.databalance = input; }}
-                                                        onSubmitEditing={() => this._focusNextField('dataplan')}
-                                                    />
-                                                </View>
+                                            <View style={styles.inner_View}>
+                                                <Float
+                                                    placeholder='Data Balance'
+                                                    value={this.state.dataBalance}
+                                                    isMandatory={true}
+                                                    onChangeText={(text) => this.setState({ dataBalance: text })}
+                                                    inputStyles={{ width: '100%' }}
+                                                    returnKeyType={'next'}
+                                                    keyboardType={'numeric'}
+                                                    blurOnSubmit={false}
+                                                    getRef={(input) => { this.databalance = input; }}
+                                                    onSubmitEditing={() => this._focusNextField('dataplan')}
+                                                    onFocus={this.scrolldown.bind(this, 'databalance')}
+                                                />
                                             </View>
-                                            <View style={styles.row_Divide}>
-                                                <View style={styles.inner_View}>
-                                                    <Float
-                                                        placeholder='Data plan'
-                                                        value={this.state.dataPlan}
-                                                        isMandatory={true}
-                                                        onChangeText={(text) => this.setState({ dataPlan: text })}
-                                                        inputStyles={{ width: '100%' }}
-                                                        returnKeyType={'next'}
-                                                        keyboardType={'email-address'}
-                                                        blurOnSubmit={false}
-                                                        getRef={(input) => { this.dataplan = input; }}
-                                                        onSubmitEditing={() => this._focusNextField('carrier')}
-                                                    />
-                                                </View>
-                                                <View style={styles.inner_View}>
-                                                    <Float
-                                                        placeholder='Carrier'
-                                                        value={this.state.carrier}
-                                                        isMandatory={true}
-                                                        onChangeText={(text) => this.setState({ carrier: text })}
-                                                        inputStyles={{ width: '100%' }}
-                                                        returnKeyType={'go'}
-                                                        keyboardType={'email-address'}
-                                                        blurOnSubmit={false}
-                                                        getRef={(input) => { this.carrier = input; }}
-                                                        onSubmitEditing={this.onAddGPSDevice}
-                                                    />
-                                                </View>
+                                        </View>
+                                        <View style={styles.row_Divide}>
+                                            <View style={styles.inner_View}>
+                                                <Float
+                                                    placeholder='Data plan'
+                                                    value={this.state.dataPlan}
+                                                    isMandatory={true}
+                                                    onChangeText={(text) => this.setState({ dataPlan: text })}
+                                                    inputStyles={{ width: '100%' }}
+                                                    returnKeyType={'next'}
+                                                    keyboardType={'email-address'}
+                                                    blurOnSubmit={false}
+                                                    getRef={(input) => { this.dataplan = input; }}
+                                                    onSubmitEditing={() => this._focusNextField('carrier')}
+                                                    onFocus={this.scrolldown.bind(this, 'dataplan')}
+                                                />
                                             </View>
-                                            <View style={[styles.Small_View, { flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }]}>
-
-                                                <Text style={[styles.createVehicle, { marginBottom: 5 }]}>Data renewal</Text>
-
-                                                <View style={styles.Date_picker}>
-                                                    <DatePicker
-                                                        style={{ width: '100%' }}
-                                                        date={this.state.dataRenewal}
-                                                        mode="date"
-                                                        placeholder="DD/MM/YYYY"
-                                                        format="DD/MM/YYYY"
-                                                        //minDate=""
-                                                        //maxDate=""
-                                                        confirmBtnText="Confirm"
-                                                        cancelBtnText="Cancel"
-                                                        customStyles={{
-                                                            dateIcon: {
-                                                                position: 'absolute',
-                                                                left: 0,
-                                                                top: 4,
-                                                                marginLeft: 0
-                                                            },
-                                                            dateInput: {
-                                                                marginLeft: 36
-                                                            }
-                                                            // ... You can check the source to find the other keys.
-                                                        }}
-                                                        onDateChange={(date) => { this.setState({ dataRenewal: date }) }}
-                                                    />
-                                                </View>
+                                            <View style={styles.inner_View}>
+                                                <Float
+                                                    placeholder='Carrier'
+                                                    value={this.state.carrier}
+                                                    isMandatory={true}
+                                                    onChangeText={(text) => this.setState({ carrier: text })}
+                                                    inputStyles={{ width: '100%' }}
+                                                    returnKeyType={'go'}
+                                                    keyboardType={'email-address'}
+                                                    blurOnSubmit={false}
+                                                    getRef={(input) => { this.carrier = input; }}
+                                                    onSubmitEditing={this.onAddGPSDevice}
+                                                    onFocus={this.scrolldown.bind(this, 'carrier')}
+                                                />
                                             </View>
+                                        </View>
+                                        <View style={[styles.Small_View, { flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }]}>
 
-                                            <View style={styles.button_view}>
-                                                <View style={{ flex: 1, marginRight: 1 }}>
-                                                    <Button block style={{ backgroundColor: '#d9534f' }}
-                                                        onPress={this.onCancel}>
-                                                        <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Cancel</Text>
-                                                    </Button>
-                                                </View>
-                                                <View style={{ flex: 1, marginLeft: 1 }}>
-                                                    <Button block style={{ backgroundColor: '#5cb85c' }}
-                                                        onPress={this.onAddGPSDevice}>
-                                                        <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
-                                                    </Button>
-                                                </View>
+                                            <Text style={[styles.createVehicle, { marginBottom: 5 }]}>Data renewal</Text>
+
+                                            <View style={styles.Date_picker}>
+                                                <DatePicker
+                                                    style={{ width: '100%' }}
+                                                    date={this.state.dataRenewal}
+                                                    mode="date"
+                                                    placeholder="DD/MM/YYYY"
+                                                    format="DD/MM/YYYY"
+                                                    //minDate=""
+                                                    //maxDate=""
+                                                    confirmBtnText="Confirm"
+                                                    cancelBtnText="Cancel"
+                                                    customStyles={{
+                                                        dateIcon: {
+                                                            position: 'absolute',
+                                                            left: 0,
+                                                            top: 4,
+                                                            marginLeft: 0
+                                                        },
+                                                        dateInput: {
+                                                            marginLeft: 36
+                                                        }
+                                                        // ... You can check the source to find the other keys.
+                                                    }}
+                                                    onDateChange={(date) => { this.setState({ dataRenewal: date }) }}
+                                                />
+                                            </View>
+                                        </View>
+
+                                        <View style={styles.button_view}>
+                                            <View style={{ flex: 1, marginRight: 1 }}>
+                                                <Button block style={{ backgroundColor: '#d9534f' }}
+                                                    onPress={this.onCancel}>
+                                                    <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Cancel</Text>
+                                                </Button>
+                                            </View>
+                                            <View style={{ flex: 1, marginLeft: 1 }}>
+                                                <Button block style={{ backgroundColor: '#5cb85c' }}
+                                                    onPress={this.onAddGPSDevice}>
+                                                    <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
+                                                </Button>
                                             </View>
                                         </View>
                                     </View>
                                 </View>
-                                {/* </ScrollView> */}
-                                </View>
-                            </KeyboardAwareScrollView>
-                        {/* } /> */}
+                            </View>
+                        </ScrollView>
+                    </View>
 
 
-                    <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} /> 
+                    <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
                 </View>
         );
     }

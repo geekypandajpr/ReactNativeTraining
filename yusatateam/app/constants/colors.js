@@ -1,8 +1,8 @@
 const colors = {
-    HEADER_COLOR: '#229954',
-    STATUSBAR_COLOR: '#229954',
-    // HEADER_COLOR: '#0073b7',
-    // STATUSBAR_COLOR: '#004887',
+    // HEADER_COLOR: '#229954',
+    // STATUSBAR_COLOR: '#229954',
+    HEADER_COLOR: '#0073b7',
+    STATUSBAR_COLOR: '#004887',
     
     // HOMESCREEN: {
     //     SIMCARD_COLOR: '#F66A4D',

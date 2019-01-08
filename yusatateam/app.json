@@ -29,9 +29,6 @@
     },
     "android": {
       "package": "com.yusata.adminportal"
-    },
-    "androidStatusBar": {
-      "backgroundColor": "#229954"
     }
   }
 }
