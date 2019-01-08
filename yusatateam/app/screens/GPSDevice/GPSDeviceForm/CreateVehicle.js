@@ -138,7 +138,6 @@ export class CreateVehicle extends React.Component {
                 }
             }
             this.setState({ vehicleList: vehicleArray, vehicleTypeValue: vehicleTypeValue, vehicleTypeId: vehicleTypeId })
-
         }
     }
 
@@ -204,7 +203,7 @@ export class CreateVehicle extends React.Component {
                                     placeholder='Vehicle #'
                                     value={this.state.vehicleNumber}
                                     returnKeyType={'next'}
-                                    keyboardType={'numeric'}
+                                    keyboardType={'default'}
                                     blurOnSubmit={false}
                                     isMandatory={true}
                                     onChangeText={(text) => this.setState({ vehicleNumber: text })}
