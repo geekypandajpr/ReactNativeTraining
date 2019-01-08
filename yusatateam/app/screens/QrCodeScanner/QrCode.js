@@ -39,7 +39,7 @@ export class QrCode extends Component {
 
     getDeviceInfo() {
         this.setState({ isSearching: true });
-        this.props.fetchDeviceInfo(this.state.InputSearch);
+        this.props.fetchDeviceInfo(this.state.lastScannedUrl);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -61,8 +61,8 @@ export class QrCode extends Component {
                 <SearchBar
                     placeholder={'Search by device ESN'}
                     isDropdown={false}
-                    onChangeText={(text) => this.setState({ InputSearch: text })}
-                    value={this.state.InputSearch}
+                    onChangeText={(text) => this.setState({ lastScannedUrl: text })}
+                    value={this.state.lastScannedUrl}
                     onSearch={() => this.getDeviceInfo()}
                 />
 

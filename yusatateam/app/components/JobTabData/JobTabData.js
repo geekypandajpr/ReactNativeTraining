@@ -26,12 +26,13 @@ export default class JobTabData extends React.Component {
         this.openFilterPage = this.openFilterPage.bind(this);
     };
     componentDidMount() {
-        this.arrayholder = this.state.data;
+        
     }
 
     componentWillReceiveProps(nextProps) {
         if(this.props.JobDataValue !== nextProps.JobDataValue) {
             this.setState({data: nextProps.JobDataValue});
+            this.arrayholder = nextProps.JobDataValue;
         }
     }
     selectedValue(data) {
@@ -116,14 +117,14 @@ export default class JobTabData extends React.Component {
                     keyExtractor={(item, index) => item.jobNumber}
                     renderItem={({ item, index }) =>
                         <Card style={[styles.viewList, globalStyles.card]}>
-                            {
+                            {/* {
                                 item.jobStatus == 'completed' || item.jobStatus == 'schedule' ? null :
                                     <View style={{ flex: 0.3, alignItems: 'flex-start', justifyContent: 'center' }}>
                                         <CheckBox
                                             checked={this.state.map1.get(item.jobNumber)}
                                             onPress={() => this.toggleCheckbox(item.jobNumber)} />
                                     </View>
-                            }
+                            } */}
                             <View style={{ flex: 2 }}>
                                 <TouchableOpacity onPress={() => this.refs.modal.setModalVisible(true, item)}>
                                     <View style={styles.sub_view}>
