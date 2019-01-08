@@ -11,6 +11,7 @@ export  class QrCode extends Component {
     state = {
         hasCameraPermission: null,
         lastScannedUrl: null,
+        InputSearch : '',
         deviceUDID: '',
         bottomBar: false,
         deviceInfoData: {},
@@ -31,13 +32,14 @@ export  class QrCode extends Component {
     _handleBarCodeRead = result => {
         if (result.data !== this.state.lastScannedUrl) {
             LayoutAnimation.spring();
-            this.setState({ lastScannedUrl: result.data, bottomBar: true });
+            this.setState({ lastScannedUrl: result.data, bottomBar: true,isSearching: true});
+            this.props.fetchDeviceInfo(result.data);
         }
     };
 
     getDeviceInfo() {
         this.setState({ isSearching: true });
-        this.props.fetchDeviceInfo(this.state.lastScannedUrl);
+        this.props.fetchDeviceInfo(this.state.InputSearch);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -59,8 +61,8 @@ export  class QrCode extends Component {
                     <SearchBar
                         placeholder={'Search by device ESN'}
                         isDropdown={false}
-                        onChangeText={(text) => this.setState({ lastScannedUrl: text })}
-                        value={this.state.lastScannedUrl}
+                        onChangeText={(text) => this.setState({ InputSearch: text })}
+                        value={this.state.InputSearch}
                         onSearch={() => this.getDeviceInfo()}
                     />
                 </View>
@@ -99,9 +101,6 @@ export  class QrCode extends Component {
                                         </View>
                         }
 
-                        {/* {this._maybeRenderUrl()} */}
-
-                        {/* <StatusBar hidden /> */}
                     </View>
                 }
             </View>

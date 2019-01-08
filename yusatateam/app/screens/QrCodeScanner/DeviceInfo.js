@@ -96,6 +96,7 @@ export default class  DeviceInfo extends Component {
                     </View>
 
                 </Card>
+                <View style={{flex : 3}}></View>
             </View>
         )
     }
