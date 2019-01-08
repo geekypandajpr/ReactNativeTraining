@@ -89,10 +89,11 @@ export class GPSDeviceForm extends React.Component {
     keyboardDidHide(e) { this.refs.scrollView.scrollTo({y: 0}); }
 
     /**Scroll down the screen */
-    scrolldown(ref) {
+    scrolldown = (ref) => {
         const self = this;
-        this.refs[ref].measure((ox, oy, width, height, px, py) => {
-            self.refs.scrollView.scrollTo({y: oy - 200});
+        this.refs[ref].measure((ox, oy, width, height) => {
+            console.log(oy);
+            self.refs.scrollView.scrollTo({y: oy + 200});
         });
     }
 
@@ -279,7 +280,7 @@ export class GPSDeviceForm extends React.Component {
                     <Activityindication visible={this.props.checkGPSDeviceAssocData.isLoading} />
 
                     <View style={{ flex: 1 }}>
-                        <ScrollView keyboardShouldPersistTaps="always">
+                        <ScrollView keyboardShouldPersistTaps="always" ref="scrollView">
                             <View style={{ flexDirection: 'column', flex: 1 }}>
                                 <View style={styles.Sub_View}>
                                     <View style={styles.Width_View}>

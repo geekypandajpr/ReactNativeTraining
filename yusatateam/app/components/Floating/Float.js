@@ -49,6 +49,8 @@ export default class Float extends React.Component {
                         onChangeText={this.props.onChangeText}
                         secureTextEntry={this.props.secureTextEntry}
                         onSubmitEditing={this.props.onSubmitEditing}
+                        onFocus={this.props.onFocus}
+                        onBlur={this.props.onBlur}
                     />
                     <Icon name={this.props.rightIcon}
                         onPress={this.props.rightIconPress}
