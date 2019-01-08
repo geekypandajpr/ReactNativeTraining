@@ -59,7 +59,7 @@ export  class Jobs extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
                 <Activityindication visible={this.props.PendingData.isLoading}/>
-                    <Toolbar title='Jobs' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                    <Toolbar title='Schedule Jobs' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
                     <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }}
@@ -68,7 +68,7 @@ export  class Jobs extends React.Component {
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
-                                    <Text style={styles.TextView}>Pending</Text>
+                                    <Text style={styles.TextView}>Install</Text>
                                 </View>
                             </TabHeading>
                         }>
@@ -79,7 +79,7 @@ export  class Jobs extends React.Component {
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
-                                    <Text style={styles.TextView}>Schedule</Text>
+                                    <Text style={styles.TextView}>Repair</Text>
                                 </View>
                             </TabHeading>
                         }>
@@ -89,7 +89,7 @@ export  class Jobs extends React.Component {
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
-                                    <Text style={styles.TextView}>Completed</Text>
+                                    <Text style={styles.TextView}>Replace</Text>
                                 </View>
                             </TabHeading>
                         }>
@@ -99,7 +99,7 @@ export  class Jobs extends React.Component {
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
                                 <View style={styles.tab_view}>
-                                    <Text style={styles.TextView}>ReSchedule</Text>
+                                    <Text style={styles.TextView}>Un-Install</Text>
                                 </View>
                             </TabHeading>
                         }>
