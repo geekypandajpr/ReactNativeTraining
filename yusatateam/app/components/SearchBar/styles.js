@@ -47,7 +47,7 @@ export default EStyleSheet.create({
         marginLeft: 6,
         marginRight: 6,
         marginBottom: 0,
-        // backgroundColor: 'red',
+        backgroundColor: 'white',
         flexDirection: 'row'
     },
     dropdown_view: {
