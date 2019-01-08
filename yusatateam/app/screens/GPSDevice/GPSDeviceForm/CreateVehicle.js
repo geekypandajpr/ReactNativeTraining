@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Image, ScrollView, BackHandler } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
-import { ImagePicker, AppLoading } from 'expo';
+import { ImagePicker, Permissions, AppLoading } from 'expo';
 import { connect } from 'react-redux';
 
 import styles from './styles';
 import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
 import { BarCodeModal } from './BarCodeModal';
 import { userActions } from '../../../redux/actions';
-import {GpsModal} from '../GpsModal/GpsModal';
+import { GpsModal } from '../GpsModal/GpsModal';
 import { showToast } from '../../../common/functions';
 
 export class CreateVehicle extends React.Component {
@@ -35,13 +35,13 @@ export class CreateVehicle extends React.Component {
             //vehicle #
             vehicleNumber: '',
             //odometer
-            odometerReading: ''
+            odometerReading: '1000'
         };
         this.modalReference = React.createRef();
         this.BarCodePage = this.BarCodePage.bind(this);
         this.openList = this.openList.bind(this);
         this.onCreateVehicle = this.onCreateVehicle.bind(this);
-        this.checkRequiredFields = this.checkRequiredFields.bind(this);        
+        this.checkRequiredFields = this.checkRequiredFields.bind(this);
         this.modalRef = React.createRef();
     }
 
@@ -120,18 +120,25 @@ export class CreateVehicle extends React.Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) { 
+    componentWillReceiveProps(nextProps) {
         /**vehicle list */
         if (this.props.VehicleTypeData !== nextProps.VehicleTypeData) {
             const vehicleArray = [];
+            var vehicleTypeValue = '';
+            var vehicleTypeId = '';
             if (nextProps.VehicleTypeData.data.results) {
                 const vehicletype = nextProps.VehicleTypeData.data.results;
                 for (var i = 0; i < vehicletype.length; i++) {
+                    if (vehicletype[i].value == "CAR") {
+                        vehicleTypeValue = vehicletype[i].value;
+                        vehicleTypeId = vehicletype[i].key;
+                    }
                     var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
                     vehicleArray.push(obj);
                 }
             }
-            this.setState({ vehicleList: vehicleArray })
+            this.setState({ vehicleList: vehicleArray, vehicleTypeValue: vehicleTypeValue, vehicleTypeId: vehicleTypeId })
+
         }
     }
 
@@ -145,7 +152,7 @@ export class CreateVehicle extends React.Component {
 
     onCreateVehicle() {
         const departmentId = this.props.loginResponse.data.results.departmentId;
-        if(this.checkRequiredFields()) {
+        if (this.checkRequiredFields()) {
             const item = {
                 "vehicleNumber": this.state.vehicleNumber,
                 "odometerReading": this.state.odometerReading,
@@ -153,9 +160,9 @@ export class CreateVehicle extends React.Component {
                 "departmentId": departmentId,
                 "vehicleTypeId": this.state.vehicleTypeId,
             }
-            if(this.state.deviceId !== '')
+            if (this.state.deviceId !== '')
                 item["gpsDeviceUdid"] = this.state.deviceId;
-            if(this.state.image)
+            if (this.state.image)
                 item["image"] = this.state.Base;
             // alert(JSON.stringify(item));
             this.props.createVehicle(item);
@@ -166,10 +173,10 @@ export class CreateVehicle extends React.Component {
 
     checkRequiredFields() {
         const { vehicleNumber, odometerReading, vin, vehicleTypeId } = this.state;
-        if(vehicleNumber !== ''
-            && odometerReading !=='' 
+        if (vehicleNumber !== ''
+            && odometerReading !== ''
             && vin !== ''
-            && vehicleTypeId !== '' ) {
+            && vehicleTypeId !== '') {
             return true;
         }
         return false;
@@ -187,8 +194,8 @@ export class CreateVehicle extends React.Component {
                     <Activityindication visible={this.props.Addvehicles.isLoading} />
 
                     <Toolbar title='Create Vehicle'
-                        leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} 
-                        />
+                        leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                    />
 
                     <ScrollView keyboardShouldPersistTaps="always" showsVerticalScrollIndicator={false}>
                         <View style={{ backgroundColor: '#fff', alignItems: 'center' }}>
@@ -304,7 +311,7 @@ export class CreateVehicle extends React.Component {
                             </View>
 
                             <View style={{ width: '92%', marginTop: 5 }}>
-                               <Text>{this.state.imagename}</Text>
+                                <Text>{this.state.imagename}</Text>
                             </View>
 
                             {/* <View style={{width: '93%', flexDirection: 'row', marginBottom: 10}}>
@@ -330,7 +337,7 @@ export class CreateVehicle extends React.Component {
                             </Button>
                         </FooterTab>
                     </Footer>
-                    <GpsModal ref={this.modalRef} selectedValue={(item) => {this.onVehicleTypeSelect(item)}} />
+                    <GpsModal ref={this.modalRef} selectedValue={(item) => { this.onVehicleTypeSelect(item) }} />
                 </View>
         );
     }
