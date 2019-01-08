@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
 import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { CheckBox, Button, Text } from 'native-base';
-import { InputWithIcon, Statusbar, Activityindication } from '../../components';
+import { Float, Statusbar, Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 import styles from './Styles';
 import functions from '../../common/functions';
@@ -53,81 +53,114 @@ export class LogIn extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
-            <ImageBackground style={styles.backgroundImage} source={require('../../../assets/LoginScreenBG.jpg')} >
-                <Statusbar backgroundColor={'transparent'} barStyle="light-content" />
-                <ScrollView style={styles.scrollView} contentContainerStyle={{flex:1}}>
-                    <View style={styles.container}>
-                        <Activityindication visible={this.props.user.isLoading}/>
-                        <View style={styles.imageView}>
-                            <Image
-                                style={styles.logo}
-                                source={require('../../../assets/YLogAppLogo.png')}>
-                            </Image>
-                        </View>
+                <View style={{ flex: 1, backgroundColor: '#fff'}}>
+                    <Activityindication visible={this.props.user.isLoading}/>
+                    <Statusbar backgroundColor={'#229954'} barStyle="light-content" />
+                    <ScrollView>
 
-                        <View style={styles.input_view}>
-                            <InputWithIcon
-                                name='person'
-                                iconType="MaterialIcons"
-                                iconColor='#fff'
-                                placeholder='Username'
-                                value={this.state.username}
-                                returnKeyType={'next'}
-                                keyboardType={'email-address'}
-                                blurOnSubmit={false}
-                                onSubmitEditing={() => this._focusNextField('password')}
-                                onChangeText={(username) => this.setState({ username })}
-                                inputStyles={{width: '85%'}}
-                            />
-                        </View>
+                        <View style={styles.container}>
+                            
+                            <View style={styles.imageView}>
+                                <Image
+                                    style={styles.logo}
+                                    source={require('../../../assets/logo.png')}>
+                                </Image>
+                            </View>
 
-                        <View style={styles.input_view}>
-                            <InputWithIcon
-                                name='lock'
-                                iconType="MaterialIcons"
-                                iconColor='#FFF'
-                                placeholder='Password'
-                                returnKeyType={'go'}
-                                getRef={(input) => { this.password = input; }}
-                                value={this.state.password}
-                                secureTextEntry={true}
-                                onSubmitEditing={this._doLogin}
-                                onChangeText={(password) => this.setState({ password })}
-                                inputStyles={{width: '85%'}}
-                            />
-                        </View>
-
-                            <View style={styles.checkbox}>
-                            <View style={styles.checkbox_view}>
-                                <CheckBox
-                                    checked={this.state.remember}
-                                    color='#229954'
-                                    onPress={() => this.setState({
-                                        remember: !this.state.remember
-                                    })}
-                                />
-                                <View style={styles.remember_me}>
-                                    <Text style={styles.remember_me_text}>Remember me</Text>
+                            <View style={styles.input_view}>
+                                <View style={{width: '85%'}}>
+                                    <Float
+                                        placeholder='Username'
+                                        value={this.state.username}
+                                        isIcon={true}
+                                        iconName='person'
+                                        iconType="MaterialIcons"
+                                        iconColor='gray'
+                                        returnKeyType={'next'}
+                                        keyboardType={'email-address'}
+                                        blurOnSubmit={false}
+                                        isMandatory={true}
+                                        onSubmitEditing={() => this._focusNextField('password')}
+                                        onChangeText={(username) => this.setState({ username })}
+                                    />
                                 </View>
                             </View>
-                            <View style={styles.forgot_view}>
-                                <TouchableWithoutFeedback onPress={() => navigate('ForgotPassword')}>
-                                    <Text style={styles.forgot_text}> Forgot password ? </Text>
-                                </TouchableWithoutFeedback>                                   
+
+                            <View style={styles.input_view}>
+                                <View style={{width: '85%'}}>
+                                    <Float
+                                        placeholder='Password'
+                                        value={this.state.password}
+                                        isIcon={true}
+                                        iconName='lock'
+                                        iconType="MaterialIcons"
+                                        iconColor='gray'
+                                        returnKeyType={'go'}
+                                        getRef={(input) => { this.password = input; }}
+                                        secureTextEntry={true}
+                                        blurOnSubmit={false}
+                                        isMandatory={true}
+                                        onSubmitEditing={this._doLogin}
+                                        onChangeText={(password) => this.setState({ password })}
+                                    />
+                                </View>
                             </View>
-                        </View>
 
-                        <View style={styles.button_view}>
-                            <Button
-                                style={styles.button}
-                                onPress={this._doLogin} >
-                                <Text style={styles.button_text}>  LOGIN </Text>
-                            </Button>
-                        </View>
+                            <View style={styles.checkbox}>
+                                <View style={styles.checkbox_view}>
+                                    <CheckBox
+                                        checked={this.state.remember}
+                                        color='#229954'
+                                        onPress={() => this.setState({
+                                            remember: !this.state.remember
+                                        })}
+                                    />
+                                    <View style={styles.remember_me}>
+                                        <Text style={styles.remember_me_text}>Remember me</Text>
+                                    </View>
+                                </View>
+                                <View style={styles.forgot_view}>
+                                    <TouchableWithoutFeedback onPress={() => navigate('ForgotPassword')}>
+                                        <Text style={styles.forgot_text}> Forgot password ? </Text>
+                                    </TouchableWithoutFeedback>                                   
+                                </View>
+                            </View>
 
-                    </View>
-                </ScrollView>
-            </ImageBackground>
+                            <View style={styles.button_view}>
+                                <Button
+                                    style={styles.button}
+                                    onPress={this._doLogin} >
+                                    <Text style={styles.button_text}>  LOGIN </Text>
+                                </Button>
+                            </View>
+
+                            <View style={[styles.input_view,{flexDirection:'row'}]}>
+                                <View style={{flex: 1, justifyContent: "flex-end", alignItems: 'center', flexDirection: 'row'}}>
+                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto'}]}>About Us</Text>
+                                </View>
+                                <View style={{flex: 0.2, justifyContent: "center", alignItems: 'center', flexDirection: 'row'}}>
+                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto'}]}>|</Text>
+                                </View>
+                                <View style={{flex: 1, justifyContent: "flex-start", alignItems: 'center', flexDirection: 'row'}}>
+                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto'}]}>Help</Text>
+                                </View>
+                            </View>
+
+                            <View style={styles.input_view}>
+                                <View style={{flex: 1, justifyContent: "center", alignItems: 'center', flexDirection: 'row'}}>
+                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto'}]}>Yusata Infotech Pvt. Ltd.</Text>
+                                </View>
+                            </View>
+
+                            <View style={styles.input_view}>
+                                <View style={{flex: 1, justifyContent: "center", alignItems: 'center', flexDirection: 'row'}}>
+                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto'}]}>Version#: 1.0</Text>
+                                </View>
+                            </View>
+
+                        </View>
+                    </ScrollView>
+                </View>
         )
     }
 }

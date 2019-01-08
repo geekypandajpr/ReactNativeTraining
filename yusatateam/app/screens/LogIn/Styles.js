@@ -1,22 +1,12 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
-
-    scrollView: {
-        flex:1,
-        //backgroundColor:'blue'
-    },
     container: {
-        flex:1,
-        alignItems: 'center'
-        //backgroundColor:'red'
-    },
-    backgroundImage: {
-        height: '100%',
-        width: '100%'
+        alignItems: 'center',
+        backgroundColor:'#fff'
     },
     imageView: {
-        height: 240,
+        height: 220,
         justifyContent: 'center',
         alignItems: 'center',
         //backgroundColor: 'green'
@@ -50,7 +40,7 @@ export default EStyleSheet.create({
         marginLeft: 20
     },
     remember_me_text: {
-        color: '#fff',
+        color: '#000',
         fontSize: '0.8rem'
     },
     forgot_view: {

@@ -22,11 +22,16 @@ export default class Float extends React.Component {
     }
 
     render() {
+        const { isIcon, iconName, iconType, iconColor } = this.props;
+
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View style={{ width: '100%' }}>
                 <Item floatingLabel>
-                    {/* <Icon name={this.props.name} type={this.props.iconType} style={{color:this.props.iconColor}} /> */}
+                    {/* {isIcon ? 
+                        <Icon name={iconName} type={iconType} style={{color: iconColor}} />
+                        : null
+                    } */}
                     <Label style={[styles.label,{fontFamily: 'Roboto'}]}>{this.props.placeholder}
                         {this.props.isMandatory ?
                             <Text style={[styles.star,{fontFamily: 'Roboto'}]}>*</Text>
