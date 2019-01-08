@@ -53,7 +53,7 @@ export class LogIn extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
-            <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/LoginScreenBG.jpg')} >
+            <ImageBackground style={styles.backgroundImage} source={require('../../../assets/LoginScreenBG.jpg')} >
                 <Statusbar backgroundColor={'transparent'} barStyle="light-content" />
                 <ScrollView style={styles.scrollView} contentContainerStyle={{flex:1}}>
                     <View style={styles.container}>
@@ -61,7 +61,7 @@ export class LogIn extends React.Component {
                         <View style={styles.imageView}>
                             <Image
                                 style={styles.logo}
-                                source={require('../../assets/images/YLogAppLogo.png')}>
+                                source={require('../../../assets/YLogAppLogo.png')}>
                             </Image>
                         </View>
 

@@ -92,7 +92,7 @@ export  class QrCode extends Component {
                                             // marginLeft: 40,
                                             width: qrSize,
                                             height: qrSize,}}
-                                            source={require('../../assets/images/trans.png')}
+                                            source={require('../../../assets/trans.png')}
                                           />
                                             </View> 
                                         </BarCodeScanner>

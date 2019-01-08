@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "yusatateam",
+    "name": "AdminPortal",
     "description": "This project is really great.",
-    "slug": "yusatateam",
+    "slug": "adminportal",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": [

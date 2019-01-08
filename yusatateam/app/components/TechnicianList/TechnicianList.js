@@ -35,7 +35,7 @@ export default class TechnicianList extends React.Component {
                         <View style={styles.leftView}>
                             <View style={styles.profile_view}>
                                 <Image style={styles.profile_pic} resizeMode='cover'
-                                    source={require('../../assets/images/react-native.png')}
+                                    source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}
                                 />
                             </View>
                         </View>
