@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Modal, ActivityIndicator } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { View, Modal, ActivityIndicator,Dimensions } from 'react-native';
 
-import styles from './styles';
+//import styles from './styles';
 
 export default class Activityindication extends React.Component {
     render() {
@@ -24,3 +25,21 @@ export default class Activityindication extends React.Component {
 }
 
 export{ Activityindication }
+
+const styles = EStyleSheet.create({
+    container:{
+        flex: 1,
+        alignItems: 'center',
+         
+        backgroundColor: 'transparent'
+    },
+    outer_circle: {
+        marginTop: Dimensions.get('window').height/3,
+        borderRadius: 20,
+        width: 40,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 10
+    }
+})

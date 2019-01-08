@@ -2,7 +2,8 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import colors from '../../constants/colors';
 export default EStyleSheet.create({
     tabheading: {
-        backgroundColor: colors.HEADER_COLOR
+        backgroundColor: colors.HEADER_COLOR,
+        width : "30%"
     },
     tab_view: {
         // width: '100%',
