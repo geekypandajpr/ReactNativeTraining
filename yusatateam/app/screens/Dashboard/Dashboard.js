@@ -111,18 +111,7 @@ export  class Dashboard extends React.Component {
         }
     }
 
-    handleBackPress = () => {
-        Alert.alert(
-            'Exit Confirmation',
-            'Do you want to exit ?',
-            [
-                { text: 'No', onPress: () => {}},
-                { text: 'YES', onPress: () => BackHandler.exitApp()},
-            ],
-            { cancelable: false }
-        ) // works best when the goBack is async
-        return true;
-    }
+    handleBackPress = () => { return true }
 
     openPicker() {
         this.modalRef.current.setModalVisible(true, this.state.loginResponse);
@@ -132,16 +121,20 @@ export  class Dashboard extends React.Component {
         this.props.updateSchema(companyId);
     }
 
+    logout=()=> {
+        this.props.navigation.goBack();
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Toolbar title={this.state.loginResponse.companyName}
-                        leftIcon='home'
-                        setting='filter' settingType='FontAwesome'
-                        onSettingsPress={this.openPicker} />
-                        <Activityindication visible={this.props.loginResponse.isLoading}/>
+                    <Toolbar title={this.state.loginResponse.companyName} leftIcon='home'
+                        Calender='filter' calenderType='Feather' onCalenderPress={this.openPicker}
+                        setting='logout-variant' settingType='MaterialCommunityIcons' onSettingsPress={this.logout} />
+
+                    <Activityindication visible={this.props.loginResponse.isLoading}/>
 
                     <View style={styles.container1}>
 

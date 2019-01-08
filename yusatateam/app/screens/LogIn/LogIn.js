@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
-import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } from 'react-native';
+import { View, Image, BackHandler, ScrollView, TouchableWithoutFeedback, Alert } from 'react-native';
 import { CheckBox, Button, Text } from 'native-base';
+
 import { Float, Statusbar, Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 import styles from './Styles';
@@ -28,6 +29,26 @@ export class LogIn extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false });
+    }
+
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        Alert.alert(
+            'Exit App',
+            'Do you want to exit ?',
+            [
+              {text: 'NO', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: 'YES', onPress: () => BackHandler.exitApp()},
+            ],
+            { cancelable: false })
+        return true;
     }
 
     _focusNextField(id) { this[id]._root.focus(); }
