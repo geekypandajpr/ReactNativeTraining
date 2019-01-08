@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, ScrollView, BackHandler } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
-import { ImagePicker, Permissions, AppLoading } from 'expo';
+import { ImagePicker, AppLoading } from 'expo';
 import { connect } from 'react-redux';
 
 import styles from './styles';
