@@ -10,29 +10,7 @@ import styles from './styles';
 export default class HistoryDetails extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            modalVisible: false,
-            isLoading: true,
-            item: {},
-            comments: '',
-            device: '',
-            sim: ''
-        }
-        this.deviceList = [
-            {label: 'Device 1', value: ' Device 1'},
-            {label: 'Device 2', value: ' Device 2'},
-            {label: 'Device 3', value: ' Device 3'},
-            {label: 'Device 4', value: ' Device 4'},
-            {label: 'Device 5', value: ' Device 5'}
-        ];
-        this.simList = [
-            {label: 'Sim 1', value: ' Sim 1'},
-            {label: 'Sim 2', value: ' Sim 2'},
-            {label: 'Sim 3', value: ' Sim 3'},
-            {label: 'Sim 4', value: ' Sim 4'},
-            {label: 'Sim 5', value: ' Sim 5'}
-        ];
-        this.onClose = this.onClose.bind(this);
+        this.state = { isLoading: true }
     }
 
     async componentWillMount() {
@@ -42,19 +20,6 @@ export default class HistoryDetails extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false })
-    }
-
-    setModalVisible(visible, item={}) {
-        this.setState({
-            modalVisible: visible,
-            item: item
-        }, function () {
-            this.setState({ status: this.state.item.status });
-        });
-    }
-
-    onClose() {
-        this.setState({ modalVisible: !this.state.modalVisible })
     }
 
     render() {
@@ -245,14 +210,10 @@ export default class HistoryDetails extends React.Component {
                                         </View>
                                     </View>
 
-                                  
-
-                                    
-
                                     <View style={styles.second_view}>
                                         <View style={styles.button_view}>
                                             <Button style={styles.button}
-                                                onPress={() => navigate('Dashboard')}>
+                                                onPress={() => goBack()}>
                                                 <Text>Close</Text>
                                             </Button>
                                         </View>

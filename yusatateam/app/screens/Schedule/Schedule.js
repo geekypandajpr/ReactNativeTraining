@@ -11,6 +11,7 @@ import { ScheduleEvent, Toolbar } from '../../components';
 import styles from './Styles';
 import JobDetails from '../Jobs/JobDetails/JobDetails';
 import colors from '../../constants/colors';
+import Filter from './Filter/Filter';
 
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
@@ -27,6 +28,7 @@ export default class Schedule extends React.Component {
             items: {}
         };
         this.modalRef = React.createRef();
+        this.filterRef = React.createRef();
     }
 
     renderDay(day, item) {
@@ -45,6 +47,10 @@ export default class Schedule extends React.Component {
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
+
+    openFilter = () => {
+        this.filterRef.current.setModalVisible(true);
+    }
     
     render() {
         const { navigate } = this.props.navigation;
@@ -52,7 +58,9 @@ export default class Schedule extends React.Component {
         return (
             <View style={styles.container}>
                 <Toolbar title='Schedule'
-                    leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()} />
+                    leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
+                    setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('')}
+                    Calender='filter' calenderType='Feather' onCalenderPress={this.openFilter}/>
                 <Agenda
                     //renderDay={(day, item) => this.renderDay(day, item)}
                     items={this.state.items}
@@ -105,6 +113,7 @@ export default class Schedule extends React.Component {
                     }}
                 />
                 <JobDetails ref={this.modalRef} />
+                <Filter ref={this.filterRef} />
             </View>
         );
     }
