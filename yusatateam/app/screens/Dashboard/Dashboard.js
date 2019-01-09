@@ -214,7 +214,7 @@ export  class Dashboard extends React.Component {
                                         text='Jobs'
                                         iconColor={colors.HOMESCREEN.JOBSCARD_COLOR}
                                         textColor='gray'
-                                        onPress={() => navigate('Jobs')}
+                                        onPress={() => navigate('HistoryDetails')}
                                         colors={['#8ffcde', '#5bc8ac', '#1f977d']}
                                     />
                                 </View>

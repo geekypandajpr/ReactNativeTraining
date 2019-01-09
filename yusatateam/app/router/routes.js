@@ -23,6 +23,7 @@ import QrCode from '../screens/QrCodeScanner/QrCode';
 import CreateVehicle from '../screens/GPSDevice/GPSDeviceForm/CreateVehicle';
 import AddJob from '../screens/Jobs/AddJob/AddJob';
 import DoAssociation from '../screens/DoAssociation/DoAssociation';
+import {HistoryDetails} from '../screens/Schedule/History/HistoryDetails';
 
 const RouteConfigs = {
     Dashboard: {
@@ -161,6 +162,13 @@ const RouteConfigs = {
     },
     DoAssociation: {   
         screen: DoAssociation,
+        navigationOptions: {
+            header: null
+        }
+    },
+    HistoryDetails:
+    {   
+        screen: HistoryDetails,
         navigationOptions: {
             header: null
         }

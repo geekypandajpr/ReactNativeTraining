@@ -84,10 +84,10 @@ export  class Jobs extends React.Component {
                 <Activityindication visible={this.props.ReplaceData.isLoading}/>
                 <Activityindication visible={this.props.RepairData.isLoading}/>
                     <Toolbar title='Schedule Jobs' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
+                        setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('Settings')}
                     />
                     <Tabs tabBarUnderlineStyle={{ backgroundColor: '#fff' }}
-                        renderTabBar={() => <ScrollableTab />}>
+                        >
 
                         <Tab heading={
                             <TabHeading style={styles.tabheading}>
