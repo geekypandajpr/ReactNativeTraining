@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, ScrollView, Picker, TextInput } from 'react-native';
+import { View, ScrollView, BackHandler, TextInput } from 'react-native';
 import { Text, Button } from 'native-base';
 import { AppLoading } from 'expo';
 import { Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
 
 import styles from './Styles';
-import { globalStyles } from '../../styles';
+import { globalStyles, colors } from '../../styles';
 import { Toolbar, UnderlineText } from '../../components';
 
 export default class DoAssociation1 extends React.Component {
@@ -40,6 +40,19 @@ export default class DoAssociation1 extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false })
+    }
+
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
     render() {
@@ -191,6 +204,16 @@ export default class DoAssociation1 extends React.Component {
 
                                 <View style={styles.picker_view}>
                                     <UnderlineText
+                                        name="Status"
+                                        value={'Change status'}
+                                        // value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
+                                        isMandatory={true}
+                                        upperView={true}
+                                        // onpress={() => this.openPicker(VEHICLE_KEY, this.state.vehicleList, title[1])}
+                                    />
+                                </View>
+                                <View style={styles.picker_view}>
+                                    <UnderlineText
                                         name="Device"
                                         value={'Select device'}
                                         // value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
@@ -231,7 +254,7 @@ export default class DoAssociation1 extends React.Component {
 
                             <View style={styles.second_view}>
                                 <View style={styles.button_view}>
-                                    <Button style={styles.button}
+                                    <Button style={[styles.button,{backgroundColor: colors.HEADER_COLOR}]}
                                         onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
                                         <Text style={{fontFamily: 'Roboto'}}>Submit</Text>
                                     </Button>
