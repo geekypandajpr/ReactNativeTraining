@@ -14,11 +14,12 @@ import {
     JOBHISTORY,
     JOBLIST,
     CREATEJOB,
-    ADDJOBSERVICE
+    ADDJOBSERVICE,
+    ADDJOBVEHICLE,
 } from '../common/actionTypes';
 
 export default {
-    
+
     deviceRequest: () => ({ type: DEVICE.DEVICE_REQUEST }),
     cutomerFetchRequest: () => ({ type: CUSTOMER.CUSTOMER_FETCH }),
     technicianRequest: () => ({ type: TECHNICIAN.TECHNICIAN_REQUEST }),
@@ -49,9 +50,10 @@ export default {
     repairJobRequest: () => ({ type: REPAIRJOBS.REPAIRJOBS_REQUEST }),
 
     /**Jobs Schema */
-    jobListRequest : () => ({type : JOBLIST.JOBLIST_REQUEST}),
-    createJobRequest : () => ({type: CREATEJOB.CREATEJOB_REQUEST}),
-    jobHistoryRequest : () => ({type : JOBHISTORY.JOBHISTORY_REQUEST}),
-    addserviceRequest:()=>({type:ADDJOBSERVICE.ADDJOBCOMPANY_REQUEST})
+    jobListRequest: () => ({ type: JOBLIST.JOBLIST_REQUEST }),
+    createJobRequest: () => ({ type: CREATEJOB.CREATEJOB_REQUEST }),
+    jobHistoryRequest: () => ({ type: JOBHISTORY.JOBHISTORY_REQUEST }),
+    addserviceRequest: () => ({ type: ADDJOBSERVICE.ADDJOBCOMPANY_REQUEST }),
+    addvehicleRequest: () => ({ type: ADDJOBVEHICLE.ADDJOBVEHICLE_REQUEST }),
 
 }

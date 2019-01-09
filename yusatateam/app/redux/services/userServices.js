@@ -59,7 +59,8 @@ export default userService = {
     addjobcompany,
     addjobserviceType,
     addjobTechnician,
-
+    addjobservice,
+    
 
     doLogin,
     simlogin,
@@ -143,6 +144,13 @@ export function addjobserviceType() {
     });
 }
 export function addjobTechnician() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(UnInstallData);
+        }, 3000)
+    });
+}
+export function addjobservice() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             return resolve(UnInstallData);

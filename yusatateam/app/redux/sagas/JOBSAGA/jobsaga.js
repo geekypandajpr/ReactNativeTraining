@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import userService from '../../services/userServices';
-import { CREATEJOB, JOBHISTORY, JOBLIST, ADDJOBSERVICE } from '../../common/actionTypes';
+import { CREATEJOB, JOBHISTORY, JOBLIST, ADDJOBSERVICE, ADDJOBVEHICLE } from '../../common/actionTypes';
 
 export function* jobListData(action) {
     try {
@@ -50,6 +50,7 @@ export function* createJobData(action) {
 
     }
 }
+
 export function* Addjobcompany(action) {
     try {
         const [company, serviceType, technician] = yield all([call(userService.addjobcompany),
@@ -58,6 +59,23 @@ export function* Addjobcompany(action) {
         yield put({ type: ADDJOBSERVICE.ADDJOBCOMPANY_SUCCESS, data: [company, serviceType, technician] });
     } catch (error) {
         yield put({ type: ADDJOBSERVICE.ADDJOBCOMPANY_FAILED, error });
+        functions.showToast('Something went wrong', 'danger');
+
+    }
+}
+
+export function* AddJobVehicle(action) {
+    try {
+        const jobvehicle = yield call(userService.addjobvehicle);
+        if (jobvehicle) {
+            yield put({ type: ADDJOBVEHICLE.ADDJOBVEHICLE_SUCCESS, jobvehicle });
+        }
+        else {
+            yield put({ type: ADDJOBVEHICLE.ADDJOBCOMPANY_FAILED });
+        }
+
+    } catch (error) {
+        yield put({ type: ADDJOBVEHICLE.ADDJOBVEHICLE_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
 
     }

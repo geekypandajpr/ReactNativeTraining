@@ -23,14 +23,16 @@ import {
     ReplaceReducer,
     UnInstallReducer,
     InstallReducer
-    } from './JOBSCHEDULEREDUCER';
+} from './JOBSCHEDULEREDUCER';
 
-    import {
-        createJobReducer,
-        jobHistoryReducer,
-        jobListReducer,
-        addjobcompanyReducer
-    } from './JOBREDUCER'
+import {
+    createJobReducer,
+    jobHistoryReducer,
+    jobListReducer,
+    addjobcompanyReducer,
+    addjobvehicleReducer
+    
+} from './JOBREDUCER'
 
 const rootReducers = combineReducers({
     /**Router */
@@ -47,7 +49,7 @@ const rootReducers = combineReducers({
     createVehicleTypeData: createVehicleTypeReducer,
     checkGPSDeviceAssocData: checkDeviceAssociationReducer,
     createVehicleData: createVehicleReducer,
-    vehicleListData : vehicleListReducer,
+    vehicleListData: vehicleListReducer,
 
     /**Sim Info */
     simData: simReducer,
@@ -59,10 +61,11 @@ const rootReducers = combineReducers({
     UnInstallData: UnInstallReducer,
 
     /**Job Schema */
-    CreateData : createJobReducer,
-    ListData : jobListReducer,
-    HistoryData : jobHistoryReducer,
-    addjobcompanyData:addGPSDeviceReducer,
+    CreateData: createJobReducer,
+    ListData: jobListReducer,
+    HistoryData: jobHistoryReducer,
+    addjobcompanyData: addjobcompanyReducer,
+    addjobVehicleData:addjobvehicleReducer,
 
     /**Other */
     devicedata: deviceReducer,
