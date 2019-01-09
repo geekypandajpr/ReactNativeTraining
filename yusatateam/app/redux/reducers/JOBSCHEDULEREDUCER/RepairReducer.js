@@ -1,4 +1,4 @@
-import { JOBS } from '../../common/actionTypes';
+import { REPAIRJOBS } from '../../common/actionTypes';
 
 const initialState = {
     isLoading: true,
@@ -8,16 +8,16 @@ const initialState = {
 
 export default RepairReducer = (state = initialState, action) => {
     switch (action.type) {
-        case JOBS.JOBS_LOGIN:
+        case REPAIRJOBS.REPAIRJOBS_REQUEST:
             return Object.assign({}, state,
                 { isLoading: true }
             );
-        case JOBS.JOBS_SUCCESS:
+        case REPAIRJOBS.REPAIRJOBS_SUCCESS:
             return Object.assign({}, state, {
                 repair : action.repairData,
                 isLoading: false
             });
-        case JOBS.JOBS_FAILED:
+        case REPAIRJOBS.REPAIRJOBS_FAILED:
             return Object.assign({}, state, {
                 
                 isLoading: false,

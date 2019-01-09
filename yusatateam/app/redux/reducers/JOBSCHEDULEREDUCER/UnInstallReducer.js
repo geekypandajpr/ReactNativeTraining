@@ -1,4 +1,4 @@
-import { JOBS } from '../../common/actionTypes';
+import { UNINSTALLJOBS } from '../../common/actionTypes';
 
 const initialState = {
     isLoading: true,
@@ -8,16 +8,16 @@ const initialState = {
 
 export default UnInstallReducer = (state = initialState, action) => {
     switch (action.type) {
-        case JOBS.JOBS_LOGIN:
+        case UNINSTALLJOBS.UNINSTALLJOBS_REQUEST:
             return Object.assign({}, state,
                 { isLoading: true }
             );
-        case JOBS.JOBS_SUCCESS:
+        case UNINSTALLJOBS.UNINSTALLJOBS_SUCCESS:
             return Object.assign({}, state, {
                 unInstall : action.unInstallData,
                 isLoading: false
             });
-        case JOBS.JOBS_FAILED:
+        case UNINSTALLJOBS.UNINSTALLJOBS_FAILED:
             return Object.assign({}, state, {
                 
                 isLoading: false,

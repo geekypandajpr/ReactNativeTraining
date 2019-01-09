@@ -2,7 +2,10 @@ import { takeLatest } from 'redux-saga/effects';
 
 import {
     USER,
-    JOBS,
+    INSTALLJOBS,
+    UNINSTALLJOBS,
+    REPAIRJOBS,
+    REPLACEJOBS,
     SIM,
     CUSTOMER,
     DEVICE,
@@ -41,10 +44,10 @@ export default function* rootSaga() {
         yield takeLatest(GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST, gpsDeviceSaga.searchCriteria),
 
         /**  Job Schedule Info */
-        yield takeLatest(JOBS.JOBS_LOGIN, jobSaga.jobInstallData), 
-        yield takeLatest(JOBS.JOBS_LOGIN, jobSaga.jobRepairData), 
-        yield takeLatest(JOBS.JOBS_LOGIN, jobSaga.jobReplaceData), 
-        yield takeLatest(JOBS.JOBS_LOGIN, jobSaga.jobUnInstallData), 
+        yield takeLatest(INSTALLJOBS.INSTALLJOBS_REQUEST, jobSaga.jobInstallData), 
+        yield takeLatest(REPAIRJOBS.REPAIRJOBS_REQUEST, jobSaga.jobRepairData), 
+        yield takeLatest(REPLACEJOBS.REPLACEJOBS_REQUEST, jobSaga.jobReplaceData), 
+        yield takeLatest(UNINSTALLJOBS.UNINSTALLJOBS_REQUEST, jobSaga.jobUnInstallData), 
 
         /**Sim Info */
         yield takeLatest(SIM.SIM_REQUEST, simSaga.simlogin),

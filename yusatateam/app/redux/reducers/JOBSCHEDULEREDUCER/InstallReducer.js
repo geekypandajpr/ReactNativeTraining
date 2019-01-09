@@ -1,4 +1,4 @@
-import { JOBS } from '../../common/actionTypes';
+import { INSTALLJOBS } from '../../common/actionTypes';
 
 const initialState = {
     isLoading: true,
@@ -8,16 +8,16 @@ const initialState = {
 
 export default InstallReducer = (state = initialState, action) => {
     switch (action.type) {
-        case JOBS.JOBS_LOGIN:
+        case INSTALLJOBS.INSTALLJOBS_REQUEST:
             return Object.assign({}, state,
                 { isLoading: true }
             );
-        case JOBS.JOBS_SUCCESS:
+        case INSTALLJOBS.INSTALLJOBS_SUCCESS:
             return Object.assign({}, state, {
                 install : action.installData,
                 isLoading: false
             });
-        case JOBS.JOBS_FAILED:
+        case INSTALLJOBS.INSTALLJOBS_FAILED:
             return Object.assign({}, state, {
                 
                 isLoading: false,
