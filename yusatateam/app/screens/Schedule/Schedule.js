@@ -27,7 +27,10 @@ export  class Schedule extends React.Component {
         super(props);
         moment.locale('en');
         this.state = {
-            items: {}
+            items: {},
+            historyData : '',
+            createData : '',
+            listData :''
         };
         this.modalRef = React.createRef();
         this.filterRef = React.createRef();
@@ -47,17 +50,16 @@ export  class Schedule extends React.Component {
     
     componentWillReceiveProps(nextProps) {
         if(this.props.CreateData !== nextProps.CreateData) {
-            // this.setState({repair:nextProps.RepairData.repair});
+            this.setState({createData:nextProps.CreateData.createData});
             // this.arrayList = nextProps.InstallData.data;
         }
         if(this.props.ListData !== nextProps.ListData) {
          
-            // this.setState({install: nextProps.InstallData.install});
+            this.setState({listData:nextProps.ListData.listData});
             // this.arrayList = nextProps.InstallData.data;
         }
         if(this.props.HistoryData !== nextProps.HistoryData) {
-           alert(JSON.stringify(nextProps.HistoryData.historyData))
-            // this.setState({replace: nextProps.ReplaceData.replace});
+            this.setState({historyData:  nextProps.HistoryData.historyData});
             // this.arrayList = nextProps.InstallData.data;
         }
     }
@@ -84,7 +86,7 @@ export  class Schedule extends React.Component {
                     leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
                     setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('AddJob')}
                     Calender='filter' calenderType='Feather' onCalenderPress={this.openFilter}
-                    thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('HistoryDetails')}/>
+                    thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => alert(JSON.stringify(this.state.historyData))}/>
                 <Agenda
                     //renderDay={(day, item) => this.renderDay(day, item)}
                     items={this.state.items}
