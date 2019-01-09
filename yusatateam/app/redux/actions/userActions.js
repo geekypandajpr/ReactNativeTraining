@@ -9,7 +9,11 @@ import {
     CUSTOMER,
     TECHNICIAN,
     GPSDEVICE,
-    GPSDEVICESEARCHCRITERIA
+    GPSDEVICESEARCHCRITERIA,
+
+    JOBHISTORY,
+    JOBLIST,
+    CREATEJOB
 } from '../common/actionTypes';
 
 export default {
@@ -42,6 +46,11 @@ export default {
     unInstallJobRequest: () => ({ type: UNINSTALLJOBS.UNINSTALLJOBS_REQUEST }),
     replaceJobRequest: () => ({ type: REPLACEJOBS.REPLACEJOBS_REQUEST }),
     repairJobRequest: () => ({ type: REPAIRJOBS.REPAIRJOBS_REQUEST }),
+
+    /**Jobs Schema */
+    jobListRequest : () => ({type : JOBLIST.JOBLIST_REQUEST}),
+    createJobRequest : () => ({type: CREATEJOB.CREATEJOB_REQUEST}),
+    jobHistoryRequest : () => ({type : JOBHISTORY.JOBHISTORY_REQUEST})
 
 
 }
