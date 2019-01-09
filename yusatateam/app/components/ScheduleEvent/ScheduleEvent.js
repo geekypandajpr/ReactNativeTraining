@@ -37,7 +37,7 @@ export default class ScheduleEvent extends React.Component {
                                     onPress={()=>this.completeJob(item)}
                                     styles={{ button: styles.service_type_view, label: styles.service_type }} /> */}
                                 <Button transparent style={styles.service_type_view} 
-                                    onPress={()=>this.completeJob(item)}>
+                                    onPress={this.props.doAssociation}>
                                     <Text uppercase={false} style={styles.service_type}>{item.serviceType}</Text>
                                 </Button>
                             </View>

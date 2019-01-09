@@ -21,7 +21,8 @@ import GPSDeviceForm from '../screens/GPSDevice/GPSDeviceForm/GPSDeviceForm';
 import SalesDashboard from '../screens/SalesDashboard/SalesDashboard';
 import QrCode from '../screens/QrCodeScanner/QrCode';
 import CreateVehicle from '../screens/GPSDevice/GPSDeviceForm/CreateVehicle';
-import AddJob from '../screens/Jobs/AddJob/AddJob'
+import AddJob from '../screens/Jobs/AddJob/AddJob';
+import DoAssociation from '../screens/DoAssociation/DoAssociation1';
 // import {
 //     LogIn,
 //     HomeScreen,
@@ -126,59 +127,57 @@ const RouteConfigs = {
             header: null
         }
     },
-    TodaysJobs:
-    {   
+    TodaysJobs: {   
         screen: TodaysJobs,
         navigationOptions: {
             header: null
         }
     },
-    TechDetails:
-    {   
+    TechDetails: {   
         screen: TechDetails,
         navigationOptions: {
             header: null
         }
     },
-    GPSDevice:
-    {   
+    GPSDevice: {
         screen: GPSDevice,
         navigationOptions: {
             header: null
         }
     },
-    GPSDeviceForm:
-    {   
+    GPSDeviceForm: {   
         screen: GPSDeviceForm,
         navigationOptions: {
             header: null
         }
     },
-    SalesDashboard:
-    {   
+    SalesDashboard: {   
         screen: SalesDashboard,
         navigationOptions: {
             header: null
         }
     },
-    QrCode:
-    {   
+    QrCode: {   
         screen: QrCode,
         navigationOptions: {
             header: null
         }
     },
     
-    CreateVehicle:
-    {   
+    CreateVehicle: {   
         screen: CreateVehicle,
         navigationOptions: {
             header: null
         }
     },
-   AddJob:
-    {   
+    AddJob: {   
         screen: AddJob,
+        navigationOptions: {
+            header: null
+        }
+    },
+    DoAssociation: {   
+        screen: DoAssociation,
         navigationOptions: {
             header: null
         }

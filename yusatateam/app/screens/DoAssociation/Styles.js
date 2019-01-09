@@ -111,7 +111,8 @@ export default EStyleSheet.create({
     },
     picker_view: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        padding: 4
     },
     picker: {
         height: '100%',
@@ -120,13 +121,14 @@ export default EStyleSheet.create({
     comment_box: {
         alignItems: 'center',
         justifyContent: 'center',
+        padding: 4
     },
     comment_input_view: {
         width: '100%',
         height: 100,
         borderWidth: 0.8,
         borderColor: 'gray',
-        borderRadius: 0,
+        borderRadius: 1,
     },
     comment_text: {
         fontSize: '0.8rem',

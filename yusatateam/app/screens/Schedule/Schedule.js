@@ -249,6 +249,7 @@ export default class Schedule extends React.Component {
         }
         return (
             <ScheduleEvent item={[item]}
+                doAssociation={() => this.props.navigation.navigate('DoAssociation')}
                 viewMore={() => { this.modalRef.current.setModalVisible(true, value) }}/>
         );
     }

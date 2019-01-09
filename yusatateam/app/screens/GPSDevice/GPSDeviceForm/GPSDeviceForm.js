@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, ScrollView, BackHandler, Keyboard } from 'react-native';
-import { Item, Label, Input, Button, Text, Icon } from 'native-base';
+import { View, ScrollView, BackHandler, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { Item, Label, Input, Button, Text, Icon, Content } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker';
@@ -90,11 +90,11 @@ export class GPSDeviceForm extends React.Component {
 
     /**Scroll down the screen */
     scrolldown = (ref) => {
-        const self = this;
-        this.refs[ref].measure((ox, oy, width, height) => {
-            console.log(oy);
-            self.refs.scrollView.scrollTo({y: oy + 200});
-        });
+        // const self = this;
+        // this.refs[ref].measure((ox, oy, width, height) => {
+        //     console.log(oy);
+        //     self.refs.scrollView.scrollTo({y: oy + 200});
+        // });
     }
 
     handleBackPress = () => {
@@ -280,6 +280,7 @@ export class GPSDeviceForm extends React.Component {
                     <Activityindication visible={this.props.checkGPSDeviceAssocData.isLoading} />
 
                     <View style={{ flex: 1 }}>
+                        <KeyboardAvoidingView  behavior='position'>
                         <ScrollView keyboardShouldPersistTaps="always" ref="scrollView">
                             <View style={{ flexDirection: 'column', flex: 1 }}>
                                 <View style={styles.Sub_View}>
@@ -501,6 +502,7 @@ export class GPSDeviceForm extends React.Component {
                                 </View>
                             </View>
                         </ScrollView>
+                        </KeyboardAvoidingView>
                     </View>
 
 
