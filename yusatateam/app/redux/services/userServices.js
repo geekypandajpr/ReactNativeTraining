@@ -2,12 +2,18 @@ import Api from '../common/api';
 import { USER } from '../common/urls';
 import loginData from '../../assets/JSONData/loginData';
 import SimData from '../../assets/JSONData/SimData';
-import JobsData from '../../assets/JSONData/JobsData/JobsData';
+
 import DeviceData from '../../assets/JSONData/DeviceData';
 import customersData from '../../assets/JSONData/customerData';
 import TechnicianData from '../../assets/JSONData/TechnicianData';
 import CompanyData from '../../assets/JSONData/GpsDevice/CompanyData';
 import DeviceValue from '../../assets/JSONData/GpsDevice/DeviceData'
+
+/**Job Schedule */
+import InstallData from '../../assets/JSONData/JobsData/InstallData';
+import RepairData from '../../assets/JSONData/JobsData/RepairData';
+import ReplaceData from '../../assets/JSONData/JobsData/ReplaceData';
+import UnInstallData from '../../assets/JSONData/JobsData/UnInstallData';
 
 export const login = data => Api.post(USER.LOGIN, data);
 export const gpsDeviceCountryIsd = () => Api.get(USER.COUNTRYISD);
@@ -39,16 +45,55 @@ export default userService = {
     createVehicleType,
     createVehicle,
 
+    /**Job Schedule */
+    jobInstallData,
+    jobRepairData,
+    jobReplaceData,
+    jobUnInstallData,
+
+
     doLogin,
     simlogin,
     devicelogin,
-    jobPendingData,
     deviceValue,
     customerList,
     technicianLogin,
     gpslogin,
 
 }
+
+/**JOBS API CALL */
+export function jobInstallData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(InstallData);
+        }, 3000)
+    });
+}
+export function jobRepairData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(RepairData);
+        }, 3000)
+    });
+}
+
+export function jobReplaceData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(ReplaceData);
+        }, 3000)
+    });
+}
+export function jobUnInstallData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(UnInstallData);
+        }, 3000)
+    });
+}
+
+
 
 /**LOGIN API CALL */
 export function doLogin(data) {
@@ -95,14 +140,7 @@ export function technicianLogin() {
     });
 }
 
-/**JOBS API CALL */
-export function jobPendingData() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            return resolve(JobsData);
-        }, 3000)
-    });
-}
+
 /**GPSDEVICE LIST API CALL */
 export function gpslogin() {
     return new Promise((resolve, reject) => {
@@ -120,19 +158,5 @@ export function deviceValue() {
     });
 }
 
-// export function jobCompletedData() {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             return resolve(completedData);
-//         }, 3000)
-//     });
-// }
 
-// export function jobRescheduleData() {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             return resolve(reScheduleData);
-//         }, 3000)
-//     });
-// }
 

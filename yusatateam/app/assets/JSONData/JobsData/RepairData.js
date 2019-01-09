@@ -1,9 +1,9 @@
-const ReScheduleData= [
+const RepairData= [
     {
         'jobNumber': 'JOBS320NOV2018',
         'jobStatus': 'ReSchedule',
         'companyName': 'Yusata infotech Private Limited',
-        'jobType': 'Install',
+        'jobType': 'Repair',
         'jobName': 'Job Name',
         'scheduleDate': '10 Nov 2018 20:00',
         'servicePerson': 'Yash Gulati',
@@ -18,7 +18,7 @@ const ReScheduleData= [
         'jobNumber': 'JOBS420NOV2018',
         'jobStatus': 'ReSchedule',
         'companyName': 'Yusata infotech Private Limited',
-        'jobType': 'Install',
+        'jobType': 'Repair',
         'jobName': 'Job Name',
         'scheduleDate': '10 Nov 2018 20:00',
         'servicePerson': 'Yash Gulati',
@@ -33,7 +33,7 @@ const ReScheduleData= [
         'jobNumber': 'JOBS520NOV2018',
         'jobStatus': 'ReSchedule',
         'companyName': 'Yusata infotech Private Limited',
-        'jobType': 'Install',
+        'jobType': 'Repair',
         'jobName': 'Job Name',
         'scheduleDate': '10 Nov 2018 20:00',
         'servicePerson': 'Yash Gulati',
@@ -48,7 +48,7 @@ const ReScheduleData= [
         'jobNumber': 'JOBS620NOV2018',
         'jobStatus': 'ReSchedule',
         'companyName': 'Yusata infotech Private Limited',
-        'jobType': 'Install',
+        'jobType': 'Repair',
         'jobName': 'Job Name',
         'scheduleDate': '10 Nov 2018 20:00',
         'servicePerson': 'Yash Gulati',
@@ -63,7 +63,7 @@ const ReScheduleData= [
         'jobNumber': 'JOBS720NOV2018',
         'jobStatus': 'ReSchedule',
         'companyName': 'Yusata infotech Private Limited',
-        'jobType': 'Install',
+        'jobType': 'Repair',
         'jobName': 'Job Name',
         'scheduleDate': '10 Nov 2018 20:00',
         'servicePerson': 'Yash Gulati',
@@ -78,7 +78,7 @@ const ReScheduleData= [
         'jobNumber': 'JOBS120NOV2018',
         'jobStatus': 'ReSchedule',
         'companyName': 'Yusata infotech Private Limited',
-        'jobType': 'Install',
+        'jobType': 'Repair',
         'jobName': 'Job Name',
         'scheduleDate': '10 Nov 2018 20:00',
         'servicePerson': 'Yash Gulati',
@@ -93,7 +93,7 @@ const ReScheduleData= [
         'jobNumber': 'JOBS220NOV2018',
         'jobStatus': 'ReSchedule',
         'companyName': 'Yusata infotech Private Limited',
-        'jobType': 'Install',
+        'jobType': 'Repair',
         'jobName': 'Job Name',
         'scheduleDate': '10 Nov 2018 20:00',
         'servicePerson': 'Yash Gulati',
@@ -106,4 +106,4 @@ const ReScheduleData= [
     },
 ];
 
-module.exports = ReScheduleData;
+module.exports = RepairData;

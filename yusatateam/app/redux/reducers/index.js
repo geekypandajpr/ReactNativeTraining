@@ -4,7 +4,7 @@ import { navReducer } from '../../router';
 import userReducer from './userReducer';
 import simReducer from './SIMREDUCER/simReducer';
 import deviceReducer from './deviceReducer';
-import jobReducer from './jobReducer';
+
 import customerReducer from './cutomerReducer';
 import techReducer from './techReducer';
 import searchCriteriaReducer from './searchCriteriaReducer';
@@ -17,6 +17,13 @@ import {
     checkDeviceAssociationReducer,
     vehicleListReducer
 } from './GPSDevice';
+
+import {
+    RepairReducer,
+    ReplaceReducer,
+    UnInstallReducer,
+    InstallReducer
+    } from './JOBSCHEDULEREDUCER';
 
 const rootReducers = combineReducers({
     /**Router */
@@ -38,8 +45,13 @@ const rootReducers = combineReducers({
     /**Sim Info */
     simData: simReducer,
 
-    /**Others */
-    JobData: jobReducer,
+    /**Job Schedule */
+    InstallData: InstallReducer,
+    RepairData: RepairReducer,
+    ReplaceData: ReplaceReducer,
+    UnInstallData: UnInstallReducer,
+
+    /**Other */
     devicedata: deviceReducer,
     customersData: customerReducer,
     TechnicianData: techReducer,

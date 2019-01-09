@@ -1,12 +1,12 @@
-import { JOBS } from '../common/actionTypes';
+import { JOBS } from '../../common/actionTypes';
 
 const initialState = {
     isLoading: true,
-    data: [],
+    replaceData: [],
     error: false
 }
 
-export default jobReducer = (state = initialState, action) => {
+export default ReplaceReducer = (state = initialState, action) => {
     switch (action.type) {
         case JOBS.JOBS_LOGIN:
             return Object.assign({}, state,
@@ -14,7 +14,7 @@ export default jobReducer = (state = initialState, action) => {
             );
         case JOBS.JOBS_SUCCESS:
             return Object.assign({}, state, {
-                data : action.data,
+                replace : action.replaceData,
                 isLoading: false
             });
         case JOBS.JOBS_FAILED:

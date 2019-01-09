@@ -12,7 +12,6 @@ import {
 export default {
     
     deviceRequest: () => ({ type: DEVICE.DEVICE_REQUEST }),
-    jobRequest: () => ({ type: JOBS.JOBS_LOGIN }),
     cutomerFetchRequest: () => ({ type: CUSTOMER.CUSTOMER_FETCH }),
     technicianRequest: () => ({ type: TECHNICIAN.TECHNICIAN_REQUEST }),
 
@@ -33,4 +32,10 @@ export default {
 
     /** */
     simRequest: () => ({ type: SIM.SIM_REQUEST }),
+
+
+    /**Jobs Schedule */
+    jobRequest: () => ({ type: JOBS.JOBS_LOGIN }),
+
+
 }

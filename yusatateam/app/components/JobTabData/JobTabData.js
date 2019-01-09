@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, TouchableOpacity, BackHandler } from 'react-native';
+import { View, FlatList, TouchableOpacity, BackHandler,ActivityIndicator} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Text, Button, Card, Footer, FooterTab, CheckBox } from 'native-base';
 import styles from './styles';
@@ -25,9 +25,7 @@ export default class JobTabData extends React.Component {
         this.jobFilter = React.createRef();
         this.openFilterPage = this.openFilterPage.bind(this);
     };
-    componentDidMount() {
-        
-    }
+
 
     componentWillReceiveProps(nextProps) {
         if(this.props.JobDataValue !== nextProps.JobDataValue) {
@@ -94,11 +92,8 @@ export default class JobTabData extends React.Component {
 
 
     render() {
-        const { isLoading } = this.props;
-        //   alert(this.state.text)
         return (
             <View style={styles.container}>
-                {/* <Activityindication visible={isLoading}/> */}
                 <View style={styles.searchView}>
                     <View style={{ flex: 10 }}>
                         <SearchBar placeholder={'Search By '}
