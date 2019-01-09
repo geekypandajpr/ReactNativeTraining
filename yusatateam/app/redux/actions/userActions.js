@@ -1,6 +1,9 @@
 import {
     USER,
-    JOBS,
+    INSTALLJOBS,
+    UNINSTALLJOBS,
+    REPAIRJOBS,
+    REPLACEJOBS,
     SIM,
     DEVICE,
     CUSTOMER,
@@ -35,7 +38,10 @@ export default {
 
 
     /**Jobs Schedule */
-    jobRequest: () => ({ type: JOBS.JOBS_LOGIN }),
+    installJobRequest: () => ({ type: INSTALLJOBS.INSTALLJOBS_REQUEST }),
+    unInstallJobRequest: () => ({ type: UNINSTALLJOBS.UNINSTALLJOBS_REQUEST }),
+    replaceJobRequest: () => ({ type: REPLACEJOBS.REPLACEJOBS_REQUEST }),
+    repairJobRequest: () => ({ type: REPAIRJOBS.REPAIRJOBS_REQUEST }),
 
 
 }
