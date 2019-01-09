@@ -8,7 +8,7 @@ import { userActions } from '../../redux/actions';
 import { Toolbar,Activityindication ,JobTabData } from '../../components';
 import colors from '../../constants/colors';
 
-export  class Jobs extends React.Component {
+export default class Jobs extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -29,7 +29,7 @@ export  class Jobs extends React.Component {
 
 
     componentDidMount() {
-        this.props.onFetchData();
+       // this.props.onFetchData();
         BackHandler.addEventListener('hardwareBackPress', () => {
             this.props.navigation.goBack();
             return true;
@@ -40,12 +40,13 @@ export  class Jobs extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if(this.props.PendingData !== nextProps.PendingData) {
-            this.setState({data: nextProps.PendingData.data});
-            this.arrayList = nextProps.PendingData.data;
-        }
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     if(this.props.InstallData !== nextProps.InstallData) {
+    //         alert(JSON.stringify(nextProps.InstallData))
+    //         this.setState({data: nextProps.InstallData.data});
+    //         this.arrayList = nextProps.InstallData.data;
+    //     }
+    // }
 
 
     selectedValue(map) {
@@ -58,7 +59,7 @@ export  class Jobs extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
-                <Activityindication visible={this.props.PendingData.isLoading}/>
+                {/* <Activityindication visible={this.props.InstallData.isLoading}/> */}
                     <Toolbar title='Schedule Jobs' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
@@ -73,7 +74,9 @@ export  class Jobs extends React.Component {
                             </TabHeading>
                         }>
                         
-                            <JobTabData JobDataValue={this.state.data[0]} isLoading={this.props.PendingData.isLoading}/>
+                            <JobTabData 
+                            // JobDataValue={this.state.data[0]} 
+                            />
                         </Tab>
 
                         <Tab heading={
@@ -83,7 +86,9 @@ export  class Jobs extends React.Component {
                                 </View>
                             </TabHeading>
                         }>
-                            <JobTabData JobDataValue={this.state.data[2]}/>
+                            <JobTabData 
+                            // JobDataValue={this.state.data[2]}
+                            />
                         </Tab>
 
                         <Tab heading={
@@ -93,7 +98,9 @@ export  class Jobs extends React.Component {
                                 </View>
                             </TabHeading>
                         }>
-                            <JobTabData  JobDataValue={this.state.data[3]}/>
+                            <JobTabData  
+                            // JobDataValue={this.state.data[3]}
+                            />
                         </Tab>
                         
                         <Tab heading={
@@ -103,7 +110,9 @@ export  class Jobs extends React.Component {
                                 </View>
                             </TabHeading>
                         }>
-                            <JobTabData JobDataValue={this.state.data[1]} />
+                            <JobTabData
+                            //  JobDataValue={this.state.data[1]}
+                              />
                         </Tab>
 
                     </Tabs>
@@ -111,16 +120,18 @@ export  class Jobs extends React.Component {
         );
     }
 }
-function mapStateToProps(state){
-    return{
-        PendingData : state.JobData
-    }
-}
+// function mapStateToProps(state){
+//     return{
+//         InstallData : state.InstallData
+//     }
+// }
 
-function mapDispatchToProps(dispatch){
-    return{
-        onFetchData: () => dispatch(userActions.jobRequest())
-    }
-}
+// function mapDispatchToProps(dispatch){
+//     return{
+//         onFetchData: () => dispatch(userActions.jobRequest())
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Jobs);
+// export default connect(mapStateToProps, mapDispatchToProps)(Jobs);
+
+export {Jobs}
