@@ -6,7 +6,29 @@ import { Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
 
 import styles from './Styles';
 import { globalStyles, colors } from '../../styles';
-import { Toolbar, UnderlineText } from '../../components';
+import { Toolbar, UnderlineText, SinglePicker } from '../../components';
+
+const STATUS = [
+    { "label": "Entered", "value": "ENTERED" },
+    { "label": "Accepted", "value": "ACCEPTED" },
+    { "label": "On-Job", "value": "ONJOB" },
+    { "label": "Re-Schedule", "value": "RESCHEDULE" },
+    { "label": "Completed", "value": "COMPLETED" },
+    { "label": "Cancel", "value": "CANCEL" },
+];
+
+const STATUS_COLOR = {
+    "ENTERED": '#0073b7',
+    "ACCEPTED": '#5E35A6',
+    "ONJOB": '#007aff',
+    "COMPLETED": '#5cb85c',
+    "RESCHEDULED": '#f0ad4e',
+    "CANCELLED": '#d9534f',
+};
+
+const STATUS_KEY = "STATUS";
+const DEVICE_KEY = "DEVICE";
+const SIM_KEY = "SIM";
 
 export default class DoAssociation1 extends React.Component {
     constructor(props) {
@@ -17,20 +39,9 @@ export default class DoAssociation1 extends React.Component {
             device: '',
             sim: ''
         }
-        this.deviceList = [
-            { label: 'Device 1', value: ' Device 1' },
-            { label: 'Device 2', value: ' Device 2' },
-            { label: 'Device 3', value: ' Device 3' },
-            { label: 'Device 4', value: ' Device 4' },
-            { label: 'Device 5', value: ' Device 5' }
-        ];
-        this.simList = [
-            { label: 'Sim 1', value: ' Sim 1' },
-            { label: 'Sim 2', value: ' Sim 2' },
-            { label: 'Sim 3', value: ' Sim 3' },
-            { label: 'Sim 4', value: ' Sim 4' },
-            { label: 'Sim 5', value: ' Sim 5' }
-        ];
+        this.getSelectedValue = this.getSelectedValue.bind(this);
+        this.singlePickerRef = React.createRef();
+        this.flag = '';
     }
 
     async componentWillMount() {
@@ -53,6 +64,15 @@ export default class DoAssociation1 extends React.Component {
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    getSelectedValue() {
+
+    }
+
+    openPicker(key, list, title) {
+        this.flag = key;
+        this.singlePickerRef.current.setModalVisible(true, title, list);
     }
 
     render() {
@@ -113,7 +133,7 @@ export default class DoAssociation1 extends React.Component {
                                         <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>:</Text>
                                     </View>
                                     <View style={styles.right_view}>
-                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>Yash Gulati</Text>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>Prem</Text>
                                     </View>
                                 </View>
 
@@ -141,7 +161,7 @@ export default class DoAssociation1 extends React.Component {
                                         <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>:</Text>
                                     </View>
                                     <View style={styles.right_view}>
-                                        <View style={styles.status_view}>
+                                        <View style={[styles.status_view,{backgroundColor: STATUS_COLOR['COMPLETED']}]}>
                                             <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4, color:'#fff'}]}>Completed</Text>
                                         </View>
                                     </View>
@@ -209,7 +229,7 @@ export default class DoAssociation1 extends React.Component {
                                         // value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
                                         isMandatory={true}
                                         upperView={true}
-                                        // onpress={() => this.openPicker(VEHICLE_KEY, this.state.vehicleList, title[1])}
+                                        onpress={() => this.openPicker(STATUS_KEY, STATUS, 'Status')}
                                     />
                                 </View>
                                 <View style={styles.picker_view}>
@@ -263,6 +283,7 @@ export default class DoAssociation1 extends React.Component {
 
                         </ScrollView>
                     </View>
+                    <SinglePicker ref={this.singlePickerRef} selectedValue={(item) => this.getSelectedValue(item)}/>
                 </View>
         );
     }

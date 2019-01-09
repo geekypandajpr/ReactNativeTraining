@@ -25,6 +25,7 @@ export { JobTabData } from './JobTabData';
 export { GpsDeviceData } from './GpsDeviceData';
 export { Float } from './Floating';
 export { UnderlineText } from './TextWithUnderline';
+export { default as SinglePicker } from './SinglePicker/SinglePicker';
 
 
 
