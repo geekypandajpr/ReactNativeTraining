@@ -21,7 +21,7 @@ import GPSDeviceForm from '../screens/GPSDevice/GPSDeviceForm/GPSDeviceForm';
 import SalesDashboard from '../screens/SalesDashboard/SalesDashboard';
 import QrCode from '../screens/QrCodeScanner/QrCode';
 import CreateVehicle from '../screens/GPSDevice/GPSDeviceForm/CreateVehicle';
-import AddJob from '../screens/Jobs/AddJob/AddJob';
+import AddJob from '../screens/Schedule/AddJob/AddJob';
 import DoAssociation from '../screens/DoAssociation/DoAssociation';
 import HistoryDetails from '../screens/Schedule/History/HistoryDetails';
 
@@ -166,8 +166,7 @@ const RouteConfigs = {
             header: null
         }
     },
-    HistoryDetails:
-    {   
+    HistoryDetails: {   
         screen: HistoryDetails,
         navigationOptions: {
             header: null

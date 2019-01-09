@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, KeyboardAvoidingView, FlatList, BackHandler, ScrollView, TextInput } from 'react-native';
+import { View, KeyboardAvoidingView, BackHandler, ScrollView } from 'react-native';
 import { Button, Text, Radio } from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import { AppLoading } from 'expo';
-import { Entypo } from '@expo/vector-icons';
 
 import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
 import styles from './styles';
@@ -20,8 +19,6 @@ export default class AddJob extends React.Component {
             technician: 'select technician',
             location: '',
             radio: false,
-            text: ''
-
         }
     };
 
@@ -224,14 +221,12 @@ export default class AddJob extends React.Component {
 
                                         <View style={styles.button_view}>
                                             <View style={{ flex: 1, marginRight: 1 }}>
-                                                <Button block style={{ backgroundColor: '#d9534f' }}
-                                                >
+                                                <Button block style={{ backgroundColor: '#d9534f' }} onPress={this.onCancel} >
                                                     <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Cancel</Text>
                                                 </Button>
                                             </View>
                                             <View style={{ flex: 1, marginLeft: 1 }}>
-                                                <Button block style={{ backgroundColor: '#5cb85c' }}
-                                                >
+                                                <Button block style={{ backgroundColor: '#5cb85c' }} >
                                                     <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
                                                 </Button>
                                             </View>

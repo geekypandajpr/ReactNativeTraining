@@ -59,7 +59,7 @@ export default class Schedule extends React.Component {
             <View style={styles.container}>
                 <Toolbar title='Schedule'
                     leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
-                    setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('')}
+                    setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('AddJob')}
                     Calender='filter' calenderType='Feather' onCalenderPress={this.openFilter}/>
                 <Agenda
                     //renderDay={(day, item) => this.renderDay(day, item)}
