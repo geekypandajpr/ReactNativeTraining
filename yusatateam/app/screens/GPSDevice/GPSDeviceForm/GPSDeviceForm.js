@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ScrollView, BackHandler, KeyboardAvoidingView } from 'react-native';
-import { Item, Label, Input, Button, Text, Icon, Content } from 'native-base';
+import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker';
@@ -11,7 +11,7 @@ import styles from './styles';
 import { GpsModal } from '../GpsModal/GpsModal';
 import { userActions } from '../../../redux/actions';
 import functions from '../../../common/functions';
-import { globalStyles } from '../../../styles';
+import { globalStyles, colors } from '../../../styles';
 
 const title = [
     'Company',
@@ -474,7 +474,7 @@ export class GPSDeviceForm extends React.Component {
                                         <View style={styles.Small_View}>
                                             <View style={styles.button_view}>
                                                 <Button style={[styles.button,{backgroundColor: colors.HEADER_COLOR}]}
-                                                    onPress={this.doAssignment}>
+                                                    onPress={this.onAddGPSDevice}>
                                                     <Text style={{fontFamily: 'Roboto'}}>Submit</Text>
                                                 </Button>
                                             </View>

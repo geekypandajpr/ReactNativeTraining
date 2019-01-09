@@ -97,7 +97,8 @@ export default EStyleSheet.create({
     },
     button_view: {
         flex: 1,
-        backgroundColor: 'red'
+        backgroundColor: 'red',
+        marginBottom: 10
     },
     button: {
         width: '100%',
