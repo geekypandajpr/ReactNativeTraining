@@ -22,6 +22,7 @@ import SalesDashboard from '../screens/SalesDashboard/SalesDashboard';
 import QrCode from '../screens/QrCodeScanner/QrCode';
 import CreateVehicle from '../screens/GPSDevice/GPSDeviceForm/CreateVehicle';
 import AddJob from '../screens/Schedule/AddJob/AddJob';
+import Mapview from '../screens/Schedule/AddJob/Mapview';
 import DoAssociation from '../screens/DoAssociation/DoAssociation';
 import HistoryDetails from '../screens/Schedule/History/HistoryDetails';
 
@@ -156,6 +157,12 @@ const RouteConfigs = {
     },
     AddJob: {   
         screen: AddJob,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Mapview: {   
+        screen: Mapview,
         navigationOptions: {
             header: null
         }

@@ -55,7 +55,7 @@ export default class Float extends React.Component {
                     <Icon name={this.props.rightIcon}
                         onPress={this.props.rightIconPress}
                         type={this.props.rightIconType}
-                        style={{fontSize: 24, color:'gray'}} />
+                        style={this.props.rightIconStyle} />
                 </Item>
                 
             </View>

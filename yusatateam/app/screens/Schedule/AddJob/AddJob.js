@@ -116,6 +116,8 @@ export default class AddJob extends React.Component {
                                                 inputStyles={{ width: '100%' }}
                                                 rightIcon='google-maps'
                                                 rightIconType="MaterialCommunityIcons"
+                                                rightIconStyle={{fontSize: 24, color:'red'}}
+                                                rightIconPress={() => navigate('Mapview')}
                                             />
                                         </View>
                                         <View style={styles.Small_View}>
