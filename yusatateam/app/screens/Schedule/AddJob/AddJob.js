@@ -3,10 +3,12 @@ import { View, KeyboardAvoidingView, BackHandler, ScrollView } from 'react-nativ
 import { Button, Text, Radio } from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import { AppLoading } from 'expo';
-import {GpsModal} from '../../GPSDevice/GpsModal/GpsModal'
+import { GpsModal } from '../../GPSDevice/GpsModal/GpsModal';
+import { connect } from 'react-redux'
 
 import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
 import styles from './styles';
+import { userActions } from '../../../redux/actions'
 
 const title = [
     'Company',
@@ -15,7 +17,7 @@ const title = [
     'Technician',
 ]
 
-export default class AddJob extends React.Component {
+export class AddJob extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,7 +31,7 @@ export default class AddJob extends React.Component {
             radio: false,
         }
         this.modalref = React.createRef();
-        this.openPicker=this.openPicker.bind(this);
+        this.openPicker = this.openPicker.bind(this);
     };
 
     async componentWillMount() {
@@ -41,8 +43,24 @@ export default class AddJob extends React.Component {
         this.setState({ isLoading: false });
     }
 
+    componentWillReceiveProps(nextProps) {
+        /**vehicle list */
+        if (this.props.JobVehicleData !== nextProps.JobVehicleData) {
+            const vehicleArray = [];
+            if (nextProps.JobVehicleData.data.results) {
+                const vehicletype = nextProps.JobVehicleData.data.results;
+                for (var i = 0; i < vehicletype.length; i++) {
+                    var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
+                    vehicleArray.push(obj);
+                }
+            }
+            this.setState({ vehicle: vehicleArray })
+        }
+    }
+
     componentDidMount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+        this.props.addJobVehicle();
     }
 
     componentWillUnmount() {
@@ -53,8 +71,8 @@ export default class AddJob extends React.Component {
         this.props.navigation.goBack();
         return true;
     }
-    openPicker(){
-        this.modalref.current.setModalVisible(true,title[0])
+    openPicker() {
+        this.modalref.current.setModalVisible(true, title[0],this.state.vehicle)
     }
 
     render() {
@@ -80,7 +98,7 @@ export default class AddJob extends React.Component {
                                                 upperView={true}
                                                 value={this.state.company}
                                                 isMandatory={true}
-                                                onpress={this.openPicker}
+                                                //onpress={this.openPicker}
                                             />
                                         </View>
 
@@ -91,7 +109,7 @@ export default class AddJob extends React.Component {
                                                     value={this.state.vehicle}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                //onpress={alert("hello")}
+                                                    onpress={this.openPicker}
                                                 />
                                             </View>
 
@@ -103,7 +121,7 @@ export default class AddJob extends React.Component {
                                                 isMandatory={true}
                                                 upperView={true}
                                                 value={this.state.service}
-                                            //onpress={alert("hello")}
+                                                //onpress={this.openPicker}
                                             />
                                         </View>
 
@@ -129,7 +147,7 @@ export default class AddJob extends React.Component {
                                                 inputStyles={{ width: '100%' }}
                                                 rightIcon='google-maps'
                                                 rightIconType="MaterialCommunityIcons"
-                                                rightIconStyle={{fontSize: 24, color:'red'}}
+                                                rightIconStyle={{ fontSize: 24, color: 'red' }}
                                                 rightIconPress={() => navigate('Mapview')}
                                             />
                                         </View>
@@ -218,18 +236,18 @@ export default class AddJob extends React.Component {
                                                 </View>
                                             </View>
                                             {this.state.radio ?
-                                               <View style={styles.Small_View}>
-                                               <Float
-                                                   placeholder='Amount To Collect'
-                                                   value={this.state.location}
-                                                   returnKeyType={'next'}
-                                                   keyboardType={'numeric'}
-                                                   blurOnSubmit={false}
-                                                   isMandatory={true}
-                                                   onChangeText={(text) => this.setState({ balance: text })}
-                                                   inputStyles={{ width: '100%' }}
-                                               />
-                                           </View>
+                                                <View style={styles.Small_View}>
+                                                    <Float
+                                                        placeholder='Amount To Collect'
+                                                        value={this.state.location}
+                                                        returnKeyType={'next'}
+                                                        keyboardType={'numeric'}
+                                                        blurOnSubmit={false}
+                                                        isMandatory={true}
+                                                        onChangeText={(text) => this.setState({ balance: text })}
+                                                        inputStyles={{ width: '100%' }}
+                                                    />
+                                                </View>
                                                 : null}
                                         </View>
 
@@ -254,7 +272,7 @@ export default class AddJob extends React.Component {
                         </KeyboardAvoidingView>
                     </ScrollView>
 
-                    <GpsModal ref={this.modalref}/>
+                    <GpsModal ref={this.modalref} />
                 </View>
         );
     }
@@ -264,6 +282,17 @@ export default class AddJob extends React.Component {
         this.props.navigation.goBack();
     }
 }
+function mapStateToProps(state) {
+    return {
+        JobVehicleData: state.addjobvehicleReducer
+    }
+}
 
-export { AddJob }
+function mapDispatchToProps(dispatch) {
+    return {
+        addJobVehicle: () => dispatch(userActions.addJobvehicleRequest())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AddJob)
+
 

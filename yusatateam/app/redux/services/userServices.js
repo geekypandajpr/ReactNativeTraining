@@ -59,7 +59,7 @@ export default userService = {
     addjobcompany,
     addjobserviceType,
     addjobTechnician,
-    addjobservice,
+    addjobvehicle,
     
 
     doLogin,
@@ -150,7 +150,7 @@ export function addjobTechnician() {
         }, 3000)
     });
 }
-export function addjobservice() {
+export function addjobvehicle() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             return resolve(UnInstallData);

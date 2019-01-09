@@ -54,6 +54,6 @@ export default {
     createJobRequest: () => ({ type: CREATEJOB.CREATEJOB_REQUEST }),
     jobHistoryRequest: () => ({ type: JOBHISTORY.JOBHISTORY_REQUEST }),
     addserviceRequest: () => ({ type: ADDJOBSERVICE.ADDJOBCOMPANY_REQUEST }),
-    addvehicleRequest: () => ({ type: ADDJOBVEHICLE.ADDJOBVEHICLE_REQUEST }),
+    addJobvehicleRequest: () => ({ type: ADDJOBVEHICLE.ADDJOBVEHICLE_REQUEST }),
 
 }
