@@ -1,10 +1,24 @@
 import React from 'react';
+import { BackHandler } from 'react-native';
 import { MapView } from 'expo';
 
 export default class Mapview extends React.Component {
     constructor(props) {
         super(props);
-        this.setState = {}
+        this.state = {}
+    }
+
+    componentDidMount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
     }
     
     render() {
