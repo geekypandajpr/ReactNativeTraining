@@ -5,7 +5,7 @@ export default EStyleSheet.create({
 
     main_container: {
         flex: 1,
-        backgroundColor: '#fff' 
+        backgroundColor: 'transparent' 
     },
     container: {
         height: '100%',

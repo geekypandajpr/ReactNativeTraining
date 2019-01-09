@@ -24,5 +24,10 @@ export default EStyleSheet.create({
         color: 'gray',
         // color: 'rgba(0,0,0,0.5)',
         fontWeight: '400'
+    },
+    keyboardAvoiding: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center'
     }
 });

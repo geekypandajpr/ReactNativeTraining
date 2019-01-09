@@ -95,6 +95,16 @@ export default EStyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'flex-end'
     },
+    button_view: {
+        flex: 1,
+        backgroundColor: 'red'
+    },
+    button: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#d9534f'
+    },
 
 
     /**Styles for create vehicle */

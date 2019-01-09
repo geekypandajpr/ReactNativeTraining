@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, BackHandler, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { View, ScrollView, BackHandler, KeyboardAvoidingView } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon, Content } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
@@ -11,6 +11,7 @@ import styles from './styles';
 import { GpsModal } from '../GpsModal/GpsModal';
 import { userActions } from '../../../redux/actions';
 import functions from '../../../common/functions';
+import { globalStyles } from '../../../styles';
 
 const title = [
     'Company',
@@ -75,26 +76,12 @@ export class GPSDeviceForm extends React.Component {
     }
 
     componentDidMount() {
-        this.keyboardDidHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardDidHide.bind(this));
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.props.onFetchList();
     }
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-        this.keyboardDidHideListener.remove()
-    }
-
-    /**This method calls when keyboard disappear */
-    keyboardDidHide(e) { this.refs.scrollView.scrollTo({y: 0}); }
-
-    /**Scroll down the screen */
-    scrolldown = (ref) => {
-        // const self = this;
-        // this.refs[ref].measure((ox, oy, width, height) => {
-        //     console.log(oy);
-        //     self.refs.scrollView.scrollTo({y: oy + 200});
-        // });
     }
 
     handleBackPress = () => {
@@ -279,9 +266,8 @@ export class GPSDeviceForm extends React.Component {
                     <Activityindication visible={this.props.vehicleListDatas.isLoading} />
                     <Activityindication visible={this.props.checkGPSDeviceAssocData.isLoading} />
 
-                    <View style={{ flex: 1 }}>
-                        <KeyboardAvoidingView  behavior='position'>
-                        <ScrollView keyboardShouldPersistTaps="always" ref="scrollView">
+                    <KeyboardAvoidingView behavior='padding' enabled style={globalStyles.keyboardAvoiding} >
+                        <ScrollView keyboardShouldPersistTaps="always" showsVerticalScrollIndicator={false}>
                             <View style={{ flexDirection: 'column', flex: 1 }}>
                                 <View style={styles.Sub_View}>
                                     <View style={styles.Width_View}>
@@ -385,7 +371,7 @@ export class GPSDeviceForm extends React.Component {
                                                 blurOnSubmit={false}
                                                 getRef={(input) => { this.mobile = input; }}
                                                 onSubmitEditing={() => this._focusNextField('balance')}
-                                                onFocus={this.scrolldown.bind(this, 'mobile')}
+                                                // onFocus={this.scrolldown.bind(this, 'mobile')}
                                             />
                                         </View>
 
@@ -402,7 +388,7 @@ export class GPSDeviceForm extends React.Component {
                                                     blurOnSubmit={false}
                                                     getRef={(input) => { this.balance = input; }}
                                                     onSubmitEditing={() => this._focusNextField('databalance')}
-                                                    onFocus={this.scrolldown.bind(this, 'balance')}
+                                                    // onFocus={this.scrolldown.bind(this, 'balance')}
                                                 />
                                             </View>
                                             <View style={styles.inner_View}>
@@ -417,7 +403,7 @@ export class GPSDeviceForm extends React.Component {
                                                     blurOnSubmit={false}
                                                     getRef={(input) => { this.databalance = input; }}
                                                     onSubmitEditing={() => this._focusNextField('dataplan')}
-                                                    onFocus={this.scrolldown.bind(this, 'databalance')}
+                                                    // onFocus={this.scrolldown.bind(this, 'databalance')}
                                                 />
                                             </View>
                                         </View>
@@ -434,7 +420,7 @@ export class GPSDeviceForm extends React.Component {
                                                     blurOnSubmit={false}
                                                     getRef={(input) => { this.dataplan = input; }}
                                                     onSubmitEditing={() => this._focusNextField('carrier')}
-                                                    onFocus={this.scrolldown.bind(this, 'dataplan')}
+                                                    // onFocus={this.scrolldown.bind(this, 'dataplan')}
                                                 />
                                             </View>
                                             <View style={styles.inner_View}>
@@ -449,7 +435,7 @@ export class GPSDeviceForm extends React.Component {
                                                     blurOnSubmit={false}
                                                     getRef={(input) => { this.carrier = input; }}
                                                     onSubmitEditing={this.onAddGPSDevice}
-                                                    onFocus={this.scrolldown.bind(this, 'carrier')}
+                                                    // onFocus={this.scrolldown.bind(this, 'carrier')}
                                                 />
                                             </View>
                                         </View>
@@ -485,7 +471,16 @@ export class GPSDeviceForm extends React.Component {
                                             </View>
                                         </View>
 
-                                        <View style={styles.button_view}>
+                                        <View style={styles.Small_View}>
+                                            <View style={styles.button_view}>
+                                                <Button style={[styles.button,{backgroundColor: colors.HEADER_COLOR}]}
+                                                    onPress={this.doAssignment}>
+                                                    <Text style={{fontFamily: 'Roboto'}}>Submit</Text>
+                                                </Button>
+                                            </View>
+                                        </View>
+
+                                        {/* <View style={styles.button_view}>
                                             <View style={{ flex: 1, marginRight: 1 }}>
                                                 <Button block style={{ backgroundColor: '#d9534f' }}
                                                     onPress={this.onCancel}>
@@ -498,15 +493,12 @@ export class GPSDeviceForm extends React.Component {
                                                     <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
                                                 </Button>
                                             </View>
-                                        </View>
+                                        </View> */}
                                     </View>
                                 </View>
                             </View>
                         </ScrollView>
-                        </KeyboardAvoidingView>
-                    </View>
-
-
+                    </KeyboardAvoidingView>
                     <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
                 </View>
         );

@@ -3,19 +3,12 @@ import { View, KeyboardAvoidingView, BackHandler, ScrollView } from 'react-nativ
 import { Button, Text, Radio } from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import { AppLoading } from 'expo';
-import { GpsModal } from '../../GPSDevice/GpsModal/GpsModal';
 import { connect } from 'react-redux'
 
 import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
 import styles from './styles';
-import { userActions } from '../../../redux/actions'
-
-const title = [
-    'Company',
-    'Vehicles',
-    'ServiceType',
-    'Technician',
-];
+import { userActions } from '../../../redux/actions';
+import { globalStyles } from '../../../styles';
 
 const COMPANY_KEY = 'COMPANY';
 const COMPANY_KEY_VALUE = 'Select company';
@@ -111,9 +104,9 @@ export class AddJob extends React.Component {
     componentDidMount() {
         const dropdowns = new Map(this.state.dropdowns);
         dropdowns.set(COMPANY_KEY, [COMPANY_KEY_VALUE, null]);
-        dropdowns.set(VEHICLE_KEY,[VEHICLE_KEY_VALUE,null]);
-        dropdowns.set(SERVICE_KEY,[SERVICE_VALUE,null]);
-        dropdowns.set(TECHNICIAN_KEY,[TECHNICIAN_VALUE,null])
+        dropdowns.set(VEHICLE_KEY, [VEHICLE_KEY_VALUE, null]);
+        dropdowns.set(SERVICE_KEY, [SERVICE_VALUE, null]);
+        dropdowns.set(TECHNICIAN_KEY, [TECHNICIAN_VALUE, null])
         this.setState({ dropdowns: dropdowns });
 
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
@@ -149,10 +142,8 @@ export class AddJob extends React.Component {
                     <Toolbar title='Create Service' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                     />
 
-                    <ScrollView keyboardShouldPersistTaps="always" showsVerticalScrollIndicator={false}>
-
-                        <KeyboardAvoidingView behavior='padding'>
-
+                    <KeyboardAvoidingView behavior='padding' enabled style={globalStyles.keyboardAvoiding}>
+                        <ScrollView keyboardShouldPersistTaps="always" showsVerticalScrollIndicator={false}>
                             <View style={{ flexDirection: 'column', flex: 1 }}>
                                 <View style={styles.Sub_View}>
                                     <View style={styles.Width_View}>
@@ -186,7 +177,7 @@ export class AddJob extends React.Component {
                                                 isMandatory={true}
                                                 upperView={true}
                                                 value={this.state.dropdowns.get(SERVICE_KEY)[0]}
-                                                onpress={()=>this.openPicker(SERVICE_KEY,this.state.serviceTypeArray,'Service Type')}
+                                                onpress={() => this.openPicker(SERVICE_KEY, this.state.serviceTypeArray, 'Service Type')}
                                             />
                                         </View>
 
@@ -196,7 +187,7 @@ export class AddJob extends React.Component {
                                                 upperView={true}
                                                 value={this.state.dropdowns.get(TECHNICIAN_KEY)[0]}
                                                 isMandatory={true}
-                                                onpress={()=>this.openPicker(TECHNICIAN_KEY,this.state.technician,'Technician')}
+                                                onpress={() => this.openPicker(TECHNICIAN_KEY, this.state.technician, 'Technician')}
                                             />
                                         </View>
 
@@ -333,11 +324,9 @@ export class AddJob extends React.Component {
                                     </View>
                                 </View>
                             </View>
-
-                        </KeyboardAvoidingView>
-                    </ScrollView>
-
-                    <SinglePicker ref={this.modalref} selectedValue={(item) => this.selectedValue(item)}/>
+                        </ScrollView>
+                    </KeyboardAvoidingView>
+                    <SinglePicker ref={this.modalref} selectedValue={(item) => this.selectedValue(item)} />
                 </View>
         );
     }
