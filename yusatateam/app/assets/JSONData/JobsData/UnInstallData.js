@@ -3,7 +3,7 @@ const UnInstallData= [
         'jobNumber': 'JOBS620NOV2018',
         'jobStatus': 'schedule',
         'companyName': 'Yusata infotech Private Limited',
-        'jobType': 'Repair',
+        'jobType': 'UnInstall',
         'jobName': 'Job Name',
         'scheduleDate': '10 Nov 2018 20:00',
         'servicePerson': 'PremNath',
