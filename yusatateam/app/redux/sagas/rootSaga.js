@@ -12,6 +12,10 @@ import {
     TECHNICIAN,
     GPSDEVICE,
     GPSDEVICESEARCHCRITERIA,
+
+    CREATEJOB,
+    JOBHISTORY,
+    JOBLIST
 } from '../common/actionTypes';
 
 /**Login Saga import */
@@ -22,7 +26,8 @@ import * as gpsDeviceSaga from './GPSDevice/GPSDeviceSaga';
 
 import * as simSaga from './SIMSAGA/simSaga';
 import * as deviceSaga from './deviceSaga';
-import * as jobSaga from './JOBSCHEDULESAGA/jobSaga';
+// import * as jobSaga from './JOBSCHEDULESAGA/jobSaga';
+import * as jobSaga from './JOBSAGA/jobsaga';
 import * as cutomerSaga from './customerSaga';
 import * as technicianSaga from './technicianSaga';
 
@@ -43,11 +48,17 @@ export default function* rootSaga() {
         yield takeLatest(GPSDEVICE.CREATEVEHICLE_REQUEST, gpsDeviceSaga.createVehicle),
         yield takeLatest(GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST, gpsDeviceSaga.searchCriteria),
 
-        /**  Job Schedule Info */
-        yield takeLatest(INSTALLJOBS.INSTALLJOBS_REQUEST, jobSaga.jobInstallData), 
-        yield takeLatest(REPAIRJOBS.REPAIRJOBS_REQUEST, jobSaga.jobRepairData), 
-        yield takeLatest(REPLACEJOBS.REPLACEJOBS_REQUEST, jobSaga.jobReplaceData), 
-        yield takeLatest(UNINSTALLJOBS.UNINSTALLJOBS_REQUEST, jobSaga.jobUnInstallData), 
+        // /**  Job Schedule Info */
+        // yield takeLatest(INSTALLJOBS.INSTALLJOBS_REQUEST, jobSaga.jobInstallData), 
+        // yield takeLatest(REPAIRJOBS.REPAIRJOBS_REQUEST, jobSaga.jobRepairData), 
+        // yield takeLatest(REPLACEJOBS.REPLACEJOBS_REQUEST, jobSaga.jobReplaceData), 
+        // yield takeLatest(UNINSTALLJOBS.UNINSTALLJOBS_REQUEST, jobSaga.jobUnInstallData), 
+
+        /**Jobs Schema */
+        yield takeLatest(CREATEJOB.CREATEJOB_REQUEST, jobSaga.createJobData), 
+        yield takeLatest(JOBHISTORY.JOBHISTORY_REQUEST, jobSaga.jobHistoryData), 
+        yield takeLatest(JOBLIST.JOBLIST_REQUEST, jobSaga.jobListData), 
+
 
         /**Sim Info */
         yield takeLatest(SIM.SIM_REQUEST, simSaga.simlogin),
