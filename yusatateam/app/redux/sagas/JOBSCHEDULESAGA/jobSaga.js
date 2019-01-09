@@ -5,7 +5,6 @@ import {INSTALLJOBS,UNINSTALLJOBS,REPAIRJOBS,REPLACEJOBS} from '../../common/act
 export function* jobInstallData(action) {
     try {
         const installData = yield call(userService.jobInstallData );
-        alert(JSON.stringify(installData))
         yield put({type: INSTALLJOBS.INSTALLJOBS_SUCCESS,installData});
     } catch (error) {
         yield put({type: INSTALLJOBS.INSTALLJOBS_FAILED,error});

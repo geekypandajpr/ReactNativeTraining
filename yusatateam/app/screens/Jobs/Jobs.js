@@ -8,12 +8,15 @@ import { userActions } from '../../redux/actions';
 import { Toolbar,Activityindication ,JobTabData } from '../../components';
 import colors from '../../constants/colors';
 
-export default class Jobs extends React.Component {
+export  class Jobs extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             isLoading: true,
-            data: null,
+            repair: null,
+            replace : null,
+            install : null,
+            unInstall : null,
             map1 : new Map(),
         }
     }
@@ -29,7 +32,10 @@ export default class Jobs extends React.Component {
 
 
     componentDidMount() {
-       // this.props.onFetchData();
+       this.props.onFetchInstallData();
+       this.props.onFetchUnInstallData();
+       this.props.onFetchRepairData();
+       this.props.onFetchReplaceData();
         BackHandler.addEventListener('hardwareBackPress', () => {
             this.props.navigation.goBack();
             return true;
@@ -40,13 +46,27 @@ export default class Jobs extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     if(this.props.InstallData !== nextProps.InstallData) {
-    //         alert(JSON.stringify(nextProps.InstallData))
-    //         this.setState({data: nextProps.InstallData.data});
-    //         this.arrayList = nextProps.InstallData.data;
-    //     }
-    // }
+    componentWillReceiveProps(nextProps) {
+        if(this.props.RepairData !== nextProps.RepairData) {
+            this.setState({repair:nextProps.RepairData.repair});
+            // this.arrayList = nextProps.InstallData.data;
+        }
+        if(this.props.InstallData !== nextProps.InstallData) {
+         
+            this.setState({install: nextProps.InstallData.install});
+            // this.arrayList = nextProps.InstallData.data;
+        }
+        if(this.props.ReplaceData !== nextProps.ReplaceData) {
+        //   alert(JSON.stringify(nextProps.ReplaceData.replace))
+            this.setState({replace: nextProps.ReplaceData.replace});
+            // this.arrayList = nextProps.InstallData.data;
+        }
+        if(this.props.UnInstallData !== nextProps.UnInstallData) {
+            
+            this.setState({unInstall: nextProps.UnInstallData.unInstall});
+            // this.arrayList = nextProps.InstallData.data;
+        }
+    }
 
 
     selectedValue(map) {
@@ -59,7 +79,10 @@ export default class Jobs extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1 }}>
-                {/* <Activityindication visible={this.props.InstallData.isLoading}/> */}
+                <Activityindication visible={this.props.InstallData.isLoading}/>
+                <Activityindication visible={this.props.UnInstallData.isLoading}/>
+                <Activityindication visible={this.props.ReplaceData.isLoading}/>
+                <Activityindication visible={this.props.RepairData.isLoading}/>
                     <Toolbar title='Schedule Jobs' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting='md-settings' settingType='Ionicons' onSettingsPress={() => navigate('Settings')}
                     />
@@ -75,7 +98,7 @@ export default class Jobs extends React.Component {
                         }>
                         
                             <JobTabData 
-                            // JobDataValue={this.state.data[0]} 
+                            JobDataValue={this.state.install} 
                             />
                         </Tab>
 
@@ -87,7 +110,7 @@ export default class Jobs extends React.Component {
                             </TabHeading>
                         }>
                             <JobTabData 
-                            // JobDataValue={this.state.data[2]}
+                            JobDataValue={this.state.repair}
                             />
                         </Tab>
 
@@ -99,7 +122,7 @@ export default class Jobs extends React.Component {
                             </TabHeading>
                         }>
                             <JobTabData  
-                            // JobDataValue={this.state.data[3]}
+                            JobDataValue={this.state.replace}
                             />
                         </Tab>
                         
@@ -111,7 +134,7 @@ export default class Jobs extends React.Component {
                             </TabHeading>
                         }>
                             <JobTabData
-                            //  JobDataValue={this.state.data[1]}
+                             JobDataValue={this.state.unInstall}
                               />
                         </Tab>
 
@@ -120,18 +143,24 @@ export default class Jobs extends React.Component {
         );
     }
 }
-// function mapStateToProps(state){
-//     return{
-//         InstallData : state.InstallData
-//     }
-// }
+function mapStateToProps(state){
+    return{
+        InstallData : state.InstallData,
+        RepairData : state.RepairData,
+        ReplaceData: state.ReplaceData,
+        UnInstallData : state.UnInstallData,
+    }
+}
 
-// function mapDispatchToProps(dispatch){
-//     return{
-//         onFetchData: () => dispatch(userActions.jobRequest())
-//     }
-// }
+function mapDispatchToProps(dispatch){
+    return{
+        onFetchInstallData: () => dispatch(userActions.installJobRequest()),
+        onFetchUnInstallData: () => dispatch(userActions.unInstallJobRequest()),
+        onFetchRepairData: () => dispatch(userActions.repairJobRequest()),
+        onFetchReplaceData: () => dispatch(userActions.replaceJobRequest())
+    }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Jobs);
+export default connect(mapStateToProps, mapDispatchToProps)(Jobs);
 
-export {Jobs}
+// export {Jobs}
