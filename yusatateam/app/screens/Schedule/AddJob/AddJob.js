@@ -111,6 +111,9 @@ export class AddJob extends React.Component {
     componentDidMount() {
         const dropdowns = new Map(this.state.dropdowns);
         dropdowns.set(COMPANY_KEY, [COMPANY_KEY_VALUE, null]);
+        dropdowns.set(VEHICLE_KEY,[VEHICLE_KEY_VALUE,null]);
+        dropdowns.set(SERVICE_KEY,[SERVICE_VALUE,null]);
+        dropdowns.set(TECHNICIAN_KEY,[TECHNICIAN_VALUE,null])
         this.setState({ dropdowns: dropdowns });
 
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
@@ -182,8 +185,8 @@ export class AddJob extends React.Component {
                                                 name="Service Type"
                                                 isMandatory={true}
                                                 upperView={true}
-                                                value={this.state.service}
-                                            //onpress={this.openPicker}
+                                                value={this.state.dropdowns.get(SERVICE_KEY)[0]}
+                                                onpress={()=>this.openPicker(SERVICE_KEY,this.state.serviceTypeArray,'Service Type')}
                                             />
                                         </View>
 
@@ -191,9 +194,9 @@ export class AddJob extends React.Component {
                                             <UnderlineText
                                                 name="Technician"
                                                 upperView={true}
-                                                value={this.state.technician}
+                                                value={this.state.dropdowns.get(TECHNICIAN_KEY)[0]}
                                                 isMandatory={true}
-                                            //onpress={alert("hello")}
+                                                onpress={()=>this.openPicker(TECHNICIAN_KEY,this.state.technician,'Technician')}
                                             />
                                         </View>
 
