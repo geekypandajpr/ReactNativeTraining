@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Modal, View, TouchableHighlight, FlatList, TouchableOpacity,Image,Dimensions,LayoutAnimation,Alert, Linking } from 'react-native';
+import { Text, Modal, View, TouchableHighlight, FlatList, TouchableOpacity, Image, Dimensions, LayoutAnimation, Alert, Linking } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Header, Body, Right, List, ListItem } from 'native-base';
 import { BarCodeScanner, Permissions } from 'expo';
@@ -13,26 +13,14 @@ export default class BarCodeModal extends React.Component {
         this.state = {
             isLoading: true,
             modalVisible: false,
-            hasCameraPermission: null,
             lastScannedUrl: '',
-            keyValue : '',
-            barMap : new Map()
+            keyValue: '',
+            barMap: new Map()
 
         }
         this.setModalVisible = this.setModalVisible.bind(this);
         this.onSelectValue = this.onSelectValue.bind(this);
     }
-
-    componentDidMount() {
-        this._requestCameraPermission();
-    }
- 
-    _requestCameraPermission = async () => {
-        const { status } = await Permissions.askAsync(Permissions.CAMERA);
-        this.setState({
-            hasCameraPermission: status === 'granted',
-        });
-    };
 
     _handleBarCodeRead = result => {
         if (result.data !== this.state.lastScannedUrl) {
@@ -51,22 +39,22 @@ export default class BarCodeModal extends React.Component {
         this.setState({ isLoading: false });
     };
 
-    setModalVisible(visible,data) {
-        this.setState({ modalVisible: visible,title : "BarCode Scanner",keyValue :data,lastScannedUrl : null});
-        
+    setModalVisible(visible, data) {
+        this.setState({ modalVisible: visible, title: "BarCode Scanner", keyValue: data, lastScannedUrl: null });
+
     }
 
     onSelectValue(item) {
-      
+
         const barMap = new Map(this.state.barMap);
-        barMap.set(this.state.keyValue,item);
-       
+        barMap.set(this.state.keyValue, item);
+
         this.props.getBarValue(barMap);
-        this.setState({modalVisible: false});
+        this.setState({ modalVisible: false });
     }
 
     render() {
-        
+
         const qrSize = width * 0.7;
         return (
             this.state.isLoading === true ? <AppLoading /> :
@@ -148,7 +136,7 @@ export default class BarCodeModal extends React.Component {
         if (!this.state.lastScannedUrl) {
             return;
         }
-       
+
 
         return (
             <View>
@@ -195,37 +183,37 @@ const styles = EStyleSheet.create({
         color: '#fff',
         // fontWeight: '500',
     },
-    barCode : {
-        height : "100%",
+    barCode: {
+        height: "100%",
         width: "100%",
-        padding : 5,
+        padding: 5,
     },
     bottomBar: {
         position: 'absolute',
         bottom: 30,
         left: 0,
         right: 0,
-        height : 80,
-        
+        height: 80,
+
         backgroundColor: 'rgba(0,0,0,0.5)',
         padding: 15,
         flexDirection: 'row',
-      },
-      url: {
+    },
+    url: {
         flex: 1,
-      },
-      urlText: {
+    },
+    urlText: {
         color: '#fff',
         fontSize: 20,
-      },
-      cancelButton: {
+    },
+    cancelButton: {
         marginLeft: 10,
         // alignItems: 'center',
         // justifyContent: 'center',
-      },
-      cancelButtonText: {
+    },
+    cancelButtonText: {
         color: 'rgba(255,255,255,0.8)',
         fontSize: 18,
-      },
+    },
 
 })
