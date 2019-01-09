@@ -15,7 +15,8 @@ import {
 
     CREATEJOB,
     JOBHISTORY,
-    JOBLIST
+    JOBLIST,
+    ADDJOBSERVICE
 } from '../common/actionTypes';
 
 /**Login Saga import */
@@ -57,7 +58,8 @@ export default function* rootSaga() {
         /**Jobs Schema */
         yield takeLatest(CREATEJOB.CREATEJOB_REQUEST, jobSaga.createJobData), 
         yield takeLatest(JOBHISTORY.JOBHISTORY_REQUEST, jobSaga.jobHistoryData), 
-        yield takeLatest(JOBLIST.JOBLIST_REQUEST, jobSaga.jobListData), 
+        yield takeLatest(JOBLIST.JOBLIST_REQUEST, jobSaga.jobListData),
+        yield takeLatest(ADDJOBSERVICE.ADDJOBCOMPANY_SUCCESS,jobSaga.Addjobcompany)
 
 
         /**Sim Info */

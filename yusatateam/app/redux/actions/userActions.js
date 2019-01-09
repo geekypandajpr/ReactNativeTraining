@@ -13,7 +13,8 @@ import {
 
     JOBHISTORY,
     JOBLIST,
-    CREATEJOB
+    CREATEJOB,
+    ADDJOBSERVICE
 } from '../common/actionTypes';
 
 export default {
@@ -50,7 +51,7 @@ export default {
     /**Jobs Schema */
     jobListRequest : () => ({type : JOBLIST.JOBLIST_REQUEST}),
     createJobRequest : () => ({type: CREATEJOB.CREATEJOB_REQUEST}),
-    jobHistoryRequest : () => ({type : JOBHISTORY.JOBHISTORY_REQUEST})
-
+    jobHistoryRequest : () => ({type : JOBHISTORY.JOBHISTORY_REQUEST}),
+    addserviceRequest:()=>({type:ADDJOBSERVICE.ADDJOBCOMPANY_REQUEST})
 
 }

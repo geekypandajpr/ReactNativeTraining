@@ -2,7 +2,7 @@ import { GPSDEVICE } from '../../common/actionTypes';
 const initialState = {
     isLoading: true,
     countryISD: [],
-    deviceType:[],
+    deviceType: [],
     //vehicleList : [],
     error: false
 }
@@ -15,7 +15,7 @@ export default gpsDeviceReducer = (state = initialState, action) => {
             });
         case GPSDEVICE.GPSDEVICE_SUCCESS:
             return Object.assign({}, state, {
-                countryISD : action.datas.countryISD,
+                countryISD: action.datas.countryISD,
                 deviceType: action.datas.deviceType,
                 //vehicleList : action.datas.vehicleList,
                 isLoading: false

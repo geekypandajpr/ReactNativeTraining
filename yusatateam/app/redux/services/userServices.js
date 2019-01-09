@@ -27,6 +27,7 @@ export const createVehicleType = () => Api.get(USER.CREATEVEHICLETYPE);
 export const checkGPSDeviceAssociation = (deviceUDID) => Api.get(USER.CHECKDEVICEASSOCIATION + `?udid=${deviceUDID}`);
 export const createVehicle = (AddData) => Api.post(USER.CREATEVEHICLE, AddData);
 
+
 export default userService = {
     /**Login Service */
     login,
@@ -55,6 +56,9 @@ export default userService = {
     jobListData,
     jobHistoryData,
     createJobData,
+    addjobcompany,
+    addjobserviceType,
+    addjobTechnician,
 
 
     doLogin,
@@ -124,7 +128,27 @@ export function jobUnInstallData() {
         }, 3000)
     });
 }
-
+export function addjobcompany() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(UnInstallData);
+        }, 3000)
+    });
+}
+export function addjobserviceType() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(UnInstallData);
+        }, 3000)
+    });
+}
+export function addjobTechnician() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(UnInstallData);
+        }, 3000)
+    });
+}
 
 
 /**LOGIN API CALL */

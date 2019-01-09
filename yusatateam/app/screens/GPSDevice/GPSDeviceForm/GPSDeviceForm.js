@@ -287,6 +287,7 @@ export class GPSDeviceForm extends React.Component {
                                     <View style={styles.Width_View}>
 
                                         <View style={styles.Small_View}>
+                                        
                                             <Item floatingLabel>
                                                 {/* <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: 'gray' }} /> */}
                                                 <Label style={[styles.label, { fontFamily: 'Roboto' }]}>

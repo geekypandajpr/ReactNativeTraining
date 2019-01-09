@@ -3,9 +3,17 @@ import { View, KeyboardAvoidingView, BackHandler, ScrollView } from 'react-nativ
 import { Button, Text, Radio } from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import { AppLoading } from 'expo';
+import {GpsModal} from '../../GPSDevice/GpsModal/GpsModal'
 
 import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
 import styles from './styles';
+
+const title = [
+    'Company',
+    'Vehicles',
+    'ServiceType',
+    'Technician',
+]
 
 export default class AddJob extends React.Component {
     constructor(props) {
@@ -20,6 +28,8 @@ export default class AddJob extends React.Component {
             location: '',
             radio: false,
         }
+        this.modalref = React.createRef();
+        this.openPicker=this.openPicker.bind(this);
     };
 
     async componentWillMount() {
@@ -42,6 +52,9 @@ export default class AddJob extends React.Component {
     handleBackPress = () => {
         this.props.navigation.goBack();
         return true;
+    }
+    openPicker(){
+        this.modalref.current.setModalVisible(true,title[0])
     }
 
     render() {
@@ -67,7 +80,7 @@ export default class AddJob extends React.Component {
                                                 upperView={true}
                                                 value={this.state.company}
                                                 isMandatory={true}
-                                            //onpress={alert("hello")}
+                                                onpress={this.openPicker}
                                             />
                                         </View>
 
@@ -153,9 +166,9 @@ export default class AddJob extends React.Component {
                                                 <DatePicker
                                                     style={{ width: '100%' }}
                                                     date={this.state.dataRenewal}
-                                                    mode="date"
+                                                    mode="datetime"
                                                     placeholder="DD/MM/YYYY"
-                                                    format="DD/MM/YYYY"
+                                                    format="DD/MM/YYYY  HH:MM:SS"
                                                     //minDate=""
                                                     //maxDate=""
                                                     confirmBtnText="Confirm"
@@ -240,6 +253,8 @@ export default class AddJob extends React.Component {
 
                         </KeyboardAvoidingView>
                     </ScrollView>
+
+                    <GpsModal ref={this.modalref}/>
                 </View>
         );
     }

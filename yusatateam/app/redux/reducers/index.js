@@ -28,7 +28,8 @@ import {
     import {
         createJobReducer,
         jobHistoryReducer,
-        jobListReducer
+        jobListReducer,
+        addjobcompanyReducer
     } from './JOBREDUCER'
 
 const rootReducers = combineReducers({
@@ -61,6 +62,7 @@ const rootReducers = combineReducers({
     CreateData : createJobReducer,
     ListData : jobListReducer,
     HistoryData : jobHistoryReducer,
+    addjobcompanyData:addGPSDeviceReducer,
 
     /**Other */
     devicedata: deviceReducer,
