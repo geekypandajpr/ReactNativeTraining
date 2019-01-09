@@ -38,6 +38,10 @@ export default class Toolbar extends React.Component {
                         </Title>
                     </Body>
                     <Right>
+                        <Button transparent onPress={this.props.onThirdIconPress}>
+                            <Icon name={this.props.thirdIconName} type={this.props.thirdIconType} style={styles.icon} />
+                        </Button>
+
                         <Button transparent onPress={this.props.onCalenderPress}>
                             <Icon name={this.props.Calender} type={this.props.calenderType} style={styles.icon} />
                         </Button>
@@ -45,6 +49,7 @@ export default class Toolbar extends React.Component {
                         <Button transparent onPress={this.props.onSettingsPress}>
                             <Icon name={this.props.setting} type={this.props.settingType} style={styles.icon} />
                         </Button>
+
                     </Right>
                 </Header>
             </View>

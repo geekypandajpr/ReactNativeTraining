@@ -60,7 +60,8 @@ export default class Schedule extends React.Component {
                 <Toolbar title='Schedule'
                     leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
                     setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('AddJob')}
-                    Calender='filter' calenderType='Feather' onCalenderPress={this.openFilter}/>
+                    Calender='filter' calenderType='Feather' onCalenderPress={this.openFilter}
+                    thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('')}/>
                 <Agenda
                     //renderDay={(day, item) => this.renderDay(day, item)}
                     items={this.state.items}
@@ -125,7 +126,7 @@ export default class Schedule extends React.Component {
                 //console.log('TIME-> '+time);
                 const strTime = this.timeToString(time);
                 //const strTime = '2018-12-07';
-                //console.log('HELLO PREM-> '+strTime);
+                // console.log('HELLO PREM-> '+strTime);
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
                     this.state.items[strTime].push({
