@@ -58,8 +58,9 @@ export default class HistoryDetails extends React.Component {
     }
 
     render() {
+        const { goBack } = this.props.navigation;
+        const { navigate } = this.props.navigation;
         return (
-           
             <View style={{flex :1}}>
                  {/* this.state.isLoading === true ? <AppLoading /> : */}
                  <Toolbar title='JOBS20NOV2018' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
@@ -251,7 +252,7 @@ export default class HistoryDetails extends React.Component {
                                     <View style={styles.second_view}>
                                         <View style={styles.button_view}>
                                             <Button style={styles.button}
-                                                onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
+                                                onPress={() => navigate('Dashboard')}>
                                                 <Text>Close</Text>
                                             </Button>
                                         </View>
