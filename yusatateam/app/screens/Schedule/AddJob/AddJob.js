@@ -114,8 +114,8 @@ export default class AddJob extends React.Component {
                                                 isMandatory={true}
                                                 onChangeText={(text) => this.setState({ balance: text })}
                                                 inputStyles={{ width: '100%' }}
-                                                rightIcon='location-pin'
-                                                rightIconType="Entypo"
+                                                rightIcon='google-maps'
+                                                rightIconType="MaterialCommunityIcons"
                                             />
                                         </View>
                                         <View style={styles.Small_View}>
