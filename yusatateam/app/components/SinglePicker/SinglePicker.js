@@ -84,7 +84,7 @@ export default class SinglePicker extends React.Component {
                                     </Right>
                                 </Header>
                                 <View style={{backgroundColor : 'white'}}>
-                                    <SearchBar placeholder={'Search By '}
+                                    <SearchBar placeholder={'Search here '}
                                         value = { this.state.text}
                                         onChangeText={(text) => this.getSearch(text)}
                                         // onSearch={this.getSearch(this.state.searchValue)}

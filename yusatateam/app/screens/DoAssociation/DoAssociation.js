@@ -3,10 +3,13 @@ import { View, ScrollView, BackHandler, TextInput } from 'react-native';
 import { Text, Button } from 'native-base';
 import { AppLoading } from 'expo';
 import { Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
+import { connect } from 'react-redux';
+import { userActions } from '../../redux/actions';
 
 import styles from './Styles';
 import { globalStyles, colors } from '../../styles';
-import { Toolbar, UnderlineText, SinglePicker } from '../../components';
+import { Toolbar, UnderlineText, SinglePicker, Activityindication } from '../../components';
+import functions from '../../common/functions';
 
 const STATUS = [
     { "label": "Entered", "value": "ENTERED" },
@@ -27,19 +30,22 @@ const STATUS_COLOR = {
 };
 
 const STATUS_KEY = "STATUS";
+const STATUS_KEY_VALUE = "Change status";
 const DEVICE_KEY = "DEVICE";
+const DEVICE_KEY_VALUE = "Select device";
 const SIM_KEY = "SIM";
+const SIM_KEY_VALUE = "Select sim";
 
-export default class DoAssociation1 extends React.Component {
+export class DoAssociation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoading: true,
             comments: '',
-            device: '',
-            sim: ''
+            dropdowns: new Map()
         }
         this.getSelectedValue = this.getSelectedValue.bind(this);
+        this.doAssignment = this.doAssignment.bind(this);
         this.singlePickerRef = React.createRef();
         this.flag = '';
     }
@@ -55,6 +61,11 @@ export default class DoAssociation1 extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        const dropdowns = new Map(this.state.dropdowns);
+        dropdowns.set(STATUS_KEY, [STATUS_KEY_VALUE, null]);
+        dropdowns.set(DEVICE_KEY, [DEVICE_KEY_VALUE, null]);
+        dropdowns.set(SIM_KEY, [SIM_KEY_VALUE, null]);
+        this.setState({ dropdowns: dropdowns });
     }
 
     handleBackPress = () => {
@@ -66,8 +77,10 @@ export default class DoAssociation1 extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    getSelectedValue() {
-
+    getSelectedValue(item) {
+        const dropdowns = new Map(this.state.dropdowns);
+        dropdowns.set(this.flag, [item.label, item.value]);
+        this.setState({ dropdowns: dropdowns });
     }
 
     openPicker(key, list, title) {
@@ -75,12 +88,39 @@ export default class DoAssociation1 extends React.Component {
         this.singlePickerRef.current.setModalVisible(true, title, list);
     }
 
+    doAssignment() {
+        if(this.checkRequiredFields()) {
+            var item = {
+                "device" : this.state.dropdowns.get(SIM_KEY)[1],
+                "sim" : this.state.dropdowns.get(DEVICE_KEY)[1],
+                "status" :this.state.dropdowns.get(STATUS_KEY)[1]
+            }
+            if(this.state.comments !== '') {
+                item["comments"] = this.state.comments;
+            }
+            alert(JSON.stringify(item));
+            // this.props.doAssignment(item);
+        } else {
+            functions.showToast('Please fill all required fields', 'warning');
+        }
+    }
+
+    /**Function to validate mandatory fields for Add GPS Device API*/
+    checkRequiredFields() {
+        if (this.state.dropdowns.get(DEVICE_KEY)[1]
+            && this.state.dropdowns.get(SIM_KEY)[1]
+            && this.state.dropdowns.get(STATUS_KEY)[1]) {
+            return true
+        }
+        return false;
+    }
+
     render() {
         const { goBack } =this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.main_container}>
-
+                    {/* <Activityindication visible={this.props.assignmentData.isLoading} /> */}
                     <Toolbar title='Job Number' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}/>
 
                     <View style={styles.inner_container}>
@@ -225,8 +265,7 @@ export default class DoAssociation1 extends React.Component {
                                 <View style={styles.picker_view}>
                                     <UnderlineText
                                         name="Status"
-                                        value={'Change status'}
-                                        // value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
+                                        value={this.state.dropdowns.get(STATUS_KEY)[0]}
                                         isMandatory={true}
                                         upperView={true}
                                         onpress={() => this.openPicker(STATUS_KEY, STATUS, 'Status')}
@@ -235,21 +274,19 @@ export default class DoAssociation1 extends React.Component {
                                 <View style={styles.picker_view}>
                                     <UnderlineText
                                         name="Device"
-                                        value={'Select device'}
-                                        // value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
+                                        value={this.state.dropdowns.get(DEVICE_KEY)[0]}
                                         isMandatory={true}
                                         upperView={true}
-                                        // onpress={() => this.openPicker(VEHICLE_KEY, this.state.vehicleList, title[1])}
+                                        onpress={() => this.openPicker(DEVICE_KEY, [], 'Devices')}
                                     />
                                 </View>
                                 <View style={styles.picker_view}>
                                     <UnderlineText
                                         name="Sim"
-                                        value={'Select sim'}
-                                        // value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
+                                        value={this.state.dropdowns.get(SIM_KEY)[0]}
                                         isMandatory={true}
                                         upperView={true}
-                                        // onpress={() => this.openPicker(VEHICLE_KEY, this.state.vehicleList, title[1])}
+                                        onpress={() => this.openPicker(SIM_KEY, [], 'Sims')}
                                     />
                                 </View>
 
@@ -275,7 +312,7 @@ export default class DoAssociation1 extends React.Component {
                             <View style={styles.second_view}>
                                 <View style={styles.button_view}>
                                     <Button style={[styles.button,{backgroundColor: colors.HEADER_COLOR}]}
-                                        onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
+                                        onPress={this.doAssignment}>
                                         <Text style={{fontFamily: 'Roboto'}}>Submit</Text>
                                     </Button>
                                 </View>
@@ -289,4 +326,16 @@ export default class DoAssociation1 extends React.Component {
     }
 }
 
-export { DoAssociation1 }
+function mapStateToProps(state) {
+    return {
+        // assignmentData: state.doAssignmentData
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        // doAssignment: (request) => dispatch(userActions.doAssignment(request))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DoAssociation)
