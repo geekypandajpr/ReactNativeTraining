@@ -22,24 +22,7 @@ import SalesDashboard from '../screens/SalesDashboard/SalesDashboard';
 import QrCode from '../screens/QrCodeScanner/QrCode';
 import CreateVehicle from '../screens/GPSDevice/GPSDeviceForm/CreateVehicle';
 import AddJob from '../screens/Jobs/AddJob/AddJob';
-import DoAssociation from '../screens/DoAssociation/DoAssociation1';
-// import {
-//     LogIn,
-//     HomeScreen,
-//     Sim,
-//     Device,
-//     Schedule,
-//     VehicleList,
-//     Jobs,
-//     Settings,
-//     Dashboard,
-//     Technicians,
-//     ForgotPassword,
-//     OpenJobs,
-//     Calendars,
-//     TodaysJobs,
-//     TechDetails
-// } from '../screens';
+import DoAssociation from '../screens/DoAssociation/DoAssociation';
 
 const RouteConfigs = {
     Dashboard: {

@@ -1,37 +1,36 @@
 import React from 'react';
-import { View,  Modal,  ScrollView, Picker, TextInput } from 'react-native';
-import { Text, Header, Button, Body, Right, Left } from 'native-base';
+import { View, ScrollView, Picker, TextInput } from 'react-native';
+import { Text, Button } from 'native-base';
 import { AppLoading } from 'expo';
-import { Ionicons, Entypo, FontAwesome, Feather } from '@expo/vector-icons';
+import { Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
 
 import styles from './Styles';
+import { globalStyles } from '../../styles';
+import { Toolbar, UnderlineText } from '../../components';
 
-export default class DoAssociation extends React.Component {
+export default class DoAssociation1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalVisible: false,
             isLoading: true,
-            item: {},
             comments: '',
             device: '',
             sim: ''
         }
         this.deviceList = [
-            {label: 'Device 1', value: ' Device 1'},
-            {label: 'Device 2', value: ' Device 2'},
-            {label: 'Device 3', value: ' Device 3'},
-            {label: 'Device 4', value: ' Device 4'},
-            {label: 'Device 5', value: ' Device 5'}
+            { label: 'Device 1', value: ' Device 1' },
+            { label: 'Device 2', value: ' Device 2' },
+            { label: 'Device 3', value: ' Device 3' },
+            { label: 'Device 4', value: ' Device 4' },
+            { label: 'Device 5', value: ' Device 5' }
         ];
         this.simList = [
-            {label: 'Sim 1', value: ' Sim 1'},
-            {label: 'Sim 2', value: ' Sim 2'},
-            {label: 'Sim 3', value: ' Sim 3'},
-            {label: 'Sim 4', value: ' Sim 4'},
-            {label: 'Sim 5', value: ' Sim 5'}
+            { label: 'Sim 1', value: ' Sim 1' },
+            { label: 'Sim 2', value: ' Sim 2' },
+            { label: 'Sim 3', value: ' Sim 3' },
+            { label: 'Sim 4', value: ' Sim 4' },
+            { label: 'Sim 5', value: ' Sim 5' }
         ];
-        this.onClose = this.onClose.bind(this);
     }
 
     async componentWillMount() {
@@ -43,248 +42,207 @@ export default class DoAssociation extends React.Component {
         this.setState({ isLoading: false })
     }
 
-    setModalVisible(visible, item={}) {
-        this.setState({
-            modalVisible: visible,
-            item: item
-        }, function () {
-            this.setState({ status: this.state.item.status });
-        });
-    }
-
-    onClose() {
-        this.setState({ modalVisible: !this.state.modalVisible })
-    }
-
     render() {
+        const { goBack } =this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
-            <View>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={this.state.modalVisible}
-                    onDismiss={() => {
-                        this.setState({ modalVisible: !this.state.modalVisible })
-                    }}
-                    onRequestClose={() => {
-                        this.setState({ modalVisible: !this.state.modalVisible })
-                    }} >
+                <View style={styles.main_container}>
 
-                    <View style={styles.main_container}>
-                        <View style={styles.container}>
+                    <Toolbar title='Job Number' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}/>
 
-                            <Header style={styles.header}>
-                                <Left>
-                                    <Button transparent onPress={this.onClose}>
-                                        <Feather name='arrow-left' color='#fff' size={24} />
-                                    </Button>
-                                </Left>
-                                <Body>
-                                    <Text style={styles.title}>JOBS20NOV2018</Text>
-                                </Body>
-                                <Right/>
-                            </Header>
+                    <View style={styles.inner_container}>
+                        <ScrollView showsVerticalScrollIndicator={false}>
+                            <View style={styles.first_view}>
 
-                            <View style={styles.inner_container}>
-                                <ScrollView showsVerticalScrollIndicator={false}>
-                                    <View style={styles.first_view}>
-
-                                        <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Job type</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={styles.colon}>:</Text>
-                                            </View>
-                                            <View style={styles.right_view}>
-                                                <View style={styles.job_type}>
-                                                    <Text style={styles.job_type_text}>Install</Text>
-                                                </View>
-                                            </View>
-                                        </View>
-
-                                        <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Schedule date</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={styles.colon}>:</Text>
-                                            </View>
-                                            <View style={styles.right_view}>
-                                                <Text style={styles.value_text}>20 Nov 2018 12:50</Text>
-                                            </View>
-                                        </View>
-
-                                        <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Completed date</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={styles.colon}>:</Text>
-                                            </View>
-                                            <View style={styles.right_view}>
-                                                <Text style={styles.value_text}>-  -  -</Text>
-                                            </View>
-                                        </View>
-
-                                        <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Technician</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={styles.colon}>:</Text>
-                                            </View>
-                                            <View style={styles.right_view}>
-                                                <Text style={styles.value_text}>Yash Gulati</Text>
-                                            </View>
-                                        </View>
-
-                                        <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Job location</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={styles.colon}>:</Text>
-                                            </View>
-                                            <View style={styles.right_view}>
-                                                <View><Entypo name='location-pin' size={24} color='#d9534f' /></View>
-                                                <View style={{ flex: 1 }}>
-                                                    <Text style={styles.value_text}>
-                                                        84/122 sector 8 pratap nagar, jaipur rajasthan
-                                                    </Text>
-                                                </View>
-                                            </View>
-                                        </View>
-
-                                        <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Status</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={styles.colon}>:</Text>
-                                            </View>
-                                            <View style={styles.right_view}>
-                                                <View style={styles.status_view}>
-                                                    <Text style={styles.status_text}>Completed</Text>
-                                                </View>
-                                            </View>
-                                        </View>
-
-                                        <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Payment mode</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={styles.colon}>:</Text>
-                                            </View>
-                                            <View style={styles.right_view}>
-                                                <Text style={styles.value_text}>COD</Text>
-                                            </View>
-                                        </View>
-
-                                        <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Amount</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={styles.colon}>:</Text>
-                                            </View>
-                                            <View style={styles.right_view}>
-                                                <FontAwesome name='rupee' size={14} color='gray' />
-                                                <Text style={styles.value_text}>6500</Text>
-                                            </View>
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto', padding: 4}]}>Job type</Text>
+                                    </View>
+                                    <View style={styles.middle_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>:</Text>
+                                    </View>
+                                    <View style={styles.right_view}>
+                                        <View style={styles.job_type}>
+                                            <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4, color: '#000'}]}>Install</Text>
                                         </View>
                                     </View>
+                                </View>
 
-                                    <View style={styles.second_view}>
-                                        <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Customer name</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={styles.colon}>:</Text>
-                                            </View>
-                                            <View style={styles.right_view}>
-                                                <Text style={styles.value_text}>Premsagar Choudhary</Text>
-                                            </View>
-                                        </View>
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto', padding: 4}]}>Schedule date</Text>
+                                    </View>
+                                    <View style={styles.middle_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>:</Text>
+                                    </View>
+                                    <View style={styles.right_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>20 Nov 2018 12:50</Text>
+                                    </View>
+                                </View>
 
-                                        <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Customer contact</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={styles.colon}>:</Text>
-                                            </View>
-                                            <View style={styles.right_view}>
-                                                <Ionicons name='ios-call' size={24} color='#5cb85c' />
-                                                <Text style={styles.value_text}>+918605665320</Text>
-                                            </View>
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto', padding: 4}]}>Completed date</Text>
+                                    </View>
+                                    <View style={styles.middle_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>:</Text>
+                                    </View>
+                                    <View style={styles.right_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>-  -  -</Text>
+                                    </View>
+                                </View>
+
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto', padding: 4}]}>Technician</Text>
+                                    </View>
+                                    <View style={styles.middle_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>:</Text>
+                                    </View>
+                                    <View style={styles.right_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>Yash Gulati</Text>
+                                    </View>
+                                </View>
+
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto', padding: 4}]}>Job location</Text>
+                                    </View>
+                                    <View style={styles.middle_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>:</Text>
+                                    </View>
+                                    <View style={styles.right_view}>
+                                        <View><Entypo name='location-pin' size={24} color='#d9534f' /></View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>
+                                                84/122 sector 8 pratap nagar, jaipur rajasthan </Text>
                                         </View>
                                     </View>
+                                </View>
 
-                                    <View style={styles.second_view}>
-
-                                        <View style={styles.picker_view}>
-                                            <View style={styles.device_picker}>
-                                                <Picker
-                                                    selectedValue={this.state.device}
-                                                    style={styles.picker}
-                                                    onValueChange={(itemValue, itemIndex) => this.setState({ device: itemValue })}>
-                                                    {this.deviceList.map((item,index) =>
-                                                        <Picker.Item key={index} label={item.label} value={item.value} />
-                                                    )}
-                                                </Picker>
-                                            </View>
-                                            <View style={styles.device_picker}>
-                                                <Picker
-                                                    selectedValue={this.state.sim}
-                                                    style={styles.picker}
-                                                    onValueChange={(itemValue, itemIndex) => this.setState({ sim: itemValue })}>
-                                                    {this.simList.map((item,index) =>
-                                                        <Picker.Item key={index} label={item.label} value={item.value} />
-                                                    )}
-                                                </Picker>
-                                            </View>
-                                        </View>
-
-                                        <View style={styles.left_view}>
-                                            <Text style={styles.key_text}>Comments</Text>
-                                        </View>
-
-                                        <View style={styles.comment_box}>
-                                            <View style={styles.comment_input_view}>
-                                                <TextInput
-                                                    placeholder='Write comment here...'
-                                                    multiline={true}
-                                                    underlineColorAndroid='transparent'
-                                                    style={styles.comment_text}
-                                                    onChangeText={(text) => this.setState({ comments: text })}
-                                                    value={this.state.comments}
-                                                />
-                                            </View>
-                                        </View>
-
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto', padding: 4}]}>Status</Text>
                                     </View>
-
-                                    <View style={styles.second_view}>
-                                        <View style={styles.button_view}>
-                                            <Button style={styles.button}
-                                                onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
-                                                <Text>Close</Text>
-                                            </Button>
+                                    <View style={styles.middle_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>:</Text>
+                                    </View>
+                                    <View style={styles.right_view}>
+                                        <View style={styles.status_view}>
+                                            <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4, color:'#fff'}]}>Completed</Text>
                                         </View>
                                     </View>
+                                </View>
 
-                                </ScrollView>
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto', padding: 4}]}>Payment mode</Text>
+                                    </View>
+                                    <View style={styles.middle_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>:</Text>
+                                    </View>
+                                    <View style={styles.right_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>COD</Text>
+                                    </View>
+                                </View>
+
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto', padding: 4}]}>Amount</Text>
+                                    </View>
+                                    <View style={styles.middle_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>:</Text>
+                                    </View>
+                                    <View style={styles.right_view}>
+                                        <FontAwesome name='rupee' size={14} color='gray' />
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>6500</Text>
+                                    </View>
+                                </View>
                             </View>
-                        </View>
+
+                            <View style={styles.second_view}>
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto', padding: 4}]}>Customer name</Text>
+                                    </View>
+                                    <View style={styles.middle_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>:</Text>
+                                    </View>
+                                    <View style={styles.right_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>Premsagar Choudhary</Text>
+                                    </View>
+                                </View>
+
+                                <View style={styles.sub_view}>
+                                    <View style={styles.left_view}>
+                                        <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto', padding: 4}]}>Customer contact</Text>
+                                    </View>
+                                    <View style={styles.middle_view}>
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>:</Text>
+                                    </View>
+                                    <View style={styles.right_view}>
+                                        <Ionicons name='ios-call' size={24} color='#5cb85c' />
+                                        <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto', padding: 4}]}>+918605665320</Text>
+                                    </View>
+                                </View>
+                            </View>
+
+                            <View style={styles.second_view}>
+
+                                <View style={styles.picker_view}>
+                                    <UnderlineText
+                                        name="Device"
+                                        value={'Select device'}
+                                        // value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
+                                        isMandatory={true}
+                                        upperView={true}
+                                        // onpress={() => this.openPicker(VEHICLE_KEY, this.state.vehicleList, title[1])}
+                                    />
+                                </View>
+                                <View style={styles.picker_view}>
+                                    <UnderlineText
+                                        name="Sim"
+                                        value={'Select sim'}
+                                        // value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
+                                        isMandatory={true}
+                                        upperView={true}
+                                        // onpress={() => this.openPicker(VEHICLE_KEY, this.state.vehicleList, title[1])}
+                                    />
+                                </View>
+
+                                <View style={styles.left_view}>
+                                    <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto', padding: 4}]}>Comments</Text>
+                                </View>
+
+                                <View style={styles.comment_box}>
+                                    <View style={styles.comment_input_view}>
+                                        <TextInput
+                                            placeholder='Write comment here...'
+                                            multiline={true}
+                                            underlineColorAndroid='transparent'
+                                            style={[styles.comment_text, {fontFamily: 'Roboto'}]}
+                                            onChangeText={(text) => this.setState({ comments: text })}
+                                            value={this.state.comments}
+                                        />
+                                    </View>
+                                </View>
+
+                            </View>
+
+                            <View style={styles.second_view}>
+                                <View style={styles.button_view}>
+                                    <Button style={styles.button}
+                                        onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
+                                        <Text style={{fontFamily: 'Roboto'}}>Submit</Text>
+                                    </Button>
+                                </View>
+                            </View>
+
+                        </ScrollView>
                     </View>
-                </Modal>
-            </View>
+                </View>
         );
     }
 }
 
-export { DoAssociation }
+export { DoAssociation1 }
