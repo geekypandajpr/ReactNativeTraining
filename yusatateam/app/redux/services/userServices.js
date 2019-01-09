@@ -51,6 +51,11 @@ export default userService = {
     jobReplaceData,
     jobUnInstallData,
 
+    /**Jobs Schema */
+    jobListData,
+    jobHistoryData,
+    createJobData,
+
 
     doLogin,
     simlogin,
@@ -61,6 +66,33 @@ export default userService = {
     gpslogin,
 
 }
+
+/**Jobs Schema */
+export function jobListData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(InstallData);
+        }, 3000)
+    });
+}
+export function jobHistoryData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(RepairData);
+        }, 3000)
+    });
+}
+
+export function createJobData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(ReplaceData);
+        }, 3000)
+    });
+}
+
+
+
 
 /**JOBS API CALL */
 export function jobInstallData() {
