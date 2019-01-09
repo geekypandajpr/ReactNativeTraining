@@ -17,19 +17,32 @@ const title = [
     'Technician',
 ]
 
+const COMPANY_KEY = 'COMPANY';
+const COMPANY_KEY_VALUE = 'Select Company';
+
+const VEHICLE_KEY = 'VEHICLE';
+const VEHICLE_KEY_VALUE = 'Select vehicle';
+
+const SERVICE_KEY = 'SERVICE_TYPE';
+const SERVICE_VALUE = 'Select sevice type';
+
+const TECHNICIAN_KEY = 'TECHNICIAN_KEY';
+const TECHNICIAN_VALUE = 'Select TECHNICIAN';
+
 export class AddJob extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoading: true,
             data: [],
-            company: 'select company',
-            vehicle: 'select vehicle',
-            service: 'service type',
-            technician: 'select technician',
+            company: '',
+            vehicle: '',
+            service: '',
+            technician: '',
             location: '',
             radio: false,
         }
+        this.flag = ''
         this.modalref = React.createRef();
         this.openPicker = this.openPicker.bind(this);
     };
@@ -66,7 +79,7 @@ export class AddJob extends React.Component {
                     companyArray.push(obj);
                 }
             }
-            this.setState({ company: vehicleArray })
+            this.setState({ company: companyArray })
         }
 
         if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
@@ -78,7 +91,7 @@ export class AddJob extends React.Component {
                     serviceArray.push(obj);
                 }
             }
-            this.setState({ service: vehicleArray })
+            this.setState({ service: serviceArray })
         }
 
         if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
@@ -90,13 +103,14 @@ export class AddJob extends React.Component {
                     techArray.push(obj);
                 }
             }
-            this.setState({ technician: vehicleArray })
+            this.setState({ technician: techArray })
         }
     }
 
     componentDidMount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
         this.props.addJobVehicle();
+        this.props.addjobcomapany();
     }
 
     componentWillUnmount() {
@@ -107,8 +121,9 @@ export class AddJob extends React.Component {
         this.props.navigation.goBack();
         return true;
     }
-    openPicker() {
-        this.modalref.current.setModalVisible(true, title[0], this.state.vehicle)
+    openPicker(keys, list, title) {
+        this.flag = keys
+        this.modalref.current.setModalVisible(true, title, list)
     }
 
     render() {
@@ -145,7 +160,7 @@ export class AddJob extends React.Component {
                                                     value={this.state.vehicle}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={this.openPicker}
+                                                    onpress={() => { this.openPicker(COMPANY_KEY, this.state.vehicle, title[0]) }}
                                                 />
                                             </View>
 
