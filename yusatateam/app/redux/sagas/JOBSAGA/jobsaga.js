@@ -55,12 +55,10 @@ export function* Addjobcompany(action) {
     try {
         const [company, serviceType, technician] = yield all([call(userService.addjobcompany),
         call(userService.addjobserviceType), call(userService.addjobTechnician)]);
-
         yield put({ type: ADDJOBSERVICE.ADDJOBCOMPANY_SUCCESS, data: [company, serviceType, technician] });
     } catch (error) {
         yield put({ type: ADDJOBSERVICE.ADDJOBCOMPANY_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
-
     }
 }
 

@@ -56,6 +56,42 @@ export class AddJob extends React.Component {
             }
             this.setState({ vehicle: vehicleArray })
         }
+
+        if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
+            const companyArray = [];
+            if (nextProps.JobcompanyData.company.results) {
+                const vehicletype = nextProps.JobcompanyData.company.results;
+                for (var i = 0; i < vehicletype.length; i++) {
+                    var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
+                    companyArray.push(obj);
+                }
+            }
+            this.setState({ company: vehicleArray })
+        }
+
+        if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
+            const serviceArray = [];
+            if (nextProps.JobcompanyData.serviceType.results) {
+                const vehicletype = nextProps.JobcompanyData.serviceType.results;
+                for (var i = 0; i < vehicletype.length; i++) {
+                    var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
+                    serviceArray.push(obj);
+                }
+            }
+            this.setState({ service: vehicleArray })
+        }
+
+        if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
+            const techArray = [];
+            if (nextProps.JobcompanyData.technician.results) {
+                const vehicletype = nextProps.JobcompanyData.technician.results;
+                for (var i = 0; i < vehicletype.length; i++) {
+                    var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
+                    techArray.push(obj);
+                }
+            }
+            this.setState({ technician: vehicleArray })
+        }
     }
 
     componentDidMount() {
@@ -72,7 +108,7 @@ export class AddJob extends React.Component {
         return true;
     }
     openPicker() {
-        this.modalref.current.setModalVisible(true, title[0],this.state.vehicle)
+        this.modalref.current.setModalVisible(true, title[0], this.state.vehicle)
     }
 
     render() {
@@ -98,7 +134,7 @@ export class AddJob extends React.Component {
                                                 upperView={true}
                                                 value={this.state.company}
                                                 isMandatory={true}
-                                                //onpress={this.openPicker}
+                                            //onpress={this.openPicker}
                                             />
                                         </View>
 
@@ -121,7 +157,7 @@ export class AddJob extends React.Component {
                                                 isMandatory={true}
                                                 upperView={true}
                                                 value={this.state.service}
-                                                //onpress={this.openPicker}
+                                            //onpress={this.openPicker}
                                             />
                                         </View>
 
@@ -284,13 +320,15 @@ export class AddJob extends React.Component {
 }
 function mapStateToProps(state) {
     return {
-        JobVehicleData: state.addjobvehicleReducer
+        JobVehicleData: state.addjobvehicleReducer,
+        JobcompanyData: state.addjobcompanyData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        addJobVehicle: () => dispatch(userActions.addJobvehicleRequest())
+        addJobVehicle: () => dispatch(userActions.addJobvehicleRequest()),
+        addjobcomapany: () => dispatch(userActions.addserviceRequest())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddJob)
