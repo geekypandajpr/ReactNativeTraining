@@ -6,7 +6,7 @@ import { AppLoading } from 'expo';
 import { GpsModal } from '../../GPSDevice/GpsModal/GpsModal';
 import { connect } from 'react-redux'
 
-import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
+import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
 import styles from './styles';
 import { userActions } from '../../../redux/actions'
 
@@ -15,10 +15,10 @@ const title = [
     'Vehicles',
     'ServiceType',
     'Technician',
-]
+];
 
 const COMPANY_KEY = 'COMPANY';
-const COMPANY_KEY_VALUE = 'Select Company';
+const COMPANY_KEY_VALUE = 'Select company';
 
 const VEHICLE_KEY = 'VEHICLE';
 const VEHICLE_KEY_VALUE = 'Select vehicle';
@@ -27,7 +27,7 @@ const SERVICE_KEY = 'SERVICE_TYPE';
 const SERVICE_VALUE = 'Select sevice type';
 
 const TECHNICIAN_KEY = 'TECHNICIAN_KEY';
-const TECHNICIAN_VALUE = 'Select TECHNICIAN';
+const TECHNICIAN_VALUE = 'Select Technician';
 
 export class AddJob extends React.Component {
     constructor(props) {
@@ -35,12 +35,13 @@ export class AddJob extends React.Component {
         this.state = {
             isLoading: true,
             data: [],
-            company: '',
-            vehicle: '',
-            service: '',
-            technician: '',
             location: '',
             radio: false,
+            technician: [],
+            company: [],
+            vehicleArray: [],
+            serviceTypeArray: [],
+            dropdowns: new Map()
         }
         this.flag = ''
         this.modalref = React.createRef();
@@ -67,7 +68,7 @@ export class AddJob extends React.Component {
                     vehicleArray.push(obj);
                 }
             }
-            this.setState({ vehicle: vehicleArray })
+            this.setState({ vehicleArray: vehicleArray })
         }
 
         if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
@@ -91,7 +92,7 @@ export class AddJob extends React.Component {
                     serviceArray.push(obj);
                 }
             }
-            this.setState({ service: serviceArray })
+            this.setState({ serviceTypeArray: serviceArray })
         }
 
         if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
@@ -108,6 +109,10 @@ export class AddJob extends React.Component {
     }
 
     componentDidMount() {
+        const dropdowns = new Map(this.state.dropdowns);
+        dropdowns.set(COMPANY_KEY, [COMPANY_KEY_VALUE, null]);
+        this.setState({ dropdowns: dropdowns });
+
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
         this.props.addJobVehicle();
         this.props.addjobcomapany();
@@ -122,8 +127,14 @@ export class AddJob extends React.Component {
         return true;
     }
     openPicker(keys, list, title) {
-        this.flag = keys
-        this.modalref.current.setModalVisible(true, title, list)
+        this.flag = keys;
+        this.modalref.current.setModalVisible(true, title, list);
+    }
+
+    selectedValue(item) {
+        const dropdowns = new Map(this.state.dropdowns);
+        dropdowns.set(flag, [item.label, item.value]);
+        this.setState({ dropdowns: dropdowns });
     }
 
     render() {
@@ -147,9 +158,9 @@ export class AddJob extends React.Component {
                                             <UnderlineText
                                                 name="Company"
                                                 upperView={true}
-                                                value={this.state.company}
+                                                value={this.state.dropdowns.get(COMPANY_KEY)[0]}
                                                 isMandatory={true}
-                                            //onpress={this.openPicker}
+                                                onpress={() => { this.openPicker(COMPANY_KEY, this.state.company, 'Company') }}
                                             />
                                         </View>
 
@@ -157,10 +168,10 @@ export class AddJob extends React.Component {
                                             <View style={{ flex: 1.4 }}>
                                                 <UnderlineText
                                                     name="Vehicle #"
-                                                    value={this.state.vehicle}
+                                                    value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => { this.openPicker(COMPANY_KEY, this.state.vehicle, title[0]) }}
+                                                    onpress={() => { this.openPicker(VEHICLE_KEY, this.state.vehicleArray, 'Vehicle') }}
                                                 />
                                             </View>
 
@@ -323,7 +334,7 @@ export class AddJob extends React.Component {
                         </KeyboardAvoidingView>
                     </ScrollView>
 
-                    <GpsModal ref={this.modalref} />
+                    <SinglePicker ref={this.modalref} selectedValue={(item) => this.selectedValue(item)}/>
                 </View>
         );
     }
