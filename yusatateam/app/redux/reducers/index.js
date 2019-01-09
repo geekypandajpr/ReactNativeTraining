@@ -25,6 +25,12 @@ import {
     InstallReducer
     } from './JOBSCHEDULEREDUCER';
 
+    import {
+        createJobReducer,
+        jobHistoryReducer,
+        jobListReducer
+    } from './JOBREDUCER'
+
 const rootReducers = combineReducers({
     /**Router */
     nav: navReducer,
@@ -50,6 +56,11 @@ const rootReducers = combineReducers({
     RepairData: RepairReducer,
     ReplaceData: ReplaceReducer,
     UnInstallData: UnInstallReducer,
+
+    /**Job Schema */
+    CreateData : createJobReducer,
+    ListData : jobListReducer,
+    HistoryData : jobHistoryReducer,
 
     /**Other */
     devicedata: deviceReducer,

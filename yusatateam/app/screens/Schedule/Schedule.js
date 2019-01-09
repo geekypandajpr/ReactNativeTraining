@@ -12,6 +12,8 @@ import styles from './Styles';
 import JobDetails from '../Jobs/JobDetails/JobDetails';
 import colors from '../../constants/colors';
 import Filter from './Filter/Filter';
+import { connect } from 'react-redux';
+import { userActions } from '../../redux/actions';
 
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
@@ -20,7 +22,7 @@ var eventList = {
     // '2018-09-30': {selected: true, selectedColor: 'orange'},
 }
 
-export default class Schedule extends React.Component {
+export  class Schedule extends React.Component {
     constructor(props) {
         super(props);
         moment.locale('en');
@@ -36,7 +38,28 @@ export default class Schedule extends React.Component {
     }
 
     componentDidMount() {
+        this.props.onFetchJobList();
+        this.props.onFetchCreateJob();
+        this.props.onFetchJobHistory();
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    
+    componentWillReceiveProps(nextProps) {
+        if(this.props.CreateData !== nextProps.CreateData) {
+            // this.setState({repair:nextProps.RepairData.repair});
+            // this.arrayList = nextProps.InstallData.data;
+        }
+        if(this.props.ListData !== nextProps.ListData) {
+         
+            // this.setState({install: nextProps.InstallData.install});
+            // this.arrayList = nextProps.InstallData.data;
+        }
+        if(this.props.HistoryData !== nextProps.HistoryData) {
+           alert(JSON.stringify(nextProps.HistoryData.historyData))
+            // this.setState({replace: nextProps.ReplaceData.replace});
+            // this.arrayList = nextProps.InstallData.data;
+        }
     }
 
     handleBackPress = () => {
@@ -61,7 +84,7 @@ export default class Schedule extends React.Component {
                     leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
                     setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('AddJob')}
                     Calender='filter' calenderType='Feather' onCalenderPress={this.openFilter}
-                    thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('')}/>
+                    thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('HistoryDetails')}/>
                 <Agenda
                     //renderDay={(day, item) => this.renderDay(day, item)}
                     items={this.state.items}
@@ -280,4 +303,23 @@ export default class Schedule extends React.Component {
     }
 }
 
-export { Schedule }
+// export { Schedule }
+
+function mapStateToProps(state){
+    return{
+        CreateData : state.CreateData,
+        ListData : state.ListData,
+        HistoryData: state.HistoryData,
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        onFetchJobList: () => dispatch(userActions.jobListRequest()),
+        onFetchCreateJob: () => dispatch(userActions.createJobRequest()),
+        onFetchJobHistory: () => dispatch(userActions.jobHistoryRequest()),
+      
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Schedule);
