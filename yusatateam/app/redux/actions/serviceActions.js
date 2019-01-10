@@ -7,4 +7,6 @@ export default {
     companyRequest: () => ({ type: SERVICE.SERVICE_COMPANY_REQUEST }),
     executeServiceRequest: () => ({ type: SERVICE.EXECUTE_SERVICE_REQUEST }),
     createJobRequests: (createdata) => ({ type: SERVICE.CREATEJOB_REQUEST,createdata }),
+    serviceStatusRequests : () => ({type : SERVICE.SERVICE_STATUS_REQUEST}),
+
 }
