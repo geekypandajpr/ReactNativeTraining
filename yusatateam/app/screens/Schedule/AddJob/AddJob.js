@@ -161,14 +161,17 @@ export class AddJob extends React.Component {
                 "serviceDate": this.state.dataRenewal,
                 "cashOnDelivery": this.state.radio,
                 "orderCode": "TPI_SERVICE",
-                "serviceStatus":"ENTERED",
-                "serviceName":this.state.serviceName,
-                "training":this.state.Training
+                "serviceStatus": "ENTERED",
+                "training": this.state.Training
             }
             if (this.state.radio && this.state.amount !== '') {
-                item["amountToCollect"] = this.state.amount
+                item["amountToCollect"] = this.state.amount;
             }
-            this.props.createServices(item);
+            if(this.state.ServiceName !== '') {
+                item["serviceName"] = this.state.serviceName;
+            }
+            alert(JSON.stringify(item));
+            //this.props.createServices(item);
         } else {
             functions.showToast('Please fill all required fields', 'warning');
         }
