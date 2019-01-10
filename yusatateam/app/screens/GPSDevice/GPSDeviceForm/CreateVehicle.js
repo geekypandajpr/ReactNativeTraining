@@ -162,7 +162,7 @@ export class CreateVehicle extends React.Component {
             }
             if (this.state.deviceId !== '')
                 item["gpsDeviceUdid"] = this.state.deviceId;
-            if (this.state.image)
+            if (this.state.Base)
                 item["image"] = this.state.Base;
             // alert(JSON.stringify(item));
             this.props.createVehicle(item);
