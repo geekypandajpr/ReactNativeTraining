@@ -1,7 +1,7 @@
 import Api from '../common/api';
 import { SERVICE } from '../common/urls';
 
-export const createJob = () => Api.post(SERVICE.SERVICE_ADD);
+export const createJob = (createdata) => Api.post(SERVICE.SERVICE_ADD,createdata);
 export const getCompany = () => Api.get(SERVICE.SERVICE_COMPANY);
 export const getVehicle = () => Api.get(SERVICE.SERVICE_VEHICLE);
 export const getTechnician = () => Api.get(SERVICE.SERVICE_TECHNICIAN);

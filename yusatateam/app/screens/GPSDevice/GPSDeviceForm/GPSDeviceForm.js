@@ -162,6 +162,7 @@ export class GPSDeviceForm extends React.Component {
                 vehicleList: vehicleArray,
             });
         }
+        
 
         /**Company Array */
         if (this.props.loginResponse) {
