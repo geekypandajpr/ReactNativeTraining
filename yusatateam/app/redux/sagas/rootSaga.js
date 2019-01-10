@@ -18,7 +18,7 @@ import * as userSaga from './userSaga';
 import * as gpsDeviceSaga from './GPSDevice/GPSDeviceSaga';
 
 /**Job sagas */
-import * as jobSaga from './JobSaga/jobSaga';
+import * as jobSaga from './JOBSAGA/jobsaga';
 
 
 import * as simSaga from './SIMSAGA/simSaga';
