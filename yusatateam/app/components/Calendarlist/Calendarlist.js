@@ -85,5 +85,3 @@ export default class Calendarlist extends React.Component {
         )
     }
 }
-
-export { Calendarlist }

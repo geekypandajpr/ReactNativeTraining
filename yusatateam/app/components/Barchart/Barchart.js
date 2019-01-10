@@ -141,4 +141,3 @@ export default class Barchart extends React.Component {
         )
     }
 }
-export { Barchart }

@@ -17,5 +17,3 @@ export default class Checkbox extends React.Component {
         )
     }
 }
-
-export { Checkbox }

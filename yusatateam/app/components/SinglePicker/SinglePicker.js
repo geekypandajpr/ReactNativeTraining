@@ -109,7 +109,6 @@ export default class SinglePicker extends React.Component {
         );
     }
 }
-export { SinglePicker }
 
 const styles = EStyleSheet.create({
     container: {

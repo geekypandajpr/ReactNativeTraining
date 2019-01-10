@@ -1,1 +1,0 @@
-export { GpsDeviceData } from './GpsDeviceData';

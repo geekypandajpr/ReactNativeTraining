@@ -1,8 +1,6 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { View, Modal, ActivityIndicator,Dimensions } from 'react-native';
-
-//import styles from './styles';
+import { View, Modal, ActivityIndicator, Dimensions } from 'react-native';
 
 export default class Activityindication extends React.Component {
     render() {
@@ -23,8 +21,6 @@ export default class Activityindication extends React.Component {
         );
     }
 }
-
-export{ Activityindication }
 
 const styles = EStyleSheet.create({
     container:{

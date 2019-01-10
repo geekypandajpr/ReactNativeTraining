@@ -1,1 +1,0 @@
-export {JobTabData} from './JobTabData'

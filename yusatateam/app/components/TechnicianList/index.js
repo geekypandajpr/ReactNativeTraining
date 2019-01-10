@@ -1,1 +1,0 @@
-export { TechnicianList } from './TechnicianList';

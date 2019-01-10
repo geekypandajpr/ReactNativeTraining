@@ -1,1 +1,0 @@
-export { Activityindication } from './ActivityIndication';
