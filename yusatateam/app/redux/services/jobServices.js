@@ -2,13 +2,14 @@ import Api from '../common/api';
 import { SERVICE } from '../common/urls';
 
 export const createJob = () => Api.post(SERVICE.SERVICE_ADD);
-export const getCompany = () => Api.get(USER.COUNTRYISD);
-export const getVehicle = () => Api.get(USER.DEVICETYPE);
-export const getTechnician = () => Api.get(USER.VEHICLELIST);
-export const getServiceType = () => Api.get(USER.VEHICLELIST);
-export const getServiceList = () => Api.get(USER.DEVICETYPE);
-export const getServiceHistory = () => Api.get(USER.VEHICLELIST);
-
+export const getCompany = () => Api.get(SERVICE.SERVICE_COMPANY);
+export const getVehicle = () => Api.get(SERVICE.SERVICE_VEHICLE);
+export const getTechnician = () => Api.get(SERVICE.SERVICE_TECHNICIAN);
+export const getServiceType = () => Api.get(SERVICE.SERVICE_TYPE);
+export const getServiceList = () => Api.get(SERVICE.SERVICE_LIST);
+export const getServiceHistory = () => Api.get(SERVICE.SERVICE_VEHICLE);
+export const excecuteService = () => Api.post(SERVICE.EXECUTE_SERVICE)
+ 
 export default jobServices = {
     createJob,
     getCompany,
@@ -16,5 +17,6 @@ export default jobServices = {
     getServiceType,
     getTechnician,
     getServiceList,
-    getServiceHistory
+    getServiceHistory,
+    excecuteService
 }
