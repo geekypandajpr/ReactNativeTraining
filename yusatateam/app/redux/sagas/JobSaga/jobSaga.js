@@ -79,3 +79,18 @@ export function* vehicleSaga(action) {
 
     }
 }
+
+export function* executeServiceSaga(action) {
+    try {
+        const data = yield all(jobServices.excecuteService);
+        if(data) {
+            yield put({ type: SERVICE.EXECUTE_SERVICE_SUCCESS, data });
+            functions.showToast('Assigned successfully', 'danger');
+        } else {
+            yield put({ type: SERVICE.EXECUTE_SERVICE_FAILED });
+        }
+    } catch (error) {
+        yield put({ type: SERVICE.EXECUTE_SERVICE_FAILED, error });
+        functions.showToast('Something went wrong', 'danger');
+    }
+}
