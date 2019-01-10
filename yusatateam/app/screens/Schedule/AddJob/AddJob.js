@@ -31,7 +31,7 @@ export class AddJob extends React.Component {
             location: '',
             radio: false,
             technician: [],
-            company: [],
+            companyArray: [],
             vehicleArray: [],
             serviceTypeArray: [],
             dropdowns: new Map()
@@ -54,8 +54,8 @@ export class AddJob extends React.Component {
         /**vehicle list */
         if (this.props.JobVehicleData !== nextProps.JobVehicleData) {
             const vehicleArray = [];
-            if (nextProps.JobVehicleData.data.results) {
-                const vehicletype = nextProps.JobVehicleData.data.results;
+            if (nextProps.JobVehicleData.jobvehicle.results) {
+                const vehicletype = nextProps.JobVehicleData.jobvehicle.results;
                 for (var i = 0; i < vehicletype.length; i++) {
                     var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
                     vehicleArray.push(obj);
@@ -73,7 +73,7 @@ export class AddJob extends React.Component {
                     companyArray.push(obj);
                 }
             }
-            this.setState({ company: companyArray })
+            this.setState({ companyArray: companyArray })
         }
 
         if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
@@ -154,7 +154,7 @@ export class AddJob extends React.Component {
                                                 upperView={true}
                                                 value={this.state.dropdowns.get(COMPANY_KEY)[0]}
                                                 isMandatory={true}
-                                                onpress={() => { this.openPicker(COMPANY_KEY, this.state.company, 'Company') }}
+                                                onpress={() => { this.openPicker(COMPANY_KEY, this.state.companyArray, 'Company') }}
                                             />
                                         </View>
 
