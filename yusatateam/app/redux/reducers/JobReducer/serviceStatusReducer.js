@@ -6,7 +6,7 @@ const initialState = {
     error: false
 }
 
-export default ServiceStatusReducer = (state = initialState, action) => {
+export default serviceStatusReducer = (state = initialState, action) => {
     switch (action.type) {
         case SERVICE.SERVICE_STATUS_REQUEST:
             return Object.assign({}, state, {
