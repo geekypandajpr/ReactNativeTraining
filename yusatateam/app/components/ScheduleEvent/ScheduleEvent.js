@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Button, Text, Card } from 'native-base';
 import { Entypo, MaterialIcons } from '@expo/vector-icons';
+import { AppLoading } from 'expo';
 
 import styles from './Styles';
 import { StatefulButton } from '../../components';
@@ -9,19 +10,29 @@ import { StatefulButton } from '../../components';
 export default class ScheduleEvent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = { isLoading: true }
         this.modalRef = React.createRef();
+    }
+
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+        })
+        this.setState({ isLoading: false });
     }
 
     render() {
         return (
+            this.state.isLoading === true ? <AppLoading /> :
             <View>
                 {this.props.item.map((item, index) =>
                     <Card style={styles.event_date_view} key={index}>
 
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
-                                <Text style={styles.label_text}>{item.serviceNumber}</Text>
+                                <Text style={[styles.label_text,{fontFamily: 'Roboto'}]}>{item.serviceNumber}</Text>
                             </View>
                             <View style={styles.second_view}>
                                 {/* <StatefulButton
@@ -32,20 +43,20 @@ export default class ScheduleEvent extends React.Component {
                                     styles={{ button: styles.service_type_view, label: styles.service_type }} /> */}
                                 <Button transparent style={styles.service_type_view} 
                                     onPress={this.props.doAssociation}>
-                                    <Text uppercase={false} style={styles.service_type}>{item.serviceType}</Text>
+                                    <Text uppercase={false} style={[styles.service_type,{fontFamily: 'Roboto'}]}>{item.serviceType}</Text>
                                 </Button>
                             </View>
                         </View>
 
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
-                                <Text style={styles.value_text}>{item.companyName}</Text>
+                                <Text style={[styles.value_text,{fontFamily: 'Roboto'}]}>{item.companyName}</Text>
                             </View>
                         </View>
 
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
-                                <Text style={styles.value_text}>{item.vehicleNumber}</Text>
+                                <Text style={[styles.value_text,{fontFamily: 'Roboto'}]}>{item.vehicleNumber}</Text>
                             </View>
                         </View>
 
@@ -55,7 +66,7 @@ export default class ScheduleEvent extends React.Component {
                                     <MaterialIcons name='schedule' color='#1766A6' size={20} />
                                 </View>
                                 <View style={styles.first_view}>
-                                    <Text style={styles.value_text}>{item.jobDate}</Text>
+                                    <Text style={[styles.value_text,{fontFamily: 'Roboto'}]}>{item.jobDate}</Text>
                                 </View>
                             </View>
                         </View>
@@ -66,22 +77,22 @@ export default class ScheduleEvent extends React.Component {
                                     <Entypo name='location-pin' color='red' size={20} />
                                 </View>
                                 <View style={styles.first_view}>
-                                    <Text style={styles.value_text}>{item.location}</Text>
+                                    <Text style={[styles.value_text,{fontFamily: 'Roboto'}]}>{item.location}</Text>
                                 </View>
                             </View>
                         </View>
 
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
-                            <TouchableOpacity  onPress={this.props.serviceChange} >
-                                <View style={[styles.statusButton, { backgroundColor: item.color }]}>
-                                    <Text style={styles.status_text}>{item.status}</Text>
-                                </View>
+                                <TouchableOpacity  onPress={this.props.serviceChange} >
+                                    <View style={[styles.statusButton, { backgroundColor: item.color }]}>
+                                        <Text style={[styles.value_text,{fontFamily: 'Roboto', color: '#fff'}]}>{item.status}</Text>
+                                    </View>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.second_view}>
                                 <TouchableOpacity style={styles.second_view} activeOpacity={0.2} onPress={this.props.viewMore} >
-                                    <Text style={styles.view_more}>view more</Text>
+                                    <Text style={[styles.view_more,{fontFamily: 'Roboto'}]}>view more</Text>
                                     <Entypo name='chevron-thin-right' color='gray' size={20} />
                                 </TouchableOpacity>
                             </View>

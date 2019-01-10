@@ -1,4 +1,5 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { colors } from '../../styles';
 export default EStyleSheet.create({
     '$fontFamily': 'normal',
     event_date_view: {
@@ -69,8 +70,8 @@ export default EStyleSheet.create({
     service_type: {
         //fontFamily: '$fontFamily',
         fontSize: '0.8rem',
-        fontWeight: 'bold',
-        color: '#1766A6'
+        fontWeight: '400',
+        color: colors.HEADER_COLOR
     },
     icon_view: {
         flex: 0.1
