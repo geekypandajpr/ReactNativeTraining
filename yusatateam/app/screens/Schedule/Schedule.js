@@ -12,6 +12,7 @@ import styles from './Styles';
 import JobDetails from '../Jobs/JobDetails/JobDetails';
 import colors from '../../constants/colors';
 import Filter from './Filter/Filter';
+import {Status} from './Status';
 import { connect } from 'react-redux';
 import { serviceActions } from '../../redux/actions';
 
@@ -21,9 +22,6 @@ var eventList = {
     // '2018-09-18': {selected: true, selectedColor: 'green'},
     // '2018-09-30': {selected: true, selectedColor: 'orange'},
 }
-
-const StatusData =["Completed","Entered","Accepted","On Job","Rescheduled","Cancelled"];
-const ServiceName =["All","Install","Uninstall","Replace","Repair"];
 
 export  class Schedule extends React.Component {
     constructor(props) {
@@ -37,6 +35,7 @@ export  class Schedule extends React.Component {
         };
         this.modalRef = React.createRef();
         this.filterRef = React.createRef();
+        this.statusRef = React.createRef();
     }
 
     renderDay(day, item) {
@@ -76,8 +75,11 @@ export  class Schedule extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    openFilter = (data) => {
-        this.filterRef.current.setModalVisible(true,data);
+    openFilter = () => {
+        this.filterRef.current.setModalVisible(true);
+    }
+    openStatus = () => {
+        this.statusRef.current.setModalVisible(true)
     }
     
     render() {
@@ -88,7 +90,7 @@ export  class Schedule extends React.Component {
                 <Toolbar title='Schedule'
                     leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
                     setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('AddJob')}
-                    Calender='filter' calenderType='Feather' onCalenderPress={() =>this.openFilter(ServiceName)}
+                    Calender='filter' calenderType='Feather' onCalenderPress={() =>this.openFilter()}
                     thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('History')}/>
                 <Agenda
                     //renderDay={(day, item) => this.renderDay(day, item)}
@@ -143,6 +145,8 @@ export  class Schedule extends React.Component {
                 />
                 <JobDetails ref={this.modalRef} />
                 <Filter ref={this.filterRef} />
+                <Status ref={this.statusRef} />
+                
             </View>
         );
     }
@@ -287,7 +291,7 @@ export  class Schedule extends React.Component {
         }
         return (
             <ScheduleEvent item={[item]}
-                serviceChange ={() =>this.openFilter(StatusData)}
+                serviceChange ={() =>this.openStatus()}
                 doAssociation={() => this.props.navigation.navigate('DoAssociation')}
                 viewMore={() => { this.modalRef.current.setModalVisible(true, value) }}/>
         );

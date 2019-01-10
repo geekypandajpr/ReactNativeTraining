@@ -12,8 +12,7 @@ export default class Filter extends React.Component {
         this.state = {
             isLoading: true,
             modalVisible: false,
-            value: 'ALL',
-            data : [],
+            value: 'ALL'
         }
     }
 
@@ -26,8 +25,8 @@ export default class Filter extends React.Component {
         this.setState({ isLoading: false })
     }
 
-    setModalVisible = (visible,data) => {
-        this.setState({ modalVisible: visible,data :data });
+    setModalVisible = (visible) => {
+        this.setState({ modalVisible: visible });
     }
 
     onApply = () => {
@@ -67,7 +66,7 @@ export default class Filter extends React.Component {
                                         onPress={() => this.setState({ value: 'ALL' })}
                                     />
                                     <View style={styles.remember_me}>
-                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>{this.state.data[0]}</Text>
+                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>All</Text>
                                     </View>
                                 </View>
                             </View>
@@ -80,7 +79,7 @@ export default class Filter extends React.Component {
                                         onPress={() => this.setState({ value: 'INSTALL' })}
                                     />
                                     <View style={styles.remember_me}>
-                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>{this.state.data[1]}</Text>
+                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Install</Text>
                                     </View>
                                 </View>
                             </View>
@@ -93,7 +92,7 @@ export default class Filter extends React.Component {
                                         onPress={() => this.setState({ value: 'UNINSTALL' })}
                                     />
                                     <View style={styles.remember_me}>
-                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>{this.state.data[2]}</Text>
+                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Uninstall</Text>
                                     </View>
                                 </View>
                             </View>
@@ -106,7 +105,7 @@ export default class Filter extends React.Component {
                                         onPress={() => this.setState({ value: 'REPLACE' })}
                                     />
                                     <View style={styles.remember_me}>
-                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>{this.state.data[3]}</Text>
+                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Replace</Text>
                                     </View>
                                 </View>
                             </View>
@@ -119,7 +118,7 @@ export default class Filter extends React.Component {
                                         onPress={() => this.setState({ value: 'REPAIR' })}
                                     />
                                     <View style={styles.remember_me}>
-                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>{this.state.data[4]}</Text>
+                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Repair</Text>
                                     </View>
                                 </View>
                             </View>
