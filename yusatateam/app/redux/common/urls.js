@@ -10,4 +10,8 @@ export const USER = {
     CREATEVEHICLE               : 'vehicle/add',
     CREATEVEHICLETYPE           : 'utility/list/VehicleType',
     CHECKDEVICEASSOCIATION      : 'ap/checkdeviceassociation',
+
+    /** Technician Login */
+
+    ADDSERVICE                  :'ap/service/add'
 };
