@@ -23,5 +23,6 @@ export const SERVICE = {
     SERVICE_TECHNICIAN  : 'tehnician',
     SERVICE_TYPE        : 'servicetype',
     SERVICE_DEVICE      : 'device',
-    SERVICE_SIM         : 'sim'
+    SERVICE_SIM         : 'sim',
+    SERVICE_STATUS      : 'utility/list/ServiceStatus',
 }

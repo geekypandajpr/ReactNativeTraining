@@ -9,7 +9,7 @@ export const getServiceType = () => Api.get(SERVICE.SERVICE_TYPE);
 export const getServiceList = () => Api.get(SERVICE.SERVICE_LIST);
 export const getServiceHistory = () => Api.get(SERVICE.SERVICE_VEHICLE);
 export const excecuteService = () => Api.post(SERVICE.EXECUTE_SERVICE);
-export const serviceStatus =() => Api.get(SERVICE)
+export const serviceStatus = () => Api.get(SERVICE.SERVICE_STATUS);
  
 export default jobServices = {
     createJob,

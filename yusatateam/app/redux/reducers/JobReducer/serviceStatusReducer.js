@@ -2,7 +2,7 @@ import { SERVICE } from '../../common/actionTypes';
 
 const initialState = {
     isLoading: false,
-    statusData: [],
+    status: [],
     error: false
 }
 
@@ -14,7 +14,7 @@ export default ServiceStatusReducer = (state = initialState, action) => {
             });
         case SERVICE.SERVICE_STATUS_SUCCESS:
             return Object.assign({}, state, {
-                statusData : action.statusData,
+                status : action.status,
                 isLoading: false
             });
         case SERVICE.SERVICE_STATUS_FAILED:

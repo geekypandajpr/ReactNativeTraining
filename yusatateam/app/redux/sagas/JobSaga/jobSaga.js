@@ -85,7 +85,7 @@ export function* executeServiceSaga(action) {
         const data = yield all(jobServices.excecuteService);
         if(data) {
             yield put({ type: SERVICE.EXECUTE_SERVICE_SUCCESS, data });
-            functions.showToast('Assigned successfully', 'danger');
+            functions.showToast('Assigned successfully', 'success');
         } else {
             yield put({ type: SERVICE.EXECUTE_SERVICE_FAILED });
         }
@@ -95,12 +95,12 @@ export function* executeServiceSaga(action) {
     }
 }
 
-export function* ServiceStatusSaga(action) {
+export function* serviceStatusSaga(action) {
     try {
-        const data = yield all(jobServices.serviceStatus);
+        const status = yield all(jobServices.serviceStatus);
         if(data) {
-            yield put({ type: SERVICE.SERVICE_STATUS_SUCCESS, data });
-            functions.showToast('Assigned successfully', 'danger');
+            yield put({ type: SERVICE.SERVICE_STATUS_SUCCESS, status });
+            // functions.showToast('Assigned successfully', 'success');
         } else {
             yield put({ type: SERVICE.SERVICE_STATUS_FAILED });
         }
