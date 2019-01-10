@@ -8,6 +8,7 @@ import { Float, Statusbar, Activityindication } from '../../components';
 import { userActions } from '../../redux/actions';
 import styles from './Styles';
 import functions from '../../common/functions';
+import { colors } from '../../styles';
 
 export class LogIn extends React.Component {
     constructor(props) {
@@ -76,7 +77,7 @@ export class LogIn extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ flex: 1, backgroundColor: '#fff'}}>
                     <Activityindication visible={this.props.user.isLoading}/>
-                    <Statusbar backgroundColor={'#229954'} barStyle="light-content" />
+                    <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
                     <ScrollView>
 
                         <View style={styles.container}>
@@ -149,7 +150,7 @@ export class LogIn extends React.Component {
 
                             <View style={styles.button_view}>
                                 <Button
-                                    style={styles.button}
+                                    style={[styles.button,{backgroundColor: colors.HEADER_COLOR}]}
                                     onPress={this._doLogin} >
                                     <Text style={[styles.button_text,{fontFamily: 'Roboto'}]}>  LOGIN </Text>
                                 </Button>
