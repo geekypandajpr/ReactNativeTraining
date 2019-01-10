@@ -37,12 +37,16 @@ export class AddJob extends React.Component {
             serviceTypeArray: [],
             dropdowns: new Map(),
             Cname: '',
-            Ccontact: ''
+            Ccontact: '',
+            amount: '',
+            Training: false,
+            ServiceName: '',
+           
         }
         this.flag = ''
         this.modalref = React.createRef();
         this.openPicker = this.openPicker.bind(this);
-        this.onvalidation = this.onvalidation.bind(this);
+        this.onSubmitAddService = this.onSubmitAddService.bind(this);
     };
 
     async componentWillMount() {
@@ -128,6 +132,7 @@ export class AddJob extends React.Component {
         dropdowns.set(flag, [item.label, item.value]);
         this.setState({ dropdowns: dropdowns });
     }
+
     onvalidation() {
         if (this.state.dropdowns.get(COMPANY_KEY)[1]
             && this.state.dropdowns.get(VEHICLE_KEY)[1]
@@ -135,11 +140,38 @@ export class AddJob extends React.Component {
             && this.state.dropdowns.get(TECHNICIAN_KEY)[1]
             && this.state.Cname !== ''
             && this.state.Ccontact !== ''
-            && this.state.dataRenewal!==''
-            ) {
-            functions.showToast('complete', 'warning');
+            && this.state.dataRenewal !== ''
+            && this.state.location !== ''
+        ) {
+            return true;
         }
-        functions.showToast('not complete', 'warning');
+        return false;
+    }
+
+    onSubmitAddService() {
+        if (this.onvalidation()) {
+            const item = {
+                "companyId": this.state.dropdowns.get(COMPANY_KEY)[1],
+                "vehicleId": [this.state.dropdowns.get(VEHICLE_KEY)[1]],
+                "serviceType": this.state.dropdowns.get(SERVICE_KEY)[1],
+                "servicePerson": this.state.dropdowns.get(TECHNICIAN_KEY)[1],
+                "customerName": this.state.Cname,
+                "customerMobileNumber": this.state.Ccontact,
+                "address": this.state.location,
+                "serviceDate": this.state.dataRenewal,
+                "cashOnDelivery": this.state.radio,
+                "orderCode": "TPI_SERVICE",
+                "serviceStatus":"ENTERED",
+                "serviceName":this.state.serviceName,
+                "training":this.state.Training
+            }
+            if (this.state.radio && this.state.amount !== '') {
+                item["amountToCollect"] = this.state.amount
+            }
+            this.props.createServices(item);
+        } else {
+            functions.showToast('Please fill all required fields', 'warning');
+        }
     }
 
     render() {
@@ -208,12 +240,12 @@ export class AddJob extends React.Component {
                                                 keyboardType={'default'}
                                                 blurOnSubmit={false}
                                                 isMandatory={true}
-                                                onChangeText={(text) => this.setState({ balance: text })}
+                                                onChangeText={(text) => this.setState({ location: text })}
                                                 inputStyles={{ width: '100%' }}
-                                                rightIcon='google-maps'
-                                                rightIconType="MaterialCommunityIcons"
-                                                rightIconStyle={{ fontSize: 24, color: 'red' }}
-                                                rightIconPress={() => navigate('Mapview')}
+                                            // rightIcon='google-maps'
+                                            // rightIconType="MaterialCommunityIcons"
+                                            // rightIconStyle={{ fontSize: 24, color: 'red' }}
+                                            // rightIconPress={() => navigate('Mapview')}
                                             />
                                         </View>
                                         <View style={styles.Small_View}>
@@ -240,11 +272,23 @@ export class AddJob extends React.Component {
                                                 inputStyles={{ width: '100%' }}
                                             />
                                         </View>
+                                        <View style={styles.Small_View}>
+                                            <Float
+                                                placeholder='Service Name'
+                                                value={this.state.ServiceName}
+                                                returnKeyType={'next'}
+                                                keyboardType={'numeric'}
+                                                blurOnSubmit={false}
+                                                isMandatory={true}
+                                                onChangeText={(text) => this.setState({ ServiceName: text })}
+                                                inputStyles={{ width: '100%' }}
+                                            />
+                                        </View>
 
                                         <View style={[styles.Small_View, { flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }]}>
-                                            <View style={{flexDirection:'row'}}>
-                                            <Text style={[styles.createVehicle, { marginBottom: 10 }]}>Schdule date and Time</Text>
-                                            <Text style={styles.star}>*</Text>
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text style={[styles.createVehicle, { marginBottom: 10 }]}>Schdule date and Time</Text>
+                                                <Text style={styles.star}>*</Text>
                                             </View>
 
                                             <View style={styles.Date_picker}>
@@ -274,9 +318,38 @@ export class AddJob extends React.Component {
                                                 />
                                             </View>
                                         </View>
+
+                                        <View style={{ width: '100%', justifyContent: 'flex-start', marginTop: 10 }}>
+
+                                            <View style={[styles.Small_View, { flex: 1 }]} >
+                                                <View style={{ flex: 1 }}>
+                                                    <Text style={{ color: 'gray' }}>Training</Text>
+                                                </View>
+                                                <View style={{ marginLeft: '10%', flex: 2, flexDirection: 'row' }}>
+                                                    <Text style={{ color: 'gray' }}>Yes</Text>
+                                                    <Radio color='gray'
+                                                        selectedColor="gray"
+                                                        style={{ marginLeft: '2%' }}
+                                                        selected={this.state.Training === true}
+                                                        onPress={() => { this.setState({ Training: true }) }}
+                                                    ></Radio>
+                                                </View>
+                                                <View style={{ marginLeft: '10%', flex: 2, flexDirection: 'row' }}>
+                                                    <Text style={{ color: 'gray' }}>No</Text>
+                                                    <Radio color='gray'
+                                                        selectedColor="gray"
+                                                        style={{ marginLeft: '2%' }}
+                                                        selected={this.state.Training === false}
+                                                        onPress={() => { this.setState({ Training: false }) }}
+
+                                                    ></Radio>
+                                                </View>
+                                            </View>
+                                        </View>
+
                                         <View style={{ width: '100%', justifyContent: 'flex-start', marginTop: 10 }}>
                                             <View >
-                                                <Text style={{ color: 'gray', fontSize: 13 }}>Payment Mode</Text>
+                                                <Text style={{ color: '#000', fontSize: 13 }}>Payment Mode</Text>
                                             </View>
                                             <View style={[styles.Small_View, { flex: 1 }]} >
                                                 <View style={{ flex: 1 }}>
@@ -306,17 +379,19 @@ export class AddJob extends React.Component {
                                                 <View style={styles.Small_View}>
                                                     <Float
                                                         placeholder='Amount To Collect'
-                                                        value={this.state.location}
+                                                        value={this.state.amount}
                                                         returnKeyType={'next'}
                                                         keyboardType={'numeric'}
                                                         blurOnSubmit={false}
                                                         isMandatory={true}
-                                                        onChangeText={(text) => this.setState({ balance: text })}
+                                                        onChangeText={(text) => this.setState({ amount: text })}
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
                                                 : null}
                                         </View>
+
+
 
 
                                         <View style={styles.button_view}>
@@ -327,7 +402,7 @@ export class AddJob extends React.Component {
                                             </View> */}
                                             <View style={{ flex: 1, marginLeft: 1 }}>
                                                 <Button block style={{ backgroundColor: '#5cb85c' }}
-                                                    onPress={this.onvalidation}>
+                                                    onPress={this.onSubmitAddService}>
                                                     <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
                                                 </Button>
                                             </View>
@@ -359,7 +434,7 @@ function mapDispatchToProps(dispatch) {
     return {
         addJobVehicle: () => dispatch(serviceActions.VehicleRequest()),
         addjobcomapany: () => dispatch(serviceActions.companyRequest()),
-        createServices:(item)=>dispatch(serviceActions.createJobRequests(item))
+        createServices: (createdata) => dispatch(serviceActions.createJobRequests(createdata))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddJob)
