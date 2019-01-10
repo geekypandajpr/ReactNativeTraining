@@ -1,7 +1,7 @@
 import Api from '../common/api';
 import { USER } from '../common/urls';
 
-export const createJob = (data) => Api.post(USER.LOGIN, data);
+export const createJob = () => Api.post(USER.LOGIN);
 export const getCompany = () => Api.get(USER.COUNTRYISD);
 export const getVehicle = () => Api.get(USER.DEVICETYPE);
 export const getTechnician = () => Api.get(USER.VEHICLELIST);
