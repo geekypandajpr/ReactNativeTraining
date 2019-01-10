@@ -94,3 +94,18 @@ export function* executeServiceSaga(action) {
         functions.showToast('Something went wrong', 'danger');
     }
 }
+
+export function* ServiceStatusSaga(action) {
+    try {
+        const data = yield all(jobServices.serviceStatus);
+        if(data) {
+            yield put({ type: SERVICE.SERVICE_STATUS_SUCCESS, data });
+            functions.showToast('Assigned successfully', 'danger');
+        } else {
+            yield put({ type: SERVICE.SERVICE_STATUS_FAILED });
+        }
+    } catch (error) {
+        yield put({ type: SERVICE.SERVICE_STATUS_FAILED, error });
+        functions.showToast('Something went wrong', 'danger');
+    }
+}
