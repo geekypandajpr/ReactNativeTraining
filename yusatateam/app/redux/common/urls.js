@@ -21,7 +21,7 @@ export const SERVICE = {
     SERVICE_COMPANY     : 'company',
     SERVICE_VEHICLE     : 'vehicle',
     SERVICE_TECHNICIAN  : 'tehnician',
-    SERVICE_TYPE        : 'servicetype',
+    SERVICE_TYPE        : 'utility/list/ServiceType',
     SERVICE_DEVICE      : 'device',
     SERVICE_SIM         : 'sim',
     SERVICE_STATUS      : 'utility/list/ServiceStatus',
