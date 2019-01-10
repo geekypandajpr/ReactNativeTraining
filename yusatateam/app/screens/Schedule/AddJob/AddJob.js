@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, KeyboardAvoidingView, BackHandler, ScrollView } from 'react-native';
-import { Button, Text, Radio } from 'native-base';
+import { Button, Text, Radio, CheckBox } from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux'
@@ -41,7 +41,7 @@ export class AddJob extends React.Component {
             amount: '',
             Training: false,
             ServiceName: '',
-           
+
         }
         this.flag = ''
         this.modalref = React.createRef();
@@ -167,7 +167,7 @@ export class AddJob extends React.Component {
             if (this.state.radio && this.state.amount !== '') {
                 item["amountToCollect"] = this.state.amount;
             }
-            if(this.state.ServiceName !== '') {
+            if (this.state.ServiceName !== '') {
                 item["serviceName"] = this.state.serviceName;
             }
             alert(JSON.stringify(item));
@@ -212,7 +212,6 @@ export class AddJob extends React.Component {
                                                     onpress={() => { this.openPicker(VEHICLE_KEY, this.state.vehicleArray, 'Vehicle') }}
                                                 />
                                             </View>
-
                                         </View>
 
                                         <View style={styles.Small_View}>
@@ -251,30 +250,7 @@ export class AddJob extends React.Component {
                                             // rightIconPress={() => navigate('Mapview')}
                                             />
                                         </View>
-                                        <View style={styles.Small_View}>
-                                            <Float
-                                                placeholder='Customer Name'
-                                                value={this.state.Cname}
-                                                returnKeyType={'next'}
-                                                keyboardType={'default'}
-                                                blurOnSubmit={false}
-                                                isMandatory={true}
-                                                onChangeText={(text) => this.setState({ Cname: text })}
-                                                inputStyles={{ width: '100%' }}
-                                            />
-                                        </View>
-                                        <View style={styles.Small_View}>
-                                            <Float
-                                                placeholder='Customer Contact'
-                                                value={this.state.Ccontact}
-                                                returnKeyType={'next'}
-                                                keyboardType={'numeric'}
-                                                blurOnSubmit={false}
-                                                isMandatory={true}
-                                                onChangeText={(text) => this.setState({ Ccontact: text })}
-                                                inputStyles={{ width: '100%' }}
-                                            />
-                                        </View>
+
                                         <View style={styles.Small_View}>
                                             <Float
                                                 placeholder='Service Name'
@@ -290,7 +266,7 @@ export class AddJob extends React.Component {
 
                                         <View style={[styles.Small_View, { flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }]}>
                                             <View style={{ flexDirection: 'row' }}>
-                                                <Text style={[styles.createVehicle, { marginBottom: 10 }]}>Schdule date and Time</Text>
+                                                <Text style={[styles.label, { marginBottom: 10 }]}>Schdule date and Time</Text>
                                                 <Text style={styles.star}>*</Text>
                                             </View>
 
@@ -322,60 +298,73 @@ export class AddJob extends React.Component {
                                             </View>
                                         </View>
 
-                                        <View style={{ width: '100%', justifyContent: 'flex-start', marginTop: 10 }}>
+                                        <View style={styles.Small_View}>
+                                            <Float
+                                                placeholder='Customer Name'
+                                                value={this.state.Cname}
+                                                returnKeyType={'next'}
+                                                keyboardType={'default'}
+                                                blurOnSubmit={false}
+                                                isMandatory={true}
+                                                onChangeText={(text) => this.setState({ Cname: text })}
+                                                inputStyles={{ width: '100%' }}
+                                            />
+                                        </View>
 
-                                            <View style={[styles.Small_View, { flex: 1 }]} >
-                                                <View style={{ flex: 1 }}>
-                                                    <Text style={{ color: 'gray' }}>Training</Text>
-                                                </View>
-                                                <View style={{ marginLeft: '10%', flex: 2, flexDirection: 'row' }}>
-                                                    <Text style={{ color: 'gray' }}>Yes</Text>
-                                                    <Radio color='gray'
-                                                        selectedColor="gray"
-                                                        style={{ marginLeft: '2%' }}
-                                                        selected={this.state.Training === true}
-                                                        onPress={() => { this.setState({ Training: true }) }}
-                                                    ></Radio>
-                                                </View>
-                                                <View style={{ marginLeft: '10%', flex: 2, flexDirection: 'row' }}>
-                                                    <Text style={{ color: 'gray' }}>No</Text>
-                                                    <Radio color='gray'
-                                                        selectedColor="gray"
-                                                        style={{ marginLeft: '2%' }}
-                                                        selected={this.state.Training === false}
-                                                        onPress={() => { this.setState({ Training: false }) }}
+                                        <View style={styles.Small_View}>
+                                            <Float
+                                                placeholder='Customer Contact'
+                                                value={this.state.Ccontact}
+                                                returnKeyType={'next'}
+                                                keyboardType={'numeric'}
+                                                blurOnSubmit={false}
+                                                isMandatory={true}
+                                                onChangeText={(text) => this.setState({ Ccontact: text })}
+                                                inputStyles={{ width: '100%' }}
+                                            />
+                                        </View>
 
-                                                    ></Radio>
+                                        <View style={{ width: '100%', justifyContent: 'flex-start', marginTop: 10, }}>
+                                            <View >
+                                                <Text style={styles.label}>Training</Text>
+                                            </View>
+                                            <View style={{ flexDirection: 'row', flex: 1, marginTop: 10 }}>
+                                                <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
+                                                    <CheckBox color='gray'
+                                                       // style={{ backgroundColor: 'transparent', }}
+                                                        checked={this.state.Training === true}
+                                                        onPress={() => { this.setState({ Training: true }) }} />
+                                                    <Text style={[styles.label, { marginLeft: 20 }]}>YES</Text>
+                                                </View>
+                                                <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
+                                                    <CheckBox color='gray'
+                                                        //style={{ backgroundColor: 'transparent', }}
+                                                        checked={this.state.Training === false}
+                                                        onPress={() => { this.setState({ Training: false }) }} />
+                                                    <Text style={[styles.label, { marginLeft: 20 }]}>NO</Text>
                                                 </View>
                                             </View>
                                         </View>
 
+
                                         <View style={{ width: '100%', justifyContent: 'flex-start', marginTop: 10 }}>
                                             <View >
-                                                <Text style={{ color: '#000', fontSize: 13 }}>Payment Mode</Text>
+                                                <Text style={styles.label}>Payment Mode : COD</Text>
                                             </View>
-                                            <View style={[styles.Small_View, { flex: 1 }]} >
-                                                <View style={{ flex: 1 }}>
-                                                    <Text style={{ color: 'gray' }}>C.O.D</Text>
+                                            <View style={{ flexDirection: 'row', flex: 1, marginTop: 10 }}>
+                                                <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
+                                                    <CheckBox color='gray'
+                                                        checked={this.state.radio === true}
+                                                        style={{ backgroundColor: 'transparent', }}
+                                                        onPress={() => { this.setState({ radio: true }) }} />
+                                                    <Text style={[styles.label, { marginLeft: 20 }]}>YES</Text>
                                                 </View>
-                                                <View style={{ marginLeft: '10%', flex: 2, flexDirection: 'row' }}>
-                                                    <Text style={{ color: 'gray' }}>Yes</Text>
-                                                    <Radio color='gray'
-                                                        selectedColor="gray"
-                                                        style={{ marginLeft: '2%' }}
-                                                        selected={this.state.radio === true}
-                                                        onPress={() => { this.setState({ radio: true }) }}
-                                                    ></Radio>
-                                                </View>
-                                                <View style={{ marginLeft: '10%', flex: 2, flexDirection: 'row' }}>
-                                                    <Text style={{ color: 'gray' }}>No</Text>
-                                                    <Radio color='gray'
-                                                        selectedColor="gray"
-                                                        style={{ marginLeft: '2%' }}
-                                                        selected={this.state.radio === false}
-                                                        onPress={() => { this.setState({ radio: false }) }}
-
-                                                    ></Radio>
+                                                <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
+                                                    <CheckBox color='gray'
+                                                        checked={this.state.radio === false}
+                                                        style={{ backgroundColor: 'transparent', }}
+                                                        onPress={() => { this.setState({ radio: false }) }} />
+                                                    <Text style={[styles.label, { marginLeft: 20 }]}>NO</Text>
                                                 </View>
                                             </View>
                                             {this.state.radio ?
@@ -393,9 +382,6 @@ export class AddJob extends React.Component {
                                                 </View>
                                                 : null}
                                         </View>
-
-
-
 
                                         <View style={styles.button_view}>
                                             {/* <View style={{ flex: 1, marginRight: 1 }}>

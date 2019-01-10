@@ -52,5 +52,10 @@ export default EStyleSheet.create({
         color: '#000',
         fontSize: '0.9rem'
     },
+    label: {
+        fontSize: '1rem',
+        color: 'gray',
+        fontFamily: 'Roboto'
+    },
 
 })
