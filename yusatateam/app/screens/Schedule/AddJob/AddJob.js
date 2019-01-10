@@ -73,11 +73,7 @@ export class AddJob extends React.Component {
                     companyArray.push(obj);
                 }
             }
-            this.setState({ companyArray: companyArray })
-        }
 
-        if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
-            const serviceArray = [];
             if (nextProps.JobcompanyData.serviceType.results) {
                 const vehicletype = nextProps.JobcompanyData.serviceType.results;
                 for (var i = 0; i < vehicletype.length; i++) {
@@ -85,11 +81,7 @@ export class AddJob extends React.Component {
                     serviceArray.push(obj);
                 }
             }
-            this.setState({ serviceTypeArray: serviceArray })
-        }
 
-        if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
-            const techArray = [];
             if (nextProps.JobcompanyData.technician.results) {
                 const vehicletype = nextProps.JobcompanyData.technician.results;
                 for (var i = 0; i < vehicletype.length; i++) {
@@ -97,7 +89,7 @@ export class AddJob extends React.Component {
                     techArray.push(obj);
                 }
             }
-            this.setState({ technician: techArray })
+            this.setState({ companyArray: companyArray, serviceTypeArray: serviceArray, technician: techArray })
         }
     }
 
@@ -111,7 +103,7 @@ export class AddJob extends React.Component {
 
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
         this.props.addJobVehicle();
-        this.props.addjobcomapany();
+        //this.props.addjobcomapany();
     }
 
     componentWillUnmount() {
