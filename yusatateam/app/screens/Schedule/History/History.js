@@ -260,10 +260,10 @@ export  class History extends React.Component {
             'amount': '5000',
             'training' : 'No'
         }
+        const { navigate } = this.props.navigation;
         return (
             <ScheduleEvent item={[item]}
-                doAssociation={() => this.props.navigation.navigate('DoAssociation')}
-                viewMore={() => { this.modalRef.current.setModalVisible(true, value) }}/>
+                viewMore={() => navigate('HistoryDetails')}/>
         );
     }
 
