@@ -19,20 +19,13 @@ import {
 } from './GPSDevice';
 
 import {
-    RepairReducer,
-    ReplaceReducer,
-    UnInstallReducer,
-    InstallReducer
-} from './JOBSCHEDULEREDUCER';
-
-import {
     createJobReducer,
     jobHistoryReducer,
     jobListReducer,
     addjobcompanyReducer,
     addjobvehicleReducer
     
-} from './JOBREDUCER'
+} from './JobReducer';
 
 const rootReducers = combineReducers({
     /**Router */
@@ -53,12 +46,6 @@ const rootReducers = combineReducers({
 
     /**Sim Info */
     simData: simReducer,
-
-    /**Job Schedule */
-    InstallData: InstallReducer,
-    RepairData: RepairReducer,
-    ReplaceData: ReplaceReducer,
-    UnInstallData: UnInstallReducer,
 
     /**Job Schema */
     CreateData: createJobReducer,
