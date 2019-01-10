@@ -86,7 +86,7 @@ export  class Schedule extends React.Component {
                     leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
                     setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('AddJob')}
                     Calender='filter' calenderType='Feather' onCalenderPress={this.openFilter}
-                    thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => alert(JSON.stringify(this.state.historyData))}/>
+                    thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('History')}/>
                 <Agenda
                     //renderDay={(day, item) => this.renderDay(day, item)}
                     items={this.state.items}
