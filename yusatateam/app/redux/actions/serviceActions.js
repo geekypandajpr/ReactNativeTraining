@@ -6,5 +6,5 @@ export default {
     VehicleRequest: () => ({ type: SERVICE.SERVICE_VEHICLE_REQUEST }),
     companyRequest: () => ({ type: SERVICE.SERVICE_COMPANY_REQUEST }),
     executeServiceRequest: () => ({ type: SERVICE.EXECUTE_SERVICE_REQUEST }),
-    createJobRequest: () => ({ type: SERVICE.CREATEJOB_REQUEST }),
+    createJobRequests: (createdata) => ({ type: SERVICE.CREATEJOB_REQUEST,createdata }),
 }

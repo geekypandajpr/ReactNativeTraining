@@ -7,8 +7,9 @@ import { connect } from 'react-redux'
 
 import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
 import styles from './styles';
-import { serviceActions } from '../../../redux/actions';
+import { serviceActions, userActions } from '../../../redux/actions';
 import { globalStyles } from '../../../styles';
+import functions from '../../../common/functions';
 
 const COMPANY_KEY = 'COMPANY';
 const COMPANY_KEY_VALUE = 'Select company';
@@ -34,11 +35,14 @@ export class AddJob extends React.Component {
             companyArray: [],
             vehicleArray: [],
             serviceTypeArray: [],
-            dropdowns: new Map()
+            dropdowns: new Map(),
+            Cname: '',
+            Ccontact: ''
         }
         this.flag = ''
         this.modalref = React.createRef();
         this.openPicker = this.openPicker.bind(this);
+        this.onvalidation = this.onvalidation.bind(this);
     };
 
     async componentWillMount() {
@@ -124,6 +128,19 @@ export class AddJob extends React.Component {
         dropdowns.set(flag, [item.label, item.value]);
         this.setState({ dropdowns: dropdowns });
     }
+    onvalidation() {
+        if (this.state.dropdowns.get(COMPANY_KEY)[1]
+            && this.state.dropdowns.get(VEHICLE_KEY)[1]
+            && this.state.dropdowns.get(SERVICE_KEY)[1]
+            && this.state.dropdowns.get(TECHNICIAN_KEY)[1]
+            && this.state.Cname !== ''
+            && this.state.Ccontact !== ''
+            && this.state.dataRenewal!==''
+            ) {
+            functions.showToast('complete', 'warning');
+        }
+        functions.showToast('not complete', 'warning');
+    }
 
     render() {
         const { goBack } = this.props.navigation;
@@ -202,31 +219,33 @@ export class AddJob extends React.Component {
                                         <View style={styles.Small_View}>
                                             <Float
                                                 placeholder='Customer Name'
-                                                value={this.state.location}
+                                                value={this.state.Cname}
                                                 returnKeyType={'next'}
                                                 keyboardType={'default'}
                                                 blurOnSubmit={false}
                                                 isMandatory={true}
-                                                onChangeText={(text) => this.setState({ balance: text })}
+                                                onChangeText={(text) => this.setState({ Cname: text })}
                                                 inputStyles={{ width: '100%' }}
                                             />
                                         </View>
                                         <View style={styles.Small_View}>
                                             <Float
                                                 placeholder='Customer Contact'
-                                                value={this.state.location}
+                                                value={this.state.Ccontact}
                                                 returnKeyType={'next'}
                                                 keyboardType={'numeric'}
                                                 blurOnSubmit={false}
                                                 isMandatory={true}
-                                                onChangeText={(text) => this.setState({ balance: text })}
+                                                onChangeText={(text) => this.setState({ Ccontact: text })}
                                                 inputStyles={{ width: '100%' }}
                                             />
                                         </View>
 
                                         <View style={[styles.Small_View, { flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }]}>
-
+                                            <View style={{flexDirection:'row'}}>
                                             <Text style={[styles.createVehicle, { marginBottom: 10 }]}>Schdule date and Time</Text>
+                                            <Text style={styles.star}>*</Text>
+                                            </View>
 
                                             <View style={styles.Date_picker}>
                                                 <DatePicker
@@ -301,13 +320,14 @@ export class AddJob extends React.Component {
 
 
                                         <View style={styles.button_view}>
-                                            <View style={{ flex: 1, marginRight: 1 }}>
+                                            {/* <View style={{ flex: 1, marginRight: 1 }}>
                                                 <Button block style={{ backgroundColor: '#d9534f' }} onPress={this.onCancel} >
                                                     <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Cancel</Text>
                                                 </Button>
-                                            </View>
+                                            </View> */}
                                             <View style={{ flex: 1, marginLeft: 1 }}>
-                                                <Button block style={{ backgroundColor: '#5cb85c' }} >
+                                                <Button block style={{ backgroundColor: '#5cb85c' }}
+                                                    onPress={this.onvalidation}>
                                                     <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
                                                 </Button>
                                             </View>
@@ -338,7 +358,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         addJobVehicle: () => dispatch(serviceActions.VehicleRequest()),
-        addjobcomapany: () => dispatch(serviceActions.companyRequest())
+        addjobcomapany: () => dispatch(serviceActions.companyRequest()),
+        createServices:(item)=>dispatch(serviceActions.createJobRequests(item))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddJob)

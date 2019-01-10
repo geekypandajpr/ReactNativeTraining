@@ -37,7 +37,7 @@ export function* serviceHistorySaga(action) {
 
 export function* createJobSaga(action) {
     try {
-        const createData = yield call(jobServices.createJob);
+        const createData = yield call(jobServices.createJob,action.createdata);
         if (createData) {
             yield put({ type: SERVICE.CREATEJOB_SUCCESS, createData });
         }
