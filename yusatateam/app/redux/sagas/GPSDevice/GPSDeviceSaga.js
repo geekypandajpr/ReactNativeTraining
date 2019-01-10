@@ -99,18 +99,27 @@ export function* createVehicle(action) {
         const data = yield call(userServices.createVehicle, action.AddData);
         if (data) {
             yield put({ type: GPSDEVICE.CREATEVEHICLE_SUCCESS, data });
-            yield put(NavigationActions.navigate({ routeName: 'GPSDeviceForm' }));
             functions.showToast('Vehicle created successfully', 'success');
+            yield put(NavigationActions.navigate({ routeName: 'GPSDeviceForm' }));
 
-            const vehicleList = yield call(userServices.gpsvehicleList);
-            yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_SUCCESS, vehicleList });
-            
+            try {
+                const vehicleList = yield call(userServices.gpsvehicleList);
+                if(vehicleList) {
+                    yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_SUCCESS, vehicleList });
+                } else {
+                    yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_FAILED });
+                    functions.showToast('Unable to refresh vehicle list', 'danger');
+                }
+            } catch (error) {
+                yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_FAILED, error });
+                functions.showToast('something Went wrong', 'danger');
+            }
         } else {
             yield put({ type: GPSDEVICE.CREATEVEHICLE_FAILED });
+            functions.showToast('Unable to create vehicle', 'danger');
         }
     } catch (error) {
         yield put({ type: GPSDEVICE.CREATEVEHICLE_FAILED, error });
-        yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_FAILED, error });
         functions.showToast('something Went wrong', 'danger');
     }
 }
