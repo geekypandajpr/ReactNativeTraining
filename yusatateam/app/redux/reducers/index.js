@@ -24,7 +24,7 @@ import {
     jobListReducer,
     companyReducer,
     vehicleReducer
-} from './JOBREDUCER';
+} from './JobReducer';
 
 const rootReducers = combineReducers({
     /**Router */
