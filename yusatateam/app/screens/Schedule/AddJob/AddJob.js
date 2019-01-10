@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
 import styles from './styles';
-import { userActions } from '../../../redux/actions';
+import { serviceActions } from '../../../redux/actions';
 import { globalStyles } from '../../../styles';
 
 const COMPANY_KEY = 'COMPANY';
@@ -338,15 +338,15 @@ export class AddJob extends React.Component {
 }
 function mapStateToProps(state) {
     return {
-        JobVehicleData: state.addjobvehicleReducer,
-        JobcompanyData: state.addjobcompanyData
+        JobVehicleData: state.serviceVehicleData,
+        JobcompanyData: state.serviceCompanyData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        addJobVehicle: () => dispatch(userActions.addJobvehicleRequest()),
-        addjobcomapany: () => dispatch(userActions.addserviceRequest())
+        addJobVehicle: () => dispatch(serviceActions.VehicleRequest()),
+        addjobcomapany: () => dispatch(serviceActions.companyRequest())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddJob)

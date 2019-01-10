@@ -53,13 +53,13 @@ export default userService = {
     jobUnInstallData,
 
     /**Jobs Schema */
-    jobListData,
-    jobHistoryData,
-    createJobData,
-    addjobcompany,
-    addjobserviceType,
-    addjobTechnician,
-    addjobvehicle,
+    // jobListData,
+    // jobHistoryData,
+    // createJobData,
+    // addjobcompany,
+    // addjobserviceType,
+    // addjobTechnician,
+    // addjobvehicle,
     
 
     doLogin,

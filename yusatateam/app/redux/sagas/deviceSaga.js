@@ -1,6 +1,5 @@
-
 import {put,call} from 'redux-saga/effects'
-import userServices from '../services/userServices';
+import { userServices } from '../services';
 import { DEVICE } from '../common/actionTypes';
 
 export function* loginDevice(action){

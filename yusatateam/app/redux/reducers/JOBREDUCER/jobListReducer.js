@@ -1,25 +1,24 @@
-import { JOBLIST } from '../../common/actionTypes';
+import { SERVICE } from '../../common/actionTypes';
 
 const initialState = {
-    isLoading: true,
+    isLoading: false,
     listData: [],
     error: false
 }
 
 export default JobListReducer = (state = initialState, action) => {
     switch (action.type) {
-        case JOBLIST.JOBLIST_REQUEST:
-            return Object.assign({}, state,
-                { isLoading: true }
-            );
-        case JOBLIST.JOBLIST_SUCCESS:
+        case SERVICE.SERVICE_LIST_REQUEST:
+            return Object.assign({}, state, {
+                isLoading: true
+            });
+        case SERVICE.SERVICE_LIST_SUCCESS:
             return Object.assign({}, state, {
                 listData : action.listData,
                 isLoading: false
             });
-        case JOBLIST.JOBLIST_FAILED:
+        case SERVICE.SERVICE_LIST_FAILED:
             return Object.assign({}, state, {
-                
                 isLoading: false,
                 error: true
             });

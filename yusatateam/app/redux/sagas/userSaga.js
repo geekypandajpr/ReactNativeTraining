@@ -1,13 +1,13 @@
 import { call, put } from 'redux-saga/effects';
 import { NavigationActions } from 'react-navigation';
 
-import userService from '../services/userServices';
+import { userServices } from '../services';
 import { USER } from '../common/actionTypes';
 import functions from '../../common/functions';
 
 export function* login(action) {
     try {
-        const data = yield call(userService.login, action.loginCredentials);
+        const data = yield call(userServices.login, action.loginCredentials);
         // alert(JSON.stringify(data))      
         if(data) {
             yield put({type: USER.LOGIN_SUCCESS, data});
@@ -24,7 +24,7 @@ export function* login(action) {
 
 export function* updateSchema(action) {
     try {
-        const data = yield call(userService.updateSchema, action.companyId);
+        const data = yield call(userServices.updateSchema, action.companyId);
         if(data) {
             functions.showToast('Filtered applied successfully', 'success');
             yield put({type: USER.LOGIN_SUCCESS, data});

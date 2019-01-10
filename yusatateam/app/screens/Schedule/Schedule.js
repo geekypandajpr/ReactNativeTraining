@@ -13,7 +13,7 @@ import JobDetails from '../Jobs/JobDetails/JobDetails';
 import colors from '../../constants/colors';
 import Filter from './Filter/Filter';
 import { connect } from 'react-redux';
-import { userActions } from '../../redux/actions';
+import { serviceActions } from '../../redux/actions';
 
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
@@ -42,7 +42,7 @@ export  class Schedule extends React.Component {
 
     componentDidMount() {
         this.props.onFetchJobList();
-        this.props.onFetchCreateJob();
+        // this.props.onFetchCreateJob();
         this.props.onFetchJobHistory();
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
@@ -309,18 +309,16 @@ export  class Schedule extends React.Component {
 
 function mapStateToProps(state){
     return{
-        CreateData : state.CreateData,
-        ListData : state.ListData,
-        HistoryData: state.HistoryData,
+        CreateData : state.createJobData,
+        ListData : state.serviceListData,
+        HistoryData: state.serviceHistoryData,
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
-        onFetchJobList: () => dispatch(userActions.jobListRequest()),
-        onFetchCreateJob: () => dispatch(userActions.createJobRequest()),
-        onFetchJobHistory: () => dispatch(userActions.jobHistoryRequest()),
-      
+        onFetchJobList: () => dispatch(serviceActions.serviceListRequest()),
+        onFetchJobHistory: () => dispatch(serviceActions.ServiceHistoryRequest()),
     }
 }
 

@@ -1,27 +1,27 @@
-import { ADDJOBSERVICE } from '../../common/actionTypes';
+import { SERVICE } from '../../common/actionTypes';
 
 const initialState = {
-    isLoading: true,
+    isLoading: false,
     company: [],
     serviceType:[],
     technician:[],
     error: false
 }
 
-export default addjobcompanyReducer = (state = initialState, action) => {
+export default companyReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADDJOBSERVICE.ADDJOBCOMPANY_REQUEST:
-            return Object.assign({}, state,
-                { isLoading: true }
-            );
-        case ADDJOBSERVICE.ADDJOBCOMPANY_SUCCESS:
+        case SERVICE.SERVICE_COMPANY_REQUEST:
+            return Object.assign({}, state, {
+                isLoading: true
+            });
+        case SERVICE.SERVICE_COMPANY_SUCCESS:
             return Object.assign({}, state, {
                 companyData: action.companyData,
                 serviceType:action.serviceType,
                 technician:action.technician,
                 isLoading: false
             });
-        case ADDJOBSERVICE.ADDJOBCOMPANY_FAILED:
+        case SERVICE.SERVICE_COMPANY_FAILED:
             return Object.assign({}, state, {
                 isLoading: false,
                 error: true

@@ -1,79 +1,79 @@
 import { call, put } from 'redux-saga/effects';
-import userService from '../../services/userServices';
-import { CREATEJOB, JOBHISTORY, JOBLIST, ADDJOBSERVICE, ADDJOBVEHICLE } from '../../common/actionTypes';
+import { jobServices } from '../../services';
+import { SERVICE } from '../../common/actionTypes';
 
-export function* jobListData(action) {
+export function* serviceListSaga(action) {
     try {
-        const listData = yield call(userService.jobListData);
+        const listData = yield call(jobServices.getServiceList);
         if (listData) {
-            yield put({ type: JOBLIST.JOBLIST_SUCCESS, listData });
+            yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData });
         }
         else {
-            yield put({ type: JOBLIST.JOBLIST_FAILED });
+            yield put({ type: SERVICE.SERVICE_LIST_FAILED });
         }
     } catch (error) {
-        yield put({ type: JOBLIST.JOBLIST_FAILED, error });
+        yield put({ type: SERVICE.SERVICE_LIST_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
     }
 }
 
-export function* jobHistoryData(action) {
+export function* serviceHistorySaga(action) {
     try {
-        const historyData = yield call(userService.jobHistoryData);
+        const historyData = yield call(jobServices.getServiceHistory);
         if (historyData) {
-            yield put({ type: JOBHISTORY.JOBHISTORY_SUCCESS, historyData });
+            yield put({ type: SERVICE.SERVICE_HISTORY_SUCCESS, historyData });
         }
         else {
-            yield put({ type: JOBHISTORY.JOBHISTORY_FAILED });
+            yield put({ type: SERVICE.SERVICE_HISTORY_FAILED });
         }
 
     } catch (error) {
-        yield put({ type: JOBHISTORY.JOBHISTORY_FAILED, error });
+        yield put({ type: SERVICE.SERVICE_HISTORY_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
 
     }
 }
 
-export function* createJobData(action) {
+export function* createJobSaga(action) {
     try {
-        const createData = yield call(userService.createJobData);
+        const createData = yield call(jobServices.createJob);
         if (createData) {
-            yield put({ type: CREATEJOB.CREATEJOB_SUCCESS, createData });
+            yield put({ type: SERVICE.CREATEJOB_SUCCESS, createData });
         }
         else {
-            yield put({ type: CREATEJOB.CREATEJOB_FAILED });
+            yield put({ type: SERVICE.CREATEJOB_FAILED });
         }
 
     } catch (error) {
-        yield put({ type: CREATEJOB.CREATEJOB_FAILED, error });
+        yield put({ type: SERVICE.CREATEJOB_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
 
     }
 }
 
-export function* Addjobcompany(action) {
+export function* companySaga(action) {
     try {
-        const [company, serviceType, technician] = yield all([call(userService.addjobcompany),
-        call(userService.addjobserviceType), call(userService.addjobTechnician)]);
-        yield put({ type: ADDJOBSERVICE.ADDJOBCOMPANY_SUCCESS, data: [company, serviceType, technician] });
+        const [company, serviceType, technician] = yield all([call(jobServices.getCompany),
+        call(jobServices.getServiceType), call(jobServices.getTechnician)]);
+        yield put({ type: SERVICE.SERVICE_COMPANY_SUCCESS, data: [company, serviceType, technician] });
     } catch (error) {
-        yield put({ type: ADDJOBSERVICE.ADDJOBCOMPANY_FAILED, error });
+        yield put({ type: SERVICE.SERVICE_COMPANY_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
     }
 }
 
-export function* AddJobVehicle(action) {
+export function* vehicleSaga(action) {
     try {
-        const jobvehicle = yield call(userService.addjobvehicle);
+        const jobvehicle = yield call(jobServices.getVehicle);
         if (jobvehicle) {
-            yield put({ type: ADDJOBVEHICLE.ADDJOBVEHICLE_SUCCESS, jobvehicle });
+            yield put({ type: SERVICE.SERVICE_VEHICLE_SUCCESS, jobvehicle });
         }
         else {
-            yield put({ type: ADDJOBVEHICLE.ADDJOBCOMPANY_FAILED });
+            yield put({ type: SERVICE.SERVICE_VEHICLE_FAILED });
         }
 
     } catch (error) {
-        yield put({ type: ADDJOBVEHICLE.ADDJOBVEHICLE_FAILED, error });
+        yield put({ type: SERVICE.SERVICE_VEHICLE_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
 
     }

@@ -2,7 +2,7 @@ import { call, put, all } from 'redux-saga/effects';
 import { NavigationActions } from 'react-navigation';
 
 import { GPSDEVICE, GPSDEVICESEARCHCRITERIA } from '../../common/actionTypes';
-import userServices from '../../services/userServices'
+import { userServices } from '../../services'
 import functions from '../../../common/functions';
 
 /**CountryISD, Device Type, Vehicle List */
@@ -52,7 +52,7 @@ export function* searchCriteria(action) {
 /**Add GPS Device Association */
 export function* addGPSDevice(action) {
     try {
-        const data = yield call(userService.addGPSDevice, action.gpsdevice)
+        const data = yield call(userServices.addGPSDevice, action.gpsdevice)
         if (data) {
             yield put({ type: GPSDEVICE.ADD_GPS_DEVICE_SUCCESS, data });
             functions.showToast('GPS Device added successfully', 'success');
