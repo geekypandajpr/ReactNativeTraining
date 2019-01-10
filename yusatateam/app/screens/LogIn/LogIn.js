@@ -132,7 +132,7 @@ export class LogIn extends React.Component {
                                 <View style={styles.checkbox_view}>
                                     <CheckBox
                                         checked={this.state.remember}
-                                        color='#229954'
+                                        color={colors.HEADER_COLOR}
                                         onPress={() => this.setState({
                                             remember: !this.state.remember
                                         })}
