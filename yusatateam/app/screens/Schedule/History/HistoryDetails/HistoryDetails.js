@@ -2,7 +2,7 @@ import React from 'react';
 import { View,   ScrollView, Picker, TextInput } from 'react-native';
 import { Text, Header, Button, Body, Right, Left } from 'native-base';
 import { AppLoading } from 'expo';
-import {Toolbar} from '../../../components'
+import {Toolbar} from '../../../../components'
 import { Ionicons, Entypo, FontAwesome, Feather } from '@expo/vector-icons';
 
 import styles from './styles';

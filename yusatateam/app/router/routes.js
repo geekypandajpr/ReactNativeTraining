@@ -24,7 +24,8 @@ import CreateVehicle from '../screens/GPSDevice/GPSDeviceForm/CreateVehicle';
 import AddJob from '../screens/Schedule/AddJob/AddJob';
 import Mapview from '../screens/Schedule/AddJob/Mapview';
 import DoAssociation from '../screens/DoAssociation/DoAssociation';
-import HistoryDetails from '../screens/Schedule/History/HistoryDetails';
+import HistoryDetails from '../screens/Schedule/History/HistoryDetails/HistoryDetails';
+import History from '../screens/Schedule/History/History'
 
 const RouteConfigs = {
     Dashboard: {
@@ -175,6 +176,12 @@ const RouteConfigs = {
     },
     HistoryDetails: {   
         screen: HistoryDetails,
+        navigationOptions: {
+            header: null
+        }
+    },
+    History: {   
+        screen: History,
         navigationOptions: {
             header: null
         }
