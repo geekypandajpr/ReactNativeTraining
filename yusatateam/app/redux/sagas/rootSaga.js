@@ -49,6 +49,7 @@ export default function* rootSaga() {
     yield takeLatest(SERVICE.SERVICE_VEHICLE_REQUEST, jobSaga.vehicleSaga),
     yield takeLatest(SERVICE.EXECUTE_SERVICE_REQUEST, jobSaga.executeServiceSaga),
     yield takeLatest(SERVICE.SERVICE_STATUS_REQUEST, jobSaga.serviceStatusSaga),
+    yield takeLatest(SERVICE.SERVICE_DEVICE_REQUEST, jobSaga.simDeviceSaga),
 
 
     // /**Sim Info */

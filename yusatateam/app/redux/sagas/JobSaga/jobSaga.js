@@ -56,7 +56,7 @@ export function* companySaga(action) {
     try {
         const [company, serviceType, technician] = yield all([call(jobServices.getCompany),
         call(jobServices.getServiceType), call(jobServices.getTechnician)]);
-        yield put({ type: SERVICE.SERVICE_COMPANY_SUCCESS, data: [company, serviceType, technician] });
+        yield put({ type: SERVICE.SERVICE_COMPANY_SUCCESS, data: {company, serviceType, technician} });
     } catch (error) {
         yield put({ type: SERVICE.SERVICE_COMPANY_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
@@ -82,7 +82,7 @@ export function* vehicleSaga(action) {
 
 export function* executeServiceSaga(action) {
     try {
-        const data = yield all(jobServices.excecuteService);
+        const data = yield call(jobServices.excecuteService);
         if(data) {
             yield put({ type: SERVICE.EXECUTE_SERVICE_SUCCESS, data });
             functions.showToast('Assigned successfully', 'success');
@@ -97,7 +97,7 @@ export function* executeServiceSaga(action) {
 
 export function* serviceStatusSaga(action) {
     try {
-        const status = yield all(jobServices.serviceStatus);
+        const status = yield call(jobServices.serviceStatus);
         if(data) {
             yield put({ type: SERVICE.SERVICE_STATUS_SUCCESS, status });
             // functions.showToast('Assigned successfully', 'success');
@@ -106,6 +106,22 @@ export function* serviceStatusSaga(action) {
         }
     } catch (error) {
         yield put({ type: SERVICE.SERVICE_STATUS_FAILED, error });
+        functions.showToast('Something went wrong', 'danger');
+    }
+}
+
+
+export function* simDeviceSaga(action) {
+    try {
+        const [sim, device] = yield all([call(jobServices.sims), call(jobServices.devices)]);
+        yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {sim, device}});
+        // if(sim) {
+        //     yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {sim, device}});
+        // } else {
+        //     yield put({ type: SERVICE.SERVICE_DEVICE_FAILED });
+        // }
+    } catch (error) {
+        yield put({ type: SERVICE.SERVICE_DEVICE_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
     }
 }
