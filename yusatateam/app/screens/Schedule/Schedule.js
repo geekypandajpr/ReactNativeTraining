@@ -22,6 +22,9 @@ var eventList = {
     // '2018-09-30': {selected: true, selectedColor: 'orange'},
 }
 
+const StatusData =["Completed","Entered","Accepted","On Job","Rescheduled","Cancelled"];
+const ServiceName =["All","Install","Uninstall","Replace","Repair"];
+
 export  class Schedule extends React.Component {
     constructor(props) {
         super(props);
@@ -73,8 +76,8 @@ export  class Schedule extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    openFilter = () => {
-        this.filterRef.current.setModalVisible(true);
+    openFilter = (data) => {
+        this.filterRef.current.setModalVisible(true,data);
     }
     
     render() {
@@ -85,7 +88,7 @@ export  class Schedule extends React.Component {
                 <Toolbar title='Schedule'
                     leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
                     setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('AddJob')}
-                    Calender='filter' calenderType='Feather' onCalenderPress={this.openFilter}
+                    Calender='filter' calenderType='Feather' onCalenderPress={() =>this.openFilter(ServiceName)}
                     thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('History')}/>
                 <Agenda
                     //renderDay={(day, item) => this.renderDay(day, item)}
@@ -284,6 +287,7 @@ export  class Schedule extends React.Component {
         }
         return (
             <ScheduleEvent item={[item]}
+                serviceChange ={() =>this.openFilter(StatusData)}
                 doAssociation={() => this.props.navigation.navigate('DoAssociation')}
                 viewMore={() => { this.modalRef.current.setModalVisible(true, value) }}/>
         );

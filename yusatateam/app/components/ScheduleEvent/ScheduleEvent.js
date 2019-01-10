@@ -73,9 +73,11 @@ export default class ScheduleEvent extends React.Component {
 
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
+                            <TouchableOpacity  onPress={this.props.serviceChange} >
                                 <View style={[styles.statusButton, { backgroundColor: item.color }]}>
                                     <Text style={styles.status_text}>{item.status}</Text>
                                 </View>
+                                </TouchableOpacity>
                             </View>
                             <View style={styles.second_view}>
                                 <TouchableOpacity style={styles.second_view} activeOpacity={0.2} onPress={this.props.viewMore} >
