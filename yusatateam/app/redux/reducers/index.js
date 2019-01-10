@@ -23,7 +23,8 @@ import {
     jobHistoryReducer,
     jobListReducer,
     companyReducer,
-    vehicleReducer
+    vehicleReducer,
+    executeServiceReducer
 } from './JobReducer';
 
 const rootReducers = combineReducers({
@@ -49,6 +50,7 @@ const rootReducers = combineReducers({
     serviceHistoryData: jobHistoryReducer,
     serviceCompanyData: companyReducer,
     serviceVehicleData: vehicleReducer,
+    executeServiceData: executeServiceReducer,
 
     /**Sim Info */
     simData: simReducer,
