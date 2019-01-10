@@ -15,7 +15,7 @@ export const USER = {
 
 export const SERVICE = {
     EXECUTE_SERVICE     : 'execute',
-    SERVICE_LIST        : 'servicelist',
+    SERVICE_LIST        : 'ap/service/list',
     SERVICE_HISTORY     : 'servicehistory',
     SERVICE_ADD         : 'ap/service/add',
     SERVICE_COMPANY     : 'company',
