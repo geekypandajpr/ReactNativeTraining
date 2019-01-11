@@ -16,7 +16,7 @@ export default companyReducer = (state = initialState, action) => {
             });
         case SERVICE.SERVICE_COMPANY_SUCCESS:
             return Object.assign({}, state, {
-                jobvehicle: action.jobvehicle,
+                jobvehicle: action.data.jobvehicle,
                 serviceType: action.data.serviceType,
                 //technician: action.data.technician,
                 isLoading: false

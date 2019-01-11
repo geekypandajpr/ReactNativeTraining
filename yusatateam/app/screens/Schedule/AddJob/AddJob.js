@@ -33,7 +33,7 @@ export class AddJob extends React.Component {
             data: [],
             location: '',
             radio: 'N',
-            technician: [],
+            techArray: [],
             companyArray: [],
             vehicleArray: [],
             serviceTypeArray: [],
@@ -76,7 +76,6 @@ export class AddJob extends React.Component {
                 }
             }
 
-
             if (nextProps.JobcompanyData.serviceType.results) {
                 const ServiceTypeValue = nextProps.JobcompanyData.serviceType.results;
                 console.log(ServiceTypeValue);
@@ -86,20 +85,20 @@ export class AddJob extends React.Component {
                 }
             }
 
-            // if (nextProps.JobcompanyData.technician.results) {
-            //     const techtypevalue = nextProps.JobcompanyData.technician.results;
-            //     for (var i = 0; i < techtypevalue.length; i++) {
-            //         var obj = { "label": techtypevalue[i].value, "value": techtypevalue[i].key };
-            //         techArray.push(obj);
-            //     }
-            // }
-            this.setState({ vehicleArray: vehicleArray, serviceTypeArray: serviceArray,  })
+            if (nextProps.JobcompanyData.technician.results) {
+                const techtypevalue = nextProps.JobcompanyData.technician.results;
+                for (var i = 0; i < techtypevalue.length; i++) {
+                    var obj = { "label": techtypevalue[i].value, "value": techtypevalue[i].key };
+                    techArray.push(obj);
+                }
+            }
+            this.setState({ vehicleArray: vehicleArray, serviceTypeArray: serviceArray,techArray:techArray })
         }
     }
 
     componentDidMount() {
         const dropdowns = new Map(this.state.dropdowns);
-        dropdowns.set(COMPANY_KEY, [COMPANY_KEY_VALUE, null]);
+        //dropdowns.set(COMPANY_KEY, [COMPANY_KEY_VALUE, null]);
         dropdowns.set(VEHICLE_KEY, [VEHICLE_KEY_VALUE, null]);
         dropdowns.set(SERVICE_KEY, [SERVICE_VALUE, null]);
         dropdowns.set(TECHNICIAN_KEY, [TECHNICIAN_VALUE, null])
@@ -129,8 +128,8 @@ export class AddJob extends React.Component {
     }
 
     onvalidation() {
-        if (this.state.dropdowns.get(COMPANY_KEY)[1]
-            && this.state.dropdowns.get(VEHICLE_KEY)[1]
+        if (
+            this.state.dropdowns.get(VEHICLE_KEY)[1]
             && this.state.dropdowns.get(SERVICE_KEY)[1]
             && this.state.dropdowns.get(TECHNICIAN_KEY)[1]
             && this.state.Cname !== ''
@@ -148,7 +147,7 @@ export class AddJob extends React.Component {
             const item = {
                 "address": this.state.location,
                 "cashOnDelivery": this.state.radio,
-                "companyId": this.state.dropdowns.get(COMPANY_KEY)[1],
+                //"companyId": this.state.dropdowns.get(COMPANY_KEY)[1],
                 "customerMobileNumber": this.state.Ccontact,
                 "customerName": this.state.Cname,
                 "orderCode": "TPI_SERVICE",
@@ -188,7 +187,7 @@ export class AddJob extends React.Component {
                                 <View style={styles.Sub_View}>
                                     <View style={styles.Width_View}>
 
-                                        <View style={styles.Small_View}>
+                                        {/* <View style={styles.Small_View}>
                                             <UnderlineText
                                                 name="Company"
                                                 upperView={true}
@@ -196,7 +195,7 @@ export class AddJob extends React.Component {
                                                 isMandatory={true}
                                                 onpress={() => { this.openPicker(COMPANY_KEY, this.state.vehicleArray, 'Company') }}
                                             />
-                                        </View>
+                                        </View> */}
 
                                         <View style={styles.Small_View}>
                                             <View style={{ flex: 1.4 }}>
@@ -226,7 +225,7 @@ export class AddJob extends React.Component {
                                                 upperView={true}
                                                 value={this.state.dropdowns.get(TECHNICIAN_KEY)[0]}
                                                 isMandatory={true}
-                                                onpress={() => this.openPicker(TECHNICIAN_KEY, this.state.vehicleArray, 'Technician')}
+                                                onpress={() => this.openPicker(TECHNICIAN_KEY, this.state.techArray, 'Technician')}
                                             />
                                         </View>
 
