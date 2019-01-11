@@ -35,17 +35,17 @@ export class LogIn extends React.Component {
     componentDidMount() {
         /**Get username from Secure Store  */
         functions.getCredentials('USERNAME')
-        .then((res) => {
-            if(res !== null) { this.setState({ username: res }) }
-        })
-        .catch((e) => { console.log(e) });
+            .then((res) => {
+                if (res !== null) { this.setState({ username: res }) }
+            })
+            .catch((e) => { console.log(e) });
 
         /**Get password from Secure Store  */
         functions.getCredentials('PASSWORD')
-        .then((res) => {
-            if(res !== null) { this.setState({ password: res }) }
-        })
-        .catch((e) => { console.log(e) });
+            .then((res) => {
+                if (res !== null) { this.setState({ password: res }) }
+            })
+            .catch((e) => { console.log(e) });
 
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
@@ -191,7 +191,7 @@ export class LogIn extends React.Component {
                                 </View>
                             </View> */}
 
-                                <View style={[styles.input_view, {marginTop: 5}]}>
+                                <View style={[styles.input_view, { marginTop: 5 }]}>
                                     <View style={{ flex: 1, justifyContent: "center", alignItems: 'center', flexDirection: 'row' }}>
                                         <Text style={[styles.remember_me_text, { fontFamily: 'Roboto', color: 'gray' }]}>Version#: 1.0</Text>
                                     </View>
