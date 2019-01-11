@@ -303,6 +303,7 @@ export class GPSDeviceForm extends React.Component {
                                                     keyboardType={'email-address'}
                                                     returnKeyType={'next'}
                                                     blurOnSubmit={false}
+                                                    maxLength={38}
                                                     getRef={(input) => { this.deviceudid = input; }}
                                                     onSubmitEditing={() => this._focusNextField('mobile')}
                                                 />

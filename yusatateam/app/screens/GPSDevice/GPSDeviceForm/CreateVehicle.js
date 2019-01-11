@@ -238,12 +238,13 @@ export class CreateVehicle extends React.Component {
                                     isMandatory={false}
                                     onChangeText={(text) => this.setState({ deviceId: text })}
                                     inputStyles={{ width: '100%' }}
+                                    maxLength={38}
                                 />
                             </View>
-                            {
+                            {/* {
                                 this.state.deviceId.length>38?
                                 <Text style={{color:'red'}}> Barcode Data Length can't be more then 38</Text>: null
-                            }
+                            } */}
 
                             <View style={{ width: '92%', marginTop: 10 }}>
                                 <Float
@@ -258,12 +259,13 @@ export class CreateVehicle extends React.Component {
                                     isMandatory={false}
                                     onChangeText={(text) => this.setState({ simNumber: text })}
                                     inputStyles={{ width: '100%' }}
+                                    maxLength={38}
                                 />
                             </View>
-                            {
+                            {/* {
                                 this.state.simNumber.length>38?
                                 <Text style={{color:'red'}}> Barcode Data Length can't be more then 38</Text>: null
-                            }
+                            } */}
 
                             <View style={{ width: '92%', marginTop: 10 }}>
                                 <Float
@@ -278,12 +280,13 @@ export class CreateVehicle extends React.Component {
                                     isMandatory={true}
                                     onChangeText={(text) => this.setState({ vin: text })}
                                     inputStyles={{ width: '100%' }}
+                                    maxLength={38}
                                 />
                             </View>
-                            {
+                            {/* {
                                 this.state.vin.length>38?
                                 <Text style={{color:'red'}}> Barcode Data Length can't be more then 38</Text>: null
-                            }
+                            } */}
 
                             <View style={{ width: '92%', marginTop: 15 }}>
                                 <UnderlineText

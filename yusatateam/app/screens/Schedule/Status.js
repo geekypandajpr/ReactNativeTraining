@@ -13,7 +13,7 @@ export default class Status extends React.Component {
             isLoading: true,
             modalVisible: false,
             status: [],
-            value: 'ENTERED'
+            code: ''
         }
     }
 
@@ -26,8 +26,8 @@ export default class Status extends React.Component {
         this.setState({ isLoading: false })
     }
 
-    setModalVisible = (visible, data) => {
-        this.setState({ modalVisible: visible, status: data.results });
+    setModalVisible = (visible, data, currentStatus) => {
+        this.setState({ modalVisible: visible, status: data.results, code: currentStatus });
     }
 
     onApply = () => {
@@ -59,19 +59,21 @@ export default class Status extends React.Component {
                         <View style={styles.View_Container}>
                             <ScrollView>
 
-                            <View style={styles.Small_View}>
-                                <View style={styles.checkbox_view}>
-                                    <CheckBox
-                                        checked={this.state.value === 'Completed'}
-                                        color={colors.HEADER_COLOR}
-                                        onPress={() => this.setState({ value: 'Completed' })}
-                                    />
-                                    <View style={styles.remember_me}>
-                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Completed</Text>
+                            {this.state.status.map((item, index) =>
+                                <View style={styles.Small_View} key={index}>
+                                    <View style={styles.checkbox_view}>
+                                        <CheckBox
+                                            checked={this.state.code === item.code}
+                                            color={colors.HEADER_COLOR}
+                                            onPress={() => this.setState({ code: item.code })}
+                                        />
+                                        <View style={styles.remember_me}>
+                                            <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>{item.code}</Text>
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
-
+                            )}
+{/* 
                             <View style={styles.Small_View}>
                                 <View style={styles.checkbox_view}>
                                     <CheckBox
@@ -135,7 +137,7 @@ export default class Status extends React.Component {
                                         <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Cancelled</Text>
                                     </View>
                                 </View>
-                            </View>
+                            </View> */}
 
                             <View style={styles.Small_View}>
                                 <View style={[styles.checkbox_view, {justifyContent: 'flex-end'}]}>

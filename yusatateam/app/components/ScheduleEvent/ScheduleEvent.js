@@ -98,7 +98,7 @@ export default class ScheduleEvent extends React.Component {
 
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
-                                <TouchableOpacity  onPress={this.props.serviceChange} >
+                                <TouchableOpacity  onPress={this.props.serviceChange(item.serviceStatus)} >
                                     <View style={[styles.statusButton,{backgroundColor: colorsCode[item.serviceStatus]}]}>
                                         <Text style={[styles.value_text,{fontFamily: 'Roboto', color: '#fff'}]}>
                                             {(item.serviceStatus).charAt(0).toUpperCase() + (item.serviceStatus).slice(1).toLowerCase()}

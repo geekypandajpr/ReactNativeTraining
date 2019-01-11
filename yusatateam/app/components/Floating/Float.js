@@ -51,6 +51,7 @@ export default class Float extends React.Component {
                         onSubmitEditing={this.props.onSubmitEditing}
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
+                        maxLength={this.props.maxLength}
                     />
                     <Icon name={this.props.rightIcon}
                         onPress={this.props.rightIconPress}
