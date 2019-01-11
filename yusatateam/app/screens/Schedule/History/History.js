@@ -12,6 +12,7 @@ import JobDetails from '../../Jobs/JobDetails/JobDetails';
 import colors from '../../../constants/colors';
 import Filter from '../Filter/Filter';
 import { connect } from 'react-redux';
+import { serviceActions } from '../../../redux/actions';
 
 
 var eventList = {
@@ -35,11 +36,22 @@ export  class History extends React.Component {
         this.filterRef = React.createRef();
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(this.props.HistoryData !== nextProps.HistoryData) {
+            // if(nextProps.HistoryData.listData.results) {
+            //     this.setState({ListData: nextProps.ListData.listData.results});
+            // } 
+        }
+
+        
+    }
+
     renderDay(day, item) {
         return (<View><Text>{day ? day.dateString: 'item'}</Text></View>);
     }
 
     componentDidMount() {
+        this.props.onFetchHistory();
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
@@ -151,87 +163,7 @@ export  class History extends React.Component {
                         'contactPerson': 'Premsagar Choudhary',
                         'contactMobilenumber': '+91 8562565512'
                     });
-                    this.state.items[strTime].push({
-                        'orderNumber': 'SERVE001AA',
-                        'serviceType' : 'Install',
-                        'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber': 'JP01-1522',
-                        'serviceStatus': 'Accepted',
-                        'color': colors.SERVICE_STATUS_COLOR.ACCEPTED,
-                        'device': 'DL125A',
-                        'sim': '+91-7856801255',
-                        'provider': 'Airtel',
-                        'serviceDate': '05 November 2018 14:50',
-                        'location': '84/122 sector 8, pratap nagar, Jaipur',
-                        'servicePerson' : 'Yash Gulati',
-                        'contactPerson': 'Premsagar Choudhary',
-                        'contactMobilenumber': '+91 8562565512'
-                    });
-                    this.state.items[strTime].push({
-                        'orderNumber': 'SERVE003AC',
-                        'serviceType' : 'Replace',
-                        'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber' : 'vehicle12',
-                        'serviceStatus': 'Onjob',
-                        'color': colors.SERVICE_STATUS_COLOR.ONJOB,
-                        'device': 'DEV7457866',
-                        'sim': '+91-9080706556',
-                        'provider': 'Airtel',
-                        'serviceDate': '05 November 2018, 11:12',
-                        'location': '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033',
-                        'servicePerson' : 'Yash Gulati',
-                        'contactPerson': 'Premsagar Choudhary',
-                        'contactMobilenumber': '+91 8562565512'
-                    });
-                    this.state.items[strTime].push({
-                        'orderNumber': 'SERVE002AB',
-                        'serviceType' : 'Uninstall',
-                        'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber': 'JP14-4555',
-                        'serviceStatus': 'Completed',
-                        'color': colors.SERVICE_STATUS_COLOR.COMPLETED,
-                        'device': 'Atlanta',
-                        'sim': '+91-7845880012',
-                        'provider': 'Airtel',
-                        'serviceDate': '28 October 2018, 12:00',
-                        'location': '81/49 sector 8 pratp nagar',
-                        'servicePerson' : 'Yash Gulati',
-                        'contactPerson': 'Premsagar Choudhary',
-                        'contactMobilenumber': '+91 8562565512'
-                    });
-                    
-                    this.state.items[strTime].push({
-                        'orderNumber': 'SERVE004AD',
-                        'serviceType' : 'Repair',
-                        'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber': 'JH52-14A5',
-                        'serviceStatus': 'Cancelled',
-                        'color': colors.SERVICE_STATUS_COLOR.CANCELLED,
-                        'device': 'DEVICE14588ESE',
-                        'sim': '+91-1201245636',
-                        'provider': 'Airtel',
-                        'serviceDate': '10 December 2018, 05:00',
-                        'location': '84/122 sector 8, pratap nagar',
-                        'servicePerson' : 'Yash Gulati',
-                        'contactPerson': 'Premsagar Choudhary',
-                        'contactMobilenumber': '+91 8562565512'
-                    });
-                    this.state.items[strTime].push({
-                        'orderNumber': 'SERVE004AD',
-                        'serviceType' : 'Install',
-                        'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber': 'JH52-14A5',
-                        'serviceStatus': 'Reschedule',
-                        'color': colors.SERVICE_STATUS_COLOR.RESCHEDULED,
-                        'device': 'DEVICE14588ESE',
-                        'sim': '+91-1201245636',
-                        'provider': 'Airtel',
-                        'serviceDate': '10 December 2018, 05:00',
-                        'location': '84/122 sector 8, pratap nagar',
-                        'servicePerson' : 'Yash Gulati',
-                        'contactPerson': 'Premsagar Choudhary',
-                        'contactMobilenumber': '+91 8562565512'
-                    });
+                   
                 }
             }
             const newItems = {};
@@ -272,11 +204,13 @@ export  class History extends React.Component {
 
 function mapStateToProps(state){
     return{
+        HistoryData : state.serviceHistoryData,
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
+        onFetchHistory: () => dispatch(serviceActions.ServiceHistoryRequest())
     }
 }
 
