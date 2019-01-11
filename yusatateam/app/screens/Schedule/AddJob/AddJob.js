@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
 import styles from './styles';
 import { serviceActions, userActions } from '../../../redux/actions';
-import { globalStyles } from '../../../styles';
+import { globalStyles, colors } from '../../../styles';
 import functions from '../../../common/functions';
 
 const COMPANY_KEY = 'COMPANY';
@@ -30,7 +30,7 @@ export class AddJob extends React.Component {
             isLoading: true,
             data: [],
             location: '',
-            radio: false,
+            radio: 'N',
             technician: [],
             companyArray: [],
             vehicleArray: [],
@@ -39,7 +39,7 @@ export class AddJob extends React.Component {
             Cname: '',
             Ccontact: '',
             amount: '',
-            Training: false,
+            Training: 'N',
             ServiceName: '',
 
         }
@@ -266,7 +266,7 @@ export class AddJob extends React.Component {
 
                                         <View style={[styles.Small_View, { flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }]}>
                                             <View style={{ flexDirection: 'row' }}>
-                                                <Text style={[styles.label, { marginBottom: 10 }]}>Schdule date and Time</Text>
+                                                <Text style={[styles.label, { marginBottom: 10, fontFamily: 'Roboto' }]}>Schdule date and Time</Text>
                                                 <Text style={styles.star}>*</Text>
                                             </View>
 
@@ -326,22 +326,20 @@ export class AddJob extends React.Component {
 
                                         <View style={{ width: '100%', justifyContent: 'flex-start', marginTop: 10, }}>
                                             <View >
-                                                <Text style={styles.label}>Training</Text>
+                                                <Text style={[styles.label,{fontFamily: 'Roboto'}]}>Training</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', flex: 1, marginTop: 10 }}>
                                                 <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
-                                                    <CheckBox color='gray'
-                                                       // style={{ backgroundColor: 'transparent', }}
-                                                        checked={this.state.Training === true}
-                                                        onPress={() => { this.setState({ Training: true }) }} />
-                                                    <Text style={[styles.label, { marginLeft: 20 }]}>YES</Text>
+                                                    <CheckBox color={colors.HEADER_COLOR}
+                                                        checked={this.state.Training === 'Y'}
+                                                        onPress={() => { this.setState({ Training: 'Y' }) }} />
+                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>YES</Text>
                                                 </View>
                                                 <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
-                                                    <CheckBox color='gray'
-                                                        //style={{ backgroundColor: 'transparent', }}
-                                                        checked={this.state.Training === false}
-                                                        onPress={() => { this.setState({ Training: false }) }} />
-                                                    <Text style={[styles.label, { marginLeft: 20 }]}>NO</Text>
+                                                    <CheckBox color={colors.HEADER_COLOR}
+                                                        checked={this.state.Training === 'N'}
+                                                        onPress={() => { this.setState({ Training: 'N' }) }} />
+                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>NO</Text>
                                                 </View>
                                             </View>
                                         </View>
@@ -349,25 +347,23 @@ export class AddJob extends React.Component {
 
                                         <View style={{ width: '100%', justifyContent: 'flex-start', marginTop: 10 }}>
                                             <View >
-                                                <Text style={styles.label}>Payment Mode : COD</Text>
+                                                <Text style={[styles.label, {fontFamily: 'Roboto'}]}>Payment Mode : COD</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', flex: 1, marginTop: 10 }}>
                                                 <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
-                                                    <CheckBox color='gray'
-                                                        checked={this.state.radio === true}
-                                                        style={{ backgroundColor: 'transparent', }}
-                                                        onPress={() => { this.setState({ radio: true }) }} />
-                                                    <Text style={[styles.label, { marginLeft: 20 }]}>YES</Text>
+                                                    <CheckBox color={colors.HEADER_COLOR}
+                                                        checked={this.state.radio === 'Y'}
+                                                        onPress={() => { this.setState({ radio: 'Y' }) }} />
+                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily:'Roboto' }]}>YES</Text>
                                                 </View>
                                                 <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
-                                                    <CheckBox color='gray'
-                                                        checked={this.state.radio === false}
-                                                        style={{ backgroundColor: 'transparent', }}
-                                                        onPress={() => { this.setState({ radio: false }) }} />
-                                                    <Text style={[styles.label, { marginLeft: 20 }]}>NO</Text>
+                                                    <CheckBox color={colors.HEADER_COLOR}
+                                                        checked={this.state.radio === 'N'}
+                                                        onPress={() => { this.setState({ radio: 'N' }) }} />
+                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>NO</Text>
                                                 </View>
                                             </View>
-                                            {this.state.radio ?
+                                            {this.state.radio === 'Y'?
                                                 <View style={styles.Small_View}>
                                                     <Float
                                                         placeholder='Amount To Collect'
@@ -390,7 +386,7 @@ export class AddJob extends React.Component {
                                                 </Button>
                                             </View> */}
                                             <View style={{ flex: 1, marginLeft: 1 }}>
-                                                <Button block style={{ backgroundColor: '#5cb85c' }}
+                                                <Button block style={{ backgroundColor: colors.HEADER_COLOR }}
                                                     onPress={this.onSubmitAddService}>
                                                     <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
                                                 </Button>
