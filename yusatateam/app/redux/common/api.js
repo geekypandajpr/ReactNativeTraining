@@ -26,7 +26,7 @@ export default class Api {
         return fetch(url, options)
         .then((response) => {
             var statusCode = response.status;
-            var data = statusCode === 200 ? response.json() : [];
+            var data = statusCode === 204 ? [] : response.json();
             return Promise.all([statusCode, data]);
         })
         .then((responseJson) => {

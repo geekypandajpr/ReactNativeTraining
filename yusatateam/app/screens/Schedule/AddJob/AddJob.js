@@ -42,7 +42,7 @@ export class AddJob extends React.Component {
             Ccontact: '',
             amount: '',
             Training: 'N',
-            ServiceName: '',
+            serviceName: '',
             dataRenewal: '',
         }
         this.flag = ''
@@ -119,6 +119,7 @@ export class AddJob extends React.Component {
         this.props.navigation.goBack();
         return true;
     }
+
     openPicker(keys, list, title) {
         this.flag = keys;
         this.modalref.current.setModalVisible(true, title, list);
@@ -150,30 +151,32 @@ export class AddJob extends React.Component {
             const item = {
                 "address": this.state.location,
                 "cashOnDelivery": this.state.radio,
-                //"companyId": this.state.dropdowns.get(COMPANY_KEY)[1],
                 "customerMobileNumber": this.state.Ccontact,
                 "customerName": this.state.Cname,
                 "orderCode": "TPI_SERVICE",
                 "serviceDate": this.state.dataRenewal,
-                "servicePerson": this.state.dropdowns.get(TECHNICIAN_KEY)[0],
-                "servicePersonId": this.state.dropdowns.get(TECHNICIAN_KEY)[1],
-                "serviceStatus": "ENTERED",
-                "serviceType": this.state.dropdowns.get(SERVICE_KEY)[1],
+                "servicePerson": "Sadaiv Panchal",
+                "servicePersonId": 115565465,
+                // "servicePerson": this.state.dropdowns.get(TECHNICIAN_KEY)[0],
+                // "servicePersonId": this.state.dropdowns.get(TECHNICIAN_KEY)[1],
+                "serviceStatusId": "8670131", //ENTERED Status Id
+                "serviceTypeId": this.state.dropdowns.get(SERVICE_KEY)[1],
                 "training": this.state.Training,
-                "vehicleId": [this.state.dropdowns.get(VEHICLE_KEY)[1]],
+                "vehicleId": [this.state.dropdowns.get(VEHICLE_KEY)[1]]
             }
             if (this.state.radio && this.state.amount !== '') {
                 item["amountToCollect"] = this.state.amount;
             }
-            if (this.state.ServiceName !== '') {
+            if (this.state.serviceName !== '') {
                 item["serviceName"] = this.state.serviceName;
             }
-            alert(JSON.stringify(item));
-            //this.props.createServices(item);
+            // alert(JSON.stringify(item));
+            this.props.createServices(item);
         } else {
             functions.showToast('Please fill all required fields', 'warning');
         }
     }
+
     _focusNextField(id) { this[id]._root.focus(); }
 
     render() {
@@ -182,8 +185,9 @@ export class AddJob extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ backgroundColor: '#fff', flex: 1 }}>
-                    <Toolbar title='Create Service' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                    />
+                    <Toolbar title='Create Service' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}/>
+                    <Activityindication visible={this.props.createJobData.isLoading} />
+                    <Activityindication visible={this.props.JobcompanyData.isLoading} />
 
                     <KeyboardAvoidingView behavior='padding' enabled style={globalStyles.keyboardAvoiding}>
                         <ScrollView keyboardShouldPersistTaps="always" showsVerticalScrollIndicator={false}>
@@ -255,12 +259,12 @@ export class AddJob extends React.Component {
                                         <View style={styles.Small_View}>
                                             <Float
                                                 placeholder='Service Name'
-                                                value={this.state.ServiceName}
+                                                value={this.state.serviceName}
                                                 returnKeyType={'next'}
                                                 keyboardType={'default'}
                                                 blurOnSubmit={false}
                                                 isMandatory={false}
-                                                onChangeText={(text) => this.setState({ ServiceName: text })}
+                                                onChangeText={(text) => this.setState({ serviceName: text })}
                                                 getRef={(input) => { this.ServiceName = input }}
                                                 onSubmitEditing={()=>{this._focusNextField('CustomerName')}}
                                                 inputStyles={{ width: '100%' }}
@@ -278,11 +282,10 @@ export class AddJob extends React.Component {
                                                     style={{ width: '100%' }}
                                                     date={this.state.dataRenewal}
                                                     //showTime = {{ user12hours: true }}
-
                                                     mode="datetime"
-                                                    placeholder="MM/DD/YYYY"
+                                                    placeholder="MM/DD/YYYY HH:mm:ss a"
                                                     showTime={{ use12Hours: true, format: "HH:mm:ss a" }}
-                                                    format="MM/DD/YYYY HH:mm:ss a"
+                                                    format="MM/DD/YYYY hh:mm:ss a"
                                                     //minDate=""
                                                     //maxDate=""
                                                     confirmBtnText="Confirm"
@@ -342,13 +345,13 @@ export class AddJob extends React.Component {
                                                     <CheckBox color={colors.HEADER_COLOR}
                                                         checked={this.state.Training === 'Y'}
                                                         onPress={() => { this.setState({ Training: 'Y' }) }} />
-                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>YES</Text>
+                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>Yes</Text>
                                                 </View>
                                                 <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
                                                     <CheckBox color={colors.HEADER_COLOR}
                                                         checked={this.state.Training === 'N'}
                                                         onPress={() => { this.setState({ Training: 'N' }) }} />
-                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>NO</Text>
+                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>No</Text>
                                                 </View>
                                             </View>
                                         </View>
@@ -362,13 +365,13 @@ export class AddJob extends React.Component {
                                                     <CheckBox color={colors.HEADER_COLOR}
                                                         checked={this.state.radio === 'Y'}
                                                         onPress={() => { this.setState({ radio: 'Y' }) }} />
-                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>YES</Text>
+                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>Yes</Text>
                                                 </View>
                                                 <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
                                                     <CheckBox color={colors.HEADER_COLOR}
                                                         checked={this.state.radio === 'N'}
                                                         onPress={() => { this.setState({ radio: 'N' }) }} />
-                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>NO</Text>
+                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>No</Text>
                                                 </View>
                                             </View>
                                             {this.state.radio === 'Y' ?
@@ -418,7 +421,8 @@ export class AddJob extends React.Component {
 }
 function mapStateToProps(state) {
     return {
-        JobcompanyData: state.serviceCompanyData
+        JobcompanyData: state.serviceCompanyData,
+        createJobData: state.createJobData
     }
 }
 

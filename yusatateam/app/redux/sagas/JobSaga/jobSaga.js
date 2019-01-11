@@ -2,6 +2,7 @@ import { call, put, all } from 'redux-saga/effects';
 import { jobServices } from '../../services';
 import { SERVICE } from '../../common/actionTypes';
 import functions from '../../../common/functions';
+import { NavigationActions } from 'react-navigation';
 
 export function* serviceListSaga(action) {
     try {
@@ -38,18 +39,16 @@ export function* serviceHistorySaga(action) {
 
 export function* createJobSaga(action) {
     try {
-        const createData = yield call(jobServices.createJob,action.createdata);
+        const createData = yield call(jobServices.createJob, action.createdata);
         if (createData) {
             yield put({ type: SERVICE.CREATEJOB_SUCCESS, createData });
+            yield put(NavigationActions.navigate({ routeName: 'Schedule' }));
+            functions.showToast('Job created successfully', 'success');
         }
-        else {
-            yield put({ type: SERVICE.CREATEJOB_FAILED });
-        }
-
+        else { yield put({ type: SERVICE.CREATEJOB_FAILED }); }
     } catch (error) {
         yield put({ type: SERVICE.CREATEJOB_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
-
     }
 }
 

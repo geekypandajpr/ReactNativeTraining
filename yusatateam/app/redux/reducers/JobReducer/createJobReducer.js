@@ -19,7 +19,6 @@ export default createJobReducer = (state = initialState, action) => {
             });
         case SERVICE.CREATEJOB_FAILED:
             return Object.assign({}, state, {
-                
                 isLoading: false,
                 error: true
             });
