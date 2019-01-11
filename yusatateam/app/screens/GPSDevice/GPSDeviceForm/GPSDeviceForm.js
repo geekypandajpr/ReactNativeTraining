@@ -12,7 +12,7 @@ import { GpsModal } from '../GpsModal/GpsModal';
 import { userActions } from '../../../redux/actions';
 import functions from '../../../common/functions';
 import { globalStyles, colors } from '../../../styles';
-import {BarCodeModal} from '../GPSDeviceForm/BarCodeModal'
+import { BarCodeModal } from '../GPSDeviceForm/BarCodeModal'
 
 const title = [
     'Company',
@@ -103,13 +103,13 @@ export class GPSDeviceForm extends React.Component {
         this.setState({ dropdowns: dropdowns });
     }
 
-    
+
     barCodeValue(value) {
 
         if (value.get("DeviceUDID")) {
             this.setState({ deviceUDID: value.get("DeviceUDID") })
         }
-       
+
     }
     BarCodePage(data) {
         this.BarmodalReference.current.setModalVisible(true, data);
@@ -177,7 +177,7 @@ export class GPSDeviceForm extends React.Component {
                 vehicleList: vehicleArray,
             });
         }
-        
+
 
         /**Company Array */
         if (this.props.loginResponse) {
@@ -289,7 +289,7 @@ export class GPSDeviceForm extends React.Component {
                                     <View style={styles.Width_View}>
 
                                         <View style={styles.Small_View}>
-                                        
+
                                             <Item floatingLabel>
                                                 {/* <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: 'gray' }} /> */}
                                                 <Label style={[styles.label, { fontFamily: 'Roboto' }]}>
@@ -307,7 +307,7 @@ export class GPSDeviceForm extends React.Component {
                                                     getRef={(input) => { this.deviceudid = input; }}
                                                     onSubmitEditing={() => this._focusNextField('mobile')}
                                                 />
-                                                 <Icon name='md-barcode' type="Ionicons"  onPress={() => this.BarCodePage("DeviceUDID")}  />
+                                                <Icon name='md-barcode' type="Ionicons" onPress={() => this.BarCodePage("DeviceUDID")} />
                                                 {this.state.isDeviceUdidValid ?
                                                     <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 20, color: 'green' }} />
                                                     :
@@ -388,7 +388,7 @@ export class GPSDeviceForm extends React.Component {
                                                 blurOnSubmit={false}
                                                 getRef={(input) => { this.mobile = input; }}
                                                 onSubmitEditing={() => this._focusNextField('balance')}
-                                                // onFocus={this.scrolldown.bind(this, 'mobile')}
+                                            // onFocus={this.scrolldown.bind(this, 'mobile')}
                                             />
                                         </View>
 
@@ -405,7 +405,7 @@ export class GPSDeviceForm extends React.Component {
                                                     blurOnSubmit={false}
                                                     getRef={(input) => { this.balance = input; }}
                                                     onSubmitEditing={() => this._focusNextField('databalance')}
-                                                    // onFocus={this.scrolldown.bind(this, 'balance')}
+                                                // onFocus={this.scrolldown.bind(this, 'balance')}
                                                 />
                                             </View>
                                             <View style={styles.inner_View}>
@@ -420,7 +420,7 @@ export class GPSDeviceForm extends React.Component {
                                                     blurOnSubmit={false}
                                                     getRef={(input) => { this.databalance = input; }}
                                                     onSubmitEditing={() => this._focusNextField('dataplan')}
-                                                    // onFocus={this.scrolldown.bind(this, 'databalance')}
+                                                // onFocus={this.scrolldown.bind(this, 'databalance')}
                                                 />
                                             </View>
                                         </View>
@@ -437,7 +437,7 @@ export class GPSDeviceForm extends React.Component {
                                                     blurOnSubmit={false}
                                                     getRef={(input) => { this.dataplan = input; }}
                                                     onSubmitEditing={() => this._focusNextField('carrier')}
-                                                    // onFocus={this.scrolldown.bind(this, 'dataplan')}
+                                                // onFocus={this.scrolldown.bind(this, 'dataplan')}
                                                 />
                                             </View>
                                             <View style={styles.inner_View}>
@@ -452,7 +452,7 @@ export class GPSDeviceForm extends React.Component {
                                                     blurOnSubmit={false}
                                                     getRef={(input) => { this.carrier = input; }}
                                                     onSubmitEditing={this.onAddGPSDevice}
-                                                    // onFocus={this.scrolldown.bind(this, 'carrier')}
+                                                // onFocus={this.scrolldown.bind(this, 'carrier')}
                                                 />
                                             </View>
                                         </View>
@@ -490,9 +490,9 @@ export class GPSDeviceForm extends React.Component {
 
                                         <View style={styles.Small_View}>
                                             <View style={styles.button_view}>
-                                                <Button style={[styles.button,{backgroundColor: colors.HEADER_COLOR}]}
+                                                <Button style={[styles.button, { backgroundColor: colors.HEADER_COLOR }]}
                                                     onPress={this.onAddGPSDevice}>
-                                                    <Text style={{fontFamily: 'Roboto'}}>Submit</Text>
+                                                    <Text style={{ fontFamily: 'Roboto' }}>Submit</Text>
                                                 </Button>
                                             </View>
                                         </View>

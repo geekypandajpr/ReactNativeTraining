@@ -105,10 +105,6 @@ export class AddJob extends React.Component {
         this.setState({ dropdowns: dropdowns });
 
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-        // const item={
-        //     "userRole": "TECHNICIAN",
-        //     "departmentId": [2296001],
-        // }
         const item = {
             "userRole": "TECHNICIAN"
         }
@@ -130,7 +126,7 @@ export class AddJob extends React.Component {
 
     selectedValue(item) {
         const dropdowns = new Map(this.state.dropdowns);
-        dropdowns.set(flag, [item.label, item.value]);
+        dropdowns.set(this.flag, [item.label, item.value]);
         this.setState({ dropdowns: dropdowns });
     }
 
@@ -138,7 +134,7 @@ export class AddJob extends React.Component {
         if (
             this.state.dropdowns.get(VEHICLE_KEY)[1]
             && this.state.dropdowns.get(SERVICE_KEY)[1]
-            && this.state.dropdowns.get(TECHNICIAN_KEY)[1]
+            //&& this.state.dropdowns.get(TECHNICIAN_KEY)[1]
             && this.state.Cname !== ''
             && this.state.Ccontact !== ''
             && this.state.dataRenewal !== ''
@@ -178,6 +174,7 @@ export class AddJob extends React.Component {
             functions.showToast('Please fill all required fields', 'warning');
         }
     }
+    _focusNextField(id) { this[id]._root.focus(); }
 
     render() {
         const { goBack } = this.props.navigation;
@@ -246,6 +243,8 @@ export class AddJob extends React.Component {
                                                 isMandatory={true}
                                                 onChangeText={(text) => this.setState({ location: text })}
                                                 inputStyles={{ width: '100%' }}
+                                                getRef={(input) => { this.address = input }}
+                                                onSubmitEditing={()=>{this._focusNextField('ServiceName')}}
                                             // rightIcon='google-maps'
                                             // rightIconType="MaterialCommunityIcons"
                                             // rightIconStyle={{ fontSize: 24, color: 'red' }}
@@ -262,6 +261,8 @@ export class AddJob extends React.Component {
                                                 blurOnSubmit={false}
                                                 isMandatory={false}
                                                 onChangeText={(text) => this.setState({ ServiceName: text })}
+                                                getRef={(input) => { this.ServiceName = input }}
+                                                onSubmitEditing={()=>{this._focusNextField('CustomerName')}}
                                                 inputStyles={{ width: '100%' }}
                                             />
                                         </View>
@@ -312,6 +313,8 @@ export class AddJob extends React.Component {
                                                 blurOnSubmit={false}
                                                 isMandatory={true}
                                                 onChangeText={(text) => this.setState({ Cname: text })}
+                                                getRef={(input) => { this.CustomerName = input }}
+                                                onSubmitEditing={()=>{this._focusNextField('CustomerContact')}}
                                                 inputStyles={{ width: '100%' }}
                                             />
                                         </View>
@@ -325,6 +328,7 @@ export class AddJob extends React.Component {
                                                 blurOnSubmit={false}
                                                 isMandatory={true}
                                                 onChangeText={(text) => this.setState({ Ccontact: text })}
+                                                getRef={(input) => { this.CustomerContact = input }}
                                                 inputStyles={{ width: '100%' }}
                                             />
                                         </View>
