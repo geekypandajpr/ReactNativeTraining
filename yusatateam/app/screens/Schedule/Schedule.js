@@ -31,7 +31,8 @@ export  class Schedule extends React.Component {
             items: {},
             historyData : '',
             createData : '',
-            listData :''
+            listData :'',
+            serviceStatus : ''
         };
         this.modalRef = React.createRef();
         this.filterRef = React.createRef();
@@ -45,6 +46,7 @@ export  class Schedule extends React.Component {
     componentDidMount() {
         this.props.onFetchJobList();
         // this.props.onFetchCreateJob();
+        // this.props.onFetchServiceStatus();
         this.props.onFetchJobHistory();
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
@@ -52,23 +54,22 @@ export  class Schedule extends React.Component {
     
     componentWillReceiveProps(nextProps) {
         if(this.props.CreateData !== nextProps.CreateData) {
-            this.setState({createData:nextProps.CreateData.createData});
-            // this.arrayList = nextProps.InstallData.data;
+            this.setState({createData:nextProps.CreateData.createData});   
         }
         if(this.props.ListData !== nextProps.ListData) {
-         
-         if(nextProps.ListData.listData.results)
-         {
-            // alert(JSON.stringify(nextProps.ListData.listData.results.serviceList))
-            this.setState({listData:nextProps.ListData.listData.results.serviceList});
-         }
-            
-            // this.arrayList = nextProps.InstallData.data;
+            if(nextProps.ListData.listData.results)
+            {
+                // alert(JSON.stringify(nextProps.ListData.listData.results.serviceList))
+                this.setState({listData:nextProps.ListData.listData.results.serviceList});
+            } 
         }
         if(this.props.HistoryData !== nextProps.HistoryData) {
             this.setState({historyData:  nextProps.HistoryData.historyData});
-            // this.arrayList = nextProps.InstallData.data;
         }
+        if(this.props.ServiceStatus !== nextProps.ServiceStatus) {
+            this.setState({serviceStatus:  nextProps.ServiceStatus.status});
+        }
+        
     }
 
     handleBackPress = () => {
@@ -233,6 +234,7 @@ function mapStateToProps(state){
         CreateData : state.createJobData,
         ListData : state.serviceListData,
         HistoryData: state.serviceHistoryData,
+        ServiceStatus : state.serviceStatus,
     }
 }
 
@@ -240,6 +242,7 @@ function mapDispatchToProps(dispatch){
     return{
         onFetchJobList: () => dispatch(serviceActions.serviceListRequest()),
         onFetchJobHistory: () => dispatch(serviceActions.ServiceHistoryRequest()),
+        onFetchServiceStatus : () => dispatch(serviceActions.serviceStatusRequests())
     }
 }
 

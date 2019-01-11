@@ -102,6 +102,7 @@ export default class DashboardFilter extends React.Component {
     }
 
     onValueChange(data) {
+        console.log(data)
         if (this.state.flag === 0) {
             const company = this.state.companyMap.get(data.label);
             this.setState({

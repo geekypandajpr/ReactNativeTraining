@@ -76,7 +76,7 @@ export default class Dropdown extends React.Component {
                                         renderItem={({ item, index }) =>
                                             <List>
                                                 <TouchableOpacity >
-                                                    <ListItem onPress={() => { this.onSelectValue(item) }}>
+                                                    <ListItem onPress={() => { this.onSelectValue(item,item.label) }}>
                                                         <Text>{item.label}</Text>
                                                     </ListItem>
                                                 </TouchableOpacity>
