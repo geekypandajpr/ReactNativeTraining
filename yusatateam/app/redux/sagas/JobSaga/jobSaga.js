@@ -54,33 +54,17 @@ export function* createJobSaga(action) {
 
 export function* companySaga(action) {
     try {
-        const [jobvehicle, serviceType] = yield all([call(jobServices.getVehicle), 
-            call(jobServices.getServiceType)])
+        const [jobvehicle, serviceType,technician] = yield all([call(jobServices.getVehicle), 
+            call(jobServices.getServiceType),call(jobServices.getTechnician,action.userRole)])
             //alert(JSON.stringify(serviceType));
-            alert(JSON.stringify(jobvehicle))
-        yield put({ type: SERVICE.SERVICE_COMPANY_SUCCESS, data: {jobvehicle, serviceType} });
+            alert(JSON.stringify(technician));
+
+        yield put({ type: SERVICE.SERVICE_COMPANY_SUCCESS, data: {jobvehicle, serviceType,technician} });
     } catch (error) {
         yield put({type: SERVICE.SERVICE_COMPANY_FAILED, error })
         functions.showToast('Something went wrong', 'danger');
     }
 }
-
-// export function* vehicleSaga(action) {
-//     try {
-//         const jobvehicle = yield call(jobServices.getVehicle);
-//         if (jobvehicle) {
-//             yield put({ type: SERVICE.SERVICE_VEHICLE_SUCCESS, jobvehicle });
-//         }
-//         else {
-//             yield put({ type: SERVICE.SERVICE_VEHICLE_FAILED });
-//         }
-
-//     } catch (error) {
-//         yield put({ type: SERVICE.SERVICE_VEHICLE_FAILED, error });
-//         functions.showToast('Something went wrong', 'danger');
-
-//     }
-// }
 
 export function* executeServiceSaga(action) {
     try {
