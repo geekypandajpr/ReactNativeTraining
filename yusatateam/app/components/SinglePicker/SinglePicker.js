@@ -92,15 +92,18 @@ export default class SinglePicker extends React.Component {
                                 </View>
                                 
                                 <View style={{ flex: 1, backgroundColor: '#efefef' }}>
-                                    {this.state.data.map((item, index) => 
-                                        <List key={index}>
-                                            <TouchableOpacity >
-                                                <ListItem onPress={() => { this.onSelectValue(item) }}>
-                                                    <Text>{item.label}</Text>
-                                                </ListItem>
-                                            </TouchableOpacity>
-                                        </List>
-                                    )}
+                                    <FlatList
+                                        data={this.state.data}
+                                        keyExtractor={(item, index) => index.toString()}
+                                        renderItem={({ item, index }) =>
+                                            <List>
+                                                <TouchableOpacity >
+                                                    <ListItem onPress={() => { this.onSelectValue(item) }}>
+                                                        <Text>{item.label}</Text>
+                                                    </ListItem>
+                                                </TouchableOpacity>
+                                            </List>
+                                        } />
                                 </View>
                             </View>
                         </View>
