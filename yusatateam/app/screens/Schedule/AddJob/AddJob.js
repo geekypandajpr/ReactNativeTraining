@@ -3,7 +3,8 @@ import { View, KeyboardAvoidingView, BackHandler, ScrollView } from 'react-nativ
 import { Button, Text, Radio, CheckBox } from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import { AppLoading } from 'expo';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import moment from 'moment';
 
 import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
 import styles from './styles';
@@ -26,6 +27,7 @@ const TECHNICIAN_VALUE = 'Select Technician';
 export class AddJob extends React.Component {
     constructor(props) {
         super(props);
+        moment.locale('en');
         this.state = {
             isLoading: true,
             data: [],
@@ -41,7 +43,7 @@ export class AddJob extends React.Component {
             amount: '',
             Training: 'N',
             ServiceName: '',
-
+            dataRenewal: '',
         }
         this.flag = ''
         this.modalref = React.createRef();
@@ -154,7 +156,8 @@ export class AddJob extends React.Component {
                 "companyId": this.state.dropdowns.get(COMPANY_KEY)[1],
                 "vehicleId": [this.state.dropdowns.get(VEHICLE_KEY)[1]],
                 "serviceType": this.state.dropdowns.get(SERVICE_KEY)[1],
-                "servicePerson": this.state.dropdowns.get(TECHNICIAN_KEY)[1],
+                "servicePerson": this.state.dropdowns.get(TECHNICIAN_KEY)[0],
+                "servicePersonId": this.state.dropdowns.get(TECHNICIAN_KEY)[1],
                 "customerName": this.state.Cname,
                 "customerMobileNumber": this.state.Ccontact,
                 "address": this.state.location,
@@ -162,7 +165,7 @@ export class AddJob extends React.Component {
                 "cashOnDelivery": this.state.radio,
                 "orderCode": "TPI_SERVICE",
                 "serviceStatus": "ENTERED",
-                "training": this.state.Training
+                "training": this.state.Training,
             }
             if (this.state.radio && this.state.amount !== '') {
                 item["amountToCollect"] = this.state.amount;
@@ -258,7 +261,7 @@ export class AddJob extends React.Component {
                                                 returnKeyType={'next'}
                                                 keyboardType={'numeric'}
                                                 blurOnSubmit={false}
-                                                isMandatory={true}
+                                                isMandatory={false}
                                                 onChangeText={(text) => this.setState({ ServiceName: text })}
                                                 inputStyles={{ width: '100%' }}
                                             />
@@ -274,9 +277,12 @@ export class AddJob extends React.Component {
                                                 <DatePicker
                                                     style={{ width: '100%' }}
                                                     date={this.state.dataRenewal}
+                                                    //showTime = {{ user12hours: true }}
+
                                                     mode="datetime"
-                                                    placeholder="DD/MM/YYYY"
-                                                    format="DD/MM/YYYY  HH:MM:SS"
+                                                    placeholder="MM/DD/YYYY"
+                                                    showTime={{ use12Hours: true, format: "HH:mm:ss a" }}
+                                                    format="MM/DD/YYYY HH:mm:ss a"
                                                     //minDate=""
                                                     //maxDate=""
                                                     confirmBtnText="Confirm"
@@ -326,7 +332,7 @@ export class AddJob extends React.Component {
 
                                         <View style={{ width: '100%', justifyContent: 'flex-start', marginTop: 10, }}>
                                             <View >
-                                                <Text style={[styles.label,{fontFamily: 'Roboto'}]}>Training</Text>
+                                                <Text style={[styles.label, { fontFamily: 'Roboto' }]}>Training</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', flex: 1, marginTop: 10 }}>
                                                 <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
@@ -344,17 +350,16 @@ export class AddJob extends React.Component {
                                             </View>
                                         </View>
 
-
                                         <View style={{ width: '100%', justifyContent: 'flex-start', marginTop: 10 }}>
                                             <View >
-                                                <Text style={[styles.label, {fontFamily: 'Roboto'}]}>Payment Mode : COD</Text>
+                                                <Text style={[styles.label, { fontFamily: 'Roboto' }]}>Payment Mode : COD</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', flex: 1, marginTop: 10 }}>
                                                 <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
                                                     <CheckBox color={colors.HEADER_COLOR}
                                                         checked={this.state.radio === 'Y'}
                                                         onPress={() => { this.setState({ radio: 'Y' }) }} />
-                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily:'Roboto' }]}>YES</Text>
+                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>YES</Text>
                                                 </View>
                                                 <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
                                                     <CheckBox color={colors.HEADER_COLOR}
@@ -363,7 +368,7 @@ export class AddJob extends React.Component {
                                                     <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>NO</Text>
                                                 </View>
                                             </View>
-                                            {this.state.radio === 'Y'?
+                                            {this.state.radio === 'Y' ?
                                                 <View style={styles.Small_View}>
                                                     <Float
                                                         placeholder='Amount To Collect'
