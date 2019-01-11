@@ -15,6 +15,7 @@ export default class Status extends React.Component {
             status: [],
             code: ''
         }
+        this.setModalVisible = this.setModalVisible.bind(this);
     }
 
     async componentWillMount() {
@@ -26,7 +27,7 @@ export default class Status extends React.Component {
         this.setState({ isLoading: false })
     }
 
-    setModalVisible = (visible, data, currentStatus) => {
+    setModalVisible(visible, data, currentStatus){
         this.setState({ modalVisible: visible, status: data.results, code: currentStatus });
     }
 
@@ -47,7 +48,7 @@ export default class Status extends React.Component {
                         <View style={{ width: '100%' }}>
                             <Header style={styles.Header_Style}>
                                 <Body>
-                                    <Text style={[styles.Text_style,{fontFamily: 'Roboto'}]}> Filter </Text>
+                                    <Text style={[styles.Text_style,{fontFamily: 'Roboto'}]}> Change Status </Text>
                                 </Body>
                                 <Right>
                                     <Button transparent onPress={() => this.setState({ modalVisible: false })}>

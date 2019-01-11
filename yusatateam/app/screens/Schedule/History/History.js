@@ -244,6 +244,7 @@ export  class History extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <ScheduleEvent item={[item]}
+                serviceChange = {(item) => {}}
                 viewMore={() => navigate('HistoryDetails')}/>
         );
     }
