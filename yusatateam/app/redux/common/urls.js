@@ -24,5 +24,5 @@ export const SERVICE = {
     SERVICE_TYPE        : 'utility/list/TechServiceType',
     SERVICE_DEVICE      : 'utility/list/InventoryDevice',
     SERVICE_SIM         : 'utility/list/InventorySim',
-    SERVICE_STATUS      : 'utility/list/ServiceStatus',
+    SERVICE_STATUS      : 'utility/list/TechServiceStatus',
 }
