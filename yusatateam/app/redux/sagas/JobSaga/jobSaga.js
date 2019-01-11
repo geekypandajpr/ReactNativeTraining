@@ -5,13 +5,18 @@ import functions from '../../../common/functions';
 
 export function* serviceListSaga(action) {
     try {
-        const listData = yield call(jobServices.getServiceList);
+        const [listData, status] = yield all([call(jobServices.getServiceList), call(jobServices.serviceStatus)]);
         if (listData) {
             yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData });
         }
         else {
             yield put({ type: SERVICE.SERVICE_LIST_FAILED });
         }
+
+        /**Put status response */
+        if(status) {  yield put({ type: SERVICE.SERVICE_STATUS_SUCCESS, status }); }
+        else { yield put({ type: SERVICE.SERVICE_STATUS_FAILED }); }
+        
     } catch (error) {
         yield put({ type: SERVICE.SERVICE_LIST_FAILED, error });
         functions.showToast('Something went wrong', 'danger');

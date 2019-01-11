@@ -7,6 +7,15 @@ import { AppLoading } from 'expo';
 import styles from './Styles';
 import { StatefulButton } from '../../components';
 
+colorsCode = {
+    "ENTERED": '#0073b7',
+    "ACCEPTED": '#5E35A6',
+    "ON_JOB": '#007aff',
+    "COMPLETED": '#5cb85c',
+    "RESCHEDULED": '#f0ad4e',
+    "CANCELLED": '#d9534f',
+};
+
 export default class ScheduleEvent extends React.Component {
     constructor(props) {
         super(props);
@@ -43,7 +52,9 @@ export default class ScheduleEvent extends React.Component {
                                     styles={{ button: styles.service_type_view, label: styles.service_type }} /> */}
                                 <Button transparent style={styles.service_type_view} 
                                     onPress={this.props.doAssociation}>
-                                    <Text uppercase={false} style={[styles.service_type,{fontFamily: 'Roboto'}]}>{item.serviceType}</Text>
+                                    <Text uppercase={false} style={[styles.service_type,{fontFamily: 'Roboto'}]}>
+                                        {(item.serviceType).charAt(0).toUpperCase() + (item.serviceType).slice(1).toLowerCase()}
+                                    </Text>
                                 </Button>
                             </View>
                         </View>
@@ -71,22 +82,27 @@ export default class ScheduleEvent extends React.Component {
                             </View>
                         </View>
 
-                        <View style={styles.text_container}>
-                            <View style={styles.first_view}>
-                                <View style={styles.icon_view}>
-                                    <Entypo name='location-pin' color='red' size={20} />
-                                </View>
+                        {item.location ?
+                            <View style={styles.text_container}>
                                 <View style={styles.first_view}>
-                                    <Text style={[styles.value_text,{fontFamily: 'Roboto'}]}>{item.location}</Text>
+                                    <View style={styles.icon_view}>
+                                        <Entypo name='location-pin' color='red' size={20} />
+                                    </View>
+                                    <View style={styles.first_view}>
+                                        <Text style={[styles.value_text,{fontFamily: 'Roboto'}]}>{item.location}</Text>
+                                    </View>
                                 </View>
                             </View>
-                        </View>
+                        :   null
+                        }
 
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
                                 <TouchableOpacity  onPress={this.props.serviceChange} >
-                                    <View style={[styles.statusButton, { backgroundColor: item.color }]}>
-                                        <Text style={[styles.value_text,{fontFamily: 'Roboto', color: '#fff'}]}>{item.serviceStatus}</Text>
+                                    <View style={[styles.statusButton,{backgroundColor: colorsCode[item.serviceStatus]}]}>
+                                        <Text style={[styles.value_text,{fontFamily: 'Roboto', color: '#fff'}]}>
+                                            {(item.serviceStatus).charAt(0).toUpperCase() + (item.serviceStatus).slice(1).toLowerCase()}
+                                        </Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>

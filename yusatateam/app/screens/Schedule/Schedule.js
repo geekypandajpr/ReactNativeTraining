@@ -30,13 +30,14 @@ export  class Schedule extends React.Component {
         this.state = {
             items: {},
             historyData : '',
-            createData : '',
-            listData :'',
-            serviceStatus : ''
+            ListData :'',
+            serviceStatus : []
         };
         this.modalRef = React.createRef();
         this.filterRef = React.createRef();
         this.statusRef = React.createRef();
+        this.openStatusModal = this.openStatusModal.bind(this);
+        this.openFilter = this.openFilter.bind(this);
     }
 
     renderDay(day, item) {
@@ -53,21 +54,22 @@ export  class Schedule extends React.Component {
 
     
     componentWillReceiveProps(nextProps) {
-        if(this.props.CreateData !== nextProps.CreateData) {
-            this.setState({createData:nextProps.CreateData.createData});   
-        }
+
         if(this.props.ListData !== nextProps.ListData) {
             if(nextProps.ListData.listData.results)
             {
                 // alert(JSON.stringify(nextProps.ListData.listData.results.serviceList))
-                this.setState({listData:nextProps.ListData.listData.results.serviceList});
+                this.setState({ListData: nextProps.ListData.listData.results.serviceList});
             } 
         }
+
         if(this.props.HistoryData !== nextProps.HistoryData) {
             this.setState({historyData:  nextProps.HistoryData.historyData});
         }
-        if(this.props.ServiceStatus !== nextProps.ServiceStatus) {
-            this.setState({serviceStatus:  nextProps.ServiceStatus.status});
+
+        /**Service status */
+        if(this.props.serviceStatus !== nextProps.serviceStatus) {
+            this.setState({serviceStatus:  nextProps.serviceStatus.status});
         }
         
     }
@@ -81,11 +83,12 @@ export  class Schedule extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    openFilter = () => {
+    openFilter(){
         this.filterRef.current.setModalVisible(true);
     }
-    openStatus = () => {
-        this.statusRef.current.setModalVisible(true)
+
+    openStatusModal(){
+        this.statusRef.current.setModalVisible(true, this.state.serviceStatus)
     }
     
     render() {
@@ -157,28 +160,41 @@ export  class Schedule extends React.Component {
         );
     }
 
-    loadItems(day) {
-        setTimeout(() => {
-            for(let j=0;j<this.state.listData.length;j++)
-            {
-            for (let i = -15; i < 85; i++) {
-                const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-                //console.log('TIME-> '+time);
-                const strTime = this.timeToString(time);
-                //const strTime = '2018-12-07';
-                // console.log('HELLO PREM-> '+strTime);
-                if (!this.state.items[strTime]) {
-                    this.state.items[strTime] = [];
-                    this.state.items[strTime].push(this.state.listData[i]);
-                   
-                }
+    loadItems(day) {setTimeout(() => {
+        for (let i = -15; i < 1; i++) {
+            const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+            //console.log('TIME-> '+time);
+            const strTime = this.timeToString(time);
+            //const strTime = '2018-12-07';
+            // console.log('HELLO PREM-> '+strTime);
+            if (!this.state.items[strTime]) {
+                this.state.items[strTime] = [];
+                this.state.items[strTime].push({
+                    "headerId": "104637",
+                    "salePerson": "Vivek Sharma",
+                    "orderNumber": "PTUdnz4Vt3",
+                    "serviceName": "any",
+                    "serviceDate": "2018-09-06 18:47:00.0",
+                    "cashOnDelivery": "N",
+                    "amountCollection": "",
+                    "training": "N",
+                    "customerName": "Prem",
+                    "customerMobileNo": "9808535355",
+                    "serviceStatus": "RESCHEDULED",
+                    "serviceType": "UNINSTALL",
+                    "companyId": "1595828",
+                    "companyCode": "FER",
+                    "companyName": "Ferremas",
+                });
             }
-            const newItems = {};
-            Object.keys(this.state.items).forEach(key => { newItems[key] = this.state.items[key]; });
-            this.setState({
-                items: newItems
-            });
-        }}, 1000);
+        }
+        const newItems = {};
+        Object.keys(this.state.items).forEach(key => { newItems[key] = this.state.items[key]; });
+        this.setState({
+            items: newItems
+        });
+    }, 1000);
+
     
 }
 
@@ -205,7 +221,7 @@ export  class Schedule extends React.Component {
         }
         return (
             <ScheduleEvent item={[item]}
-                serviceChange ={() =>this.openStatus()}
+                serviceChange ={this.openStatusModal}
                 doAssociation={() => this.props.navigation.navigate('DoAssociation')}
                 viewMore={() => { this.modalRef.current.setModalVisible(true, value) }}/>
         );
@@ -231,18 +247,16 @@ export  class Schedule extends React.Component {
 
 function mapStateToProps(state){
     return{
-        CreateData : state.createJobData,
         ListData : state.serviceListData,
         HistoryData: state.serviceHistoryData,
-        ServiceStatus : state.serviceStatus,
+        serviceStatus : state.serviceStatus,
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
         onFetchJobList: () => dispatch(serviceActions.serviceListRequest()),
-        onFetchJobHistory: () => dispatch(serviceActions.ServiceHistoryRequest()),
-        onFetchServiceStatus : () => dispatch(serviceActions.serviceStatusRequests())
+        onFetchJobHistory: () => dispatch(serviceActions.ServiceHistoryRequest())
     }
 }
 

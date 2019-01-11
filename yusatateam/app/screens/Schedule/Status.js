@@ -12,7 +12,8 @@ export default class Status extends React.Component {
         this.state = {
             isLoading: true,
             modalVisible: false,
-            value: 'ALL'
+            status: [],
+            value: 'ENTERED'
         }
     }
 
@@ -25,8 +26,8 @@ export default class Status extends React.Component {
         this.setState({ isLoading: false })
     }
 
-    setModalVisible = (visible) => {
-        this.setState({ modalVisible: visible });
+    setModalVisible = (visible, data) => {
+        this.setState({ modalVisible: visible, status: data.results });
     }
 
     onApply = () => {
