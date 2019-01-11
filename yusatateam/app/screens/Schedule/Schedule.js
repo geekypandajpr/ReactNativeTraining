@@ -78,7 +78,7 @@ export  class Schedule extends React.Component {
     }
 
     openStatusModal(currentStatus){
-        this.statusRef.current.setModalVisible(true, this.state.serviceStatus, currentStatus)
+        // this.statusRef.current.setModalVisible(true, this.state.serviceStatus, currentStatus)
     }
     
     render() {
