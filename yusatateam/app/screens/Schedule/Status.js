@@ -28,7 +28,7 @@ export default class Status extends React.Component {
     }
 
     setModalVisible(visible, data, currentStatus){
-        this.setState({ modalVisible: visible, status: data.results, code: currentStatus });
+        this.setState({ modalVisible: visible, status: data.results ? data.results : [], code: currentStatus});
     }
 
     onApply = () => {
