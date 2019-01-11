@@ -55,12 +55,12 @@ export function* createJobSaga(action) {
 
 export function* companySaga(action) {
     try {
-        const [jobvehicle, serviceType,technician] = yield all([call(jobServices.getVehicle), 
-            call(jobServices.getServiceType),call(jobServices.getTechnician,action.userRole)])
-            //alert(JSON.stringify(serviceType));
-            alert(JSON.stringify(technician));
-
-        yield put({ type: SERVICE.SERVICE_COMPANY_SUCCESS, data: {jobvehicle, serviceType,technician} });
+        const [jobvehicle, serviceType, technician] = yield all([call(jobServices.getVehicle), 
+            call(jobServices.getServiceType),call(jobServices.getTechnician,action.userRole)]);
+        if(jobvehicle === null) { jobvehicle = [] }
+        if(serviceType === null ) { serviceType = [] }
+        if(technician === null) { technician = [] }
+        yield put({ type: SERVICE.SERVICE_COMPANY_SUCCESS, data: { technician, jobvehicle, serviceType } });
     } catch (error) {
         yield put({type: SERVICE.SERVICE_COMPANY_FAILED, error })
         functions.showToast('Something went wrong', 'danger');

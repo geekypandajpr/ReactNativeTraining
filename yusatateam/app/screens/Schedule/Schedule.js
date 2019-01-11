@@ -76,7 +76,8 @@ export  class Schedule extends React.Component {
         this.filterRef.current.setModalVisible(true);
     }
 
-    openStatusModal = () => {
+    openStatusModal = (currentStatus) => {
+        console.log(currentStatus)
         // this.statusRef.current.setModalVisible(true, this.state.serviceStatus, currentStatus)
     }
     
@@ -210,7 +211,7 @@ export  class Schedule extends React.Component {
         }
         return (
             <ScheduleEvent item={[item]}
-                changeStatus = {this.openStatusModal}
+                changeStatus = {(currentStatus) => this.openStatusModal(currentStatus)}
                 doAssociation={() => this.props.navigation.navigate('DoAssociation')}
                 viewMore={() => { this.modalRef.current.setModalVisible(true, value) }}/>
         );

@@ -26,7 +26,7 @@ export default class Api {
         return fetch(url, options)
         .then((response) => {
             var statusCode = response.status;
-            var data = response.json();
+            var data = statusCode === 200 ? response.json() : [];
             return Promise.all([statusCode, data]);
         })
         .then((responseJson) => {
@@ -50,6 +50,7 @@ export default class Api {
                 }
             }
         }).catch(function(error) {
+            console.log(error)
             throw new Error(error);
         })
     }

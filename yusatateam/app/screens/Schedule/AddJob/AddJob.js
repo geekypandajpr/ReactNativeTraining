@@ -109,7 +109,10 @@ export class AddJob extends React.Component {
         //     "userRole": "TECHNICIAN",
         //     "departmentId": [2296001],
         // }
-        this.props.addjobcomapany({"userRole": "TECHNICIAN"});
+        const item = {
+            "userRole": "TECHNICIAN"
+        }
+        this.props.addjobcomapany(item);
     }
 
     componentWillUnmount() {
