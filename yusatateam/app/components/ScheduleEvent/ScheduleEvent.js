@@ -32,7 +32,7 @@ export default class ScheduleEvent extends React.Component {
 
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
-                                <Text style={[styles.label_text,{fontFamily: 'Roboto'}]}>{item.serviceNumber}</Text>
+                                <Text style={[styles.label_text,{fontFamily: 'Roboto'}]}>{item.headerId}</Text>
                             </View>
                             <View style={styles.second_view}>
                                 {/* <StatefulButton
@@ -56,7 +56,7 @@ export default class ScheduleEvent extends React.Component {
 
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
-                                <Text style={[styles.value_text,{fontFamily: 'Roboto'}]}>{item.vehicleNumber}</Text>
+                                <Text style={[styles.value_text,{fontFamily: 'Roboto'}]}>{item.orderNumber}</Text>
                             </View>
                         </View>
 
@@ -66,7 +66,7 @@ export default class ScheduleEvent extends React.Component {
                                     <MaterialIcons name='schedule' color='#1766A6' size={20} />
                                 </View>
                                 <View style={styles.first_view}>
-                                    <Text style={[styles.value_text,{fontFamily: 'Roboto'}]}>{item.jobDate}</Text>
+                                    <Text style={[styles.value_text,{fontFamily: 'Roboto'}]}>{item.serviceDate}</Text>
                                 </View>
                             </View>
                         </View>
@@ -86,7 +86,7 @@ export default class ScheduleEvent extends React.Component {
                             <View style={styles.first_view}>
                                 <TouchableOpacity  onPress={this.props.serviceChange} >
                                     <View style={[styles.statusButton, { backgroundColor: item.color }]}>
-                                        <Text style={[styles.value_text,{fontFamily: 'Roboto', color: '#fff'}]}>{item.status}</Text>
+                                        <Text style={[styles.value_text,{fontFamily: 'Roboto', color: '#fff'}]}>{item.serviceStatus}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>

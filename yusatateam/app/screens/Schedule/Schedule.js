@@ -57,7 +57,12 @@ export  class Schedule extends React.Component {
         }
         if(this.props.ListData !== nextProps.ListData) {
          
-            this.setState({listData:nextProps.ListData.listData});
+         if(nextProps.ListData.listData.results)
+         {
+            // alert(JSON.stringify(nextProps.ListData.listData.results.serviceList))
+            this.setState({listData:nextProps.ListData.listData.results.serviceList});
+         }
+            
             // this.arrayList = nextProps.InstallData.data;
         }
         if(this.props.HistoryData !== nextProps.HistoryData) {
@@ -153,6 +158,8 @@ export  class Schedule extends React.Component {
 
     loadItems(day) {
         setTimeout(() => {
+            for(let j=0;j<this.state.listData.length;j++)
+            {
             for (let i = -15; i < 85; i++) {
                 const time = day.timestamp + i * 24 * 60 * 60 * 1000;
                 //console.log('TIME-> '+time);
@@ -161,103 +168,8 @@ export  class Schedule extends React.Component {
                 // console.log('HELLO PREM-> '+strTime);
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
-                    this.state.items[strTime].push({
-                        'serviceNumber': 'SERVE001AA',
-                        'serviceType' : 'Install',
-                        'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber': 'JP01-1522',
-                        'status': 'Entered',
-                        'color': colors.SERVICE_STATUS_COLOR.ENTERED,
-                        'device': 'DL125A',
-                        'sim': '+91-7856801255',
-                        'provider': 'Airtel',
-                        'jobDate': '05 November 2018 14:50',
-                        'location': '84/122 sector 8, pratap nagar, Jaipur',
-                        'servicePerson' : 'Yash Gulati',
-                        'contactPerson': 'Premsagar Choudhary',
-                        'contactMobilenumber': '+91 8562565512'
-                    });
-                    this.state.items[strTime].push({
-                        'serviceNumber': 'SERVE001AA',
-                        'serviceType' : 'Install',
-                        'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber': 'JP01-1522',
-                        'status': 'Accepted',
-                        'color': colors.SERVICE_STATUS_COLOR.ACCEPTED,
-                        'device': 'DL125A',
-                        'sim': '+91-7856801255',
-                        'provider': 'Airtel',
-                        'jobDate': '05 November 2018 14:50',
-                        'location': '84/122 sector 8, pratap nagar, Jaipur',
-                        'servicePerson' : 'Yash Gulati',
-                        'contactPerson': 'Premsagar Choudhary',
-                        'contactMobilenumber': '+91 8562565512'
-                    });
-                    this.state.items[strTime].push({
-                        'serviceNumber': 'SERVE003AC',
-                        'serviceType' : 'Replace',
-                        'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber' : 'vehicle12',
-                        'status': 'Onjob',
-                        'color': colors.SERVICE_STATUS_COLOR.ONJOB,
-                        'device': 'DEV7457866',
-                        'sim': '+91-9080706556',
-                        'provider': 'Airtel',
-                        'jobDate': '05 November 2018, 11:12',
-                        'location': '84/122 sector 8, pratap nagar, Jaipur Rajasthan 302033',
-                        'servicePerson' : 'Yash Gulati',
-                        'contactPerson': 'Premsagar Choudhary',
-                        'contactMobilenumber': '+91 8562565512'
-                    });
-                    this.state.items[strTime].push({
-                        'serviceNumber': 'SERVE002AB',
-                        'serviceType' : 'Uninstall',
-                        'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber': 'JP14-4555',
-                        'status': 'Completed',
-                        'color': colors.SERVICE_STATUS_COLOR.COMPLETED,
-                        'device': 'Atlanta',
-                        'sim': '+91-7845880012',
-                        'provider': 'Airtel',
-                        'jobDate': '28 October 2018, 12:00',
-                        'location': '81/49 sector 8 pratp nagar',
-                        'servicePerson' : 'Yash Gulati',
-                        'contactPerson': 'Premsagar Choudhary',
-                        'contactMobilenumber': '+91 8562565512'
-                    });
-                    
-                    this.state.items[strTime].push({
-                        'serviceNumber': 'SERVE004AD',
-                        'serviceType' : 'Repair',
-                        'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber': 'JH52-14A5',
-                        'status': 'Cancelled',
-                        'color': colors.SERVICE_STATUS_COLOR.CANCELLED,
-                        'device': 'DEVICE14588ESE',
-                        'sim': '+91-1201245636',
-                        'provider': 'Airtel',
-                        'jobDate': '10 December 2018, 05:00',
-                        'location': '84/122 sector 8, pratap nagar',
-                        'servicePerson' : 'Yash Gulati',
-                        'contactPerson': 'Premsagar Choudhary',
-                        'contactMobilenumber': '+91 8562565512'
-                    });
-                    this.state.items[strTime].push({
-                        'serviceNumber': 'SERVE004AD',
-                        'serviceType' : 'Install',
-                        'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber': 'JH52-14A5',
-                        'status': 'Reschedule',
-                        'color': colors.SERVICE_STATUS_COLOR.RESCHEDULED,
-                        'device': 'DEVICE14588ESE',
-                        'sim': '+91-1201245636',
-                        'provider': 'Airtel',
-                        'jobDate': '10 December 2018, 05:00',
-                        'location': '84/122 sector 8, pratap nagar',
-                        'servicePerson' : 'Yash Gulati',
-                        'contactPerson': 'Premsagar Choudhary',
-                        'contactMobilenumber': '+91 8562565512'
-                    });
+                    this.state.items[strTime].push(this.state.listData[i]);
+                   
                 }
             }
             const newItems = {};
@@ -265,8 +177,9 @@ export  class Schedule extends React.Component {
             this.setState({
                 items: newItems
             });
-        }, 1000);
-    }
+        }}, 1000);
+    
+}
 
     renderItem(item) {
         const value = {

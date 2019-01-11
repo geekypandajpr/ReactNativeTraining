@@ -20,9 +20,9 @@ export class CreateVehicle extends React.Component {
             //DeviceId
             deviceId: '',
             //VIN
-            vin: null,
+            vin: '',
             //Sim#
-            simNumber: null,
+            simNumber: '',
             barValueGet: new Map(),
             //Image
             image: null,
@@ -240,6 +240,10 @@ export class CreateVehicle extends React.Component {
                                     inputStyles={{ width: '100%' }}
                                 />
                             </View>
+                            {
+                                this.state.deviceId.length>38?
+                                <Text style={{color:'red'}}> Barcode Data Length can't be more then 38</Text>: null
+                            }
 
                             <View style={{ width: '92%', marginTop: 10 }}>
                                 <Float
@@ -256,6 +260,10 @@ export class CreateVehicle extends React.Component {
                                     inputStyles={{ width: '100%' }}
                                 />
                             </View>
+                            {
+                                this.state.simNumber.length>38?
+                                <Text style={{color:'red'}}> Barcode Data Length can't be more then 38</Text>: null
+                            }
 
                             <View style={{ width: '92%', marginTop: 10 }}>
                                 <Float
@@ -272,6 +280,10 @@ export class CreateVehicle extends React.Component {
                                     inputStyles={{ width: '100%' }}
                                 />
                             </View>
+                            {
+                                this.state.vin.length>38?
+                                <Text style={{color:'red'}}> Barcode Data Length can't be more then 38</Text>: null
+                            }
 
                             <View style={{ width: '92%', marginTop: 15 }}>
                                 <UnderlineText

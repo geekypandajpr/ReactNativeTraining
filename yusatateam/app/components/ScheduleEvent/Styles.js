@@ -65,7 +65,7 @@ export default EStyleSheet.create({
         borderWidth: 0.8,
         padding: 2,
         height: 25,
-        width: 90
+        width: 120
     },
     service_type: {
         //fontFamily: '$fontFamily',

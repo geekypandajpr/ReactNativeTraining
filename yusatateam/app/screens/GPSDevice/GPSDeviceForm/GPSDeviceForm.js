@@ -12,6 +12,7 @@ import { GpsModal } from '../GpsModal/GpsModal';
 import { userActions } from '../../../redux/actions';
 import functions from '../../../common/functions';
 import { globalStyles, colors } from '../../../styles';
+import {BarCodeModal} from '../GPSDeviceForm/BarCodeModal'
 
 const title = [
     'Company',
@@ -64,6 +65,8 @@ export class GPSDeviceForm extends React.Component {
         this.openPicker = this.openPicker.bind(this);
         this.onAddGPSDevice = this.onAddGPSDevice.bind(this);
         this.checkDeviceAssociation = this.checkDeviceAssociation.bind(this);
+        this.BarmodalReference = React.createRef();
+        this.BarCodePage = this.BarCodePage.bind(this);
     };
 
     async componentWillMount() {
@@ -98,6 +101,18 @@ export class GPSDeviceForm extends React.Component {
         const dropdowns = new Map(this.state.dropdowns);
         dropdowns.set(this.flag, [item.label, item.value]);
         this.setState({ dropdowns: dropdowns });
+    }
+
+    
+    barCodeValue(value) {
+
+        if (value.get("DeviceUDID")) {
+            this.setState({ deviceUDID: value.get("DeviceUDID") })
+        }
+       
+    }
+    BarCodePage(data) {
+        this.BarmodalReference.current.setModalVisible(true, data);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -291,7 +306,7 @@ export class GPSDeviceForm extends React.Component {
                                                     getRef={(input) => { this.deviceudid = input; }}
                                                     onSubmitEditing={() => this._focusNextField('mobile')}
                                                 />
-
+                                                 <Icon name='md-barcode' type="Ionicons"  onPress={() => this.BarCodePage("DeviceUDID")}  />
                                                 {this.state.isDeviceUdidValid ?
                                                     <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 20, color: 'green' }} />
                                                     :
@@ -500,6 +515,7 @@ export class GPSDeviceForm extends React.Component {
                             </View>
                         </ScrollView>
                     </KeyboardAvoidingView>
+                    <BarCodeModal ref={this.BarmodalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
                     <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
                 </View>
         );
