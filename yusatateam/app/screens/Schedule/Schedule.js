@@ -45,26 +45,16 @@ export  class Schedule extends React.Component {
     }
 
     componentDidMount() {
-        this.props.onFetchJobList();
-        // this.props.onFetchCreateJob();
-        // this.props.onFetchServiceStatus();
-        this.props.onFetchJobHistory();
+        this.props.onFetchJobList('all');
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
     
     componentWillReceiveProps(nextProps) {
-
         if(this.props.ListData !== nextProps.ListData) {
-            if(nextProps.ListData.listData.results)
-            {
-                // alert(JSON.stringify(nextProps.ListData.listData.results.serviceList))
-                this.setState({ListData: nextProps.ListData.listData.results.serviceList});
+            if(nextProps.ListData.listData.results) {
+                this.setState({ListData: nextProps.ListData.listData.results});
             } 
-        }
-
-        if(this.props.HistoryData !== nextProps.HistoryData) {
-            this.setState({historyData:  nextProps.HistoryData.historyData});
         }
 
         /**Service status */
@@ -88,7 +78,7 @@ export  class Schedule extends React.Component {
     }
 
     openStatusModal(currentStatus){
-        this.statusRef.current.setModalVisible(true, this.state.serviceStatus, currentStatus)
+        // this.statusRef.current.setModalVisible(true, this.state.serviceStatus, currentStatus)
     }
     
     render() {
@@ -248,15 +238,13 @@ export  class Schedule extends React.Component {
 function mapStateToProps(state){
     return{
         ListData : state.serviceListData,
-        HistoryData: state.serviceHistoryData,
         serviceStatus : state.serviceStatus,
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
-        onFetchJobList: () => dispatch(serviceActions.serviceListRequest()),
-        onFetchJobHistory: () => dispatch(serviceActions.ServiceHistoryRequest())
+        onFetchJobList: (serviceType) => dispatch(serviceActions.serviceListRequest(serviceType))
     }
 }
 
