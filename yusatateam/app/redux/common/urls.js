@@ -19,7 +19,7 @@ export const SERVICE = {
     SERVICE_HISTORY     : 'servicehistory',
     SERVICE_ADD         : 'ap/service/add',
     SERVICE_COMPANY     : 'company',
-    SERVICE_VEHICLE     : 'vehicle',
+    SERVICE_VEHICLE     : 'utility/list/FreeVehicles',
     SERVICE_TECHNICIAN  : 'utility/list/user',
     SERVICE_TYPE        : 'utility/list/TechServiceType',
     SERVICE_DEVICE      : 'utility/list/InventoryDevice',

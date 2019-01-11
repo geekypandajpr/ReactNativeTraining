@@ -2,7 +2,7 @@ import { SERVICE } from '../../common/actionTypes';
 
 const initialState = {
     isLoading: false,
-    company: [],
+    jobvehicle: [],
     serviceType: [],
     technician: [],
     error: false
@@ -16,9 +16,9 @@ export default companyReducer = (state = initialState, action) => {
             });
         case SERVICE.SERVICE_COMPANY_SUCCESS:
             return Object.assign({}, state, {
-                company: action.data.company,
+                jobvehicle: action.jobvehicle,
                 serviceType: action.data.serviceType,
-                technician: action.data.technician,
+                //technician: action.data.technician,
                 isLoading: false
             });
         case SERVICE.SERVICE_COMPANY_FAILED:

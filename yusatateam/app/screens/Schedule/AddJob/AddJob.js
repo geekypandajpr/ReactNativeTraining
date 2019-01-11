@@ -62,29 +62,20 @@ export class AddJob extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         /**vehicle list */
-        if (this.props.JobVehicleData !== nextProps.JobVehicleData) {
+
+
+        if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
             const vehicleArray = [];
-            if (nextProps.JobVehicleData.jobvehicle.results) {
-                const vehicletype = nextProps.JobVehicleData.jobvehicle.results;
+            const serviceArray = [];
+            const techArray = [];
+            if (nextProps.JobcompanyData.jobvehicle.results) {
+                const vehicletype = nextProps.JobcompanyData.jobvehicle.results;
                 for (var i = 0; i < vehicletype.length; i++) {
                     var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
                     vehicleArray.push(obj);
                 }
             }
-            this.setState({ vehicleArray: vehicleArray })
-        }
 
-        if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
-            const companyArray = [];
-            const serviceArray = [];
-            const techArray = [];
-            if (nextProps.JobcompanyData.company.results) {
-                const vehicletype = nextProps.JobcompanyData.company.results;
-                for (var i = 0; i < vehicletype.length; i++) {
-                    var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
-                    companyArray.push(obj);
-                }
-            }
 
             if (nextProps.JobcompanyData.serviceType.results) {
                 const ServiceTypeValue = nextProps.JobcompanyData.serviceType.results;
@@ -95,14 +86,14 @@ export class AddJob extends React.Component {
                 }
             }
 
-            if (nextProps.JobcompanyData.technician.results) {
-                const techtypevalue = nextProps.JobcompanyData.technician.results;
-                for (var i = 0; i < techtypevalue.length; i++) {
-                    var obj = { "label": techtypevalue[i].value, "value": techtypevalue[i].key };
-                    techArray.push(obj);
-                }
-            }
-            this.setState({ companyArray: companyArray, serviceTypeArray: serviceArray, technician: techArray })
+            // if (nextProps.JobcompanyData.technician.results) {
+            //     const techtypevalue = nextProps.JobcompanyData.technician.results;
+            //     for (var i = 0; i < techtypevalue.length; i++) {
+            //         var obj = { "label": techtypevalue[i].value, "value": techtypevalue[i].key };
+            //         techArray.push(obj);
+            //     }
+            // }
+            this.setState({ vehicleArray: vehicleArray, serviceTypeArray: serviceArray,  })
         }
     }
 
@@ -115,7 +106,6 @@ export class AddJob extends React.Component {
         this.setState({ dropdowns: dropdowns });
 
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-        this.props.addJobVehicle();
         this.props.addjobcomapany();
     }
 
@@ -204,7 +194,7 @@ export class AddJob extends React.Component {
                                                 upperView={true}
                                                 value={this.state.dropdowns.get(COMPANY_KEY)[0]}
                                                 isMandatory={true}
-                                                onpress={() => { this.openPicker(COMPANY_KEY, this.state.companyArray, 'Company') }}
+                                                onpress={() => { this.openPicker(COMPANY_KEY, this.state.vehicleArray, 'Company') }}
                                             />
                                         </View>
 
@@ -236,7 +226,7 @@ export class AddJob extends React.Component {
                                                 upperView={true}
                                                 value={this.state.dropdowns.get(TECHNICIAN_KEY)[0]}
                                                 isMandatory={true}
-                                                onpress={() => this.openPicker(TECHNICIAN_KEY, this.state.technician, 'Technician')}
+                                                onpress={() => this.openPicker(TECHNICIAN_KEY, this.state.vehicleArray, 'Technician')}
                                             />
                                         </View>
 
@@ -418,14 +408,12 @@ export class AddJob extends React.Component {
 }
 function mapStateToProps(state) {
     return {
-        JobVehicleData: state.serviceVehicleData,
         JobcompanyData: state.serviceCompanyData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        addJobVehicle: () => dispatch(serviceActions.VehicleRequest()),
         addjobcomapany: () => dispatch(serviceActions.companyRequest()),
         createServices: (createdata) => dispatch(serviceActions.createJobRequests(createdata))
     }
