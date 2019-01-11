@@ -122,7 +122,14 @@ export  class Dashboard extends React.Component {
     }
 
     logout=()=> {
-        this.props.navigation.goBack();
+        Alert.alert(
+        'Logout Confirmation',
+        'Do you want to logout ?',
+        [
+            { text: 'NO', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+            { text: 'YES', onPress: () => this.props.navigation.navigate('LogIn') },
+        ],
+        { cancelable: false })
     }
 
     render() {
