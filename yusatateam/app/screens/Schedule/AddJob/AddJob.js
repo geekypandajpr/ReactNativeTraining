@@ -92,7 +92,7 @@ export class AddJob extends React.Component {
                     techArray.push(obj);
                 }
             }
-            this.setState({ vehicleArray: vehicleArray, serviceTypeArray: serviceArray,techArray:techArray })
+            this.setState({ vehicleArray: vehicleArray, serviceTypeArray: serviceArray, techArray: techArray })
         }
     }
 
@@ -105,7 +105,11 @@ export class AddJob extends React.Component {
         this.setState({ dropdowns: dropdowns });
 
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-        this.props.addjobcomapany();
+        // const item={
+        //     "userRole": "TECHNICIAN",
+        //     "departmentId": [2296001],
+        // }
+        this.props.addjobcomapany({"userRole": "TECHNICIAN"});
     }
 
     componentWillUnmount() {
@@ -413,7 +417,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        addjobcomapany: () => dispatch(serviceActions.companyRequest()),
+        addjobcomapany: (userRole) => dispatch(serviceActions.companyRequest(userRole)),
         createServices: (createdata) => dispatch(serviceActions.createJobRequests(createdata))
     }
 }
