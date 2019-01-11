@@ -15,8 +15,8 @@ export class LogIn extends React.Component {
         super(props);
         this.state = {
             // username: 'admin@readingtonfarms.com',
-            username: 'ylogadmin',
-            password: 'Admin@123',
+            username: '',
+            password: '',
             remember: true,
             isLoading: true
         }
@@ -33,6 +33,20 @@ export class LogIn extends React.Component {
     }
 
     componentDidMount() {
+        /**Get username from Secure Store  */
+        functions.getCredentials('USERNAME')
+        .then((res) => {
+            if(res !== null) { this.setState({ username: res }) }
+        })
+        .catch((e) => { console.log(e) });
+
+        /**Get password from Secure Store  */
+        functions.getCredentials('PASSWORD')
+        .then((res) => {
+            if(res !== null) { this.setState({ password: res }) }
+        })
+        .catch((e) => { console.log(e) });
+
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
@@ -60,6 +74,8 @@ export class LogIn extends React.Component {
                 "password": this.state.password,
                 "userName": this.state.username
             }
+            /**Save Remember me value to Secure Store */
+            functions.saveCredentials('REMEMBER', this.state.remember.toString());
             this.props.onFetchData(loginCredentials);
         } else {
             functions.showToast('All fields are required', 'warning');

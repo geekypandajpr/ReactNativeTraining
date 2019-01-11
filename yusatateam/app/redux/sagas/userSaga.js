@@ -7,11 +7,22 @@ import functions from '../../common/functions';
 
 export function* login(action) {
     try {
-        const data = yield call(userServices.login, action.loginCredentials);
-        // alert(JSON.stringify(data))      
+        const data = yield call(userServices.login, action.loginCredentials);     
         if(data) {
             yield put({type: USER.LOGIN_SUCCESS, data});
             yield put(NavigationActions.navigate({ routeName: 'Dashboard' }));
+
+            functions.getCredentials('REMEMBER')
+            .then((res) => {
+                if(res === 'true') {
+                    functions.saveCredentials('USERNAME', action.loginCredentials.userName);
+                    functions.saveCredentials('PASSWORD', action.loginCredentials.password);
+                } else {
+                    functions.deleteCredentials('USERNAME');
+                    functions.deleteCredentials('PASSWORD');
+                }
+            }).catch((e)=>{ console.log(e) });
+
         } else {
             yield put({type: USER.LOGIN_FAILED});
         }
