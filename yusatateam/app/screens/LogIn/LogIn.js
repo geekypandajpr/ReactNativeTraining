@@ -121,6 +121,10 @@ export class LogIn extends React.Component {
                                             isMandatory={true}
                                             onSubmitEditing={() => this._focusNextField('password')}
                                             onChangeText={(username) => this.setState({ username })}
+                                            rightIcon={this.state.username !== '' ? 'ios-close-circle-outline' : null }
+                                            rightIconPress={() => this.setState({ username: ''})}
+                                            rightIconType={'Ionicons'}
+                                            rightIconStyle={{ color: 'red', fontSize: 20}}
                                         />
                                     </View>
                                 </View>
@@ -141,6 +145,10 @@ export class LogIn extends React.Component {
                                             isMandatory={true}
                                             onSubmitEditing={this._doLogin}
                                             onChangeText={(password) => this.setState({ password })}
+                                            rightIcon={this.state.password !== '' ? 'ios-close-circle-outline' : null }
+                                            rightIconPress={() => this.setState({ password: ''})}
+                                            rightIconType={'Ionicons'}
+                                            rightIconStyle={{ color: 'red', fontSize: 20}}
                                         />
                                     </View>
                                 </View>
