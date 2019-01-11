@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, KeyboardAvoidingView, BackHandler, ScrollView } from 'react-native';
-import { Button, Text, Radio, CheckBox } from 'native-base';
+import { Button, Text, CheckBox } from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
@@ -8,7 +8,7 @@ import moment from 'moment';
 
 import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
 import styles from './styles';
-import { serviceActions, userActions } from '../../../redux/actions';
+import { serviceActions } from '../../../redux/actions';
 import { globalStyles, colors } from '../../../styles';
 import functions from '../../../common/functions';
 
@@ -76,6 +76,8 @@ export class AddJob extends React.Component {
 
         if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
             const companyArray = [];
+            const serviceArray = [];
+            const techArray = [];
             if (nextProps.JobcompanyData.company.results) {
                 const vehicletype = nextProps.JobcompanyData.company.results;
                 for (var i = 0; i < vehicletype.length; i++) {
@@ -85,17 +87,18 @@ export class AddJob extends React.Component {
             }
 
             if (nextProps.JobcompanyData.serviceType.results) {
-                const vehicletype = nextProps.JobcompanyData.serviceType.results;
-                for (var i = 0; i < vehicletype.length; i++) {
-                    var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
+                const ServiceTypeValue = nextProps.JobcompanyData.serviceType.results;
+                console.log(ServiceTypeValue);
+                for (var i = 0; i < ServiceTypeValue.length; i++) {
+                    var obj = { "label": ServiceTypeValue[i].value, "value": ServiceTypeValue[i].key };
                     serviceArray.push(obj);
                 }
             }
 
             if (nextProps.JobcompanyData.technician.results) {
-                const vehicletype = nextProps.JobcompanyData.technician.results;
-                for (var i = 0; i < vehicletype.length; i++) {
-                    var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
+                const techtypevalue = nextProps.JobcompanyData.technician.results;
+                for (var i = 0; i < techtypevalue.length; i++) {
+                    var obj = { "label": techtypevalue[i].value, "value": techtypevalue[i].key };
                     techArray.push(obj);
                 }
             }
@@ -113,7 +116,7 @@ export class AddJob extends React.Component {
 
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
         this.props.addJobVehicle();
-        //this.props.addjobcomapany();
+        this.props.addjobcomapany();
     }
 
     componentWillUnmount() {
@@ -153,19 +156,19 @@ export class AddJob extends React.Component {
     onSubmitAddService() {
         if (this.onvalidation()) {
             const item = {
+                "address": this.state.location,
+                "cashOnDelivery": this.state.radio,
                 "companyId": this.state.dropdowns.get(COMPANY_KEY)[1],
-                "vehicleId": [this.state.dropdowns.get(VEHICLE_KEY)[1]],
-                "serviceType": this.state.dropdowns.get(SERVICE_KEY)[1],
+                "customerMobileNumber": this.state.Ccontact,
+                "customerName": this.state.Cname,
+                "orderCode": "TPI_SERVICE",
+                "serviceDate": this.state.dataRenewal,
                 "servicePerson": this.state.dropdowns.get(TECHNICIAN_KEY)[0],
                 "servicePersonId": this.state.dropdowns.get(TECHNICIAN_KEY)[1],
-                "customerName": this.state.Cname,
-                "customerMobileNumber": this.state.Ccontact,
-                "address": this.state.location,
-                "serviceDate": this.state.dataRenewal,
-                "cashOnDelivery": this.state.radio,
-                "orderCode": "TPI_SERVICE",
                 "serviceStatus": "ENTERED",
+                "serviceType": this.state.dropdowns.get(SERVICE_KEY)[1],
                 "training": this.state.Training,
+                "vehicleId": [this.state.dropdowns.get(VEHICLE_KEY)[1]],
             }
             if (this.state.radio && this.state.amount !== '') {
                 item["amountToCollect"] = this.state.amount;
@@ -259,7 +262,7 @@ export class AddJob extends React.Component {
                                                 placeholder='Service Name'
                                                 value={this.state.ServiceName}
                                                 returnKeyType={'next'}
-                                                keyboardType={'numeric'}
+                                                keyboardType={'default'}
                                                 blurOnSubmit={false}
                                                 isMandatory={false}
                                                 onChangeText={(text) => this.setState({ ServiceName: text })}
