@@ -42,6 +42,9 @@ export default class Api {
                 } else if(responseJson[0] === 401) {
                     functions.showToast('Session time out', 'danger');
                     return null;
+                } else if(responseJson[0] === 204) {
+                    // functions.showToast('Data not found', 'warning');
+                    return null;
                 } else {
                     throw new Error(`{"message":"${status}"}`);
                 }
