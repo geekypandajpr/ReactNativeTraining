@@ -60,11 +60,13 @@ export  class History extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
+        
         return (
             <View style={styles.container}>
                 <Toolbar title='History'
                     leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
                     />
+                   
                 <Agenda
                     //renderDay={(day, item) => this.renderDay(day, item)}
                     items={this.state.items}
@@ -75,6 +77,7 @@ export  class History extends React.Component {
                     selected={moment(new Date()).format('YYYY-MM-DD')}
                     pastScrollRange={100}
                     futureScrollRange={100}
+                    maxDate={moment(new Date()).format('YYYY-MM-DD')}
                     renderItem={this.renderItem.bind(this)}
                     renderEmptyDate={this.renderEmptyDate.bind(this)}
                     rowHasChanged={this.rowHasChanged.bind(this)}

@@ -18,8 +18,8 @@ export default class DashboardFilter extends React.Component {
             regionArray: [],
             companyArray: [],
             companyMap: new Map(),
-            regionValue: '',
-            companyValue: '',
+            regionValue: 'Yusata India',
+            companyValue: 'Select Company',
             companyId: ''
         },
         this.modalRef = React.createRef();
@@ -46,6 +46,8 @@ export default class DashboardFilter extends React.Component {
             const regionArray = [];
             const companyMap = new Map(this.state.companyMap);
             var defaultRegion = '';
+            var defaultCompany = '';
+            var companyId = '';
             for (var i = 0; i < len; i++) {
                 const obj = { "label": region[i].regionName, "value": region[i].regionName };
                 regionArray.push(obj);
@@ -58,10 +60,10 @@ export default class DashboardFilter extends React.Component {
                     // const companyObj = Object.assign({ "label": companyArray[j].companyName, "value": companyArray[j].companyId }, companyArray[j] );
                     const companyObj = { "label": companyArray[j].companyName, "value": companyArray[j].companyId };
                     company.push(companyObj);
-                    // if (this.state.data.defaultCompanyCode === companyArray[j].companyCode) {
-                    //     defaultCompany = companyArray[j].companyName;
-                    //     companyId = companyArray[j].companyId;
-                    // }
+                    if (this.state.data.defaultCompanyCode === companyArray[j].companyCode) {
+                        defaultCompany = companyArray[j].companyName;
+                        companyId = companyArray[j].companyId;
+                    }
                 }
                 companyMap.set(region[i].regionName, company);
             }
@@ -69,9 +71,9 @@ export default class DashboardFilter extends React.Component {
                 regionArray: regionArray,
                 companyMap: companyMap,
                 companyArray: companyMap.get(regionArray[0].label),
-                regionValue: defaultRegion,
-                companyValue: this.state.data.companyName,
-                companyId: this.state.data.companyId
+                // regionValue: defaultRegion,
+                // companyValue: defaultCompany,
+                companyId: companyId
             });
         }
     }
@@ -100,7 +102,6 @@ export default class DashboardFilter extends React.Component {
     }
 
     onValueChange(data) {
-        // console.log(data)
         if (this.state.flag === 0) {
             const company = this.state.companyMap.get(data.label);
             this.setState({
