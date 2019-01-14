@@ -12,13 +12,15 @@ export default EStyleSheet.create({
     },
     empty_date_view: {
         backgroundColor: '#ffffff',
-        elevation: 1,
+    },
+    empty_event_date_view: {
+        backgroundColor: '#ffffff',
         flex: 1,
-        borderRadius: 5,
+        borderRadius: 0,
         padding: 10,
-        marginRight: 4,
-        marginLeft: 4,
+        marginRight: 6,
+        marginLeft: 0,
         marginTop: 4,
-        marginBottom: 2
-    }
+        marginBottom: 2,
+    },
 });

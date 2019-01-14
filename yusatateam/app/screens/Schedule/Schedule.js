@@ -15,6 +15,7 @@ import Filter from './Filter/Filter';
 import {Status} from './Status';
 import { connect } from 'react-redux';
 import { serviceActions } from '../../redux/actions';
+import { Card } from 'native-base';
 
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
@@ -48,6 +49,12 @@ export  class Schedule extends React.Component {
         moment.locale('en');
         this.state = {
             items: {},
+            itemsData: {
+                '2019-01-12': [a,a],
+                '2019-01-15': [a],
+                '2019-01-14': [],
+                '2019-01-11': [a],
+            },
             historyData : '',
             ListData :'',
             serviceStatus : []
@@ -64,7 +71,7 @@ export  class Schedule extends React.Component {
     }
 
     componentDidMount() {
-        this.props.onFetchJobList('all');
+        this.props.onFetchJobList('install');
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
@@ -112,10 +119,12 @@ export  class Schedule extends React.Component {
                     thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('History')}/>
                 <Agenda
                     //renderDay={(day, item) => this.renderDay(day, item)}
-                    items={this.state.items}
-                    loadItemsForMonth={(month) => this.loadItems(month)}
+                    items={this.state.itemsData} 
+                    loadItemsForMonth={(month) => {console.log('trigger items loading')}}
+                    // items={this.state.items}
+                    // loadItemsForMonth={(month) => this.loadItems(month)}
                     onCalendarToggled={(calendarOpened) => { console.log("CalendarOpend=->"+calendarOpened) }}
-                    //onDayPress={(day) => { console.log('day pressed') }}
+                    onDayPress={(day) => this.onDayPress(day)}
                     //onDayChange={(day) => { console.log('day changed') }}
                     selected={moment(new Date()).format('YYYY-MM-DD')}
                     pastScrollRange={100}
@@ -179,7 +188,7 @@ export  class Schedule extends React.Component {
                 // console.log('HELLO PREM-> '+strTime);
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
-                    this.state.items[strTime].push(a)
+                    // this.state.items[strTime].push(a)
                 }
             }
             const newItems = {};
@@ -187,8 +196,15 @@ export  class Schedule extends React.Component {
             this.setState({
                 items: newItems
             });
-            console.log(newItems);
+            // console.log(newItems);
         }, 1000);
+    }
+
+    onDayPress(day) {
+        // console.log(day.dateString)
+        const item = this.state.itemsData;
+        item[day.dateString] = [a];
+        this.setState({itemsData: item});
     }
 
     renderItem(item) {
@@ -222,7 +238,11 @@ export  class Schedule extends React.Component {
 
     renderEmptyDate() {
         return (
-            <View style={styles.empty_date_view}><Text>No Event</Text></View>
+            <Card style={styles.empty_event_date_view}>
+                <View style={styles.empty_date_view}>
+                    <Text style={{fontSize: 15, fontFamily:'Roboto', color:'red'}}>No Event</Text>
+                </View>
+            </Card>
         );
     }
 

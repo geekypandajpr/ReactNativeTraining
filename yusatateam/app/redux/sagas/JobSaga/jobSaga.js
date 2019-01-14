@@ -7,6 +7,7 @@ import { NavigationActions } from 'react-navigation';
 export function* serviceListSaga(action) {
     try {
         const [listData, status] = yield all([call(jobServices.getServiceList, action.serviceType), call(jobServices.serviceStatus)]);
+        // alert(JSON.stringify(listData))
         if (listData) { yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData }); }
         else { yield put({ type: SERVICE.SERVICE_LIST_FAILED }); }
 
