@@ -30,17 +30,36 @@ export  class History extends React.Component {
             items: {},
             historyData : '',
             createData : '',
-            listData :''
+            listData :'',
+            itemsData: {},
         };
         this.modalRef = React.createRef();
         this.filterRef = React.createRef();
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.props.HistoryData !== nextProps.HistoryData) {
-            // if(nextProps.HistoryData.listData.results) {
-            //     this.setState({ListData: nextProps.ListData.listData.results});
-            // } 
+        // if(this.props.HistoryData !== nextProps.HistoryData) {
+          
+        // }
+
+        if(this.props.ListData !== nextProps.ListData) {
+            if(nextProps.ListData.listData.results) {
+                // alert(JSON.stringify(nextProps.ListData.listData.results));
+                var itemData ={};
+                var data =nextProps.ListData.listData.results;
+                
+                for(var i=0;i<data.length;i++)
+                {
+                    var str = data[i].serviceDate;
+                    alert(data[i].serviceDate)
+                    // var str = "2019-01-14 06:00:00.0";
+                     var res = str.substring(0, 10);
+                     itemData[res]=[data[i]]
+                }
+                // alert(JSON.stringify(itemData))
+                this.setState({ListData: nextProps.ListData.listData.results,items : itemData});
+               
+            } 
         }
 
         
@@ -51,7 +70,8 @@ export  class History extends React.Component {
     }
 
     componentDidMount() {
-        this.props.onFetchHistory();
+        // this.props.onFetchHistory();
+        this.props.onFetchJobList('uninstall');
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
@@ -139,31 +159,15 @@ export  class History extends React.Component {
 
     loadItems(day) {
         setTimeout(() => {
-            for (let i = -15; i < 1; i++) {
+            for (let i = -1; i < 1; i++) {
                 const time = day.timestamp + i * 24 * 60 * 60 * 1000;
                 //console.log('TIME-> '+time);
                 const strTime = this.timeToString(time);
-                //const strTime = '2018-12-07';
+                //const strTime = '2019-01-11';
                 // console.log('HELLO PREM-> '+strTime);
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
-                    this.state.items[strTime].push({
-                        'orderNumber': 'SERVE001AA',
-                        'serviceType' : 'Install',
-                        'companyName' : 'Yusata Infotech Private Limited',
-                        'vehicleNumber': 'JP01-1522',
-                        'serviceStatus': 'Entered',
-                        'color': colors.SERVICE_STATUS_COLOR.ENTERED,
-                        'device': 'DL125A',
-                        'sim': '+91-7856801255',
-                        'provider': 'Airtel',
-                        'serviceDate': '05 November 2018 14:50',
-                        'location': '84/122 sector 8, pratap nagar, Jaipur',
-                        'servicePerson' : 'Yash Gulati',
-                        'contactPerson': 'Premsagar Choudhary',
-                        'contactMobilenumber': '+91 8562565512'
-                    });
-                   
+                    // this.state.items[strTime].push(a)
                 }
             }
             const newItems = {};
@@ -171,6 +175,7 @@ export  class History extends React.Component {
             this.setState({
                 items: newItems
             });
+            // console.log(newItems);
         }, 1000);
     }
 
@@ -204,13 +209,15 @@ export  class History extends React.Component {
 
 function mapStateToProps(state){
     return{
-        HistoryData : state.serviceHistoryData,
+        // HistoryData : state.serviceHistoryData,
+        ListData : state.serviceListData,
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
-        onFetchHistory: () => dispatch(serviceActions.ServiceHistoryRequest())
+        // onFetchHistory: () => dispatch(serviceActions.ServiceHistoryRequest())
+        onFetchJobList: (serviceType) => dispatch(serviceActions.serviceListRequest(serviceType))
     }
 }
 
