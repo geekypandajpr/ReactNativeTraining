@@ -46,15 +46,16 @@ export function* createJobSaga(action) {
             yield put(NavigationActions.navigate({ routeName: 'Schedule' }));
             functions.showToast('Job created successfully', 'success');
             try {
-                const listData = yield call(jobServices.getServiceList,'all');
+                // yield put({ type: SERVICE.SERVICE_LIST_REQUEST });
+                const listData = yield call(jobServices.getServiceList, 'all');
                 if (listData) {
-                    yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData })
+                    yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData });
                 } else {
-                    yield put({ type: SERVICE.SERVICE_LIST_FAILED })
+                    yield put({ type: SERVICE.SERVICE_LIST_FAILED });
                     functions.showToast('Unable to refresh Service List', 'danger');
                 }
             } catch (error) {
-                yield put({ type: SERVICE.SERVICE_LIST_FAILED, error })
+                yield put({ type: SERVICE.SERVICE_LIST_FAILED, error });
                 functions.showToast('something went wrong', 'danger');
             }
         }
