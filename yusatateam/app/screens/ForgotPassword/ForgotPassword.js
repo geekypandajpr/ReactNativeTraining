@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, BackHandler } from 'react-native';
 import { AppLoading } from 'expo';
-import { Button, Item, Input, Label, Text } from 'native-base';
+import { Button, Text } from 'native-base';
 import { Feather } from '@expo/vector-icons';
 
-import { Statusbar } from '../../components';
+import { Statusbar, Float } from '../../components';
 import colors from '../../constants/colors';
 import styles from './Styles';
 
@@ -42,26 +42,24 @@ export default class ForgotPassword extends React.Component {
     }
 
     onEmailChange(text) {
-        this.setState({ email: text }, function() {
-            if(this.state.email !== '') { this.setState({ isButtonEnabled: false }) }
+        this.setState({ email: text }, function () {
+            if (this.state.email !== '') { this.setState({ isButtonEnabled: false }) }
             else { this.setState({ isButtonEnabled: true }) }
         })
-        console.log(this.state.isButtonEnabled);
     }
 
-    doSubmit() {}
+    doSubmit() { }
 
     render() {
         const { goBack } = this.props.navigation;
         return (
             this.state.isLoading === true ? <AppLoading /> :
-
             <View style={{ flex: 1 }}>
                 <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
                 <View style={styles.container}>
 
                     <View style={styles.appBar}>
-                        <Feather name='arrow-left' color="#000" size={24} onPress={() => goBack()}/>
+                        <Feather name='arrow-left' color="#000" size={24} onPress={() => goBack()} />
                     </View>
 
                     <View style={styles.forgot_view}>
@@ -69,19 +67,19 @@ export default class ForgotPassword extends React.Component {
                     </View>
 
                     <View style={styles.input_view}>
-                        <Item>
-                            {/* <Label style={{color:'gray', fontSize: 15}}>Email</Label> */}
-                            <Input
-                                placeholder='Email'
-                                style={{color:'#000', fontSize: 15}}
-                                value={this.state.email}
-                                keyboardType={'email-address'}
-                                returnKeyType={'go'}
-                                onChangeText={(text) => this.onEmailChange(text)}
-                                secureTextEntry={false}
-                                onSubmitEditing={this.doSubmit}
-                            />
-                        </Item>
+                        <Float
+                            placeholder='Email'
+                            value={this.state.email}
+                            returnKeyType={'next'}
+                            keyboardType={'email-address'}
+                            blurOnSubmit={false}
+                            isMandatory={false}
+                            onChangeText={(email) => this.onEmailChange(email)}
+                            rightIcon={this.state.email !== '' ? 'ios-close-circle-outline' : null}
+                            rightIconPress={() => this.onEmailChange('')}
+                            rightIconType={'Ionicons'}
+                            rightIconStyle={{ color: 'red', fontSize: 20 }}
+                        />
                     </View>
 
                     <View style={styles.button_view}>
