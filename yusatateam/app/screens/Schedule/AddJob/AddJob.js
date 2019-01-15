@@ -185,7 +185,7 @@ export class AddJob extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={{ backgroundColor: '#fff', flex: 1 }}>
-                    <Toolbar title='Create Service' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}/>
+                    <Toolbar title='Create Service' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
                     <Activityindication visible={this.props.createJobData.isLoading} />
                     <Activityindication visible={this.props.JobcompanyData.isLoading} />
 
@@ -248,7 +248,7 @@ export class AddJob extends React.Component {
                                                 onChangeText={(text) => this.setState({ location: text })}
                                                 inputStyles={{ width: '100%' }}
                                                 getRef={(input) => { this.address = input }}
-                                                onSubmitEditing={()=>{this._focusNextField('ServiceName')}}
+                                                onSubmitEditing={() => { this._focusNextField('ServiceName') }}
                                             // rightIcon='google-maps'
                                             // rightIconType="MaterialCommunityIcons"
                                             // rightIconStyle={{ fontSize: 24, color: 'red' }}
@@ -266,7 +266,7 @@ export class AddJob extends React.Component {
                                                 isMandatory={false}
                                                 onChangeText={(text) => this.setState({ serviceName: text })}
                                                 getRef={(input) => { this.ServiceName = input }}
-                                                onSubmitEditing={()=>{this._focusNextField('CustomerName')}}
+                                                onSubmitEditing={() => { this._focusNextField('CustomerName') }}
                                                 inputStyles={{ width: '100%' }}
                                             />
                                         </View>
@@ -281,7 +281,6 @@ export class AddJob extends React.Component {
                                                 <DatePicker
                                                     style={{ width: '100%' }}
                                                     date={this.state.dataRenewal}
-                                                    //showTime = {{ user12hours: true }}
                                                     mode="datetime"
                                                     placeholder="MM/DD/YYYY HH:mm:ss a"
                                                     showTime={{ use12Hours: true, format: "HH:mm:ss a" }}
@@ -317,7 +316,7 @@ export class AddJob extends React.Component {
                                                 isMandatory={true}
                                                 onChangeText={(text) => this.setState({ Cname: text })}
                                                 getRef={(input) => { this.CustomerName = input }}
-                                                onSubmitEditing={()=>{this._focusNextField('CustomerContact')}}
+                                                onSubmitEditing={() => { this._focusNextField('CustomerContact') }}
                                                 inputStyles={{ width: '100%' }}
                                             />
                                         </View>
