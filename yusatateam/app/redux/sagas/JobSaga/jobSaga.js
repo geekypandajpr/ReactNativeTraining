@@ -1,5 +1,5 @@
 import { call, put, all } from 'redux-saga/effects';
-import { jobServices } from '../../services';
+import { jobServices, userServices } from '../../services';
 import { SERVICE } from '../../common/actionTypes';
 import functions from '../../../common/functions';
 import { NavigationActions } from 'react-navigation';
@@ -12,9 +12,9 @@ export function* serviceListSaga(action) {
         else { yield put({ type: SERVICE.SERVICE_LIST_FAILED }); }
 
         /**Put status response */
-        if(status) {  yield put({ type: SERVICE.SERVICE_STATUS_SUCCESS, status }); }
+        if (status) { yield put({ type: SERVICE.SERVICE_STATUS_SUCCESS, status }); }
         else { yield put({ type: SERVICE.SERVICE_STATUS_FAILED }); }
-        
+
     } catch (error) {
         yield put({ type: SERVICE.SERVICE_LIST_FAILED, error });
         functions.showToast('Something wrong', 'danger');
@@ -45,8 +45,23 @@ export function* createJobSaga(action) {
             yield put({ type: SERVICE.CREATEJOB_SUCCESS, createData });
             yield put(NavigationActions.navigate({ routeName: 'Schedule' }));
             functions.showToast('Job created successfully', 'success');
+            try {
+                const listData = yield call(jobServices.getServiceList,'all');
+                if (listData) {
+                    yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData })
+                } else {
+                    yield put({ type: SERVICE.SERVICE_LIST_FAILED })
+                    functions.showToast('Unable to refresh Service List', 'danger');
+                }
+            } catch (error) {
+                yield put({ type: SERVICE.SERVICE_LIST_FAILED, error })
+                functions.showToast('something went wrong', 'danger');
+            }
         }
-        else { yield put({ type: SERVICE.CREATEJOB_FAILED }); }
+        else {
+            yield put({ type: SERVICE.CREATEJOB_FAILED });
+            functions.showToast('Unable to create Job', 'danger');
+        }
     } catch (error) {
         yield put({ type: SERVICE.CREATEJOB_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
@@ -55,14 +70,14 @@ export function* createJobSaga(action) {
 
 export function* companySaga(action) {
     try {
-        const [jobvehicle, serviceType, technician] = yield all([call(jobServices.getVehicle), 
-            call(jobServices.getServiceType),call(jobServices.getTechnician,action.userRole)]);
-        if(jobvehicle === null) { jobvehicle = [] }
-        if(serviceType === null ) { serviceType = [] }
-        if(technician === null) { technician = [] }
+        const [jobvehicle, serviceType, technician] = yield all([call(jobServices.getVehicle),
+        call(jobServices.getServiceType), call(jobServices.getTechnician, action.userRole)]);
+        if (jobvehicle === null) { jobvehicle = [] }
+        if (serviceType === null) { serviceType = [] }
+        if (technician === null) { technician = [] }
         yield put({ type: SERVICE.SERVICE_COMPANY_SUCCESS, data: { technician, jobvehicle, serviceType } });
     } catch (error) {
-        yield put({type: SERVICE.SERVICE_COMPANY_FAILED, error })
+        yield put({ type: SERVICE.SERVICE_COMPANY_FAILED, error })
         functions.showToast('Something went wrong', 'danger');
     }
 }
@@ -70,7 +85,7 @@ export function* companySaga(action) {
 export function* executeServiceSaga(action) {
     try {
         const data = yield call(jobServices.excecuteService);
-        if(data) {
+        if (data) {
             yield put({ type: SERVICE.EXECUTE_SERVICE_SUCCESS, data });
             functions.showToast('Assigned successfully', 'success');
         } else {
@@ -85,7 +100,7 @@ export function* executeServiceSaga(action) {
 export function* serviceStatusSaga(action) {
     try {
         const status = yield call(jobServices.serviceStatus);
-        if(data) {
+        if (data) {
             yield put({ type: SERVICE.SERVICE_STATUS_SUCCESS, status });
             // functions.showToast('Assigned successfully', 'success');
         } else {
@@ -101,7 +116,7 @@ export function* serviceStatusSaga(action) {
 export function* simDeviceSaga(action) {
     try {
         const [sim, device] = yield all([call(jobServices.sims), call(jobServices.devices)]);
-        yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {sim, device}});
+        yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: { sim, device } });
         // if(sim) {
         //     yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {sim, device}});
         // } else {
