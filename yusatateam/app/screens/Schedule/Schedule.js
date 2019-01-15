@@ -91,9 +91,8 @@ export class Schedule extends React.Component {
         this.statusRef.current.setModalVisible(true, this.state.serviceStatus, item.serviceStatus)
     }
 
-    onFilterApplied(item) { 
-        console.log(item)
-        // this.props.onFetchJobList(item)
+    onFilterApplied(item) {
+        this.props.onFetchJobList(item)
     }
 
     render() {
