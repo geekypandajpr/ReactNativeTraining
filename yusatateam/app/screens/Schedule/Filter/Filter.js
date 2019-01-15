@@ -6,6 +6,7 @@ import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { colors } from '../../../styles';
 
+
 export default class Filter extends React.Component {
     constructor(props) {
         super(props);
@@ -15,7 +16,7 @@ export default class Filter extends React.Component {
             value: 'ALL'
         }
     }
-
+   
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -30,8 +31,12 @@ export default class Filter extends React.Component {
     }
 
     onApply = () => {
+        const values=this.state.value;
+        //alert(values);
+        this.props.onSelectFilter(values);
         this.setState({modalVisible: false});
     }
+   
 
     render() {
         return (
@@ -125,6 +130,7 @@ export default class Filter extends React.Component {
 
                             <View style={styles.Small_View}>
                                 <View style={[styles.checkbox_view, {justifyContent: 'flex-end'}]}>
+                                
                                     <Button full onPress={this.onApply}
                                         style={{ width: 150, backgroundColor: colors.HEADER_COLOR }} >
                                         <Text style={{fontFamily: 'Roboto', color: '#fff'}}> Apply </Text>
