@@ -1,16 +1,17 @@
 import React from 'react';
-import { View,   ScrollView, Picker, TextInput } from 'react-native';
+import { View,   ScrollView, Picker, TextInput,BackHandler } from 'react-native';
 import { Text, Header, Button, Body, Right, Left } from 'native-base';
 import { AppLoading } from 'expo';
 import {Toolbar} from '../../../../components'
 import { Ionicons, Entypo, FontAwesome, Feather } from '@expo/vector-icons';
-
+import call from 'react-native-phone-call'
 import styles from './styles';
+import { globalStyles, colors } from '../../../../styles';
 
 export default class HistoryDetails extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isLoading: true }
+        this.state = { isLoading: true,item : '',vehicleArray : [] }
     }
 
     async componentWillMount() {
@@ -21,14 +22,34 @@ export default class HistoryDetails extends React.Component {
         })
         this.setState({ isLoading: false })
     }
+    componentDidMount() {
+        const item = this.props.navigation.state.params.item;
+        var arrayList =[];
+        for(var i=0;i<item.lineDetailsList.length;i++)
+        {
+            arrayList.push(item.lineDetailsList[i].vehicleDetails);
+        }
+        this.setState({ item :item,vehicleArray : arrayList})
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+    phoneCall()
+    {
+        const args = {
+            number: this.state.item.customerMobileNo, 
+            prompt: false 
+          }
+           
+          call(args).catch(console.error)
+    }
 
     render() {
         const { goBack } = this.props.navigation;
         const { navigate } = this.props.navigation;
+        var item =this.state.item;
         return (
             <View style={{flex :1}}>
                  {/* this.state.isLoading === true ? <AppLoading /> : */}
-                 <Toolbar title='JOBS20NOV2018' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                 <Toolbar title={item.orderNumber} leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         // setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('Settings')}
                     />
                     <View style={styles.main_container}>
@@ -47,8 +68,20 @@ export default class HistoryDetails extends React.Component {
                                             </View>
                                             <View style={styles.right_view}>
                                                 <View style={styles.job_type}>
-                                                    <Text style={styles.job_type_text}>Install</Text>
+                                                    <Text style={styles.job_type_text}>{item.serviceTypeName}</Text>
                                                 </View>
+                                            </View>
+                                        </View>
+                                       
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>Service Name</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <Text style={styles.value_text}>{item.serviceName}</Text>
                                             </View>
                                         </View>
 
@@ -60,7 +93,7 @@ export default class HistoryDetails extends React.Component {
                                                 <Text style={styles.colon}>:</Text>
                                             </View>
                                             <View style={styles.right_view}>
-                                                <Text style={styles.value_text}>20 Nov 2018 12:50</Text>
+                                                <Text style={styles.value_text}>{item.serviceDate}</Text>
                                             </View>
                                         </View>
 
@@ -84,13 +117,13 @@ export default class HistoryDetails extends React.Component {
                                                 <Text style={styles.colon}>:</Text>
                                             </View>
                                             <View style={styles.right_view}>
-                                                <Text style={styles.value_text}>Yash Gulati</Text>
+                                                <Text style={styles.value_text}>{item.salePerson}</Text>
                                             </View>
                                         </View>
 
                                         <View style={styles.sub_view}>
                                             <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Job location</Text>
+                                                <Text style={styles.key_text}>Company Name</Text>
                                             </View>
                                             <View style={styles.middle_view}>
                                                 <Text style={styles.colon}>:</Text>
@@ -99,7 +132,7 @@ export default class HistoryDetails extends React.Component {
                                                 <View><Entypo name='location-pin' size={24} color='#d9534f' /></View>
                                                 <View style={{ flex: 1 }}>
                                                     <Text style={styles.value_text}>
-                                                        84/122 sector 8 pratap nagar, jaipur rajasthan
+                                                    {item.companyName}
                                                     </Text>
                                                 </View>
                                             </View>
@@ -114,20 +147,24 @@ export default class HistoryDetails extends React.Component {
                                             </View>
                                             <View style={styles.right_view}>
                                                 <View style={styles.status_view}>
-                                                    <Text style={styles.status_text}>Completed</Text>
+                                                    <Text style={styles.status_text}>{item.serviceStatus}</Text>
                                                 </View>
                                             </View>
                                         </View>
 
                                         <View style={styles.sub_view}>
                                             <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Payment mode</Text>
+                                                <Text style={styles.key_text}>COD</Text>
                                             </View>
                                             <View style={styles.middle_view}>
                                                 <Text style={styles.colon}>:</Text>
                                             </View>
                                             <View style={styles.right_view}>
-                                                <Text style={styles.value_text}>COD</Text>
+                                                <Text style={styles.value_text}>
+                                                {
+                                                    item.cashOnDelivery=='Y' ? 'Yes': 'No'
+                                                    }
+                                                </Text>
                                             </View>
                                         </View>
 
@@ -138,9 +175,10 @@ export default class HistoryDetails extends React.Component {
                                             <View style={styles.middle_view}>
                                                 <Text style={styles.colon}>:</Text>
                                             </View>
+                                            
                                             <View style={styles.right_view}>
-                                                <FontAwesome name='rupee' size={14} color='gray' />
-                                                <Text style={styles.value_text}>6500</Text>
+                                                {item.amountCollection ? <FontAwesome name='rupee' size={14} color='gray' />: null}
+                                                <Text style={styles.value_text}>{item.amountCollection}</Text>
                                             </View>
                                         </View>
                                     </View>
@@ -154,7 +192,7 @@ export default class HistoryDetails extends React.Component {
                                                 <Text style={styles.colon}>:</Text>
                                             </View>
                                             <View style={styles.right_view}>
-                                                <Text style={styles.value_text}>Premsagar Choudhary</Text>
+                                                <Text style={styles.value_text}>{item.customerName}</Text>
                                             </View>
                                         </View>
 
@@ -166,11 +204,30 @@ export default class HistoryDetails extends React.Component {
                                                 <Text style={styles.colon}>:</Text>
                                             </View>
                                             <View style={styles.right_view}>
-                                                <Ionicons name='ios-call' size={24} color='#5cb85c' />
-                                                <Text style={styles.value_text}>+918605665320</Text>
+                                                <Ionicons name='ios-call' size={24} color='#5cb85c'  onPress={() => this.phoneCall()}/>
+                                                <Text style={styles.value_text}>{item.customerMobileNo}</Text>
                                             </View>
                                         </View>
                                     </View>
+                                    {this.state.vehicleArray.length !== 0 ?
+                                <View style={styles.view1}>
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={[globalStyles.title_text, { fontFamily: 'Roboto', padding: 4 }]}>Vehicles</Text>
+                                        </View>
+                                    </View>
+                                    {this.state.vehicleArray.map((it, index) => 
+                                        <View style={styles.sub_view} key={index}>
+                                            <View style={styles.left_view}>
+                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>
+                                                    {index+1}. {it.vehicleNumber}
+                                                </Text>
+                                            </View>
+                                        </View>
+                                    )}
+                                </View>
+                                : null
+                            }
 
                                     <View style={styles.second_view}>
                                         <View style={styles.sub_view}>
