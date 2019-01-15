@@ -44,25 +44,42 @@ export  class History extends React.Component {
 
         if(this.props.ListData !== nextProps.ListData) {
             if(nextProps.ListData.listData.results) {
-                // alert(JSON.stringify(nextProps.ListData.listData.results));
                 var itemData ={};
+                var dateArray =[];
                 var data =nextProps.ListData.listData.results;
-                
                 for(var i=0;i<data.length;i++)
                 {
                     var str = data[i].serviceDate;
-                    alert(data[i].serviceDate)
-                    // var str = "2019-01-14 06:00:00.0";
                      var res = str.substring(0, 10);
-                     itemData[res]=[data[i]]
+                        for(var j=i;j<data.length;j++)
+                        {
+                            if(res == data[j].serviceDate.substring(0, 10))
+                            {
+                               if(res in itemData)
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    dateArray.push(data[j]);
+                                    
+                                   
+                                } 
+                            } 
+                        }
+                        if(!(res in itemData))
+                        {
+                            itemData[res]=dateArray;
+                            dateArray =[];
+                        }
+                        
                 }
-                // alert(JSON.stringify(itemData))
-                this.setState({ListData: nextProps.ListData.listData.results,items : itemData});
-               
-            } 
         }
 
         
+   
+     } 
+     this.setState({ListData: nextProps.ListData.listData.results,items : itemData})
     }
 
     renderDay(day, item) {
@@ -71,7 +88,7 @@ export  class History extends React.Component {
 
     componentDidMount() {
         // this.props.onFetchHistory();
-        this.props.onFetchJobList('uninstall');
+        this.props.onFetchJobList('all');
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
