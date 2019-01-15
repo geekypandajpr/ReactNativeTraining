@@ -1,21 +1,16 @@
 import React from 'react';
-import {
-    Text,
-    View,
-    BackHandler
-} from 'react-native';
+import { Text, View, BackHandler } from 'react-native';
 import moment from 'moment';
 import { Agenda } from 'react-native-calendars';
+import { connect } from 'react-redux';
+import { Card } from 'native-base';
 
-import { ScheduleEvent, Toolbar } from '../../components';
+import { ScheduleEvent, Toolbar, Activityindication } from '../../components';
 import styles from './Styles';
-import JobDetails from '../Jobs/JobDetails/JobDetails';
 import colors from '../../constants/colors';
 import Filter from './Filter/Filter';
-import {Status} from './Status';
-import { connect } from 'react-redux';
+import { Status } from './Status';
 import { serviceActions } from '../../redux/actions';
-import { Card } from 'native-base';
 
 var eventList = {
     // '2018-09-16': {selected: true, selectedColor: 'green'},
@@ -24,70 +19,59 @@ var eventList = {
     // '2018-09-30': {selected: true, selectedColor: 'orange'},
 }
 
-const a = {
-    "headerId": "104637",
-    "salePerson": "Vivek Sharma",
-    "orderNumber": "PTUdnz4Vt3",
-    "serviceName": "any",
-    "serviceDate": "2018-09-06 18:47:00.0",
-    "cashOnDelivery": "N",
-    "amountCollection": "",
-    "training": "N",
-    "customerName": "Prem",
-    "customerMobileNo": "9808535355",
-    "serviceStatus": "COMPLETED",
-    "serviceTypeName": "UNINSTALL",
-    "address": "",
-    "companyId": "1595828",
-    "companyCode": "FER",
-    "companyName": "Ferremas"
-}
-
-export  class Schedule extends React.Component {
+export class Schedule extends React.Component {
     constructor(props) {
         super(props);
         moment.locale('en');
         this.state = {
             items: {},
-            itemsData: {
-                '2019-01-12': [a,a],
-                '2019-01-15': [a],
-                '2019-01-14': [],
-                '2019-01-11': [a],
-            },
-            historyData : '',
-            ListData :'',
-            serviceStatus : []
+            serviceList: [],
+            serviceStatus: [],
+            date: new Date()
         };
         this.modalRef = React.createRef();
         this.filterRef = React.createRef();
         this.statusRef = React.createRef();
         this.openStatusModal = this.openStatusModal.bind(this);
         this.openFilter = this.openFilter.bind(this);
+        this.onFilterApplied = this.onFilterApplied.bind(this);
     }
 
     renderDay(day, item) {
-        return (<View><Text>{day ? day.dateString: 'item'}</Text></View>);
+        return (<View><Text>{day ? day.dateString : 'item'}</Text></View>);
     }
 
     componentDidMount() {
-        this.props.onFetchJobList('install');
+        this.props.onFetchJobList('all');
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    
+
     componentWillReceiveProps(nextProps) {
-        if(this.props.ListData !== nextProps.ListData) {
-            if(nextProps.ListData.listData.results) {
-                this.setState({ListData: nextProps.ListData.listData.results});
-            } 
+        /**Service List */
+        if (this.props.serviceList !== nextProps.serviceList) {
+            if (nextProps.serviceList.listData.results) {
+                const items = {};
+                const list = nextProps.serviceList.listData.results;
+                for (var index in list) {
+                    var date =  moment(list[index].serviceDate).format('YYYY-MM-DD');
+                    if(!items[date]) {
+                        items[date] = [];
+                        items[date].push(list[index]);
+                    } else { items[date].push(list[index]) }
+                     
+                }
+                const newItems = {};
+                Object.keys(items).forEach(key => { newItems[key] = items[key] });
+                this.setState({ items: newItems, listData: nextProps.serviceList.listData.results });
+            }
         }
 
         /**Service status */
-        if(this.props.serviceStatus !== nextProps.serviceStatus) {
-            this.setState({serviceStatus:  nextProps.serviceStatus.status});
+        if (this.props.serviceStatus !== nextProps.serviceStatus) {
+            this.setState({ serviceStatus: nextProps.serviceStatus.status });
         }
-        
+
     }
 
     handleBackPress = () => {
@@ -99,41 +83,61 @@ export  class Schedule extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
 
-    openFilter(){
+    openFilter() {
         this.filterRef.current.setModalVisible(true);
     }
 
-    openStatusModal(item){
+    openStatusModal(item) {
         this.statusRef.current.setModalVisible(true, this.state.serviceStatus, item.serviceStatus)
     }
-    
+
+    onFilterApplied(item) { 
+        console.log(item)
+        // this.props.onFetchJobList(item)
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
+        const items = {
+            [moment(new Date(this.state.date)).format('YYYY-MM-DD')]: [],
+            ...this.state.items,
+        };
+
         return (
             <View style={styles.container}>
+                <Activityindication visible={this.props.serviceList.isLoading} />
                 <Toolbar title='Schedule'
-                    leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
+                    leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                     setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('AddJob')}
-                    Calender='filter' calenderType='Feather' onCalenderPress={() =>this.openFilter()}
-                    thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('History')}/>
+                    Calender='filter' calenderType='Feather' onCalenderPress={() => this.openFilter()}
+                    thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('History')} />
+
                 <Agenda
+                    // specify how each date should be rendered. day can be undefined if the item is not first in that day.
                     //renderDay={(day, item) => this.renderDay(day, item)}
-                    items={this.state.itemsData} 
-                    loadItemsForMonth={(month) => {console.log('trigger items loading')}}
-                    // items={this.state.items}
-                    // loadItemsForMonth={(month) => this.loadItems(month)}
-                    onCalendarToggled={(calendarOpened) => { console.log("CalendarOpend=->"+calendarOpened) }}
+                    // the list of items that have to be displayed in agenda
+                    items={items}
+                    // callback that gets called when items for a certain month should be loaded (month became visible)
+                    //loadItemsForMonth={(month) => this.loadItems(month)}
+                    onCalendarToggled={(calendarOpened) => { console.log("CalendarOpened=->" + calendarOpened) }}
+                    // callback that gets called on day press
                     onDayPress={(day) => this.onDayPress(day)}
-                    //onDayChange={(day) => { console.log('day changed') }}
+                    // callback that gets called on day change
+                    onDayChange={(day) => this.onDayChange(day)}
+                    // initially selected day
                     selected={moment(new Date()).format('YYYY-MM-DD')}
                     pastScrollRange={100}
                     futureScrollRange={100}
+                    // specify how each item should be rendered in agenda
                     renderItem={this.renderItem.bind(this)}
+                    // specify how empty date content with no items should be rendered
                     renderEmptyDate={this.renderEmptyDate.bind(this)}
+                    // specify your item comparison function for increased performance
                     rowHasChanged={this.rowHasChanged.bind(this)}
-                    markedDates={eventList}
+                    // markedDates={eventList}
                     hideKnob={false}
+                    dayLoading={false}
                     displayLoadingIndicator={false}
                     theme={{
                         'stylesheet.calendar.header': {
@@ -170,10 +174,9 @@ export  class Schedule extends React.Component {
                         agendaTodayColor: colors.CALENDARS.AGENDA_TODAY_COLOR
                     }}
                 />
-                <JobDetails ref={this.modalRef} />
-                <Filter ref={this.filterRef} />
+                <Filter ref={this.filterRef} onSelectFilter={(item) => { this.onFilterApplied(item) }} />
                 <Status ref={this.statusRef} />
-                
+
             </View>
         );
     }
@@ -200,39 +203,21 @@ export  class Schedule extends React.Component {
         }, 1000);
     }
 
-    onDayPress(day) {
-        // console.log(day.dateString)
-        const item = this.state.itemsData;
-        item[day.dateString] = [a];
-        this.setState({itemsData: item});
+    onDayPress(date) {
+        this.setState({ date: new Date(date.year, date.month - 1, date.day) });
+    }
+
+    onDayChange = (date) => {
+        this.setState({ date: new Date(date.year, date.month - 1, date.day) });
     }
 
     renderItem(item) {
-        const value = {
-            'jobNumber': 'SERVE004AD',
-            'jobType' : 'Install',
-            'jobName' : 'Installation',
-            'companyName' : 'Yusata Infotech Private Limited',
-            'vehicleNumber': 'JH52-14A5',
-            'jobStatus': 'Reschedule',
-            'color': colors.SERVICE_STATUS_COLOR.RESCHEDULED,
-            'device': 'DEVICE14588ESE',
-            'sim': '+91-1201245636',
-            'provider': 'Airtel',
-            'scheduleDate': '10 December 2018, 05:00',
-            'location': '84/122 sector 8, pratap nagar',
-            'servicePerson' : 'Yash Gulati',
-            'contactPerson': 'Premsagar Choudhary',
-            'contactNumber': '+91 8562565512',
-            'cashOnDelivery': 'Yes',
-            'amount': '5000',
-            'training' : 'No'
-        }
         return (
             <ScheduleEvent item={[item]}
-                onStatusChange = {()=>this.openStatusModal(item)}
+                onStatusChange={() => this.openStatusModal(item)}
                 doAssociation={() => this.props.navigation.navigate('DoAssociation')}
-                viewMore={() => { this.modalRef.current.setModalVisible(true, value) }}/>
+                viewMore={() => this.props.navigation.navigate('ScheduleDetails', {item})}
+            />
         );
     }
 
@@ -240,7 +225,7 @@ export  class Schedule extends React.Component {
         return (
             <Card style={styles.empty_event_date_view}>
                 <View style={styles.empty_date_view}>
-                    <Text style={{fontSize: 15, fontFamily:'Roboto', color:'red'}}>No Event</Text>
+                    <Text style={{ fontSize: 15, fontFamily: 'Roboto', color: 'red' }}>No Event</Text>
                 </View>
             </Card>
         );
@@ -258,15 +243,15 @@ export  class Schedule extends React.Component {
 
 // export { Schedule }
 
-function mapStateToProps(state){
-    return{
-        ListData : state.serviceListData,
-        serviceStatus : state.serviceStatus,
+function mapStateToProps(state) {
+    return {
+        serviceList: state.serviceListData,
+        serviceStatus: state.serviceStatus,
     }
 }
 
-function mapDispatchToProps(dispatch){
-    return{
+function mapDispatchToProps(dispatch) {
+    return {
         onFetchJobList: (serviceType) => dispatch(serviceActions.serviceListRequest(serviceType))
     }
 }

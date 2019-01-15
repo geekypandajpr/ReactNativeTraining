@@ -31,9 +31,7 @@ export default class Filter extends React.Component {
     }
 
     onApply = () => {
-        const values=this.state.value;
-        //alert(values);
-        this.props.onSelectFilter(values);
+        this.props.onSelectFilter(this.state.value);
         this.setState({modalVisible: false});
     }
    
