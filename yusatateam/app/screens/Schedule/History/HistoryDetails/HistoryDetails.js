@@ -177,7 +177,7 @@ export default class HistoryDetails extends React.Component {
                                             </View>
                                             
                                             <View style={styles.right_view}>
-                                                {item.amountCollection ? <FontAwesome name='rupee' size={14} color='gray' />: null}
+                                                {item.amountCollection ? <FontAwesome name='rupee' size={14} color='gray' />:  <Text style={styles.value_text}>-  -  -</Text>}
                                                 <Text style={styles.value_text}>{item.amountCollection}</Text>
                                             </View>
                                         </View>
