@@ -89,29 +89,42 @@ export  class History extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
-        
+        const items = {
+            [moment(new Date(this.state.date)).format('YYYY-MM-DD')]: [],
+            ...this.state.items,
+        };
         return (
             <View style={styles.container}>
                 <Toolbar title='History'
                     leftIcon='arrow-left' leftIconType='Feather'onLeftButtonPress={() => goBack()}
                     />
                    
-                <Agenda
+                   <Agenda
+                    // specify how each date should be rendered. day can be undefined if the item is not first in that day.
                     //renderDay={(day, item) => this.renderDay(day, item)}
-                    items={this.state.items}
-                    loadItemsForMonth={(month) => this.loadItems(month)}
-                    onCalendarToggled={(calendarOpened) => { console.log(calendarOpened) }}
-                    //onDayPress={(day) => { console.log('day pressed') }}
-                    //onDayChange={(day) => { console.log('day changed') }}
+                    // the list of items that have to be displayed in agenda
+                    items={items}
+                    // callback that gets called when items for a certain month should be loaded (month became visible)
+                    //loadItemsForMonth={(month) => this.loadItems(month)}
+                    onCalendarToggled={(calendarOpened) => { console.log("CalendarOpened=->" + calendarOpened) }}
+                    // callback that gets called on day press
+                    onDayPress={(day) => this.onDayPress(day)}
+                    // callback that gets called on day change
+                    onDayChange={(day) => this.onDayChange(day)}
+                    // initially selected day
                     selected={moment(new Date()).format('YYYY-MM-DD')}
+                    maxDate={moment(new Date()).format('YYYY-MM-DD')}
                     pastScrollRange={100}
                     futureScrollRange={100}
-                    maxDate={moment(new Date()).format('YYYY-MM-DD')}
+                    // specify how each item should be rendered in agenda
                     renderItem={this.renderItem.bind(this)}
+                    // specify how empty date content with no items should be rendered
                     renderEmptyDate={this.renderEmptyDate.bind(this)}
+                    // specify your item comparison function for increased performance
                     rowHasChanged={this.rowHasChanged.bind(this)}
-                    markedDates={eventList}
+                    // markedDates={eventList}
                     hideKnob={false}
+                    dayLoading={false}
                     displayLoadingIndicator={false}
                     theme={{
                         'stylesheet.calendar.header': {
