@@ -42,12 +42,12 @@ export function* createJobSaga(action) {
     try {
         const createData = yield call(jobServices.createJob, action.createdata);
         if (createData) {
-            yield put({ type: SERVICE.CREATEJOB_SUCCESS, createData });
-            yield put(NavigationActions.navigate({ routeName: 'Schedule' }));
-            functions.showToast('Job created successfully', 'success');
             try {
-                // yield put({ type: SERVICE.SERVICE_LIST_REQUEST });
                 const listData = yield call(jobServices.getServiceList, 'all');
+                yield put(NavigationActions.navigate({ routeName: 'Schedule' }));
+                functions.showToast('Job created successfully', 'success');
+                yield put({ type: SERVICE.CREATEJOB_SUCCESS, createData });
+                
                 if (listData) {
                     yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData });
                 } else {
@@ -58,8 +58,7 @@ export function* createJobSaga(action) {
                 yield put({ type: SERVICE.SERVICE_LIST_FAILED, error });
                 functions.showToast('something went wrong', 'danger');
             }
-        }
-        else {
+        } else {
             yield put({ type: SERVICE.CREATEJOB_FAILED });
             functions.showToast('Unable to create Job', 'danger');
         }

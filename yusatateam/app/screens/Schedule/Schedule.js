@@ -110,7 +110,8 @@ export class Schedule extends React.Component {
                     leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                     setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('AddJob')}
                     Calender='filter' calenderType='Feather' onCalenderPress={() => this.openFilter()}
-                    thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('History')} />
+                    // thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('History')}
+                />
 
                 <Agenda
                     // specify how each date should be rendered. day can be undefined if the item is not first in that day.
