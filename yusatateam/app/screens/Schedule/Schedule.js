@@ -232,7 +232,7 @@ export class Schedule extends React.Component {
     }
 
     rowHasChanged(r1, r2) {
-        return r1.name !== r2.name;
+        return r1 !== r2;
     }
 
     timeToString(time) {

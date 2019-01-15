@@ -13,7 +13,7 @@ export default class Filter extends React.Component {
         this.state = {
             isLoading: true,
             modalVisible: false,
-            value: 'ALL'
+            value: 'all'
         }
     }
    
@@ -64,9 +64,9 @@ export default class Filter extends React.Component {
                             <View style={styles.Small_View}>
                                 <View style={styles.checkbox_view}>
                                     <CheckBox
-                                        checked={this.state.value === 'ALL'}
+                                        checked={this.state.value === 'all'}
                                         color={colors.HEADER_COLOR}
-                                        onPress={() => this.setState({ value: 'ALL' })}
+                                        onPress={() => this.setState({ value: 'all' })}
                                     />
                                     <View style={styles.remember_me}>
                                         <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>All</Text>
@@ -77,9 +77,9 @@ export default class Filter extends React.Component {
                             <View style={styles.Small_View}>
                                 <View style={styles.checkbox_view}>
                                     <CheckBox
-                                        checked={this.state.value === 'INSTALL'}
+                                        checked={this.state.value === 'install'}
                                         color={colors.HEADER_COLOR}
-                                        onPress={() => this.setState({ value: 'INSTALL' })}
+                                        onPress={() => this.setState({ value: 'install' })}
                                     />
                                     <View style={styles.remember_me}>
                                         <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Install</Text>
@@ -90,9 +90,9 @@ export default class Filter extends React.Component {
                             <View style={styles.Small_View}>
                                 <View style={styles.checkbox_view}>
                                     <CheckBox
-                                        checked={this.state.value === 'UNINSTALL'}
+                                        checked={this.state.value === 'uninstall'}
                                         color={colors.HEADER_COLOR}
-                                        onPress={() => this.setState({ value: 'UNINSTALL' })}
+                                        onPress={() => this.setState({ value: 'uninstall' })}
                                     />
                                     <View style={styles.remember_me}>
                                         <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Uninstall</Text>
@@ -103,9 +103,9 @@ export default class Filter extends React.Component {
                             <View style={styles.Small_View}>
                                 <View style={styles.checkbox_view}>
                                     <CheckBox
-                                        checked={this.state.value === 'REPLACE'}
+                                        checked={this.state.value === 'replace'}
                                         color={colors.HEADER_COLOR}
-                                        onPress={() => this.setState({ value: 'REPLACE' })}
+                                        onPress={() => this.setState({ value: 'replace' })}
                                     />
                                     <View style={styles.remember_me}>
                                         <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Replace</Text>
@@ -116,9 +116,9 @@ export default class Filter extends React.Component {
                             <View style={styles.Small_View}>
                                 <View style={styles.checkbox_view}>
                                     <CheckBox
-                                        checked={this.state.value === 'REPAIR'}
+                                        checked={this.state.value === 'repair'}
                                         color={colors.HEADER_COLOR}
-                                        onPress={() => this.setState({ value: 'REPAIR' })}
+                                        onPress={() => this.setState({ value: 'repair' })}
                                     />
                                     <View style={styles.remember_me}>
                                         <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Repair</Text>
