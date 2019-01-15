@@ -13,6 +13,7 @@ import colors from '../../../constants/colors';
 import Filter from '../Filter/Filter';
 import { connect } from 'react-redux';
 import { serviceActions } from '../../../redux/actions';
+import { Card } from 'native-base';
 
 
 var eventList = {
@@ -38,48 +39,27 @@ export  class History extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // if(this.props.HistoryData !== nextProps.HistoryData) {
-          
-        // }
-
-        if(this.props.ListData !== nextProps.ListData) {
-            if(nextProps.ListData.listData.results) {
-                var itemData ={};
-                var dateArray =[];
-                var data =nextProps.ListData.listData.results;
-                for(var i=0;i<data.length;i++)
-                {
-                    var str = data[i].serviceDate;
-                     var res = str.substring(0, 10);
-                        for(var j=i;j<data.length;j++)
-                        {
-                            if(res == data[j].serviceDate.substring(0, 10))
-                            {
-                               if(res in itemData)
-                                {
-                                    continue;
-                                }
-                                else
-                                {
-                                    dateArray.push(data[j]);
-                                    
-                                   
-                                } 
-                            } 
-                        }
-                        if(!(res in itemData))
-                        {
-                            itemData[res]=dateArray;
-                            dateArray =[];
-                        }
-                        
+        /**Service List */
+        if (this.props.serviceList !== nextProps.serviceList) {
+            if (nextProps.serviceList.listData.results) {
+                const items = {};
+                const list = nextProps.serviceList.listData.results;
+                for (var index in list) {
+                    var date =  moment(list[index].serviceDate).format('YYYY-MM-DD');
+                    if(!items[date]) {
+                        items[date] = [];
+                        items[date].push(list[index]);
+                    } else { items[date].push(list[index]) }
+                     
                 }
+                const newItems = {};
+                Object.keys(items).forEach(key => { newItems[key] = items[key] });
+                this.setState({ items: newItems, listData: nextProps.serviceList.listData.results });
+            }
         }
 
-        
-   
-     } 
-     this.setState({ListData: nextProps.ListData.listData.results,items : itemData})
+     
+
     }
 
     renderDay(day, item) {
@@ -173,7 +153,6 @@ export  class History extends React.Component {
             </View>
         );
     }
-
     loadItems(day) {
         setTimeout(() => {
             for (let i = -1; i < 1; i++) {
@@ -196,6 +175,14 @@ export  class History extends React.Component {
         }, 1000);
     }
 
+    onDayPress(date) {
+        this.setState({ date: new Date(date.year, date.month - 1, date.day) });
+    }
+
+    onDayChange = (date) => {
+        this.setState({ date: new Date(date.year, date.month - 1, date.day) });
+    }
+
     renderItem(item) {
      
         const { navigate } = this.props.navigation;
@@ -208,7 +195,11 @@ export  class History extends React.Component {
 
     renderEmptyDate() {
         return (
-            <View style={styles.empty_date_view}><Text>No Event</Text></View>
+            <Card style={styles.empty_event_date_view}>
+                <View style={styles.empty_date_view}>
+                    <Text style={{ fontSize: 15, fontFamily: 'Roboto', color: 'red' }}>No Event</Text>
+                </View>
+            </Card>
         );
     }
 
@@ -227,7 +218,7 @@ export  class History extends React.Component {
 function mapStateToProps(state){
     return{
         // HistoryData : state.serviceHistoryData,
-        ListData : state.serviceListData,
+        serviceList : state.serviceListData,
     }
 }
 
