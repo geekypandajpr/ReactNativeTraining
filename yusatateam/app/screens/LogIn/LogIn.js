@@ -180,25 +180,7 @@ export class LogIn extends React.Component {
                                         <Text style={[styles.button_text, { fontFamily: 'Roboto' }]}>  LOGIN </Text>
                                     </Button>
                                 </View>
-
-                                {/* <View style={[styles.input_view,{flexDirection:'row'}]}>
-                                <View style={{flex: 1, justifyContent: "flex-end", alignItems: 'center', flexDirection: 'row'}}>
-                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto',color:'gray'}]}>About Us</Text>
-                                </View>
-                                <View style={{flex: 0.2, justifyContent: "center", alignItems: 'center', flexDirection: 'row'}}>
-                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto',color:'gray'}]}>|</Text>
-                                </View>
-                                <View style={{flex: 1, justifyContent: "flex-start", alignItems: 'center', flexDirection: 'row'}}>
-                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto',color:'gray'}]}>Help</Text>
-                                </View>
-                            </View> */}
-
-                                {/* <View style={styles.input_view}>
-                                <View style={{flex: 1, justifyContent: "center", alignItems: 'center', flexDirection: 'row'}}>
-                                    <Text style={[styles.remember_me_text,{fontFamily:'Roboto',color:'gray'}]}>Yusata Infotech Pvt. Ltd.</Text>
-                                </View>
-                            </View> */}
-
+                                
                                 <View style={[styles.input_view, { marginTop: 5 }]}>
                                     <View style={{ flex: 1, justifyContent: "center", alignItems: 'center', flexDirection: 'row' }}>
                                         <Text style={[styles.remember_me_text, { fontFamily: 'Roboto', color: 'gray' }]}>Version#: 1.0</Text>
