@@ -11,14 +11,14 @@ export default EStyleSheet.create({
         height: '100%',
         width: '100%'
     },
-    header: {
-        backgroundColor:  colors.HEADER_COLOR
-    },
-    title: {
-        fontSize: '1.1rem',
-        color: '#fff',
-        fontWeight: '500'
-    },
+    // header: {
+    //     backgroundColor:  colors.HEADER_COLOR
+    // },
+    // title: {
+    //     fontSize: '1.1rem',
+    //     color: '#fff',
+    //     fontWeight: '500'
+    // },
     inner_container:{
         flex: 1,
         backgroundColor: '#efefef'
@@ -101,38 +101,38 @@ export default EStyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#d9534f'
     },
-    device_picker: {
-        flex: 1,
-        height: 35,
-        borderWidth: 0.8,
-        borderColor: 'gray',
-        borderRadius: 0,
-        margin: 2
-    },
-    picker_view: {
-        flex: 1,
-        flexDirection: 'row'
-    },
-    picker: {
-        height: '100%',
-        width: '100%'
-    },
-    comment_box: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    comment_input_view: {
-        width: '100%',
-        height: 100,
-        borderWidth: 0.8,
-        borderColor: 'gray',
-        borderRadius: 0,
-    },
-    comment_text: {
-        fontSize: '0.8rem',
-        color: '#000',
-        padding: 8
-    },
+    // device_picker: {
+    //     flex: 1,
+    //     height: 35,
+    //     borderWidth: 0.8,
+    //     borderColor: 'gray',
+    //     borderRadius: 0,
+    //     margin: 2
+    // },
+    // picker_view: {
+    //     flex: 1,
+    //     flexDirection: 'row'
+    // },
+    // picker: {
+    //     height: '100%',
+    //     width: '100%'
+    // },
+    // comment_box: {
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    // },
+    // comment_input_view: {
+    //     width: '100%',
+    //     height: 100,
+    //     borderWidth: 0.8,
+    //     borderColor: 'gray',
+    //     borderRadius: 0,
+    // },
+    // comment_text: {
+    //     fontSize: '0.8rem',
+    //     color: '#000',
+    //     padding: 8
+    // },
     view1: {
         backgroundColor: '#fff',
         padding: 8,
