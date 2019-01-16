@@ -1,5 +1,7 @@
 import Api from '../common/api';
 import { USER } from '../common/urls';
+
+
 import loginData from '../../assets/JSONData/loginData';
 import SimData from '../../assets/JSONData/SimData';
 
@@ -16,17 +18,7 @@ import ReplaceData from '../../assets/JSONData/JobsData/ReplaceData';
 import UnInstallData from '../../assets/JSONData/JobsData/UnInstallData';
 
 export const login = data => Api.post(USER.LOGIN, data);
-export const gpsDeviceCountryIsd = () => Api.get(USER.COUNTRYISD);
-export const gpsDeviceType = () => Api.get(USER.DEVICETYPE);
-export const gpsvehicleList = () => Api.get(USER.VEHICLELIST);
 export const updateSchema = (companyId) => Api.post(USER.UPDATESCHEMA + `?companyId=${companyId}`, null);
-export const addGPSDevice = (gpsdevice) => Api.post(USER.FORMSUBMIT, gpsdevice);
-export const associationDeviceInfo = (deviceUDID) => Api.get(USER.ASSOCIATIONDEVICEINFO + `?udid=${deviceUDID}`);
-export const searchCriteria = (filterData) => Api.post(USER.GPSDEVICESEARCHCRITERIA, filterData);
-export const createVehicleType = () => Api.get(USER.CREATEVEHICLETYPE);
-export const checkGPSDeviceAssociation = (deviceUDID) => Api.get(USER.CHECKDEVICEASSOCIATION + `?udid=${deviceUDID}`);
-export const createVehicle = (AddData) => Api.post(USER.CREATEVEHICLE, AddData);
-
 
 export default userService = {
     /**Login Service */
@@ -34,33 +26,6 @@ export default userService = {
 
     /**Update Schema Service */
     updateSchema,
-
-    /**GPS Device Association Service */
-    gpsDeviceCountryIsd,
-    gpsDeviceType,
-    gpsvehicleList,
-    addGPSDevice,
-    searchCriteria,
-    checkGPSDeviceAssociation,
-    associationDeviceInfo,
-    createVehicleType,
-    createVehicle,
-
-    /**Job Schedule */
-    jobInstallData,
-    jobRepairData,
-    jobReplaceData,
-    jobUnInstallData,
-
-    /**Jobs Schema */
-    // jobListData,
-    // jobHistoryData,
-    // createJobData,
-    // addjobcompany,
-    // addjobserviceType,
-    // addjobTechnician,
-    // addjobvehicle,
-    
 
     doLogin,
     simlogin,

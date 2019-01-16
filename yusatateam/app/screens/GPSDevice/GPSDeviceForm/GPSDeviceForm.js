@@ -9,7 +9,7 @@ import moment from 'moment';
 import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
 import styles from './styles';
 import { GpsModal } from '../GpsModal/GpsModal';
-import { userActions } from '../../../redux/actions';
+import { gpsDeviceActions } from '../../../redux/actions';
 import functions from '../../../common/functions';
 import { globalStyles, colors } from '../../../styles';
 import { BarCodeModal } from '../GPSDeviceForm/BarCodeModal'
@@ -540,9 +540,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        addGPSDevice: (gpsdevice) => dispatch(userActions.addGPSDeviceAssociation(gpsdevice)),
-        onFetchList: () => dispatch(userActions.gpsdeviceRequest()),
-        checkDeviceAssociation: (deviceUDID) => dispatch(userActions.checkGPSDeviceAssociation(deviceUDID))
+        addGPSDevice: (gpsdevice) => dispatch(gpsDeviceActions.addGPSDeviceAssociation(gpsdevice)),
+        onFetchList: () => dispatch(gpsDeviceActions.gpsdeviceRequest()),
+        checkDeviceAssociation: (deviceUDID) => dispatch(gpsDeviceActions.checkGPSDeviceAssociation(deviceUDID))
     }
 }
 

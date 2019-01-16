@@ -1,28 +1,31 @@
 export const USER = {
     LOGIN                       : 'login',
+    UPDATESCHEMA                : 'user/updateSchema',
+};
+
+export const GPSDEVICE = {
     COUNTRYISD                  : 'utility/list/CountryIsd',
     DEVICETYPE                  : 'utility/list/DeviceType',
-    UPDATESCHEMA                : 'user/updateSchema',
     FORMSUBMIT                  : 'ap/add',
     ASSOCIATIONDEVICEINFO       : 'ap/deviceInfo',
-    GPSDEVICESEARCHCRITERIA     : '/ap/dataTable',
+    GPSDEVICELIST               : '/ap/dataTable',
     VEHICLELIST                 : 'utility/list/FreeVehicles',
     CREATEVEHICLE               : 'vehicle/add',
     CREATEVEHICLETYPE           : 'utility/list/VehicleType',
     CHECKDEVICEASSOCIATION      : 'ap/checkdeviceassociation',
-};
+}
 
 
 export const SERVICE = {
-    EXECUTE_SERVICE     : 'execute',
-    SERVICE_LIST        : 'ap/service/list',
-    SERVICE_HISTORY     : 'servicehistory',
-    SERVICE_ADD         : 'ap/service/add',
-    SERVICE_COMPANY     : 'company',
-    SERVICE_VEHICLE     : 'utility/list/FreeVehicles',
-    SERVICE_TECHNICIAN  : 'utility/list/user',
-    SERVICE_TYPE        : 'utility/list/TechServiceType',
-    SERVICE_DEVICE      : 'utility/list/InventoryDevice',
-    SERVICE_SIM         : 'utility/list/InventorySim',
-    SERVICE_STATUS      : 'utility/list/TechServiceStatus',
+    EXECUTE_SERVICE             : 'execute',
+    SERVICE_LIST                : 'ap/service/list',
+    SERVICE_HISTORY             : 'servicehistory',
+    SERVICE_ADD                 : 'ap/service/add',
+    SERVICE_COMPANY             : 'company',
+    SERVICE_VEHICLE             : 'utility/list/FreeVehicles',
+    SERVICE_TECHNICIAN          : 'utility/list/user',
+    SERVICE_TYPE                : 'utility/list/TechServiceType',
+    SERVICE_DEVICE              : 'utility/list/InventoryDevice',
+    SERVICE_SIM                 : 'utility/list/InventorySim',
+    SERVICE_STATUS              : 'utility/list/TechServiceStatus',
 }

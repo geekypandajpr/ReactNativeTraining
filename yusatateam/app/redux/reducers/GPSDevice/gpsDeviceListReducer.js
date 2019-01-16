@@ -1,4 +1,4 @@
-import { GPSDEVICESEARCHCRITERIA } from  '../common/actionTypes';
+import { GPSDEVICE } from '../../common/actionTypes';
 
 const initialState = {
     isLoading: false,
@@ -6,18 +6,18 @@ const initialState = {
     error: false
 }
 
-export default searchCriteria = (state = initialState, action) => {
+export default gpsDeviceListReducer = (state = initialState, action) => {
     switch(action.type) {
-        case GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_REQUEST :
+        case GPSDEVICE.GPSDEVICE_LIST_REQUEST :
             return Object.assign({}, state, {
                 isLoading: true
             });
-        case GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_SUCCESS :
+        case GPSDEVICE.GPSDEVICE_LIST_SUCCESS :
             return Object.assign({}, state, {
                 data: action.list,
                 isLoading: false
             });
-        case GPSDEVICESEARCHCRITERIA.GPSDEVICESEARCHCRITERIA_FAILED :
+        case GPSDEVICE.GPSDEVICE_LIST_FAILED :
             return Object.assign({}, state, {
                 data: [],
                 isLoading: false,

@@ -7,7 +7,7 @@ import deviceReducer from './deviceReducer';
 
 import customerReducer from './cutomerReducer';
 import techReducer from './techReducer';
-import searchCriteriaReducer from './searchCriteriaReducer';
+
 import {
     deviceInfoReducer,
     GPSDeviceReducer,
@@ -15,7 +15,8 @@ import {
     createVehicleTypeReducer,
     createVehicleReducer,
     checkDeviceAssociationReducer,
-    vehicleListReducer
+    vehicleListReducer,
+    gpsDeviceListReducer
 } from './GPSDevice';
 
 import {
@@ -39,11 +40,11 @@ const rootReducers = combineReducers({
     gpsDeviceData: GPSDeviceReducer,
     deviceInfo: deviceInfoReducer,
     addGPSDeviceData: addGPSDeviceReducer,
-    searchList: searchCriteriaReducer,
     createVehicleTypeData: createVehicleTypeReducer,
     checkGPSDeviceAssocData: checkDeviceAssociationReducer,
     createVehicleData: createVehicleReducer,
     vehicleListData: vehicleListReducer,
+    gpsDeviceListData: gpsDeviceListReducer,
 
     /**Job Schema */
     createJobData: createJobReducer,

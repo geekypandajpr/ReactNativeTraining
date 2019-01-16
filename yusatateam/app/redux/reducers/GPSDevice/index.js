@@ -4,4 +4,5 @@ export { default as addGPSDeviceReducer } from './addGPSDeviceReducer';
 export { default as createVehicleTypeReducer } from './createVehicleTypeReducer'
 export { default as checkDeviceAssociationReducer } from './checkDeviceAssociationReducer';
 export { default as createVehicleReducer } from './createVehicleReducer';
-export { default as vehicleListReducer } from './vehicleListReducer'
+export { default as vehicleListReducer } from './vehicleListReducer';
+export { default as gpsDeviceListReducer } from './gpsDeviceListReducer';

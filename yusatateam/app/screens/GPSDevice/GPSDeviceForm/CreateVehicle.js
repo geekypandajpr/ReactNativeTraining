@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import styles from './styles';
 import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
 import { BarCodeModal } from './BarCodeModal';
-import { userActions } from '../../../redux/actions';
+import { gpsDeviceActions } from '../../../redux/actions';
 import { GpsModal } from '../GpsModal/GpsModal';
 import { showToast } from '../../../common/functions';
 
@@ -57,7 +57,7 @@ export class CreateVehicle extends React.Component {
     async componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this.props.oncreateVehicleType();
-        this.setState({deviceId:this.props.navigation.state.params.deviceid});
+        this.setState({ deviceId: this.props.navigation.state.params.deviceid });
     }
 
     componentWillUnmount() {
@@ -368,8 +368,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        createVehicle: (value) => dispatch(userActions.createVehicle(value)),
-        oncreateVehicleType: () => dispatch(userActions.createVehicleType())
+        createVehicle: (value) => dispatch(gpsDeviceActions.createVehicle(value)),
+        oncreateVehicleType: () => dispatch(gpsDeviceActions.createVehicleType())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateVehicle)

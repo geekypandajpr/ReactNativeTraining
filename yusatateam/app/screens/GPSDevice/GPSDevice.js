@@ -12,9 +12,9 @@ import { Card, Text } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
 import { globalStyles } from '../../styles';
 import styles from './styles';
-import { Toolbar, GpsDeviceData, SearchBar,Activityindication } from '../../components';
-import { userActions } from '../../redux/actions';
-import { DeviceInfo} from '../QrCodeScanner/DeviceInfo';
+import { Toolbar, GpsDeviceData, SearchBar, Activityindication } from '../../components';
+import { gpsDeviceActions } from '../../redux/actions';
+import { DeviceInfo } from '../QrCodeScanner/DeviceInfo';
 
 export class GPSDevice extends React.Component {
     constructor(props) {
@@ -26,12 +26,12 @@ export class GPSDevice extends React.Component {
             deviceInfoData: {},
             isGetDeviceUDID: false,
             isSearching: false,
-            listValues : [],
+            listValues: [],
             selected2: '',
-            dropdownKey : '',
-            pageCount : 10,
+            dropdownKey: '',
+            pageCount: 10,
             loading: false,
-            countryList : [],
+            countryList: [],
         };
         this.list = [];
         this.modalRef = React.createRef();
@@ -44,7 +44,7 @@ export class GPSDevice extends React.Component {
         });
     }
 
-    loadMoreMessages () {
+    loadMoreMessages() {
         this.setState({ loading: true })
         this.currentView()
     }
@@ -77,7 +77,7 @@ export class GPSDevice extends React.Component {
             ]
         }
         this.props.onListFetchData(filterData);
-        this.setState({pageCount : this.state.pageCount+10})
+        this.setState({ pageCount: this.state.pageCount + 10 })
     }
 
     async componentWillMount() {
@@ -94,19 +94,19 @@ export class GPSDevice extends React.Component {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
     componentWillReceiveProps(nextProps) {
-        if(nextProps.deviceInfo.isFetched && this.state.isSearching) {
-            this.setState({deviceInfoData : nextProps.deviceInfo.deviceInfo, isGetDeviceUDID: true})
-        }      
+        if (nextProps.deviceInfo.isFetched && this.state.isSearching) {
+            this.setState({ deviceInfoData: nextProps.deviceInfo.deviceInfo, isGetDeviceUDID: true })
+        }
 
-        if(this.props.searchList !== nextProps.searchList) {
-            var listData = nextProps.searchList.data.results
-            if(listData) {
+        if (this.props.gpsDeviceList !== nextProps.gpsDeviceList) {
+            var listData = nextProps.gpsDeviceList.data.results
+            if (listData) {
                 this.setState({
-                    listValues : listData.data
+                    listValues: listData.data
                 });
             }
         }
-        
+
     }
 
     handleBackPress = () => {
@@ -119,11 +119,11 @@ export class GPSDevice extends React.Component {
     }
 
     dropdownValue = (value) => {
-        this.setState({dropdownKey: value});
+        this.setState({ dropdownKey: value });
     }
 
     getDeviceInfo() {
-        if(this.state.deviceUDID !== '') {
+        if (this.state.deviceUDID !== '') {
             this.setState({ isSearching: true });
             this.props.fetchDeviceInfo(this.state.deviceUDID);
         }
@@ -142,54 +142,53 @@ export class GPSDevice extends React.Component {
 
                     <Toolbar title='GPS Devices'
                         leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                        setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('GPSDeviceForm', { onGoBack: () => this.updateList() })} 
-                        Calender='repo-clone' calenderType='Octicons' onCalenderPress={() => navigate('QrCode')}/>
+                        setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('GPSDeviceForm', { onGoBack: () => this.updateList() })}
+                        Calender='repo-clone' calenderType='Octicons' onCalenderPress={() => navigate('QrCode')} />
                     {
-                        this.state.loading ? null : 
-                        <Activityindication  visible={this.props.searchList.isLoading}/>
+                        this.state.loading ? null :
+                            <Activityindication visible={this.props.gpsDeviceList.isLoading} />
                     }
-                    
-                    <Activityindication visible={this.props.deviceInfo.isLoading}/>
+
+                    <Activityindication visible={this.props.deviceInfo.isLoading} />
 
                     <SearchBar
                         placeholder={'Search by device UDID'}
                         isDropdown={false}
-                        onChangeText={(text) => this.setState({deviceUDID: text})}
+                        onChangeText={(text) => this.setState({ deviceUDID: text })}
                         value={this.state.deviceUDID}
                         onSearch={this.getDeviceInfo}
                     />
-                    {   this.state.isGetDeviceUDID ?
+                    {this.state.isGetDeviceUDID ?
                         <DeviceInfo onClose={() => this.setState({ isGetDeviceUDID: false, isSearching: false, deviceUDID: '' })}
                             deviceUDID={this.state.deviceUDID}
-                            deviceInfoData = {this.state.deviceInfoData}
+                            deviceInfoData={this.state.deviceInfoData}
                         />
                         :
                         <FlatList
-                        // initialNumToRender={10}
-                        data={this.state.listValues}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item, index }) =>
-                            <GpsDeviceData
-                                item={item}/>   
+                            // initialNumToRender={10}
+                            data={this.state.listValues}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={({ item, index }) =>
+                                <GpsDeviceData
+                                    item={item} />
+                            }
+                            onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+                            onEndReached={(distanceFromEnd) => {
+                                if (!this.onEndReachedCalledDuringMomentum) {
+                                    this.loadMoreMessages()
+                                    this.onEndReachedCalledDuringMomentum = true;
                                 }
-                                onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
-                                onEndReached = {(distanceFromEnd) => {
-                                    if(!this.onEndReachedCalledDuringMomentum)
-                                    {
-                                        this.loadMoreMessages()
-                                        this.onEndReachedCalledDuringMomentum = true;
-                                    }
-                                }
+                            }
                             }
                             onEndReachedThreshold={0.5}
                         />
-                        
+
                     }
-                    <View style={{backgroundColor : "#ffff"}}>
-                    {   this.props.searchList.isLoading && this.state.loading ? 
-                        <ActivityIndicator size="large" color="black"  animating={this.props.searchList.isLoading}/>
-                        : null
-                    }
+                    <View style={{ backgroundColor: "#ffff" }}>
+                        {this.props.gpsDeviceList.isLoading && this.state.loading ?
+                            <ActivityIndicator size="large" color="black" animating={this.props.gpsDeviceList.isLoading} />
+                            : null
+                        }
                     </View>
                 </View>
         );
@@ -198,113 +197,16 @@ export class GPSDevice extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        searchList : state.searchList,
-        deviceInfo : state.deviceInfo 
+        gpsDeviceList: state.gpsDeviceListData,
+        deviceInfo: state.deviceInfo
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onListFetchData : (filterData) => dispatch(userActions.searchCriteria(filterData)),
-        fetchDeviceInfo : (deviceUDID) => dispatch(userActions.getAssociationDeviceInfo(deviceUDID))
+        onListFetchData: (listRequest) => dispatch(gpsDeviceActions.gpsDeviceList(listRequest)),
+        fetchDeviceInfo: (deviceUDID) => dispatch(gpsDeviceActions.getAssociationDeviceInfo(deviceUDID))
     }
-}  
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(GPSDevice);
-
-// class DeviceInfo extends React.Component {
-//     render() {
-//         const datas = this.props.deviceInfoData
-//         const deviceInfo = datas.results ? datas.results.deviceInfo : datas ;
-//         return (
-//             <View style={{flex: 1}}>
-//                 <Card style={[globalStyles.card]}>
-
-//                     <View style={{flexDirection: 'row'}}>
-//                         <View style={{flex: 4, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={[globalStyles.primary_text,{fontWeight: '500'}]}>UDID: {this.props.deviceUDID}</Text>
-//                         </View>
-//                         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
-//                             <TouchableOpacity onPress={this.props.onClose}>
-//                                 <MaterialIcons name='close' size={24} color='#d9534f' />
-//                             </TouchableOpacity>
-//                         </View>
-//                     </View>
-
-//                     <View style={{flexDirection: 'row'}}>
-//                         <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.primary_text}>Company name</Text>
-//                         </View>
-//                         <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.secondary_text}>:</Text>
-//                         </View>
-//                         <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.secondary_text}>{deviceInfo.companyName}</Text>
-//                         </View>
-//                     </View>
-
-//                     <View style={{flexDirection: 'row'}}>
-//                         <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.primary_text}>Driver name</Text>
-//                         </View>
-//                         <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.secondary_text}>:</Text>
-//                         </View>
-//                         <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.secondary_text}>{deviceInfo.driverName}</Text>
-//                         </View>
-//                     </View>
-
-//                     <View style={{flexDirection: 'row'}}>
-//                         <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.primary_text}>Vehicle #</Text>
-//                         </View>
-//                         <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.secondary_text}>:</Text>
-//                         </View>
-//                         <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.secondary_text}>{deviceInfo.vehicleNumber}</Text>
-//                         </View>
-//                     </View>
-
-//                     <View style={{flexDirection: 'row'}}>
-//                         <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.primary_text}>Device model</Text>
-//                         </View>
-//                         <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.secondary_text}>:</Text>
-//                         </View>
-//                         <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.secondary_text}>{deviceInfo.deviceModel}</Text>
-//                         </View>
-//                     </View>
-
-//                     <View style={{flexDirection: 'row'}}>
-//                         <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.primary_text}>Device model name</Text>
-//                         </View>
-//                         <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.secondary_text}>:</Text>
-//                         </View>
-//                         <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.secondary_text}>{deviceInfo.deviceModelName}</Text>
-//                         </View>
-//                     </View>
-
-//                     <View style={{flexDirection: 'row'}}>
-//                         <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.primary_text}>Department name</Text>
-//                         </View>
-//                         <View style={{flex: 0.2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.secondary_text}>:</Text>
-//                         </View>
-//                         <View style={{flex: 2, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-//                             <Text style={globalStyles.secondary_text}>{deviceInfo.departmentName}</Text>
-//                         </View>
-//                     </View>
-
-//                 </Card>
-//             </View>
-//         )
-//     }
-// }

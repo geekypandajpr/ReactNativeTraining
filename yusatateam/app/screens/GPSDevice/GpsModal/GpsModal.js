@@ -3,7 +3,7 @@ import { Text, Modal, View, TouchableHighlight, FlatList, TouchableOpacity } fro
 import { MaterialIcons } from '@expo/vector-icons';
 import { Header, Body, Right, List, ListItem } from 'native-base';
 import { AppLoading } from 'expo';
-import {SearchBar} from '../../../components/SearchBar/SearchBar';
+import { SearchBar } from '../../../components/SearchBar/SearchBar';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 
@@ -17,7 +17,7 @@ export default class GpsModal extends React.Component {
             data: [],
             title: '',
             map: new Map(),
-            text : ''
+            text: ''
         }
         this.setModalVisible = this.setModalVisible.bind(this);
         this.onSelectValue = this.onSelectValue.bind(this);
@@ -36,17 +36,16 @@ export default class GpsModal extends React.Component {
 
     onSelectValue(item) {
         this.props.selectedValue(item);
-        this.setModalVisible(false, '' ,[]);
+        this.setModalVisible(false, '', []);
     }
 
     setModalVisible(visible, title, data = []) {
         this.arrayholder = data;
-        this.setState({ modalVisible: visible, data: data, title :title,text : ''});
+        this.setState({ modalVisible: visible, data: data, title: title, text: '' });
     }
 
-    getSearch(text)
-    {
-        
+    getSearch(text) {
+
         const newData = this.arrayholder.filter(function (item) {
             // alert(JSON.stringify(item))
             itemData = item.label.toUpperCase();
@@ -56,9 +55,9 @@ export default class GpsModal extends React.Component {
         this.setState({
             data: newData,
             text: text
-        },)
+        })
     }
- 
+
 
     render() {
         return (
@@ -87,14 +86,14 @@ export default class GpsModal extends React.Component {
                                         </TouchableHighlight>
                                     </Right>
                                 </Header>
-                                <View style={{backgroundColor : 'white'}}>
-                                <SearchBar placeholder={'Search By '}
-                                         value = { this.state.text}
+                                <View style={{ backgroundColor: 'white' }}>
+                                    <SearchBar placeholder={'Search By '}
+                                        value={this.state.text}
                                         onChangeText={(text) => this.getSearch(text)}
-                                        // onSearch={this.getSearch(this.state.searchValue)}
+                                    // onSearch={this.getSearch(this.state.searchValue)}
                                     />
                                 </View>
-                                
+
                                 <View style={{ flex: 1, backgroundColor: '#efefef' }}>
                                     <FlatList
                                         data={this.state.data}
