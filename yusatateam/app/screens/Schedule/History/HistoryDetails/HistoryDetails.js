@@ -38,7 +38,6 @@ export default class HistoryDetails extends React.Component {
             number: this.state.item.customerMobileNo, 
             prompt: false 
           }
-           
           call(args).catch(console.error)
     }
 
