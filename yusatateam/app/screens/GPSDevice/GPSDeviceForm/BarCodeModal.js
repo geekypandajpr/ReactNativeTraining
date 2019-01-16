@@ -1,12 +1,23 @@
 import React from 'react';
-import { Text, Modal, View, TouchableHighlight, FlatList, TouchableOpacity, Image, Dimensions, LayoutAnimation, Alert, Linking } from 'react-native';
+import {
+    Text,
+    Modal,
+    View,
+    TouchableHighlight,
+    TouchableOpacity,
+    Image,
+    Dimensions,
+    LayoutAnimation,
+    Alert,
+    Linking
+} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Header, Body, Right, List, ListItem } from 'native-base';
-import { BarCodeScanner, Permissions } from 'expo';
-import { AppLoading } from 'expo';
+import { Header, Body, Right } from 'native-base';
+import { BarCodeScanner, AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const { width } = Dimensions.get('window');
+
 export default class BarCodeModal extends React.Component {
     constructor(props) {
         super(props);

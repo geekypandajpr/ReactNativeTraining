@@ -11,19 +11,18 @@ import { connect } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
 
 import styles from './styles';
-import { Toolbar,Activityindication,HeaderWithSearchbar } from '../../components';
+import { Activityindication, HeaderWithSearchbar } from '../../components';
 import { DeviceDetails } from './DeviceDeatails';
-import {  SearchBar } from '../../components/SearchBar/SearchBar';
 import { userActions } from '../../redux/actions';
 import { globalStyles } from '../../styles';
 
-export  class Device extends React.Component {
+export class Device extends React.Component {
     constructor() {
         super();
         this.state = {
             isLoading: true,
             data: null,
-            searchValue : ''
+            searchValue: ''
         };
         this.modalRef = React.createRef();
         this.onSearchClearPressed = this.onSearchClearPressed.bind(this);
@@ -53,26 +52,25 @@ export  class Device extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     }
     componentWillReceiveProps(nextProps) {
-        if(this.props.deviceDatas !== nextProps.deviceDatas) {
-            this.setState({data: nextProps.deviceDatas.data});
+        if (this.props.deviceDatas !== nextProps.deviceDatas) {
+            this.setState({ data: nextProps.deviceDatas.data });
             this.arrayList = nextProps.deviceDatas.data;
         }
     }
 
-    SearchFilterFunction(text) 
-    {
+    SearchFilterFunction(text) {
         const newData = this.arrayList.filter(function (item) {
             const itemData = item.IMEI.toUpperCase()
-            const textData = text.toUpperCase() 
+            const textData = text.toUpperCase()
             return itemData.indexOf(textData) > -1
         })
         this.setState({
-            data: newData,         
+            data: newData,
             searchValue: text
         },
         )
     }
-    onSearchClearPressed(){
+    onSearchClearPressed() {
         this.SearchFilterFunction('');
     }
 
@@ -82,15 +80,15 @@ export  class Device extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Activityindication visible={this.props.deviceDatas.isLoading}/>
+                    <Activityindication visible={this.props.deviceDatas.isLoading} />
                     <HeaderWithSearchbar
                         onChangeText={(text) => this.SearchFilterFunction(text)}
                         onSearchClear={this.onSearchClearPressed}
                         searchValue={this.state.searchValue}
                         title={'Devices'}
                         leftIcon='arrow-left'
-                        goBack={() => goBack()}/>
-                        {/* <SearchBar onChangeText = {(text)=>this.searchFunction(text)}
+                        goBack={() => goBack()} />
+                    {/* <SearchBar onChangeText = {(text)=>this.searchFunction(text)}
                         ></SearchBar> */}
                     <View style={styles.viewStyle}>
                         <FlatList
@@ -114,44 +112,44 @@ export  class Device extends React.Component {
 
                                             <View style={styles.Margin_Row}>
                                                 <View style={styles.Level_Second}>
-                                                    <Text style={[globalStyles.title_text,{fontFamily: 'Roboto'}]}>{item.IMEI}</Text>
+                                                    <Text style={[globalStyles.title_text, { fontFamily: 'Roboto' }]}>{item.IMEI}</Text>
                                                 </View>
 
                                                 <View style={[styles.Status_Button, { backgroundColor: item.color }]} >
-                                                    <Text style={[styles.Status_Style,{fontFamily: 'Roboto'}]}>{item.status}</Text>
+                                                    <Text style={[styles.Status_Style, { fontFamily: 'Roboto' }]}>{item.status}</Text>
                                                 </View>
                                             </View>
 
                                             <View style={styles.Level_Row}>
                                                 <View style={styles.Level_Head}>
-                                                    <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>ORDER#</Text>
+                                                    <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>ORDER#</Text>
                                                 </View>
                                                 <View style={{ flex: 0.2 }}>
                                                     <Text style={globalStyles.secondary_text}> : </Text>
                                                 </View>
                                                 <View style={styles.Level_Style}>
-                                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.ORDER}</Text>
+                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.ORDER}</Text>
                                                 </View>
                                             </View>
 
                                             <View style={styles.Level_Row}>
                                                 <View style={styles.Level_Head}>
-                                                    <Text style={[globalStyles.primary_text,{fontFamily: 'Roboto'}]}>ESN</Text>
+                                                    <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>ESN</Text>
                                                 </View>
                                                 <View style={{ flex: 0.2 }}>
                                                     <Text style={globalStyles.secondary_text}> : </Text>
                                                 </View>
                                                 <View style={styles.Level_Style}>
-                                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.ESN}</Text>
+                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.ESN}</Text>
                                                 </View>
                                             </View>
 
                                             <View style={styles.Level_Row}>
                                                 <View style={styles.Level_Second}>
-                                                    <Text style={[globalStyles.secondary_text,{fontFamily: 'Roboto'}]}>{item.Model}</Text>
+                                                    <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto' }]}>{item.Model}</Text>
                                                 </View>
                                                 <View style={styles.jobTypeView}>
-                                                    <Text style={[styles.jobTypeText,{fontFamily: 'Roboto'}]}>{item.Manufacturer}</Text>
+                                                    <Text style={[styles.jobTypeText, { fontFamily: 'Roboto' }]}>{item.Manufacturer}</Text>
                                                 </View>
                                             </View>
 
@@ -169,16 +167,16 @@ export  class Device extends React.Component {
 
 }
 
-function mapStateToProps(state){
-    return{
-        deviceDatas : state.devicedata
+function mapStateToProps(state) {
+    return {
+        deviceDatas: state.devicedata
     }
 }
 
-function mapDispatchToProps(dispatch){
-    return{ 
-        onFetchData:()=>dispatch(userActions.deviceRequest())
-      }
+function mapDispatchToProps(dispatch) {
+    return {
+        onFetchData: () => dispatch(userActions.deviceRequest())
+    }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Device)
+export default connect(mapStateToProps, mapDispatchToProps)(Device)

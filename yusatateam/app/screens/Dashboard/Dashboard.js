@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Alert, BackHandler } from 'react-native';
 import { AppLoading } from 'expo';
+import { connect } from 'react-redux';
+
 import {
     Toolbar,
     SquareButton,
@@ -10,10 +12,8 @@ import {
     Barchart,
     Activityindication
 } from '../../components';
-import { connect } from 'react-redux';
-
 import { userActions} from '../../redux/actions';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 import styles from './Styles';
 import { DashboardFilter } from './DashBoardFilter/DashboardFilter';
 

@@ -3,7 +3,7 @@ import { AppLoading } from 'expo';
 import { View } from 'react-native';
 import { Statusbar, Calendarlist } from '../../components';
 import styles from './Styles';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 import { Ionicons } from '@expo/vector-icons';
 import { Left, Body, Button, Text, Tab, TabHeading, Tabs, Container, Header, Toast } from 'native-base';
 

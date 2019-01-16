@@ -8,7 +8,7 @@ import {
     IconWithText,
     Toolbar
 } from '../../components';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 
 export default class HomeScreen extends React.Component {
     async componentWillMount() {

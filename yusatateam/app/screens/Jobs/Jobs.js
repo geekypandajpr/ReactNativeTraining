@@ -6,7 +6,7 @@ import styles from './styles'
 import { connect } from 'react-redux';
 import { userActions } from '../../redux/actions';
 import { Toolbar,Activityindication ,JobTabData } from '../../components';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 
 export  class Jobs extends React.Component {
     constructor(props) {

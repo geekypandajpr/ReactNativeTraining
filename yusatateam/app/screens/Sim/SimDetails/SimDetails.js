@@ -8,7 +8,7 @@ import {
 import { Text,Button, Header, Body, Left, Right, Title } from 'native-base';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import styles from './styles';
-import colors from '../../../constants/colors';
+import { colors } from '../../../styles';
 
 
 export default class SimDetails extends React.Component {

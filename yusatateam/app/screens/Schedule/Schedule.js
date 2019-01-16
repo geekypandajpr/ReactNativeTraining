@@ -7,7 +7,7 @@ import { Card } from 'native-base';
 
 import { ScheduleEvent, Toolbar, Activityindication } from '../../components';
 import styles from './Styles';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 import Filter from './Filter/Filter';
 import { Status } from './Status';
 import { serviceActions } from '../../redux/actions';

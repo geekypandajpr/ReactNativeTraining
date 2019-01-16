@@ -6,7 +6,8 @@ import {
 } from 'react-native';
 import styles from './styles';
 import { Item, Input, Icon, Text, Button,Label } from 'native-base';
-import functions from '../../common/functions'
+import functions from '../../common/functions';
+
 export default class ChangePassword extends React.Component {
     constructor(props) {
         super(props);

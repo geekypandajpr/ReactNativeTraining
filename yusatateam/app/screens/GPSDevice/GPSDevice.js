@@ -3,14 +3,11 @@ import {
     View,
     FlatList,
     BackHandler,
-    TouchableOpacity,
     ActivityIndicator
 } from 'react-native';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
-import { Card, Text } from 'native-base';
-import { MaterialIcons } from '@expo/vector-icons';
-import { globalStyles } from '../../styles';
+
 import styles from './styles';
 import { Toolbar, GpsDeviceData, SearchBar, Activityindication } from '../../components';
 import { gpsDeviceActions } from '../../redux/actions';

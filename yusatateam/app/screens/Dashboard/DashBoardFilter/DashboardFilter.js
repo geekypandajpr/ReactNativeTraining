@@ -6,7 +6,7 @@ import { Text, Button, Header, Body, Right } from 'native-base';
 import styles from './styles';
 import { UnderlineText } from '../../../components';
 import Dropdown from './Dropdown';
-import colors from '../../../constants/colors';
+import { colors } from '../../../styles';
 import functions from '../../../common/functions'
 
 export default class DashboardFilter extends React.Component {

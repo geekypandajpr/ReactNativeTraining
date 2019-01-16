@@ -9,7 +9,7 @@ import { Agenda } from 'react-native-calendars';
 import { ScheduleEvent, Toolbar } from '../../../components';
 import styles from './styles';
 import JobDetails from '../../Jobs/JobDetails/JobDetails';
-import colors from '../../../constants/colors';
+import { colors } from '../../../styles';
 import Filter from '../Filter/Filter';
 import { connect } from 'react-redux';
 import { serviceActions } from '../../../redux/actions';

@@ -5,7 +5,7 @@ import { Button, Text } from 'native-base';
 import { Feather } from '@expo/vector-icons';
 
 import { Statusbar, Float } from '../../components';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 import styles from './Styles';
 
 export default class ForgotPassword extends React.Component {

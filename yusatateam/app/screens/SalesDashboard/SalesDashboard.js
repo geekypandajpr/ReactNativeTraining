@@ -12,8 +12,9 @@ import {
     Barchart,
     IconWithText
 } from '../../components';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 import { AppLoading } from 'expo';
+
 export default class SalesDashboard extends React.Component {
     constructor() {
         super();

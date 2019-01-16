@@ -5,7 +5,7 @@ import moment from 'moment';
 import EStylesheet from 'react-native-extended-stylesheet';
 import { Tab, Tabs, ScrollableTab, TabHeading } from 'native-base';
 
-import colors from '../../../constants/colors'
+import {colors} from '../../../styles'
 import { Toolbar } from '../../../components/Toolbar';
 import { TechDetails } from './TechDetails';
 import Year from './Year';
