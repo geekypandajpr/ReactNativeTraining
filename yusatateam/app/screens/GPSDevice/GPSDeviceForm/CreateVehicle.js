@@ -5,10 +5,9 @@ import { ImagePicker, AppLoading } from 'expo';
 import { connect } from 'react-redux';
 
 import styles from './styles';
-import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
+import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
 import { BarCodeModal } from './BarCodeModal';
 import { gpsDeviceActions } from '../../../redux/actions';
-import { GpsModal } from '../GpsModal/GpsModal';
 import { showToast } from '../../../common/functions';
 
 export class CreateVehicle extends React.Component {
@@ -230,6 +229,7 @@ export class CreateVehicle extends React.Component {
                                     rightIcon={'md-barcode'}
                                     rightIconType='Ionicons'
                                     rightIconPress={() => this.BarCodePage("Device")}
+                                    rightIconStyle={{color: 'gray', fontSize: 20}}
                                     placeholder='Device Id'
                                     value={this.state.deviceId}
                                     returnKeyType={'next'}
@@ -251,6 +251,7 @@ export class CreateVehicle extends React.Component {
                                     rightIcon={'md-barcode'}
                                     rightIconType='Ionicons'
                                     rightIconPress={() => this.BarCodePage("SIM")}
+                                    rightIconStyle={{color: 'gray', fontSize: 20}}
                                     placeholder='Sim #'
                                     value={this.state.simNumber}
                                     returnKeyType={'next'}
@@ -272,6 +273,7 @@ export class CreateVehicle extends React.Component {
                                     rightIcon={'md-barcode'}
                                     rightIconType='Ionicons'
                                     rightIconPress={() => this.BarCodePage("VIN")}
+                                    rightIconStyle={{color: 'gray', fontSize: 20}}
                                     placeholder='VIN'
                                     value={this.state.vin}
                                     returnKeyType={'next'}
@@ -352,7 +354,7 @@ export class CreateVehicle extends React.Component {
                             </Button>
                         </FooterTab>
                     </Footer>
-                    <GpsModal ref={this.modalRef} selectedValue={(item) => { this.onVehicleTypeSelect(item) }} />
+                    <SinglePicker ref={this.modalRef} selectedValue={(item) => { this.onVehicleTypeSelect(item) }} />
                 </View>
         );
     }

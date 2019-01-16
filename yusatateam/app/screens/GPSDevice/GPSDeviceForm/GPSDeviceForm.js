@@ -6,9 +6,8 @@ import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker';
 import moment from 'moment';
 
-import { Toolbar, Float, UnderlineText, Activityindication } from '../../../components';
+import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
 import styles from './styles';
-import { GpsModal } from '../GpsModal/GpsModal';
 import { gpsDeviceActions } from '../../../redux/actions';
 import functions from '../../../common/functions';
 import { globalStyles, colors } from '../../../styles';
@@ -307,12 +306,10 @@ export class GPSDeviceForm extends React.Component {
                                                     getRef={(input) => { this.deviceudid = input; }}
                                                     onSubmitEditing={() => this._focusNextField('mobile')}
                                                 />
-                                                <Icon name='md-barcode' type="Ionicons" onPress={() => this.BarCodePage("DeviceUDID")} />
-                                                {this.state.isDeviceUdidValid ?
-                                                    <Icon name='ios-checkmark-circle-outline' style={{ fontSize: 20, color: 'green' }} />
-                                                    :
-                                                    <Icon name='ios-close-circle-outline' style={{ fontSize: 20, color: 'red' }} />
-                                                }
+                                                <Icon name={ this.state.isDeviceUdidValid ? 'ios-checkmark-circle-outline' : null }
+                                                    style={{ fontSize: 20, color: 'green' }} />
+                                                <Icon name='md-barcode' type="Ionicons" onPress={() => this.BarCodePage("DeviceUDID")}
+                                                    style={{color: 'gray', fontSize: 20}} />
                                             </Item>
                                         </View>
 
@@ -517,7 +514,7 @@ export class GPSDeviceForm extends React.Component {
                         </ScrollView>
                     </KeyboardAvoidingView>
                     <BarCodeModal ref={this.BarmodalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
-                    <GpsModal ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
+                    <SinglePicker ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
                 </View>
         );
     }

@@ -2,66 +2,47 @@ import { combineReducers } from 'redux';
 
 import { navReducer } from '../../router';
 import userReducer from './userReducer';
+import * as GPSDevice from './GPSDevice';
+import * as JobReducer from './JobReducer';
+
 import simReducer from './SIMREDUCER/simReducer';
 import deviceReducer from './deviceReducer';
-
 import customerReducer from './cutomerReducer';
 import techReducer from './techReducer';
 
-import {
-    deviceInfoReducer,
-    GPSDeviceReducer,
-    addGPSDeviceReducer,
-    createVehicleTypeReducer,
-    createVehicleReducer,
-    checkDeviceAssociationReducer,
-    vehicleListReducer,
-    gpsDeviceListReducer
-} from './GPSDevice';
-
-import {
-    createJobReducer,
-    jobHistoryReducer,
-    jobListReducer,
-    companyReducer,
-    executeServiceReducer,
-    serviceStatusReducer,
-    simDeviceReducer
-} from './JobReducer';
-
 const rootReducers = combineReducers({
     /**Router */
-    nav: navReducer,
+    nav                     : navReducer,
 
     /**Login */
-    loginData: userReducer,
+    loginData               : userReducer,
 
     /**GPS Device Association */
-    gpsDeviceData: GPSDeviceReducer,
-    deviceInfo: deviceInfoReducer,
-    addGPSDeviceData: addGPSDeviceReducer,
-    createVehicleTypeData: createVehicleTypeReducer,
-    checkGPSDeviceAssocData: checkDeviceAssociationReducer,
-    createVehicleData: createVehicleReducer,
-    vehicleListData: vehicleListReducer,
-    gpsDeviceListData: gpsDeviceListReducer,
+    gpsDeviceData           : GPSDevice.GPSDeviceReducer,
+    deviceInfo              : GPSDevice.deviceInfoReducer,
+    addGPSDeviceData        : GPSDevice.addGPSDeviceReducer,
+    createVehicleTypeData   : GPSDevice.createVehicleTypeReducer,
+    checkGPSDeviceAssocData : GPSDevice.checkDeviceAssociationReducer,
+    createVehicleData       : GPSDevice.createVehicleReducer,
+    vehicleListData         : GPSDevice.vehicleListReducer,
+    gpsDeviceListData       : GPSDevice.gpsDeviceListReducer,
 
     /**Job Schema */
-    createJobData: createJobReducer,
-    serviceListData: jobListReducer,
-    serviceHistoryData: jobHistoryReducer,
-    serviceCompanyData: companyReducer,
-    executeServiceData: executeServiceReducer,
-    serviceStatus: serviceStatusReducer,
-    simDeviceData: simDeviceReducer,
+    createJobData           : JobReducer.createJobReducer,
+    serviceListData         : JobReducer.jobListReducer,
+    serviceHistoryData      : JobReducer.jobHistoryReducer,
+    serviceCompanyData      : JobReducer.companyReducer,
+    executeServiceData      : JobReducer.executeServiceReducer,
+    serviceStatus           : JobReducer.serviceStatusReducer,
+    simDeviceData           : JobReducer.simDeviceReducer,
 
     /**Sim Info */
-    simData: simReducer,
+    simData                 : simReducer,
 
     /**Other */
-    devicedata: deviceReducer,
-    customersData: customerReducer,
-    TechnicianData: techReducer,
+    devicedata              : deviceReducer,
+    customersData           : customerReducer,
+    TechnicianData          : techReducer,
 
     //We can add more reducers here, separated by comma(,)
 })

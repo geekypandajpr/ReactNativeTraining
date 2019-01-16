@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Modal, View, TouchableHighlight, TouchableOpacity,FlatList } from 'react-native';
+import { Text, Modal, View, TouchableHighlight, TouchableOpacity, FlatList } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Header, Body, Right, List, ListItem } from 'native-base';
 import { AppLoading } from 'expo';
@@ -14,8 +14,7 @@ export default class SinglePicker extends React.Component {
             modalVisible: false,
             data: [],
             title: '',
-            map: new Map(),
-            text : ''
+            text: ''
         }
         this.setModalVisible = this.setModalVisible.bind(this);
         this.onSelectValue = this.onSelectValue.bind(this);
@@ -34,12 +33,12 @@ export default class SinglePicker extends React.Component {
 
     onSelectValue(item) {
         this.props.selectedValue(item);
-        this.setModalVisible(false, '' ,[]);
+        this.setModalVisible(false, '', []);
     }
 
     setModalVisible(visible, title, data = []) {
         this.arrayholder = data;
-        this.setState({ modalVisible: visible, data: data, title :title,text : ''});
+        this.setState({ modalVisible: visible, data: data, title: title, text: '' });
     }
 
     getSearch(text) {
@@ -52,9 +51,9 @@ export default class SinglePicker extends React.Component {
         this.setState({
             data: newData,
             text: text
-        },)
+        })
     }
- 
+
 
     render() {
         return (
@@ -83,14 +82,14 @@ export default class SinglePicker extends React.Component {
                                         </TouchableHighlight>
                                     </Right>
                                 </Header>
-                                <View style={{backgroundColor : 'white'}}>
+                                <View style={{ backgroundColor: 'white' }}>
                                     <SearchBar placeholder={'Search here '}
-                                        value = { this.state.text}
+                                        value={this.state.text}
                                         onChangeText={(text) => this.getSearch(text)}
-                                        // onSearch={this.getSearch(this.state.searchValue)}
+                                    // onSearch={this.getSearch(this.state.searchValue)}
                                     />
                                 </View>
-                                
+
                                 <View style={{ flex: 1, backgroundColor: '#efefef' }}>
                                     <FlatList
                                         data={this.state.data}
@@ -99,7 +98,7 @@ export default class SinglePicker extends React.Component {
                                             <List>
                                                 <TouchableOpacity >
                                                     <ListItem onPress={() => { this.onSelectValue(item) }}>
-                                                        <Text>{item.label}</Text>
+                                                        <Text style={{ fontFamily: 'Roboto' }}>{item.label}</Text>
                                                     </ListItem>
                                                 </TouchableOpacity>
                                             </List>
@@ -126,8 +125,7 @@ const styles = EStyleSheet.create({
         position: 'absolute',
         bottom: 0
     },
-    Header_Style:
-    {
+    Header_Style: {
         backgroundColor: '#0073b7'
     },
     Text_style: {
