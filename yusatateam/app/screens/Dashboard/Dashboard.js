@@ -221,7 +221,7 @@ export  class Dashboard extends React.Component {
                                         text='Jobs'
                                         iconColor={colors.HOMESCREEN.JOBSCARD_COLOR}
                                         textColor='gray'
-                                        onPress={() => navigate('AddData')}
+                                        // onPress={() => navigate('AddData')}
                                         colors={['#8ffcde', '#5bc8ac', '#1f977d']}
                                     />
                                 </View>
@@ -234,7 +234,7 @@ export  class Dashboard extends React.Component {
                                         text='Customer'
                                         iconColor={colors.HOMESCREEN.ASSOCIATIONCARD_COLOR}
                                         textColor='gray'
-                                        onPress={() => navigate('Customer')}
+                                        // onPress={() => navigate('Customer')}
                                         colors={['#6ddbea', '#31a9b8', '#007a88']}
                                     />
                                 </View>
@@ -245,7 +245,7 @@ export  class Dashboard extends React.Component {
                                         text='Technician'
                                         iconColor='#6789F8'
                                         textColor='gray'
-                                        onPress={() => navigate('Technicians')}
+                                        // onPress={() => navigate('Technicians')}
                                         colors={['#9eb9ff', '#6789f8', '#265dc4']}
                                     />
                                 </View>
