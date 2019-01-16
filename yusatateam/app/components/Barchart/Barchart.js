@@ -7,7 +7,7 @@ import { Text, Radio } from 'native-base';
 import PureChart from 'react-native-pure-chart';
 import { AppLoading } from 'expo';
 
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 import styles from './Styles';
 
 const barValues = [

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Animated, Platform, Easing, StyleSheet } from 'react-native';
-import { Button, Left } from 'native-base';
+import { Button } from 'native-base';
 import { Feather } from '@expo/vector-icons';
 import { AppLoading } from 'expo';
 

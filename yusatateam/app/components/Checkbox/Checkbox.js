@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckBox } from 'native-base';
 import styles from './Styles';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 
 export default class Checkbox extends React.Component {
     constructor(props) {

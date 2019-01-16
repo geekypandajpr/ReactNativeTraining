@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Button, Right, Icon } from 'native-base';
+import { Button } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AppLoading } from 'expo';
 

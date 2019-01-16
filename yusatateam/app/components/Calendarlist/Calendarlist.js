@@ -2,7 +2,7 @@ import React from 'react';
 import { AppLoading } from 'expo';
 import { View } from 'react-native';
 import styles from './Styles';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 import { CalendarList } from 'react-native-calendars';
 import moment from 'moment';
 

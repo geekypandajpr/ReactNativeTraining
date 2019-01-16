@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 import { View, Text, List, ListItem, CheckBox, Body } from 'native-base';
 import styles from './Styles';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 
 export default class JobsComponent extends React.Component {
     constructor(props) {

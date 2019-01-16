@@ -4,7 +4,7 @@ import { Button, Header, Left, Body, Right, Icon, Title } from 'native-base';
 import { AppLoading } from 'expo';
 import styles from './Styles';
 import { Statusbar } from '../../components';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 
 export default class Toolbar extends React.Component {
     constructor(props) {

@@ -1,5 +1,5 @@
 import EStylesheet from 'react-native-extended-stylesheet';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 
 export default EStylesheet.create({
     $headerColor : '#1f667e',

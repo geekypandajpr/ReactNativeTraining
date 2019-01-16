@@ -10,7 +10,7 @@ import { Header } from 'native-base';
 import { AppLoading } from 'expo';
 
 import { Statusbar } from '../Statusbar/Statusbar';
-import colors from '../../constants/colors';
+import { colors } from '../../styles';
 import LeftElement from './LeftElement';
 import CenterElement from './CenterElement';
 import RightElement from './RightElement';

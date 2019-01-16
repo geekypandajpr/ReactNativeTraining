@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Modal, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { Text, Button, Left, Right, CheckBox, ListItem, Body } from 'native-base';
-import { Entypo } from '@expo/vector-icons'
+import { Entypo } from '@expo/vector-icons';
+
 export default class FilterJob extends React.Component {
     constructor(props) {
         super(props);
