@@ -12,12 +12,12 @@ import {
     Barchart,
     Activityindication
 } from '../../components';
-import { userActions} from '../../redux/actions';
+import { userActions } from '../../redux/actions';
 import { colors } from '../../styles';
 import styles from './Styles';
 import { DashboardFilter } from './DashBoardFilter/DashboardFilter';
 
-export  class Dashboard extends React.Component {
+export class Dashboard extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -25,7 +25,7 @@ export  class Dashboard extends React.Component {
             loading: false,
             updatedSchemaData: [],
             loginResponse: {},
-            company : '',
+            company: '',
             pieColor: ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'],
             pieSeries: [400, 200, 100, 100],
             piedata: [
@@ -45,7 +45,7 @@ export  class Dashboard extends React.Component {
     OnValueSelect(value) {
         if (this.state.flag === 'COMPANY') {
             this.setState({ company: value });
-        } 
+        }
     }
 
     async componentWillMount() {
@@ -95,7 +95,7 @@ export  class Dashboard extends React.Component {
 
     componentDidMount() {
         /**Login Response */
-        this.setState({loginResponse: this.props.loginResponse.data.results});
+        this.setState({ loginResponse: this.props.loginResponse.data.results });
 
         /**Back Handler */
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -106,7 +106,7 @@ export  class Dashboard extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.props.loginResponse !== nextProps.loginResponse) {
+        if (this.props.loginResponse !== nextProps.loginResponse) {
             this.setState({ loginResponse: nextProps.loginResponse.data.results })
         }
     }
@@ -121,15 +121,15 @@ export  class Dashboard extends React.Component {
         this.props.updateSchema(companyId);
     }
 
-    logout=()=> {
+    logout = () => {
         Alert.alert(
-        'Logout Confirmation',
-        'Do you want to logout ?',
-        [
-            { text: 'NO', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-            { text: 'YES', onPress: () => this.props.navigation.navigate('LogIn') },
-        ],
-        { cancelable: false })
+            'Logout Confirmation',
+            'Do you want to logout ?',
+            [
+                { text: 'NO', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                { text: 'YES', onPress: () => this.props.navigation.navigate('LogIn') },
+            ],
+            { cancelable: false })
     }
 
     render() {
@@ -141,7 +141,7 @@ export  class Dashboard extends React.Component {
                         Calender='filter' calenderType='Feather' onCalenderPress={this.openPicker}
                         setting='logout-variant' settingType='MaterialCommunityIcons' onSettingsPress={this.logout} />
 
-                    <Activityindication visible={this.props.loginResponse.isLoading}/>
+                    <Activityindication visible={this.props.loginResponse.isLoading} />
 
                     <View style={styles.container1}>
 
@@ -186,7 +186,7 @@ export  class Dashboard extends React.Component {
                                         text='Device'
                                         iconColor={colors.HOMESCREEN.DEVICECARD_COLOR}
                                         textColor='gray'
-                                        onPress={() => navigate('GPSDevice',this.state.loginResponse)}
+                                        onPress={() => navigate('GPSDevice', this.state.loginResponse)}
                                         colors={['#b7ffb5', '#84e184', '#51ae56']}
                                     />
                                 </View>
@@ -261,16 +261,16 @@ export  class Dashboard extends React.Component {
     }
 }
 
-function mapStateToProps(state){
-    return{
+function mapStateToProps(state) {
+    return {
         loginResponse: state.loginData
     }
 }
 
-function mapDispatchToProps(dispatch){
-    return{
+function mapDispatchToProps(dispatch) {
+    return {
         updateSchema: (companyId) => dispatch(userActions.updateSchema(companyId))
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps) ( Dashboard )
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
