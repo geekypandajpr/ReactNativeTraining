@@ -80,9 +80,9 @@ export default EStyleSheet.create({
         fontSize: '0.8rem'
     },
     status_view: {
-        width: 90,
-        height: 23,
-        borderRadius: 20,
+        height: 25,
+        padding: 2,
+        borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#5cb85c'

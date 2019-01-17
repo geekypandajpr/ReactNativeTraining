@@ -117,7 +117,7 @@ export function* serviceStatusUpdateSaga(action) {
         const status = yield call(jobServices.updateStatus, action.status);
         if (status) {
             const listData = yield call(jobServices.getServiceList, 'all');
-            yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData });
+            if(listData) { yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData }); }
             yield put({ type: SERVICE.SERVICE_STATUS_UPDATE_SUCCESS, status });
             functions.showToast('Status updated', 'success');
         } else {
@@ -139,8 +139,11 @@ export function* simDeviceSaga(action) {
                 call(jobServices.defectiveDevice, action.DefectiveDevice),
                 call(jobServices.replaceDevice, action.ReplaceDevice)
             ]);
-            console.log(JSON.stringify(DefectiveSim));
-            yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: { DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice } });
+            if(DefectiveSim === null) { DefectiveSim = [] }
+            if(ReplaceSim === null) { ReplaceSim = [] }
+            if(DefectiveDevice === null) { DefectiveDevice = [] }
+            if(ReplaceDevice === null) { ReplaceDevice = [] }
+            yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS,datas: { DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice } });
         } catch (error) {
             yield put({ type: SERVICE.SERVICE_DEVICE_FAILED, error });
             functions.showToast('Something went wrong', 'danger');
