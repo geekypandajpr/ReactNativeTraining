@@ -63,12 +63,17 @@ export class DoAssociation extends React.Component {
     }
 
     componentDidMount() {
-        var data =
-        {
-            "listType": "INSTALL",
-            "orderCode": "TPI_SIM"
-        }
-        this.props.onfetchDropDownList(data);
+        var data = 
+            {
+                "listType": "INSTALL",
+                "orderCode": "TPI_SIM"
+              }
+              var data1 = 
+              {
+                  "listType": "INSTALL",
+                  "orderCode": "TPI_DEVICE"
+                }
+        this.props.onfetchDropDownList(data,data1);
         this.setState({ item: this.props.navigation.state.params.item })
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         const dropdowns = new Map(this.state.dropdowns);
