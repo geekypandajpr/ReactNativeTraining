@@ -249,6 +249,7 @@ export class DoAssociation extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.main_container}>
                     <Activityindication visible={this.props.simDeviceData.isLoading} />
+                    <Activityindication visible={this.props.executeServiceData.isLoading} />
                     <Toolbar title='Job Number' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
 
                     <View style={styles.inner_container}>
