@@ -10,8 +10,8 @@ export const getServiceList = (serviceType) => Api.get(SERVICE.SERVICE_LIST+`?ty
 export const getServiceHistory = () => Api.get(SERVICE.SERVICE_VEHICLE);
 export const excecuteService = (inventoryRequest) => Api.post(SERVICE.EXECUTE_SERVICE,inventoryRequest);
 export const serviceStatus = () => Api.get(SERVICE.SERVICE_STATUS);
-export const devices = () => Api.get(SERVICE.SERVICE_DEVICE);
-export const sims = () => Api.get(SERVICE.SERVICE_SIM);
+export const devices = (request1) => Api.post(SERVICE.SERVICE_DEVICE,request1);
+export const sims = (request) => Api.post(SERVICE.SERVICE_SIM,request);
 export const updateStatus = (status) => Api.put(SERVICE.SERVICE_STATUS_UPDATE, status);
 
  
