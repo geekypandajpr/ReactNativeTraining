@@ -66,12 +66,12 @@ export class DoAssociation extends React.Component {
         var data = 
             {
                 "listType": "INSTALL",
-                "orderCode": "TPI_SIM"
+                "orderCode": typeCode.SIM_ORDER_CODE,
               }
               var data1 = 
               {
                   "listType": "INSTALL",
-                  "orderCode": "TPI_DEVICE"
+                  "orderCode": typeCode.DEVICE_ORDER_CODE
                 }
         this.props.onfetchDropDownList(data,data1);
         this.setState({ item: this.props.navigation.state.params.item })
