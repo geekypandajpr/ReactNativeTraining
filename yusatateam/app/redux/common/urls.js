@@ -17,7 +17,7 @@ export const GPSDEVICE = {
 
 
 export const SERVICE = {
-    EXECUTE_SERVICE             : 'execute',
+    EXECUTE_SERVICE             : '/ap/inventoryService',
     SERVICE_LIST                : 'ap/service/list',
     SERVICE_HISTORY             : 'servicehistory',
     SERVICE_ADD                 : 'ap/service/add',
