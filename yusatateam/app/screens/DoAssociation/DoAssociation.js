@@ -191,7 +191,7 @@ export class DoAssociation extends React.Component {
 
     doAssignment() {
         if (this.checkRequiredFields()) {
-            if (this.state.item.serviceTypeName = "REPLACE") {
+            if (this.state.item.serviceTypeName == "REPLACE") {
                 var item = {
                     "inventoryId": [
                         this.state.dropdowns.get(SIM_KEY)[1],
@@ -228,11 +228,18 @@ export class DoAssociation extends React.Component {
 
     /**Function to validate mandatory fields for Add GPS Device API*/
     checkRequiredFields() {
-        if (this.state.dropdowns.get(DEVICE_KEY)[1]
-            && this.state.dropdowns.get(SIM_KEY)[1]
-            //&& this.state.dropdowns.get(STATUS_KEY)[1]
-        ) {
-            return true
+        if (this.state.item.serviceTypeName == "REPLACE") {
+            if (this.state.dropdowns.get(SIM_KEY)[1]
+                &&this.state.dropdowns.get(DEVICE_KEY)[1]
+                &&this.state.dropdowns.get(REPLACED_SIM_KEY)[1]
+                &&this.state.dropdowns.get(REPLACED_DEVICE_KEY)[1]) {
+                return true
+            }
+        } else {
+            if (this.state.dropdowns.get(SIM_KEY)[1]
+                &&this.state.dropdowns.get(DEVICE_KEY)[1]) {
+                return true
+            }
         }
         return false;
     }
