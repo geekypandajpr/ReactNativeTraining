@@ -137,12 +137,12 @@ export function* simDeviceSaga(action) {
 
         const [sim, device] = yield all([call(jobServices.sims,action.request), call(jobServices.devices,action.request1)]);
         // alert(JSON.stringify(device));
-        yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: { sim, device } });
-        // if(sim) {
-        //     yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {sim, device}});
-        // } else {
-        //     yield put({ type: SERVICE.SERVICE_DEVICE_FAILED });
-        // }
+        // yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: { sim, device } });
+        if(sim) {
+            yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {sim, device}});
+        } else {
+            yield put({ type: SERVICE.SERVICE_DEVICE_FAILED });
+        }
     } catch (error) {
         yield put({ type: SERVICE.SERVICE_DEVICE_FAILED, error });
         functions.showToast('Something went wrong', 'danger');
