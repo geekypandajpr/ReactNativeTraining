@@ -299,33 +299,31 @@ export class DoAssociation extends React.Component {
 
                                     <View style={styles.sub_view}>
                                         <View style={styles.left_view}>
-                                            <Text style={styles.key_text}>COD</Text>
+                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>COD</Text>
                                         </View>
                                         <View style={styles.middle_view}>
-                                            <Text style={styles.colon}>:</Text>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                         </View>
                                         <View style={styles.right_view}>
-                                            <Text style={styles.value_text}>
-                                                {
-                                                    item.cashOnDelivery == 'Y' ? 'Yes' : 'No'
-                                                }
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>
+                                                {  item.cashOnDelivery == 'Y' ? 'Yes' : 'No' }
                                             </Text>
                                         </View>
                                     </View>
-
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={styles.key_text}>Amount</Text>
+                                    {item.amountCollection ?
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Amount</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.amountCollection}</Text>
+                                            </View>
                                         </View>
-                                        <View style={styles.middle_view}>
-                                            <Text style={styles.colon}>:</Text>
-                                        </View>
-
-                                        <View style={styles.right_view}>
-                                            {item.amountCollection ? <FontAwesome name='rupee' size={14} color='gray' /> : <Text style={styles.value_text}>-  -  -</Text>}
-                                            <Text style={styles.value_text}>{item.amountCollection}</Text>
-                                        </View>
-                                    </View>
+                                        : null 
+                                    }
                                 </View>
 
                                 <View style={styles.second_view}>
