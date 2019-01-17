@@ -93,8 +93,8 @@ export class DoAssociation extends React.Component {
 
                 var deviceData = nextProps.simDeviceData.device.results.listInventory;
                 var deviceArray = [];
-                var deviceObj = {};
                 for (var i = 0; i < deviceData.length; i++) {
+                    var deviceObj = {};
                     deviceObj["label"] = deviceData[i].orderNumber;
                     deviceArray.push(deviceObj)
                 }
@@ -105,8 +105,8 @@ export class DoAssociation extends React.Component {
                 // alert(JSON.stringify(nextProps.simDeviceData.sim.results.listInventory));
                 var simData = nextProps.simDeviceData.sim.results.listInventory;
                 var simArray = [];
-                var simObj = {};
                 for (var i = 0; i < simData.length; i++) {
+                    var simObj = {};
                     simObj["label"] = simData[i].orderNumber;
                     simArray.push(simObj)
                 }
