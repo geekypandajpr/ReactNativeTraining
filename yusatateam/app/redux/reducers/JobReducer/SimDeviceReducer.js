@@ -17,10 +17,10 @@ export default simDeviceReducer = (state = initialState, action) => {
             });
         case SERVICE.SERVICE_DEVICE_SUCCESS:
             return Object.assign({}, state, {
-                DefectiveSim : action.DefectiveSim, 
-                ReplaceSim : action.ReplaceSim, 
-                DefectiveDevice : action.DefectiveDevice, 
-                ReplaceDevice : action.ReplaceDevice,
+                DefectiveSim : action.datas.DefectiveSim, 
+                ReplaceSim : action.datas.ReplaceSim, 
+                DefectiveDevice : action.datas.DefectiveDevice, 
+                ReplaceDevice : action.datas.ReplaceDevice,
                 isLoading: false
             });
         case SERVICE.SERVICE_DEVICE_FAILED:

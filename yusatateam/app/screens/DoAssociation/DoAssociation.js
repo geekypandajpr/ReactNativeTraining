@@ -43,8 +43,10 @@ export class DoAssociation extends React.Component {
             isLoading: true,
             comments: '',
             item: '',
-            deviceList: '',
-            simList: '',
+            DefectiveDeviceArray: [],
+            DefectiveSimArray: [],
+            ReplaceSimArray: [],
+            ReplaceDeviceArray: [],
             dropdowns: new Map()
         }
         this.getSelectedValue = this.getSelectedValue.bind(this);
@@ -94,12 +96,9 @@ export class DoAssociation extends React.Component {
             ReplaceDevice["replacementDropdown"] = "replacementitem";
         }
         this.props.onfetchDropDownList(DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice);
-        // console.log("DS->"+JSON.stringify(DefectiveFreeSim));
-        // console.log("DD->"+JSON.stringify(DefectiveFreeDevice));
-        // console.log("RS->"+JSON.stringify(ReplaceFreeSim));
-        // console.log("DS->"+JSON.stringify(ReplaceFreeDevice));
-        
+
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+
         const dropdowns = new Map(this.state.dropdowns);
         dropdowns.set(STATUS_KEY, [STATUS_KEY_VALUE, null]);
         dropdowns.set(DEVICE_KEY, [DEVICE_KEY_VALUE, null]);
@@ -108,58 +107,50 @@ export class DoAssociation extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
         if (this.props.simDeviceData !== nextProps.simDeviceData) {
-            console.log(JSON.stringify(nextProps.simDeviceData))
-            if (nextProps.simDeviceData.DefectiveDevice.results) {
+            var DefectiveDeviceArray = [];
+            var DefectiveSimArray = [];
+            var ReplaceSimArray = [];
+            var ReplaceDeviceArray = [];
 
-                var deviceData = nextProps.simDeviceData.DefectiveDevice.results.listInventory;
-                var deviceArray = [];
-                for (var i = 0; i < deviceData.length; i++) {
-                    var deviceObj = {};
-                    deviceObj["label"] = deviceData[i].orderNumber;
-                    deviceArray.push(deviceObj)
+            if(nextProps.simDeviceData.DefectiveDevice.results) {
+                var DefectiveDeviceData = nextProps.simDeviceData.DefectiveDevice.results.listInventory;
+                for(let index in DefectiveDeviceData) {
+                    const obj = { "label" : DefectiveDeviceData[index].esn, "value": DefectiveDeviceData[index].itemInvLotId };
+                    DefectiveDeviceArray.push(obj);
                 }
-                this.setState({ deviceList: deviceArray })
-                // alert(JSON.stringify(deviceArray));
-            }
-            if (nextProps.simDeviceData.DefectiveSim.results) {
-                // alert(JSON.stringify(nextProps.simDeviceData.sim.results.listInventory));
-                var simData = nextProps.simDeviceData.DefectiveSim.results.listInventory;
-                var simArray = [];
-                for (var i = 0; i < simData.length; i++) {
-                    var simObj = {};
-                    simObj["label"] = simData[i].orderNumber;
-                    simArray.push(simObj)
-                }
-                this.setState({ simList: simArray })
-                // alert(JSON.stringify(simArray));
-            }
-            if (nextProps.simDeviceData.ReplaceDevice.results) {
-
-                var deviceData = nextProps.simDeviceData.ReplaceDevice.results.listInventory;
-                var deviceArray = [];
-                for (var i = 0; i < deviceData.length; i++) {
-                    var deviceObj = {};
-                    deviceObj["label"] = deviceData[i].orderNumber;
-                    deviceArray.push(deviceObj)
-                }
-                this.setState({ deviceList: deviceArray })
-                // alert(JSON.stringify(deviceArray));
-            }
-            if (nextProps.simDeviceData.ReplaceSim.results) {
-                // alert(JSON.stringify(nextProps.simDeviceData.sim.results.listInventory));
-                var simData = nextProps.simDeviceData.ReplaceSim.results.listInventory;
-                var simArray = [];
-                for (var i = 0; i < simData.length; i++) {
-                    var simObj = {};
-                    simObj["label"] = simData[i].orderNumber;
-                    simArray.push(simObj)
-                }
-                this.setState({ simList: simArray })
-                // alert(JSON.stringify(simArray));
             }
 
+            if(nextProps.simDeviceData.DefectiveSim.results) {
+                var DefectiveSimData = nextProps.simDeviceData.DefectiveSim.results.listInventory;
+                for(let index in DefectiveSimData) {
+                    const obj = { "label" : DefectiveSimData[index].msidn, "value": DefectiveSimData[index].itemInvLotId };
+                    DefectiveSimArray.push(obj);
+                }
+            }
+
+            if(nextProps.simDeviceData.ReplaceDevice.results) {
+                var ReplaceDeviceData = nextProps.simDeviceData.ReplaceDevice.results.listInventory;
+                for(let index in ReplaceDeviceData) {
+                    const obj = { "label" : ReplaceDeviceData[index].esn, "value": ReplaceDeviceData[index].itemInvLotId };
+                    ReplaceDeviceArray.push(obj);
+                }
+            }
+
+            if(nextProps.simDeviceData.ReplaceSim.results) {
+                var ReplaceSimData = nextProps.simDeviceData.ReplaceSim.results.listInventory;
+                for(let index in ReplaceSimData) {
+                    const obj = { "label" : ReplaceSimData[index].msidn, "value": ReplaceSimData[index].itemInvLotId };
+                    ReplaceSimArray.push(obj);
+                }
+            }
+            
+            this.setState({
+                DefectiveDeviceArray: DefectiveDeviceArray,
+                DefectiveSimArray: DefectiveSimArray,
+                ReplaceSimArray: ReplaceSimArray,
+                ReplaceDeviceArray: ReplaceDeviceArray
+            })
         }
 
     }
@@ -218,7 +209,7 @@ export class DoAssociation extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.main_container}>
-                    {/* <Activityindication visible={this.props.assignmentData.isLoading} /> */}
+                    <Activityindication visible={this.props.simDeviceData.isLoading} />
                     <Toolbar title='Job Number' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
 
                     <View style={styles.inner_container}>
@@ -366,7 +357,7 @@ export class DoAssociation extends React.Component {
 
                                 <View style={styles.second_view}>
 
-                                    <View style={styles.picker_view}>
+                                    {/* <View style={styles.picker_view}>
                                         <UnderlineText
                                             name="Status"
                                             value={this.state.dropdowns.get(STATUS_KEY)[0]}
@@ -374,14 +365,14 @@ export class DoAssociation extends React.Component {
                                             upperView={true}
                                             onpress={() => this.openPicker(STATUS_KEY, STATUS, 'Status')}
                                         />
-                                    </View>
+                                    </View> */}
                                     <View style={styles.picker_view}>
                                         <UnderlineText
                                             name="Device"
                                             value={this.state.dropdowns.get(DEVICE_KEY)[0]}
                                             isMandatory={true}
                                             upperView={true}
-                                            onpress={() => this.openPicker(DEVICE_KEY, this.state.deviceList, 'Devices')}
+                                            onpress={() => this.openPicker(DEVICE_KEY, this.state.DefectiveDeviceArray, 'Devices')}
                                         />
                                     </View>
                                     <View style={styles.picker_view}>
@@ -390,7 +381,7 @@ export class DoAssociation extends React.Component {
                                             value={this.state.dropdowns.get(SIM_KEY)[0]}
                                             isMandatory={true}
                                             upperView={true}
-                                            onpress={() => this.openPicker(SIM_KEY, this.state.simList, 'Sims')}
+                                            onpress={() => this.openPicker(SIM_KEY, this.state.DefectiveSimArray, 'Sims')}
                                         />
                                     </View>
                                     {item.serviceTypeName === 'REPLACE' ?
@@ -401,7 +392,7 @@ export class DoAssociation extends React.Component {
                                                     value={this.state.dropdowns.get(DEVICE_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => this.openPicker(DEVICE_KEY, this.state.deviceList, 'Devices')}
+                                                    onpress={() => this.openPicker(DEVICE_KEY, this.state.ReplaceDeviceArray, 'Devices')}
                                                 />
                                             </View>
 
@@ -411,11 +402,12 @@ export class DoAssociation extends React.Component {
                                                     value={this.state.dropdowns.get(SIM_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => this.openPicker(SIM_KEY, this.state.simList, 'Sims')}
+                                                    onpress={() => this.openPicker(SIM_KEY, this.state.ReplaceSimArray, 'Sims')}
                                                 />
                                             </View>
                                         </View>
-                                        : null}
+                                        : null
+                                    }
 
                                     <View style={styles.left_view}>
                                         <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Comments</Text>

@@ -47,7 +47,7 @@ export function* createJobSaga(action) {
                 yield put(NavigationActions.navigate({ routeName: 'Schedule' }));
                 functions.showToast('Job created successfully', 'success');
                 yield put({ type: SERVICE.CREATEJOB_SUCCESS, createData });
-                
+
                 if (listData) {
                     yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData });
                 } else {
@@ -84,7 +84,7 @@ export function* companySaga(action) {
 
 export function* executeServiceSaga(action) {
     try {
-        const data = yield call(jobServices.excecuteService,action.inventoryRequest);
+        const data = yield call(jobServices.excecuteService, action.inventoryRequest);
         if (data) {
             yield put({ type: SERVICE.EXECUTE_SERVICE_SUCCESS, data });
             functions.showToast('Assigned successfully', 'success');
@@ -131,42 +131,28 @@ export function* serviceStatusUpdateSaga(action) {
 }
 
 export function* simDeviceSaga(action) {
-
-    if(action.ReplaceSim && action.ReplaceDevice) {
+    if (action.ReplaceSim && action.ReplaceDevice) {
         try {
             const [DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice] = yield all([
-                call(jobServices.defectiveSim, action.DefectiveSim), 
+                call(jobServices.defectiveSim, action.DefectiveSim),
                 call(jobServices.replaceSim, action.ReplaceSim),
-                call(jobServices.defectiveDevice, action.DefectiveDevice), 
+                call(jobServices.defectiveDevice, action.DefectiveDevice),
                 call(jobServices.replaceDevice, action.ReplaceDevice)
             ]);
-            yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice}});
-            // if(sim1) {
-            //     yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {sim1, device1,sim2,device2}});
-            // } else {
-            //     yield put({ type: SERVICE.SERVICE_DEVICE_FAILED });
-            // }
+            console.log(JSON.stringify(DefectiveSim));
+            yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: { DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice } });
         } catch (error) {
             yield put({ type: SERVICE.SERVICE_DEVICE_FAILED, error });
             functions.showToast('Something went wrong', 'danger');
         }
-    }
-    else{
+    } else {
         try {
             const [DefectiveSim, DefectiveDevice] = yield all([
                 call(jobServices.defectiveSim, action.DefectiveSim),
-                call(jobServices.defectiveDevice, action.DefectiveDevice), 
+                call(jobServices.defectiveDevice, action.DefectiveDevice),
             ]);
-            const ReplaceSim=[], ReplaceDevice=[];
-            yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice}});
-
-            // alert(JSON.stringify(device));
-            // yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: { sim, device } });
-            // if(sim1) {
-            //     yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {sim1, device2}});
-            // } else {
-            //     yield put({ type: SERVICE.SERVICE_DEVICE_FAILED });
-            // }
+            const ReplaceSim = [], ReplaceDevice = [];
+            yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: { DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice } });
         } catch (error) {
             yield put({ type: SERVICE.SERVICE_DEVICE_FAILED, error });
             functions.showToast('Something went wrong', 'danger');
