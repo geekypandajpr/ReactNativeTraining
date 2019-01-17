@@ -19,6 +19,10 @@ export default class Api {
         return this.call(route, params, 'POST');
     }
 
+    static put(route, params) {
+        return this.call(route, params, 'PUT');
+    }
+
     static call(route, params, verb) {
         const url = `${Api.host}${route}`;
         let options = Object.assign({ method: verb }, { credentials: 'same-origin' }, params ? { body: JSON.stringify(params) } : null);
