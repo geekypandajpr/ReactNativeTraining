@@ -23,11 +23,25 @@ const STATUS = [
 const STATUS_COLOR = {
     "ENTERED": '#0073b7',
     "ACCEPTED": '#5E35A6',
-    "ONJOB": '#007aff',
+    "ON_JOB": '#007aff',
     "COMPLETED": '#5cb85c',
     "RESCHEDULED": '#f0ad4e',
-    "CANCELLED": '#d9534f',
+    "CANCELLED": '#d9534f'
 };
+
+const DEVICE_LIST_NAME = {
+    "INSTALL": "Free Devices",
+    "UNINSTALL": "Installed Devices",
+    "REPAIR": "Installed Devices",
+    "REPLACE": "Installed Devices"
+}
+
+const SIM_LIST_NAME = {
+    "INSTALL": "Free Sims",
+    "UNINSTALL": "Installed Sims",
+    "REPAIR": "Installed Sims",
+    "REPLACE": "Installed Sims"
+}
 
 const STATUS_KEY = "STATUS";
 const STATUS_KEY_VALUE = "Change status";
@@ -250,7 +264,7 @@ export class DoAssociation extends React.Component {
                 <View style={styles.main_container}>
                     <Activityindication visible={this.props.simDeviceData.isLoading} />
                     <Activityindication visible={this.props.executeServiceData.isLoading} />
-                    <Toolbar title='Job Number' leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
+                    <Toolbar title={item.orderNumber} leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
 
                     <View style={styles.inner_container}>
                         <KeyboardAvoidingView behavior='padding' enabled style={globalStyles.keyboardAvoiding}>
@@ -331,7 +345,7 @@ export class DoAssociation extends React.Component {
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                         </View>
                                         <View style={styles.right_view}>
-                                            <View style={[styles.status_view, { backgroundColor: STATUS_COLOR['COMPLETED'] }]}>
+                                            <View style={[styles.status_view, { backgroundColor: STATUS_COLOR[item.serviceStatus] }]}>
                                                 <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4, color: '#fff' }]}>{item.serviceStatus}</Text>
                                             </View>
                                         </View>
@@ -406,41 +420,41 @@ export class DoAssociation extends React.Component {
                                     </View> */}
                                     <View style={styles.picker_view}>
                                         <UnderlineText
-                                            name="Device"
+                                            name={DEVICE_LIST_NAME[item.serviceTypeName]}
                                             value={this.state.dropdowns.get(DEVICE_KEY)[0]}
                                             isMandatory={true}
                                             upperView={true}
-                                            onpress={() => this.openPicker(DEVICE_KEY, this.state.DefectiveDeviceArray, 'Devices')}
+                                            onpress={() => this.openPicker(DEVICE_KEY, this.state.DefectiveDeviceArray, DEVICE_LIST_NAME[item.serviceTypeName])}
                                         />
                                     </View>
                                     <View style={styles.picker_view}>
                                         <UnderlineText
-                                            name="Sim"
+                                            name={SIM_LIST_NAME[item.serviceTypeName]}
                                             value={this.state.dropdowns.get(SIM_KEY)[0]}
                                             isMandatory={true}
                                             upperView={true}
-                                            onpress={() => this.openPicker(SIM_KEY, this.state.DefectiveSimArray, 'Sims')}
+                                            onpress={() => this.openPicker(SIM_KEY, this.state.DefectiveSimArray, SIM_LIST_NAME[item.serviceTypeName])}
                                         />
                                     </View>
                                     {item.serviceTypeName === 'REPLACE' ?
                                         <View>
                                             <View style={styles.picker_view}>
                                                 <UnderlineText
-                                                    name="replaceDeviceId"
+                                                    name="Free Devices"
                                                     value={this.state.dropdowns.get(REPLACED_DEVICE_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => this.openPicker(REPLACED_DEVICE_KEY, this.state.ReplaceDeviceArray, 'Replaced Devices')}
+                                                    onpress={() => this.openPicker(REPLACED_DEVICE_KEY, this.state.ReplaceDeviceArray, 'Free Devices')}
                                                 />
                                             </View>
 
                                             <View style={styles.picker_view}>
                                                 <UnderlineText
-                                                    name="replaceSimId"
+                                                    name="Free Sims"
                                                     value={this.state.dropdowns.get(REPLACED_SIM_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => this.openPicker(REPLACED_SIM_KEY, this.state.ReplaceSimArray, 'Replaced Sims')}
+                                                    onpress={() => this.openPicker(REPLACED_SIM_KEY, this.state.ReplaceSimArray, 'Free Sims')}
                                                 />
                                             </View>
                                         </View>

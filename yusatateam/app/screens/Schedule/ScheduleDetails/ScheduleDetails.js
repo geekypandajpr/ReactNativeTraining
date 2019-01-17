@@ -292,7 +292,7 @@ export default class ScheduleDetails extends React.Component {
                                         <View style={styles.sub_view} key={index}>
                                             <View style={styles.left_view}>
                                                 <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                                    {index+1}. {device.imei}
+                                                    {index+1}. {device.esn}
                                                 </Text>
                                             </View>
                                         </View>
@@ -312,7 +312,7 @@ export default class ScheduleDetails extends React.Component {
                                         <View style={styles.sub_view} key={index}>
                                             <View style={styles.left_view}>
                                                 <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                                    {index+1}. {sim.mobileNumber}
+                                                    {index+1}. {sim.msidn}
                                                 </Text>
                                             </View>
                                         </View>

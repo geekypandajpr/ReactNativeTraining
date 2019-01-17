@@ -87,6 +87,7 @@ export function* executeServiceSaga(action) {
         const data = yield call(jobServices.excecuteService, action.inventoryRequest);
         if (data) {
             yield put({ type: SERVICE.EXECUTE_SERVICE_SUCCESS, data });
+            yield put(NavigationActions.navigate({ routeName: 'Schedule' }));
             functions.showToast('Assigned successfully', 'success');
         } else {
             yield put({ type: SERVICE.EXECUTE_SERVICE_FAILED });
