@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { serviceActions } from '../../redux/actions';
 
 import styles from './Styles';
-import { globalStyles, colors } from '../../styles';
+import { globalStyles, colors, typeCode } from '../../styles';
 import { Toolbar, UnderlineText, SinglePicker, Activityindication } from '../../components';
 import functions from '../../common/functions';
 
@@ -109,7 +109,9 @@ export class DoAssociation extends React.Component {
             var item = {
                 "device": this.state.dropdowns.get(SIM_KEY)[1],
                 "sim": this.state.dropdowns.get(DEVICE_KEY)[1],
-                "status": this.state.dropdowns.get(STATUS_KEY)[1]
+                "status": this.state.dropdowns.get(STATUS_KEY)[1],
+                "orderType": typeCode.SERVICE_EXECUTE_ORDERTYPE,
+                "serviceHeaderId": typeCode.SERVICE_EXECUTE_HEADERID,
             }
             if (this.state.comments !== '') {
                 item["comments"] = this.state.comments;
