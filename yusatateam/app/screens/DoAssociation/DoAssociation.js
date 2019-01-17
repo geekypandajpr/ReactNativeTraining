@@ -42,7 +42,7 @@ export class DoAssociation extends React.Component {
         this.state = {
             isLoading: true,
             comments: '',
-            item: {},
+            item: '',
             deviceList : '',
             simList :'',
             dropdowns: new Map()
@@ -63,14 +63,17 @@ export class DoAssociation extends React.Component {
     }
 
     componentDidMount() {
+        const item = this.props.navigation.state.params.item;
+        console.log(JSON.stringify(item.serviceTypeName));
+        this.setState({ item :item})
         var data = 
             {
-                "listType": "INSTALL",
+                "listType": item.serviceTypeName,
                 "orderCode": typeCode.SIM_ORDER_CODE,
               }
               var data1 = 
               {
-                  "listType": "INSTALL",
+                  "listType": item.serviceTypeName,
                   "orderCode": typeCode.DEVICE_ORDER_CODE
                 }
         this.props.onfetchDropDownList(data,data1);
@@ -191,7 +194,7 @@ export class DoAssociation extends React.Component {
                                         </View>
                                         <View style={styles.right_view}>
                                             <View style={styles.job_type}>
-                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4, color: '#000' }]}>Install</Text>
+                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4, color: '#000' }]}>{item.serviceTypeName}</Text>
                                             </View>
                                         </View>
                                     </View>
@@ -204,7 +207,7 @@ export class DoAssociation extends React.Component {
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                         </View>
                                         <View style={styles.right_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>20 Nov 2018 12:50</Text>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.serviceDate}</Text>
                                         </View>
                                     </View>
 
@@ -228,7 +231,7 @@ export class DoAssociation extends React.Component {
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                         </View>
                                         <View style={styles.right_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>Prem</Text>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.salePerson}</Text>
                                         </View>
                                     </View>
 
@@ -243,7 +246,7 @@ export class DoAssociation extends React.Component {
                                             <View><Entypo name='location-pin' size={24} color='#d9534f' /></View>
                                             <View style={{ flex: 1 }}>
                                                 <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                                    84/122 sector 8 pratap nagar, jaipur rajasthan </Text>
+                                                {item.companyName} </Text>
                                             </View>
                                         </View>
                                     </View>
@@ -257,36 +260,41 @@ export class DoAssociation extends React.Component {
                                         </View>
                                         <View style={styles.right_view}>
                                             <View style={[styles.status_view, { backgroundColor: STATUS_COLOR['COMPLETED'] }]}>
-                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4, color: '#fff' }]}>Completed</Text>
+                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4, color: '#fff' }]}>{item.serviceStatus}</Text>
                                             </View>
                                         </View>
                                     </View>
 
                                     <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Payment mode</Text>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>COD</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <Text style={styles.value_text}>
+                                                {
+                                                    item.cashOnDelivery=='Y' ? 'Yes': 'No'
+                                                    }
+                                                </Text>
+                                            </View>
                                         </View>
-                                        <View style={styles.middle_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>COD</Text>
-                                        </View>
-                                    </View>
 
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Amount</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <FontAwesome name='rupee' size={14} color='gray' />
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>6500</Text>
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={styles.key_text}>Amount</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={styles.colon}>:</Text>
+                                            </View>
+                                            
+                                            <View style={styles.right_view}>
+                                                {item.amountCollection ? <FontAwesome name='rupee' size={14} color='gray' />:  <Text style={styles.value_text}>-  -  -</Text>}
+                                                <Text style={styles.value_text}>{item.amountCollection}</Text>
+                                            </View>
                                         </View>
                                     </View>
-                                </View>
 
                                 <View style={styles.second_view}>
                                     <View style={styles.sub_view}>
@@ -297,7 +305,7 @@ export class DoAssociation extends React.Component {
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                         </View>
                                         <View style={styles.right_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>Premsagar Choudhary</Text>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.customerName}</Text>
                                         </View>
                                     </View>
 
@@ -310,7 +318,7 @@ export class DoAssociation extends React.Component {
                                         </View>
                                         <View style={styles.right_view}>
                                             <Ionicons name='ios-call' size={24} color='#5cb85c' />
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>+918605665320</Text>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.customerMobileNo}</Text>
                                         </View>
                                     </View>
                                 </View>
