@@ -430,7 +430,7 @@ export class DoAssociation extends React.Component {
                                                     value={this.state.dropdowns.get(REPLACED_DEVICE_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => this.openPicker(REPLACED_DEVICE_KEY, this.state.ReplaceDeviceArray, 'Devices')}
+                                                    onpress={() => this.openPicker(REPLACED_DEVICE_KEY, this.state.ReplaceDeviceArray, 'Replaced Devices')}
                                                 />
                                             </View>
 
@@ -440,7 +440,7 @@ export class DoAssociation extends React.Component {
                                                     value={this.state.dropdowns.get(REPLACED_SIM_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => this.openPicker(REPLACED_SIM_KEY, this.state.ReplaceSimArray, 'Sims')}
+                                                    onpress={() => this.openPicker(REPLACED_SIM_KEY, this.state.ReplaceSimArray, 'Replaced Sims')}
                                                 />
                                             </View>
                                         </View>
