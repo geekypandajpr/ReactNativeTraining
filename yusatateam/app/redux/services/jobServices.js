@@ -8,7 +8,7 @@ export const getTechnician = (userRole) => Api.post(SERVICE.SERVICE_TECHNICIAN, 
 export const getServiceType = () => Api.get(SERVICE.SERVICE_TYPE);
 export const getServiceList = (serviceType) => Api.get(SERVICE.SERVICE_LIST+`?type=${serviceType}`);
 export const getServiceHistory = () => Api.get(SERVICE.SERVICE_VEHICLE);
-export const excecuteService = () => Api.post(SERVICE.EXECUTE_SERVICE);
+export const excecuteService = (inventoryRequest) => Api.post(SERVICE.EXECUTE_SERVICE,inventoryRequest);
 export const serviceStatus = () => Api.get(SERVICE.SERVICE_STATUS);
 export const devices = () => Api.get(SERVICE.SERVICE_DEVICE);
 export const sims = () => Api.get(SERVICE.SERVICE_SIM);

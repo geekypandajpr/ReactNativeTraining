@@ -84,7 +84,7 @@ export function* companySaga(action) {
 
 export function* executeServiceSaga(action) {
     try {
-        const data = yield call(jobServices.excecuteService);
+        const data = yield call(jobServices.excecuteService,action.inventoryRequest);
         if (data) {
             yield put({ type: SERVICE.EXECUTE_SERVICE_SUCCESS, data });
             functions.showToast('Assigned successfully', 'success');
