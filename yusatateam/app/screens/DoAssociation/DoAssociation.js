@@ -43,8 +43,8 @@ export class DoAssociation extends React.Component {
             isLoading: true,
             comments: '',
             item: '',
-            deviceList : '',
-            simList :'',
+            deviceList: '',
+            simList: '',
             dropdowns: new Map()
         }
         this.getSelectedValue = this.getSelectedValue.bind(this);
@@ -65,18 +65,18 @@ export class DoAssociation extends React.Component {
     componentDidMount() {
         const item = this.props.navigation.state.params.item;
         console.log(JSON.stringify(item.serviceTypeName));
-        this.setState({ item :item})
-        var data = 
-            {
-                "listType": item.serviceTypeName,
-                "orderCode": typeCode.SIM_ORDER_CODE,
-              }
-              var data1 = 
-              {
-                  "listType": item.serviceTypeName,
-                  "orderCode": typeCode.DEVICE_ORDER_CODE
-                }
-        this.props.onfetchDropDownList(data,data1);
+        this.setState({ item: item })
+        var data =
+        {
+            "listType": item.serviceTypeName,
+            "orderCode": typeCode.SIM_ORDER_CODE,
+        }
+        var data1 =
+        {
+            "listType": item.serviceTypeName,
+            "orderCode": typeCode.DEVICE_ORDER_CODE
+        }
+        this.props.onfetchDropDownList(data, data1);
         this.setState({ item: this.props.navigation.state.params.item })
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         const dropdowns = new Map(this.state.dropdowns);
@@ -87,37 +87,33 @@ export class DoAssociation extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-     
+
         if (this.props.simDeviceData !== nextProps.simDeviceData) {
-            if(nextProps.simDeviceData.device.results)
-            {
-               
+            if (nextProps.simDeviceData.device.results) {
+
                 var deviceData = nextProps.simDeviceData.device.results.listInventory;
-                var deviceArray=[];
-                var deviceObj={};
-                for(var i=0;i<deviceData.length;i++)
-                {
-                    deviceObj["label"]=deviceData[i].orderNumber;
+                var deviceArray = [];
+                var deviceObj = {};
+                for (var i = 0; i < deviceData.length; i++) {
+                    deviceObj["label"] = deviceData[i].orderNumber;
                     deviceArray.push(deviceObj)
                 }
-                this.setState({ deviceList : deviceArray })
+                this.setState({ deviceList: deviceArray })
                 // alert(JSON.stringify(deviceArray));
             }
-            if(nextProps.simDeviceData.sim.results)
-            {
+            if (nextProps.simDeviceData.sim.results) {
                 // alert(JSON.stringify(nextProps.simDeviceData.sim.results.listInventory));
                 var simData = nextProps.simDeviceData.sim.results.listInventory;
-                var simArray=[];
-                var simObj={};
-                for(var i=0;i<simData.length;i++)
-                {
-                    simObj["label"]=simData[i].orderNumber;
+                var simArray = [];
+                var simObj = {};
+                for (var i = 0; i < simData.length; i++) {
+                    simObj["label"] = simData[i].orderNumber;
                     simArray.push(simObj)
                 }
-                this.setState({ simList : simArray })
+                this.setState({ simList: simArray })
                 // alert(JSON.stringify(simArray));
             }
-            
+
         }
 
     }
@@ -145,27 +141,27 @@ export class DoAssociation extends React.Component {
     doAssignment() {
         if (this.checkRequiredFields()) {
             var item = {
-                "device": this.state.dropdowns.get(SIM_KEY)[1],
-                "sim": this.state.dropdowns.get(DEVICE_KEY)[1],
-                "status": this.state.dropdowns.get(STATUS_KEY)[1],
                 "orderType": typeCode.SERVICE_EXECUTE_ORDERTYPE,
-                "serviceHeaderId": typeCode.SERVICE_EXECUTE_HEADERID,
-            }
-            if (this.state.comments !== '') {
-                item["comments"] = this.state.comments;
+                "inventoryId": [
+                    { "device": this.state.dropdowns.get(SIM_KEY)[1] },
+                    { "sim": this.state.dropdowns.get(DEVICE_KEY)[1] }],
+                //"status": this.state.dropdowns.get(STATUS_KEY)[1],
+                "serviceHeaderId": item.headerId,
             }
             alert(JSON.stringify(item));
-            // this.props.doAssignment(item);
+            //this.props.addInventory(item);
         } else {
             functions.showToast('Please fill all required fields', 'warning');
         }
     }
 
+
     /**Function to validate mandatory fields for Add GPS Device API*/
     checkRequiredFields() {
         if (this.state.dropdowns.get(DEVICE_KEY)[1]
             && this.state.dropdowns.get(SIM_KEY)[1]
-            && this.state.dropdowns.get(STATUS_KEY)[1]) {
+            //&& this.state.dropdowns.get(STATUS_KEY)[1]
+            ) {
             return true
         }
         return false;
@@ -246,7 +242,7 @@ export class DoAssociation extends React.Component {
                                             <View><Entypo name='location-pin' size={24} color='#d9534f' /></View>
                                             <View style={{ flex: 1 }}>
                                                 <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                                {item.companyName} </Text>
+                                                    {item.companyName} </Text>
                                             </View>
                                         </View>
                                     </View>
@@ -266,35 +262,35 @@ export class DoAssociation extends React.Component {
                                     </View>
 
                                     <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>COD</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={styles.colon}>:</Text>
-                                            </View>
-                                            <View style={styles.right_view}>
-                                                <Text style={styles.value_text}>
-                                                {
-                                                    item.cashOnDelivery=='Y' ? 'Yes': 'No'
-                                                    }
-                                                </Text>
-                                            </View>
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>COD</Text>
                                         </View>
-
-                                        <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={styles.key_text}>Amount</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={styles.colon}>:</Text>
-                                            </View>
-                                            
-                                            <View style={styles.right_view}>
-                                                {item.amountCollection ? <FontAwesome name='rupee' size={14} color='gray' />:  <Text style={styles.value_text}>-  -  -</Text>}
-                                                <Text style={styles.value_text}>{item.amountCollection}</Text>
-                                            </View>
+                                        <View style={styles.middle_view}>
+                                            <Text style={styles.colon}>:</Text>
+                                        </View>
+                                        <View style={styles.right_view}>
+                                            <Text style={styles.value_text}>
+                                                {
+                                                    item.cashOnDelivery == 'Y' ? 'Yes' : 'No'
+                                                }
+                                            </Text>
                                         </View>
                                     </View>
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={styles.key_text}>Amount</Text>
+                                        </View>
+                                        <View style={styles.middle_view}>
+                                            <Text style={styles.colon}>:</Text>
+                                        </View>
+
+                                        <View style={styles.right_view}>
+                                            {item.amountCollection ? <FontAwesome name='rupee' size={14} color='gray' /> : <Text style={styles.value_text}>-  -  -</Text>}
+                                            <Text style={styles.value_text}>{item.amountCollection}</Text>
+                                        </View>
+                                    </View>
+                                </View>
 
                                 <View style={styles.second_view}>
                                     <View style={styles.sub_view}>
@@ -370,7 +366,7 @@ export class DoAssociation extends React.Component {
                                                     value={this.state.dropdowns.get(SIM_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => this.openPicker(SIM_KEY,this.state.simList, 'Sims')}
+                                                    onpress={() => this.openPicker(SIM_KEY, this.state.simList, 'Sims')}
                                                 />
                                             </View>
                                         </View>
@@ -423,7 +419,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
 
-       onfetchDropDownList : (request,request1) => dispatch(serviceActions.serviceDeviceRequest(request,request1)),
+        onfetchDropDownList: (request, request1) => dispatch(serviceActions.serviceDeviceRequest(request, request1)),
         addInventory: (inventoryRequest) => dispatch(serviceActions.executeServiceRequest(inventoryRequest))
 
     }
