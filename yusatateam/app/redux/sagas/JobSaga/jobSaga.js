@@ -116,6 +116,7 @@ export function* serviceStatusSaga(action) {
 export function* simDeviceSaga(action) {
     try {
         const [sim, device] = yield all([call(jobServices.sims), call(jobServices.devices)]);
+        alert(JSON.stringify(device));
         yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: { sim, device } });
         // if(sim) {
         //     yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {sim, device}});

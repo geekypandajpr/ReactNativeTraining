@@ -4,7 +4,7 @@ import { Text, Button, View } from 'native-base';
 import { AppLoading } from 'expo';
 import { Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
-import { userActions } from '../../redux/actions';
+import { serviceActions } from '../../redux/actions';
 
 import styles from './Styles';
 import { globalStyles, colors } from '../../styles';
@@ -60,6 +60,12 @@ export class DoAssociation extends React.Component {
     }
 
     componentDidMount() {
+        var data = 
+            {
+                "listType": "INSTALL",
+                "orderCode": "TPI_SIM"
+              }
+        this.props.onfetchDropDownList(data);
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         const dropdowns = new Map(this.state.dropdowns);
         dropdowns.set(STATUS_KEY, [STATUS_KEY_VALUE, null]);
@@ -68,6 +74,14 @@ export class DoAssociation extends React.Component {
         this.setState({ dropdowns: dropdowns });
     }
 
+    componentWillReceiveProps(nextProps) {
+     
+        if (this.props.simDeviceData !== nextProps.simDeviceData) {
+            // alert(JSON.stringify(nextProps.simDeviceData.device));
+        }
+
+    }
+    
     handleBackPress = () => {
         this.props.navigation.goBack();
         return true;
@@ -330,13 +344,13 @@ export class DoAssociation extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        // assignmentData: state.doAssignmentData
+        simDeviceData: state.simDeviceData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        // doAssignment: (request) => dispatch(userActions.doAssignment(request))
+        onfetchDropDownList : (request) => dispatch(serviceActions.serviceDeviceRequest(request))
     }
 }
 
