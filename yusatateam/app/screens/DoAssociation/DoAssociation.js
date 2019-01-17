@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { serviceActions } from '../../redux/actions';
 
 import styles from './Styles';
-import { globalStyles, colors } from '../../styles';
+import { globalStyles, colors, typeCode } from '../../styles';
 import { Toolbar, UnderlineText, SinglePicker, Activityindication } from '../../components';
 import functions from '../../common/functions';
 
@@ -137,7 +137,9 @@ export class DoAssociation extends React.Component {
             var item = {
                 "device": this.state.dropdowns.get(SIM_KEY)[1],
                 "sim": this.state.dropdowns.get(DEVICE_KEY)[1],
-                "status": this.state.dropdowns.get(STATUS_KEY)[1]
+                "status": this.state.dropdowns.get(STATUS_KEY)[1],
+                "orderType": typeCode.SERVICE_EXECUTE_ORDERTYPE,
+                "serviceHeaderId": typeCode.SERVICE_EXECUTE_HEADERID,
             }
             if (this.state.comments !== '') {
                 item["comments"] = this.state.comments;
@@ -398,13 +400,19 @@ export class DoAssociation extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        simDeviceData: state.simDeviceData
+        simDeviceData: state.simDeviceData,
+        executeServiceData: state.executeServiceData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+<<<<<<< HEAD
         onfetchDropDownList : (request,request1) => dispatch(serviceActions.serviceDeviceRequest(request,request1))
+=======
+        onfetchDropDownList: (request) => dispatch(serviceActions.serviceDeviceRequest(request)),
+        addInventory: (inventoryRequest) => dispatch(serviceActions.executeServiceRequest(inventoryRequest))
+>>>>>>> f46915a4c8c44737ba467cb21183563b4af5b4e4
     }
 }
 
