@@ -5,7 +5,7 @@ import { AppLoading } from 'expo';
 import { Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { serviceActions } from '../../redux/actions';
-
+import call from 'react-native-phone-call';
 import styles from './Styles';
 import { globalStyles, colors, typeCode } from '../../styles';
 import { Toolbar, UnderlineText, SinglePicker, Activityindication } from '../../components';
@@ -66,6 +66,14 @@ export class DoAssociation extends React.Component {
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
         this.setState({ isLoading: false })
+    }
+    phoneCall()
+    {
+        const args = {
+            number: this.state.item.customerMobileNo, 
+            prompt: false 
+          }
+          call(args).catch(console.error)
     }
 
     componentDidMount() {
@@ -373,7 +381,7 @@ export class DoAssociation extends React.Component {
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                         </View>
                                         <View style={styles.right_view}>
-                                            <Ionicons name='ios-call' size={24} color='#5cb85c' />
+                                        <Ionicons name='ios-call' size={24} color='#5cb85c'  onPress={() => this.phoneCall()}/>
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.customerMobileNo}</Text>
                                         </View>
                                     </View>
