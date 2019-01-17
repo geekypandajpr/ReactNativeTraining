@@ -91,14 +91,9 @@ export class Schedule extends React.Component {
         this.statusRef.current.setModalVisible(true, this.state.serviceStatus, item)
     }
 
-    updateStatus(statusReq) {
-        // console.log(statusReq);
-        this.props.doStatusUpdate(statusReq);
-    }
+    updateStatus(statusReq) { this.props.doStatusUpdate(statusReq); }
 
-    onFilterApplied(item) {
-        this.props.onFetchJobList(item)
-    }
+    onFilterApplied(item) { this.props.onFetchJobList(item); }
 
     render() {
         const { navigate } = this.props.navigation;
