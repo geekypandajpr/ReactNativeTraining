@@ -88,7 +88,7 @@ export class DoAssociation extends React.Component {
         if (this.props.simDeviceData !== nextProps.simDeviceData) {
             if(nextProps.simDeviceData.device.results)
             {
-                alert(JSON.stringify(nextProps.simDeviceData.device.results.listInventory));
+               
                 var deviceData = nextProps.simDeviceData.device.results.listInventory;
                 var deviceArray=[];
                 var deviceObj={};
@@ -98,10 +98,11 @@ export class DoAssociation extends React.Component {
                     deviceArray.push(deviceObj)
                 }
                 this.setState({ deviceList : deviceArray })
+                // alert(JSON.stringify(deviceArray));
             }
             if(nextProps.simDeviceData.sim.results)
             {
-                alert(JSON.stringify(nextProps.simDeviceData.sim.results.listInventory));
+                // alert(JSON.stringify(nextProps.simDeviceData.sim.results.listInventory));
                 var simData = nextProps.simDeviceData.sim.results.listInventory;
                 var simArray=[];
                 var simObj={};
@@ -111,6 +112,7 @@ export class DoAssociation extends React.Component {
                     simArray.push(simObj)
                 }
                 this.setState({ simList : simArray })
+                // alert(JSON.stringify(simArray));
             }
             
         }
@@ -330,7 +332,7 @@ export class DoAssociation extends React.Component {
                                             value={this.state.dropdowns.get(DEVICE_KEY)[0]}
                                             isMandatory={true}
                                             upperView={true}
-                                            onpress={() => this.openPicker(DEVICE_KEY, [], 'Devices')}
+                                            onpress={() => this.openPicker(DEVICE_KEY, this.state.deviceList, 'Devices')}
                                         />
                                     </View>
                                     <View style={styles.picker_view}>
@@ -339,7 +341,7 @@ export class DoAssociation extends React.Component {
                                             value={this.state.dropdowns.get(SIM_KEY)[0]}
                                             isMandatory={true}
                                             upperView={true}
-                                            onpress={() => this.openPicker(SIM_KEY, [], 'Sims')}
+                                            onpress={() => this.openPicker(SIM_KEY, this.state.simList, 'Sims')}
                                         />
                                     </View>
                                     {item.serviceTypeName === 'REPLACE' ?
