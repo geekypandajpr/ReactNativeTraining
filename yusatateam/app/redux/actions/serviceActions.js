@@ -6,8 +6,9 @@ export default {
     VehicleRequest: () => ({ type: SERVICE.SERVICE_VEHICLE_REQUEST }),
     companyRequest: (userRole) => ({ type: SERVICE.SERVICE_COMPANY_REQUEST, userRole }),
     executeServiceRequest: () => ({ type: SERVICE.EXECUTE_SERVICE_REQUEST }),
-    createJobRequests: (createdata) => ({ type: SERVICE.CREATEJOB_REQUEST,createdata }),
+    createJobRequests: (createdata) => ({ type: SERVICE.CREATEJOB_REQUEST, createdata }),
     serviceStatusRequests: () => ({ type: SERVICE.SERVICE_STATUS_REQUEST }),
     serviceDeviceRequest: () => ({ type: SERVICE.SERVICE_DEVICE_REQUEST }),
     serviceSimRequest: () => ({ type: SERVICE.SERVICE_SIM_REQUEST }),
+    updateStatus: (status) => ({ type: SERVICE.SERVICE_STATUS_UPDATE_REQUEST, status})
 }
