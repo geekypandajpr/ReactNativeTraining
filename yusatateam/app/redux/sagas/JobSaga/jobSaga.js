@@ -102,7 +102,6 @@ export function* serviceStatusSaga(action) {
         const status = yield call(jobServices.serviceStatus);
         if (data) {
             yield put({ type: SERVICE.SERVICE_STATUS_SUCCESS, status });
-            // functions.showToast('Assigned successfully', 'success');
         } else {
             yield put({ type: SERVICE.SERVICE_STATUS_FAILED });
         }
