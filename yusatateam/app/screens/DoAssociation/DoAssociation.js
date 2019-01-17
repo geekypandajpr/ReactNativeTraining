@@ -94,11 +94,11 @@ export class DoAssociation extends React.Component {
         this.setState({ item: item });
 
         var FreeSim = {
-            "listType": item.serviceTypeName,
+            "listType": item.serviceTypeName === 'REPAIR' ? "REPAIREMENT" : item.serviceTypeName,
             "orderCode": typeCode.SIM_ORDER_CODE,
         };
         var FreeDevice = {
-            "listType": item.serviceTypeName,
+            "listType": item.serviceTypeName === 'REPAIR' ? "REPAIREMENT" : item.serviceTypeName,
             "orderCode": typeCode.DEVICE_ORDER_CODE
         };
         var DefectiveSim = FreeSim;
