@@ -9,7 +9,7 @@ import moment from 'moment';
 import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
 import styles from './styles';
 import { serviceActions } from '../../../redux/actions';
-import { globalStyles, colors } from '../../../styles';
+import { globalStyles, colors, typeCode } from '../../../styles';
 import functions from '../../../common/functions';
 
 const COMPANY_KEY = 'COMPANY';
@@ -153,7 +153,7 @@ export class AddJob extends React.Component {
                 "cashOnDelivery": this.state.radio,
                 "customerMobileNumber": this.state.Ccontact,
                 "customerName": this.state.Cname,
-                "orderCode": "TPI_SERVICE",
+                "orderCode": typeCode.SERVICE_ORDER_CODE,
                 "serviceDate": this.state.dataRenewal,
                 "servicePerson": "Sadaiv Panchal",
                 "servicePersonId": 115565465,
