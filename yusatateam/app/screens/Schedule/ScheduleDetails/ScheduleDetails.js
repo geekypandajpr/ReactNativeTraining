@@ -105,7 +105,7 @@ export default class ScheduleDetails extends React.Component {
                                     </View>
                                     <View style={styles.right_view}>
                                         <View style={styles.job_type}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4, color: colors.HEADER_COLOR }]}>{item.serviceTypeName}</Text>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4, color: '#000' }]}>{item.serviceTypeName}</Text>
                                         </View>
                                     </View>
                                 </View>
