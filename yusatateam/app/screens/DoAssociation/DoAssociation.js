@@ -43,6 +43,8 @@ export class DoAssociation extends React.Component {
             isLoading: true,
             comments: '',
             item: {},
+            deviceList : '',
+            simList :'',
             dropdowns: new Map()
         }
         this.getSelectedValue = this.getSelectedValue.bind(this);
@@ -77,9 +79,35 @@ export class DoAssociation extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+     
         if (this.props.simDeviceData !== nextProps.simDeviceData) {
-            // alert(JSON.stringify(nextProps.simDeviceData.device));
+            if(nextProps.simDeviceData.device.results)
+            {
+                alert(JSON.stringify(nextProps.simDeviceData.device.results.listInventory));
+                var deviceData = nextProps.simDeviceData.device.results.listInventory;
+                var deviceArray=[];
+                var deviceObj={};
+                for(var i=0;i<deviceData.length;i++)
+                {
+                    deviceObj["label"]=deviceData[i].orderNumber;
+                    deviceArray.push(deviceObj)
+                }
+                this.setState({ deviceList : deviceArray })
+            }
+            if(nextProps.simDeviceData.sim.results)
+            {
+                alert(JSON.stringify(nextProps.simDeviceData.sim.results.listInventory));
+                var simData = nextProps.simDeviceData.sim.results.listInventory;
+                var simArray=[];
+                var simObj={};
+                for(var i=0;i<simData.length;i++)
+                {
+                    simObj["label"]=simData[i].orderNumber;
+                    simArray.push(simObj)
+                }
+                this.setState({ simList : simArray })
+            }
+            
         }
 
     }
@@ -315,7 +343,7 @@ export class DoAssociation extends React.Component {
                                                     value={this.state.dropdowns.get(DEVICE_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => this.openPicker(DEVICE_KEY, [], 'Devices')}
+                                                    onpress={() => this.openPicker(DEVICE_KEY, this.state.deviceList, 'Devices')}
                                                 />
                                             </View>
 
@@ -325,7 +353,7 @@ export class DoAssociation extends React.Component {
                                                     value={this.state.dropdowns.get(SIM_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => this.openPicker(SIM_KEY, [], 'Sims')}
+                                                    onpress={() => this.openPicker(SIM_KEY,this.state.simList, 'Sims')}
                                                 />
                                             </View>
                                         </View>
@@ -376,7 +404,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onfetchDropDownList: (request) => dispatch(serviceActions.serviceDeviceRequest(request))
+        onfetchDropDownList : (request,request1) => dispatch(serviceActions.serviceDeviceRequest(request,request1))
     }
 }
 
