@@ -64,20 +64,41 @@ export class DoAssociation extends React.Component {
 
     componentDidMount() {
         const item = this.props.navigation.state.params.item;
-        console.log(JSON.stringify(item.serviceTypeName));
-        this.setState({ item: item })
-        var data =
-        {
+        this.setState({ item: item });
+        
+        var FreeSim = {
             "listType": item.serviceTypeName,
             "orderCode": typeCode.SIM_ORDER_CODE,
-        }
-        var data1 =
-        {
+        };
+        var FreeDevice = {
             "listType": item.serviceTypeName,
             "orderCode": typeCode.DEVICE_ORDER_CODE
+        };
+        var DefectiveFreeSim = FreeSim;
+        var DefectiveFreeDevice = FreeDevice;
+        var ReplaceFreeSim;
+        var ReplaceFreeDevice;
+        if(item.serviceTypeName === 'REPLACE') {
+            DefectiveFreeSim["replacementDropdown"] = "defectiveitem";
+            ReplaceFreeSim = {
+                "listType": item.serviceTypeName,
+                "orderCode": typeCode.SIM_ORDER_CODE,
+            };
+            ReplaceFreeSim["replacementDropdown"] = "replacementitem";
+
+            DefectiveFreeDevice["replacementDropdown"] = "defectiveitem";
+            ReplaceFreeDevice = {
+                "listType": item.serviceTypeName,
+                "orderCode": typeCode.DEVICE_ORDER_CODE
+            };
+            ReplaceFreeDevice["replacementDropdown"] = "replacementitem";
         }
-        this.props.onfetchDropDownList(data, data1);
-        this.setState({ item: this.props.navigation.state.params.item })
+        this.props.onfetchDropDownList(DefectiveFreeSim, DefectiveFreeDevice, ReplaceFreeSim, ReplaceFreeDevice);
+        // console.log("DS->"+JSON.stringify(DefectiveFreeSim));
+        // console.log("DD->"+JSON.stringify(DefectiveFreeDevice));
+        // console.log("RS->"+JSON.stringify(ReplaceFreeSim));
+        // console.log("DS->"+JSON.stringify(ReplaceFreeDevice));
+        
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         const dropdowns = new Map(this.state.dropdowns);
         dropdowns.set(STATUS_KEY, [STATUS_KEY_VALUE, null]);
