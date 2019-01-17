@@ -407,12 +407,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-<<<<<<< HEAD
-        onfetchDropDownList : (request,request1) => dispatch(serviceActions.serviceDeviceRequest(request,request1))
-=======
-        onfetchDropDownList: (request) => dispatch(serviceActions.serviceDeviceRequest(request)),
+
+       onfetchDropDownList : (request,request1) => dispatch(serviceActions.serviceDeviceRequest(request,request1)),
         addInventory: (inventoryRequest) => dispatch(serviceActions.executeServiceRequest(inventoryRequest))
->>>>>>> f46915a4c8c44737ba467cb21183563b4af5b4e4
+
     }
 }
 
