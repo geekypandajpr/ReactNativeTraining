@@ -67,13 +67,12 @@ export class DoAssociation extends React.Component {
         })
         this.setState({ isLoading: false })
     }
-    phoneCall()
-    {
+    phoneCall() {
         const args = {
-            number: this.state.item.customerMobileNo, 
-            prompt: false 
-          }
-          call(args).catch(console.error)
+            number: this.state.item.customerMobileNo,
+            prompt: false
+        }
+        call(args).catch(console.error)
     }
 
     componentDidMount() {
@@ -202,9 +201,9 @@ export class DoAssociation extends React.Component {
                     "orderType": this.state.item.serviceTypeName,
                     "replace": {
                         "defectiveSimId": this.state.dropdowns.get(SIM_KEY)[1],
-                        "defectiveDeviceId":this.state.dropdowns.get(DEVICE_KEY)[1],
-                        "replaceSimId":this.state.dropdowns.get(REPLACED_SIM_KEY)[1],
-                        "replaceDeviceId":this.state.dropdowns.get(REPLACED_DEVICE_KEY)[1],
+                        "defectiveDeviceId": this.state.dropdowns.get(DEVICE_KEY)[1],
+                        "replaceSimId": this.state.dropdowns.get(REPLACED_SIM_KEY)[1],
+                        "replaceDeviceId": this.state.dropdowns.get(REPLACED_DEVICE_KEY)[1],
                     },
                     "serviceHeaderId": this.state.item.headerId,
                 }
@@ -218,26 +217,25 @@ export class DoAssociation extends React.Component {
 
                 }
             }
-            alert(JSON.stringify(item));
-            //this.props.addInventory(item);
+            //alert(JSON.stringify(item));
+            this.props.addInventory(item);
         } else {
             functions.showToast('Please fill all required fields', 'warning');
         }
     }
 
-
     /**Function to validate mandatory fields for Add GPS Device API*/
     checkRequiredFields() {
         if (this.state.item.serviceTypeName == "REPLACE") {
             if (this.state.dropdowns.get(SIM_KEY)[1]
-                &&this.state.dropdowns.get(DEVICE_KEY)[1]
-                &&this.state.dropdowns.get(REPLACED_SIM_KEY)[1]
-                &&this.state.dropdowns.get(REPLACED_DEVICE_KEY)[1]) {
+                && this.state.dropdowns.get(DEVICE_KEY)[1]
+                && this.state.dropdowns.get(REPLACED_SIM_KEY)[1]
+                && this.state.dropdowns.get(REPLACED_DEVICE_KEY)[1]) {
                 return true
             }
         } else {
             if (this.state.dropdowns.get(SIM_KEY)[1]
-                &&this.state.dropdowns.get(DEVICE_KEY)[1]) {
+                && this.state.dropdowns.get(DEVICE_KEY)[1]) {
                 return true
             }
         }
@@ -388,7 +386,7 @@ export class DoAssociation extends React.Component {
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                         </View>
                                         <View style={styles.right_view}>
-                                        <Ionicons name='ios-call' size={24} color='#5cb85c'  onPress={() => this.phoneCall()}/>
+                                            <Ionicons name='ios-call' size={24} color='#5cb85c' onPress={() => this.phoneCall()} />
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.customerMobileNo}</Text>
                                         </View>
                                     </View>
