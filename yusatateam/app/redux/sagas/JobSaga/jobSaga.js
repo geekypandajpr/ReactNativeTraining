@@ -154,6 +154,8 @@ export function* simDeviceSaga(action) {
                 call(jobServices.defectiveSim, action.DefectiveSim),
                 call(jobServices.defectiveDevice, action.DefectiveDevice),
             ]);
+            if (DefectiveSim === null) { DefectiveSim = [] }
+            if (DefectiveDevice === null) { DefectiveDevice = [] }
             const ReplaceSim = [], ReplaceDevice = [];
             yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: { DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice } });
         } catch (error) {
