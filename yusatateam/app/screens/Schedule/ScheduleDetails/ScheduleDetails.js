@@ -11,10 +11,10 @@ import { globalStyles, colors } from '../../../styles';
 const STATUS_COLOR = {
     "ENTERED": '#0073b7',
     "ACCEPTED": '#5E35A6',
-    "ONJOB": '#007aff',
+    "ON_JOB": '#007aff',
     "COMPLETED": '#5cb85c',
     "RESCHEDULED": '#f0ad4e',
-    "CANCELLED": '#d9534f',
+    "CANCELLED": '#d9534f'
 };
 
 export default class ScheduleDetails extends React.Component {

@@ -4,7 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Text, Button, Header, Body, Right, CheckBox } from 'native-base';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { colors } from '../../styles';
+import { colors, typeCode } from '../../styles';
 
 export default class Status extends React.Component {
     constructor(props) {
@@ -13,6 +13,7 @@ export default class Status extends React.Component {
             isLoading: true,
             modalVisible: false,
             status: [],
+            itemObject: {},
             code: ''
         }
         this.setModalVisible = this.setModalVisible.bind(this);
@@ -24,15 +25,26 @@ export default class Status extends React.Component {
             Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         })
-        this.setState({ isLoading: false })
+        this.setState({ isLoading: false });
     }
 
-    setModalVisible(visible, data, currentStatus){
-        this.setState({ modalVisible: visible, status: data.results ? data.results : [], code: currentStatus});
+    setModalVisible(visible, data, item){
+        this.setState({
+            modalVisible: visible,
+            status: data.results ? data.results : [],
+            code: item.serviceStatus,
+            itemObject: item
+        });
     }
 
     onApply = () => {
-        this.setState({modalVisible: false});
+        const statusRequest = {
+            "headerId": this.state.itemObject.headerId,
+            "orderCode": typeCode.SERVICE_ORDER_CODE,
+            "status": this.state.code
+        };
+        this.props.updateStatus(statusRequest);
+        this.setState({ modalVisible: false });
     }
 
     render() {
@@ -74,77 +86,12 @@ export default class Status extends React.Component {
                                     </View>
                                 </View>
                             )}
-{/* 
-                            <View style={styles.Small_View}>
-                                <View style={styles.checkbox_view}>
-                                    <CheckBox
-                                        checked={this.state.value === 'Entered'}
-                                        color={colors.HEADER_COLOR}
-                                        onPress={() => this.setState({ value: 'Entered' })}
-                                    />
-                                    <View style={styles.remember_me}>
-                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Entered</Text>
-                                    </View>
-                                </View>
-                            </View>
-
-                            <View style={styles.Small_View}>
-                                <View style={styles.checkbox_view}>
-                                    <CheckBox
-                                        checked={this.state.value === 'Accepted'}
-                                        color={colors.HEADER_COLOR}
-                                        onPress={() => this.setState({ value: 'Accepted' })}
-                                    />
-                                    <View style={styles.remember_me}>
-                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Accepted</Text>
-                                    </View>
-                                </View>
-                            </View>
-
-                            <View style={styles.Small_View}>
-                                <View style={styles.checkbox_view}>
-                                    <CheckBox
-                                        checked={this.state.value === 'On_Job'}
-                                        color={colors.HEADER_COLOR}
-                                        onPress={() => this.setState({ value: 'On_Job' })}
-                                    />
-                                    <View style={styles.remember_me}>
-                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>On Job</Text>
-                                    </View>
-                                </View>
-                            </View>
-
-                            <View style={styles.Small_View}>
-                                <View style={styles.checkbox_view}>
-                                    <CheckBox
-                                        checked={this.state.value === 'Rescheduled'}
-                                        color={colors.HEADER_COLOR}
-                                        onPress={() => this.setState({ value: 'Rescheduled' })}
-                                    />
-                                    <View style={styles.remember_me}>
-                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Rescheduled</Text>
-                                    </View>
-                                </View>
-                            </View>
-
-                            <View style={styles.Small_View}>
-                                <View style={styles.checkbox_view}>
-                                    <CheckBox
-                                        checked={this.state.value === 'Cancelled'}
-                                        color={colors.HEADER_COLOR}
-                                        onPress={() => this.setState({ value: 'Cancelled' })}
-                                    />
-                                    <View style={styles.remember_me}>
-                                        <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>Cancelled</Text>
-                                    </View>
-                                </View>
-                            </View> */}
 
                             <View style={styles.Small_View}>
                                 <View style={[styles.checkbox_view, {justifyContent: 'flex-end'}]}>
                                     <Button full onPress={this.onApply}
                                         style={{ width: 150, backgroundColor: colors.HEADER_COLOR }} >
-                                        <Text style={{fontFamily: 'Roboto', color: '#fff'}}> Apply </Text>
+                                        <Text style={{fontFamily: 'Roboto', color: '#fff'}}> Change </Text>
                                     </Button>
                                 </View>
                             </View>

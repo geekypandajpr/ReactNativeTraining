@@ -88,7 +88,12 @@ export class Schedule extends React.Component {
     }
 
     openStatusModal(item) {
-        this.statusRef.current.setModalVisible(true, this.state.serviceStatus, item.serviceStatus)
+        this.statusRef.current.setModalVisible(true, this.state.serviceStatus, item)
+    }
+
+    updateStatus(statusReq) {
+        console.log(statusReq);
+        // this.props.doStatusUpdate(statusReq);
     }
 
     onFilterApplied(item) {
@@ -175,7 +180,7 @@ export class Schedule extends React.Component {
                     }}
                 />
                 <Filter ref={this.filterRef} onSelectFilter={(item) => { this.onFilterApplied(item) }} />
-                <Status ref={this.statusRef} />
+                <Status ref={this.statusRef} updateStatus={(statusReq) => { this.updateStatus(statusReq) }} />
 
             </View>
         );
