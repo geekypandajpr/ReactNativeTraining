@@ -111,6 +111,25 @@ export function* serviceStatusSaga(action) {
     }
 }
 
+/**Update service status */
+export function* serviceStatusUpdateSaga(action) {
+    try {
+        const status = yield call(jobServices.updateStatus, action.status);
+        if (status) {
+            const listData = yield call(jobServices.getServiceList, 'all');
+            yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData });
+            yield put({ type: SERVICE.SERVICE_STATUS_UPDATE_SUCCESS, status });
+            functions.showToast('Status updated', 'success');
+        } else {
+            yield put({ type: SERVICE.SERVICE_STATUS_UPDATE_FAILED });
+            functions.showToast('Status not updated', 'danger');
+        }
+    } catch (error) {
+        yield put({ type: SERVICE.SERVICE_STATUS_UPDATE_FAILED, error });
+        functions.showToast('Something went wrong', 'danger');
+    }
+}
+
 export function* simDeviceSaga(action) {
     try {
         // console.log(action.request1);

@@ -92,8 +92,8 @@ export class Schedule extends React.Component {
     }
 
     updateStatus(statusReq) {
-        console.log(statusReq);
-        // this.props.doStatusUpdate(statusReq);
+        // console.log(statusReq);
+        this.props.doStatusUpdate(statusReq);
     }
 
     onFilterApplied(item) {
@@ -111,6 +111,7 @@ export class Schedule extends React.Component {
         return (
             <View style={styles.container}>
                 <Activityindication visible={this.props.serviceList.isLoading} />
+                <Activityindication visible={this.props.updatedStatusData.isLoading} />
                 <Toolbar title='Schedule'
                     leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                     setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('AddJob')}
@@ -252,12 +253,14 @@ function mapStateToProps(state) {
     return {
         serviceList: state.serviceListData,
         serviceStatus: state.serviceStatus,
+        updatedStatusData: state.updatedStatusData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onFetchJobList: (serviceType) => dispatch(serviceActions.serviceListRequest(serviceType))
+        onFetchJobList: (serviceType) => dispatch(serviceActions.serviceListRequest(serviceType)),
+        doStatusUpdate: (statusReq) => dispatch(serviceActions.updateStatus(statusReq))
     }
 }
 

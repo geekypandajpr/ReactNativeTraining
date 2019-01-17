@@ -34,6 +34,7 @@ const rootReducers = combineReducers({
     serviceCompanyData      : JobReducer.companyReducer,
     executeServiceData      : JobReducer.executeServiceReducer,
     serviceStatus           : JobReducer.serviceStatusReducer,
+    updatedStatusData       : JobReducer.updateStatusReducer,
     simDeviceData           : JobReducer.simDeviceReducer,
 
     /**Sim Info */
