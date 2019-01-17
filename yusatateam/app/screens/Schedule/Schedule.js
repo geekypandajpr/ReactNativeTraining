@@ -220,7 +220,7 @@ export class Schedule extends React.Component {
         return (
             <ScheduleEvent item={[item]}
                 onStatusChange={() => this.openStatusModal(item)}
-                doAssociation={() => this.props.navigation.navigate('DoAssociation')}
+                doAssociation={() => this.props.navigation.navigate('DoAssociation',{item})}
                 viewMore={() => this.props.navigation.navigate('ScheduleDetails', {item})}
             />
         );
