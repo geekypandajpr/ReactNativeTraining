@@ -141,12 +141,11 @@ export class DoAssociation extends React.Component {
     doAssignment() {
         if (this.checkRequiredFields()) {
             var item = {
-                "orderType": typeCode.SERVICE_EXECUTE_ORDERTYPE,
-                "inventoryId": [
-                    { "device": this.state.dropdowns.get(SIM_KEY)[1] },
-                    { "sim": this.state.dropdowns.get(DEVICE_KEY)[1] }],
+                "orderType": this.state.item.serviceTypeName,
+                "inventoryId": [this.state.dropdowns.get(SIM_KEY)[1],
+                this.state.dropdowns.get(DEVICE_KEY)[1]],
                 //"status": this.state.dropdowns.get(STATUS_KEY)[1],
-                "serviceHeaderId": item.headerId,
+                "serviceHeaderId": this.state.item.headerId,
             }
             alert(JSON.stringify(item));
             //this.props.addInventory(item);
@@ -161,7 +160,7 @@ export class DoAssociation extends React.Component {
         if (this.state.dropdowns.get(DEVICE_KEY)[1]
             && this.state.dropdowns.get(SIM_KEY)[1]
             //&& this.state.dropdowns.get(STATUS_KEY)[1]
-            ) {
+        ) {
             return true
         }
         return false;
