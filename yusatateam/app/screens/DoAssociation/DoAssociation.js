@@ -370,13 +370,15 @@ export class DoAssociation extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        simDeviceData: state.simDeviceData
+        simDeviceData: state.simDeviceData,
+        executeServiceData: state.executeServiceData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onfetchDropDownList: (request) => dispatch(serviceActions.serviceDeviceRequest(request))
+        onfetchDropDownList: (request) => dispatch(serviceActions.serviceDeviceRequest(request)),
+        addInventory: (inventoryRequest) => dispatch(serviceActions.executeServiceRequest(inventoryRequest))
     }
 }
 
