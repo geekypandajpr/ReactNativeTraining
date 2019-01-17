@@ -35,6 +35,10 @@ const DEVICE_KEY = "DEVICE";
 const DEVICE_KEY_VALUE = "Select device";
 const SIM_KEY = "SIM";
 const SIM_KEY_VALUE = "Select sim";
+const REPLACED_SIM_KEY = "REPLACED SIM";
+const REPLACED_SIM_KEY_VALUE = "Select Replaced sim";
+const REPLACED_DEVICE_KEY = "REPLACED DEVICE";
+const REPLACED_DEVICE_KEY_VALUE = "Select Replaced Device";
 
 export class DoAssociation extends React.Component {
     constructor(props) {
@@ -67,7 +71,7 @@ export class DoAssociation extends React.Component {
     componentDidMount() {
         const item = this.props.navigation.state.params.item;
         this.setState({ item: item });
-        
+
         var FreeSim = {
             "listType": item.serviceTypeName,
             "orderCode": typeCode.SIM_ORDER_CODE,
@@ -80,7 +84,7 @@ export class DoAssociation extends React.Component {
         var DefectiveDevice = FreeDevice;
         var ReplaceSim;
         var ReplaceDevice;
-        if(item.serviceTypeName === 'REPLACE') {
+        if (item.serviceTypeName === 'REPLACE') {
             DefectiveSim["replacementDropdown"] = "defectiveitem";
             ReplaceSim = {
                 "listType": item.serviceTypeName,
@@ -103,6 +107,8 @@ export class DoAssociation extends React.Component {
         dropdowns.set(STATUS_KEY, [STATUS_KEY_VALUE, null]);
         dropdowns.set(DEVICE_KEY, [DEVICE_KEY_VALUE, null]);
         dropdowns.set(SIM_KEY, [SIM_KEY_VALUE, null]);
+        dropdowns.set(REPLACED_SIM_KEY, [REPLACED_SIM_KEY_VALUE, null])
+        dropdowns.set(REPLACED_DEVICE_KEY, [REPLACED_DEVICE_KEY_VALUE, null])
         this.setState({ dropdowns: dropdowns });
     }
 
@@ -113,38 +119,38 @@ export class DoAssociation extends React.Component {
             var ReplaceSimArray = [];
             var ReplaceDeviceArray = [];
 
-            if(nextProps.simDeviceData.DefectiveDevice.results) {
+            if (nextProps.simDeviceData.DefectiveDevice.results) {
                 var DefectiveDeviceData = nextProps.simDeviceData.DefectiveDevice.results.listInventory;
-                for(let index in DefectiveDeviceData) {
-                    const obj = { "label" : DefectiveDeviceData[index].esn, "value": DefectiveDeviceData[index].itemInvLotId };
+                for (let index in DefectiveDeviceData) {
+                    const obj = { "label": DefectiveDeviceData[index].esn, "value": DefectiveDeviceData[index].itemInvLotId };
                     DefectiveDeviceArray.push(obj);
                 }
             }
 
-            if(nextProps.simDeviceData.DefectiveSim.results) {
+            if (nextProps.simDeviceData.DefectiveSim.results) {
                 var DefectiveSimData = nextProps.simDeviceData.DefectiveSim.results.listInventory;
-                for(let index in DefectiveSimData) {
-                    const obj = { "label" : DefectiveSimData[index].msidn, "value": DefectiveSimData[index].itemInvLotId };
+                for (let index in DefectiveSimData) {
+                    const obj = { "label": DefectiveSimData[index].msidn, "value": DefectiveSimData[index].itemInvLotId };
                     DefectiveSimArray.push(obj);
                 }
             }
 
-            if(nextProps.simDeviceData.ReplaceDevice.results) {
+            if (nextProps.simDeviceData.ReplaceDevice.results) {
                 var ReplaceDeviceData = nextProps.simDeviceData.ReplaceDevice.results.listInventory;
-                for(let index in ReplaceDeviceData) {
-                    const obj = { "label" : ReplaceDeviceData[index].esn, "value": ReplaceDeviceData[index].itemInvLotId };
+                for (let index in ReplaceDeviceData) {
+                    const obj = { "label": ReplaceDeviceData[index].esn, "value": ReplaceDeviceData[index].itemInvLotId };
                     ReplaceDeviceArray.push(obj);
                 }
             }
 
-            if(nextProps.simDeviceData.ReplaceSim.results) {
+            if (nextProps.simDeviceData.ReplaceSim.results) {
                 var ReplaceSimData = nextProps.simDeviceData.ReplaceSim.results.listInventory;
-                for(let index in ReplaceSimData) {
-                    const obj = { "label" : ReplaceSimData[index].msidn, "value": ReplaceSimData[index].itemInvLotId };
+                for (let index in ReplaceSimData) {
+                    const obj = { "label": ReplaceSimData[index].msidn, "value": ReplaceSimData[index].itemInvLotId };
                     ReplaceSimArray.push(obj);
                 }
             }
-            
+
             this.setState({
                 DefectiveDeviceArray: DefectiveDeviceArray,
                 DefectiveSimArray: DefectiveSimArray,
@@ -177,12 +183,32 @@ export class DoAssociation extends React.Component {
 
     doAssignment() {
         if (this.checkRequiredFields()) {
-            var item = {
-                "orderType": this.state.item.serviceTypeName,
-                "inventoryId": [this.state.dropdowns.get(SIM_KEY)[1],
-                this.state.dropdowns.get(DEVICE_KEY)[1]],
-                //"status": this.state.dropdowns.get(STATUS_KEY)[1],
-                "serviceHeaderId": this.state.item.headerId,
+            if (this.state.item.serviceTypeName = "REPLACE") {
+                var item = {
+                    "inventoryId": [
+                        this.state.dropdowns.get(SIM_KEY)[1],
+                        this.state.dropdowns.get(DEVICE_KEY)[1],
+                        this.state.dropdowns.get(REPLACED_SIM_KEY)[1],
+                        this.state.dropdowns.get(REPLACED_DEVICE_KEY)[1],
+                    ],
+                    "orderType": this.state.item.serviceTypeName,
+                    "replace": {
+                        "defectiveSimId": this.state.dropdowns.get(SIM_KEY)[1],
+                        "defectiveDeviceId":this.state.dropdowns.get(DEVICE_KEY)[1],
+                        "replaceSimId":this.state.dropdowns.get(REPLACED_SIM_KEY)[1],
+                        "replaceDeviceId":this.state.dropdowns.get(REPLACED_DEVICE_KEY)[1],
+                    },
+                    "serviceHeaderId": this.state.item.headerId,
+                }
+            } else {
+                var item = {
+                    "orderType": this.state.item.serviceTypeName,
+                    "inventoryId": [this.state.dropdowns.get(SIM_KEY)[1],
+                    this.state.dropdowns.get(DEVICE_KEY)[1]],
+                    //"status": this.state.dropdowns.get(STATUS_KEY)[1],
+                    "serviceHeaderId": this.state.item.headerId,
+
+                }
             }
             alert(JSON.stringify(item));
             //this.props.addInventory(item);
@@ -306,7 +332,7 @@ export class DoAssociation extends React.Component {
                                         </View>
                                         <View style={styles.right_view}>
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                                {  item.cashOnDelivery == 'Y' ? 'Yes' : 'No' }
+                                                {item.cashOnDelivery == 'Y' ? 'Yes' : 'No'}
                                             </Text>
                                         </View>
                                     </View>
@@ -322,7 +348,7 @@ export class DoAssociation extends React.Component {
                                                 <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.amountCollection}</Text>
                                             </View>
                                         </View>
-                                        : null 
+                                        : null
                                     }
                                 </View>
 
@@ -387,20 +413,20 @@ export class DoAssociation extends React.Component {
                                             <View style={styles.picker_view}>
                                                 <UnderlineText
                                                     name="replaceDeviceId"
-                                                    value={this.state.dropdowns.get(DEVICE_KEY)[0]}
+                                                    value={this.state.dropdowns.get(REPLACED_DEVICE_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => this.openPicker(DEVICE_KEY, this.state.ReplaceDeviceArray, 'Devices')}
+                                                    onpress={() => this.openPicker(REPLACED_DEVICE_KEY, this.state.ReplaceDeviceArray, 'Devices')}
                                                 />
                                             </View>
 
                                             <View style={styles.picker_view}>
                                                 <UnderlineText
                                                     name="replaceSimId"
-                                                    value={this.state.dropdowns.get(SIM_KEY)[0]}
+                                                    value={this.state.dropdowns.get(REPLACED_SIM_KEY)[0]}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => this.openPicker(SIM_KEY, this.state.ReplaceSimArray, 'Sims')}
+                                                    onpress={() => this.openPicker(REPLACED_SIM_KEY, this.state.ReplaceSimArray, 'Sims')}
                                                 />
                                             </View>
                                         </View>
