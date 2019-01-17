@@ -25,8 +25,8 @@ export const SERVICE = {
     SERVICE_VEHICLE             : 'utility/list/FreeVehicles',
     SERVICE_TECHNICIAN          : 'utility/list/user',
     SERVICE_TYPE                : 'utility/list/TechServiceType',
-    SERVICE_DEVICE              : 'utility/list/InventoryDevice',
-    SERVICE_SIM                 : 'utility/list/InventorySim',
+    SERVICE_DEVICE              : '/ap/invServiceDropdownList',
+    SERVICE_SIM                 : '/ap/invServiceDropdownList',
     SERVICE_STATUS              : 'utility/list/TechServiceStatus',
     SERVICE_STATUS_UPDATE       : 'ap/statusUpdate',
 }
