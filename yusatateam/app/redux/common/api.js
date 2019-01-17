@@ -48,7 +48,7 @@ export default class Api {
                     return null;
                 } else if(responseJson[0] === 204) {
                     // functions.showToast('Data not found', 'warning');
-                    return null;
+                    return [];
                 } else {
                     throw new Error(`{"message":"${status}"}`);
                 }
