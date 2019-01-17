@@ -12,6 +12,7 @@ export const excecuteService = () => Api.post(SERVICE.EXECUTE_SERVICE);
 export const serviceStatus = () => Api.get(SERVICE.SERVICE_STATUS);
 export const devices = () => Api.get(SERVICE.SERVICE_DEVICE);
 export const sims = () => Api.get(SERVICE.SERVICE_SIM);
+export const updateStatus = (status) => Api.put(SERVICE.SERVICE_STATUS_UPDATE, status);
 
  
 export default jobServices = {
@@ -25,5 +26,6 @@ export default jobServices = {
     excecuteService,
     serviceStatus,
     devices,
-    sims
+    sims,
+    updateStatus
 }

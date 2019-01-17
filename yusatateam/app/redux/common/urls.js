@@ -28,4 +28,5 @@ export const SERVICE = {
     SERVICE_DEVICE              : 'utility/list/InventoryDevice',
     SERVICE_SIM                 : 'utility/list/InventorySim',
     SERVICE_STATUS              : 'utility/list/TechServiceStatus',
+    SERVICE_STATUS_UPDATE       : 'ap/statusUpdate',
 }
