@@ -8,7 +8,7 @@ export default {
     executeServiceRequest: (inventoryRequest) => ({ type: SERVICE.EXECUTE_SERVICE_REQUEST,inventoryRequest }),
     createJobRequests: (createdata) => ({ type: SERVICE.CREATEJOB_REQUEST, createdata }),
     serviceStatusRequests: () => ({ type: SERVICE.SERVICE_STATUS_REQUEST }),
-    serviceDeviceRequest: (request,request1) => ({ type: SERVICE.SERVICE_DEVICE_REQUEST,request,request1 }),
+    serviceDeviceRequest: (DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice) => ({ type: SERVICE.SERVICE_DEVICE_REQUEST, DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice}),
     serviceSimRequest: () => ({ type: SERVICE.SERVICE_SIM_REQUEST }),
     updateStatus: (status) => ({ type: SERVICE.SERVICE_STATUS_UPDATE_REQUEST, status})
 }

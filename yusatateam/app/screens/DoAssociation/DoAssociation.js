@@ -74,26 +74,26 @@ export class DoAssociation extends React.Component {
             "listType": item.serviceTypeName,
             "orderCode": typeCode.DEVICE_ORDER_CODE
         };
-        var DefectiveFreeSim = FreeSim;
-        var DefectiveFreeDevice = FreeDevice;
-        var ReplaceFreeSim;
-        var ReplaceFreeDevice;
+        var DefectiveSim = FreeSim;
+        var DefectiveDevice = FreeDevice;
+        var ReplaceSim;
+        var ReplaceDevice;
         if(item.serviceTypeName === 'REPLACE') {
-            DefectiveFreeSim["replacementDropdown"] = "defectiveitem";
-            ReplaceFreeSim = {
+            DefectiveSim["replacementDropdown"] = "defectiveitem";
+            ReplaceSim = {
                 "listType": item.serviceTypeName,
                 "orderCode": typeCode.SIM_ORDER_CODE,
             };
-            ReplaceFreeSim["replacementDropdown"] = "replacementitem";
+            ReplaceSim["replacementDropdown"] = "replacementitem";
 
-            DefectiveFreeDevice["replacementDropdown"] = "defectiveitem";
-            ReplaceFreeDevice = {
+            DefectiveDevice["replacementDropdown"] = "defectiveitem";
+            ReplaceDevice = {
                 "listType": item.serviceTypeName,
                 "orderCode": typeCode.DEVICE_ORDER_CODE
             };
-            ReplaceFreeDevice["replacementDropdown"] = "replacementitem";
+            ReplaceDevice["replacementDropdown"] = "replacementitem";
         }
-        this.props.onfetchDropDownList(DefectiveFreeSim, DefectiveFreeDevice, ReplaceFreeSim, ReplaceFreeDevice);
+        this.props.onfetchDropDownList(DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice);
         // console.log("DS->"+JSON.stringify(DefectiveFreeSim));
         // console.log("DD->"+JSON.stringify(DefectiveFreeDevice));
         // console.log("RS->"+JSON.stringify(ReplaceFreeSim));
@@ -110,9 +110,10 @@ export class DoAssociation extends React.Component {
     componentWillReceiveProps(nextProps) {
 
         if (this.props.simDeviceData !== nextProps.simDeviceData) {
-            if (nextProps.simDeviceData.device.results) {
+            console.log(JSON.stringify(nextProps.simDeviceData))
+            if (nextProps.simDeviceData.DefectiveDevice.results) {
 
-                var deviceData = nextProps.simDeviceData.device.results.listInventory;
+                var deviceData = nextProps.simDeviceData.DefectiveDevice.results.listInventory;
                 var deviceArray = [];
                 for (var i = 0; i < deviceData.length; i++) {
                     var deviceObj = {};
@@ -122,9 +123,33 @@ export class DoAssociation extends React.Component {
                 this.setState({ deviceList: deviceArray })
                 // alert(JSON.stringify(deviceArray));
             }
-            if (nextProps.simDeviceData.sim.results) {
+            if (nextProps.simDeviceData.DefectiveSim.results) {
                 // alert(JSON.stringify(nextProps.simDeviceData.sim.results.listInventory));
-                var simData = nextProps.simDeviceData.sim.results.listInventory;
+                var simData = nextProps.simDeviceData.DefectiveSim.results.listInventory;
+                var simArray = [];
+                for (var i = 0; i < simData.length; i++) {
+                    var simObj = {};
+                    simObj["label"] = simData[i].orderNumber;
+                    simArray.push(simObj)
+                }
+                this.setState({ simList: simArray })
+                // alert(JSON.stringify(simArray));
+            }
+            if (nextProps.simDeviceData.ReplaceDevice.results) {
+
+                var deviceData = nextProps.simDeviceData.ReplaceDevice.results.listInventory;
+                var deviceArray = [];
+                for (var i = 0; i < deviceData.length; i++) {
+                    var deviceObj = {};
+                    deviceObj["label"] = deviceData[i].orderNumber;
+                    deviceArray.push(deviceObj)
+                }
+                this.setState({ deviceList: deviceArray })
+                // alert(JSON.stringify(deviceArray));
+            }
+            if (nextProps.simDeviceData.ReplaceSim.results) {
+                // alert(JSON.stringify(nextProps.simDeviceData.sim.results.listInventory));
+                var simData = nextProps.simDeviceData.ReplaceSim.results.listInventory;
                 var simArray = [];
                 for (var i = 0; i < simData.length; i++) {
                     var simObj = {};
@@ -439,7 +464,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
 
-        onfetchDropDownList: (request, request1) => dispatch(serviceActions.serviceDeviceRequest(request, request1)),
+        onfetchDropDownList: (DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice) => dispatch(serviceActions.serviceDeviceRequest(DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice)),
         addInventory: (inventoryRequest) => dispatch(serviceActions.executeServiceRequest(inventoryRequest))
 
     }

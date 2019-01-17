@@ -2,8 +2,10 @@ import { SERVICE } from '../../common/actionTypes';
 
 const initialState = {
     isLoading: true,
-    sim: [],
-    device: [],
+    DefectiveSim : [], 
+    ReplaceSim : [], 
+    DefectiveDevice : [], 
+    ReplaceDevice : [],
     error: false
 }
 
@@ -15,16 +17,16 @@ export default simDeviceReducer = (state = initialState, action) => {
             });
         case SERVICE.SERVICE_DEVICE_SUCCESS:
             return Object.assign({}, state, {
-                device : action.datas.device,
-                sim: action.datas.sim,
+                DefectiveSim : action.DefectiveSim, 
+                ReplaceSim : action.ReplaceSim, 
+                DefectiveDevice : action.DefectiveDevice, 
+                ReplaceDevice : action.ReplaceDevice,
                 isLoading: false
             });
         case SERVICE.SERVICE_DEVICE_FAILED:
             return Object.assign({}, state, {
                 isLoading: false,
                 error: true,
-                sim: [],
-                device: [],
             });
         default:
             return state;

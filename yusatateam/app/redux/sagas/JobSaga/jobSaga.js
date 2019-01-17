@@ -131,20 +131,45 @@ export function* serviceStatusUpdateSaga(action) {
 }
 
 export function* simDeviceSaga(action) {
-    try {
-        // console.log(action.request1);
-        // console.log(action.request);
 
-        const [sim, device] = yield all([call(jobServices.sims,action.request), call(jobServices.devices,action.request1)]);
-        // alert(JSON.stringify(device));
-        // yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: { sim, device } });
-        if(sim) {
-            yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {sim, device}});
-        } else {
-            yield put({ type: SERVICE.SERVICE_DEVICE_FAILED });
+    if(action.ReplaceSim && action.ReplaceDevice) {
+        try {
+            const [DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice] = yield all([
+                call(jobServices.defectiveSim, action.DefectiveSim), 
+                call(jobServices.replaceSim, action.ReplaceSim),
+                call(jobServices.defectiveDevice, action.DefectiveDevice), 
+                call(jobServices.replaceDevice, action.ReplaceDevice)
+            ]);
+            yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice}});
+            // if(sim1) {
+            //     yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {sim1, device1,sim2,device2}});
+            // } else {
+            //     yield put({ type: SERVICE.SERVICE_DEVICE_FAILED });
+            // }
+        } catch (error) {
+            yield put({ type: SERVICE.SERVICE_DEVICE_FAILED, error });
+            functions.showToast('Something went wrong', 'danger');
         }
-    } catch (error) {
-        yield put({ type: SERVICE.SERVICE_DEVICE_FAILED, error });
-        functions.showToast('Something went wrong', 'danger');
+    }
+    else{
+        try {
+            const [DefectiveSim, DefectiveDevice] = yield all([
+                call(jobServices.defectiveSim, action.DefectiveSim),
+                call(jobServices.defectiveDevice, action.DefectiveDevice), 
+            ]);
+            const ReplaceSim=[], ReplaceDevice=[];
+            yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice}});
+
+            // alert(JSON.stringify(device));
+            // yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: { sim, device } });
+            // if(sim1) {
+            //     yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: {sim1, device2}});
+            // } else {
+            //     yield put({ type: SERVICE.SERVICE_DEVICE_FAILED });
+            // }
+        } catch (error) {
+            yield put({ type: SERVICE.SERVICE_DEVICE_FAILED, error });
+            functions.showToast('Something went wrong', 'danger');
+        }
     }
 }

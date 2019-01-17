@@ -10,8 +10,10 @@ export const getServiceList = (serviceType) => Api.get(SERVICE.SERVICE_LIST+`?ty
 export const getServiceHistory = () => Api.get(SERVICE.SERVICE_VEHICLE);
 export const excecuteService = (inventoryRequest) => Api.post(SERVICE.EXECUTE_SERVICE,inventoryRequest);
 export const serviceStatus = () => Api.get(SERVICE.SERVICE_STATUS);
-export const devices = (request1) => Api.post(SERVICE.SERVICE_DEVICE,request1);
-export const sims = (request) => Api.post(SERVICE.SERVICE_SIM,request);
+export const defectiveDevice = (defectiveDevice) => Api.post(SERVICE.SERVICE_DEVICE_SIM, defectiveDevice);
+export const defectiveSim = (defectiveSim) => Api.post(SERVICE.SERVICE_DEVICE_SIM, defectiveSim);
+export const replaceDevice = (replaceDevice) => Api.post(SERVICE.SERVICE_DEVICE_SIM, replaceDevice);
+export const replaceSim= (replaceSim) => Api.post(SERVICE.SERVICE_DEVICE_SIM, replaceSim);
 export const updateStatus = (status) => Api.put(SERVICE.SERVICE_STATUS_UPDATE, status);
 
  
@@ -25,7 +27,9 @@ export default jobServices = {
     getServiceHistory,
     excecuteService,
     serviceStatus,
-    devices,
-    sims,
+    replaceSim,
+    replaceDevice,
+    defectiveSim,
+    defectiveDevice,
     updateStatus
 }
