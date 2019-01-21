@@ -4,7 +4,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Text, Button, Header, Body, Right, CheckBox } from 'native-base';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { colors, typeCode } from '../../styles';
+import { colors, typeCode,globalStyles } from '../../styles';
+import functions from '../../common/functions';
 import DatePicker from 'react-native-datepicker';
 export default class Status extends React.Component {
     constructor(props) {
@@ -15,7 +16,8 @@ export default class Status extends React.Component {
             status: [],
             itemObject: {},
             code: '',
-            dataRenewal : ''
+            dataRenewal : '',
+            warning : false,
         }
         this.setModalVisible = this.setModalVisible.bind(this);
     }
@@ -34,7 +36,8 @@ export default class Status extends React.Component {
             modalVisible: visible,
             status: data.results ? data.results : [],
             code: item.serviceStatus,
-            itemObject: item
+            itemObject: item,
+            dataRenewal : ''
         });
     }
 
@@ -42,14 +45,22 @@ export default class Status extends React.Component {
         
         if(this.state.code=='RESCHEDULED')
         {
+            if(this.state.dataRenewal=='')
+            {
+                this.setState({warning : true });
+            }
+            else{
+                const statusRequest = {
+                    "headerId": this.state.itemObject.headerId,
+                    "orderCode": typeCode.SERVICE_ORDER_CODE,
+                    "serviceDate":this.state.dataRenewal,
+                    "status": this.state.code
+                };
+                this.props.updateStatus(statusRequest);
+                this.setState({ modalVisible: false });
+            }
             console.log(this.state.dataRenewal)
-            const statusRequest = {
-                "headerId": this.state.itemObject.headerId,
-                "orderCode": typeCode.SERVICE_ORDER_CODE,
-                "serviceDate":this.state.dataRenewal,
-                "status": this.state.code
-            };
-            this.props.updateStatus(statusRequest);
+           
         }
         else
         {
@@ -59,9 +70,10 @@ export default class Status extends React.Component {
                 "status": this.state.code
             };
             this.props.updateStatus(statusRequest);
+            this.setState({ modalVisible: false });
         }
 
-        this.setState({ modalVisible: false });
+        
     }
 
     render() {
@@ -105,6 +117,10 @@ export default class Status extends React.Component {
                             )}
                               {
                                 this.state.code=='RESCHEDULED' ?
+                                <View>
+                                    <View>
+                                        <Text style={[globalStyles.title_text, { fontFamily: 'Roboto', padding: 4 , marginLeft : '6%'}]}>Re-Schedule Service Date</Text>
+                                    </View>
                                 <View style={{flex :1 , marginLeft : '6%',marginRight : '20%'}}>
                                 <DatePicker
                                 style={{ width: '100%' }}
@@ -131,7 +147,16 @@ export default class Status extends React.Component {
                                 }}
                                 onDateChange={(date) => { this.setState({ dataRenewal: date }) }}
                             />
-                            </View> : null
+                            </View> 
+                            </View>
+                            : null
+                            }
+                              {
+                                this.state.warning && this.state.dataRenewal =='' ?
+                                <View style={{margin:'6%',justifyContent:'center',alignItems:'center'}}>
+                                <Text style={{color:'red'}}> ***Choice Re-schedule Date ***</Text>
+                            </View>:null
+
                             }
 
                             <View style={styles.Small_View}>
@@ -142,6 +167,8 @@ export default class Status extends React.Component {
                                     </Button>
                                 </View>
                             </View>
+                          
+                            
 
                             </ScrollView>
                         </View>
