@@ -5,7 +5,7 @@ import { Text, Button, Header, Body, Right, CheckBox } from 'native-base';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { colors, typeCode } from '../../styles';
-
+import DatePicker from 'react-native-datepicker';
 export default class Status extends React.Component {
     constructor(props) {
         super(props);
@@ -14,7 +14,8 @@ export default class Status extends React.Component {
             modalVisible: false,
             status: [],
             itemObject: {},
-            code: ''
+            code: '',
+            dataRenewal : ''
         }
         this.setModalVisible = this.setModalVisible.bind(this);
     }
@@ -38,12 +39,28 @@ export default class Status extends React.Component {
     }
 
     onApply = () => {
-        const statusRequest = {
-            "headerId": this.state.itemObject.headerId,
-            "orderCode": typeCode.SERVICE_ORDER_CODE,
-            "status": this.state.code
-        };
-        this.props.updateStatus(statusRequest);
+        
+        if(this.state.code=='RESCHEDULED')
+        {
+            console.log(this.state.dataRenewal)
+            const statusRequest = {
+                "headerId": this.state.itemObject.headerId,
+                "orderCode": typeCode.SERVICE_ORDER_CODE,
+                "serviceDate":this.state.dataRenewal,
+                "status": this.state.code
+            };
+            this.props.updateStatus(statusRequest);
+        }
+        else
+        {
+            const statusRequest = {
+                "headerId": this.state.itemObject.headerId,
+                "orderCode": typeCode.SERVICE_ORDER_CODE,
+                "status": this.state.code
+            };
+            this.props.updateStatus(statusRequest);
+        }
+
         this.setState({ modalVisible: false });
     }
 
@@ -82,10 +99,40 @@ export default class Status extends React.Component {
                                         />
                                         <View style={styles.remember_me}>
                                             <Text style={[styles.remember_me_text,{fontFamily: 'Roboto'}]}>{item.code}</Text>
-                                        </View>
+                                        </View> 
                                     </View>
                                 </View>
                             )}
+                              {
+                                this.state.code=='RESCHEDULED' ?
+                                <View style={{flex :1 , marginLeft : '6%',marginRight : '20%'}}>
+                                <DatePicker
+                                style={{ width: '100%' }}
+                                date={this.state.dataRenewal}
+                                mode="datetime"
+                                placeholder="DD/MM/YYYY hh:mm:ss a"
+                                showTime={{ use12Hours: true, format: "HH:mm:ss a" }}
+                                format="DD/MM/YYYY hh:mm:ss a"
+                                //minDate=""
+                                //maxDate=""
+                                confirmBtnText="Confirm"
+                                cancelBtnText="Cancel"
+                                customStyles={{
+                                    dateIcon: {
+                                        position: 'absolute',
+                                        left: 0,
+                                        top: 4,
+                                        marginLeft: 0
+                                    },
+                                    dateInput: {
+                                        marginLeft: 36
+                                    }
+                                    // ... You can check the source to find the other keys.
+                                }}
+                                onDateChange={(date) => { this.setState({ dataRenewal: date }) }}
+                            />
+                            </View> : null
+                            }
 
                             <View style={styles.Small_View}>
                                 <View style={[styles.checkbox_view, {justifyContent: 'flex-end'}]}>
