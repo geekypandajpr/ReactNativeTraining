@@ -20,7 +20,7 @@ export default createVehicleTypeReducer = (state = initialState, action) => {
                 isLoading: false,
                 isFetched: true
             });
-        case GPSDEVICE.GPSDEVICEVEHICLELIST_REQUEST:
+        case GPSDEVICE.CREATE_VEHICLETYPE_FAILED:
             return Object.assign({}, state, {
                 isLoading: false,
                 error: true,
