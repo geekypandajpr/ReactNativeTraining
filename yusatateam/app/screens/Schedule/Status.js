@@ -119,45 +119,47 @@ export default class Status extends React.Component {
                                 this.state.code=='RESCHEDULED' ?
                                 <View>
                                     <View>
-                                        <Text style={[globalStyles.title_text, { fontFamily: 'Roboto', padding: 4 , marginLeft : '6%'}]}>Re-Schedule Service Date</Text>
+                                        <Text style={[styles.remember_me_text, { fontFamily: 'Roboto', padding: 4 , marginLeft : '6%'}]}>
+                                            Re-Schedule Service Date
+                                        </Text>
                                     </View>
                                 <View style={{flex :1 , marginLeft : '6%',marginRight : '20%'}}>
                                 <DatePicker
-                                style={{ width: '100%' }}
-                                date={this.state.dataRenewal}
-                                mode="datetime"
-                                placeholder="DD/MM/YYYY hh:mm:ss a"
-                                showTime={{ use12Hours: true, format: "HH:mm:ss a" }}
-                                format="DD/MM/YYYY hh:mm:ss a"
-                                //minDate=""
-                                //maxDate=""
-                                confirmBtnText="Confirm"
-                                cancelBtnText="Cancel"
-                                customStyles={{
-                                    dateIcon: {
-                                        position: 'absolute',
-                                        left: 0,
-                                        top: 4,
-                                        marginLeft: 0
-                                    },
-                                    dateInput: {
-                                        marginLeft: 36
-                                    }
-                                    // ... You can check the source to find the other keys.
-                                }}
-                                onDateChange={(date) => { this.setState({ dataRenewal: date }) }}
-                            />
+                                    style={{ width: '100%' }}
+                                    date={this.state.dataRenewal}
+                                    mode="datetime"
+                                    placeholder="DD/MM/YYYY hh:mm:ss a"
+                                    showTime={{ use12Hours: true, format: "HH:mm:ss a" }}
+                                    format="DD/MM/YYYY hh:mm:ss a"
+                                    //minDate=""
+                                    //maxDate=""
+                                    confirmBtnText="Confirm"
+                                    cancelBtnText="Cancel"
+                                    customStyles={{
+                                        dateIcon: {
+                                            position: 'absolute',
+                                            left: 0,
+                                            top: 4,
+                                            marginLeft: 0
+                                        },
+                                        dateInput: {
+                                            marginLeft: 36
+                                        }
+                                        // ... You can check the source to find the other keys.
+                                    }}
+                                    onDateChange={(date) => { this.setState({ dataRenewal: date }) }}
+                                />
                             </View> 
                             </View>
                             : null
                             }
-                              {
+                              {/* {
                                 this.state.warning && this.state.dataRenewal =='' ?
                                 <View style={{margin:'6%',justifyContent:'center',alignItems:'center'}}>
                                 <Text style={{color:'red'}}> ***Choice Re-schedule Date ***</Text>
                             </View>:null
 
-                            }
+                            } */}
 
                             <View style={styles.Small_View}>
                                 <View style={[styles.checkbox_view, {justifyContent: 'flex-end'}]}>
