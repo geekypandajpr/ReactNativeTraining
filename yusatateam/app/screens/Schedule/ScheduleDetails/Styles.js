@@ -7,7 +7,10 @@ export default EStyleSheet.create({
     },
     view: {
         backgroundColor: '#fff',
-        padding: 8
+        paddingTop: 8,
+        paddingBottom: 8,
+        paddingLeft: 12,
+        paddingRight: 12
     },
     sub_view: {
         flexDirection: 'row',
@@ -16,6 +19,12 @@ export default EStyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    serviceType: {
+        flex: 0.5,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
         alignItems: 'center',
     },
     middle_view: {
@@ -34,7 +43,7 @@ export default EStyleSheet.create({
         padding: 2,
         borderColor: 'gray',
         borderRadius: 4,
-        borderWidth: 1,
+        borderWidth: 0.8,
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -53,11 +62,6 @@ export default EStyleSheet.create({
     status_text: {
         color: '#fff',
         fontSize: '0.8rem'
-    },
-    view1: {
-        backgroundColor: '#fff',
-        padding: 8,
-        marginTop: 8
     },
     button_view: {
         flex: 1,

@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, BackHandler, TextInput, KeyboardAvoidingView } from 'react-native';
 import { Text, Button, View } from 'native-base';
 import { AppLoading } from 'expo';
-import { Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons, FontAwesome, Entypo, MaterialIcons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { serviceActions } from '../../redux/actions';
 import call from 'react-native-phone-call';
@@ -271,41 +271,89 @@ export class DoAssociation extends React.Component {
                             <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps='always'>
                                 <View style={styles.first_view}>
 
-                                    <View style={styles.sub_view}>
+                                    <View style={[styles.sub_view, { marginTop: 4 }]}>
                                         <View style={styles.left_view}>
-                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Job type</Text>
+                                            <Text style={[globalStyles.title_text, { fontFamily: 'Roboto' }]}>
+                                                {item.companyName}
+                                            </Text>
                                         </View>
-                                        <View style={styles.middle_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
+                                        <View style={styles.serviceType}>
+                                            <Button transparent style={styles.job_type}>
+                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', color: '#000' }]}>
+                                                    {item.serviceTypeName}
+                                                </Text>
+                                            </Button>
                                         </View>
-                                        <View style={styles.right_view}>
-                                            <View style={styles.job_type}>
-                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4, color: '#000' }]}>{item.serviceTypeName}</Text>
+                                    </View>
+
+                                    <View style={[styles.sub_view, { marginTop: 4 }]}>
+                                        <View style={styles.left_view}>
+                                            <View style={{ marginRight: 5 }}>
+                                                <MaterialIcons name='location-on' size={24} color={colors.DANGER} />
+                                            </View>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>
+                                                    {item.address}
+                                                </Text>
                                             </View>
                                         </View>
                                     </View>
 
-                                    <View style={styles.sub_view}>
+                                    <View style={[styles.sub_view, { marginTop: 4 }]}>
                                         <View style={styles.left_view}>
-                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Schedule date</Text>
+                                            <View style={{ marginRight: 5 }}>
+                                                <MaterialCommunityIcons name='calendar-clock' size={24} color={colors.PRIMARY} />
+                                            </View>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>
+                                                    {item.serviceDate}
+                                                </Text>
+                                            </View>
+                                        </View>
+                                    </View>
+
+                                    <View style={[styles.sub_view, { marginTop: 4 }]}>
+                                        <View style={styles.left_view}>
+                                            <View style={{ marginRight: 5 }}>
+                                                <MaterialCommunityIcons name='calendar-check' size={24} color={colors.SUCCESS} />
+                                            </View>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>
+                                                    {item.lastUpdatedOn != null ? item.lastUpdatedOn : '-  -  -'}
+                                                </Text>
+                                            </View>
+                                        </View>
+                                    </View>
+
+                                    <View style={[styles.sub_view, { marginTop: 4 }]}>
+                                        <View style={styles.left_view}>
+                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Service status</Text>
                                         </View>
                                         <View style={styles.middle_view}>
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                         </View>
                                         <View style={styles.right_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.serviceDate}</Text>
+                                            <Button transparent
+                                                style={[
+                                                    styles.job_type,
+                                                    { backgroundColor: STATUS_COLOR[item.serviceStatus], borderWidth: 0 }
+                                                ]} >
+                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', color: '#fff' }]}>
+                                                    {item.serviceStatus}
+                                                </Text>
+                                            </Button>
                                         </View>
                                     </View>
 
                                     <View style={styles.sub_view}>
                                         <View style={styles.left_view}>
-                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Completed date</Text>
+                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Service name</Text>
                                         </View>
                                         <View style={styles.middle_view}>
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                         </View>
                                         <View style={styles.right_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>-  -  -</Text>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.serviceName}</Text>
                                         </View>
                                     </View>
 
@@ -317,70 +365,15 @@ export class DoAssociation extends React.Component {
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                         </View>
                                         <View style={styles.right_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.salePerson}</Text>
-                                        </View>
-                                    </View>
-
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Job location</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <View><Entypo name='location-pin' size={24} color='#d9534f' /></View>
-                                            <View style={{ flex: 1 }}>
-                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                                    {item.companyName} </Text>
-                                            </View>
-                                        </View>
-                                    </View>
-
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Status</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
-                                            <View style={[styles.status_view, { backgroundColor: STATUS_COLOR[item.serviceStatus] }]}>
-                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4, color: '#fff' }]}>{item.serviceStatus}</Text>
-                                            </View>
-                                        </View>
-                                    </View>
-
-                                    <View style={styles.sub_view}>
-                                        <View style={styles.left_view}>
-                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>COD</Text>
-                                        </View>
-                                        <View style={styles.middle_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
-                                        </View>
-                                        <View style={styles.right_view}>
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                                {item.cashOnDelivery == 'Y' ? 'Yes' : 'No'}
+                                                {item.salePerson}
                                             </Text>
                                         </View>
                                     </View>
-                                    {item.amountCollection ?
-                                        <View style={styles.sub_view}>
-                                            <View style={styles.left_view}>
-                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Amount</Text>
-                                            </View>
-                                            <View style={styles.middle_view}>
-                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
-                                            </View>
-                                            <View style={styles.right_view}>
-                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.amountCollection}</Text>
-                                            </View>
-                                        </View>
-                                        : null
-                                    }
                                 </View>
 
                                 <View style={styles.second_view}>
+
                                     <View style={styles.sub_view}>
                                         <View style={styles.left_view}>
                                             <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Customer name</Text>
@@ -401,11 +394,56 @@ export class DoAssociation extends React.Component {
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                         </View>
                                         <View style={styles.right_view}>
-                                            <Ionicons name='ios-call' size={24} color='#5cb85c' onPress={() => this.phoneCall()} />
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.customerMobileNo}</Text>
+                                            <Ionicons name='ios-call' size={24} color='#5cb85c' />
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>
+                                                {item.customerMobileNo}
+                                            </Text>
                                         </View>
                                     </View>
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Training</Text>
+                                        </View>
+                                        <View style={styles.middle_view}>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
+                                        </View>
+                                        <View style={styles.right_view}>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.training}</Text>
+                                        </View>
+                                    </View>
+
+                                    <View style={styles.sub_view}>
+                                        <View style={styles.left_view}>
+                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>COD</Text>
+                                        </View>
+                                        <View style={styles.middle_view}>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
+                                        </View>
+                                        <View style={styles.right_view}>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.cashOnDelivery}</Text>
+                                        </View>
+                                    </View>
+
+                                    {item.cashOnDelivery == 'N' ? null :
+                                        <View style={styles.sub_view}>
+                                            <View style={styles.left_view}>
+                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Amount</Text>
+                                            </View>
+                                            <View style={styles.middle_view}>
+                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
+                                            </View>
+                                            <View style={styles.right_view}>
+                                                <FontAwesome name='rupee' size={14} color='gray' />
+                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>
+                                                    {item.amountCollection}
+                                                </Text>
+                                            </View>
+                                        </View>
+                                    }
                                 </View>
+
+
 
                                 <View style={styles.second_view}>
 

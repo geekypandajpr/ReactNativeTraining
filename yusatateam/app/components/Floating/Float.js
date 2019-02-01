@@ -66,7 +66,7 @@ export default class Float extends React.Component {
 
 const styles = EStyleSheet.create({
     label: {
-        color: 'gray',
+        color: '#808080',
         fontSize: '0.9rem', 
     },
     star: {

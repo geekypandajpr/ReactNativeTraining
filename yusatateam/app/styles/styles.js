@@ -21,7 +21,8 @@ export default EStyleSheet.create({
     },
     secondary_text: {
         fontSize: fontsize.small,
-        color: 'gray',
+        color: '#808080',
+        // color: 'gray',
         // color: 'rgba(0,0,0,0.5)',
         fontWeight: '400'
     },

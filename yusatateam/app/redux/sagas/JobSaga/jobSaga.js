@@ -52,7 +52,7 @@ export function* createJobSaga(action) {
                     yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData });
                 } else {
                     yield put({ type: SERVICE.SERVICE_LIST_FAILED });
-                    functions.showToast('Unable to refresh Service List', 'danger');
+                    // functions.showToast('Unable to refresh Service List', 'danger');
                 }
             } catch (error) {
                 yield put({ type: SERVICE.SERVICE_LIST_FAILED, error });
@@ -60,7 +60,7 @@ export function* createJobSaga(action) {
             }
         } else {
             yield put({ type: SERVICE.CREATEJOB_FAILED });
-            functions.showToast('Unable to create Job', 'danger');
+            // functions.showToast('Unable to create Job', 'danger');
         }
     } catch (error) {
         yield put({ type: SERVICE.CREATEJOB_FAILED, error });
@@ -123,7 +123,7 @@ export function* serviceStatusUpdateSaga(action) {
             functions.showToast('Status updated', 'success');
         } else {
             yield put({ type: SERVICE.SERVICE_STATUS_UPDATE_FAILED });
-            functions.showToast('Status not updated', 'danger');
+            // functions.showToast('Status not updated', 'danger');
         }
     } catch (error) {
         yield put({ type: SERVICE.SERVICE_STATUS_UPDATE_FAILED, error });

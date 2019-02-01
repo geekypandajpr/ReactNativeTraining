@@ -36,6 +36,12 @@ export default EStyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
+    serviceType: {
+        flex: 0.5,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
     middle_view: {
         flex: 0.2,
         justifyContent: 'center',
@@ -67,8 +73,8 @@ export default EStyleSheet.create({
         marginTop: 8
     },
     job_type: {
-        width: 80,
         height: 23,
+        padding: 2,
         borderColor: 'gray',
         borderRadius: 4,
         borderWidth: 0.8,

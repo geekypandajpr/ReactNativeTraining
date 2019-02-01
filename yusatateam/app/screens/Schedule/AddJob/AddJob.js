@@ -11,10 +11,7 @@ import styles from './styles';
 import { serviceActions } from '../../../redux/actions';
 import { globalStyles, colors, typeCode } from '../../../styles';
 import functions from '../../../common/functions';
-
-const COMPANY_KEY = 'COMPANY';
-const COMPANY_KEY_VALUE = 'Select company';
-
+import MultiPicker from '../../../components/MultiPicker/MultiPicker';
 
 const VEHICLE_KEY = 'VEHICLE';
 const VEHICLE_KEY_VALUE = 'Select vehicle';
@@ -37,6 +34,9 @@ export class AddJob extends React.Component {
             techArray: [],
             companyArray: [],
             vehicleArray: [],
+            vehicleMap: new Map(),
+            selectedVehicleArray: [],
+            selectedVehiclesName: '',
             serviceTypeArray: [],
             dropdowns: new Map(),
             Cname: '',
@@ -64,16 +64,18 @@ export class AddJob extends React.Component {
     componentWillReceiveProps(nextProps) {
         /**vehicle list */
 
-
         if (this.props.JobcompanyData !== nextProps.JobcompanyData) {
             const vehicleArray = [];
             const serviceArray = [];
             const techArray = [];
+            const newMap = new Map(this.state.vehicleMap);
+
             if (nextProps.JobcompanyData.jobvehicle.results) {
                 const vehicletype = nextProps.JobcompanyData.jobvehicle.results;
                 for (var i = 0; i < vehicletype.length; i++) {
                     var obj = { "label": vehicletype[i].value, "value": vehicletype[i].key };
                     vehicleArray.push(obj);
+                    newMap.set(vehicletype[i].key, vehicletype[i].value);
                 }
             }
 
@@ -93,13 +95,18 @@ export class AddJob extends React.Component {
                     techArray.push(obj);
                 }
             }
-            this.setState({ vehicleArray: vehicleArray, serviceTypeArray: serviceArray, techArray: techArray })
+
+            this.setState({
+                vehicleArray: vehicleArray,
+                serviceTypeArray: serviceArray,
+                techArray: techArray,
+                vehicleMap: newMap
+            });
         }
     }
 
     componentDidMount() {
         const dropdowns = new Map(this.state.dropdowns);
-        //dropdowns.set(COMPANY_KEY, [COMPANY_KEY_VALUE, null]);
         dropdowns.set(VEHICLE_KEY, [VEHICLE_KEY_VALUE, null]);
         dropdowns.set(SERVICE_KEY, [SERVICE_VALUE, null]);
         dropdowns.set(TECHNICIAN_KEY, [TECHNICIAN_VALUE, null])
@@ -134,9 +141,9 @@ export class AddJob extends React.Component {
 
     onvalidation() {
         if (
-            this.state.dropdowns.get(VEHICLE_KEY)[1]
+            this.state.selectedVehicleArray.length != 0
             && this.state.dropdowns.get(SERVICE_KEY)[1]
-            //&& this.state.dropdowns.get(TECHNICIAN_KEY)[1]
+            && this.state.dropdowns.get(TECHNICIAN_KEY)[1]
             && this.state.Cname !== ''
             && this.state.Ccontact !== ''
             && this.state.dataRenewal !== ''
@@ -156,17 +163,20 @@ export class AddJob extends React.Component {
                 "customerName": this.state.Cname,
                 "orderCode": typeCode.SERVICE_ORDER_CODE,
                 "serviceDate": this.state.dataRenewal,
-                "servicePerson": "Sadaiv Panchal",
-                "servicePersonId": 115565465,
-                // "servicePerson": this.state.dropdowns.get(TECHNICIAN_KEY)[0],
-                // "servicePersonId": this.state.dropdowns.get(TECHNICIAN_KEY)[1],
+                // "servicePerson": "Sadaiv Panchal",
+                // "servicePersonId": 115565465,
+                "servicePerson": this.state.dropdowns.get(TECHNICIAN_KEY)[0],
+                "servicePersonId": this.state.dropdowns.get(TECHNICIAN_KEY)[1],
                 "serviceStatusId": "8670131", //ENTERED Status Id
                 "serviceTypeId": this.state.dropdowns.get(SERVICE_KEY)[1],
                 "training": this.state.Training,
-                "vehicleId": [this.state.dropdowns.get(VEHICLE_KEY)[1]]
+                "vehicleId": this.state.selectedVehicleArray
             }
-            if (this.state.radio && this.state.amount !== '') {
+            if (this.state.radio === 'Y' && this.state.amount !== '') {
                 item["amountToCollect"] = this.state.amount;
+            } else if(this.state.radio === 'Y' && this.state.amount === '') {
+                functions.showToast('Please fill all required fields', 'warning');
+                return false;
             }
             if (this.state.serviceName !== '') {
                 item["serviceName"] = this.state.serviceName;
@@ -176,6 +186,19 @@ export class AddJob extends React.Component {
         } else {
             functions.showToast('Please fill all required fields', 'warning');
         }
+    }
+
+    onMultipleValueSelected(selectedMap) {
+        var selectedVehicleArray = [];
+        var selectedVehiclesName = "";
+        for(var [key, value] of selectedMap) {
+            if(value) {
+                selectedVehiclesName = selectedVehiclesName + ", " + this.state.vehicleMap.get(key);
+                selectedVehicleArray.push(key);
+            }
+        }
+        selectedVehiclesName = selectedVehiclesName.slice(1);
+        this.setState({ selectedVehicleArray: selectedVehicleArray, selectedVehiclesName: selectedVehiclesName });
     }
 
     _focusNextField(id) { this[id]._root.focus(); }
@@ -210,10 +233,12 @@ export class AddJob extends React.Component {
                                             <View style={{ flex: 1.4 }}>
                                                 <UnderlineText
                                                     name="Vehicle #"
-                                                    value={this.state.dropdowns.get(VEHICLE_KEY)[0]}
+                                                    value={this.state.selectedVehicleArray.length != 0 ? this.state.selectedVehiclesName : "Select Vehicle"}
                                                     isMandatory={true}
                                                     upperView={true}
-                                                    onpress={() => { this.openPicker(VEHICLE_KEY, this.state.vehicleArray, 'Vehicle') }}
+                                                    onpress={() => {
+                                                        this.refs.multipicker.setModalVisible(true,'Vehicle', this.state.vehicleArray) }
+                                                    }
                                                 />
                                             </View>
                                         </View>
@@ -336,26 +361,6 @@ export class AddJob extends React.Component {
                                             />
                                         </View>
 
-                                        <View style={{ width: '100%', justifyContent: 'flex-start', marginTop: 10, }}>
-                                            <View >
-                                                <Text style={[styles.label, { fontFamily: 'Roboto' }]}>Training</Text>
-                                            </View>
-                                            <View style={{ flexDirection: 'row', flex: 1, marginTop: 10 }}>
-                                                <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
-                                                    <CheckBox color={colors.HEADER_COLOR}
-                                                        checked={this.state.Training === 'Y'}
-                                                        onPress={() => { this.setState({ Training: 'Y' }) }} />
-                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>Yes</Text>
-                                                </View>
-                                                <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
-                                                    <CheckBox color={colors.HEADER_COLOR}
-                                                        checked={this.state.Training === 'N'}
-                                                        onPress={() => { this.setState({ Training: 'N' }) }} />
-                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>No</Text>
-                                                </View>
-                                            </View>
-                                        </View>
-
                                         <View style={{ width: '100%', justifyContent: 'flex-start', marginTop: 10 }}>
                                             <View >
                                                 <Text style={[styles.label, { fontFamily: 'Roboto' }]}>Payment Mode : COD</Text>
@@ -387,21 +392,34 @@ export class AddJob extends React.Component {
                                                         inputStyles={{ width: '100%' }}
                                                     />
                                                 </View>
-                                                : null}
+                                            : null}
+                                        </View>
+
+                                        <View style={{ width: '100%', justifyContent: 'flex-start', marginTop: 10, }}>
+                                            <View >
+                                                <Text style={[styles.label, { fontFamily: 'Roboto' }]}>Training</Text>
+                                            </View>
+                                            <View style={{ flexDirection: 'row', flex: 1, marginTop: 10 }}>
+                                                <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
+                                                    <CheckBox color={colors.HEADER_COLOR}
+                                                        checked={this.state.Training === 'Y'}
+                                                        onPress={() => { this.setState({ Training: 'Y' }) }} />
+                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>Yes</Text>
+                                                </View>
+                                                <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
+                                                    <CheckBox color={colors.HEADER_COLOR}
+                                                        checked={this.state.Training === 'N'}
+                                                        onPress={() => { this.setState({ Training: 'N' }) }} />
+                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>No</Text>
+                                                </View>
+                                            </View>
                                         </View>
 
                                         <View style={styles.button_view}>
-                                            {/* <View style={{ flex: 1, marginRight: 1 }}>
-                                                <Button block style={{ backgroundColor: '#d9534f' }} onPress={this.onCancel} >
-                                                    <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Cancel</Text>
-                                                </Button>
-                                            </View> */}
-                                            <View style={{ flex: 1, marginLeft: 1 }}>
-                                                <Button block style={{ backgroundColor: colors.HEADER_COLOR }}
-                                                    onPress={this.onSubmitAddService}>
-                                                    <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
-                                                </Button>
-                                            </View>
+                                            <Button style={styles.button}
+                                                onPress={this.onSubmitAddService}>
+                                                <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
+                                            </Button>
                                         </View>
 
                                     </View>
@@ -410,6 +428,7 @@ export class AddJob extends React.Component {
                         </ScrollView>
                     </KeyboardAvoidingView>
                     <SinglePicker ref={this.modalref} selectedValue={(item) => this.selectedValue(item)} />
+                    <MultiPicker ref="multipicker" multipleValueSelected={(item) => this.onMultipleValueSelected(item)}/>
                 </View>
         );
     }

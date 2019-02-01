@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Button, Text, Card } from 'native-base';
-import { Entypo, MaterialIcons } from '@expo/vector-icons';
+import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import { AppLoading } from 'expo';
 
 import styles from './Styles';
 import { StatefulButton } from '../../components';
+import { colors } from '../../styles';
 
 colorsCode = {
     "ENTERED": '#0073b7',
@@ -74,7 +75,7 @@ export default class ScheduleEvent extends React.Component {
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
                                 <View style={styles.icon_view}>
-                                    <MaterialIcons name='schedule' color='#1766A6' size={20} />
+                                <MaterialCommunityIcons name='calendar-clock' size={20} color={colors.PRIMARY} />
                                 </View>
                                 <View style={styles.first_view}>
                                     <Text style={[styles.value_text,{fontFamily: 'Roboto'}]}>{item.serviceDate}</Text>

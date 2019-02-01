@@ -1,4 +1,8 @@
 const colors = {
+    PRIMARY: '#0073b7',
+    DANGER: '#d9534f',
+    SUCCESS: '#5cb85c',
+    WARNING: '#f0ad4e',
     HEADER_COLOR: '#0073b7',
     STATUSBAR_COLOR: '#004887',
     

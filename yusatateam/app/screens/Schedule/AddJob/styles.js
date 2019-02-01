@@ -1,14 +1,14 @@
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { colors } from '../../../styles';
+
 export default EStyleSheet.create({
-
-
     Sub_View: {
         backgroundColor: '#fff',
         alignItems: 'center',
     },
     Width_View: {
         alignItems: 'center',
-        width: '92%'
+        width: '90%'
     },
     Small_View: {
         width: '100%',
@@ -29,9 +29,17 @@ export default EStyleSheet.create({
 
     button_view: {
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 15,
-        marginBottom: 10
+        marginBottom: 10,
+        width: '100%'
+    },
+    button: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        backgroundColor: colors.PRIMARY
     },
     createVehicle: {
         // color: 'rgb(56,64,64)',
@@ -53,8 +61,8 @@ export default EStyleSheet.create({
         fontSize: '0.9rem'
     },
     label: {
-        fontSize: '1rem',
-        color: 'gray',
+        fontSize: '0.9rem',
+        color: '#808080',
         fontFamily: 'Roboto'
     },
 

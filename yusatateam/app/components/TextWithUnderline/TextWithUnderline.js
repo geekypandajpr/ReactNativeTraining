@@ -57,7 +57,7 @@ export { UnderlineText }
 const styles = EStyleSheet.create({
     label: {
         fontSize: '1rem',
-        color: 'gray'
+        color: '#808080'
     },
     star: {
         marginTop: 0,
