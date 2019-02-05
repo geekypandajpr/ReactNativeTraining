@@ -14,6 +14,7 @@ colorsCode = {
     "ON_JOB": '#007aff',
     "COMPLETED": '#5cb85c',
     "RESCHEDULED": '#f0ad4e',
+    "RESCHEDULED": '#f39c12',
     "CANCELLED": '#d9534f'
 };
 
@@ -51,7 +52,8 @@ export default class ScheduleEvent extends React.Component {
                                     colorAnimation={['transparent', 'transparent', 'transparent']}
                                     onPress={()=>this.completeJob(item)}
                                     styles={{ button: styles.service_type_view, label: styles.service_type }} /> */}
-                                <Button transparent style={styles.service_type_view} 
+                                <Button transparent style={styles.service_type_view}
+                                    disabled={ item.serviceStatus == 'COMPLETED' || item.serviceStatus == 'CANCELLED' ? true : false }
                                     onPress={this.props.doAssociation}>
                                     <Text uppercase={false} style={[styles.service_type,{fontFamily: 'Roboto'}]}>
                                         {(item.serviceTypeName).charAt(0).toUpperCase() + (item.serviceTypeName).slice(1).toLowerCase()}
@@ -87,7 +89,7 @@ export default class ScheduleEvent extends React.Component {
                             <View style={styles.text_container}>
                                 <View style={styles.first_view}>
                                     <View style={styles.icon_view}>
-                                        <Entypo name='location-pin' color='red' size={20} />
+                                        <Entypo name='location-pin' color={colors.DANGER} size={20} />
                                     </View>
                                     <View style={styles.first_view}>
                                         <Text style={[styles.value_text,{fontFamily: 'Roboto'}]}>{item.address}</Text>
@@ -102,7 +104,8 @@ export default class ScheduleEvent extends React.Component {
                                 <TouchableOpacity  onPress={this.props.onStatusChange} >
                                     <View style={[styles.statusButton,{backgroundColor: colorsCode[item.serviceStatus]}]}>
                                         <Text style={[styles.value_text,{fontFamily: 'Roboto', color: '#fff'}]}>
-                                            {(item.serviceStatus).charAt(0).toUpperCase() + (item.serviceStatus).slice(1).toLowerCase()}
+                                            {item.serviceStatus}
+                                            {/* {(item.serviceStatus).charAt(0).toUpperCase() + (item.serviceStatus).slice(1).toLowerCase()} */}
                                         </Text>
                                     </View>
                                 </TouchableOpacity>

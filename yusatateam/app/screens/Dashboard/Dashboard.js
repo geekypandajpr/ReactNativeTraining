@@ -13,7 +13,7 @@ import {
     Activityindication
 } from '../../components';
 import { userActions } from '../../redux/actions';
-import { colors } from '../../styles';
+import { colors, typeCode } from '../../styles';
 import styles from './Styles';
 import { DashboardFilter } from './DashBoardFilter/DashboardFilter';
 
@@ -25,6 +25,7 @@ export class Dashboard extends React.Component {
             loading: false,
             updatedSchemaData: [],
             loginResponse: {},
+            userRoleId: 0,
             company: '',
             pieColor: ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'],
             pieSeries: [400, 200, 100, 100],
@@ -95,7 +96,8 @@ export class Dashboard extends React.Component {
 
     componentDidMount() {
         /**Login Response */
-        this.setState({ loginResponse: this.props.loginResponse.data.results });
+        this.setState({ loginResponse: this.props.loginResponse.data.results,
+            userRoleId: this.props.loginResponse.data.results.userRoles[0].userRoleId });
 
         /**Back Handler */
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -106,8 +108,12 @@ export class Dashboard extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps.loginResponse.data.results.userRoles[0])
         if (this.props.loginResponse !== nextProps.loginResponse) {
-            this.setState({ loginResponse: nextProps.loginResponse.data.results })
+            this.setState({
+                loginResponse: nextProps.loginResponse.data.results,
+                userRoleId: nextProps.loginResponse.data.results.userRoles[0].userRoleId
+            });
         }
     }
 
@@ -137,9 +143,16 @@ export class Dashboard extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
-                    <Toolbar title={this.state.loginResponse.companyName} leftIcon='home'
-                        Calender='filter' calenderType='Feather' onCalenderPress={this.openPicker}
-                        setting='logout-variant' settingType='MaterialCommunityIcons' onSettingsPress={this.logout} />
+
+                    { this.state.userRoleId == typeCode.ADMIN_USER_ROLE_ID ?
+                        <Toolbar title={this.state.loginResponse.companyName} leftIcon='home'
+                            Calender='filter' calenderType='Feather' onCalenderPress={this.openPicker}
+                            setting='logout-variant' settingType='MaterialCommunityIcons' onSettingsPress={this.logout} />
+                        :
+                        <Toolbar title={this.state.loginResponse.companyName} leftIcon='home'
+                            setting='logout-variant' settingType='MaterialCommunityIcons' onSettingsPress={this.logout}
+                            calendarDisabled={true}/>
+                    }
 
                     <Activityindication visible={this.props.loginResponse.isLoading} />
 
@@ -183,7 +196,7 @@ export class Dashboard extends React.Component {
                                     <SquareButton
                                         name='devices'
                                         type='MaterialIcons'
-                                        text='Device'
+                                        text='GPS Device'
                                         iconColor={colors.HOMESCREEN.DEVICECARD_COLOR}
                                         textColor='gray'
                                         onPress={() => navigate('GPSDevice', this.state.loginResponse)}
@@ -197,7 +210,7 @@ export class Dashboard extends React.Component {
                                         text='Sim'
                                         iconColor={colors.HOMESCREEN.SIMCARD_COLOR}
                                         textColor='gray'
-                                        onPress={() => navigate('Sim')}
+                                        // onPress={() => navigate('Sim')}
                                         colors={['#ffb994', '#f98866', '#c2593b']}
                                     />
                                 </View>

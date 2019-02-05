@@ -4,14 +4,14 @@ import { Button, Text, CheckBox } from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
+var momentTz = require('moment-timezone');
 import moment from 'moment';
 
-import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
+import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker, MultiPicker } from '../../../components';
 import styles from './styles';
 import { serviceActions } from '../../../redux/actions';
 import { globalStyles, colors, typeCode } from '../../../styles';
 import functions from '../../../common/functions';
-import MultiPicker from '../../../components/MultiPicker/MultiPicker';
 
 const VEHICLE_KEY = 'VEHICLE';
 const VEHICLE_KEY_VALUE = 'Select vehicle';
@@ -25,7 +25,6 @@ const TECHNICIAN_VALUE = 'Select Technician';
 export class AddJob extends React.Component {
     constructor(props) {
         super(props);
-        moment.locale('en');
         this.state = {
             isLoading: true,
             data: [],
@@ -45,6 +44,8 @@ export class AddJob extends React.Component {
             Training: 'N',
             serviceName: '',
             dataRenewal: '',
+            timeInterval: '',
+            timeZoneId: ''
         }
         this.flag = ''
         this.modalref = React.createRef();
@@ -110,9 +111,13 @@ export class AddJob extends React.Component {
         dropdowns.set(VEHICLE_KEY, [VEHICLE_KEY_VALUE, null]);
         dropdowns.set(SERVICE_KEY, [SERVICE_VALUE, null]);
         dropdowns.set(TECHNICIAN_KEY, [TECHNICIAN_VALUE, null])
-        this.setState({ dropdowns: dropdowns });
+        this.setState({
+            dropdowns: dropdowns,
+            timeInterval: this.props.loginResponse.data.results.profileValue.timeInterval,
+            timeZoneId: this.props.loginResponse.data.results.profileValue.timeZoneId
+        });
 
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         const item = {
             "userRole": "TECHNICIAN"
         }
@@ -308,9 +313,9 @@ export class AddJob extends React.Component {
                                                     style={{ width: '100%' }}
                                                     date={this.state.dataRenewal}
                                                     mode="datetime"
-                                                    placeholder="MM/DD/YYYY HH:mm:ss a"
-                                                    showTime={{ use12Hours: true, format: "HH:mm:ss a" }}
-                                                    format="MM/DD/YYYY hh:mm:ss a"
+                                                    placeholder="DD/MM/YYYY HH:mm:ss a"
+                                                    // showTime={{ use12Hours: true, format: "HH:mm:ss a" }}
+                                                    format="DD/MM/YYYY hh:mm:ss a"
                                                     //minDate=""
                                                     //maxDate=""
                                                     confirmBtnText="Confirm"
@@ -327,7 +332,7 @@ export class AddJob extends React.Component {
                                                         }
                                                         // ... You can check the source to find the other keys.
                                                     }}
-                                                    onDateChange={(date) => { this.setState({ dataRenewal: date }) }}
+                                                    onDateChange={(date) => {this.setDateTime(date) }}
                                                 />
                                             </View>
                                         </View>
@@ -433,6 +438,13 @@ export class AddJob extends React.Component {
         );
     }
 
+    setDateTime = (date) => {
+        this.setState({ dataRenewal: date });
+        // const newDate = date + this.state.timeInterval;
+        // console.log(newDate);
+        // this.setState({ dataRenewal: moment(newDate, "DD/MM/YYYY hh:mm:ss Z").utc().format("DD/MM/YYYY hh:mm:ss a") });
+    }   
+
     onCancel = () => {
         // this.props.navigation.state.params.onGoBack();
         this.props.navigation.goBack();
@@ -440,6 +452,7 @@ export class AddJob extends React.Component {
 }
 function mapStateToProps(state) {
     return {
+        loginResponse: state.loginData,
         JobcompanyData: state.serviceCompanyData,
         createJobData: state.createJobData
     }

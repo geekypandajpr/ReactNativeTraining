@@ -38,15 +38,15 @@ export default class Toolbar extends React.Component {
                         </Title>
                     </Body>
                     <Right>
-                        <Button transparent onPress={this.props.onThirdIconPress}>
+                        {/* <Button transparent onPress={this.props.onThirdIconPress} disabled={ this.props.thirdDisabled ? this.props.thirdDisabled : false }>
                             <Icon name={this.props.thirdIconName} type={this.props.thirdIconType} style={styles.icon} />
-                        </Button>
+                        </Button> */}
 
-                        <Button transparent onPress={this.props.onCalenderPress}>
+                        <Button transparent onPress={this.props.onCalenderPress} disabled={ this.props.calendarDisabled ? this.props.calendarDisabled : false }>
                             <Icon name={this.props.Calender} type={this.props.calenderType} style={styles.icon} />
                         </Button>
                     
-                        <Button transparent onPress={this.props.onSettingsPress}>
+                        <Button transparent onPress={this.props.onSettingsPress} disabled={ this.props.settingDisabled ? this.props.settingDisabled : false }>
                             <Icon name={this.props.setting} type={this.props.settingType} style={styles.icon} />
                         </Button>
 

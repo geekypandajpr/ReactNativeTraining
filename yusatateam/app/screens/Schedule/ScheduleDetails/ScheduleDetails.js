@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, BackHandler } from 'react-native';
+import { View, ScrollView, BackHandler, Linking } from 'react-native';
 import { Text, Button } from 'native-base';
 import { AppLoading } from 'expo';
 import { Ionicons, MaterialCommunityIcons, FontAwesome, MaterialIcons } from '@expo/vector-icons';
@@ -16,8 +16,15 @@ const STATUS_COLOR = {
     "ACCEPTED": '#5E35A6',
     "ON_JOB": '#007aff',
     "COMPLETED": '#5cb85c',
-    "RESCHEDULED": '#f0ad4e',
+    "RESCHEDULED": '#f39c12',
     "CANCELLED": '#d9534f'
+};
+
+const TYPE_COLOR = {
+    "INSTALL"   : "#00a65a",
+    "UNINSTALL" : "#00c0ef",
+    "REPAIR"    : "#dd4b39",
+    "REPLACE"   : "#d81b60"
 };
 
 export class ScheduleDetails extends React.Component {
@@ -84,6 +91,19 @@ export class ScheduleDetails extends React.Component {
 
     updateStatus(statusReq) { this.props.doStatusUpdate(statusReq); }
 
+    makeCall = (phone) => {
+        const url = `tel:${phone}`;
+        Linking.canOpenURL(url)
+            .then((supported) => {
+                if (!supported) {
+                    functions.showToast(`Can't handle url: ${url}`, danger);
+                } else {
+                    return Linking.openURL(url);
+                }
+            })
+            .catch((err) => functions.showToast(err, danger));
+    }
+
     render() {
         const { goBack } = this.props.navigation;
         const item = this.state.item;
@@ -106,9 +126,11 @@ export class ScheduleDetails extends React.Component {
                                         </Text>
                                     </View>
                                     <View style={styles.serviceType}>
-                                        <Button transparent style={styles.job_type}
-                                            onPress={()=>this.props.navigation.navigate('DoAssociation',{item})}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto',color: '#000' }]}>
+                                        <Button transparent
+                                            disabled={ item.serviceStatus == 'COMPLETED' || item.serviceStatus == 'CANCELLED' ? true : false }
+                                            onPress={()=>this.props.navigation.navigate('DoAssociation',{item})}
+                                            style={styles.job_type}>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', color: colors.PRIMARY }]}>
                                                 {item.serviceTypeName}
                                             </Text>
                                         </Button>
@@ -162,7 +184,8 @@ export class ScheduleDetails extends React.Component {
                                         <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                     </View>
                                     <View style={styles.right_view}>
-                                        <Button transparent onPress={() => this.openStatusModal(item)}
+                                        <Button transparent
+                                            //onPress={() => this.openStatusModal(item)}
                                             style={[
                                                 styles.job_type,
                                                 { backgroundColor: STATUS_COLOR[item.serviceStatus], borderWidth: 0 }
@@ -173,36 +196,6 @@ export class ScheduleDetails extends React.Component {
                                         </Button>
                                     </View>
                                 </View>
-
-                                {/* <View style={styles.sub_view}>
-                                    <View style={styles.left_view}>
-                                        <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Company Name</Text>
-                                    </View>
-                                    <View style={styles.middle_view}>
-                                        <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
-                                    </View>
-                                    <View style={styles.right_view}>
-                                        <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.companyName}</Text>
-                                    </View>
-                                </View> */}
-
-                                {/* <View style={styles.sub_view}>
-                                    <View style={styles.left_view}>
-                                        <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Job type</Text>
-                                    </View>
-                                    <View style={styles.middle_view}>
-                                        <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
-                                    </View>
-                                    <View style={styles.right_view}>
-                                        <Button transparent onPress={()=>this.props.navigation.navigate('DoAssociation',{item})}>
-                                            <View style={styles.job_type}>
-                                                <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4, color: '#000' }]}>
-                                                    {item.serviceTypeName}
-                                                </Text>
-                                            </View>
-                                        </Button>
-                                    </View>
-                                </View> */}
 
                                 <View style={styles.sub_view}>
                                     <View style={styles.left_view}>
@@ -215,32 +208,6 @@ export class ScheduleDetails extends React.Component {
                                         <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.serviceName}</Text>
                                     </View>
                                 </View>
-
-                                {/* <View style={styles.sub_view}>
-                                    <View style={styles.left_view}>
-                                        <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Schedule date</Text>
-                                    </View>
-                                    <View style={styles.middle_view}>
-                                        <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
-                                    </View>
-                                    <View style={styles.right_view}>
-                                        <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.serviceDate}</Text>
-                                    </View>
-                                </View> */}
-
-                                {/* <View style={styles.sub_view}>
-                                    <View style={styles.left_view}>
-                                        <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Completed date</Text>
-                                    </View>
-                                    <View style={styles.middle_view}>
-                                        <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
-                                    </View>
-                                    <View style={styles.right_view}>
-                                        <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                            {item.completedDate != null ? item.completedDate : '-  -  -'}
-                                        </Text>
-                                    </View>
-                                </View> */}
 
                                 <View style={styles.sub_view}>
                                     <View style={styles.left_view}>
@@ -255,39 +222,6 @@ export class ScheduleDetails extends React.Component {
                                         </Text>
                                     </View>
                                 </View>
-
-                                {/* <View style={styles.sub_view}>
-                                    <View style={styles.left_view}>
-                                        <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Job location</Text>
-                                    </View>
-                                    <View style={styles.middle_view}>
-                                        <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
-                                    </View>
-                                    <View style={styles.right_view}>
-                                        <View><MaterialIcons name='location-on' size={24} color='#d9534f' /></View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                                {item.address}
-                                            </Text>
-                                        </View>
-                                    </View>
-                                </View> */}
-
-                                {/* <View style={styles.sub_view}>
-                                    <View style={styles.left_view}>
-                                        <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Status</Text>
-                                    </View>
-                                    <View style={styles.middle_view}>
-                                        <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
-                                    </View>
-                                    <View style={styles.right_view}>
-                                        <View style={[styles.status_view, { backgroundColor: STATUS_COLOR[item.serviceStatus] }]}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4, color: '#fff' }]}>
-                                                {item.serviceStatus}
-                                            </Text>
-                                        </View>
-                                    </View>
-                                </View> */}
 
                             </View>
 
@@ -312,7 +246,7 @@ export class ScheduleDetails extends React.Component {
                                         <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                     </View>
                                     <View style={styles.right_view}>
-                                        <Ionicons name='ios-call' size={24} color='#5cb85c' />
+                                        <Ionicons name='ios-call' size={24} color={colors.PRIMARY} onPress={()=>this.makeCall(item.customerMobileNo)}/>
                                         <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>
                                             {item.customerMobileNo}
                                         </Text>
@@ -412,7 +346,7 @@ export class ScheduleDetails extends React.Component {
                                         <View style={styles.sub_view} key={index}>
                                             <View style={styles.left_view}>
                                                 <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                                    {index+1}. {sim.msidn}
+                                                    {index+1}. {sim.mobileNumber}
                                                 </Text>
                                             </View>
                                         </View>

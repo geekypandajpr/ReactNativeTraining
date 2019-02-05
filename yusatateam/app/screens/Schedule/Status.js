@@ -7,6 +7,46 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { colors, typeCode, globalStyles } from '../../styles';
 import DatePicker from 'react-native-datepicker';
 
+const STATUSLIST = {
+    "ENTERED" : [ { "key": "8670131", "value": "Entered", "code": "ENTERED", "disabled": false },
+        { "key": "8670480", "value": "Accepted", "code": "ACCEPTED", "disabled": false },
+        { "key": "8670829", "value": "On Job", "code": "ON_JOB", "disabled": false },
+        { "key": "8724575", "value": "Completed", "code": "COMPLETED", "disabled": false },
+        { "key": "8671178", "value": "Rescheduled", "code": "RESCHEDULED", "disabled": false },
+        { "key": "8671527", "value": "Cancelled", "code": "CANCELLED", "disabled": false }],
+    "ACCEPTED": [ { "key": "8670131", "value": "Entered", "code": "ENTERED", "disabled": true },
+        { "key": "8670480", "value": "Accepted", "code": "ACCEPTED", "disabled": false },
+        { "key": "8670829", "value": "On Job", "code": "ON_JOB", "disabled": false },
+        { "key": "8724575", "value": "Completed", "code": "COMPLETED", "disabled": false },
+        { "key": "8671178", "value": "Rescheduled", "code": "RESCHEDULED", "disabled": false },
+        { "key": "8671527", "value": "Cancelled", "code": "CANCELLED", "disabled": false }],
+    "ON_JOB": [ { "key": "8670131", "value": "Entered", "code": "ENTERED", "disabled": true },
+        { "key": "8670480", "value": "Accepted", "code": "ACCEPTED", "disabled": true },
+        { "key": "8670829", "value": "On Job", "code": "ON_JOB", "disabled": false },
+        { "key": "8724575", "value": "Completed", "code": "COMPLETED", "disabled": false },
+        { "key": "8671178", "value": "Rescheduled", "code": "RESCHEDULED", "disabled": false },
+        { "key": "8671527", "value": "Cancelled", "code": "CANCELLED", "disabled": false }],
+    "COMPLETED": [ { "key": "8670131", "value": "Entered", "code": "ENTERED", "disabled": true },
+        { "key": "8670480", "value": "Accepted", "code": "ACCEPTED", "disabled": true },
+        { "key": "8670829", "value": "On Job", "code": "ON_JOB", "disabled": true },
+        { "key": "8724575", "value": "Completed", "code": "COMPLETED", "disabled": true },
+        { "key": "8671178", "value": "Rescheduled", "code": "RESCHEDULED", "disabled": true },
+        { "key": "8671527", "value": "Cancelled", "code": "CANCELLED", "disabled": true }],
+    "RESCHEDULED": [ { "key": "8670131", "value": "Entered", "code": "ENTERED", "disabled": true },
+        { "key": "8670480", "value": "Accepted", "code": "ACCEPTED", "disabled": false },
+        { "key": "8670829", "value": "On Job", "code": "ON_JOB", "disabled": false },
+        { "key": "8724575", "value": "Completed", "code": "COMPLETED", "disabled": false },
+        { "key": "8671178", "value": "Rescheduled", "code": "RESCHEDULED", "disabled": false },
+        { "key": "8671527", "value": "Cancelled", "code": "CANCELLED", "disabled": false }],
+    "CANCELLED": [ { "key": "8670131", "value": "Entered", "code": "ENTERED", "disabled": true },
+        { "key": "8670480", "value": "Accepted", "code": "ACCEPTED", "disabled": true },
+        { "key": "8670829", "value": "On Job", "code": "ON_JOB", "disabled": true },
+        { "key": "8724575", "value": "Completed", "code": "COMPLETED", "disabled": true },
+        { "key": "8671178", "value": "Rescheduled", "code": "RESCHEDULED", "disabled": true },
+        { "key": "8671527", "value": "Cancelled", "code": "CANCELLED", "disabled": true }],
+
+};
+
 export default class Status extends React.Component {
     constructor(props) {
         super(props);
@@ -34,7 +74,8 @@ export default class Status extends React.Component {
     setModalVisible(visible, data, item) {
         this.setState({
             modalVisible: visible,
-            status: data.results ? data.results : [],
+            // status: data.results ? data.results : [],
+            status: STATUSLIST[item.serviceStatus],
             code: item.serviceStatus,
             itemObject: item,
             dataRenewal: ''
@@ -57,7 +98,7 @@ export default class Status extends React.Component {
                 this.props.updateStatus(statusRequest);
                 this.setState({ modalVisible: false });
             }
-            console.log(this.state.dataRenewal)
+            // console.log(this.state.dataRenewal)
 
         }
         else {
@@ -97,17 +138,19 @@ export default class Status extends React.Component {
                             </View>
                             <View style={styles.View_Container}>
                                 <ScrollView>
-
                                     {this.state.status.map((item, index) =>
                                         <View style={styles.Small_View} key={index}>
                                             <View style={styles.checkbox_view}>
                                                 <CheckBox
+                                                    disabled={item.disabled}
                                                     checked={this.state.code === item.code}
-                                                    color={colors.HEADER_COLOR}
+                                                    color={!item.disabled ? colors.HEADER_COLOR : '#808080'}
                                                     onPress={() => this.setState({ code: item.code })}
                                                 />
                                                 <View style={styles.remember_me}>
-                                                    <Text style={[styles.text, { fontFamily: 'Roboto' }]}>{item.code}</Text>
+                                                    <Text style={[styles.text, { fontFamily: 'Roboto', color: !item.disabled ? '#000': '#808080'}]}>
+                                                        {item.code}
+                                                    </Text>
                                                 </View>
                                             </View>
                                         </View>
@@ -154,8 +197,11 @@ export default class Status extends React.Component {
 
                                     <View style={[styles.Small_View,{ padding: 4 }]}>
                                         <View style={[styles.checkbox_view, { justifyContent: 'flex-end' }]}>
-                                            <Button full onPress={this.onApply}
-                                                style={{ width: 150, backgroundColor: colors.HEADER_COLOR }} >
+                                            <Button full onPress={this.onApply} disabled={this.state.itemObject.serviceStatus == 'COMPLETED' || this.state.itemObject.serviceStatus == 'CANCELLED'}
+                                                style={{
+                                                    width: 150,
+                                                    backgroundColor: this.state.itemObject.serviceStatus == 'COMPLETED' || this.state.itemObject.serviceStatus == 'CANCELLED' ? '#808080': colors.PRIMARY
+                                                }} >
                                                 <Text style={{ fontFamily: 'Roboto', color: '#fff' }}> Change </Text>
                                             </Button>
                                         </View>

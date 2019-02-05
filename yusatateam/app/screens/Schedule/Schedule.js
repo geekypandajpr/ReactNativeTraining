@@ -7,7 +7,7 @@ import { Card } from 'native-base';
 
 import { ScheduleEvent, Toolbar, Activityindication } from '../../components';
 import styles from './Styles';
-import { colors } from '../../styles';
+import { colors, typeCode } from '../../styles';
 import Filter from './Filter/Filter';
 import { Status } from './Status';
 import { serviceActions } from '../../redux/actions';
@@ -27,7 +27,8 @@ export class Schedule extends React.Component {
             items: {},
             serviceList: [],
             serviceStatus: [],
-            date: new Date()
+            date: new Date(),
+            userRoleId: 0
         };
         this.modalRef = React.createRef();
         this.filterRef = React.createRef();
@@ -42,6 +43,7 @@ export class Schedule extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({ userRoleId: this.props.loginResponse.data.results.userRoles[0].userRoleId });
         this.props.onFetchJobList('all');
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
@@ -71,7 +73,6 @@ export class Schedule extends React.Component {
         if (this.props.serviceStatus !== nextProps.serviceStatus) {
             this.setState({ serviceStatus: nextProps.serviceStatus.status });
         }
-
     }
 
     handleBackPress = () => {
@@ -107,12 +108,25 @@ export class Schedule extends React.Component {
             <View style={styles.container}>
                 <Activityindication visible={this.props.serviceList.isLoading} />
                 <Activityindication visible={this.props.updatedStatusData.isLoading} />
-                <Toolbar title='Schedule'
-                    leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
-                    setting='add-circle-outline' settingType='MaterialIcons' onSettingsPress={() => navigate('AddJob')}
-                    Calender='filter' calenderType='Feather' onCalenderPress={() => this.openFilter()}
-                    // thirdIconName='history' thirdIconType='MaterialIcons' onThirdIconPress={() => navigate('History')}
-                />
+                
+                { this.state.userRoleId == typeCode.ADMIN_USER_ROLE_ID ?
+                    <Toolbar title = 'Schedule'
+                        leftIcon = 'arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                        setting = 'filter'
+                        settingType='Feather'
+                        onSettingsPress={() => this.openFilter()}
+                        Calender = 'add-circle-outline'
+                        calenderType = 'MaterialIcons'
+                        onCalenderPress={() => navigate('AddJob')}
+                    />
+                :
+
+                    <Toolbar title = 'Schedule'
+                        leftIcon = 'arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
+                        setting = 'filter' settingType='Feather' onSettingsPress={() => this.openFilter()}
+                        calendarDisabled={true}
+                    />
+                }
 
                 <Agenda
                     // specify how each date should be rendered. day can be undefined if the item is not first in that day.
@@ -246,6 +260,7 @@ export class Schedule extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        loginResponse: state.loginData,
         serviceList: state.serviceListData,
         serviceStatus: state.serviceStatus,
         updatedStatusData: state.updatedStatusData

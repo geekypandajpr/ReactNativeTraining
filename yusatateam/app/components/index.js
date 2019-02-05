@@ -24,6 +24,7 @@ export { default as GpsDeviceData } from './GpsDeviceData/GpsDeviceData';
 export { default as Float } from './Floating/Float';
 export { default as UnderlineText } from './TextWithUnderline/TextWithUnderline';
 export { default as SinglePicker } from './SinglePicker/SinglePicker';
+export { default as MultiPicker } from './MultiPicker/MultiPicker';
 
 
 

@@ -8,7 +8,7 @@ export const GPSDEVICE = {
     DEVICETYPE                  : 'utility/list/DeviceType',
     FORMSUBMIT                  : 'ap/add',
     ASSOCIATIONDEVICEINFO       : 'ap/deviceInfo',
-    GPSDEVICELIST               : '/ap/dataTable',
+    GPSDEVICELIST               : 'ap/dataTable',
     VEHICLELIST                 : 'utility/list/FreeVehicles',
     CREATEVEHICLE               : 'vehicle/add',
     CREATEVEHICLETYPE           : 'utility/list/VehicleType',
@@ -17,7 +17,7 @@ export const GPSDEVICE = {
 
 
 export const SERVICE = {
-    EXECUTE_SERVICE             : '/ap/inventoryService',
+    EXECUTE_SERVICE             : 'ap/inventoryService',
     SERVICE_LIST                : 'ap/service/list',
     SERVICE_HISTORY             : 'servicehistory',
     SERVICE_ADD                 : 'ap/service/add',
@@ -25,7 +25,7 @@ export const SERVICE = {
     SERVICE_VEHICLE             : 'utility/list/FreeVehicles',
     SERVICE_TECHNICIAN          : 'utility/list/user',
     SERVICE_TYPE                : 'utility/list/TechServiceType',
-    SERVICE_DEVICE_SIM          : '/ap/invServiceDropdownList',
+    SERVICE_DEVICE_SIM          : 'ap/invServiceDropdownList',
     SERVICE_STATUS              : 'utility/list/TechServiceStatus',
     SERVICE_STATUS_UPDATE       : 'ap/statusUpdate',
 }

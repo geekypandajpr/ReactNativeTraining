@@ -35,7 +35,7 @@ export default EStyleSheet.create({
         borderRadius: 10,
         padding: 2,
         height: 25,
-        width: 90
+        width: 110
     },
     status_text:{
         color: '#fff',
