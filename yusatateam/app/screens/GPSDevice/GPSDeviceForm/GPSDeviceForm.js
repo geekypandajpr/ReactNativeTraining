@@ -283,7 +283,7 @@ export class GPSDeviceForm extends React.Component {
 
                     <KeyboardAvoidingView behavior='padding' enabled style={globalStyles.keyboardAvoiding} >
                         <ScrollView keyboardShouldPersistTaps="always" showsVerticalScrollIndicator={false}>
-                            <View style={{ flexDirection: 'column', flex: 1 }}>
+                            <View style={{ flexDirection: 'column', flex: 1, backgroundColor: '#efefef' }}>
                                 <View style={styles.Sub_View}>
                                     <View style={styles.Width_View}>
 
@@ -336,7 +336,7 @@ export class GPSDeviceForm extends React.Component {
                                             <View style={styles.createVehicleView}>
                                                 <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
                                                     onPress={() => navigate('CreateVehicle', { deviceid: this.state.deviceUDID })}>
-                                                    <Text uppercase={false} style={[styles.createVehicle, { fontFamily: 'Roboto' }]}>Create Vehicle</Text>
+                                                    <Text uppercase={false} style={[styles.createVehicle, { fontFamily: 'Roboto', color:colors.PRIMARY }]}>Create Vehicle</Text>
                                                 </Button>
                                             </View>
                                         </View>
@@ -354,14 +354,18 @@ export class GPSDeviceForm extends React.Component {
                                     </View>
                                 </View>
 
-                                <View style={[styles.Detail_View, { marginTop: 20 }]}>
+                                {/* <View style={[styles.Detail_View, { marginTop: 20 }]}>
                                     <View style={{ width: '94%' }}>
                                         <Text style={[styles.simdetails, { fontFamily: 'Roboto' }]}>Sim Details</Text>
                                     </View>
-                                </View>
+                                </View> */}
 
                                 <View style={styles.Sub_View}>
                                     <View style={styles.Width_View}>
+
+                                        <View style={[styles.Small_View, { marginTop: 15, marginBottom: 5 }]}>
+                                            <Text style={[styles.simdetails, { fontFamily: 'Roboto' }]}>Sim Details</Text>  
+                                        </View>
 
                                         <View style={[styles.Small_View, { marginTop: 5 }]}>
                                             <UnderlineText

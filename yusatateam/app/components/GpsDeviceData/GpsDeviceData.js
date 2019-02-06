@@ -27,7 +27,7 @@ export default class GpsDeviceData extends React.Component {
         return (
             this.state.isLoading === true ? <AppLoading /> :
             <View style={styles.container}>
-                <TouchableOpacity onPress={onPress}>
+                <TouchableOpacity onPress={onPress} disabled={true}>
                     <Card style={[ globalStyles.card, { padding: 10 } ]}>
 
                         <View style={styles.view}>

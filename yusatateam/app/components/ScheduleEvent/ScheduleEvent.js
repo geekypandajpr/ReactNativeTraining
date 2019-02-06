@@ -113,7 +113,7 @@ export default class ScheduleEvent extends React.Component {
                             <View style={styles.second_view}>
                                 <TouchableOpacity style={styles.second_view} activeOpacity={0.2} onPress={this.props.viewMore} >
                                     <Text style={[styles.view_more,{fontFamily: 'Roboto'}]}>view more</Text>
-                                    <Entypo name='chevron-thin-right' color='gray' size={20} />
+                                    <Entypo name='chevron-thin-right' color='#808080' size={20} />
                                 </TouchableOpacity>
                             </View>
                         </View>

@@ -238,9 +238,9 @@ export class DoAssociation extends React.Component {
                     "serviceHeaderId": this.state.item.headerId
                 }
             }
-            if(this.state.comments != '') { item["comment"] = this.state.comments; }
+            // if(this.state.comments != '') { item["comment"] = this.state.comments; }
             console.log(JSON.stringify(item));
-            // this.props.addInventory(item);
+            this.props.addInventory(item);
         }
     }
 

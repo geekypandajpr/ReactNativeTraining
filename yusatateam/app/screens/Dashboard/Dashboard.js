@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Alert, BackHandler } from 'react-native';
+import { View, Alert, BackHandler, Image } from 'react-native';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
+import { Button, Header, Left, Body, Right, Title } from 'native-base';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import {
     Toolbar,
@@ -10,7 +12,8 @@ import {
     MultiSwitch,
     SummarySwitch,
     Barchart,
-    Activityindication
+    Activityindication,
+    Statusbar
 } from '../../components';
 import { userActions } from '../../redux/actions';
 import { colors, typeCode } from '../../styles';
@@ -144,7 +147,31 @@ export class Dashboard extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
 
-                    { this.state.userRoleId == typeCode.ADMIN_USER_ROLE_ID ?
+                    <View><Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
+                    <Header style={{backgroundColor: colors.PRIMARY}}>
+                        {/* <Left>
+                            <Image style={{width: 30, height: 30}} resizeMode='contain'
+                                source={require('../../../assets/launcher.png')}>
+                            </Image>
+                        </Left> */}
+                        <Body>
+                            <Title>{this.state.loginResponse.companyName}</Title>
+                        </Body>
+                        <Right>
+                            { this.state.userRoleId == typeCode.ADMIN_USER_ROLE_ID ?
+                                <Button transparent>
+                                    <MaterialCommunityIcons name='filter'
+                                    onPress={this.logout} onPress={this.openPicker} color='#fff' size={20}/>
+                                </Button>
+                            :  null }
+                            <Button transparent>
+                                <MaterialCommunityIcons name='logout-variant'
+                                onPress={this.logout} color='#fff' size={20}/>
+                            </Button>
+                        </Right>
+                    </Header></View>
+
+                    {/* { this.state.userRoleId == typeCode.ADMIN_USER_ROLE_ID ?
                         <Toolbar title={this.state.loginResponse.companyName} leftIcon='home'
                             Calender='filter' calenderType='Feather' onCalenderPress={this.openPicker}
                             setting='logout-variant' settingType='MaterialCommunityIcons' onSettingsPress={this.logout} />
@@ -152,7 +179,7 @@ export class Dashboard extends React.Component {
                         <Toolbar title={this.state.loginResponse.companyName} leftIcon='home'
                             setting='logout-variant' settingType='MaterialCommunityIcons' onSettingsPress={this.logout}
                             calendarDisabled={true}/>
-                    }
+                    } */}
 
                     <Activityindication visible={this.props.loginResponse.isLoading} />
 
@@ -198,7 +225,7 @@ export class Dashboard extends React.Component {
                                         type='MaterialIcons'
                                         text='GPS Device'
                                         iconColor={colors.HOMESCREEN.DEVICECARD_COLOR}
-                                        textColor='gray'
+                                        textColor='#808080'
                                         onPress={() => navigate('GPSDevice', this.state.loginResponse)}
                                         colors={['#b7ffb5', '#84e184', '#51ae56']}
                                     />
@@ -209,7 +236,7 @@ export class Dashboard extends React.Component {
                                         type='MaterialCommunityIcons'
                                         text='Sim'
                                         iconColor={colors.HOMESCREEN.SIMCARD_COLOR}
-                                        textColor='gray'
+                                        textColor='#808080'
                                         // onPress={() => navigate('Sim')}
                                         colors={['#ffb994', '#f98866', '#c2593b']}
                                     />
@@ -218,10 +245,10 @@ export class Dashboard extends React.Component {
                             <View style={styles.icon_view}>
                                 <View style={[styles.button_view, { marginRight: 1, marginLeft: 1 }]}>
                                     <SquareButton
-                                        name='calendar'
-                                        type='Foundation'
+                                        name='calendar-clock'
+                                        type='MaterialCommunityIcons'
                                         iconColor={colors.HOMESCREEN.SCHEDULECARD_COLOR}
-                                        textColor='gray'
+                                        textColor='#808080'
                                         text='Schedule'
                                         onPress={() => navigate('Schedule')}
                                         colors={['#fff289', '#f2c059', '#bc9029']}
@@ -233,7 +260,7 @@ export class Dashboard extends React.Component {
                                         type='MaterialIcons'
                                         text='Jobs'
                                         iconColor={colors.HOMESCREEN.JOBSCARD_COLOR}
-                                        textColor='gray'
+                                        textColor='#808080'
                                         // onPress={() => navigate('AddData')}
                                         colors={['#8ffcde', '#5bc8ac', '#1f977d']}
                                     />
@@ -246,7 +273,7 @@ export class Dashboard extends React.Component {
                                         type='MaterialIcons'
                                         text='Customer'
                                         iconColor={colors.HOMESCREEN.ASSOCIATIONCARD_COLOR}
-                                        textColor='gray'
+                                        textColor='#808080'
                                         // onPress={() => navigate('Customer')}
                                         colors={['#6ddbea', '#31a9b8', '#007a88']}
                                     />
@@ -257,7 +284,7 @@ export class Dashboard extends React.Component {
                                         type='MaterialCommunityIcons'
                                         text='Technician'
                                         iconColor='#6789F8'
-                                        textColor='gray'
+                                        textColor='#808080'
                                         // onPress={() => navigate('Technicians')}
                                         colors={['#9eb9ff', '#6789f8', '#265dc4']}
                                     />

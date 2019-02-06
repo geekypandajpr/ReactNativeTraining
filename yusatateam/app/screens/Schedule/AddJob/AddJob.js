@@ -375,7 +375,7 @@ export class AddJob extends React.Component {
                                                     <CheckBox color={colors.HEADER_COLOR}
                                                         checked={this.state.radio === 'Y'}
                                                         onPress={() => { this.setState({ radio: 'Y' }) }} />
-                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto' }]}>Yes</Text>
+                                                    <Text style={[styles.label, { marginLeft: 20, fontFamily: 'Roboto', }]}>Yes</Text>
                                                 </View>
                                                 <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row' }}>
                                                     <CheckBox color={colors.HEADER_COLOR}

@@ -1,7 +1,7 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { colors } from '../../styles';
+
 export default EStyleSheet.create({
-    '$fontFamily': 'normal',
     event_date_view: {
         backgroundColor: '#ffffff',
         flex: 1,
@@ -21,7 +21,6 @@ export default EStyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        //flexWrap: 'wrap'
     },
     second_view: {
         flex: 1,
@@ -38,24 +37,20 @@ export default EStyleSheet.create({
         width: 110
     },
     status_text:{
-        color: '#fff',
-        //fontFamily: '$fontFamily',
+        color: '#fff'
     },
     label_text: {
-        //fontFamily: '$fontFamily',
         fontSize: '1rem',
         fontWeight: 'bold',
         color: '#000'
     },
     value_text: {
-        //fontFamily: '$fontFamily',
         fontSize: '0.8rem',
         color: '#000'
     },
     view_more: {
-        //fontFamily: '$fontFamily',
         fontSize: '0.8rem',
-        color: 'gray'
+        color: '#808080'
     },
     service_type_view: {
         justifyContent: 'center',
@@ -68,7 +63,6 @@ export default EStyleSheet.create({
         width: 90
     },
     service_type: {
-        //fontFamily: '$fontFamily',
         fontSize: '0.8rem',
         fontWeight: '400',
         color: colors.HEADER_COLOR

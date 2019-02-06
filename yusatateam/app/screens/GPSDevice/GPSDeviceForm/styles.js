@@ -80,8 +80,8 @@ export default EStyleSheet.create({
     },
     simdetails: {
         fontSize: '1.1rem',
-        color: '#000',
-        fontWeight: '500'
+        color: 'rgba(0,0,0,0.8)',
+        fontWeight: 'bold'
     },
     createVehicleView: {
         flex: 1,
