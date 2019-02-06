@@ -32,7 +32,7 @@ export default class GpsDeviceData extends React.Component {
 
                         <View style={styles.view}>
                             <View style={styles.title_view}>
-                                <Text style={[ globalStyles.title_text, { fontFamily: 'Roboto' } ]}>{item.companyName}</Text>
+                                <Text style={[ globalStyles.title_text, { fontFamily: 'Roboto' } ]}>{item.gpsDeviceUdid}</Text>
                             </View>
                             <View style={styles.status_view}>
                                 <View style={styles.status}>
@@ -55,7 +55,7 @@ export default class GpsDeviceData extends React.Component {
 
                         <View style={styles.view}>
                             <View style={styles.first_view}>
-                                <Text style={[ globalStyles.primary_text, { fontFamily: 'Roboto' } ]}>Vehicle No</Text>
+                                <Text style={[ globalStyles.primary_text, { fontFamily: 'Roboto' } ]}>Vehicle #</Text>
                             </View>
                             <View style={styles.middle_view}>
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
@@ -67,13 +67,13 @@ export default class GpsDeviceData extends React.Component {
 
                         <View style={styles.view}>
                             <View style={styles.first_view}>
-                                <Text style={[ globalStyles.primary_text, { fontFamily: 'Roboto' } ]}>UDID</Text>
+                                <Text style={[ globalStyles.primary_text, { fontFamily: 'Roboto' } ]}>Company name</Text>
                             </View>
                             <View style={styles.middle_view}>
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
                             </View>
                             <View style={styles.last_view}>
-                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{item.gpsDeviceUdid}</Text>
+                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{item.companyName}</Text>
                             </View>
                         </View>
 

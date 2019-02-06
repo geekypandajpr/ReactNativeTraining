@@ -340,18 +340,21 @@ export class DoAssociation extends React.Component {
                                         </View>
                                     </View>
 
-                                    <View style={[styles.sub_view, { marginTop: 4 }]}>
-                                        <View style={styles.left_view}>
-                                            <View style={{ marginRight: 5 }}>
-                                                <MaterialCommunityIcons name='calendar-check' size={24} color={colors.SUCCESS} />
-                                            </View>
-                                            <View style={{ flex: 1 }}>
-                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>
-                                                    {item.lastUpdatedOn != null ? item.lastUpdatedOn : '-  -  -'}
-                                                </Text>
+                                    {item.serviceStatus == 'COMPLETED' ?
+                                        <View style={[styles.sub_view, { marginTop: 4 }]}>
+                                            <View style={styles.left_view}>
+                                                <View style={{ marginRight: 5 }}>
+                                                    <MaterialCommunityIcons name='calendar-check' size={24} color={colors.SUCCESS} />
+                                                </View>
+                                                <View style={{ flex: 1 }}>
+                                                    <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>
+                                                        {item.lastUpdatedOn != null ? item.lastUpdatedOn : '-  -  -'}
+                                                    </Text>
+                                                </View>
                                             </View>
                                         </View>
-                                    </View>
+                                    : null
+                                    }
 
                                     <View style={[styles.sub_view, { marginTop: 4 }]}>
                                         <View style={styles.left_view}>

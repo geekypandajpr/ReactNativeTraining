@@ -334,9 +334,11 @@ export class GPSDeviceForm extends React.Component {
                                                 />
                                             </View>
                                             <View style={styles.createVehicleView}>
-                                                <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
+                                                <Button bordered dark style={{ height: 35 }}
                                                     onPress={() => navigate('CreateVehicle', { deviceid: this.state.deviceUDID })}>
-                                                    <Text uppercase={false} style={[styles.createVehicle, { fontFamily: 'Roboto', color:colors.PRIMARY }]}>Create Vehicle</Text>
+                                                    <Text style={[styles.createVehicle, { fontFamily: 'Roboto', color:colors.PRIMARY, fontSize: 12 }]}>
+                                                        CREATE VEHICLE
+                                                    </Text>
                                                 </Button>
                                             </View>
                                         </View>

@@ -31,7 +31,14 @@ export class Dashboard extends React.Component {
             userRoleId: 0,
             company: '',
             pieColor: ['#FD6260', '#B19DFF', '#02B8AB', '#F3C814'],
+            // pieColor: ['#FF9F40', '#36A2EB', '#9966FF', '#4BC0C0'],
             pieSeries: [400, 200, 100, 100],
+            // piedata: [
+            //     { value: 50, label: 'Total Sims', color: '#FF9F40' },
+            //     { value: 40, label: 'Installed', color: '#36A2EB' },
+            //     { value: 25, label: 'Activated', color: '#9966FF' },
+            //     { value: 25, label: 'Deactivated', color: '#4BC0C0' }
+            // ],
             piedata: [
                 { value: 50, label: 'Total Sims', color: '#FD6260' },
                 { value: 40, label: 'Installed', color: '#B19DFF' },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ScrollView, BackHandler, Linking } from 'react-native';
-import { Text, Button } from 'native-base';
+import { Text, Button,List, ListItem } from 'native-base';
 import { AppLoading } from 'expo';
 import { Ionicons, MaterialCommunityIcons, FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
@@ -68,9 +68,13 @@ export class ScheduleDetails extends React.Component {
             if (item[index].vehicleDetails) {
                 vehicleArray.push(item[index].vehicleDetails);
             } else if (item[index].deviceInventory) {
-                deviceArray = item[index].deviceInventory;
+                // deviceArray = item[index].deviceInventory;
+                deviceArray.push(item[index].deviceInventory);
+                // deviceArray = [...deviceArray, ...item[index].deviceInventory];
             } else if (item[index].simInventory) {
-                simArray = item[index].simInventory;
+                // simArray = item[index].simInventory;
+                simArray.push(item[index].simInventory);
+                // simArray = [...simArray, ...item[index].simInventory]
             }
         }
         this.setState({ item: list, vehicleArray: vehicleArray, simArray: simArray, deviceArray: deviceArray });
@@ -163,18 +167,21 @@ export class ScheduleDetails extends React.Component {
                                     </View>
                                 </View>
 
-                                <View style={[styles.sub_view, { marginTop: 4 }]}>
-                                    <View style={styles.left_view}>
-                                        <View style={{marginRight: 5}}>
-                                            <MaterialCommunityIcons name='calendar-check' size={24} color={colors.SUCCESS} />
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto'}]}>
-                                                {item.lastUpdatedOn != null ? item.lastUpdatedOn : '-  -  -'}
-                                            </Text>
+                                {item.serviceStatus == 'COMPLETED' ? 
+                                    <View style={[styles.sub_view, { marginTop: 4 }]}>
+                                        <View style={styles.left_view}>
+                                            <View style={{marginRight: 5}}>
+                                                <MaterialCommunityIcons name='calendar-check' size={24} color={colors.SUCCESS} />
+                                            </View>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto'}]}>
+                                                    {item.lastUpdatedOn != null ? item.lastUpdatedOn : '-  -  -'}
+                                                </Text>
+                                            </View>
                                         </View>
                                     </View>
-                                </View>
+                                : null
+                                }
 
                                 <View style={[styles.sub_view, { marginTop: 4 }]}>
                                     <View style={styles.left_view}>
@@ -302,15 +309,22 @@ export class ScheduleDetails extends React.Component {
                                             <Text style={[globalStyles.title_text, { fontFamily: 'Roboto', padding: 4 }]}>Vehicles</Text>
                                         </View>
                                     </View>
-                                    {this.state.vehicleArray.map((it, index) => 
-                                        <View style={styles.sub_view} key={index}>
-                                            <View style={styles.left_view}>
-                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                                    {index+1}. {it.vehicleNumber}
+                                    <List>
+                                        {this.state.vehicleArray.map((it, index) =>
+                                            // <View style={styles.sub_view} key={index}>
+                                            //     <View style={styles.left_view}>
+                                            //         <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>
+                                            //             {index+1}. {it.vehicleNumber}
+                                            //         </Text>
+                                            //     </View>
+                                            // </View>
+                                            <ListItem key={index}>
+                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>
+                                                    {it.vehicleNumber}
                                                 </Text>
-                                            </View>
-                                        </View>
-                                    )}
+                                            </ListItem>
+                                        )}
+                                    </List>
                                 </View>
                                 : null
                             }
@@ -322,15 +336,22 @@ export class ScheduleDetails extends React.Component {
                                             <Text style={[globalStyles.title_text, { fontFamily: 'Roboto', padding: 4 }]}>Devices</Text>
                                         </View>
                                     </View>
-                                    {this.state.deviceArray.map((device, index) => 
-                                        <View style={styles.sub_view} key={index}>
-                                            <View style={styles.left_view}>
-                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                                    {index+1}. {device.esn}
+                                    <List>
+                                        {this.state.deviceArray.map((device, index) => 
+                                            // <View style={styles.sub_view} key={index}>
+                                            //     <View style={styles.left_view}>
+                                            //         <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>
+                                            //             {index+1}. {device.esn}
+                                            //         </Text>
+                                            //     </View>
+                                            // </View>
+                                            <ListItem key={index}>
+                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto'}]}>
+                                                    {device.imei}
                                                 </Text>
-                                            </View>
-                                        </View>
-                                    )}
+                                            </ListItem>
+                                        )}
+                                    </List>
                                 </View>
                                 : null
                             }
@@ -342,15 +363,22 @@ export class ScheduleDetails extends React.Component {
                                             <Text style={[globalStyles.title_text, { fontFamily: 'Roboto', padding: 4 }]}>Sims</Text>
                                         </View>
                                     </View>
-                                    {this.state.simArray.map((sim, index) => 
-                                        <View style={styles.sub_view} key={index}>
-                                            <View style={styles.left_view}>
-                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>
-                                                    {index+1}. {sim.mobileNumber}
+                                    <List>
+                                        {this.state.simArray.map((sim, index) =>
+                                            // <View style={styles.sub_view} key={index}>
+                                            //     <View style={styles.left_view}>
+                                            //         <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>
+                                            //             {index+1}. {sim.mobileNumber}
+                                            //         </Text>
+                                            //     </View>
+                                            // </View>
+                                            <ListItem key={index}>
+                                                <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto' }]}>
+                                                    {sim.mobileNumber}
                                                 </Text>
-                                            </View>
-                                        </View>
-                                    )}
+                                            </ListItem>
+                                        )}
+                                    </List>
                                 </View>
                                 : null
                             }

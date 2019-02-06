@@ -3,7 +3,7 @@ import { Alert, Linking, Dimensions, LayoutAnimation, Text, View, StatusBar, Tou
 import { BarCodeScanner, Permissions } from 'expo';
 import { Toolbar, SearchBar } from '../../components';
 import styles from './styles';
-import { userActions } from '../../redux/actions';
+import { gpsDeviceActions } from '../../redux/actions';
 import { connect } from 'react-redux';
 import { DeviceInfo } from './DeviceInfo'
 
@@ -159,7 +159,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        fetchDeviceInfo: (deviceUDID) => dispatch(userActions.getAssociationDeviceInfo(deviceUDID))
+        fetchDeviceInfo: (deviceUDID) => dispatch(gpsDeviceActions.getAssociationDeviceInfo(deviceUDID))
     }
 }
 

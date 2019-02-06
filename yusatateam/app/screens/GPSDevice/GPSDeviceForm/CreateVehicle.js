@@ -9,6 +9,7 @@ import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from 
 import { BarCodeModal } from './BarCodeModal';
 import { gpsDeviceActions } from '../../../redux/actions';
 import { showToast } from '../../../common/functions';
+import { colors } from '../../../styles';
 
 export class CreateVehicle extends React.Component {
     constructor(props) {
@@ -229,7 +230,7 @@ export class CreateVehicle extends React.Component {
                                     rightIcon={'md-barcode'}
                                     rightIconType='Ionicons'
                                     rightIconPress={() => this.BarCodePage("Device")}
-                                    rightIconStyle={{color: 'gray', fontSize: 20}}
+                                    rightIconStyle={{ color: 'gray', fontSize: 20 }}
                                     placeholder='Device Id'
                                     value={this.state.deviceId}
                                     returnKeyType={'next'}
@@ -251,7 +252,7 @@ export class CreateVehicle extends React.Component {
                                     rightIcon={'md-barcode'}
                                     rightIconType='Ionicons'
                                     rightIconPress={() => this.BarCodePage("SIM")}
-                                    rightIconStyle={{color: 'gray', fontSize: 20}}
+                                    rightIconStyle={{ color: 'gray', fontSize: 20 }}
                                     placeholder='Sim #'
                                     value={this.state.simNumber}
                                     returnKeyType={'next'}
@@ -273,7 +274,7 @@ export class CreateVehicle extends React.Component {
                                     rightIcon={'md-barcode'}
                                     rightIconType='Ionicons'
                                     rightIconPress={() => this.BarCodePage("VIN")}
-                                    rightIconStyle={{color: 'gray', fontSize: 20}}
+                                    rightIconStyle={{ color: 'gray', fontSize: 20 }}
                                     placeholder='VIN'
                                     value={this.state.vin}
                                     returnKeyType={'next'}
@@ -302,24 +303,27 @@ export class CreateVehicle extends React.Component {
 
                             <View style={{ width: '92%', flexDirection: 'row', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>
                                 <View style={{ flex: 1.5, alignItems: 'center', justifyContent: 'center' }}>
-                                    <View style={{ height: 100, width: 100, borderColor: 'gray', borderWidth: 0.8, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
-                                        <Image source={{ uri: image }} resizeMode='cover'
-                                            style={{ alignItems: 'center', justifyContent: 'center', height: 100, width: 100, borderRadius: 50, borderColor: '#efefef' }}
-                                        />
-                                    </View>
+                                    {image ?
+                                        <View style={{ height: 100, width: 100, borderColor: 'gray', borderWidth: 0.8, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
+                                            <Image source={{ uri: image }} resizeMode='cover'
+                                                style={{ alignItems: 'center', justifyContent: 'center', height: 100, width: 100, borderRadius: 50, borderColor: '#efefef' }}
+                                            />
+                                        </View>
+                                        : <Text style={{ fontSize: 12, color: colors.DANGER, fontFamily: 'Roboto' }}>No image choosen</Text>
+                                    }
                                 </View>
                                 <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
-                                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                        <Button bordered dark style={{ height: 35, borderColor: 'gray' }}
+                                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                                        <Button bordered dark style={{ height: 30, width: '70%', justifyContent: 'center' }}
                                             onPress={this._takephoto}>
                                             <Text uppercase={false} style={[styles.createVehicle, { fontFamily: 'Roboto' }]}>Capture Image</Text>
                                         </Button>
                                     </View>
-                                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                    <View style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
                                         <Text style={[styles.createVehicle, { fontFamily: 'Roboto' }]}>OR</Text>
                                     </View>
-                                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                        <Button bordered dark style={{ height: 35, borderColor: 'gray', }}
+                                    <View style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
+                                        <Button bordered dark style={{ height: 30, width: '70%', justifyContent: 'center' }}
                                             onPress={this._pickImage}>
                                             <Text uppercase={false} style={[styles.createVehicle, { fontFamily: 'Roboto' }]}>Upload Image</Text>
                                         </Button>
@@ -327,33 +331,31 @@ export class CreateVehicle extends React.Component {
                                 </View>
                             </View>
 
-                            <View style={{ width: '92%', marginTop: 5 }}>
-                                <Text>{this.state.imagename}</Text>
+                            <View style={{ width: '92%', marginTop: 5, marginBottom: 10, alignItems: 'center' }}>
+                                <Text style={{ fontSize: 12, color: '#808080', fontFamily: 'Roboto' }}>
+                                    {this.state.imagename}
+                                </Text>
                             </View>
 
-                            {/* <View style={{width: '93%', flexDirection: 'row', marginBottom: 10}}>
-                            <View style={{ flex: 1, marginRight: 1 }}>
-                                <Button block style={{ backgroundColor: '#d9534f' }} >
-                                    <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Cancel</Text>
-                                </Button>
+                            <View style={{ width: '92%', flexDirection: 'row', marginBottom: 10 }}>
+                                <View style={{ flex: 1, width: '100%' }}>
+                                    <Button style={{ backgroundColor: colors.PRIMARY, width: '100%', justifyContent: 'center', alignItems: 'center' }}
+                                        onPress={this.onCreateVehicle} >
+                                        <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Create</Text>
+                                    </Button>
+                                </View>
                             </View>
-                            <View style={{ flex: 1, marginLeft: 1 }}>
-                                <Button block style={{ backgroundColor: '#5cb85c' }} >
-                                    <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
-                                </Button>
-                            </View>
-                        </View> */}
                         </View>
 
                     </ScrollView>
                     <BarCodeModal ref={this.modalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
-                    <Footer>
+                    {/* <Footer>
                         <FooterTab style={{ backgroundColor: '#0073b7' }}>
                             <Button transparent onPress={this.onCreateVehicle}>
-                                <Text style={{ color: '#fff', fontFamily: 'Roboto', fontSize: 15 }}>Submit</Text>
+                                <Text style={{ color: '#fff', fontFamily: 'Roboto', fontSize: 15 }}>Create</Text>
                             </Button>
                         </FooterTab>
-                    </Footer>
+                    </Footer> */}
                     <SinglePicker ref={this.modalRef} selectedValue={(item) => { this.onVehicleTypeSelect(item) }} />
                 </View>
         );
@@ -374,5 +376,5 @@ function mapDispatchToProps(dispatch) {
         oncreateVehicleType: () => dispatch(gpsDeviceActions.createVehicleType())
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(CreateVehicle)
 
+export default connect(mapStateToProps, mapDispatchToProps)(CreateVehicle)
