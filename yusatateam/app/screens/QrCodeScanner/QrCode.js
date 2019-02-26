@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Linking, Dimensions, LayoutAnimation, Text, View, StatusBar, TouchableOpacity, Image } from 'react-native';
+import { Alert, Linking, Dimensions, LayoutAnimation, Text, View, BackHandler, TouchableOpacity, Image } from 'react-native';
 import { BarCodeScanner, Permissions } from 'expo';
 import { Toolbar, SearchBar } from '../../components';
 import styles from './styles';
@@ -19,7 +19,17 @@ export class QrCode extends Component {
     };
 
     componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
         this._requestCameraPermission();
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack();
+        return true;
     }
 
     _requestCameraPermission = async () => {

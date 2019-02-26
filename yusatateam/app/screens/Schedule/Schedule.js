@@ -19,15 +19,18 @@ var eventList = {
     // '2018-09-30': {selected: true, selectedColor: 'orange'},
 }
 
+const TIME_FORMAT = "YYYY-MM-DD"
+
 export class Schedule extends React.Component {
     constructor(props) {
         super(props);
-        moment.locale('en');
+        // moment.locale('en');
+        moment.suppressDeprecationWarnings = true;
         this.state = {
             items: {},
             serviceList: [],
             serviceStatus: [],
-            date: new Date(),
+            date: moment(new Date(), TIME_FORMAT),
             userRoleId: 0
         };
         this.modalRef = React.createRef();
@@ -56,7 +59,7 @@ export class Schedule extends React.Component {
                 const items = {};
                 const list = nextProps.serviceList.listData.results;
                 for (var index in list) {
-                    var date =  moment(list[index].serviceDate).format('YYYY-MM-DD');
+                    var date = moment(list[index].serviceDate).format(TIME_FORMAT);
                     if(!items[date]) {
                         items[date] = [];
                         items[date].push(list[index]);
@@ -100,7 +103,7 @@ export class Schedule extends React.Component {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         const items = {
-            [moment(new Date(this.state.date)).format('YYYY-MM-DD')]: [],
+            [moment(new Date(this.state.date)).format(TIME_FORMAT)]: [],
             ...this.state.items,
         };
 
@@ -141,7 +144,7 @@ export class Schedule extends React.Component {
                     // callback that gets called on day change
                     onDayChange={(day) => this.onDayChange(day)}
                     // initially selected day
-                    selected={moment(new Date()).format('YYYY-MM-DD')}
+                    selected={moment(new Date()).format(TIME_FORMAT)}
                     pastScrollRange={100}
                     futureScrollRange={100}
                     // specify how each item should be rendered in agenda

@@ -88,7 +88,7 @@ export function* executeServiceSaga(action) {
         if (data) {
             const listData = yield call(jobServices.getServiceList, 'all');
             yield put(NavigationActions.navigate({ routeName: 'Schedule' }));
-            functions.showToast('Assigned successfully', 'success');
+            functions.showToast('Assigned Successfully', 'success');
             yield put({ type: SERVICE.EXECUTE_SERVICE_SUCCESS, data });
             if (listData) {
                 yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData });
@@ -126,7 +126,7 @@ export function* serviceStatusUpdateSaga(action) {
             const listData = yield call(jobServices.getServiceList, 'all');
             if(listData) { yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData }); }
             yield put({ type: SERVICE.SERVICE_STATUS_UPDATE_SUCCESS, status });
-            functions.showToast('Status updated', 'success');
+            functions.showToast('Status Updated Successfully', 'success');
         } else {
             yield put({ type: SERVICE.SERVICE_STATUS_UPDATE_FAILED });
             // functions.showToast('Status not updated', 'danger');

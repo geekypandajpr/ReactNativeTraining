@@ -87,8 +87,10 @@ export class CreateVehicle extends React.Component {
 
     _pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: 'Images',
             allowsEditing: true,
-            //aspect: [4, 3],
+            aspect: [4, 3],
+            quality: 0,
             base64: true,
         })
         const str = result.uri;
@@ -105,9 +107,11 @@ export class CreateVehicle extends React.Component {
 
     _takephoto = async () => {
         let pickResult = await ImagePicker.launchCameraAsync({
+            mediaTypes: 'Images',
             allowsEditing: true,
+            aspect: [4, 3],
+            quality: 0,
             base64: true,
-            exif: true
         });
         const str = pickResult.uri;
         var strArray = str.split("/");
@@ -158,13 +162,13 @@ export class CreateVehicle extends React.Component {
                 "odometerReading": this.state.odometerReading,
                 "vehicleVin": this.state.vin,
                 "departmentId": departmentId,
-                "vehicleTypeId": this.state.vehicleTypeId,
+                "vehicleTypeId": this.state.vehicleTypeId
             }
             if (this.state.deviceId !== '')
                 item["gpsDeviceUdid"] = this.state.deviceId;
-            if (this.state.Base)
-                item["image"] = this.state.Base;
-            // alert(JSON.stringify(item));
+            // if (this.state.Base )
+            //     item["image"] = this.state.Base;
+            // console.log(JSON.stringify(item));
             this.props.createVehicle(item);
         } else {
             showToast('Please fill required fields', 'warning');
@@ -301,7 +305,7 @@ export class CreateVehicle extends React.Component {
                                 />
                             </View>
 
-                            <View style={{ width: '92%', flexDirection: 'row', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>
+                            {/* <View style={{ width: '92%', flexDirection: 'row', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>
                                 <View style={{ flex: 1.5, alignItems: 'center', justifyContent: 'center' }}>
                                     {image ?
                                         <View style={{ height: 100, width: 100, borderColor: 'gray', borderWidth: 0.8, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
@@ -329,17 +333,17 @@ export class CreateVehicle extends React.Component {
                                         </Button>
                                     </View>
                                 </View>
-                            </View>
+                            </View> */}
 
-                            <View style={{ width: '92%', marginTop: 5, marginBottom: 10, alignItems: 'center' }}>
+                            {/* <View style={{ width: '92%', marginTop: 5, marginBottom: 10, alignItems: 'center' }}>
                                 <Text style={{ fontSize: 12, color: '#808080', fontFamily: 'Roboto' }}>
                                     {this.state.imagename}
                                 </Text>
-                            </View>
+                            </View> */}
 
-                            <View style={{ width: '92%', flexDirection: 'row', marginBottom: 10 }}>
+                            <View style={{ width: '92%', flexDirection: 'row', marginBottom: 20, marginTop: 20 }}>
                                 <View style={{ flex: 1, width: '100%' }}>
-                                    <Button style={{ backgroundColor: colors.PRIMARY, width: '100%', justifyContent: 'center', alignItems: 'center' }}
+                                    <Button full style={{ backgroundColor: colors.PRIMARY, width: '100%', justifyContent: 'center', alignItems: 'center' }}
                                         onPress={this.onCreateVehicle} >
                                         <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Create</Text>
                                     </Button>

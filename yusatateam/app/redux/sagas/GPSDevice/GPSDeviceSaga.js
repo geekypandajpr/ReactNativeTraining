@@ -55,10 +55,38 @@ export function* gpsDeviceListSaga(action) {
 /**Add GPS Device Association */
 export function* addGPSDevice(action) {
     try {
+        const req = {
+            "betweenFilter": {
+                "flag": false,
+                "isDate": false,
+                "isOrCondition": false
+            },
+            "cFilter": { "flag": false },
+            "columnNames": [""],
+            "iDisplayLength": 10,
+            "iDisplayStart": 0,
+            "iSortCol_0": 0,
+            "inFilter": { "flag": false },
+            "sEcho": 0,
+            "sSortDir_0": "",
+            "searchColumnNamesWithText": [""]
+        };
         const data = yield call(gpsDeviceServices.addGPSDevice, action.gpsdevice)
         if (data) {
             yield put({ type: GPSDEVICE.ADD_GPS_DEVICE_SUCCESS, data });
-            functions.showToast('GPS Device added successfully', 'success');
+            try {
+                yield put({ type: GPSDEVICE.GPSDEVICE_LIST_REQUEST, list });
+                const list = yield call(gpsDeviceServices.gpsDeviceList, req);
+                if (list) {
+                    yield put({ type: GPSDEVICE.GPSDEVICE_LIST_SUCCESS, list });
+                } else {
+                    yield put({ type: GPSDEVICE.GPSDEVICE_LIST_FAILED });
+                }
+            } catch (error) {
+                yield put({ type: GPSDEVICE.GPSDEVICE_LIST_FAILED, error });
+                functions.showToast('Something went wrong', 'danger');
+            }
+            functions.showToast('GPS Device Added Successfully', 'success');
             yield put(NavigationActions.navigate({ routeName: 'GPSDevice' }));
         } else {
             yield put({ type: GPSDEVICE.ADD_GPS_DEVICE_FAILED });
@@ -111,7 +139,7 @@ export function* createVehicle(action) {
                     yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_SUCCESS, vehicleList });
                 } else {
                     yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_FAILED, error });
-                    functions.showToast('Unable to refresh vehicle list', 'danger');
+                    // functions.showToast('Unable to refresh vehicle list', 'danger');
                 }
             } catch (error) {
                 yield put({ type: GPSDEVICE.GPSDEVICEVEHICLELIST_FAILED, error });
@@ -119,7 +147,7 @@ export function* createVehicle(action) {
             }
         } else {
             yield put({ type: GPSDEVICE.CREATEVEHICLE_FAILED });
-            functions.showToast('Unable to create vehicle', 'danger');
+            // functions.showToast('Unable to create vehicle', 'danger');
         }
     } catch (error) {
         yield put({ type: GPSDEVICE.CREATEVEHICLE_FAILED, error });

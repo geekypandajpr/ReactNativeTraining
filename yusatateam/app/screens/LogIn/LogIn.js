@@ -121,10 +121,10 @@ export class LogIn extends React.Component {
                                             isMandatory={true}
                                             onSubmitEditing={() => this._focusNextField('password')}
                                             onChangeText={(username) => this.setState({ username })}
-                                            rightIcon={this.state.username !== '' ? 'ios-close-circle-outline' : null }
-                                            rightIconPress={() => this.setState({ username: ''})}
+                                            rightIcon={this.state.username !== '' ? 'ios-close-circle-outline' : null}
+                                            rightIconPress={() => this.setState({ username: '' })}
                                             rightIconType={'Ionicons'}
-                                            rightIconStyle={{ color: 'red', fontSize: 20}}
+                                            rightIconStyle={{ color: 'red', fontSize: 20 }}
                                         />
                                     </View>
                                 </View>
@@ -145,10 +145,10 @@ export class LogIn extends React.Component {
                                             isMandatory={true}
                                             onSubmitEditing={this._doLogin}
                                             onChangeText={(password) => this.setState({ password })}
-                                            rightIcon={this.state.password !== '' ? 'ios-close-circle-outline' : null }
-                                            rightIconPress={() => this.setState({ password: ''})}
+                                            rightIcon={this.state.password !== '' ? 'ios-close-circle-outline' : null}
+                                            rightIconPress={() => this.setState({ password: '' })}
                                             rightIconType={'Ionicons'}
-                                            rightIconStyle={{ color: 'red', fontSize: 20}}
+                                            rightIconStyle={{ color: 'red', fontSize: 20 }}
                                         />
                                     </View>
                                 </View>
@@ -174,13 +174,13 @@ export class LogIn extends React.Component {
                                 </View>
 
                                 <View style={styles.button_view}>
-                                    <Button
+                                    <Button full
                                         style={[styles.button, { backgroundColor: colors.HEADER_COLOR }]}
                                         onPress={this._doLogin} >
                                         <Text style={[styles.button_text, { fontFamily: 'Roboto' }]}>  LOGIN </Text>
                                     </Button>
                                 </View>
-                                
+
                                 <View style={[styles.input_view, { marginTop: 5 }]}>
                                     <View style={{ flex: 1, justifyContent: "center", alignItems: 'center', flexDirection: 'row' }}>
                                         <Text style={[styles.remember_me_text, { fontFamily: 'Roboto', color: 'gray' }]}>Version#: 1.0</Text>

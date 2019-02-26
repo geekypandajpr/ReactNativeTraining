@@ -101,7 +101,8 @@ export default class ScheduleEvent extends React.Component {
 
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
-                                <TouchableOpacity  onPress={this.props.onStatusChange} >
+                                <TouchableOpacity  onPress={this.props.onStatusChange}
+                                    disabled={ item.serviceStatus == 'COMPLETED' || item.serviceStatus == 'CANCELLED' ? true : false }>
                                     <View style={[styles.statusButton,{backgroundColor: colorsCode[item.serviceStatus]}]}>
                                         <Text style={[styles.value_text,{fontFamily: 'Roboto', color: '#fff'}]}>
                                             {item.serviceStatus}

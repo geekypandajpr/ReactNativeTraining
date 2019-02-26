@@ -430,7 +430,7 @@ export class GPSDeviceForm extends React.Component {
                                         <View style={styles.row_Divide}>
                                             <View style={styles.inner_View}>
                                                 <Float
-                                                    placeholder='Data plan'
+                                                    placeholder='Data Plan'
                                                     value={this.state.dataPlan}
                                                     isMandatory={true}
                                                     onChangeText={(text) => this.setState({ dataPlan: text })}
@@ -461,7 +461,7 @@ export class GPSDeviceForm extends React.Component {
                                         </View>
                                         <View style={[styles.Small_View, { flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }]}>
 
-                                            <Text style={[styles.createVehicle, { marginBottom: 5 }]}>Data renewal</Text>
+                                            <Text style={[styles.createVehicle, { marginBottom: 5 }]}>Data Renewal<Text style={{color:'red'}}>*</Text></Text>
 
                                             <View style={styles.Date_picker}>
                                                 <DatePicker

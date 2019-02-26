@@ -304,14 +304,14 @@ export class DoAssociation extends React.Component {
                                                 {item.companyName}
                                             </Text>
                                         </View>
-                                        <View style={styles.serviceType}>
+                                        {/* <View style={styles.serviceType}>
                                             <Button transparent disabled={true}
                                                 style={styles.job_type}>
                                                 <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', color: colors.PRIMARY }]}>
                                                     {item.serviceTypeName}
                                                 </Text>
                                             </Button>
-                                        </View>
+                                        </View> */}
                                     </View>
 
                                     <View style={[styles.sub_view, { marginTop: 4 }]}>

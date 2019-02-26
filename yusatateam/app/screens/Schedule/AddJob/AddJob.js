@@ -4,7 +4,7 @@ import { Button, Text, CheckBox } from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
-var momentTz = require('moment-timezone');
+// var momentTz = require('moment-timezone');
 import moment from 'moment';
 
 import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker, MultiPicker } from '../../../components';
@@ -25,6 +25,7 @@ const TECHNICIAN_VALUE = 'Select Technician';
 export class AddJob extends React.Component {
     constructor(props) {
         super(props);
+        moment.locale("en");
         this.state = {
             isLoading: true,
             data: [],
@@ -186,7 +187,7 @@ export class AddJob extends React.Component {
             if (this.state.serviceName !== '') {
                 item["serviceName"] = this.state.serviceName;
             }
-            // alert(JSON.stringify(item));
+            console.log(JSON.stringify(item));
             this.props.createServices(item);
         } else {
             functions.showToast('Please fill all required fields', 'warning');
@@ -310,11 +311,12 @@ export class AddJob extends React.Component {
 
                                             <View style={styles.Date_picker}>
                                                 <DatePicker
+                                                    // locale="en"
                                                     style={{ width: '100%' }}
                                                     date={this.state.dataRenewal}
                                                     mode="datetime"
-                                                    placeholder="DD/MM/YYYY HH:mm:ss a"
-                                                    // showTime={{ use12Hours: true, format: "HH:mm:ss a" }}
+                                                    placeholder="Enter service datetime"
+                                                    // showTime={{ use12Hours: true, format: "hh:mm:ss a" }}
                                                     format="DD/MM/YYYY hh:mm:ss a"
                                                     //minDate=""
                                                     //maxDate=""
@@ -332,7 +334,9 @@ export class AddJob extends React.Component {
                                                         }
                                                         // ... You can check the source to find the other keys.
                                                     }}
-                                                    onDateChange={(date) => {this.setDateTime(date) }}
+                                                    onDateChange={(date) => 
+                                                        this.setState({ dataRenewal: date })
+                                                    }
                                                 />
                                             </View>
                                         </View>
@@ -421,7 +425,7 @@ export class AddJob extends React.Component {
                                         </View>
 
                                         <View style={styles.button_view}>
-                                            <Button style={styles.button}
+                                            <Button style={styles.button} full
                                                 onPress={this.onSubmitAddService}>
                                                 <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Submit</Text>
                                             </Button>
