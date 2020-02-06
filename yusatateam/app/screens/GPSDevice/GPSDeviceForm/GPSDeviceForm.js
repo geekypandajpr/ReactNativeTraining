@@ -1,24 +1,31 @@
 import React from 'react';
-import { View, ScrollView, BackHandler, KeyboardAvoidingView } from 'react-native';
+import { View, ScrollView, BackHandler, KeyboardAvoidingView, Alert } from 'react-native';
 import { Item, Label, Input, Button, Text, Icon } from 'native-base';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker';
 import moment from 'moment';
 
-import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
+import {
+    Toolbar,
+    Float,
+    UnderlineText,
+    Activityindication,
+    SinglePicker,
+    GpsDevicePicker
+} from '../../../components';
 import styles from './styles';
 import { gpsDeviceActions } from '../../../redux/actions';
 import functions from '../../../common/functions';
-import { globalStyles, colors } from '../../../styles';
+import { globalStyles, colors, typeCode } from '../../../styles';
 import { BarCodeModal } from '../GPSDeviceForm/BarCodeModal'
 
 const title = [
     'Company',
     'Vehicles',
-    'DeviceType',
+    'Device Type',
     'Subskey',
-    'ISD'
+    'Country ISD'
 ]
 
 const COMPANY_KEY = 'COMPANY';
@@ -46,6 +53,8 @@ export class GPSDeviceForm extends React.Component {
             companyList: [],
             deviceType: [],
             vehicleList: [],
+            inventoryDevice: [],
+            inventorySim: [],
             isDeviceChecked: false,
             isDeviceUdidValid: false,
             deviceUDID: '',
@@ -56,6 +65,11 @@ export class GPSDeviceForm extends React.Component {
             dataRenewal: '',
             carrier: '',
             createVehicle: [],
+            simId: '',
+            simValue: 'Select Mobile#',
+            deviceId: '',
+            deviceValue: 'Select Device',
+            companyId: '',
         }
         this.flag = '';
         this.modalRef = React.createRef();
@@ -73,13 +87,33 @@ export class GPSDeviceForm extends React.Component {
             Roboto: require("native-base/Fonts/Roboto.ttf"),
             Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
             Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
-        })
-        this.setState({ isLoading: false });
+        });
+        
+        /**Compnay Name and Company Id */
+        const companyName = this.props.loginResponse.data.results.companyName;
+        const companyId = this.props.loginResponse.data.results.companyId;
+
+        const dropdowns = new Map(this.state.dropdowns);
+        dropdowns.set(COMPANY_KEY, [COMPANY_KEY_VALUE, null]); /**Companies Dropdown */
+        dropdowns.set(VEHICLE_KEY, [VEHICLE_KEY_VALUE, null]); /**Vehicles Dropdown */
+        dropdowns.set(DEVICETYPE_KEY, [DEVICETYPE_KEY_VALUE, null]); /**Device Type Dropdown */
+        dropdowns.set(ISD_KEY, [ISD_KEY_VALUE, null]); /**Country ISD Dropdown */
+        dropdowns.set(COMPANY_KEY, [companyName, companyId]); /**Set default Company Name and Id */
+        this.setState({ isLoading: false, dropdowns: dropdowns, companyId: companyId });
     }
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-        this.props.onFetchList();
+        var deviceReq = {
+            "listType": "INSTALL",
+            "orderCode": typeCode.DEVICE_ORDER_CODE
+        };
+        var simReq = {
+            "listType": "INSTALL",
+            "orderCode": typeCode.SIM_ORDER_CODE
+        }
+        const companyId = this.props.loginResponse.data.results.companyId;
+        this.props.onFetchList(deviceReq, simReq, companyId);
     }
 
     componentWillUnmount() {
@@ -99,9 +133,22 @@ export class GPSDeviceForm extends React.Component {
         /**Set selected dropdown value */
         const dropdowns = new Map(this.state.dropdowns);
         dropdowns.set(this.flag, [item.label, item.value]);
+        // if(this.flag == COMPANY_KEY) {
+        //     // alert(item.value)
+        //     dropdowns.set(VEHICLE_KEY, [VEHICLE_KEY_VALUE, null]);
+        //     this.props.onFetchFreeVehicles(item.value);
+        // }
         this.setState({ dropdowns: dropdowns });
     }
 
+    selectSim(item) {
+        this.setState({ simId: item.value, simValue: item.label });
+    }
+
+    selectDevice(item) {
+        this.setState({ deviceId: item.value, deviceValue: item.label, isDeviceChecked: true, isDeviceUdidValid: false });
+        this.props.checkDeviceAssociation(item.label);
+    }
 
     barCodeValue(value) {
 
@@ -123,13 +170,12 @@ export class GPSDeviceForm extends React.Component {
             const companyName = this.props.loginResponse.data.results.companyName;
             const companyId = this.props.loginResponse.data.results.companyId;
 
-            /**Set default Company Name and Id */
             const dropdowns = new Map(this.state.dropdowns);
-            dropdowns.set(COMPANY_KEY, [COMPANY_KEY_VALUE, null]); /**Companies Dropdown */
-            dropdowns.set(VEHICLE_KEY, [VEHICLE_KEY_VALUE, null]); /**Vehicles Dropdown */
-            dropdowns.set(DEVICETYPE_KEY, [DEVICETYPE_KEY_VALUE, null]); /**Device Type Dropdown */
-            dropdowns.set(ISD_KEY, [ISD_KEY_VALUE, null]); /**Country ISD Dropdown */
-            dropdowns.set(COMPANY_KEY, [companyName, companyId]);
+            // dropdowns.set(COMPANY_KEY, [COMPANY_KEY_VALUE, null]); /**Companies Dropdown */
+            // dropdowns.set(VEHICLE_KEY, [VEHICLE_KEY_VALUE, null]); /**Vehicles Dropdown */
+            // dropdowns.set(DEVICETYPE_KEY, [DEVICETYPE_KEY_VALUE, null]); /**Device Type Dropdown */
+            // dropdowns.set(ISD_KEY, [ISD_KEY_VALUE, null]); /**Country ISD Dropdown */
+            // dropdowns.set(COMPANY_KEY, [companyName, companyId]); /**Set default Company Name and Id */
 
             /**Device Type */
             const deviceTypeArray = [];
@@ -138,6 +184,9 @@ export class GPSDeviceForm extends React.Component {
                 for (var i = 0; i < deviceType.length; i++) {
                     var obj = { "label": deviceType[i].value, "value": deviceType[i].key };
                     deviceTypeArray.push(obj);
+                    if(deviceType[i].key == 887289) {
+                        dropdowns.set(DEVICETYPE_KEY, [deviceType[i].value, deviceType[i].key]);
+                    }
                 }
             }
 
@@ -155,7 +204,29 @@ export class GPSDeviceForm extends React.Component {
                 }
             }
 
+            /**Inventory Device */
+            const inventoryDevice = [];
+            if (nextProps.gpsDeviceData.inventoryDevice.results) {
+                const inventoryDeviceData = nextProps.gpsDeviceData.inventoryDevice.results;
+                for (var i = 0; i < inventoryDeviceData.length; i++) {
+                    var obj = { "label": inventoryDeviceData[i].code, "value": inventoryDeviceData[i].key };
+                    inventoryDevice.push(obj);
+                }
+            }
+
+            /**Inventory Sim */
+            const inventorySim = [];
+            if (nextProps.gpsDeviceData.inventorySim.results) {
+                const inventorySimData = nextProps.gpsDeviceData.inventorySim.results;
+                for (var i = 0; i < inventorySimData.length; i++) {
+                    var obj = { "label": inventorySimData[i].code, "value": inventorySimData[i].key };
+                    inventorySim.push(obj);
+                }
+            }
+
             this.setState({
+                inventoryDevice: inventoryDevice,
+                inventorySim: inventorySim,
                 deviceType: deviceTypeArray,
                 countryISD: countryISD,
                 dropdowns: dropdowns
@@ -195,8 +266,14 @@ export class GPSDeviceForm extends React.Component {
 
         /**Based on Device UDID/ESN validation, update "isDeviceUdidValid" state variable*/
         if (this.props.checkGPSDeviceAssocData !== nextProps.checkGPSDeviceAssocData) {
-            if (this.state.isDeviceChecked)
-                this.setState({ isDeviceUdidValid: nextProps.checkGPSDeviceAssocData.isValid });
+            if (this.state.isDeviceChecked) {
+                var isValid = nextProps.checkGPSDeviceAssocData.isValid;
+                if(!isValid) {
+                    functions.showToast('Device is already engaged with another vehicle, please try with another device', 'warning');
+                }
+                this.setState({ isDeviceUdidValid: isValid, isDeviceChecked: false });
+            }
+                
         }
     }
 
@@ -215,43 +292,87 @@ export class GPSDeviceForm extends React.Component {
     onAddGPSDevice() {
         if (this.checkRequiredFields()) {
             const item = {
-                "balance": this.state.balance,
+                // "balance": this.state.balance,
+                // "dataBalance": this.state.dataBalance,
+                // "dataPlan": this.state.dataPlan,
+                // "dataValidity": this.state.dataRenewal,
                 "carrier": this.state.carrier,
                 "countryID": this.state.dropdowns.get(ISD_KEY)[1],
-                "dataBalance": this.state.dataBalance,
-                "dataPlan": this.state.dataPlan,
-                "dataValidity": this.state.dataRenewal,
                 "departmentId": this.props.loginResponse.data.results.departmentId,
-                // "deviceId": 0,
                 "deviceTypeId": this.state.dropdowns.get(DEVICETYPE_KEY)[1],
-                "deviceUdid": this.state.deviceUDID,
-                "simno": this.state.mobileNumber,
+                "deviceUdid": this.state.deviceValue,
+                "deviceInventoryId": this.state.deviceId,
+                "simno": this.state.simValue,
+                "simInventoryId": this.state.simId,
                 "vehicleId": this.state.dropdowns.get(VEHICLE_KEY)[1]
             }
-            // alert(JSON.stringify(item));
+            if(this.state.balance.trim() != '')
+                item['balance'] = this.state.balance.trim();
+            if(this.state.dataBalance.trim() != '')
+                item['dataBalance'] = this.state.dataBalance.trim();
+            if(this.state.dataPlan.trim() != '')
+                item['dataPlan'] = this.state.dataPlan.trim();
+            if(this.state.dataRenewal != '')
+                item['dataValidity'] = this.state.dataRenewal;
+
+
+            // this.props.checkDeviceAssociation(this.state.deviceUDID)  
+            console.log(item);
+            // if(!this.state.isDeviceUdidValid) {
+            //     functions.showToast('Device is already engaged with another vehicle, please try with another device', 'warning');
+            //     return false;
+            // } else {
+            //     this.props.addGPSDevice(item);
+            // }            
             this.props.addGPSDevice(item);
         } else {
-            functions.showToast('Please fill all required fields', 'warning');
+            // functions.showToast('Please fill all required fields', 'warning');
         }
 
     }
 
     /**Function to validate mandatory fields for Add GPS Device API*/
     checkRequiredFields() {
-        if (this.state.isDeviceUdidValid
-            && this.state.deviceUDID !== ''
+        // if (this.state.deviceUDID !== ''
+        //     && this.state.dropdowns.get(VEHICLE_KEY)[1]
+        //     && this.state.dropdowns.get(DEVICETYPE_KEY)[1]
+        //     && this.state.dropdowns.get(ISD_KEY)[1]
+        //     && this.state.mobileNumber !== ''
+        //     && this.state.balance !== ''
+        //     && this.state.dataBalance !== ''
+        //     && this.state.dataPlan !== ''
+        //     && this.state.carrier !== ''
+        //     && this.state.dataRenewal !== '') {
+        //         // this.props.checkDeviceAssociation(this.state.deviceUDID);
+        //         if(!this.state.isDeviceUdidValid) {
+        //             functions.showToast('Device is already engaged with another vehicle, please try with another device', 'warning');
+        //             return false;
+        //         }
+        //     return true;
+        // } else {
+        //     functions.showToast('Please fill all required fields', 'warning');
+        //     return false;
+        // }
+        if (this.state.deviceId !== ''
             && this.state.dropdowns.get(VEHICLE_KEY)[1]
             && this.state.dropdowns.get(DEVICETYPE_KEY)[1]
             && this.state.dropdowns.get(ISD_KEY)[1]
-            && this.state.mobileNumber !== ''
-            && this.state.balance !== ''
-            && this.state.dataBalance !== ''
-            && this.state.dataPlan !== ''
-            && this.state.carrier !== ''
-            && this.state.dataRenewal !== '') {
-            return true
-        }
-        return false;
+            && this.state.simId !== ''
+            && this.state.carrier.trim() !== ''
+            // && this.state.balance !== ''
+            // && this.state.dataBalance !== ''
+            // && this.state.dataPlan !== ''
+            // && this.state.dataRenewal !== ''
+            ) {
+                if(!this.state.isDeviceUdidValid) {
+                    functions.showToast('Device is already engaged with another vehicle, please try with another device', 'warning');
+                    return false;
+                }
+            return true;
+        } else {
+            functions.showToast('Please fill all required fields', 'warning');
+            return false;
+        }        
     }
 
     /**This function will check that whether GPS device is associated with any vehicle or not
@@ -259,7 +380,7 @@ export class GPSDeviceForm extends React.Component {
      */
     checkDeviceAssociation() {
         if (this.state.deviceUDID === '') {
-            functions.showToast('Please fill device UDID', 'warning');
+            functions.showToast('Please Fill Device UDID/ESN', 'warning');
         } else {
             this.setState({ isDeviceChecked: true });
             this.props.checkDeviceAssociation(this.state.deviceUDID);
@@ -288,9 +409,16 @@ export class GPSDeviceForm extends React.Component {
                                     <View style={styles.Width_View}>
 
                                         <View style={styles.Small_View}>
+                                            <UnderlineText
+                                                name="Device UDID/ESN"
+                                                upperView={true}
+                                                value={this.state.deviceValue}
+                                                isMandatory={true}
+                                                isValidationIcon={this.state.isDeviceUdidValid}
+                                                onpress={() => this.refs.device.setModalVisible(true, "Device UDID/ESN", this.state.inventoryDevice)}
+                                            />
 
-                                            <Item floatingLabel>
-                                                {/* <Icon name='mobile' type='FontAwesome' style={{ fontSize: 30, color: 'gray' }} /> */}
+                                            {/* <Item floatingLabel>
                                                 <Label style={[styles.label, { fontFamily: 'Roboto' }]}>
                                                     Device UDID/ESN<Text style={styles.star}>*</Text>
                                                 </Label>
@@ -310,10 +438,10 @@ export class GPSDeviceForm extends React.Component {
                                                     style={{ fontSize: 20, color: 'green' }} />
                                                 <Icon name='md-barcode' type="Ionicons" onPress={() => this.BarCodePage("DeviceUDID")}
                                                     style={{color: 'gray', fontSize: 20}} />
-                                            </Item>
+                                            </Item> */}
                                         </View>
 
-                                        <View style={styles.Small_View}>
+                                        {/* <View style={styles.Small_View}>
                                             <UnderlineText
                                                 name="Company"
                                                 upperView={true}
@@ -321,7 +449,7 @@ export class GPSDeviceForm extends React.Component {
                                                 isMandatory={true}
                                                 onpress={() => this.openPicker(COMPANY_KEY, this.state.companyList, title[0])}
                                             />
-                                        </View>
+                                        </View> */}
 
                                         <View style={styles.Small_View}>
                                             <View style={{ flex: 1.4 }}>
@@ -365,7 +493,7 @@ export class GPSDeviceForm extends React.Component {
                                 <View style={styles.Sub_View}>
                                     <View style={styles.Width_View}>
 
-                                        <View style={[styles.Small_View, { marginTop: 15, marginBottom: 5 }]}>
+                                        <View style={[styles.Small_View, { marginTop: 20, marginBottom: 5 }]}>
                                             <Text style={[styles.simdetails, { fontFamily: 'Roboto' }]}>Sim Details</Text>  
                                         </View>
 
@@ -380,7 +508,14 @@ export class GPSDeviceForm extends React.Component {
                                         </View>
 
                                         <View style={styles.Small_View}>
-                                            <Float
+                                            <UnderlineText
+                                                name="Mobile#"
+                                                upperView={true}
+                                                value={this.state.simValue}
+                                                isMandatory={true}
+                                                onpress={() => this.refs.sim.setModalVisible(true, "Sims", this.state.inventorySim)}
+                                            />
+                                            {/* <Float
                                                 placeholder='Mobile'
                                                 value={this.state.mobileNumber}
                                                 isMandatory={true}
@@ -391,8 +526,8 @@ export class GPSDeviceForm extends React.Component {
                                                 blurOnSubmit={false}
                                                 getRef={(input) => { this.mobile = input; }}
                                                 onSubmitEditing={() => this._focusNextField('balance')}
-                                            // onFocus={this.scrolldown.bind(this, 'mobile')}
-                                            />
+                                                // onFocus={this.checkDeviceAssociation}
+                                            /> */}
                                         </View>
 
                                         <View style={[styles.Balance_view, { marginTop: 10 }]}>
@@ -400,7 +535,7 @@ export class GPSDeviceForm extends React.Component {
                                                 <Float
                                                     placeholder='Balance'
                                                     value={this.state.balance}
-                                                    isMandatory={true}
+                                                    isMandatory={false}
                                                     onChangeText={(text) => this.setState({ balance: text })}
                                                     inputStyles={{ width: '100%' }}
                                                     returnKeyType={'next'}
@@ -415,7 +550,7 @@ export class GPSDeviceForm extends React.Component {
                                                 <Float
                                                     placeholder='Data Balance'
                                                     value={this.state.dataBalance}
-                                                    isMandatory={true}
+                                                    isMandatory={false}
                                                     onChangeText={(text) => this.setState({ dataBalance: text })}
                                                     inputStyles={{ width: '100%' }}
                                                     returnKeyType={'next'}
@@ -432,7 +567,7 @@ export class GPSDeviceForm extends React.Component {
                                                 <Float
                                                     placeholder='Data Plan'
                                                     value={this.state.dataPlan}
-                                                    isMandatory={true}
+                                                    isMandatory={false}
                                                     onChangeText={(text) => this.setState({ dataPlan: text })}
                                                     inputStyles={{ width: '100%' }}
                                                     returnKeyType={'next'}
@@ -461,7 +596,7 @@ export class GPSDeviceForm extends React.Component {
                                         </View>
                                         <View style={[styles.Small_View, { flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }]}>
 
-                                            <Text style={[styles.createVehicle, { marginBottom: 5 }]}>Data Renewal<Text style={{color:'red'}}>*</Text></Text>
+                                            <Text style={[styles.createVehicle, { marginBottom: 5 }]}>Data Renewal</Text>
 
                                             <View style={styles.Date_picker}>
                                                 <DatePicker
@@ -521,6 +656,8 @@ export class GPSDeviceForm extends React.Component {
                     </KeyboardAvoidingView>
                     <BarCodeModal ref={this.BarmodalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
                     <SinglePicker ref={this.modalRef} selectedValue={(value) => this.OnValueSelect(value)} />
+                    <SinglePicker ref={"sim"} selectedValue={(value) => this.selectSim(value)} />
+                    <GpsDevicePicker ref={"device"} selectedValue={(value) => this.selectDevice(value)} />
                 </View>
         );
     }
@@ -537,14 +674,15 @@ function mapStateToProps(state) {
         gpsDeviceData: state.gpsDeviceData,
         loginResponse: state.loginData,
         vehicleListDatas: state.vehicleListData,
-        checkGPSDeviceAssocData: state.checkGPSDeviceAssocData
+        checkGPSDeviceAssocData: state.checkGPSDeviceAssocData,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+        onFetchFreeVehicles: (companyId) => dispatch(gpsDeviceActions.freeVehicelList(companyId)),
         addGPSDevice: (gpsdevice) => dispatch(gpsDeviceActions.addGPSDeviceAssociation(gpsdevice)),
-        onFetchList: () => dispatch(gpsDeviceActions.gpsdeviceRequest()),
+        onFetchList: (deviceReq, simReq, companyId) => dispatch(gpsDeviceActions.gpsdeviceRequest(deviceReq, simReq, companyId)),
         checkDeviceAssociation: (deviceUDID) => dispatch(gpsDeviceActions.checkGPSDeviceAssociation(deviceUDID))
     }
 }

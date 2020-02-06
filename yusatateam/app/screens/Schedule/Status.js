@@ -6,6 +6,7 @@ import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { colors, typeCode, globalStyles } from '../../styles';
 import DatePicker from 'react-native-datepicker';
+import moment from 'moment';
 
 const STATUSLIST = {
     "ENTERED" : [ { "key": "8670131", "value": "Entered", "code": "ENTERED", "disabled": false },
@@ -50,6 +51,7 @@ const STATUSLIST = {
 export default class Status extends React.Component {
     constructor(props) {
         super(props);
+        moment.locale("en");
         this.state = {
             isLoading: true,
             modalVisible: false,
@@ -170,7 +172,7 @@ export default class Status extends React.Component {
                                                     date={this.state.dataRenewal}
                                                     mode="datetime"
                                                     placeholder="DD/MM/YYYY hh:mm:ss a"
-                                                    showTime={{ use12Hours: true, format: "HH:mm:ss a" }}
+                                                    // showTime={{ use12Hours: true, format: "hh:mm:ss a" }}
                                                     format="DD/MM/YYYY hh:mm:ss a"
                                                     //minDate=""
                                                     //maxDate=""
@@ -191,6 +193,11 @@ export default class Status extends React.Component {
                                                     onDateChange={(date) => { this.setState({ dataRenewal: date }) }}
                                                 />
                                             </View>
+                                            {this.state.dataRenewal ? null :
+                                                <View style={styles.checkbox_view}>
+                                                    <Text style={{color: 'red', fontSize:9}}>**Re-Schedule date and time not be empty</Text>
+                                                </View>
+                                            }
                                         </View>
                                         : null
                                     }

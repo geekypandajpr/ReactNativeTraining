@@ -1,7 +1,8 @@
 import functions from '../../common/functions';
 
 export default class Api {
-    static host = 'http://app.ylogapp.com:9393/YLogAPI/';
+    // static host = 'http://app.ylogapp.com:9393/YLogAPI/';
+    static host = 'https://v2.ylogapp.com/YLogAPI/'; //Production
     // static host = 'http://app.ylogapp.com:9393/YLogAPIMobile/';
 
     static headers() {
@@ -37,6 +38,7 @@ export default class Api {
                 if (responseJson[0] === 200) {
                     return responseJson[1];
                 } else if (responseJson[0] === 412) {
+                    // console.log(JSON.stringify(responseJson[1]));
                     if (responseJson[1].results.msg)
                         functions.showToast(responseJson[1].results.msg, 'danger');
                     else

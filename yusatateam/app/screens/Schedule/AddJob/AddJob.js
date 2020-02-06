@@ -154,6 +154,7 @@ export class AddJob extends React.Component {
             && this.state.Ccontact !== ''
             && this.state.dataRenewal !== ''
             && this.state.location !== ''
+            && this.state.serviceName !== ''
         ) {
             return true;
         }
@@ -163,6 +164,7 @@ export class AddJob extends React.Component {
     onSubmitAddService() {
         if (this.onvalidation()) {
             const item = {
+                "serviceName": this.state.serviceName,
                 "address": this.state.location,
                 "cashOnDelivery": this.state.radio,
                 "customerMobileNumber": this.state.Ccontact,
@@ -183,9 +185,6 @@ export class AddJob extends React.Component {
             } else if(this.state.radio === 'Y' && this.state.amount === '') {
                 functions.showToast('Please fill all required fields', 'warning');
                 return false;
-            }
-            if (this.state.serviceName !== '') {
-                item["serviceName"] = this.state.serviceName;
             }
             console.log(JSON.stringify(item));
             this.props.createServices(item);
@@ -295,7 +294,7 @@ export class AddJob extends React.Component {
                                                 returnKeyType={'next'}
                                                 keyboardType={'default'}
                                                 blurOnSubmit={false}
-                                                isMandatory={false}
+                                                isMandatory={true}
                                                 onChangeText={(text) => this.setState({ serviceName: text })}
                                                 getRef={(input) => { this.ServiceName = input }}
                                                 onSubmitEditing={() => { this._focusNextField('CustomerName') }}

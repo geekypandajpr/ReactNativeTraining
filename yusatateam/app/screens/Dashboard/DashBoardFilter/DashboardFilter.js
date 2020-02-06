@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Modal } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Text, Button, Header, Body, Right } from 'native-base';
+import { Text, Button, Header, Body, Right, Title } from 'native-base';
 
 import styles from './styles';
 import { UnderlineText } from '../../../components';
 import Dropdown from './Dropdown';
-import { colors } from '../../../styles';
+import { colors, globalStyles } from '../../../styles';
 import functions from '../../../common/functions'
 
 export default class DashboardFilter extends React.Component {
@@ -19,10 +19,11 @@ export default class DashboardFilter extends React.Component {
             companyArray: [],
             companyMap: new Map(),
             regionValue: '',
+            tempRegionValue: '',
             companyValue: '',
             companyId: ''
         },
-        this.modalRef = React.createRef();
+            this.modalRef = React.createRef();
         this.onModalClose = this.onModalClose.bind(this);
         this.onValueChange = this.onValueChange.bind(this);
         this.updateList = this.updateList.bind(this);
@@ -41,15 +42,18 @@ export default class DashboardFilter extends React.Component {
 
     updateList() {
         const region = this.state.data.regionDetails;
-        if(region) {
+        if (region) {
             const len = region.length;
             const regionArray = [];
             const companyMap = new Map(this.state.companyMap);
-            var defaultRegion = '';
+            var defaultRegion = this.state.regionValue;
             for (var i = 0; i < len; i++) {
                 const obj = { "label": region[i].regionName, "value": region[i].regionName };
                 regionArray.push(obj);
-                if (this.state.data.defaultRegionId === region[i].regionId) { defaultRegion = region[i].regionName }
+                if (this.state.data.defaultRegionId == region[i].regionId) {
+                    if (this.state.regionValue == '')
+                        defaultRegion = region[i].regionName;
+                }
 
                 const companyArray = region[i].companyDetails;
                 const len1 = companyArray.length;
@@ -70,6 +74,7 @@ export default class DashboardFilter extends React.Component {
                 companyMap: companyMap,
                 companyArray: companyMap.get(regionArray[0].label),
                 regionValue: defaultRegion,
+                tempRegionValue: defaultRegion,
                 companyValue: this.state.data.companyName,
                 companyId: this.state.data.companyId
             });
@@ -92,6 +97,8 @@ export default class DashboardFilter extends React.Component {
 
     onUpdate() {
         if (this.state.companyId !== '') {
+            this.setState({ regionValue: this.state.tempRegionValue });
+            console.log(this.state.companyId);
             this.props.onRegionUpdate(this.state.companyId);
             this.onModalClose();
         } else {
@@ -104,7 +111,7 @@ export default class DashboardFilter extends React.Component {
         if (this.state.flag === 0) {
             const company = this.state.companyMap.get(data.label);
             this.setState({
-                regionValue: data.label,
+                tempRegionValue: data.label,
                 companyArray: company,
                 companyValue: 'Select company',
                 companyId: ''
@@ -124,13 +131,13 @@ export default class DashboardFilter extends React.Component {
                     onRequestClose={this.onModalClose}>
                     <View style={styles.container}>
                         <View style={{ width: '100%' }}>
-                            <Header style={styles.Header_Style}>
+                            <Header style={globalStyles.dropdownHeader}>
                                 <Body>
-                                    <Text style={styles.Text_style}> Filter </Text>
+                                    <Title style={globalStyles.dropdownHeaderText}> Filter </Title>
                                 </Body>
                                 <Right>
                                     <Button transparent onPress={this.onModalClose}>
-                                        <MaterialIcons name='close' size={30} color='#d9534f' />
+                                        <MaterialIcons name='close' size={28} color={colors.DROPDOWN_ICON_COLOR} />
                                     </Button>
                                 </Right>
                             </Header>
@@ -139,7 +146,7 @@ export default class DashboardFilter extends React.Component {
                             <View style={styles.Small_View}>
                                 <UnderlineText
                                     name="Region"
-                                    value={this.state.regionValue}
+                                    value={this.state.tempRegionValue}
                                     isMandatory={true}
                                     onpress={this.openRegionPicker}
                                 />
@@ -156,7 +163,9 @@ export default class DashboardFilter extends React.Component {
                                 <View style={{ flex: 5 }}></View>
                                 <Right style={{ flex: 4 }}>
                                     <Button full onPress={this.onUpdate}
-                                        style={{ width: 150, backgroundColor: colors.HEADER_COLOR }} ><Text> Update </Text></Button>
+                                        style={{ width: 150, backgroundColor: colors.HEADER_COLOR }} >
+                                        <Text> Update </Text>
+                                    </Button>
                                 </Right>
                             </View>
                         </View>

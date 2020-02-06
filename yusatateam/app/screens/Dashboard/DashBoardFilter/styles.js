@@ -1,8 +1,7 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
-    container:
-    {
+    container: {
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
@@ -19,22 +18,15 @@ export default EStyleSheet.create({
         fontWeight: '400',
        
     },
-    View_Container:
-    {
+    View_Container: {
         backgroundColor: '#ffffff',
         width: '100%',
         height: '35%',
     },
-    Header_Style:
-    {
-        backgroundColor: '#fff',
-        borderBottomColor: '#dcdcdc',
-        borderBottomWidth: 1
-    },
     Text_style: {
-        fontSize: '1.3rem',
-        color: '#000',
-        fontWeight: '400',
+        // fontSize: '1.3rem',
+        color: '#7b7987',
+        fontWeight: 'bold',
     },
     pickerView : {
         borderRadius: 4,

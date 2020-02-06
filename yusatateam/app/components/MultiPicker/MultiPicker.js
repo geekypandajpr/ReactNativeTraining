@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, Modal, View, TouchableHighlight, FlatList } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Header, Body, Right, List, ListItem, Button, Footer, FooterTab } from 'native-base';
+import { Header, Body, Right, List, ListItem, Button, Footer, FooterTab, Title } from 'native-base';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import { SearchBar } from '../SearchBar/SearchBar';
-import { colors } from '../../styles';
+import { colors, globalStyles } from '../../styles';
 
 export default class MultiPicker extends React.Component {
     constructor(props) {
@@ -73,26 +73,32 @@ export default class MultiPicker extends React.Component {
                         <View style={styles.container}>
                             <View style={styles.subContainer}>
 
-                                <Header style={styles.Header_Style}>
+                                <Header style={globalStyles.dropdownHeader}>
                                     <Body>
-                                        <Text style={styles.Text_style}>{this.state.title}</Text>
+                                        <Title style={globalStyles.dropdownHeaderText}>{this.state.title}</Title>
                                     </Body>
                                     <Right>
-                                        {/* <TouchableHighlight onPress={() => { this.setModalVisible(false) }}>
-                                            <MaterialIcons name='close' size={28} color='#fff' />
-                                        </TouchableHighlight> */}
+                                        {/* <Button transparent bordered onPress={this.onSubmit} style={{height: 30, borderRadius:2}}>
+                                            <Text style={{fontSize: 16, color: '#7b7987', fontFamily: 'Roboto', fontWeight: '400'}}>
+                                                SELECT
+                                            </Text>
+                                        </Button> */}
+                                        <Button transparent onPress={() => { this.setModalVisible(false) }}>
+                                            <MaterialIcons name='close' size={28} color={colors.DROPDOWN_ICON_COLOR} />
+                                        </Button>
                                     </Right>
                                 </Header>
-                                <View style={{ backgroundColor: 'white' }}>
+                                <View style={{ backgroundColor: 'white', padding: 6 }}>
                                     <SearchBar placeholder={'Search here '}
                                         value={this.state.text}
                                         onChangeText={(text) => this.getSearch(text)}
                                     />
                                 </View>
 
-                                <View style={{ flex: 1, backgroundColor: '#efefef' }}>
+                                <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
                                     <FlatList
                                         data={this.state.data}
+                                        ListEmptyComponent={this.emptyList}
                                         extraData={this.state}
                                         keyExtractor={this._keyExtractor}
                                         renderItem={this._renderItem}
@@ -100,10 +106,10 @@ export default class MultiPicker extends React.Component {
                                 </View>
 
                                 <Footer>
-                                    <FooterTab style={{backgroundColor: colors.PRIMARY}}>
-                                        <Button transparent onPress={this.onSubmit}>
-                                            <Text style={{fontSize: 16, color: '#fff', fontFamily: 'Roboto'}}>
-                                                Select
+                                    <FooterTab style={{backgroundColor: '#fff'}}>
+                                        <Button transparent onPress={this.onSubmit} style={{borderTopColor:'#7b7987', borderTopWidth: 0.2}}>
+                                            <Text style={{fontSize: 16, color: '#7b7987', fontFamily: 'Roboto', fontWeight: 'bold'}}>
+                                                SELECT
                                             </Text>
                                         </Button>
                                     </FooterTab>
@@ -114,6 +120,14 @@ export default class MultiPicker extends React.Component {
                     </Modal>
                 </View >
         );
+    }
+
+    emptyList() {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ fontFamily: 'Roboto', paddingTop: 100 }}>No Data Available</Text>
+            </View>
+        )
     }
 
     _keyExtractor = (item, index) => item.value;
@@ -173,8 +187,9 @@ const styles = EStyleSheet.create({
         backgroundColor: '#0073b7'
     },
     Text_style: {
-        fontSize: '1.2rem',
+        // fontSize: '1.2rem',
         color: '#fff',
-        fontWeight: '500',
+        paddingLeft: 5
+        // fontWeight: '500',
     }
 })

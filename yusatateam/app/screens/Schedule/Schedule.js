@@ -24,9 +24,10 @@ const TIME_FORMAT = "YYYY-MM-DD"
 export class Schedule extends React.Component {
     constructor(props) {
         super(props);
-        // moment.locale('en');
+        moment.locale('en');
         moment.suppressDeprecationWarnings = true;
         this.state = {
+            isAdmin: false,
             items: {},
             serviceList: [],
             serviceStatus: [],
@@ -46,7 +47,17 @@ export class Schedule extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({ userRoleId: this.props.loginResponse.data.results.userRoles[0].userRoleId });
+        /**UserRoles Object to render action buttons */
+        const userRoles = this.props.loginResponse.data.results.userRoles;
+        for(let index in userRoles) {
+            if(typeCode.ADMIN_USER_ROLE[userRoles[index].userRoleCode]) {
+                this.setState({ isAdmin: true });
+                break;
+            }
+        }
+        /**End of the userRoles */
+        // this.setState({ userRoleId: this.props.loginResponse.data.results.userRoles[0].userRoleId });
+
         this.props.onFetchJobList('all');
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     }
@@ -58,8 +69,9 @@ export class Schedule extends React.Component {
             if (nextProps.serviceList.listData.results) {
                 const items = {};
                 const list = nextProps.serviceList.listData.results;
+                const dateFormat = this.props.loginResponse.data.results.dateFormat;
                 for (var index in list) {
-                    var date = moment(list[index].serviceDate).format(TIME_FORMAT);
+                    var date = moment(list[index].serviceDate, dateFormat).format(TIME_FORMAT);
                     if(!items[date]) {
                         items[date] = [];
                         items[date].push(list[index]);
@@ -112,7 +124,7 @@ export class Schedule extends React.Component {
                 <Activityindication visible={this.props.serviceList.isLoading} />
                 <Activityindication visible={this.props.updatedStatusData.isLoading} />
                 
-                { this.state.userRoleId == typeCode.ADMIN_USER_ROLE_ID ?
+                { this.state.isAdmin ?
                     <Toolbar title = 'Schedule'
                         leftIcon = 'arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                         setting = 'filter'

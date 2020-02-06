@@ -43,7 +43,7 @@ export default class ScheduleEvent extends React.Component {
 
                         <View style={styles.text_container}>
                             <View style={styles.first_view}>
-                                <Text style={[styles.label_text,{fontFamily: 'Roboto'}]}>{item.orderNumber}</Text>
+                                <Text style={[styles.label_text,{fontFamily: 'Roboto'}]}>{item.serviceName}</Text>
                             </View>
                             <View style={styles.second_view}>
                                 {/* <StatefulButton

@@ -1,9 +1,11 @@
 import React from 'react';
-import { Text, Modal, View, TouchableHighlight, FlatList, TouchableOpacity } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
-import { Header, Body, Right, Left, List, ListItem } from 'native-base';
+import { Text, Modal, View, FlatList } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Header, Body, Right, List, ListItem, Title, Button } from 'native-base';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { globalStyles, colors } from '../../../styles';
+import { SearchBar } from '../../../components';
 
 export default class Dropdown extends React.Component {
     constructor(props) {
@@ -12,10 +14,12 @@ export default class Dropdown extends React.Component {
             isLoading: true,
             modalVisible: false,
             data: [],
-            title: ''
+            title: '',
+            text: ''
         }
         this.setModalVisible = this.setModalVisible.bind(this);
         this.onSelectValue = this.onSelectValue.bind(this);
+        this.arrayholder = [];
     }
 
     async componentWillMount() {
@@ -29,14 +33,28 @@ export default class Dropdown extends React.Component {
 
     onSelectValue(item) {
         this.props.selectedValue(item);
-        this.setState({modalVisible: !this.state.modalVisible})
+        this.setState({ modalVisible: !this.state.modalVisible })
     }
 
     setModalVisible(visible, title, data = []) {
+        this.arrayholder = data;
         this.setState({
             modalVisible: visible,
             title: title,
             data: data
+        })
+    }
+
+    getSearch(text) {
+        const newData = this.arrayholder.filter(function (item) {
+            // alert(JSON.stringify(item))
+            itemData = item.label.toUpperCase();
+            const textData = text.toUpperCase()
+            return itemData.indexOf(textData) > -1
+        })
+        this.setState({
+            data: newData,
+            text: text
         })
     }
 
@@ -57,29 +75,35 @@ export default class Dropdown extends React.Component {
                         <View style={styles.container}>
                             <View style={styles.subContainer}>
 
-                                <Header style={styles.Header_Style}>
-
+                                <Header style={globalStyles.dropdownHeader}>
                                     <Body>
-                                        <Text style={styles.Text_style}>{this.state.title}</Text>
+                                        <Title style={globalStyles.dropdownHeaderText}>{this.state.title}</Title>
                                     </Body>
                                     <Right>
-                                        <TouchableHighlight onPress={() => { this.setModalVisible(false) }}>
-                                            <Entypo name='cross' size={28} color='#fff'></Entypo>
-                                        </TouchableHighlight>
+                                        <Button transparent onPress={() => { this.setModalVisible(false) }}>
+                                            <MaterialIcons name='close' size={28} color={colors.DROPDOWN_ICON_COLOR} />
+                                        </Button>
                                     </Right>
                                 </Header>
 
-                                <View style={{ flex: 1, backgroundColor: '#efefef' }}>
+                                <View style={{ backgroundColor: 'white', padding: 6 }}>
+                                    <SearchBar placeholder={'Search here'}
+                                        value={this.state.text}
+                                        onChangeText={(text) => this.getSearch(text)}
+                                    // onSearch={this.getSearch(this.state.searchValue)}
+                                    />
+                                </View>
+
+                                <View style={{ flex: 1, backgroundColor: '#fff' }}>
                                     <FlatList
                                         data={this.state.data}
                                         keyExtractor={(item, index) => index.toString()}
+                                        ListEmptyComponent={this.emptyList}
                                         renderItem={({ item, index }) =>
                                             <List>
-                                                <TouchableOpacity >
-                                                    <ListItem onPress={() => { this.onSelectValue(item,item.label) }}>
-                                                        <Text>{item.label}</Text>
-                                                    </ListItem>
-                                                </TouchableOpacity>
+                                                <ListItem onPress={() => { this.onSelectValue(item, item.label) }}>
+                                                    <Text style={{ fontFamily: 'Roboto' }}>{item.label}</Text>
+                                                </ListItem>
                                             </List>
                                         } />
                                 </View>
@@ -88,6 +112,13 @@ export default class Dropdown extends React.Component {
                     </Modal>
                 </View >
         );
+    }
+    emptyList() {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ fontFamily: 'Roboto', paddingTop: 50 }}>No Data Available</Text>
+            </View>
+        )
     }
 }
 
@@ -104,13 +135,4 @@ const styles = EStyleSheet.create({
         position: 'absolute',
         bottom: 0
     },
-    Header_Style: {
-        backgroundColor: '#0073b7'
-    },
-    Text_style: {
-        fontSize: '1.2rem',
-        color: '#fff',
-        fontWeight: '500',
-    }
-
 })

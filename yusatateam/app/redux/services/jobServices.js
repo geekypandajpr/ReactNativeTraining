@@ -3,7 +3,7 @@ import { SERVICE } from '../common/urls';
 
 export const createJob = (createdata) => Api.post(SERVICE.SERVICE_ADD, createdata);
 export const getCompany = () => Api.get(SERVICE.SERVICE_COMPANY);
-export const getVehicle = () => Api.get(SERVICE.SERVICE_VEHICLE);
+export const getVehicle = (companyId) => Api.get(SERVICE.SERVICE_VEHICLE + `?idsForList=${companyId}`);
 export const getTechnician = (userRole) => Api.post(SERVICE.SERVICE_TECHNICIAN, userRole);
 export const getServiceType = () => Api.get(SERVICE.SERVICE_TYPE);
 export const getServiceList = (serviceType) => Api.get(SERVICE.SERVICE_LIST+`?type=${serviceType}`);

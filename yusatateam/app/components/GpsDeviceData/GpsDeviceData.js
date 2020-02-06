@@ -43,13 +43,13 @@ export default class GpsDeviceData extends React.Component {
 
                         <View style={styles.view}>
                             <View style={styles.first_view}>
-                                <Text style={[ globalStyles.primary_text, { fontFamily: 'Roboto' } ]}>Provider</Text>
+                                <Text style={[ globalStyles.primary_text, { fontFamily: 'Roboto' } ]}>Sim #</Text>
                             </View>
                             <View style={styles.middle_view}>
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
                             </View>
                             <View style={styles.last_view}>
-                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{item.provider}</Text>
+                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{item.simNo}</Text>
                             </View>
                         </View>
 
@@ -61,7 +61,7 @@ export default class GpsDeviceData extends React.Component {
                                 <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>:</Text>
                             </View>
                             <View style={styles.last_view}>
-                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{item.vehicleId}</Text>
+                                <Text style={[ globalStyles.secondary_text, { fontFamily: 'Roboto' } ]}>{item.vehicleNumber}</Text>
                             </View>
                         </View>
 

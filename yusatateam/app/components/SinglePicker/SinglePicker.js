@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, Modal, View, TouchableHighlight, TouchableOpacity, FlatList } from 'react-native';
+import { Text, Modal, View, FlatList } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Header, Body, Right, List, ListItem } from 'native-base';
+import { Header, Body, Right, List, ListItem, Title, Left, Button } from 'native-base';
 import { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { SearchBar } from '../SearchBar/SearchBar';
+import { globalStyles, colors } from '../../styles';
 
 export default class SinglePicker extends React.Component {
     constructor(props) {
@@ -20,7 +21,6 @@ export default class SinglePicker extends React.Component {
         this.onSelectValue = this.onSelectValue.bind(this);
         this.arrayholder = [];
     }
-
 
     async componentWillMount() {
         await Expo.Font.loadAsync({
@@ -72,35 +72,34 @@ export default class SinglePicker extends React.Component {
                         <View style={styles.container}>
                             <View style={styles.subContainer}>
 
-                                <Header style={styles.Header_Style}>
+                                <Header style={globalStyles.dropdownHeader}>
                                     <Body>
-                                        <Text style={styles.Text_style}>{this.state.title}</Text>
+                                        <Title style={globalStyles.dropdownHeaderText}>{this.state.title}</Title>
                                     </Body>
                                     <Right>
-                                        <TouchableHighlight onPress={() => { this.setModalVisible(false) }}>
-                                            <MaterialIcons name='close' size={28} color='#fff' />
-                                        </TouchableHighlight>
+                                        <Button transparent onPress={() => { this.setModalVisible(false) }}>
+                                            <MaterialIcons name='close' size={28} color={colors.DROPDOWN_ICON_COLOR} />
+                                        </Button>
                                     </Right>
                                 </Header>
-                                <View style={{ backgroundColor: 'white' }}>
-                                    <SearchBar placeholder={'Search here '}
+                                <View style={{ backgroundColor: 'white', padding: 6 }}>
+                                    <SearchBar placeholder={'Search here'}
                                         value={this.state.text}
                                         onChangeText={(text) => this.getSearch(text)}
                                     // onSearch={this.getSearch(this.state.searchValue)}
                                     />
                                 </View>
 
-                                <View style={{ flex: 1, backgroundColor: '#efefef' }}>
+                                <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
                                     <FlatList
                                         data={this.state.data}
                                         keyExtractor={(item, index) => index.toString()}
+                                        ListEmptyComponent={this.emptyList}
                                         renderItem={({ item, index }) =>
                                             <List>
-                                                <TouchableOpacity >
-                                                    <ListItem onPress={() => { this.onSelectValue(item) }}>
-                                                        <Text style={{ fontFamily: 'Roboto' }}>{item.label}</Text>
-                                                    </ListItem>
-                                                </TouchableOpacity>
+                                                <ListItem onPress={() => { this.onSelectValue(item) }}>
+                                                    <Text style={{ fontFamily: 'Roboto' }}>{item.label}</Text>
+                                                </ListItem>
                                             </List>
                                         } />
                                 </View>
@@ -109,6 +108,14 @@ export default class SinglePicker extends React.Component {
                     </Modal>
                 </View >
         );
+    }
+
+    emptyList() {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ fontFamily: 'Roboto', paddingTop: 50 }}>No Data Available</Text>
+            </View>
+        )
     }
 }
 
@@ -125,12 +132,10 @@ const styles = EStyleSheet.create({
         position: 'absolute',
         bottom: 0
     },
-    Header_Style: {
-        backgroundColor: '#0073b7'
-    },
     Text_style: {
-        fontSize: '1.2rem',
-        color: '#fff',
-        fontWeight: '500',
+        // fontSize: '1.2rem',
+        color: '#7b7987',
+        paddingLeft: 5,
+        fontWeight: 'bold',
     }
 })

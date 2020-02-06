@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Alert, BackHandler, Image } from 'react-native';
+import { View, Alert, BackHandler, Image, TouchableOpacity } from 'react-native';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
-import { Button, Header, Left, Body, Right, Title } from 'native-base';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Button, Header, Left, Body, Right, Title, Text } from 'native-base';
+import { MaterialCommunityIcons, Feather, Ionicons } from '@expo/vector-icons';
 
 import {
     Toolbar,
@@ -24,6 +24,7 @@ export class Dashboard extends React.Component {
     constructor() {
         super();
         this.state = {
+            isAdmin: false,
             isLoading: true,
             loading: false,
             updatedSchemaData: [],
@@ -105,9 +106,20 @@ export class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        /**Login Response */
-        this.setState({ loginResponse: this.props.loginResponse.data.results,
-            userRoleId: this.props.loginResponse.data.results.userRoles[0].userRoleId });
+        /**UserRoles Object to render action buttons */
+        const userRoles = this.props.loginResponse.data.results.userRoles;
+        for (let index in userRoles) {
+            if (typeCode.ADMIN_USER_ROLE[userRoles[index].userRoleCode]) {
+                this.setState({ isAdmin: true });
+                break;
+            }
+        }
+        /**End of the userRoles */
+
+        this.setState({
+            loginResponse: this.props.loginResponse.data.results,
+            // userRoleId: this.props.loginResponse.data.results.userRoles[0].userRoleId
+        });
 
         /**Back Handler */
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -118,11 +130,22 @@ export class Dashboard extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.loginResponse.data.results.userRoles[0])
+        // console.log(nextProps.loginResponse.data.results.userRoles[0])
         if (this.props.loginResponse !== nextProps.loginResponse) {
+
+            /**UserRoles Object to render action buttons */
+            const userRoles = nextProps.loginResponse.data.results.userRoles;
+            for (let index in userRoles) {
+                if (typeCode.ADMIN_USER_ROLE[userRoles[index].userRoleCode]) {
+                    this.setState({ isAdmin: true });
+                    break;
+                }
+            }
+            /**End of the userRoles */
+
             this.setState({
                 loginResponse: nextProps.loginResponse.data.results,
-                userRoleId: nextProps.loginResponse.data.results.userRoles[0].userRoleId
+                // userRoleId: nextProps.loginResponse.data.results.userRoles[0].userRoleId
             });
         }
     }
@@ -154,29 +177,31 @@ export class Dashboard extends React.Component {
             this.state.isLoading === true ? <AppLoading /> :
                 <View style={styles.container}>
 
-                    <View><Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
-                    <Header style={{backgroundColor: colors.PRIMARY}}>
-                        {/* <Left>
+                    <View>
+                        <Statusbar backgroundColor={colors.STATUSBAR_COLOR} barStyle="light-content" />
+                        <Header style={{ backgroundColor: colors.PRIMARY }}>
+                            {/* <Left>
                             <Image style={{width: 30, height: 30}} resizeMode='contain'
                                 source={require('../../../assets/launcher.png')}>
                             </Image>
                         </Left> */}
-                        <Body>
-                            <Title>{this.state.loginResponse.companyName}</Title>
-                        </Body>
-                        <Right>
-                            { this.state.userRoleId == typeCode.ADMIN_USER_ROLE_ID ?
+                            <Body>
+                                <Title>{this.state.loginResponse.companyName}</Title>
+                            </Body>
+                            <Right>
+                                {this.state.isAdmin ?
+                                    <Button transparent>
+                                        <Feather name='filter'
+                                            onPress={this.logout} onPress={this.openPicker} color='#fff' size={20} />
+                                    </Button>
+                                    : null}
                                 <Button transparent>
-                                    <MaterialCommunityIcons name='filter'
-                                    onPress={this.logout} onPress={this.openPicker} color='#fff' size={20}/>
+                                    <Ionicons name='md-log-out'
+                                        onPress={this.logout} color='#fff' size={20} />
                                 </Button>
-                            :  null }
-                            <Button transparent>
-                                <MaterialCommunityIcons name='logout-variant'
-                                onPress={this.logout} color='#fff' size={20}/>
-                            </Button>
-                        </Right>
-                    </Header></View>
+                            </Right>
+                        </Header>
+                    </View>
 
                     {/* { this.state.userRoleId == typeCode.ADMIN_USER_ROLE_ID ?
                         <Toolbar title={this.state.loginResponse.companyName} leftIcon='home'
@@ -190,7 +215,40 @@ export class Dashboard extends React.Component {
 
                     <Activityindication visible={this.props.loginResponse.isLoading} />
 
-                    <View style={styles.container1}>
+                    <View style={{ flexDirection: 'row', width: '100%', height: 100, backgroundColor: '#fff' }}>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <TouchableOpacity onPress={() => navigate('GPSDevice', this.state.loginResponse)}>
+                                <View style={styles.iconView}>
+                                    <Ionicons name="md-phone-portrait" color={colors.HOMESCREEN.ASSOCIATIONCARD_COLOR}
+                                        size={25} />
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={[styles.iconText, { fontFamily: 'Roboto' }]}>GPS Devices</Text>
+                        </View>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <TouchableOpacity onPress={() => navigate('Schedule')}>
+                                <View style={styles.iconView}>
+                                    <MaterialCommunityIcons name="calendar-clock" color={colors.HOMESCREEN.SCHEDULECARD_COLOR} size={25}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={[styles.iconText, { fontFamily: 'Roboto' }]}>Schedule</Text>
+                        </View>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            {/* <View style={styles.iconView}>
+                                <MaterialCommunityIcons name="sim" color={colors.HOMESCREEN.SIMCARD_COLOR} size={25} />
+                            </View>
+                            <Text style={[styles.iconText, { fontFamily: 'Roboto' }]}>Sim</Text> */}
+                        </View>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            {/* <View style={styles.iconView}>
+                                <MaterialIcons name="devices" color={colors.HOMESCREEN.DEVICECARD_COLOR} size={25}/>
+                            </View>
+                            <Text style={[styles.iconText, { fontFamily: 'Roboto' }]}>Device</Text> */}
+                        </View>
+                    </View>
+
+                    {/* <View style={styles.container1}>
 
                         <View style={styles.upper_view}>
 
@@ -299,7 +357,7 @@ export class Dashboard extends React.Component {
                             </View>
                         </View>
 
-                    </View>
+                    </View> */}
                     <DashboardFilter ref={this.modalRef}
                         onRegionUpdate={(companyId) => this.onRegionUpdate(companyId)}
                     />

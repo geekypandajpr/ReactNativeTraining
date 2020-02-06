@@ -30,5 +30,15 @@ export default EStyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center'
+    },
+    dropdownHeader: {
+        backgroundColor: '#fff',
+        // borderBottomColor: '#7b7987',
+        // borderBottomWidth: 1
+    },
+    dropdownHeaderText: {
+        color: '#7b7987',
+        paddingLeft: 5,
+        fontWeight: 'bold',
     }
 });

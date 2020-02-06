@@ -1,4 +1,4 @@
-import { call, put, all } from 'redux-saga/effects';
+import { call, put, all, select } from 'redux-saga/effects';
 import { jobServices, userServices } from '../../services';
 import { SERVICE } from '../../common/actionTypes';
 import functions from '../../../common/functions';
@@ -17,7 +17,7 @@ export function* serviceListSaga(action) {
 
     } catch (error) {
         yield put({ type: SERVICE.SERVICE_LIST_FAILED, error });
-        functions.showToast('Something wrong', 'danger');
+        functions.showToast('Something Went Wrong', 'danger');
     }
 }
 
@@ -33,7 +33,7 @@ export function* serviceHistorySaga(action) {
 
     } catch (error) {
         yield put({ type: SERVICE.SERVICE_HISTORY_FAILED, error });
-        functions.showToast('Something went wrong', 'danger');
+        functions.showToast('Something Went Wrong', 'danger');
 
     }
 }
@@ -52,25 +52,25 @@ export function* createJobSaga(action) {
                     yield put({ type: SERVICE.SERVICE_LIST_SUCCESS, listData });
                 } else {
                     yield put({ type: SERVICE.SERVICE_LIST_FAILED });
-                    // functions.showToast('Unable to refresh Service List', 'danger');
                 }
             } catch (error) {
                 yield put({ type: SERVICE.SERVICE_LIST_FAILED, error });
-                functions.showToast('something went wrong', 'danger');
+                functions.showToast('Something Went Wrong', 'danger');
             }
         } else {
             yield put({ type: SERVICE.CREATEJOB_FAILED });
-            // functions.showToast('Unable to create Job', 'danger');
         }
     } catch (error) {
         yield put({ type: SERVICE.CREATEJOB_FAILED, error });
-        functions.showToast('Something went wrong', 'danger');
+        functions.showToast('Something Went Wrong', 'danger');
     }
 }
 
 export function* companySaga(action) {
     try {
-        const [jobvehicle, serviceType, technician] = yield all([call(jobServices.getVehicle),
+        const loginResponse = (state) => state.loginData.data.results.companyId;
+        const companyId = yield select(loginResponse);
+        const [jobvehicle, serviceType, technician] = yield all([call(jobServices.getVehicle, companyId),
         call(jobServices.getServiceType), call(jobServices.getTechnician, action.userRole)]);
         if (jobvehicle === null) { jobvehicle = [] }
         if (serviceType === null) { serviceType = [] }
@@ -78,7 +78,7 @@ export function* companySaga(action) {
         yield put({ type: SERVICE.SERVICE_COMPANY_SUCCESS, data: { technician, jobvehicle, serviceType } });
     } catch (error) {
         yield put({ type: SERVICE.SERVICE_COMPANY_FAILED, error })
-        functions.showToast('Something went wrong', 'danger');
+        functions.showToast('Something Went Wrong', 'danger');
     }
 }
 
@@ -100,7 +100,7 @@ export function* executeServiceSaga(action) {
         }
     } catch (error) {
         yield put({ type: SERVICE.EXECUTE_SERVICE_FAILED, error });
-        functions.showToast('Something went wrong', 'danger');
+        functions.showToast('Something Went Wrong', 'danger');
     }
 }
 
@@ -114,7 +114,7 @@ export function* serviceStatusSaga(action) {
         }
     } catch (error) {
         yield put({ type: SERVICE.SERVICE_STATUS_FAILED, error });
-        functions.showToast('Something went wrong', 'danger');
+        functions.showToast('Something Went Wrong', 'danger');
     }
 }
 
@@ -133,7 +133,7 @@ export function* serviceStatusUpdateSaga(action) {
         }
     } catch (error) {
         yield put({ type: SERVICE.SERVICE_STATUS_UPDATE_FAILED, error });
-        functions.showToast('Something went wrong', 'danger');
+        functions.showToast('Something Went Wrong', 'danger');
     }
 }
 
@@ -153,7 +153,7 @@ export function* simDeviceSaga(action) {
             yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS,datas: { DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice } });
         } catch (error) {
             yield put({ type: SERVICE.SERVICE_DEVICE_FAILED, error });
-            functions.showToast('Something went wrong', 'danger');
+            functions.showToast('Something Went Wrong', 'danger');
         }
     } else {
         try {
@@ -167,7 +167,7 @@ export function* simDeviceSaga(action) {
             yield put({ type: SERVICE.SERVICE_DEVICE_SUCCESS, datas: { DefectiveSim, ReplaceSim, DefectiveDevice, ReplaceDevice } });
         } catch (error) {
             yield put({ type: SERVICE.SERVICE_DEVICE_FAILED, error });
-            functions.showToast('Something went wrong', 'danger');
+            functions.showToast('Something Went Wrong', 'danger');
         }
     }
 }

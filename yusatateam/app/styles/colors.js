@@ -5,6 +5,7 @@ const colors = {
     WARNING: '#f0ad4e',
     HEADER_COLOR: '#0073b7',
     STATUSBAR_COLOR: '#004887',
+    DROPDOWN_ICON_COLOR: '#7b7987',
     
     // HOMESCREEN: {
     //     SIMCARD_COLOR: '#F66A4D',

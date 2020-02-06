@@ -39,11 +39,12 @@ export default function* rootSaga() {
     yield takeLatest(GPSDEVICE.CHECK_DEVICE_ASSOCIATION_REQUEST, gpsDeviceSaga.checkGPSDeviceAssocition),
     yield takeLatest(GPSDEVICE.CREATE_VEHICLETYPE_REQUEST, gpsDeviceSaga.createVehicleType),
     yield takeLatest(GPSDEVICE.CREATEVEHICLE_REQUEST, gpsDeviceSaga.createVehicle),
-    yield takeLatest(GPSDEVICE.GPSDEVICE_LIST_REQUEST, gpsDeviceSaga.gpsDeviceListSaga)
+    yield takeLatest(GPSDEVICE.GPSDEVICE_LIST_REQUEST, gpsDeviceSaga.gpsDeviceListSaga),
+    yield takeLatest(GPSDEVICE.GPSDEVICEVEHICLELIST_REQUEST, gpsDeviceSaga.getFreeVehicles)
 
     /**Jobs Schema */
-    yield takeLatest(SERVICE.CREATEJOB_REQUEST, jobSaga.createJobSaga), 
-    yield takeLatest(SERVICE.SERVICE_HISTORY_REQUEST, jobSaga.serviceHistorySaga), 
+    yield takeLatest(SERVICE.CREATEJOB_REQUEST, jobSaga.createJobSaga),
+    yield takeLatest(SERVICE.SERVICE_HISTORY_REQUEST, jobSaga.serviceHistorySaga),
     yield takeLatest(SERVICE.SERVICE_LIST_REQUEST, jobSaga.serviceListSaga),
     yield takeLatest(SERVICE.SERVICE_COMPANY_REQUEST, jobSaga.companySaga),
     yield takeLatest(SERVICE.EXECUTE_SERVICE_REQUEST, jobSaga.executeServiceSaga),

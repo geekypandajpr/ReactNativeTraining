@@ -3,7 +3,8 @@ const initialState = {
     isLoading: true,
     countryISD: [],
     deviceType: [],
-    //vehicleList : [],
+    inventoryDevice: [],
+    inventorySim : [],
     error: false
 }
 
@@ -17,7 +18,8 @@ export default gpsDeviceReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
                 countryISD: action.datas.countryISD,
                 deviceType: action.datas.deviceType,
-                //vehicleList : action.datas.vehicleList,
+                inventoryDevice : action.datas.inventoryDevice,
+                inventorySim : action.datas.inventorySim,
                 isLoading: false
             });
         case GPSDEVICE.GPSDEVICE_FAILED:

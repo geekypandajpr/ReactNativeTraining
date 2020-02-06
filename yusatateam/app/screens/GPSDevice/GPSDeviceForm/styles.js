@@ -29,7 +29,8 @@ export default EStyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
-        marginTop: 10
+        marginTop: 10,
+        paddingTop: 10
     },
     inner_View: {
         flex: 1,

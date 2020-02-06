@@ -7,7 +7,8 @@ import functions from '../../common/functions';
 
 export function* login(action) {
     try {
-        const data = yield call(userServices.login, action.loginCredentials);     
+        const data = yield call(userServices.login, action.loginCredentials);
+        // console.log(data);   
         if(data) {
             yield put({type: USER.LOGIN_SUCCESS, data});
             yield put(NavigationActions.navigate({ routeName: 'Dashboard' }));

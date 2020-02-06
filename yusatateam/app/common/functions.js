@@ -14,7 +14,7 @@ export function showToast(message, type) {
         text: message,
         buttonText: "Ok",
         type: type,
-        duration: 3000
+        duration: 10000
     })
 }
 
@@ -43,7 +43,6 @@ export const Base64 = {
         }
         return t
     },
-
     decode: function (e) {
         var t = "";
         var n, r, i;
@@ -84,7 +83,8 @@ export const Base64 = {
                 t += String.fromCharCode(r >> 6 & 63 | 128);
                 t += String.fromCharCode(r & 63 | 128)
             }
-        } return t
+        }
+        return t
     },
     _utf8_decode: function (e) {
         var t = "";

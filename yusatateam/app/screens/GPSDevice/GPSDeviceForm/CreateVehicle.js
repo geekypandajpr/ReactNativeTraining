@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, Image, ScrollView, BackHandler } from 'react-native';
+import { View, Image, ScrollView, BackHandler, KeyboardAvoidingView } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
 import { ImagePicker, AppLoading } from 'expo';
 import { connect } from 'react-redux';
 
 import styles from './styles';
-import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker } from '../../../components';
+import { Toolbar, Float, UnderlineText, Activityindication, SinglePicker, GpsDevicePicker } from '../../../components';
 import { BarCodeModal } from './BarCodeModal';
 import { gpsDeviceActions } from '../../../redux/actions';
 import { showToast } from '../../../common/functions';
-import { colors } from '../../../styles';
+import { colors, globalStyles } from '../../../styles';
 
 export class CreateVehicle extends React.Component {
     constructor(props) {
@@ -19,6 +19,11 @@ export class CreateVehicle extends React.Component {
             data: null,
             //DeviceId
             deviceId: '',
+            deviceValue: 'Select Device',
+            isDeviceUdidValid: false,
+            gpdDeviceArray: [],
+            isDeviceChecked: false,
+
             //VIN
             vin: '',
             //Sim#
@@ -56,8 +61,18 @@ export class CreateVehicle extends React.Component {
 
     async componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+
+        /**Inventory Device */
+        const gpdDeviceArray = [];
+        if (this.props.gpsDeviceData.inventoryDevice.results) {
+            const inventoryDeviceData = this.props.gpsDeviceData.inventoryDevice.results;
+            for (var i = 0; i < inventoryDeviceData.length; i++) {
+                var obj = { "label": inventoryDeviceData[i].code, "value": inventoryDeviceData[i].key };
+                gpdDeviceArray.push(obj);
+            }
+        }
+        this.setState({ deviceId: this.props.navigation.state.params.deviceid, gpdDeviceArray: gpdDeviceArray });
         this.props.oncreateVehicleType();
-        this.setState({ deviceId: this.props.navigation.state.params.deviceid });
     }
 
     componentWillUnmount() {
@@ -70,7 +85,6 @@ export class CreateVehicle extends React.Component {
     }
 
     barCodeValue(value) {
-
         if (value.get("Device")) {
             this.setState({ deviceId: value.get("Device") })
         }
@@ -144,10 +158,22 @@ export class CreateVehicle extends React.Component {
             }
             this.setState({ vehicleList: vehicleArray, vehicleTypeValue: vehicleTypeValue, vehicleTypeId: vehicleTypeId })
         }
+
+        /**Based on Device UDID/ESN validation, update "isDeviceUdidValid" state variable*/
+        if (this.props.checkGPSDeviceAssocData !== nextProps.checkGPSDeviceAssocData) {
+            if (this.state.isDeviceChecked) {
+                var isValid = nextProps.checkGPSDeviceAssocData.isValid;
+                if(!isValid) {
+                    functions.showToast('Device is already engaged with another vehicle, please try with another device', 'warning');
+                }
+                this.setState({ isDeviceUdidValid: isValid, isDeviceChecked: false });
+            }
+                
+        }
     }
 
     openList() {
-        this.modalRef.current.setModalVisible(true, 'Vehicle List', this.state.vehicleList)
+        this.modalRef.current.setModalVisible(true, 'Vehicle Type', this.state.vehicleList)
     }
 
     onVehicleTypeSelect = (item) => {
@@ -162,16 +188,17 @@ export class CreateVehicle extends React.Component {
                 "odometerReading": this.state.odometerReading,
                 "vehicleVin": this.state.vin,
                 "departmentId": departmentId,
+                "vehicleType": this.state.vehicleTypeValue,
                 "vehicleTypeId": this.state.vehicleTypeId
             }
             if (this.state.deviceId !== '')
-                item["gpsDeviceUdid"] = this.state.deviceId;
+                item["gpsDeviceUdid"] = this.state.deviceValue;
+
             // if (this.state.Base )
             //     item["image"] = this.state.Base;
-            // console.log(JSON.stringify(item));
+            console.log(JSON.stringify(item));
+
             this.props.createVehicle(item);
-        } else {
-            showToast('Please fill required fields', 'warning');
         }
     }
 
@@ -181,9 +208,26 @@ export class CreateVehicle extends React.Component {
             && odometerReading !== ''
             && vin !== ''
             && vehicleTypeId !== '') {
+                if(this.state.deviceId !== '' && this.state.isDeviceUdidValid)
+                    return true;
+                else if(this.state.deviceId !== '' && !this.state.isDeviceUdidValid) {
+                    functions.showToast('Device is already engaged with another vehicle, please try with another device', 'warning');
+                    return false;
+                }
             return true;
         }
+        showToast('Please fill required fields', 'warning');
         return false;
+    }
+
+    selectDevice(item) {
+        this.setState({
+            deviceId: item.value,
+            deviceValue: item.label,
+            isDeviceChecked: true,
+            isDeviceUdidValid: false
+        });
+        this.props.checkDeviceAssociation(item.label);
     }
 
     render() {
@@ -196,116 +240,130 @@ export class CreateVehicle extends React.Component {
                 <View style={{ flex: 1 }}>
                     <Activityindication visible={this.props.VehicleTypeData.isLoading} />
                     <Activityindication visible={this.props.Addvehicles.isLoading} />
+                    <Activityindication visible={this.props.checkGPSDeviceAssocData.isLoading} />
 
                     <Toolbar title='Create Vehicle'
                         leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()}
                     />
 
-                    <ScrollView keyboardShouldPersistTaps="always" showsVerticalScrollIndicator={false}>
-                        <View style={{ backgroundColor: '#fff', alignItems: 'center' }}>
-                            <View style={{ width: '92%', marginTop: 10 }}>
-                                <Float
-                                    placeholder='Vehicle #'
-                                    value={this.state.vehicleNumber}
-                                    returnKeyType={'next'}
-                                    keyboardType={'default'}
-                                    blurOnSubmit={false}
-                                    isMandatory={true}
-                                    onChangeText={(text) => this.setState({ vehicleNumber: text })}
-                                    inputStyles={{ width: '100%' }}
-                                />
-                            </View>
+                    <KeyboardAvoidingView behavior='padding' enabled style={globalStyles.keyboardAvoiding} >
+                        <ScrollView keyboardShouldPersistTaps="always" showsVerticalScrollIndicator={false}>
+                            <View style={{ backgroundColor: '#fff', alignItems: 'center' }}>
+                                <View style={{ width: '92%', marginTop: 10 }}>
+                                    <Float
+                                        placeholder='Vehicle #'
+                                        value={this.state.vehicleNumber}
+                                        returnKeyType={'next'}
+                                        keyboardType={'default'}
+                                        blurOnSubmit={false}
+                                        isMandatory={true}
+                                        onChangeText={(text) => this.setState({ vehicleNumber: text })}
+                                        inputStyles={{ width: '100%' }}
+                                    />
+                                </View>
 
-                            <View style={{ width: '92%', marginTop: 10 }}>
-                                <Float
-                                    placeholder='Odometer Reading'
-                                    value={this.state.odometerReading}
-                                    returnKeyType={'next'}
-                                    keyboardType={'numeric'}
-                                    blurOnSubmit={false}
-                                    isMandatory={true}
-                                    onChangeText={(text) => this.setState({ odometerReading: text })}
-                                    inputStyles={{ width: '100%' }}
-                                />
-                            </View>
+                                <View style={{ width: '92%', marginTop: 10 }}>
+                                    <Float
+                                        placeholder='Odometer Reading'
+                                        value={this.state.odometerReading}
+                                        returnKeyType={'next'}
+                                        keyboardType={'numeric'}
+                                        blurOnSubmit={false}
+                                        isMandatory={true}
+                                        onChangeText={(text) => this.setState({ odometerReading: text })}
+                                        inputStyles={{ width: '100%' }}
+                                    />
+                                </View>
 
-                            <View style={{ width: '92%', marginTop: 10 }}>
-                                <Float
-                                    rightIcon={'md-barcode'}
-                                    rightIconType='Ionicons'
-                                    rightIconPress={() => this.BarCodePage("Device")}
-                                    rightIconStyle={{ color: 'gray', fontSize: 20 }}
-                                    placeholder='Device Id'
-                                    value={this.state.deviceId}
-                                    returnKeyType={'next'}
-                                    keyboardType={'numeric'}
-                                    blurOnSubmit={false}
-                                    isMandatory={false}
-                                    onChangeText={(text) => this.setState({ deviceId: text })}
-                                    inputStyles={{ width: '100%' }}
-                                    maxLength={38}
-                                />
-                            </View>
-                            {/* {
+                                <View style={{ width: '92%', marginTop: 15 }}>
+                                    <UnderlineText
+                                        name="Device UDID/ESN"
+                                        upperView={true}
+                                        value={this.state.deviceValue}
+                                        isMandatory={false}
+                                        isValidationIcon={this.state.isDeviceUdidValid}
+                                        onpress={() => this.refs.device.setModalVisible(true, "Device UDID/ESN", this.state.gpdDeviceArray)}
+                                    />
+                                </View>
+
+                                {/* <View style={{ width: '92%', marginTop: 10 }}>
+                                    <Float
+                                        rightIcon={'md-barcode'}
+                                        rightIconType='Ionicons'
+                                        rightIconPress={() => this.BarCodePage("Device")}
+                                        rightIconStyle={{ color: 'gray', fontSize: 20 }}
+                                        placeholder='Device Id'
+                                        value={this.state.deviceId}
+                                        returnKeyType={'next'}
+                                        keyboardType={'numeric'}
+                                        blurOnSubmit={false}
+                                        isMandatory={false}
+                                        onChangeText={(text) => this.setState({ deviceId: text })}
+                                        inputStyles={{ width: '100%' }}
+                                        maxLength={38}
+                                    />
+                                </View> */}
+
+                                {/* {
                                 this.state.deviceId.length>38?
                                 <Text style={{color:'red'}}> Barcode Data Length can't be more then 38</Text>: null
                             } */}
 
-                            <View style={{ width: '92%', marginTop: 10 }}>
-                                <Float
-                                    rightIcon={'md-barcode'}
-                                    rightIconType='Ionicons'
-                                    rightIconPress={() => this.BarCodePage("SIM")}
-                                    rightIconStyle={{ color: 'gray', fontSize: 20 }}
-                                    placeholder='Sim #'
-                                    value={this.state.simNumber}
-                                    returnKeyType={'next'}
-                                    keyboardType={'numeric'}
-                                    blurOnSubmit={false}
-                                    isMandatory={false}
-                                    onChangeText={(text) => this.setState({ simNumber: text })}
-                                    inputStyles={{ width: '100%' }}
-                                    maxLength={38}
-                                />
-                            </View>
-                            {/* {
+                                {/* <View style={{ width: '92%', marginTop: 10 }}>
+                                    <Float
+                                        rightIcon={'md-barcode'}
+                                        rightIconType='Ionicons'
+                                        rightIconPress={() => this.BarCodePage("SIM")}
+                                        rightIconStyle={{ color: 'gray', fontSize: 20 }}
+                                        placeholder='Sim #'
+                                        value={this.state.simNumber}
+                                        returnKeyType={'next'}
+                                        keyboardType={'numeric'}
+                                        blurOnSubmit={false}
+                                        isMandatory={false}
+                                        onChangeText={(text) => this.setState({ simNumber: text })}
+                                        inputStyles={{ width: '100%' }}
+                                        maxLength={38}
+                                    />
+                                </View> */}
+                                {/* {
                                 this.state.simNumber.length>38?
                                 <Text style={{color:'red'}}> Barcode Data Length can't be more then 38</Text>: null
                             } */}
 
-                            <View style={{ width: '92%', marginTop: 10 }}>
-                                <Float
-                                    rightIcon={'md-barcode'}
-                                    rightIconType='Ionicons'
-                                    rightIconPress={() => this.BarCodePage("VIN")}
-                                    rightIconStyle={{ color: 'gray', fontSize: 20 }}
-                                    placeholder='VIN'
-                                    value={this.state.vin}
-                                    returnKeyType={'next'}
-                                    keyboardType={'email-address'}
-                                    blurOnSubmit={false}
-                                    isMandatory={true}
-                                    onChangeText={(text) => this.setState({ vin: text })}
-                                    inputStyles={{ width: '100%' }}
-                                    maxLength={38}
-                                />
-                            </View>
-                            {/* {
+                                <View style={{ width: '92%', marginTop: 10 }}>
+                                    <Float
+                                        rightIcon={'md-barcode'}
+                                        rightIconType='Ionicons'
+                                        rightIconPress={() => this.BarCodePage("VIN")}
+                                        rightIconStyle={{ color: 'gray', fontSize: 20 }}
+                                        placeholder='VIN'
+                                        value={this.state.vin}
+                                        returnKeyType={'next'}
+                                        keyboardType={'email-address'}
+                                        blurOnSubmit={false}
+                                        isMandatory={true}
+                                        onChangeText={(text) => this.setState({ vin: text })}
+                                        inputStyles={{ width: '100%' }}
+                                        maxLength={38}
+                                    />
+                                </View>
+                                {/* {
                                 this.state.vin.length>38?
                                 <Text style={{color:'red'}}> Barcode Data Length can't be more then 38</Text>: null
                             } */}
 
-                            <View style={{ width: '92%', marginTop: 15 }}>
-                                <UnderlineText
-                                    name='Vehicle Type'
-                                    isMandatory={true}
-                                    upperView={true}
-                                    value={this.state.vehicleTypeValue}
-                                    onpress={this.openList}
-                                />
-                            </View>
+                                <View style={{ width: '92%', marginTop: 15 }}>
+                                    <UnderlineText
+                                        name='Vehicle Type'
+                                        isMandatory={true}
+                                        upperView={true}
+                                        value={this.state.vehicleTypeValue}
+                                        onpress={this.openList}
+                                    />
+                                </View>
 
-                            {/* <View style={{ width: '92%', flexDirection: 'row', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>
+                                {/* <View style={{ width: '92%', flexDirection: 'row', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>
                                 <View style={{ flex: 1.5, alignItems: 'center', justifyContent: 'center' }}>
                                     {image ?
                                         <View style={{ height: 100, width: 100, borderColor: 'gray', borderWidth: 0.8, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
@@ -335,23 +393,24 @@ export class CreateVehicle extends React.Component {
                                 </View>
                             </View> */}
 
-                            {/* <View style={{ width: '92%', marginTop: 5, marginBottom: 10, alignItems: 'center' }}>
+                                {/* <View style={{ width: '92%', marginTop: 5, marginBottom: 10, alignItems: 'center' }}>
                                 <Text style={{ fontSize: 12, color: '#808080', fontFamily: 'Roboto' }}>
                                     {this.state.imagename}
                                 </Text>
                             </View> */}
 
-                            <View style={{ width: '92%', flexDirection: 'row', marginBottom: 20, marginTop: 20 }}>
-                                <View style={{ flex: 1, width: '100%' }}>
-                                    <Button full style={{ backgroundColor: colors.PRIMARY, width: '100%', justifyContent: 'center', alignItems: 'center' }}
-                                        onPress={this.onCreateVehicle} >
-                                        <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Create</Text>
-                                    </Button>
+                                <View style={{ width: '92%', flexDirection: 'row', marginBottom: 20, marginTop: 20 }}>
+                                    <View style={{ flex: 1, width: '100%' }}>
+                                        <Button full style={{ backgroundColor: colors.PRIMARY, width: '100%', justifyContent: 'center', alignItems: 'center' }}
+                                            onPress={this.onCreateVehicle} >
+                                            <Text style={{ color: '#fff', fontFamily: 'Roboto' }}>Create</Text>
+                                        </Button>
+                                    </View>
                                 </View>
                             </View>
-                        </View>
 
-                    </ScrollView>
+                        </ScrollView>
+                    </KeyboardAvoidingView>
                     <BarCodeModal ref={this.modalReference} getBarValue={(detail) => this.barCodeValue(detail)} />
                     {/* <Footer>
                         <FooterTab style={{ backgroundColor: '#0073b7' }}>
@@ -360,6 +419,7 @@ export class CreateVehicle extends React.Component {
                             </Button>
                         </FooterTab>
                     </Footer> */}
+                    <GpsDevicePicker ref={"device"} selectedValue={(value) => this.selectDevice(value)} />
                     <SinglePicker ref={this.modalRef} selectedValue={(item) => { this.onVehicleTypeSelect(item) }} />
                 </View>
         );
@@ -370,14 +430,17 @@ function mapStateToProps(state) {
     return {
         Addvehicles: state.createVehicleData,
         VehicleTypeData: state.createVehicleTypeData,
-        loginResponse: state.loginData
+        loginResponse: state.loginData,
+        checkGPSDeviceAssocData: state.checkGPSDeviceAssocData,
+        gpsDeviceData: state.gpsDeviceData,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         createVehicle: (value) => dispatch(gpsDeviceActions.createVehicle(value)),
-        oncreateVehicleType: () => dispatch(gpsDeviceActions.createVehicleType())
+        oncreateVehicleType: () => dispatch(gpsDeviceActions.createVehicleType()),
+        checkDeviceAssociation: (deviceUDID) => dispatch(gpsDeviceActions.checkGPSDeviceAssociation(deviceUDID))
     }
 }
 

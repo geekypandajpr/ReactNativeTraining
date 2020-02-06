@@ -4,7 +4,7 @@ import { colors } from '../../styles'
 export default EStyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff'
+        backgroundColor: '#efefef'
     },
     container1: {
         flex: 1,
@@ -17,6 +17,20 @@ export default EStyleSheet.create({
         backgroundColor: colors.HEADER_COLOR,
         position: 'absolute',
         top: 0
+    },
+
+    /**Temporary Styles */
+    iconView: {
+        backgroundColor: '#F5F5F8',
+        height: 50,
+        width: 50,
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    iconText: {
+        color: '#808080',
+        fontSize: '0.8rem'
     },
 
     /**Upper View */

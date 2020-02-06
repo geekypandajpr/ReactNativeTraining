@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native';
-import { SimpleLineIcons } from '@expo/vector-icons';
+import { SimpleLineIcons, Ionicons } from '@expo/vector-icons';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { AppLoading } from 'expo';
 
@@ -41,6 +41,11 @@ export default class UnderlineText extends React.Component {
                             <Text style={[styles.value, {fontFamily: 'Roboto'}]}>{this.props.value}</Text>
                         </View>
 
+                        {this.props.isValidationIcon ?
+                            <View style={{ justifyContent: 'flex-end', flex: 0.1 }}>
+                                <Ionicons name='ios-checkmark-circle-outline' size={15} color='green' />
+                            </View>
+                        : null }
                         <View style={{ justifyContent: 'flex-end', flex: 0.1 }}>
                             <SimpleLineIcons name='arrow-right' size={15} color='gray' />
                         </View>

@@ -291,7 +291,7 @@ export class DoAssociation extends React.Component {
                 <View style={styles.main_container}>
                     <Activityindication visible={this.props.simDeviceData.isLoading} />
                     <Activityindication visible={this.props.executeServiceData.isLoading} />
-                    <Toolbar title={item.orderNumber} leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
+                    <Toolbar title={item.serviceName} leftIcon='arrow-left' leftIconType='Feather' onLeftButtonPress={() => goBack()} />
 
                     <View style={styles.inner_container}>
                         <KeyboardAvoidingView behavior='padding' enabled style={globalStyles.keyboardAvoiding}>
@@ -378,13 +378,13 @@ export class DoAssociation extends React.Component {
 
                                     <View style={styles.sub_view}>
                                         <View style={styles.left_view}>
-                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Service name</Text>
+                                            <Text style={[globalStyles.primary_text, { fontFamily: 'Roboto', padding: 4 }]}>Service order#</Text>
                                         </View>
                                         <View style={styles.middle_view}>
                                             <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>:</Text>
                                         </View>
                                         <View style={styles.right_view}>
-                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.serviceName}</Text>
+                                            <Text style={[globalStyles.secondary_text, { fontFamily: 'Roboto', padding: 4 }]}>{item.orderNumber}</Text>
                                         </View>
                                     </View>
 
