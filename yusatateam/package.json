@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
-    "expo": "^30.0.1",
+    "expo": "^46.0.16",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.23",
     "native-base": "2.6.1",
